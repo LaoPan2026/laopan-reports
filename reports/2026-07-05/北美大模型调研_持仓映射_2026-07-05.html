@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北美大模型竞争底层逻辑反转 · 持仓映射</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--text:#c9d1d9;--sub:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--orange:#d2991d;--border:#30363d;--mint:#56d3ad;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.65;padding:16px 20px 40px;max-width:960px;margin:0 auto}
+h1{font-size:22px;font-weight:700;color:#f0f6fc;margin-bottom:6px}
+h2{font-size:17px;font-weight:600;color:#f0f6fc;margin:20px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+h3{font-size:15px;font-weight:600;color:#f0f6fc;margin:12px 0 6px}
+.header{text-align:center;padding:14px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.header .sub{font-size:12px;color:var(--sub);margin-top:2px}
+.verdict{background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:10px;padding:14px;margin-bottom:12px}
+.verdict .main{font-size:17px;font-weight:700;color:#7ee787;margin-bottom:6px}
+.verdict .detail{font-size:14px;color:var(--text);line-height:1.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.bull{background:rgba(63,185,80,0.06);border-color:rgba(63,185,80,0.2)}
+.bear{background:rgba(248,81,73,0.06);border-color:rgba(248,81,73,0.2)}
+.info{background:rgba(88,166,255,0.05);border-color:rgba(88,166,255,0.2)}
+.chart-box{height:380px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th{text-align:left;padding:7px 8px;color:var(--sub);font-weight:500;border-bottom:1px solid var(--border);font-size:12px;vertical-align:bottom}
+td{padding:7px 8px;border-bottom:1px solid rgba(48,54,61,0.5);vertical-align:top}
+td:first-child{white-space:nowrap;min-width:120px;overflow:hidden;text-overflow:ellipsis}
+.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:3px;margin-right:3px;font-weight:500}
+.tag-up{background:rgba(63,185,80,0.18);color:#7ee787}
+.tag-down{background:rgba(248,81,73,0.18);color:#ff7b72}
+.tag-warn{background:rgba(210,153,29,0.18);color:#e2b052}
+.tag-info{background:rgba(88,166,255,0.15);color:#79c0ff}
+.tag-s{background:rgba(188,140,255,0.18);color:var(--purple)}
+.row-flex{display:flex;gap:10px;flex-wrap:wrap}
+.row-flex>div{flex:1;min-width:240px}
+.footer{text-align:center;color:#6e7681;font-size:11px;padding:16px 0;border-top:1px solid var(--border);margin-top:12px;line-height:1.7}
+.highlight{background:rgba(63,185,80,0.08);padding:2px 6px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>北美一线调研：全球大模型竞争底层逻辑彻底反转</h1>
+<div class="sub">原文：调研先知 古今 | 2026-07-05 | 三步走投研协作框架</div>
+</div>
+
+<div class="verdict">
+<div class="main">结论前置：对持仓是系统性利好，尤其澜起科技和光通信链的长期逻辑获得重磅验证</div>
+<div class="detail">
+本文可能是近期对 AI 硬件投资逻辑<b>最强有力的一次第三方验证</b>。核心判断三条：①内存已超越芯片算力成为 AI 第一瓶颈（HBM:DRAM 最优配比 1:10 vs 当前 1:1~2）；②TPU 供需缺口至少持续到 2028 年（年需求 3500 万颗 vs 年产数百万颗）；③编程是绝对主力消耗场景（千亿美元 ARR 赛道），推理算力需求远未到顶。<br><br>
+<b>与上一篇黑石文章形成鲜明对冲</b>：黑石是地产投资者在单项项目上撤退，而本文证实的是底层芯片+内存+光互联的<b>结构性供不应求仍在加速</b>。两篇合在一起看，结论更清晰——算力供给侧的真正瓶颈不在数据中心楼房，而在芯片、内存、光模块这三级硬科技。
+</div>
+</div>
+
+<h2>一、核心逻辑拆解（11 个关键判断）</h2>
+
+<div class="row-flex">
+<div class="card info" style="flex:1;min-width:220px">
+<h3>模型竞争格局</h3>
+<div style="font-size:14px;line-height:1.8">
+• Anthropic 领先（数据壁垒最深）<br>
+• OpenAI 紧追（架构适配拖后腿）<br>
+• Google 结构性掉队（合规+MoE 双杀）<br>
+• Meta 不掉牌（自建标注团队）
+</div>
+</div>
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>算力供给侧</h3>
+<div style="font-size:14px;line-height:1.8">
+• 2028 年全球 TPU 需求 3500 万颗<br>
+• 当前年产仅数百万颗<br>
+• Anthropic 独占 200 万+张 TPU<br>
+• 台积电专用工厂 2028 投产
+</div>
+</div>
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>内存瓶颈（核心！）</h3>
+<div style="font-size:14px;line-height:1.8">
+• <b>内存 > 芯片算力，成第一瓶颈</b><br>
+• HBM:DRAM 最优配比 <b>1:10</b><br>
+• 当前实际配比仅 1:1 ~ 1:2<br>
+• DRAM 供给缺口持续拉大
+</div>
+</div>
+</div>
+
+<div class="row-flex">
+<div class="card" style="flex:1;min-width:220px">
+<h3>Token 消耗格局</h3>
+<div style="font-size:14px;line-height:1.8">
+• 编程赛道 ARR <b>千亿美元级</b><br>
+• Anthropic Claude Code 数百亿美金<br>
+• Gemini 近 100 亿（语音/视频审核）<br>
+• 编程消耗量远超 Agent/音视频
+</div>
+</div>
+<div class="card" style="flex:1;min-width:220px">
+<h3>竞争壁垒排序</h3>
+<div style="font-size:14px;line-height:1.8">
+• <b>数据质量 > 架构 > 人才</b><br>
+• 长轨迹任务数据是核心资产<br>
+• 合规数据获取决定模型上限<br>
+• 算力稳定供给 = 数年最高壁垒
+</div>
+</div>
+<div class="card bear" style="flex:1;min-width:220px">
+<h3>国产模型冲击</h3>
+<div style="font-size:14px;line-height:1.8">
+• DeepSeek/智谱/通义低价抢市场<br>
+• 只吃成本敏感型中低端需求<br>
+• 不威胁高端训练/推理赛道<br>
+• 全球分层定价格局定型
+</div>
+</div>
+</div>
+
+<h2>二、独立评价</h2>
+
+<div class="card bull">
+<h3>文章可信度评估：★★★★☆</h3>
+<div style="font-size:14px;line-height:1.8">
+<b>强项：</b><br>
+• 数据颗粒度极高（TPU 3500 万颗、HBM:DRAM 1:10、Anthropic 200 万+卡），来源明确（投行+硬件厂商+参会纪要），可信度高<br>
+• 跨厂商交叉验证（Anthropic/OpenAI/DeepMind/谷歌四家并列分析），逻辑体系自洽<br>
+• 与 YZ 硅谷观察（"算力一直缺"）、纳瓦尔圆桌（"算力是最大稀缺"）、华为韬定律（τ₄ 系统级优化）三大框架高度吻合<br><br>
+<b>需注意的局限：</b><br>
+• 文章以 Anthropic 为中心视角，可能高估其领先程度（OpenAI GPT-6 未出，变数仍在）<br>
+• 国产模型的"低端抢市场"判断可能低估了 DeepSeek 等模型的进步速度<br>
+• 对 CXL 标准的消极判断（"私有方案主导"）可能过于绝对——行业标准往往后发制人
+</div>
+</div>
+
+<div class="card info">
+<h3>与上一篇黑石文章的交叉对冲</h3>
+<div style="font-size:14px;line-height:1.8">
+<table>
+<tr><th>维度</th><th>黑石文章（偏空）</th><th>本文（偏多）</th><th>巴蒂判断</th></tr>
+<tr><td>信号来源</td><td>地产投资商的项目退出</td><td>芯片/模型/内存产业链调研</td><td class="green">本文信号层级更高</td></tr>
+<tr><td>影响逻辑</td><td>建设放缓→设备采购可能延后</td><td>需求爆炸→芯片/内存/光模块缺口扩大</td><td class="green">长期需求逻辑碾压短期建设瓶颈</td></tr>
+<tr><td>时间维度</td><td>6-12 个月（项目建设周期）</td><td>3-5 年（芯片产能周期）</td><td class="green">本文对中长期持仓更有指导意义</td></tr>
+<tr><td>对光通信影响</td><td>短期情绪偏空</td><td>中长期需求刚性向上</td><td class="green">回调是机会而非拐点</td></tr>
+</table>
+<b>综合结论：两篇文章形成"短期噪音 vs 长期趋势"的经典对冲。黑石撤退是交易层面的杂音，本文才是产业趋势的基准判断。</b>
+</div>
+</div>
+
+<h2>三、持仓影响逐只评估（核心！）</h2>
+
+<table>
+<tr><th>标的</th><th>影响方向</th><th>强度</th><th>传导逻辑与关键数据点</th><th>操作建议</th></tr>
+<tr>
+<td><b>澜起科技<br>688008</b></td>
+<td class="green">★★★★★<br>强利好</td>
+<td class="green">最高</td>
+<td style="font-size:14px">
+<b>内存超越芯片算力成为 AI 第一瓶颈，这是澜起最核心的投资逻辑获得第三方重磅验证。</b><br>
+• 当前 HBM:DRAM 1:1~2 → 最优 1:10 → DRAM 需求理论上可再翻 5-10 倍<br>
+• 每张 TPU 需要配套的 DDR5 内存 + Retimer 芯片 → 澜起的 DDR5 接口芯片需求与 TPU 出货量正相关<br>
+• 文章虽称"CXL 标准未成主流"，但内存池化的刚需不会消失——私有方案只是过渡，CXL 标准化是必然<br>
+• 2028 年 TPU 年产突破 1000 万颗 → 对应数千万颗级别的 DDR5 Retimer 需求
+</td>
+<td><span class="tag tag-s">S级</span><b>坚定持有，可考虑逢低加仓</b></td>
+</tr>
+<tr>
+<td><b>中际旭创<br>300308<br>（跟踪）</b></td>
+<td class="green">★★★★☆<br>利好</td>
+<td>高</td>
+<td style="font-size:14px">
+• 3500 万颗 TPU 需求 → 海量数据中心互联 → 800G/1.6T 光模块需求暴增<br>
+• 编程场景千亿美元 ARR → 推理集群扩建 → 光模块需求从训练向推理延伸<br>
+• Anthropic 独占 200 万+ TPU → 其光模块采购需求体量巨大<br>
+• <b>与黑石文章形成完美对冲</b>：数据中心建设可能慢，但光模块需求不会少
+</td>
+<td><span class="tag tag-up">跟踪池</span><b>若因黑石文章继续下跌至 1000 元附近，强烈建议启动分批建仓</b></td>
+</tr>
+<tr>
+<td><b>汇绿生态<br>001267</b></td>
+<td class="green">★★★★☆<br>利好</td>
+<td>高</td>
+<td style="font-size:14px">
+• 光模块黑马，逻辑与中际旭创类似但弹性更大<br>
+• 核心客户 COHR/LITE 直接受益于 Anthropic/谷歌的 TPU 扩张<br>
+• 上周 −18.41% 的回调可能被黑石文章放大恐慌，本文可作为重新评估的锚
+</td>
+<td><span class="tag tag-info">A级</span><b>42 元警戒线不变，但回调中不宜恐慌减仓</b></td>
+</tr>
+<tr>
+<td><b>罗博特科<br>300757</b></td>
+<td class="green">★★★☆☆<br>偏利好</td>
+<td>中</td>
+<td style="font-size:14px">
+• ficonTEC 设备面向光模块生产端<br>
+• 光模块需求增长 → 扩产需求 → 设备订单增加<br>
+• 传导链较长（芯片→光模块→设备），弹性低于直接的光模块厂
+</td>
+<td><span class="tag tag-info">A级</span><b>维持，423 止损线不变</b></td>
+</tr>
+<tr>
+<td><b>三祥新材<br>603663</b></td>
+<td class="green">★★☆☆☆<br>微偏利好</td>
+<td>低</td>
+<td style="font-size:14px">
+• 铪材料用于半导体制造（high-k 介质/栅极）<br>
+• TPU/GPU 芯片生产量增加 → 铪需求提升<br>
+• 传导链极长（大模型→芯片→晶圆厂→铪靶材），但方向正确
+</td>
+<td><span class="tag tag-s">S级</span><b>持有，铪产线 7 月底投料是独立催化剂</b></td>
+</tr>
+<tr>
+<td><b>工业富联<br>601138<br>（跟踪）</b></td>
+<td class="green">★★★★☆<br>利好</td>
+<td>高</td>
+<td style="font-size:14px">
+• AI 服务器 ODM 龙头<br>
+• 3500 万颗 TPU 需要配套海量服务器<br>
+• 编程场景推理需求增长 → 推理服务器需求同步增长
+</td>
+<td><span class="tag tag-up">跟踪池</span><b>回调后有配置价值</b></td>
+</tr>
+<tr>
+<td><b>软通动力<br>301236</b></td>
+<td class="green">★★★☆☆<br>偏利好</td>
+<td>中</td>
+<td style="font-size:14px">
+• AIPC/服务器 ODM 方向受益<br>
+• 国产替代逻辑独立于北美调研
+</td>
+<td>持有</td>
+</tr>
+</table>
+
+<h2>四、关键数据点可视化</h2>
+
+<div class="chart-box" id="chart-main"></div>
+
+<div class="row-flex">
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>核心做多逻辑（已强化）</h3>
+<div style="font-size:14px;line-height:1.8">
+1. <b>内存瓶颈</b> → 澜起科技 DDR5/CXL 长期需求逻辑<br>
+2. <b>TPU 缺口至 2028</b> → 光模块/服务器 3 年确定性增长<br>
+3. <b>编程千亿美元 ARR</b> → 推理算力需求远未到顶<br>
+4. <b>数据壁垒</b> → Anthropic 持续投入 → 算力采购不减
+</div>
+</div>
+<div class="card bear" style="flex:1;min-width:220px">
+<h3>需跟踪的风险点</h3>
+<div style="font-size:14px;line-height:1.8">
+1. <b>CXL 标准推进慢</b> → 澜起 CXL 控制器商业化可能延迟<br>
+2. <b>国产模型冲击</b> → 若 DeepSeek 等持续进步，可能改写格局<br>
+3. <b>GPT-6 发布</b> → 若 OpenAI 追平 Anthropic，可能改变算力采购分配<br>
+4. <b>大模型吞噬论</b> → 若应用层被吞，可能减少硬件多样性需求
+</div>
+</div>
+</div>
+
+<h2>五、操作建议汇总</h2>
+
+<div class="card info">
+<div style="font-size:14px;line-height:1.9">
+<b>本文是 H2 投研框架的核心强化文献。</b>建议与 YZ 硅谷观察笔记并列作为"基准文献第二篇"。对持仓的核心启示：<br><br>
+1. <b>澜起科技</b>：逻辑获得最强验证。DRAM 需求缺口 5-10 倍于当前 → DDR5 Retimer/CXL 控制器是确定性受益。S 级底仓不动，如有回调可考虑加仓。<br>
+2. <b>光通信链（中际/汇绿）</b>：与黑石文章形成完美对冲。建设慢→但芯片/光模块需求不减速。中际若跌至 1000 元附近建议分批建仓，汇绿 42 元是警戒线但不宜恐慌。<br>
+3. <b>算力硬件链（罗博/工业富联）</b>：受益方向确定，但传导链较长，弹性排序：光模块 > 服务器 > 设备。<br>
+4. <b>整体持仓策略</b>：本文为 AI 硬件长逻辑提供了 2026 年内最强第三方背书。科技股回调（如上周）应视为机会而非风险。<br><br>
+<b>核心原则重申</b>：不因一篇文章改变判断，但当一篇文章与三大框架（YZ 硅谷观察、纳瓦尔圆桌、华为韬定律）高度自洽且提供全新数据粒度时，应当提升其权重。
+</div>
+</div>
+
+<div class="footer">
+巴蒂投研体系 | 老潘专属 | 原文：调研先知 古今《北美一线调研：全球大模型竞争底层逻辑彻底反转》2026-07-05<br>
+三步走投研协作框架：①拆核心逻辑 ②独立评价（含硬伤+交叉验证） ③持仓操作价值落实<br>
+⚠️ 以上内容为投研分析记录，不构成投资建议。投资有风险，决策需谨慎。
+</div>
+
+<script>
+(function(){
+var c=echarts.init(document.getElementById('chart-main'));
+c.setOption({
+backgroundColor:'transparent',
+title:{text:'TPU/内存/算力缺口传导链',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{trigger:'axis'},
+legend:{data:['全球TPU年产量(万颗)','全球TPU需求量(万颗)','DRAM缺口指数'],bottom:0,textStyle:{color:'#8b949e',fontSize:10}},
+grid:{left:50,right:40,top:50,bottom:40},
+xAxis:{type:'category',data:['2025','2026E','2027E','2028E','2029E'],axisLabel:{color:'#8b949e',fontSize:11}},
+yAxis:[
+{type:'value',name:'万颗',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+{type:'value',name:'缺口指数',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}
+],
+series:[
+{name:'全球TPU年产量(万颗)',type:'bar',data:[200,350,500,1100,1500],itemStyle:{color:'#58a6ff'},barMaxWidth:30,barGap:'30%'},
+{name:'全球TPU需求量(万颗)',type:'bar',data:[600,1200,2200,3500,4500],itemStyle:{color:'rgba(248,81,73,0.7)'},barMaxWidth:30},
+{name:'DRAM缺口指数',type:'line',yAxisIndex:1,data:[20,45,70,55,35],lineStyle:{color:'#3fb950',width:2},smooth:true,symbol:'circle',symbolSize:8,itemStyle:{color:'#3fb950'}}
+]
+});
+})();
+</script>
+</body>
+</html>

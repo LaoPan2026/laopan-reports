@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>华为韬定律 拆解与映射 2026-07-05 巴蒂</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#c9d1d9;--text-dim:#8b949e;--red:#e15241;--green:#26a69a;--accent:#58a6ff;--warn:#d29922;--gold:#f0a500}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);padding:24px;max-width:1100px;margin:0 auto}
+h1{font-size:22px;margin-bottom:4px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+h3{font-size:14px;color:var(--gold);margin:10px 0 4px}
+.subtitle{color:var(--text-dim);font-size:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px}
+.info{background:#0f1a1a;border:1px solid #1f3d3d;border-radius:8px;padding:14px;margin-bottom:8px}
+.bull{background:#0f1a10;border:1px solid #1f3d20;border-radius:8px;padding:14px;margin-bottom:8px}
+.warn-box{background:#1a160f;border:1px solid #3d331f;border-radius:8px;padding:14px;margin-bottom:8px}
+.red{color:var(--red)}.green{color:var(--green)}.warn{color:var(--warn)}.gold{color:var(--gold)}.accent{color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#1c2129;color:var(--text-dim);padding:7px 8px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,0.5);vertical-align:top}
+tr:hover{background:rgba(88,166,255,0.04)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.tag-red{background:rgba(225,82,65,0.2);color:var(--red)}
+.tag-green{background:rgba(38,166,154,0.2);color:var(--green)}
+.tag-warn{background:rgba(210,153,34,0.2);color:var(--warn)}
+.tag-accent{background:rgba(88,166,255,0.2);color:var(--accent)}
+.tag-gold{background:rgba(240,165,0,0.2);color:var(--gold)}
+.chart-box{width:100%;height:320px;margin:6px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.stat-card{background:rgba(22,27,34,0.6);border:1px solid var(--border);border-radius:6px;padding:10px}
+.stat-card .lbl{font-size:10px;color:var(--text-dim)}
+.stat-card .val{font-size:16px;font-weight:700;margin:2px 0}
+.blockquote{font-style:italic;color:var(--accent);font-size:13px;padding:8px 12px;border-left:2px solid var(--accent);margin:8px 0}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);line-height:1.8}
+.highlight{border-left:3px solid var(--gold);padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0;background:rgba(240,165,0,0.06)}
+.diagram{background:rgba(22,27,34,0.4);border:1px dashed var(--border);border-radius:8px;padding:16px;margin:8px 0;text-align:center;font-family:monospace;font-size:12px;line-height:2}
+</style>
+</head>
+<body>
+
+<h1>华为韬（τ）定律 · 深度拆解与持仓映射</h1>
+<div class="subtitle">生成时间：2026-07-05 | 数据截止：原文（腾讯云开发者社区 2026-06-01）+ CSDN技术分析 | 巴蒂独立研究</div>
+
+<div class="info" style="text-align:center">
+<div style="font-size:17px;font-weight:900;color:var(--gold);margin-bottom:8px">不拼制程拼设计，让14nm芯片跑出3nm的密度</div>
+<div style="font-size:13px;color:var(--text-dim);line-height:1.7">
+2026年5月 IEEE ISCAS，华为何庭波发布<b class="accent">韬（τ）定律</b>——<br>
+用<b>时间缩微</b>替代摩尔定律的<b>几何缩微</b>：优化信号时延τ(R×C)而非晶体管尺寸，<br>
+在四层结构中系统性压缩时延，让中国半导体在没有EUV的前提下持续演进。<br>
+<b>核心公式：</b>τ<sub>next</sub> = τ<sub>current</sub> / α&emsp;|&emsp;AI芯片α=10（年迭代）&emsp;|&emsp;已量产381款芯片验证
+</div>
+</div>
+
+<h2>一、韬定律到底是什么——四层全栈优化</h2>
+
+<div class="card">
+<div class="diagram" style="display:flex;justify-content:space-around;align-items:center;padding:20px;font-family:sans-serif">
+  <div style="text-align:center;background:var(--card);padding:12px 16px;border-radius:8px;width:22%">
+    <div style="font-size:20px;color:var(--accent);font-weight:900">τ₁</div>
+    <div style="font-size:10px;color:var(--text-dim);margin:4px 0">晶体管层</div>
+    <div style="font-size:10px;color:var(--text-dim)">器件固有RC时延<br>新结构/新材料</div>
+  </div>
+  <span style="color:var(--accent);font-size:18px">→</span>
+  <div style="text-align:center;background:var(--card);padding:12px 16px;border-radius:8px;width:22%">
+    <div style="font-size:20px;color:var(--accent);font-weight:900">τ₂</div>
+    <div style="font-size:10px;color:var(--text-dim);margin:4px 0">电路层</div>
+    <div style="font-size:10px;color:var(--text-dim)">门到门连线<br>逻辑折叠/Chiplet</div>
+  </div>
+  <span style="color:var(--accent);font-size:18px">→</span>
+  <div style="text-align:center;background:var(--card);padding:12px 16px;border-radius:8px;width:22%">
+    <div style="font-size:20px;color:var(--accent);font-weight:900">τ₃</div>
+    <div style="font-size:10px;color:var(--text-dim);margin:4px 0">芯片层</div>
+    <div style="font-size:10px;color:var(--text-dim)">总线/跨模块通信<br>存算一体/D2D互连</div>
+  </div>
+  <span style="color:var(--accent);font-size:18px">→</span>
+  <div style="text-align:center;background:var(--card);padding:12px 16px;border-radius:8px;width:22%">
+    <div style="font-size:20px;color:var(--accent);font-weight:900">τ₄</div>
+    <div style="font-size:10px;color:var(--text-dim);margin:4px 0">系统层</div>
+    <div style="font-size:10px;color:var(--text-dim)">内存/互连/跨封装<br>HBM/CPO/CXL</div>
+  </div>
+</div>
+<div style="text-align:center;font-size:14px;font-weight:700;color:var(--accent);margin-top:8px">
+  τ<sub>total</sub> = τ₁×τ₂×τ₃×τ₄ &emsp;|&emsp;每个分量独立优化→乘积效应→α可达10
+</div>
+</div>
+
+<div class="grid-2">
+<div class="card">
+<h3 style="margin-top:0">vs 摩尔定律</h3>
+<table>
+<tr><th width="35%">维度</th><th width="30%">摩尔定律</th><th>韬定律</th></tr>
+<tr><td>优化目标</td><td>晶体管尺寸↓</td><td>信号时延τ↓</td></tr>
+<tr><td>核心路径</td><td>光刻机精度↑</td><td>架构+封装+互连</td></tr>
+<tr><td>工艺依赖</td><td>EUV必需</td><td>DUV可行</td></tr>
+<tr><td>迭代因子</td><td>α≈1.4(全行业统一)</td><td>α=1.5~10(场景分层)</td></tr>
+<tr><td>密度提升</td><td>~18%/代</td><td>麒麟2026:+53.5%单代</td></tr>
+</table>
+</div>
+<div class="card">
+<h3 style="margin-top:0">麒麟2026实测</h3>
+<table>
+<tr><th>指标</th><th>数据</th><th>vs上代</th></tr>
+<tr><td>晶体管密度</td><td class="accent">238 MT/mm²</td><td class="green">+53.5%</td></tr>
+<tr><td>频率</td><td>3.1 GHz</td><td class="green">+13%</td></tr>
+<tr><td>能效</td><td class="accent">×1.41</td><td class="green">+41%</td></tr>
+<tr><td>工艺节点</td><td>中芯N+3等效</td><td>不换光刻机</td></tr>
+<tr><td>密钥</td><td colspan="2"><b>双层逻辑折叠</b>：把平铺关键路径叠起来→信号路径缩短→τ↓→等效密度↑</td></tr>
+</table>
+</div>
+</div>
+
+<h2>二、TOP3 受益行业及代表公司</h2>
+
+<div class="card">
+<h3 style="margin:0 0 8px 0"><span class="tag tag-gold">TOP 1</span> 先进封装 — Logic Folding的物理基础设施</h3>
+<table>
+<tr><th width="25%">逻辑</th><th>逻辑折叠必须在物理上把芯片"立起来"堆叠，Chiplet/3D封装/硅中介层是韬定律落地的<b class="gold">公共卡口</b>。论文明确指出"2028多层折叠扩展对中介层良率和密度要求陡升"。</th></tr>
+</table>
+<div class="grid-4" style="margin-top:8px">
+<div class="stat-card"><div class="lbl">长电科技</div><div class="val" style="font-size:12px">XDFOI</div><div style="font-size:10px;color:var(--text-dim)">国内最接近CoWoS<br>芯粒间高速互连</div></div>
+<div class="stat-card"><div class="lbl">通富微电</div><div class="val" style="font-size:12px">AMD合作</div><div style="font-size:10px;color:var(--text-dim)">7nm Chiplet量产<br>已验证多年</div></div>
+<div class="stat-card"><div class="lbl">盛合晶微</div><div class="val" style="font-size:12px">新势力</div><div style="font-size:10px;color:var(--text-dim)">硅/RDL中介层<br>两条路线并行</div></div>
+<div class="stat-card" style="border:1px solid var(--gold)"><div class="lbl" style="color:var(--gold)">→ 兴森科技</div><div class="val" style="font-size:12px;color:var(--gold)">FCBGA载板</div><div style="font-size:10px;color:var(--text-dim)">先进封装必需<br>持仓映射 ★★★★</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3 style="margin:0 0 8px 0"><span class="tag tag-accent">TOP 2</span> 高速互连（光互连+电互连）— τ₃/τ₄层的核心引擎</h3>
+<table>
+<tr><th width="25%">逻辑</th><th>论文将τ拆解为多个分量，光互连/电互连延迟占比最大。1.6T/3.2T速率下电互连撞墙→光必须上桌(CPO)。原文判断：<b>"韬定律一旦把光互连定义为关键变量，国产AI算力链对光互连需求会从可选变成必选。"</b></th></tr>
+</table>
+<div class="grid-4" style="margin-top:8px">
+<div class="stat-card"><div class="lbl">中际旭创</div><div class="val" style="font-size:12px">光模块龙头</div><div style="font-size:10px;color:var(--text-dim)">1.6T/CPO已布局<br>跟踪池映射</div></div>
+<div class="stat-card" style="border:1px solid var(--gold)"><div class="lbl" style="color:var(--gold)">→ 澜起科技</div><div class="val" style="font-size:12px;color:var(--gold)">DDR5/CXL接口</div><div style="font-size:10px;color:var(--text-dim)">τ₄系统层核心<br>持仓映射 ★★★★★</div></div>
+<div class="stat-card" style="border:1px solid var(--gold)"><div class="lbl" style="color:var(--gold)">→ 华丰科技</div><div class="val" style="font-size:12px;color:var(--gold)">电连接器</div><div style="font-size:10px;color:var(--text-dim)">高速D2D互连<br>跟踪池映射 ★★★★</div></div>
+<div class="stat-card"><div class="lbl">源杰科技</div><div class="val" style="font-size:12px">光芯片本体</div><div style="font-size:10px;color:var(--text-dim)">DFB/EML/VCSEL<br>上游核心</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3 style="margin:0 0 8px 0"><span class="tag tag-green">TOP 3</span> 存算一体/HBM — 打破内存墙，τ₄系统层的终局方案</h3>
+<table>
+<tr><th width="25%">逻辑</th><th>传统冯·诺依曼架构中，内存与计算间的数据搬运占据最多τ延迟。HBM堆叠+存算一体将计算逻辑搬到数据旁边，直接从根源压缩τ₄。长鑫HBM2已量产、HBM3下半年出货，国产AI芯片不再绑定海外HBM。</th></tr>
+</table>
+<div class="grid-4" style="margin-top:8px">
+<div class="stat-card"><div class="lbl">长鑫存储</div><div class="val" style="font-size:12px">HBM2量产</div><div style="font-size:10px;color:var(--text-dim)">HBM3下半年出货<br>母公司IPO辅导中</div></div>
+<div class="stat-card"><div class="lbl">武汉新芯</div><div class="val" style="font-size:12px">HBM协同</div><div style="font-size:10px;color:var(--text-dim)">与长江存储深度联动</div></div>
+<div class="stat-card" style="border:1px solid var(--gold)"><div class="lbl" style="color:var(--gold)">→ 澜起科技</div><div class="val" style="font-size:12px;color:var(--gold)">DDR5/CXL</div><div style="font-size:10px;color:var(--text-dim)">HBM仍然需要传统DRAM<br>做Base Die，接口芯片不变</div></div>
+<div class="stat-card"><div class="lbl">深科技</div><div class="val" style="font-size:12px">HBM封测</div><div style="font-size:10px;color:var(--text-dim)">HBM封装/测试配套</div></div>
+</div>
+</div>
+
+<div class="warn-box">
+<b>第四层受益（远期）：EDA工具链</b>—— 华大九天、概伦电子、芯华章。<br>3D时序闭环/跨层布线/热协同仿真，现Cadence/Synopsys支持都不完善。传导周期比硬件长，三年内见苗头就算快。
+</div>
+
+<h2>三、持仓12只全面映射</h2>
+
+<div class="card">
+<table>
+<tr><th width="8%">代号</th><th width="14%">持仓/跟踪</th><th width="8%">关联度</th><th>韬定律传导逻辑</th><th width="18%">关键判断</th></tr>
+<tr style="background:rgba(38,166,154,0.06)">
+<td>688008</td><td><b>澜起科技</b><br><span class="tag tag-green">S级</span></td>
+<td><span class="tag tag-gold">★★★★★</span></td>
+<td>DDR5接口芯片=RCD/Retimer/MXC/CXL，卡在τ₄系统层"内存与算力间的收费站"。HBM堆叠仍然需要传统DRAM做Base Die，也需要接口芯片管控信号完整性。CXL是跨封装片间通信的关键协议——澜起恰好是CXL联盟核心成员。</td>
+<td class="green"><b>韬定律直接加固澜起的战略地位。</b>接口芯片从"可选配件"变成"τ优化必修件"——因为信号完整性直接影响τ。这是持仓里受益最深的一张牌。</td>
+</tr>
+<tr style="background:rgba(240,165,0,0.04)">
+<td>603663</td><td><b>三祥新材</b><br><span class="tag tag-green">S级</span></td>
+<td><span class="tag tag-accent">★★★★</span></td>
+<td>铪(HfO₂)是高k介质，用于先进制程晶体管的栅介质层——直接关联τ₁(晶体管层)的RC时延优化。更小的晶体管需要更高k值的介质来抑制漏电流/寄生电容。铪是全球唯一扩产+需求长期短缺。</td>
+<td class="accent"><b>韬定律让铪从"先进制程材料"变成"τ优化核心材料"</b>。不换光刻机但需要更好的材料——铪恰好在τ₁层。</td>
+</tr>
+<tr>
+<td>002436</td><td><b>兴森科技</b><br><span class="tag tag-green">利润仓</span></td>
+<td><span class="tag tag-accent">★★★★</span></td>
+<td>FCBGA载板是Chiplet/3D封装的物理载体。韬定律要求先进封装作为公共基础设施——更多堆叠=更多载板需求。特别是2028多层折叠扩展对载板密度要求陡升。</td>
+<td class="accent"><b>先进封装的"卖铲人"。</b>需求来源从AI芯片扩展到所有需要τ优化的国产芯片。</td>
+</tr>
+<tr>
+<td>300308</td><td><b>中际旭创</b><br><span class="tag tag-accent">跟踪池</span></td>
+<td><span class="tag tag-accent">★★★★</span></td>
+<td>CPO/光互连是韬定律τ₄系统层的关键分量，贡献3-5倍τ压缩。原文"这些技术能不能反向授权到昇腾产线是关键观测点"。</td>
+<td>光模块从"英伟达链"变为"昇腾必选链"——但短期仍受北美Capex主导。</td>
+</tr>
+<tr>
+<td>300757</td><td><b>罗博特科</b><br><span class="tag tag-warn">A级</span></td>
+<td><span class="tag tag-warn">★★★</span></td>
+<td>ficonTEC做CPO/硅光设备。τ₄层光互连需要新设备——但需求在2028+，当前仍在技术储备阶段。</td>
+<td>长期受益，短期需要订单验证。</td>
+</tr>
+<tr>
+<td>001267</td><td><b>汇绿生态</b><br><span class="tag tag-warn">A级</span></td>
+<td><span class="tag tag-warn">★★★</span></td>
+<td>光模块代工，COHR/LITE客户链。τ₄层光互连扩容=更多光模块需求，但汇绿没有直接技术壁垒。</td>
+<td>受益但非核心，需要验证自身不可替代性。</td>
+</tr>
+<tr>
+<td>301236</td><td><b>软通动力</b><br><span class="tag tag-accent">A级</span></td>
+<td><span class="tag tag-accent">★★★</span></td>
+<td>韬定律让国产AI算力(昇腾)持续演进→软通Token工厂的"国产替代"算力底座更稳固。</td>
+<td>间接受益：国产算力链加固。</td>
+</tr>
+<tr>
+<td>688031</td><td><b>星环科技</b><br><span class="tag tag-green">利润仓</span></td>
+<td><span class="tag tag-accent">★★★</span></td>
+<td>AI Infra/数据库国产替代。韬定律推动国产算力→国产数据库/AI平台有了更强底座。</td>
+<td>间接受益：国产替代逻辑加固。</td>
+</tr>
+<tr>
+<td>688629</td><td><b>华丰科技</b><br><span class="tag tag-accent">跟踪池</span></td>
+<td><span class="tag tag-accent">★★★</span></td>
+<td>高速电连接器，是D2D/Chiplet片间互连的物理基础。τ₃芯片层和τ₄系统层都需要更快的互连器。</td>
+<td>直接受益，但当前在跟踪池观察中。</td>
+</tr>
+<tr>
+<td>002254</td><td><b>泰和新材</b><br><span class="tag tag-warn">B+级</span></td>
+<td><span class="tag tag-warn">★★</span></td>
+<td>芳纶不属于半导体技术路线，但航空航天/防护材料方向有独立国产替代逻辑。</td>
+<td>独立周期逻辑，不直接映射韬定律。</td>
+</tr>
+<tr>
+<td>002064</td><td><b>华峰化学</b><br>防御仓</td>
+<td><span class="tag tag-warn">★</span></td>
+<td>氨纶/己二酸，化工对冲。不映射半导体技术路线。</td>
+<td>对冲角色，独立逻辑。</td>
+</tr>
+<tr>
+<td>000825</td><td><b>太钢不锈</b><br>防御仓</td>
+<td><span class="tag tag-warn">★</span></td>
+<td>不锈钢/特钢，周期防御。韬定律不直接相关。</td>
+<td>防御仓，独立逻辑。</td>
+</tr>
+</table>
+</div>
+
+<div class="chart-box" id="chart-tau"></div>
+
+<h2>四、韬定律对中国半导体产业的重定义</h2>
+
+<div class="grid-3">
+<div class="stat-card"><div class="lbl">历史验证</div><div class="val accent">381款</div><div style="font-size:10px;color:var(--text-dim)">过去6年基于韬定律思路<br>已量产381款芯片</div></div>
+<div class="stat-card"><div class="lbl">路线图</div><div class="val accent">2026→2031</div><div style="font-size:10px;color:var(--text-dim)">2026双层折叠→2028多层<br>→2031等效1.4nm密度</div></div>
+<div class="stat-card"><div class="lbl">α因子</div><div class="val gold">1.5~10</div><div style="font-size:10px;color:var(--text-dim)">手机1.5→CPU 2-3→AI 10<br>场景分层，非全行业统一</div></div>
+</div>
+
+<div class="highlight" style="margin-top:12px">
+<b class="gold">论文原话（最核心的一句）：</b>"下一个美元应该投τ而非节点。"——这句话是给整个产业链的导向信号：未来的钱要往<b>封装、内存、互连、EDA工具链</b>这些方向走，而不是死磕光刻机这个单点。<br><br>
+<b class="accent">对老潘持仓的意义：</b>澜起（互连/接口）+ 三祥（高k介质/材料）+ 兴森（封装载板）+ 汇绿/罗博（光互连）——这张持仓组合恰好覆盖了τ₁到τ₄全部四层。韬定律不是单一股票的催化剂，是整个持仓组合的"系统级验证"。
+</div>
+
+<div class="grid-2">
+<div class="chart-box" id="chart-portfolio"></div>
+<div class="chart-box" id="chart-roadmap"></div>
+</div>
+
+<div class="footer">
+<b>数据来源：</b>IEEE ISCAS 2026 何庭波主旨演讲论文 | 腾讯云开发者社区（2026-06-01）| CSDN技术分析 | 公司公告/公开信息<br>
+<b>免责声明：</b>本报告仅代表巴蒂（AI助手）基于公开信息的技术分析，不构成任何投资指令。韬定律是产业级理论框架，具体技术落地节奏存在不确定性。投资有风险，决策需谨慎。<br>
+<b>生成时间：</b>2026-07-05 00:30 CST | <b>分析人：</b>巴蒂（WorkBuddy AI）
+</div>
+
+<script>
+(function(){
+  // Chart 1 - τ four layers with portfolio overlay
+  var c1 = echarts.init(document.getElementById('chart-tau'), null, {backgroundColor:'#161b22'});
+  c1.setOption({
+    title:{text:'韬定律四层结构与持仓/跟踪标的对应',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'item',formatter:function(p){return p.name;}},
+    series:[{
+      type:'treemap',width:'96%',height:'80%',top:'15%',
+      roam:false,nodeClick:false,leafDepth:1,
+      label:{show:true,fontSize:10,color:'#c9d1d9'},
+      upperLabel:{show:true,height:22,fontSize:12,fontWeight:'bold',color:'#c9d1d9'},
+      levels:[{colorMappingBy:'value',color:['#0d2137','#162d4a','#1e3a5f','#264d73']}],
+      data:[
+        {name:'τ₁ 晶体管层\n高k介质/新材料',value:1,children:[
+          {name:'三祥新材\n铪(HfO₂)\nS级持仓',value:1},
+          {name:'华丰科技\n电连接器\n跟踪池',value:0.3}
+        ]},
+        {name:'τ₂ 电路层\n逻辑折叠/Chiplet',value:1,children:[
+          {name:'兴森科技\nFCBGA载板\n利润仓',value:1},
+          {name:'长电科技\n先进封装\n代表公司',value:0.5}
+        ]},
+        {name:'τ₃ 芯片层\n总线/D2D互连',value:1,children:[
+          {name:'澜起科技\nCXL/PCIe\nS级持仓',value:1.2}
+        ]},
+        {name:'τ₄ 系统层\n内存/互连/CPO',value:1,children:[
+          {name:'澜起科技\nDDR5/MXC\nS级持仓',value:1},
+          {name:'中际旭创\n光模块 CPO\n跟踪池',value:0.8},
+          {name:'罗博特科\nCPO设备\nA级持仓',value:0.5},
+          {name:'汇绿生态\n光模块代工\nA级持仓',value:0.4}
+        ]}
+      ]
+    }]
+  });
+
+  // Chart 2 - Portfolio τ-layer coverage spider
+  var c2 = echarts.init(document.getElementById('chart-portfolio'), null, {backgroundColor:'#161b22'});
+  c2.setOption({
+    title:{text:'持仓标的在韬定律四层的覆盖深度',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    legend:{data:['澜起科技','三祥新材','兴森科技','中际旭创','罗博特科','汇绿生态'],textStyle:{color:'#8b949e',fontSize:8},top:'14%'},
+    radar:{center:['50%','58%'],radius:'60%',
+      indicator:[{name:'晶体管层\nτ₁',max:5},{name:'电路层\nτ₂',max:5},{name:'芯片层\nτ₃',max:5},{name:'系统层\nτ₄',max:5}],
+      axisName:{color:'#8b949e',fontSize:10},splitArea:{areaStyle:{color:['rgba(88,166,255,0.02)','rgba(88,166,255,0.04)']}}},
+    series:[
+      {type:'radar',data:[{value:[2,1,5,5],name:'澜起科技',areaStyle:{color:'rgba(38,166,154,0.15)'},lineStyle:{color:'#26a69a',width:2},symbol:'circle',symbolSize:4}]},
+      {type:'radar',data:[{value:[4,2,2,1],name:'三祥新材',areaStyle:{color:'rgba(240,165,0,0.12)'},lineStyle:{color:'#f0a500',width:2},symbol:'circle',symbolSize:4}]},
+      {type:'radar',data:[{value:[1,4,3,2],name:'兴森科技',areaStyle:{color:'rgba(88,166,255,0.1)'},lineStyle:{color:'#58a6ff',width:2},symbol:'circle',symbolSize:4}]},
+      {type:'radar',data:[{value:[1,1,2,4],name:'中际旭创',lineStyle:{color:'#d29922',width:1.5,type:'dashed'},symbol:'diamond',symbolSize:4}]},
+      {type:'radar',data:[{value:[0,1,1,3],name:'罗博特科',lineStyle:{color:'#e15241',width:1.5,type:'dashed'},symbol:'diamond',symbolSize:3}]},
+      {type:'radar',data:[{value:[0,1,1,2],name:'汇绿生态',lineStyle:{color:'#8b949e',width:1,type:'dashed'},symbol:'diamond',symbolSize:3}]}
+    ]
+  });
+
+  // Chart 3 - Roadmap bar
+  var c3 = echarts.init(document.getElementById('chart-roadmap'), null, {backgroundColor:'#161b22'});
+  c3.setOption({
+    title:{text:'韬定律路线图 2026-2031',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'axis'},
+    grid:{left:'8%',right:'6%',bottom:'3%',top:'18%',containLabel:true},
+    xAxis:{type:'category',data:['2026','2027','2028','2029','2030','2031'],
+      axisLabel:{color:'#8b949e',fontSize:10}},
+    yAxis:{type:'value',name:'等效密度(nm)',nameTextStyle:{color:'#8b949e'},inverse:true,
+      axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}},min:0},
+    series:[
+      {type:'line',smooth:true,
+        data:[7,5,3,2.5,2,1.4],
+        itemStyle:{color:'#f0a500'},lineStyle:{width:2.5},symbol:'circle',symbolSize:8,
+        areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,
+          colorStops:[{offset:0,color:'rgba(240,165,0,0.15)'},{offset:1,color:'rgba(240,165,0,0.02)'}]}},
+        markLine:{silent:true,data:[{yAxis:3,label:{formatter:'3nm\n台积电N3',color:'#8b949e',fontSize:9}}],lineStyle:{color:'#8b949e',type:'dashed'}},
+        markPoint:{data:[
+          {coord:[0,7],value:'麒麟2026\n238MT/mm²'},
+          {coord:[2,3],value:'多层折叠\n对标3nm'},
+          {coord:[5,1.4],value:'全栈τ协同\n等效1.4nm'}
+        ],label:{color:'#f0a500',fontSize:9}}
+      },
+      {type:'line',smooth:true,
+        data:[5,3.5,2,1.6,1.4,1.2],
+        itemStyle:{color:'#8b949e'},lineStyle:{width:1.5,type:'dashed'},symbol:'diamond',symbolSize:5,
+        name:'台积电路线(参考)'}
+      ]
+  });
+
+  window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize();});
+})();
+</script>
+
+</body>
+</html>

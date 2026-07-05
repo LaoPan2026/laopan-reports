@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘前简报 2026-07-02</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --border: #21262d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --red: #e15241;
+  --green: #26a69a;
+  --accent: #58a6ff;
+  --warn: #d29922;
+  --mega-warn: #ff6b6b;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); padding: 24px; max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 24px; margin-bottom: 4px; }
+h2 { font-size: 17px; color: var(--accent); margin: 24px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 14px; color: var(--text-dim); margin: 16px 0 8px; }
+.subtitle { color: var(--text-dim); font-size: 13px; margin-bottom: 20px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+.alert-card { background: #1a0f0f; border: 1px solid #3d1f1f; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+.alert-card .title { color: var(--mega-warn); font-weight: 700; font-size: 16px; }
+.alert-card .body { margin-top: 8px; line-height: 1.7; font-size: 13px; }
+.red { color: var(--red); }
+.green { color: var(--green); }
+.warn { color: var(--warn); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #1c2129; color: var(--text-dim); padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border); }
+td { padding: 8px 10px; border-bottom: 1px solid rgba(33,38,45,0.5); }
+tr:hover { background: rgba(88,166,255,0.04); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-red { background: rgba(225,82,65,0.2); color: var(--red); }
+.tag-green { background: rgba(38,166,154,0.2); color: var(--green); }
+.tag-warn { background: rgba(210,153,34,0.2); color: var(--warn); }
+.chart-box { width: 100%; height: 360px; margin: 12px 0; }
+.news-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(33,38,45,0.5); }
+.news-item:last-child { border-bottom: none; margin-bottom: 0; }
+.news-title { font-weight: 600; font-size: 13px; }
+.news-meta { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.news-body { font-size: 12px; color: #a0aab4; margin-top: 4px; line-height: 1.6; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.summary-item { background: rgba(22,27,34,0.6); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+.summary-item .label { font-size: 11px; color: var(--text-dim); }
+.summary-item .value { font-size: 20px; font-weight: 700; margin: 4px 0; }
+.summary-item .sub { font-size: 11px; }
+.advice-block { background: #1a1f2b; border-left: 3px solid var(--accent); padding: 14px 18px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+.advice-block.risk { border-left-color: var(--mega-warn); background: #1f1a1a; }
+.footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-dim); line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<h1>📋 盘前简报——2026年7月2日（周四）</h1>
+<div class="subtitle">数据截至 07:00 CST | 覆盖隔夜美股 + 亚太早盘 | NeoData + 公开资讯</div>
+
+<!-- ====== CORE ALERT ====== -->
+<div class="alert-card">
+<div class="title">🚨 核心警示：费城半导体指数隔夜暴跌6%+，映射标的全面承压</div>
+<div class="body">
+美股7月1日遭遇AI硬件板块集体获利了结——Meta宣布布局AI云业务（对外出租闲置算力），市场解读为<b>超大规模云厂商资本开支增速可能放缓</b>，直接冲击半导体"卖铲人"板块。<br><br>
+<b>MRVL -8.67%、COHR -6.55%、LITE -6.63%</b>，今日A股开盘，澜起科技、汇绿生态、罗博特科将面临<b>显著低开压力</b>。韩股KOSPI已先行暴跌5.83%，亚太市场恐慌情绪正在传导。
+</div>
+</div>
+
+<!-- ====== GLOBAL MARKETS ====== -->
+<h2>一、隔夜全球市场概览</h2>
+
+<div class="summary-grid">
+<div class="summary-item">
+  <div class="label">道琼斯工业</div>
+  <div class="value green">52,305</div>
+  <div class="sub green">-0.03% | 盘中再创历史新高</div>
+</div>
+<div class="summary-item">
+  <div class="label">标普500</div>
+  <div class="value green">7,483</div>
+  <div class="sub green">-0.22%</div>
+</div>
+<div class="summary-item">
+  <div class="label">纳斯达克综指</div>
+  <div class="value green">26,040</div>
+  <div class="sub green">-0.66%</div>
+</div>
+<div class="summary-item">
+  <div class="label">费城半导体 SOX</div>
+  <div class="value red">暴跌6%+</div>
+  <div class="sub red">美光-9% 闪迪-10%</div>
+</div>
+<div class="summary-item">
+  <div class="label">KOSPI 韩国综指</div>
+  <div class="value red">7,820</div>
+  <div class="sub red">-5.83% 盘中</div>
+</div>
+<div class="summary-item">
+  <div class="label">日经225</div>
+  <div class="value red">开盘</div>
+  <div class="sub red">-0.62%</div>
+</div>
+<div class="summary-item">
+  <div class="label">美元指数</div>
+  <div class="value" style="font-size:18px;">101.41</div>
+  <div class="sub green">持平</div>
+</div>
+<div class="summary-item">
+  <div class="label">USD/CNY</div>
+  <div class="value" style="font-size:18px;">6.7898</div>
+  <div class="sub" style="color:#26a69a;">人民币稳定</div>
+</div>
+</div>
+
+<div class="card" style="margin-top:12px;">
+<h3>板块分化剧烈——道指 vs 纳指剪刀差</h3>
+<table>
+<tr><th>方向</th><th>代表股</th><th>7/1涨跌</th><th>逻辑</th></tr>
+<tr><td>🔴 AI硬件暴跌</td><td>MRVL / COHR / LITE / 美光 / 闪迪</td><td class="red">-6% ~ -10%</td><td>Meta云业务=硬件资本开支见顶信号？</td></tr>
+<tr><td>🔴 半导体设备</td><td>科磊 / 应用材料 / 拉姆研究 / 英特尔</td><td class="red">-9% ~ -11%</td><td>板块联动踩踏</td></tr>
+<tr><td>🟢 软件/AI应用</td><td>Meta +9% / 微软 +3% / 苹果 +2%</td><td class="green">+2% ~ +9%</td><td>AI推理→软件价值重估逻辑</td></tr>
+<tr><td>🟢 道指蓝筹</td><td>耐克+5% / 运通+2% / 摩根大通+2%</td><td class="green">+2% ~ +5%</td><td>"大轮动"资金涌入</td></tr>
+<tr><td>🟢 中概股</td><td>金龙指数 +2.93% / 拼多多 +8%</td><td class="green">+3%</td><td>独立行情</td></tr>
+</table>
+</div>
+
+<!-- ====== US-A MAPPING ====== -->
+<h2>二、美股→A股映射：三大标的冲击测算</h2>
+
+<div class="card">
+<table>
+<tr><th>A股标的</th><th>映射美股</th><th>美股7/1跌幅</th><th>昨日收盘</th><th>今日预估影响</th><th>风险等级</th></tr>
+<tr>
+  <td><b>澜起科技 688008</b></td>
+  <td>MRVL<br><span style="font-size:11px;color:var(--text-dim)">+ AVGO -2.23%</span></td>
+  <td class="red"><b>-8.67%</b></td>
+  <td>315.89 (+1.93%)<br><span style="font-size:11px;color:var(--text-dim)">成本96.83 浮盈+226%</span></td>
+  <td class="red">预估低开5%-8%<br>对应 291-300 区间</td>
+  <td><span class="tag tag-red">🔴 高</span></td>
+</tr>
+<tr>
+  <td><b>汇绿生态 001267</b></td>
+  <td>COHR / LITE</td>
+  <td class="red"><b>-6.55% / -6.63%</b></td>
+  <td>50.65 (-5.33%)<br><span style="font-size:11px;color:var(--text-dim)">昨日已是第5根阴线</span></td>
+  <td class="red">预估低开4%-6%<br>对应 47.6-48.6 区间<br>⚠️ 第6连跌风险</td>
+  <td><span class="tag tag-red">🔴 极高</span></td>
+</tr>
+<tr>
+  <td><b>罗博特科 300757</b></td>
+  <td>NVDA / MRVL</td>
+  <td class="red"><b>-1.25% / -8.67%</b></td>
+  <td>580.52 (-6.22%)<br><span style="font-size:11px;color:var(--text-dim)">昨日已跌超6%</span></td>
+  <td class="red">预估低开3%-5%<br>对应 551-563 区间<br>连续两日重挫叠加</td>
+  <td><span class="tag tag-red">🔴 高</span></td>
+</tr>
+</table>
+</div>
+
+<div class="advice-block risk">
+<b>⚠️ 芒刺在背</b>：三只核心标的今日开盘将面临本轮行情以来最大单日冲击。澜起和罗博特科属于"涨多回调"，但汇绿已经连跌5天，今天若再跌将形成<b>6连阴</b>的极端技术形态。韩股-5.83%已为亚太情绪定调，A股半导体板块今天大概率<b>全面低开</b>。
+</div>
+
+<!-- ====== PORTFOLIO ====== -->
+<h2>三、持仓股昨日复盘（7/1） + 今日预判</h2>
+
+<div class="card">
+<table>
+<tr><th>名称/代码</th><th>7/1收盘</th><th>涨跌</th><th>成交量</th><th>振幅</th><th>今日预判</th></tr>
+<tr>
+  <td><b>华峰化学 002064</b></td><td>10.15</td>
+  <td class="green"><b>+6.95%</b></td><td>7,416万</td><td>11.80%</td>
+  <td><span class="tag tag-green">🟢 独立走强</span> 化工板块景气修复逻辑，不受半导体冲击</td>
+</tr>
+<tr>
+  <td><b>德展健康 000813</b></td><td>3.12</td>
+  <td class="green">+2.97%</td><td>3,819万</td><td>4.95%</td>
+  <td><span class="tag tag-green">🟢 平稳</span></td>
+</tr>
+<tr>
+  <td><b>星环科技 688031</b></td><td>118.01</td>
+  <td class="green">+2.46%</td><td>745万</td><td>9.08%</td>
+  <td><span class="tag tag-warn">🟡 利润仓</span> 负成本仓位，波动容忍度高</td>
+</tr>
+<tr>
+  <td><b>太钢不锈 000825</b></td><td>3.49</td>
+  <td class="green">+2.35%</td><td>4,087万</td><td>7.62%</td>
+  <td><span class="tag tag-green">🟢 平稳</span></td>
+</tr>
+<tr>
+  <td><b>澜起科技 688008</b></td><td>315.89</td>
+  <td class="green">+1.93%</td><td>8,866万</td><td>10.62%</td>
+  <td><span class="tag tag-red">🔴 低开预警</span> MRVL -8.67%，开盘压力大</td>
+</tr>
+<tr>
+  <td><b>软通动力 301236</b></td><td>41.64</td>
+  <td class="green">-1.91%</td><td>3,809万</td><td>2.52%</td>
+  <td><span class="tag tag-warn">🟡 缩量回调</span> 核心浮盈标杆，趋势未破</td>
+</tr>
+<tr>
+  <td><b>三祥新材 603663</b></td><td>94.02</td>
+  <td class="green">-2.37%</td><td>1,961万</td><td>8.59%</td>
+  <td><span class="tag tag-warn">🟡 震荡</span></td>
+</tr>
+<tr style="background: rgba(225,82,65,0.06);">
+  <td><b>泰和新材 002254</b></td><td>17.29</td>
+  <td class="red"><b>-4.95%</b></td><td>8,207万</td><td>7.64%</td>
+  <td><span class="tag tag-red">🔴 放量下跌</span> 换手9.65%，B+级降级风险</td>
+</tr>
+<tr style="background: rgba(225,82,65,0.06);">
+  <td><b>汇绿生态 001267</b></td><td>50.65</td>
+  <td class="red"><b>-5.33%</b></td><td>3,440万</td><td>6.49%</td>
+  <td><span class="tag tag-red">🔴 连跌5日</span> 今日可能6连跌，急需企稳信号</td>
+</tr>
+<tr style="background: rgba(225,82,65,0.08);">
+  <td><b>罗博特科 300757</b></td><td>580.52</td>
+  <td class="red"><b>-6.22%</b></td><td>670万</td><td>6.93%</td>
+  <td><span class="tag tag-red">🔴 高位重挫</span> 成本523，利润空间收窄</td>
+</tr>
+<tr style="background: rgba(225,82,65,0.08);">
+  <td><b>兴森科技 002436</b></td><td>47.48</td>
+  <td class="red"><b>-6.81%</b></td><td>15,612万</td><td>12.60%</td>
+  <td><span class="tag tag-red">🔴 放量暴跌</span> 换手10.29%！12.6%振幅，但负成本无忧</td>
+</tr>
+</table>
+</div>
+
+<!-- ====== WATCHLIST ====== -->
+<h2>四、跟踪池异动 🔍</h2>
+
+<div class="card">
+<table>
+<tr><th>名称/代码</th><th>收盘</th><th>涨跌</th><th>换手</th><th>判断</th></tr>
+<tr>
+  <td><b>恒逸石化 000703</b></td><td>14.64</td>
+  <td class="green"><b>+7.89% 🔥</b></td><td>4.22%</td>
+  <td>炼化景气修复+油价回落利好，放量突破</td>
+</tr>
+<tr>
+  <td><b>滨化股份 601678</b></td><td>7.00</td>
+  <td class="green"><b>+6.22% 🔥</b></td><td>17.66%</td>
+  <td>巨量换手，化工板块共振</td>
+</tr>
+<tr>
+  <td><b>巨化股份 600160</b></td><td>55.85</td>
+  <td class="green"><b>+5.36% 🔥</b></td><td>4.66%</td>
+  <td>氟化工龙头，持续创新高</td>
+</tr>
+<tr>
+  <td><b>中工国际 002051</b></td><td>11.60</td>
+  <td class="green">+2.47%</td><td>5.94%</td>
+  <td>温和上涨</td>
+</tr>
+<tr>
+  <td><b>中远海能 600026</b></td><td colspan="4" style="color:var(--text-dim)">数据未覆盖（港股01138 6/30收跌-9.31%）</td>
+</tr>
+</table>
+</div>
+
+<div class="advice-block">
+<b>📌 跟踪池信号</b>：恒逸石化+7.89%、滨化股份+6.22%、巨化股份+5.36%——三条都是化工/周期方向。这与我们此前"细分行业扫描"的结论一致：化工板块才是真正的"洼地"。华峰化学昨天+6.95%同样属于这个逻辑链。<b>周期/化工方向正在形成板块效应</b>，值得持续跟踪。
+</div>
+
+<!-- ====== CHART ====== -->
+<h2>五、美股映射链联动图</h2>
+<div class="chart-box" id="chart-mapping"></div>
+
+<!-- ====== NEWS ====== -->
+<h2>六、盘前要闻速览</h2>
+
+<div class="card">
+<div class="news-item">
+  <div class="news-title">🔴 费城半导体指数暴跌6%+，Meta事件引发AI硬件踩踏</div>
+  <div class="news-body">Meta宣布推出AI云计算业务，对外出售闲置算力。市场将此解读为超大规模云厂商资本开支增速见顶信号，半导体设备、存储、光通信全线暴跌。美光-9%、闪迪-10%、MRVL-8.67%、台积电-6.98%。软件板块逆向走强（Meta+9%、微软+3%）。<br><span class="news-meta">来源：CNBC/中新经纬 | 2026-07-02 06:03</span></div>
+</div>
+<div class="news-item">
+  <div class="news-title">📊 中金：中报业绩将为当下市场主线，AI行情进入"选股时代"</div>
+  <div class="news-body">中金研报指出AI产业链拥挤度处历史高位，行情向拥挤度较低的AI上游原材料（小金属、化工新材料、建材）扩散。7月超配行业：电子硬件、通信设备、基础化工、电力电器、机械。低配：建筑、纺织、教育、零售。<br><span class="news-meta">来源：中金公司研究部 | 2026-07-02</span></div>
+</div>
+<div class="news-item">
+  <div class="news-title">🇰🇷 韩国KOSPI开盘暴跌5.83%，SK海力士/三星跌超7%</div>
+  <div class="news-body">韩国综指开盘跌4.46%后加速下探至-5.83%，KOSPI200跌6.64%。存储芯片双雄领跌，反映全球半导体获利了结情绪已传导至亚太。日经225相对温和仅跌0.62%。<br><span class="news-meta">来源：中新经纬 | 2026-07-02 08:28</span></div>
+</div>
+<div class="news-item">
+  <div class="news-title">💰 两市融资余额逼近3万亿，较前日+97.94亿</div>
+  <div class="news-body">截至7月1日，上交所融资余额15196.88亿（+27.79亿），深交所14778.94亿（+70.15亿），两市合计29975.82亿。融资余额持续攀升反映散户加杠杆情绪高涨。<br><span class="news-meta">来源：上交所/深交所 | 2026-07-02</span></div>
+</div>
+<div class="news-item">
+  <div class="news-title">📜 下周一A股新规：ST/*ST股涨跌幅由5%调整至10%</div>
+  <div class="news-body">7月6日起，主板ST、*ST股涨跌幅限制由5%调整至10%。盘后固定价格交易扩展至全部A股及沪深ETF（15:05-15:30），改善大额交易流动性。<br><span class="news-meta">来源：交易所公告 | 2026-07-02</span></div>
+</div>
+<div class="news-item">
+  <div class="news-title">⚠️ 多股密集发布风险提示，"三无"公司被点名</div>
+  <div class="news-body">7月1日晚间多只个股再度密集发布风险提示，涉及无核心技术迭代、无规模化订单、无现金流支撑的纯概念炒作标的。市场情绪正在从"炒概念"切换到"看业绩"。<br><span class="news-meta">来源：多家公司公告 | 2026-07-02</span></div>
+</div>
+</div>
+
+<!-- ====== STRATEGY ====== -->
+<h2>七、今日操作建议</h2>
+
+<div class="advice-block risk">
+<b>⚠️ 核心判断：今天是"忍耐日"而非"恐慌日"</b><br><br>
+SOX暴跌6%叠加韩股-5.83%，A股半导体开盘大概率<b>普跌3%-8%</b>。但需要区分三种情况：<br><br>
+❶ <b>澜起科技</b>（成本96.83，浮盈+226%）：MRVL -8.67%的冲击不可避免。但澜起基本面（DDR5渗透+PCIe Retimer）没有变化。利润垫极厚，<b>只要不跌破280（约-11%）都不触发止损讨论</b>。今日观望为主，不加仓。<br><br>
+❷ <b>汇绿生态</b>（成本48.09）：已经5连跌，今天若再跌将形成极端6连阴。<b>重点观察能否在46-47区间放量止跌</b>。COHR/LITE的逻辑没变（AI光通信需求），但短期情绪极度悲观。不建议今天抄底，等企稳信号。<br><br>
+❸ <b>罗博特科</b>（成本523）：昨日已跌6.22%，今天叠加NVDA回调，利润垫收缩至约10%。<b>关键位550</b>——若跌破且无放量承接，需要考虑减仓保护利润。<br><br>
+❹ <b>化工三剑客</b>（华峰/太钢/德展）：与半导体无直接关联，今天可能逆势走强。华峰昨天+6.95%，趋势良好，<b>持仓不动</b>。<br><br>
+❺ <b>跟踪池机会</b>：恒逸石化+7.89%、巨化股份+5.36%、滨化股份+6.22%形成化工板块共振。<b>今日不宜追高</b>，但验证了化工"洼地"逻辑，可列入中报季重点跟踪。
+</div>
+
+<!-- ====== DISCLAIMER ====== -->
+<div class="footer">
+<b>数据来源：</b>NeoData金融数据搜索（2026-07-02）| CNBC | 中新经纬 | 中金公司研究部 | 上交所/深交所<br>
+<b>免责声明：</b>以上分析仅供参考，不构成投资建议。投资有风险，决策需谨慎。所有数据均来自公开来源，可能存在延迟。本文中的预判仅为基于当前信息的分析推理，不代表未来市场走势。<br>
+<b>生成时间：</b>2026-07-02 09:00 CST | <b>生成工具：</b>WorkBuddy 盘前简报自动化
+</div>
+
+<script>
+// 美股映射联动图
+(function() {
+  var dom = document.getElementById('chart-mapping');
+  var chart = echarts.init(dom, null, {backgroundColor: '#161b22'});
+  
+  var option = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    grid: { left: '3%', right: '8%', bottom: '3%', top: '8%', containLabel: true },
+    xAxis: { 
+      type: 'value', 
+      axisLabel: { color: '#8b949e', formatter: '{value}%' },
+      splitLine: { lineStyle: { color: '#21262d' } }
+    },
+    yAxis: {
+      type: 'category', 
+      data: ['LITE', 'COHR', 'MRVL', 'AVGO', 'NVDA', 'Meta'],
+      axisLabel: { color: '#c9d1d9', fontSize: 13, fontWeight: 600 },
+      axisLine: { show: false },
+      axisTick: { show: false }
+    },
+    series: [{
+      type: 'bar',
+      data: [
+        { value: -6.63, itemStyle: { color: '#e15241' } },
+        { value: -6.55, itemStyle: { color: '#e15241' } },
+        { value: -8.67, itemStyle: { color: '#ff4444' } },
+        { value: -2.23, itemStyle: { color: '#e15241' } },
+        { value: -1.25, itemStyle: { color: '#e15241' } },
+        { value: 9.0, itemStyle: { color: '#26a69a' } }
+      ],
+      label: { 
+        show: true, 
+        position: 'right', 
+        formatter: '{c}%', 
+        color: '#c9d1d9', 
+        fontSize: 12,
+        fontWeight: 'bold'
+      },
+      barWidth: 22,
+      itemStyle: { borderRadius: [0, 4, 4, 0] }
+    }]
+  };
+  
+  chart.setOption(option);
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+</script>
+
+</body>
+</html>

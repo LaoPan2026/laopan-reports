@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>细分行业扫描与推荐 - 2026/07/01</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.7}
+.c{max-width:1200px;margin:0 auto;padding:24px 20px}
+.hdr{text-align:center;padding:36px 0 28px;border-bottom:1px solid #21262d;margin-bottom:32px}
+.hdr h1{font-size:28px;color:#f0f6fc;margin-bottom:4px}
+.hdr sub{font-size:13px;color:#8b949e}
+.s{margin-bottom:32px}
+.s h2{font-size:20px;color:#f0f6fc;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #21262d;font-weight:500}
+.s h3{font-size:16px;color:#f0f6fc;margin:16px 0 10px;font-weight:500}
+.s p{font-size:14px;margin-bottom:10px;line-height:1.8}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.cb{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.cb h4{font-size:15px;color:#f0f6fc;margin-bottom:12px;font-weight:500}
+.cc{width:100%;height:320px}
+
+.rank-card{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:24px;margin-bottom:20px;border-left:4px solid #f85149}
+.rank-card.green{border-left-color:#3fb950}
+.rank-card.amber{border-left-color:#d29922}
+.rank-card.blue{border-left-color:#58a6ff}
+.rank-num{font-size:48px;font-weight:600;line-height:1}
+.rank-num.red{color:#f85149}
+.rank-num.green{color:#3fb950}
+.rank-num.amber{color:#d29922}
+.rank-num.blue{color:#58a6ff}
+.rank-header{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.rank-info h3{font-size:18px;color:#f0f6fc;margin:0 0 4px;font-weight:500}
+.rank-info .sub{font-size:13px;color:#8b949e}
+
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-bottom:16px}
+.kpi{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px 12px;text-align:center}
+.kpi .l{font-size:11px;color:#8b949e;margin-bottom:4px}
+.kpi .v{font-size:20px;font-weight:600}
+.kpi .s{font-size:11px;color:#8b949e;margin-top:3px}
+.u{color:#f85149}
+.d{color:#3fb950}
+.n{color:#c9d1d9}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid #21262d}
+th{color:#8b949e;font-weight:500;font-size:12px;background:#0d1117;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;font-weight:500;color:#f0f6fc}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;margin-right:4px}
+.t-bull{background:#f8514922;color:#f85149}
+.t-bear{background:#3fb95022;color:#3fb950}
+.t-warn{background:#d2992222;color:#d29922}
+.t-info{background:#58a6ff22;color:#58a6ff}
+
+.stock-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sc{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.sc .sn{font-size:14px;color:#f0f6fc;font-weight:500;margin-bottom:6px}
+.sc .sm{font-size:12px;color:#8b949e;line-height:1.6}
+
+.disclaimer{text-align:center;color:#484f58;font-size:12px;padding:24px 0;line-height:1.8;border-top:1px solid #21262d;margin-top:40px}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}.stock-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="c">
+
+<div class="hdr">
+  <h1>细分行业深度扫描：下一步该看哪里</h1>
+  <sub>数据截止 2026-07-01 16:00 · 上证4112 +0.44% · 深成指16119 -0.53%</sub>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="l">今日最强板块</div><div class="v u">氟化工 +4.5%</div><div class="s">PE仅51.2×</div></div>
+  <div class="kpi"><div class="l">半导体材料</div><div class="v u">+2.0%</div><div class="s">PE 386.7× 贵</div></div>
+  <div class="kpi"><div class="l">半导体设备</div><div class="v n">+0.1%</div><div class="s">PE 209.0×</div></div>
+  <div class="kpi"><div class="l">碳化硅</div><div class="v d">-0.8%</div><div class="s">PE 65.7× 适中</div></div>
+  <div class="kpi"><div class="l">光通信</div><div class="v d">-2.7%</div><div class="s">PE 132.3× 回调中</div></div>
+  <div class="kpi"><div class="l">AI算力芯片</div><div class="v d">-0.7%</div><div class="s">PE 282.0×</div></div>
+</div>
+
+<div class="g2">
+  <div class="cb"><h4>各细分 PE-TTM vs YTD涨跌</h4><div class="cc" id="c1"></div></div>
+  <div class="cb"><h4>今日 vs 20日涨跌幅</h4><div class="cc" id="c2"></div></div>
+</div>
+
+<div class="s"><h2>巴蒂的核心判断</h2>
+<div class="rank-card">
+  <div class="rank-header"><div class="rank-num red">#1</div><div class="rank-info"><h3>氟化工 / 制冷剂</h3><div class="sub">景气度最高 + 估值最低 + 政策供给约束</div></div></div>
+  <p>今天所有扫到的半导体/材料相关方向里，氟化工是唯一的"景气上行 + 估值合理"组合。PE 51.2倍，YTD仅+31%（在半导体材料普遍涨80%+的背景下严重滞后）。核心逻辑：<strong>基加利修正案制冷剂配额制 = 供给端刚性收缩 + AI数据中心冷却需求暴增 + 半导体级电子气体国产替代。</strong></p>
+  <p>板块内今天涨停潮：联创股份+20%、多氟多3连板、永太科技涨停、三美股份2连板（PE仅23.5倍！）、金石资源涨停。主力资金大举流入：多氟多+5.4亿、东阳光+9.7亿、联创+1.6亿。</p>
+  <p><strong>老潘优势：</strong>追踪池里已有巨化股份+滨化股份，坐标正确。三祥新材的锆材料也和氟化工同属化工新材料大方向。</p>
+</div>
+
+<div class="rank-card amber">
+  <div class="rank-header"><div class="rank-num amber">#2</div><div class="rank-info"><h3>硅片</h3><div class="sub">涨价周期起点 + 国产替代最紧迫环节</div></div></div>
+  <p>三大全球龙头（信越化学/SUMCO/环球晶圆）5月同步开启年内第二轮涨价——12英寸常规硅片+5-8%，高端AI硅片+18-22%。HBM（高带宽存储）单颗硅片消耗是传统DRAM的<strong>3倍</strong>，3D NAND双晶圆键合让需求翻倍。SEMI预测2026年全球12寸硅片需求约1,000万片/月。</p>
+  <p>国内硅片自给率严重不足。这个赛道的核心魅力：<strong>涨价是已经发生的现实，不是"预期"</strong>。</p>
+</div>
+
+<div class="rank-card amber">
+  <div class="rank-header"><div class="rank-num amber">#3</div><div class="rank-info"><h3>半导体设备零部件</h3><div class="sub">国产替代最确定但渗透率最低的环节</div></div></div>
+  <p>静电卡盘国产化率接近0、陶瓷加热器&lt;10%、碳化硅气体分配盘无量产。先进制程（7nm）刻蚀步骤超100次（20nm仅50次），核心消耗件需求随制程升级倍增。<strong>这是半导体设备里最"硬"的国产替代逻辑</strong>——不像光刻胶有容错成本（胶不好可以洗掉重来），零部件坏了整机停产。</p>
+</div>
+
+<div class="rank-card green">
+  <div class="rank-header"><div class="rank-num green">#4</div><div class="rank-info"><h3>碳化硅 / 功率半导体</h3><div class="sub">涨价落地 + 估值合理 + 新能源/AI双驱动</div></div></div>
+  <p>7月1日起全球功率半导体第二轮涨价正式生效（斯达半导/士兰微/扬杰科技/华润微全线跟进），涨价幅度15%起。碳化硅板块PE 65.7倍是半导体相关细分里<strong>最便宜的之一</strong>。北方华创今日+5.74%主力净流入1.74亿。斯达半导(603290)IGBT+SiC MOSFET双线布局。</p>
+</div>
+
+<div class="rank-card blue">
+  <div class="rank-header"><div class="rank-num blue">#5</div><div class="rank-info"><h3>光通信</h3><div class="sub">逻辑最强但短期估值消化中，等待回调再上车</div></div></div>
+  <p>Marvell上修FY27→115亿(+40%)，黄仁勋力挺"下家万亿公司"，北美CSP 2026年资本开支预计+68%。光通信是AI基建最确定的赛道，但当前PE 132倍且主力近日持续流出（今日-307亿），今日跌-2.72%。策略：<strong>赛道不丢（汇绿已在车上），但当前不追，等回调20-30%再看。</strong></p>
+</div>
+</div>
+
+<div class="s"><h2>各赛道龙一龙二速查</h2>
+
+<div class="stock-list">
+  <div class="sc" style="border-top:3px solid #f85149">
+    <div class="sn">氟化工 #1</div>
+    <div class="sm"><span class="t-bull">龙一</span> 巨化股份 600160（老潘跟踪池）<br>国内氟化工绝对龙头，制冷剂配额最多，PE ~58×<br><br><span class="t-warn">龙二</span> 三美股份 603379<br>2连板，PE仅23.5×，制冷剂+发泡剂双主线<br><br>其他：多氟多(002407)3连板、永太科技(002326)、昊华科技(600378)</div>
+  </div>
+  <div class="sc" style="border-top:3px solid #d29922">
+    <div class="sn">硅片 #2</div>
+    <div class="sm"><span class="t-bull">龙一</span> 沪硅产业 688126<br>国内12寸硅片产能最大，300mm月产能约40万片<br><br><span class="t-warn">龙二</span> 立昂微 605358<br>硅片+外延片+功率器件一体化<br><br>其他：TCL中环(002129)、有研硅(688432)、神工股份(688233)</div>
+  </div>
+  <div class="sc" style="border-top:3px solid #d29922">
+    <div class="sn">半导体零部件 #3</div>
+    <div class="sm"><span class="t-bull">龙一</span> 富创精密 688409<br>金属零部件龙头，覆盖刻蚀/薄膜沉积设备腔体<br><br><span class="t-warn">龙二</span> 江丰电子 300666<br>靶材龙头+零部件延伸，打入台积电供应链<br><br>其他：新莱应材(300260)、珂玛科技</div>
+  </div>
+  <div class="sc" style="border-top:3px solid #3fb950">
+    <div class="sn">碳化硅 #4</div>
+    <div class="sm"><span class="t-bull">龙一</span> 斯达半导 603290<br>IGBT+SiC MOSFET双龙头，PE 111×，涨价直接受益<br><br><span class="t-warn">龙二</span> 天岳先进 688234<br>国内碳化硅衬底产能最大，8寸衬底量产突破<br><br>其他：士兰微(600460)、扬杰科技(300373)、晶盛机电(300316)</div>
+  </div>
+</div>
+</div>
+
+<div class="s"><h2>展望：各赛道未来1-3个月趋势推演</h2>
+
+<table>
+<thead><tr><th>赛道</th><th>短期(1-4周)</th><th>中期(1-3月)</th><th>核心催化剂</th><th>风险</th></tr></thead>
+<tbody>
+<tr style="background:#f8514908">
+  <td>氟化工</td><td class="u">继续强势</td><td class="u">趋势向上</td><td>制冷剂配额2027年进一步削减预期、夏季空调旺季、半导体级电子气体验证突破</td><td>配额政策松动、原材料萤石涨价</td>
+</tr>
+<tr style="background:#d2992208">
+  <td>硅片</td><td class="u">震荡上行</td><td class="u">涨价扩散</td><td>Q2财报验证涨价传导、国产12寸良率突破、新客户导入</td><td>需求端AI投资放缓、海外巨头产能扩张超预期</td>
+</tr>
+<tr style="background:#d2992208">
+  <td>设备零部件</td><td>缓慢爬升</td><td class="u">逐步兑现</td><td>国产设备龙头供应链本土化、新订单公告</td><td>验证周期长(1-2年)、日韩厂商价格战</td>
+</tr>
+<tr style="background:#3fb95008">
+  <td>碳化硅</td><td>震荡整理</td><td class="u">旺季催化</td><td>Q3新能源车销量、AI服务器电源订单、8寸衬底成本下降</td><td>产能过剩担忧、SiC价格战</td>
+</tr>
+<tr style="background:#58a6ff08">
+  <td>光通信</td><td class="d">回调压力</td><td>估值中枢下移</td><td>北美CSP Q2财报(7月底)、Marvell/英伟达新指引</td><td>资本开支节奏放缓、1.6T上量不及预期</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="s"><h2>关于"半导体材料太贵不敢买"的回应</h2>
+<p>老潘，你说得对。半导体材料板块PE 386.7倍，YTD+79.7%，确实让理性投资者下不去手。但我拆解之后发现：<strong>半导体材料不只有光刻胶。</strong></p>
+
+<p>真正贵的是光刻胶（PE 130×）和材料概念里的情绪票。但同一大方向下，<strong>氟化工(PE 51×)、硅片(涨价才刚开始但个股PE分化大)、碳化硅(PE 66×)的性价比远超板块平均</strong>——它们共享"半导体供应链自主可控"的大逻辑，但估值还没被炒到天花板。</p>
+
+<p>核心策略：<strong>不去接已经涨了80%+的材料情绪票，而是在半导体大方向里找"景气上行+估值尚可+自己看得懂"的洼地。</strong>氟化工就是当下最典型的洼地。</p>
+</div>
+
+<div class="s"><h2>老潘持仓与推荐方向的协同</h2>
+<table>
+<thead><tr><th>现有持仓/跟踪</th><th>关联赛道</th><th>协同逻辑</th></tr></thead>
+<tbody>
+<tr><td>三祥新材 603663</td><td>氟化工/化工新材料</td><td>锆材料同属化工新材料，与氟化工共享周期景气逻辑</td></tr>
+<tr><td>巨化股份(跟踪池)</td><td>氟化工 #1</td><td>已在跟踪池，直接受益制冷剂+电子气体逻辑</td></tr>
+<tr><td>滨化股份(跟踪池)</td><td>氟化工/化工新材料</td><td>今日+6.22%，PE 52×，氟化工+环氧丙烷双主线</td></tr>
+<tr><td>澜起科技 688008</td><td>AI算力/半导体</td><td>DDR5+PCIe Retimer直接受益AI算力基建，与硅片/碳化硅同属半导体大方向</td></tr>
+<tr><td>汇绿生态 001267</td><td>光通信</td><td>AOC/光模块卡位AI光互联，光通信赛道持有但等待回调</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="disclaimer">
+<strong>免责声明</strong><br>
+本报告由巴蒂AI投资助手生成，仅供老潘个人投资研究参考，不构成任何投资建议。<br>
+行业分析和标的推荐基于公开数据和产业逻辑推演，不代表对未来股价的任何预测或保证。<br>
+投资有风险，入市需谨慎。如需专业投资建议，请咨询持牌证券投资顾问机构。
+</div>
+</div>
+
+<script>
+var c1=echarts.init(document.getElementById('c1'));
+c1.setOption({
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  grid:{left:80,right:100,top:10,bottom:30},
+  xAxis:{type:'value',name:'PE-TTM',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+  yAxis:{type:'category',data:['氟化工','碳化硅','光刻胶','光通信','第三代半导体','存储器','先进封装','半导体设备','AI算力芯片','半导体材料'].reverse(),
+    axisLabel:{color:'#c9d1d9',fontSize:11},inverse:true},
+  series:[
+    {name:'PE',type:'bar',data:[51.17,65.72,130.45,132.27,158.35,168.43,202.13,209.01,282.00,386.65].reverse(),
+      barWidth:14,label:{show:true,position:'right',formatter:'{c}×',color:'#c9d1d9',fontSize:10},
+      itemStyle:{color:function(p){var v=[51.17,65.72,130.45,132.27,158.35,168.43,202.13,209.01,282.00,386.65].reverse();
+        if(v[p.dataIndex]<80)return'#3fb950';if(v[p.dataIndex]<160)return'#d29922';return'#f85149'}}}
+  ]
+});
+
+var c2=echarts.init(document.getElementById('c2'));
+c2.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['今日','20日'],textStyle:{color:'#8b949e',fontSize:11},top:5},
+  grid:{left:80,right:20,top:40,bottom:30},
+  xAxis:{type:'value',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+  yAxis:{type:'category',data:['氟化工','半导体材料','光刻胶','储能器','半导体设备','第三代半导体','AI算力芯片','碳化硅','先进封装','光通信'].reverse(),
+    axisLabel:{color:'#c9d1d9',fontSize:11},inverse:true},
+  series:[
+    {name:'今日',type:'bar',data:[4.50,2.01,1.16,0.25,0.06,-0.16,-0.73,-0.77,-1.47,-2.72].reverse(),barWidth:7,
+      itemStyle:{color:'#f85149'}},
+    {name:'20日',type:'bar',data:[19.86,33.45,32.60,34.93,24.34,20.27,12.78,15.20,28.49,8.50].reverse(),barWidth:7,
+      itemStyle:{color:'#58a6ff'}}
+  ]
+});
+</script>
+</body>
+</html>

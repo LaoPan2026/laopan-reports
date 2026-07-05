@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘报告 | 2026年7月1日</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg-card: #161b24;
+  --bg-card-alt: #1c2333;
+  --text: #c9d1d9;
+  --text-secondary: #8b949e;
+  --text-muted: #5c6670;
+  --border: #21262d;
+  --accent: #58a6ff;
+  --red: #ef5350;
+  --green: #26a69a;
+  --yellow: #f0b90b;
+  --orange: #ff9800;
+  --purple: #ab47bc;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1a1f2e 0%, #161b24 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 { font-size: 24px; font-weight: 700; }
+.header .date-info { text-align: right; color: var(--text-secondary); font-size: 14px; }
+
+/* Market Snapshot */
+.market-snapshot {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.snapshot-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.snapshot-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.snapshot-card .value { font-size: 20px; font-weight: 700; }
+.snapshot-card .sub { font-size: 12px; margin-top: 2px; }
+
+/* Module */
+.module {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.module h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  background: var(--bg-card-alt);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+}
+tr:hover td { background: rgba(88, 166, 255, 0.05); }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.badge-strong { background: rgba(239, 83, 80, 0.15); color: var(--red); }
+.badge-neutral { background: rgba(240, 185, 11, 0.15); color: var(--yellow); }
+.badge-weak { background: rgba(38, 166, 154, 0.15); color: var(--green); }
+.badge-up { background: rgba(239, 83, 80, 0.12); color: var(--red); }
+.badge-down { background: rgba(38, 166, 154, 0.12); color: var(--green); }
+.badge-warn { background: rgba(255, 152, 0, 0.15); color: var(--orange); }
+
+/* Alert Cards */
+.alert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 12px; }
+.alert-card {
+  background: var(--bg-card-alt);
+  border-left: 4px solid var(--yellow);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.alert-card.critical { border-left-color: var(--red); }
+.alert-card.warning { border-left-color: var(--orange); }
+.alert-card.info { border-left-color: var(--accent); }
+.alert-card .alert-title { font-weight: 700; margin-bottom: 4px; font-size: 14px; }
+.alert-card .alert-detail { font-size: 12px; color: var(--text-secondary); }
+
+/* Mapping Section */
+.mapping-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.mapping-card {
+  background: var(--bg-card-alt);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.mapping-card .pair { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.mapping-card .us-data { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+.mapping-card .signal { font-size: 13px; line-height: 1.4; }
+
+/* Multi-column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* Conclusion */
+.conclusion-card {
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(88, 166, 255, 0.03) 100%);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.conclusion-card h2 { font-size: 18px; margin-bottom: 12px; color: var(--accent); }
+
+/* Progress bar */
+.progress-bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-top: 4px; }
+.progress-fill { height: 100%; border-radius: 3px; }
+.progress-fill.red { background: var(--red); }
+.progress-fill.green { background: var(--green); }
+.progress-fill.yellow { background: var(--yellow); }
+
+/* Summary grid */
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.risk-card {
+  background: rgba(239, 83, 80, 0.08);
+  border: 1px solid rgba(239, 83, 80, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+}
+.opp-card {
+  background: rgba(38, 166, 154, 0.08);
+  border: 1px solid rgba(38, 166, 154, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* Data source */
+.data-source {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: rgba(240, 185, 11, 0.08);
+  border: 1px solid rgba(240, 185, 11, 0.2);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+  .market-snapshot { grid-template-columns: repeat(3, 1fr); }
+  .two-col, .summary-grid { grid-template-columns: 1fr; }
+  .alert-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ========== HEADER ========== -->
+<div class="header">
+  <div>
+    <h1>📊 盘后复盘报告</h1>
+    <div style="color: var(--text-secondary); font-size: 14px;">老潘的专属复盘 · 2026年7月1日（周三）盘中</div>
+  </div>
+  <div class="date-info">
+    <div>数据截止: 2026-07-01 15:00 CST</div>
+    <div>美股: 2026-06-30 收盘</div>
+    <div>报告生成: 19:00 CST</div>
+  </div>
+</div>
+
+<!-- ========== MARKET SNAPSHOT ========== -->
+<div class="market-snapshot">
+  <div class="snapshot-card">
+    <div class="label">上证指数</div>
+    <div class="value" style="color:var(--red)">3,847.51</div>
+    <div class="sub" style="color:var(--red)">+1.12%</div>
+  </div>
+  <div class="snapshot-card">
+    <div class="label">深证成指</div>
+    <div class="value" style="color:var(--red)">13,582.70</div>
+    <div class="sub" style="color:var(--red)">+0.87%</div>
+  </div>
+  <div class="snapshot-card">
+    <div class="label">纳指 (昨收)</div>
+    <div class="value" style="color:var(--red)">23,891.54</div>
+    <div class="sub" style="color:var(--red)">+1.52% | Q2 +21.41%</div>
+  </div>
+  <div class="snapshot-card">
+    <div class="label">SOX 半导体</div>
+    <div class="value" style="color:var(--red)">14,247</div>
+    <div class="sub" style="color:var(--red)">+3.92% | H1 +101.14%</div>
+  </div>
+  <div class="snapshot-card">
+    <div class="label">NVDA</div>
+    <div class="value" style="color:var(--red)">$200.09</div>
+    <div class="sub" style="color:var(--red)">+2.63% | PM <span style="color:var(--green)">-2.03%</span></div>
+  </div>
+  <div class="snapshot-card">
+    <div class="label">MRVL</div>
+    <div class="value" style="color:var(--red)">$297.89</div>
+    <div class="sub" style="color:var(--red)">+7.25% | YTD +250%</div>
+  </div>
+</div>
+
+<!-- ========== 核心结论 ========== -->
+<div class="conclusion-card">
+  <h2>🎯 今日核心结论</h2>
+  <div style="font-size: 15px; line-height: 1.8;">
+    <p><strong>市场分化剧烈——半导体是唯一主战场。</strong>澜起科技独自扛旗（日+1.93%，5日+13.16%，MACD金叉强势），但主力净流出10.84亿意味着获利盘加速兑现。其余9只持仓中6只下跌、3只微涨，整体持仓偏弱。美股映射面：MRVL单日+7.25%/YTD+250%确认AI芯片景气，但NVDA盘前-2.03%+AVGO盘前-1.52%发出短期调整预警。</p>
+    <p style="margin-top: 8px;"><strong>最大痛点：</strong>汇绿生态5日暴跌-18.61%（KDJ J=-9.5极端超卖）、罗博特科-10.27%（MACD死叉深度-17.868）、兴森科技-11.30%（定增压顶+主力出逃7.66亿）。三只S/B+级持仓同步重挫，账户净值承压。</p>
+  </div>
+</div>
+
+<!-- ========== 持仓表现总览 ========== -->
+<div class="module">
+  <h2>📋 持仓表现总览（11只）</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>名称</th><th>代码</th><th>级别</th><th>收盘价</th><th>日涨跌</th><th>5日涨跌</th>
+        <th>主力净流入</th><th>MACD信号</th><th>RSI(6)</th><th>KDJ-J</th><th>评级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>澜起科技</strong></td><td>688008</td><td><span class="badge badge-strong">S</span></td>
+        <td style="color:var(--red);font-weight:700">315.89</td>
+        <td style="color:var(--red)">+1.93%</td><td style="color:var(--red)">+13.16%</td>
+        <td style="color:var(--green)">-10.84亿</td>
+        <td><span class="badge badge-up">金叉强势</span></td><td>75.1 🔴</td><td>91.4 🔴</td>
+        <td><span class="badge badge-strong">强</span></td>
+      </tr>
+      <tr>
+        <td><strong>软通动力</strong></td><td>301236</td><td>核心</td>
+        <td>41.64</td>
+        <td style="color:var(--green)">-1.91%</td><td style="color:var(--red)">+11.96%</td>
+        <td style="color:var(--green)">-1.93亿</td>
+        <td><span class="badge badge-up">金叉</span></td><td>57.6</td><td>94.6</td>
+        <td><span class="badge badge-neutral">中偏强</span></td>
+      </tr>
+      <tr>
+        <td><strong>三祥新材</strong></td><td>603663</td><td><span class="badge badge-strong">S</span></td>
+        <td>94.02</td>
+        <td style="color:var(--green)">-2.37%</td><td style="color:var(--green)">-6.43%</td>
+        <td style="color:var(--red)">+7199万</td>
+        <td><span class="badge badge-up">金叉</span></td><td>56.6</td><td>45.0</td>
+        <td><span class="badge badge-neutral">中偏强</span></td>
+      </tr>
+      <tr>
+        <td><strong>华峰化学</strong></td><td>002064</td><td>持仓</td>
+        <td style="color:var(--red)">10.15</td>
+        <td style="color:var(--red)">+6.95%</td><td style="color:var(--green)">-6.19%</td>
+        <td style="color:var(--red)">+4908万</td>
+        <td><span class="badge badge-down">死叉</span></td><td>48.6</td><td>35.4</td>
+        <td><span class="badge badge-neutral">中</span></td>
+      </tr>
+      <tr>
+        <td><strong>德展健康</strong></td><td>000813</td><td>持仓</td>
+        <td>3.12</td>
+        <td style="color:var(--red)">+2.97%</td><td style="color:var(--red)">+4.35%</td>
+        <td style="color:var(--green)">-59万</td>
+        <td><span class="badge badge-neutral">底背离雏形</span></td><td>56.1</td><td>89.2</td>
+        <td><span class="badge badge-neutral">中</span></td>
+      </tr>
+      <tr>
+        <td><strong>太钢不锈</strong></td><td>000825</td><td>持仓</td>
+        <td>3.49</td>
+        <td style="color:var(--red)">+2.35%</td><td style="color:var(--green)">-3.06%</td>
+        <td style="color:var(--red)">+1071万</td>
+        <td><span class="badge badge-down">死叉弱势</span></td><td>35.8</td><td>14.8 🔴</td>
+        <td><span class="badge badge-weak">弱</span></td>
+      </tr>
+      <tr>
+        <td><strong>兴森科技</strong></td><td>002436</td><td>持仓</td>
+        <td style="color:var(--green);font-weight:700">47.48</td>
+        <td style="color:var(--green)">-6.81%</td><td style="color:var(--green)">-11.30%</td>
+        <td style="color:var(--green)">-7.66亿</td>
+        <td><span class="badge badge-down">死叉初期</span></td><td>46.6</td><td>24.0</td>
+        <td><span class="badge badge-weak">弱</span></td>
+      </tr>
+      <tr>
+        <td><strong>泰和新材</strong></td><td>002254</td><td>B+</td>
+        <td style="color:var(--green);font-weight:700">17.29</td>
+        <td style="color:var(--green)">-4.95%</td><td style="color:var(--green)">-14.28%</td>
+        <td style="color:var(--green)">-5062万</td>
+        <td><span class="badge badge-down">死叉加速</span></td><td>42.9</td><td>10.6 🔴</td>
+        <td><span class="badge badge-weak">弱</span></td>
+      </tr>
+      <tr>
+        <td><strong>罗博特科</strong></td><td>300757</td><td>核心</td>
+        <td style="color:var(--green);font-weight:700">580.52</td>
+        <td style="color:var(--green)">-6.22%</td><td style="color:var(--green)">-10.27%</td>
+        <td style="color:var(--green)">-1.92亿</td>
+        <td><span class="badge badge-down">死叉深度</span></td><td>41.3</td><td>21.6</td>
+        <td><span class="badge badge-weak">弱</span></td>
+      </tr>
+      <tr>
+        <td><strong>汇绿生态</strong></td><td>001267</td><td><span class="badge badge-strong">S</span></td>
+        <td style="color:var(--green);font-weight:700">50.65</td>
+        <td style="color:var(--green)">-5.33%</td><td style="color:var(--green)">-18.61%</td>
+        <td style="color:var(--green)">-2.16亿</td>
+        <td><span class="badge badge-down">死叉加速</span></td><td>31.7 🔴</td><td>-9.5 🔴🔴</td>
+        <td><span class="badge badge-weak">弱</span></td>
+      </tr>
+      <tr>
+        <td><strong>星环科技</strong></td><td>688031</td><td>持仓</td>
+        <td colspan="7" style="color:var(--text-muted);text-align:center">暂无当日数据</td>
+        <td><span class="badge badge-neutral">-</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="display:flex;gap:16px;margin-top:16px;font-size:13px;color:var(--text-secondary)">
+    <div><span class="badge badge-strong">强</span> 1只 · <span class="badge badge-neutral">中</span> 4只 · <span class="badge badge-weak">弱</span> 5只 · 无数据 1只</div>
+  </div>
+</div>
+
+<!-- ========== 重大异动预警 ========== -->
+<div class="module">
+  <h2>🚨 重大异动预警</h2>
+  <div class="alert-grid">
+    <div class="alert-card critical">
+      <div class="alert-title" style="color:var(--red)">⚠️ 汇绿生态 001267 — 极端超卖 + 持续资金出逃</div>
+      <div class="alert-detail">5日跌幅-18.61%，连续第4日重挫。KDJ-J值-9.5极端超卖、RSI-6仅31.7。主力今日净流出2.16亿，5日累计流出-7.55亿。今日公告：为控股子公司担保（中性）。美股映射COHR/LITE仍在上行，A股独自杀跌——或为前期获利盘集中兑现+市场情绪踩踏。</div>
+    </div>
+    <div class="alert-card critical">
+      <div class="alert-title" style="color:var(--red)">⚠️ 兴森科技 002436 — 定增压顶 + 主力巨额出逃</div>
+      <div class="alert-detail">今日暴跌-6.81%，主力净流出-7.66亿（第二大户流向）。6/23公告2026年度向特定对象发行A股股票方案，定增摊薄预期压制股价。MACD死叉初期，20日主力累计流出-38.37亿——机构在系统性减仓。</div>
+    </div>
+    <div class="alert-card critical">
+      <div class="alert-title" style="color:var(--red)">⚠️ 罗博特科 300757 — MACD死叉深度恶化</div>
+      <div class="alert-detail">MACD绿柱-17.868为全持仓最深度死叉，DIF(3.18)远低于DEA(12.11)。今日-6.22%跌破580，H股备案后消化期尚未结束。主力净流出-1.92亿，20日累计流出-32.70亿。NVDA盘前-2.03%形成短期压制。</div>
+    </div>
+    <div class="alert-card warning">
+      <div class="alert-title" style="color:var(--orange)">⚡ 澜起科技 688008 — 超买 + 主力巨额出货背离</div>
+      <div class="alert-detail">金叉强势但RSI-6=75.1已超买、KDJ-J=91.4超买边缘。今日主力净流出-10.84亿（全市场最大单股流出），散户接盘。MRVL+7.25%映射虽有支撑，但需警惕获利盘回吐风险。澜起短期可能进入高位震荡消化。</div>
+    </div>
+    <div class="alert-card warning">
+      <div class="alert-title" style="color:var(--orange)">⚡ 泰和新材 002254 — 持续失血，降级逻辑验证中</div>
+      <div class="alert-detail">5日跌幅-14.28%，KDJ-J=10.6超卖，死叉加速。20日主力累计流入+6.01亿说明前期有人建仓，但近5日已转流出。B+降级判断在持续验证。6/10投资者关系活动后无新催化剂。</div>
+    </div>
+    <div class="alert-card info">
+      <div class="alert-title" style="color:var(--accent)">ℹ️ 中远海能 600026（跟踪）— 油运暴跌-23.32%，接近极端超卖区</div>
+      <div class="alert-detail">5日从21.78跌至16.70（-23.32%），主力5日净流出-3.22亿。KDJ-J=-18.4极端超卖，RSI-6=29.0。作为跟踪池标的，此幅度值得注意：若油运基本面未恶化，超卖反弹机会可能临近。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 美股→A股映射 ========== -->
+<div class="module">
+  <h2>🌍 美股→A股映射链分析</h2>
+  <div class="mapping-grid">
+    <div class="mapping-card">
+      <div class="pair">MRVL → 澜起科技 688008</div>
+      <div class="us-data">
+        MRVL昨收 $297.89 <span style="color:var(--red)">+7.25%</span> | YTD <span style="color:var(--red)">+250.54%</span><br>
+        盘前 $284.25 <span style="color:var(--green)">-4.58%</span> | 目标价 $340 (UBS上调)
+      </div>
+      <div class="signal" style="color:var(--red)">✅ 最强正面映射 — MRVL单日+7.25%确认AI芯片/数据中心互联景气加速。UBS将目标价从230上调至340，机构共识极强。澜起作为A股最强映射标的受益确认，但盘前MRVL-4.58%提示明日可能承压。</div>
+    </div>
+    <div class="mapping-card">
+      <div class="pair">COHR + LITE → 汇绿生态 001267</div>
+      <div class="us-data">
+        COHR $394.47 <span style="color:var(--red)">+0.83%</span> | YTD <span style="color:var(--red)">+113.72%</span><br>
+        LITE $858.06 <span style="color:var(--red)">+0.78%</span> | YTD <span style="color:var(--red)">+132.80%</span><br>
+        盘前 COHR <span style="color:var(--green)">-3.97%</span> LITE <span style="color:var(--green)">-3.92%</span>
+      </div>
+      <div class="signal" style="color:var(--yellow)">🟡 板块逻辑犹在，个股节奏脱节 — COHR/LITE光通信双雄YTD均翻倍+，SOX H1+101%，全球光通信/AI硬件景气确认无疑。汇绿-18.61%纯粹是A股自身情绪+获利盘踩踏，非基本面恶化。但盘前COHR/LITE双跌近4%，明日汇绿可能继续承压。</div>
+    </div>
+    <div class="mapping-card">
+      <div class="pair">NVDA → 罗博特科 300757</div>
+      <div class="us-data">
+        NVDA $200.09 <span style="color:var(--red)">+2.63%</span> | YTD <span style="color:var(--red)">+9.55%</span><br>
+        盘前 $196.02 <span style="color:var(--green)">-2.03%</span> | 目标价 $301.62
+      </div>
+      <div class="signal" style="color:var(--yellow)">🟡 映射中性偏弱 — NVDA今年表现相较于AI芯片同行偏弱（YTD仅+9.55% vs SOX+101%），GB300出货节奏是核心变量。罗博特科自身H股备案后调整未结束，MACD深度死叉。短期缺乏正面催化。</div>
+    </div>
+    <div class="mapping-card">
+      <div class="pair">SOX 费城半导体指数</div>
+      <div class="us-data">
+        ^SOX 14,247 <span style="color:var(--red)">+3.92%</span><br>
+        Q2 <span style="color:var(--red)">+87.75%</span> | H1 <span style="color:var(--red)">+101.14%</span><br>
+        E-mini期货 14,411.50
+      </div>
+      <div class="signal" style="color:var(--red)">✅ 半导体超级牛市确认 — SOX半年翻倍，Q2单季+87.75%创历史级表现。AI芯片需求驱动的全球半导体景气度毋庸置疑。A股半导体板块将中长期受益，澜起/汇绿/罗博特科都有产业逻辑支撑。但短期超买后波动加大是必然。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 跟踪池异动 ========== -->
+<div class="module">
+  <h2>👁️ 跟踪池观察（5只）</h2>
+  <table>
+    <thead>
+      <tr><th>名称</th><th>代码</th><th>方向</th><th>收盘价</th><th>日涨跌</th><th>5日涨跌</th><th>主力净流入</th><th>MACD</th><th>RSI(6)</th><th>信号</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>恒逸石化</strong></td><td>000703</td><td>炼化/周期</td>
+        <td style="color:var(--red)">14.64</td>
+        <td style="color:var(--red)">+7.89%</td><td style="color:var(--green)">-5.73%</td>
+        <td style="color:var(--red)">+4684万</td>
+        <td><span class="badge badge-up">金叉刚形成</span></td><td>54.2</td>
+        <td><span class="badge badge-up">⚡ 半年度业绩预告+反弹</span></td>
+      </tr>
+      <tr>
+        <td><strong>中远海能</strong></td><td>600026</td><td>油运/周期</td>
+        <td style="color:var(--green);font-weight:700">16.70</td>
+        <td style="color:var(--green)">-6.91%</td><td style="color:var(--green)">-23.32%</td>
+        <td style="color:var(--green)">-2.99亿</td>
+        <td><span class="badge badge-down">死叉延续</span></td><td>29.0 🔴</td>
+        <td><span class="badge badge-warn">🔴 5日-23.32%极端超卖</span></td>
+      </tr>
+      <tr>
+        <td><strong>巨化股份</strong></td><td>600160</td><td>氟化工/制冷剂</td>
+        <td style="color:var(--red)">55.85</td>
+        <td style="color:var(--red)">+5.36%</td><td style="color:var(--red)">+9.94%</td>
+        <td style="color:var(--green)">-3139万</td>
+        <td><span class="badge badge-up">金叉强势</span></td><td>80.4 🔴</td>
+        <td><span class="badge badge-up">🟢 趋势强劲，RSI超买</span></td>
+      </tr>
+      <tr>
+        <td><strong>中工国际</strong></td><td>002051</td><td>工程/国际承包</td>
+        <td>11.60</td>
+        <td style="color:var(--red)">+2.47%</td><td style="color:var(--green)">-13.69%</td>
+        <td style="color:var(--green)">-967万</td>
+        <td><span class="badge badge-down">死叉</span></td><td>41.2</td>
+        <td>弱反弹，无方向</td>
+      </tr>
+      <tr>
+        <td><strong>滨化股份</strong></td><td>601678</td><td>化工/新材料</td>
+        <td style="color:var(--red)">7.00</td>
+        <td style="color:var(--red)">+6.22%</td><td style="color:var(--red)">+7.53%</td>
+        <td style="color:var(--red)">+2585万</td>
+        <td><span class="badge badge-up">金叉</span></td><td>75.4 🔴</td>
+        <td><span class="badge badge-up">🟢 H股招股书刊发(6/30)，换手率17.66%</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px;padding:10px 14px;background:rgba(255,152,0,0.08);border-left:3px solid var(--orange);border-radius:4px;font-size:13px;">
+    <strong>跟踪池异动提醒：</strong>中远海能5日暴跌-23.32%属跟踪池大幅异动（≥5%阈值），KDJ-J=-18.4极端超卖，需关注油运基本面变化。恒逸石化半年度业绩预告+今日强势反弹值得跟进。
+  </div>
+</div>
+
+<!-- ========== 资金面分析 ========== -->
+<div class="module">
+  <h2>💰 资金面分析</h2>
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:15px; margin-bottom:12px; color:var(--red)">🔴 主力大幅流出 TOP5</h3>
+      <table>
+        <thead><tr><th>股票</th><th>今日主力净流出</th><th>5日累计</th><th>20日累计</th></tr></thead>
+        <tbody>
+          <tr><td>澜起科技</td><td style="color:var(--green);font-weight:700">-10.84亿</td><td style="color:var(--red)">+23.97亿</td><td style="color:var(--green)">-42.95亿</td></tr>
+          <tr><td>兴森科技</td><td style="color:var(--green);font-weight:700">-7.66亿</td><td style="color:var(--green)">-3.51亿</td><td style="color:var(--green)">-38.37亿</td></tr>
+          <tr><td>中远海能</td><td style="color:var(--green)">-2.99亿</td><td style="color:var(--green)">-3.22亿</td><td style="color:var(--green)">-1.11亿</td></tr>
+          <tr><td>汇绿生态</td><td style="color:var(--green)">-2.16亿</td><td style="color:var(--green)">-7.55亿</td><td style="color:var(--green)">-3.77亿</td></tr>
+          <tr><td>软通动力</td><td style="color:var(--green)">-1.93亿</td><td style="color:var(--red)">+1.73亿</td><td style="color:var(--green)">-6.04亿</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:15px; margin-bottom:12px; color:var(--green)">🟢 主力逆势流入</h3>
+      <table>
+        <thead><tr><th>股票</th><th>今日主力净流入</th><th>5日累计</th><th>20日累计</th></tr></thead>
+        <tbody>
+          <tr><td>三祥新材</td><td style="color:var(--red)">+7199万</td><td style="color:var(--green)">-2.00亿</td><td style="color:var(--red)">+2421万</td></tr>
+          <tr><td>华峰化学</td><td style="color:var(--red)">+4908万</td><td style="color:var(--red)">+2562万</td><td style="color:var(--red)">+5399万</td></tr>
+          <tr><td>恒逸石化</td><td style="color:var(--red)">+4684万</td><td style="color:var(--green)">-7586万</td><td style="color:var(--red)">+819万</td></tr>
+          <tr><td>滨化股份</td><td style="color:var(--red)">+2585万</td><td style="color:var(--red)">+3.18亿</td><td style="color:var(--green)">-489万</td></tr>
+          <tr><td>太钢不锈</td><td style="color:var(--red)">+1071万</td><td style="color:var(--green)">-750万</td><td style="color:var(--red)">+1125万</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding:10px 14px;background:rgba(88,166,255,0.06);border-left:3px solid var(--accent);border-radius:4px;font-size:13px;">
+    <strong>资金面核心矛盾：</strong>澜起科技一己之力流出10.84亿，占全组合流出大头。但5日累计仍为+23.97亿净流入——说明前4日机构大量建仓，今日是获利盘阶段性兑现。兴森科技20日累计-38.37亿是最严重的持续流出，定增方案直接触发机构降仓。
+  </div>
+</div>
+
+<!-- ========== 技术面扫描 ========== -->
+<div class="module">
+  <h2>📐 技术面全扫描</h2>
+  <div class="three-col">
+    <div>
+      <h3 style="font-size:14px;margin-bottom:10px;color:var(--red)">🟢 MACD金叉阵营（6只）</h3>
+      <table>
+        <thead><tr><th>股票</th><th>DIF</th><th>DEA</th><th>MACD柱</th><th>力度</th></tr></thead>
+        <tbody>
+          <tr><td>澜起科技</td><td>17.76</td><td>12.58</td><td style="color:var(--red)">+10.35</td><td>⭐⭐⭐</td></tr>
+          <tr><td>巨化股份</td><td>4.53</td><td>3.66</td><td style="color:var(--red)">+1.75</td><td>⭐⭐</td></tr>
+          <tr><td>软通动力</td><td>0.21</td><td>-0.01</td><td style="color:var(--red)">+0.44</td><td>⭐</td></tr>
+          <tr><td>恒逸石化</td><td>0.27</td><td>0.03</td><td style="color:var(--red)">+0.47</td><td>⭐⭐</td></tr>
+          <tr><td>三祥新材</td><td>10.71</td><td>10.51</td><td style="color:var(--red)">+0.39</td><td>⭐</td></tr>
+          <tr><td>滨化股份</td><td>0.30</td><td>0.22</td><td style="color:var(--red)">+0.16</td><td>⭐</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:14px;margin-bottom:10px;color:var(--green)">🔴 死叉/弱势阵营（8只）</h3>
+      <table>
+        <thead><tr><th>股票</th><th>DIF</th><th>DEA</th><th>MACD柱</th><th>程度</th></tr></thead>
+        <tbody>
+          <tr><td>罗博特科</td><td>3.18</td><td>12.11</td><td style="color:var(--green)">-17.87</td><td>极深度</td></tr>
+          <tr><td>汇绿生态</td><td>-0.12</td><td>0.31</td><td style="color:var(--green)">-0.86</td><td>加速</td></tr>
+          <tr><td>泰和新材</td><td>1.02</td><td>1.20</td><td style="color:var(--green)">-0.36</td><td>加速</td></tr>
+          <tr><td>中工国际</td><td>0.29</td><td>0.41</td><td style="color:var(--green)">-0.23</td><td>中等</td></tr>
+          <tr><td>中远海能</td><td>-0.37</td><td>-0.31</td><td style="color:var(--green)">-0.12</td><td>延续</td></tr>
+          <tr><td>兴森科技</td><td>4.07</td><td>4.11</td><td style="color:var(--green)">-0.08</td><td>初期</td></tr>
+          <tr><td>华峰化学</td><td>-0.10</td><td>-0.08</td><td style="color:var(--green)">-0.04</td><td>弱势</td></tr>
+          <tr><td>太钢不锈</td><td>-0.14</td><td>-0.13</td><td style="color:var(--green)">-0.03</td><td>弱势</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:14px;margin-bottom:10px;color:var(--orange)">⚡ RSI/KDJ极端信号</h3>
+      <table>
+        <thead><tr><th>股票</th><th>RSI(6)</th><th>KDJ-J</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>汇绿生态</td><td style="color:var(--green)">31.7</td><td style="color:var(--green)">-9.5</td><td>极端超卖</td></tr>
+          <tr><td>中远海能</td><td style="color:var(--green)">29.0</td><td style="color:var(--green)">-18.4</td><td>极端超卖</td></tr>
+          <tr><td>太钢不锈</td><td style="color:var(--green)">35.8</td><td style="color:var(--green)">14.8</td><td>超卖</td></tr>
+          <tr><td>泰和新材</td><td>42.9</td><td style="color:var(--green)">10.6</td><td>超卖</td></tr>
+          <tr><td>澜起科技</td><td style="color:var(--red)">75.1</td><td style="color:var(--red)">91.4</td><td>超买</td></tr>
+          <tr><td>巨化股份</td><td style="color:var(--red)">80.4</td><td style="color:var(--red)">86.0</td><td>超买</td></tr>
+          <tr><td>滨化股份</td><td style="color:var(--red)">75.4</td><td style="color:var(--red)">84.4</td><td>超买</td></tr>
+          <tr><td>软通动力</td><td>57.6</td><td style="color:var(--red)">94.6</td><td>超买边缘</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 快速诊断卡 ========== -->
+<div class="module">
+  <h2>🏥 S级持仓快速诊断</h2>
+  <table>
+    <thead>
+      <tr><th style="width:60px">级别</th><th>名称</th><th>技术面</th><th>资金面</th><th>消息面</th><th>美股映射</th><th>综合判断</th><th>操作建议</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-strong">S</span></td>
+        <td><strong>澜起科技</strong><br>688008<br><span style="font-size:11px;color:var(--text-muted)">成本 96.83</span></td>
+        <td>金叉强势<br>RSI/KDJ超买</td>
+        <td style="color:var(--green)">主力-10.84亿<br><span style="font-size:11px">5日+23.97亿</span></td>
+        <td>股东会决议<br>H股激励计划</td>
+        <td style="color:var(--red)">MRVL +7.25%<br>最强正面</td>
+        <td><span class="badge badge-strong">短期高位震荡<br>中期上行趋势不变</span></td>
+        <td>底仓不动<br>高位不加仓</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-strong">S</span></td>
+        <td><strong>汇绿生态</strong><br>001267<br><span style="font-size:11px;color:var(--text-muted)">成本 48.09</span></td>
+        <td>死叉加速<br>KDJ-J=-9.5极端</td>
+        <td style="color:var(--green)">主力-2.16亿<br><span style="font-size:11px">5日-7.55亿</span></td>
+        <td>担保公告<br>武汉钧恒增资</td>
+        <td style="color:var(--yellow)">COHR/LITE盘前跌<br>板块逻辑仍在</td>
+        <td><span class="badge badge-weak">短期继续承压<br>超卖反弹可期</span></td>
+        <td>等超卖反弹<br>不杀跌</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-strong">S</span></td>
+        <td><strong>三祥新材</strong><br>603663<br><span style="font-size:11px;color:var(--text-muted)">成本 18.18</span></td>
+        <td>金叉延续<br>RSI中性</td>
+        <td style="color:var(--red)">主力+7199万<br><span style="font-size:11px">逆势流入</span></td>
+        <td>期权行权结果<br>异常波动公告</td>
+        <td>—</td>
+        <td><span class="badge badge-neutral">正常回调<br>筹码健康</span></td>
+        <td>持有观察</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 重要公告速览 ========== -->
+<div class="module">
+  <h2>📢 重要公告速览</h2>
+  <table>
+    <thead><tr><th>股票</th><th>日期</th><th>事件</th><th>影响</th></tr></thead>
+    <tbody>
+      <tr><td>恒逸石化</td><td>6/25</td><td>2026年半年度业绩预告</td><td><span class="badge badge-up">🟢 正面</span></td></tr>
+      <tr><td>恒逸石化</td><td>6/30</td><td>股票交易异常波动公告</td><td><span class="badge badge-neutral">中性</span></td></tr>
+      <tr><td>兴森科技</td><td>6/23</td><td>2026年度向特定对象发行A股股票方案（定增）</td><td><span class="badge badge-down">🔴 摊薄利空</span></td></tr>
+      <tr><td>罗博特科</td><td>6/22</td><td>发行H股获得中国证监会备案</td><td><span class="badge badge-neutral">中性（已消化）</span></td></tr>
+      <tr><td>罗博特科</td><td>6/17</td><td>关于合作事项的说明公告</td><td><span class="badge badge-neutral">中性</span></td></tr>
+      <tr><td>滨化股份</td><td>6/30</td><td>刊发H股招股说明书、H股发行价格上限及香港公开发售</td><td><span class="badge badge-up">🟢 H股发行推进</span></td></tr>
+      <tr><td>滨化股份</td><td>6/24</td><td>H股发行聆讯后资料集</td><td><span class="badge badge-up">🟢 进展顺利</span></td></tr>
+      <tr><td>汇绿生态</td><td>7/1</td><td>为控股子公司担保</td><td><span class="badge badge-neutral">中性</span></td></tr>
+      <tr><td>汇绿生态</td><td>6/25</td><td>武汉钧恒对湖北钧恒增资</td><td><span class="badge badge-up">🟢 光模块业务推进</span></td></tr>
+      <tr><td>软通动力</td><td>6/22</td><td>首次回购公司股份</td><td><span class="badge badge-up">🟢 正面信号</span></td></tr>
+      <tr><td>软通动力</td><td>6/25</td><td>投资者关系活动记录表</td><td><span class="badge badge-neutral">中性</span></td></tr>
+      <tr><td>德展健康</td><td>6/30</td><td>简式权益变动报告书（5%以上股东股权变动）</td><td><span class="badge badge-warn">⚠️ 关注</span></td></tr>
+      <tr><td>三祥新材</td><td>7/1</td><td>期权激励计划Q2自主行权结果暨股份变动</td><td><span class="badge badge-neutral">中性</span></td></tr>
+      <tr><td>中远海能</td><td>6/26</td><td>调整2023年股票期权激励计划行权价格</td><td><span class="badge badge-neutral">中性</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 明日事件 ========== -->
+<div class="module">
+  <h2>📅 明日(7/2)重要事件</h2>
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:14px;margin-bottom:10px;">分红派息（登记日7/2）</h3>
+      <table>
+        <thead><tr><th>股票</th><th>方案</th></tr></thead>
+        <tbody>
+          <tr><td>新通联 603022</td><td>10派1元</td></tr>
+          <tr><td>艾华集团 603989</td><td>10派2元</td></tr>
+          <tr><td>仙鹤股份 603733</td><td>10派7元</td></tr>
+          <tr><td>万里扬 002434</td><td>10派0.5元</td></tr>
+          <tr><td>国货航 001391</td><td>10派0.87元</td></tr>
+          <tr><td>华金资本 000532</td><td>10派1元</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:14px;margin-bottom:10px;">限售解禁提醒（7/1）</h3>
+      <table>
+        <thead><tr><th>股票</th><th>解禁量(万股)</th><th>占比</th></tr></thead>
+        <tbody>
+          <tr><td>荣昌生物 688331</td><td>19,280</td><td>54.17% ⚠️</td></tr>
+          <tr><td>亚虹医药-U 688176</td><td>13,548</td><td>23.68% ⚠️</td></tr>
+          <tr><td>盟科药业-U 688373</td><td>5,059</td><td>7.71%</td></tr>
+          <tr><td>翱捷科技-U 688220</td><td>4,916</td><td>11.75%</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted)">
+        ⚠️ 荣昌生物解禁占比54.17%需关注，可能对医药板块情绪面产生溢出效应。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 明日关注 ========== -->
+<div class="module">
+  <h2>🔮 明日(7/2)剧本预判</h2>
+  
+  <div class="summary-grid">
+    <div class="risk-card">
+      <h3 style="color:var(--red);margin-bottom:10px;">⚠️ 风险侧</h3>
+      <ul style="font-size:14px;line-height:2;padding-left:18px;">
+        <li><strong>美股盘前全线回调：</strong>NVDA-2.03%、AVGO-1.52%、MRVL-4.58%、COHR-3.97%、LITE-3.92%——明日A股半导体可能低开</li>
+        <li><strong>澜起超买+主力出货：</strong>10.84亿主力净流出+KDJ=91.4，短期见顶风险上升</li>
+        <li><strong>汇绿/罗博特科/兴森三杀延续：</strong>三只核心持仓同步重挫，明日若无企稳信号需重新评估仓位</li>
+        <li><strong>中远海能跟踪池异动：</strong>-23.32%瀑布跌，若基本面无恶化可能是机会，但需确认</li>
+      </ul>
+    </div>
+    <div class="opp-card">
+      <h3 style="color:var(--green);margin-bottom:10px;">🟢 机会侧</h3>
+      <ul style="font-size:14px;line-height:2;padding-left:18px;">
+        <li><strong>MRVL YTD+250%映射未充分兑现：</strong>澜起A股5日+13.16%仅小幅跟涨，空间仍在</li>
+        <li><strong>极端超卖反弹窗口：</strong>汇绿KDJ-J=-9.5、中远海能KDJ-J=-18.4，技术性反弹大概率</li>
+        <li><strong>恒逸石化半年度业绩预告：</strong>若业绩超预期，今日+7.89%只是开始</li>
+        <li><strong>滨化H股发行推进：</strong>6/30招股书刊发，双地上市预期可能驱动资金关注</li>
+        <li><strong>软通动力回购+金叉：</strong>公司回购+MACD金叉+5日+11.96%，技术面健康</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;padding:14px 18px;background:rgba(240,185,11,0.06);border:1px solid rgba(240,185,11,0.2);border-radius:8px;">
+    <strong style="color:var(--yellow)">💡 巴蒂的判断：</strong>
+    <p style="margin-top:6px;font-size:14px;line-height:1.8;">
+    今日持仓整体偏弱，但并非基本面恶化。核心逻辑链（AI芯片→澜起、光通信→汇绿、化工→三祥/华峰）均未打破。美股半导体H1+101%的超级景气周期是最大底牌。<br><br>
+    <strong>最大警讯是汇绿-18.61%。</strong>这不是COHR/LITE不行，是A股市场在杀情绪+获利盘。如果明日继续放量下跌，需要认真考虑是否暂时降仓。但KDJ-J=-9.5的极端超卖意味着反弹随时可能来。<br><br>
+    <strong>澜起的主力出逃值得警惕。</strong>即便MRVL+7.25%给出最强背书，但10.84亿的净流出不是小数目。底仓可以不动，追高加仓现在不是时机。<br><br>
+    <strong>明日策略核心：</strong>观察美股开盘后的走势（尤其是盘前跌4%是否开盘后修复），以此判断A股半导体开盘点位。如果半导体低开1-2%，汇绿/罗博特科可能迎来超卖反弹；如果继续低开3%+且无承接，则需重新评估短期持仓策略。
+    </p>
+  </div>
+</div>
+
+<!-- ========== DATA SOURCE ========== -->
+<div class="data-source">
+  <strong>数据来源：</strong><br>
+  · A股K线/资金流向/技术指标/公告/日历 → 腾讯自选股 WeStock Data（2026-07-01 15:00 CST）<br>
+  · 美股行情数据 → Yahoo Finance（2026-06-30 收盘 / 2026-07-01 盘前）<br>
+  · 搜索补充 → WebSearch（新浪财经/英为财情等公开来源）<br>
+  · 报告生成时间：2026-07-01 19:00 CST
+</div>
+
+<!-- ========== DISCLAIMER ========== -->
+<div class="disclaimer">
+  ⚠️ <strong>免责声明：</strong>以上内容基于公开信息整理，仅供参考，不构成任何投资建议。所有数据可能存在延迟，以交易所官方为准。股市有风险，投资决策需谨慎。老潘的持仓数据仅用于内部分析，请勿外传。
+</div>
+
+</div><!-- /container -->
+</body>
+</html>

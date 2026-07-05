@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半导体下半年潜力黑马挖掘 · 2026-07-02</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --card:#161b22; --border:#21262d; --text:#c9d1d9;
+  --text-dim:#8b949e; --red:#e15241; --green:#26a69a; --accent:#58a6ff; --warn:#d29922;
+  --gold:#f0a500;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);padding:24px;max-width:1100px;margin:0 auto;}
+h1{font-size:23px;margin-bottom:4px;}
+h2{font-size:17px;color:var(--accent);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+h3{font-size:14px;color:var(--gold);margin:18px 0 8px;}
+.subtitle{color:var(--text-dim);font-size:13px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;margin-bottom:16px;}
+.alert-card{background:#1a1f10;border:1px solid #2d3d10;border-radius:8px;padding:18px;margin-bottom:16px;}
+.red{color:var(--red);}.green{color:var(--green);}.warn{color:var(--warn);}.gold{color:var(--gold);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:#1c2129;color:var(--text-dim);padding:8px 10px;text-align:left;font-weight:600;border-bottom:1px solid var(--border);}
+td{padding:8px 10px;border-bottom:1px solid rgba(33,38,45,0.5);}
+tr:hover{background:rgba(88,166,255,0.04);}
+tr.pick{background:rgba(240,165,0,0.06);}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;}
+.tag-star{background:rgba(240,165,0,0.2);color:var(--gold);}
+.tag-green{background:rgba(38,166,154,0.2);color:var(--green);}
+.tag-red{background:rgba(225,82,65,0.2);color:var(--red);}
+.chart-box{width:100%;height:400px;margin:12px 0;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+.s-item{background:rgba(22,27,34,0.6);border:1px solid var(--border);border-radius:6px;padding:14px;}
+.s-item .lbl{font-size:11px;color:var(--text-dim);}
+.s-item .val{font-size:18px;font-weight:700;margin:4px 0;}
+.s-item .sub{font-size:11px;}
+.stock-card{border-left:3px solid var(--gold);margin-bottom:14px;padding:0 0 0 16px;}
+.stock-card .name{font-size:15px;font-weight:700;}
+.stock-card .name span{font-size:12px;font-weight:400;color:var(--text-dim);margin-left:8px;}
+.stock-card .logic{font-size:12px;color:#a0aab4;margin:6px 0;line-height:1.7;}
+.stock-card .metrics{display:flex;gap:20px;flex-wrap:wrap;margin:6px 0;}
+.stock-card .met{font-size:12px;}
+.stock-card .met b{font-size:14px;}
+.footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);line-height:1.8;}
+.risk{color:var(--warn);font-size:11px;}
+</style>
+</head>
+<body>
+
+<h1>🔬 半导体下半年潜力黑马挖掘</h1>
+<div class="subtitle">筛选基准：申万半导体板块(pt01801081) | PE 10-60× | ROE>10% | 中等市值 | 2026-07-02</div>
+
+<div class="alert-card">
+<b>📌 筛选逻辑</b><br>
+从A股半导体板块 <b>200+</b> 只标的中，以"中盘+高ROE+估值合理"为第一道滤网，
+再按<b>赛道景气拐点、国产替代加速、端侧AI爆发</b>三个维度做深度筛选。
+剔除千亿以上已充分定价的白马（豪威/北方华创/中芯国际）、纯概念炒作、
+扣非持续亏损的标的，最终锁定 <b>7只候选</b>。
+</div>
+
+<!-- ====== SUMMARY DASHBOARD ====== -->
+<h2>一、候选池一览</h2>
+
+<div class="summary-grid">
+<div class="s-item"><div class="lbl">全板块标的</div><div class="val">200+</div><div class="sub">申万二级·半导体</div></div>
+<div class="s-item"><div class="lbl">PE 10-60× + ROE>10%</div><div class="val gold">12</div><div class="sub">第一道滤网</div></div>
+<div class="s-item"><div class="lbl">扣非正增长 + 营收>5亿</div><div class="val gold">9</div><div class="sub">剔除一次性利润</div></div>
+<div class="s-item"><div class="lbl">市值<500亿 + 赛道景气</div><div class="val gold">7</div><div class="sub">最终候选池</div></div>
+</div>
+
+<!-- ====== TOP PICKS ====== -->
+<h2>二、核心黑马（按潜力排序）</h2>
+
+<div class="card">
+
+<!-- #1 思特威 -->
+<div class="stock-card">
+<div class="name">🥇 思特威-W <span>688213 | 今日 108.87 +6.31%</span></div>
+<div class="logic">
+<b>细分赛道：CMOS图像传感器(CIS) | 对标：索尼/三星/豪威</b><br>
+2025年营收 <b class="green">90.3亿（+51.3%）</b>，归母净利 <b class="green">10.0亿（+154.9%）</b>，扣非9.85亿。
+营收3年CAGR <b class="green">+53.8%</b>，利润3年CAGR <b class="green">+329.6%</b>。<br>
+核心驱动力：①智能驾驶ADAS摄像头单车搭载量从8颗→12颗，CIS量价齐升；
+②AI眼镜/机器人/无人机等新兴端侧视觉爆发；
+③安防市场国产替代加速，海康/大华份额从海外厂商手中持续抢回。<br>
+<b class="gold">黑马逻辑：CIS老三冲老二。豪威1300亿估值，思特威PE 42×不到豪威(PE 36×)的溢价。
+但思特威增速+51%远超豪威+12%。若保持增速差，2-3年内市值有3-5倍空间。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b class="green">41.8×</b></div>
+<div class="met">ROE <b class="green">21.1%</b></div>
+<div class="met">毛利率 <b>23.7%</b></div>
+<div class="met">2025营收 <b>90.3亿</b></div>
+<div class="met">利润增速 <b class="green">+155%</b></div>
+</div>
+<div class="risk">⚠ 风险：CIS行业价格战风险；存货占比偏高(资产周转率0.97)；经营现金流仅1.08亿(净利10亿)</div>
+</div>
+
+<!-- #2 炬芯科技 -->
+<div class="stock-card">
+<div class="name">🥈 炬芯科技 <span>688049 | 今日 46.88 -0.17%</span></div>
+<div class="logic">
+<b>细分赛道：端侧AI音频SoC | 对标：高通/恒玄/中科蓝讯</b><br>
+2025年营收 <b class="green">9.2亿（+41.5%）</b>，归母净利 <b class="green">2.05亿（+92.0%）</b>，扣非1.92亿。
+营收3年CAGR <b class="green">+30.5%</b>，利润3年CAGR <b class="green">+56.1%</b>。<br>
+核心驱动力：①端侧AI处理器（ATH系列）已出货，17%营收来自AI处理器，是A股最纯的端侧AI SoC标的之一；
+②AI耳机/AI眼镜/AI玩具等"带AI的音频"场景爆发，单价从$1→$5-10；
+③与Anthropic等大模型公司的生态合作（AI桌面宠物等应用已验证）。
+毛利率51.2%，净利率22.2%，现金流健康（经营现金流2.54亿，净利含金量124%）。<br>
+<b class="gold">黑马逻辑：端侧AI是2026下半年最确定的方向之一。炬芯市值约80-100亿，
+是A股AI SoC赛道市值最小的纯正标的。相比恒玄(400亿+)和乐鑫(300亿)，
+成长弹性更大。26年若端侧AI放量，营收有望冲击15-18亿（+60-95%），利润3-4亿。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b class="green">38.7×</b></div>
+<div class="met">ROE <b>10.5%</b></div>
+<div class="met">毛利率 <b class="green">51.2%</b></div>
+<div class="met">2025营收 <b>9.2亿</b></div>
+<div class="met">利润增速 <b class="green">+92%</b></div>
+</div>
+<div class="risk">⚠ 风险：端侧AI市场仍在早期，放量节奏不确定；客户集中度较高(华南为主)；竞争激烈(恒玄/中科蓝讯/高通)</div>
+</div>
+
+<!-- #3 乐鑫科技 -->
+<div class="stock-card">
+<div class="name">🥉 乐鑫科技 <span>688018 | 今日 127.20 +0.35%</span></div>
+<div class="logic">
+<b>细分赛道：IoT Wi-Fi/蓝牙 MCU 平台 | 对标：Nordic/Silicon Labs/瑞昱</b><br>
+2025年营收25.6亿，毛利率48.5%（同比+5.1pct），归母净利率升至20.9%。
+核心驱动力：①<b>生态护城河极深</b>——ESP32已成为全球IoT开发者的"标准件"，Anthropic官方用ESP32做AI桌面宠物是标志性事件；
+②端侧AI从概念→落地，乐鑫的"处理+连接"定位天然适配AIoT；
+③Wi-Fi 6/高速数传新品量产，ASP和毛利率双提升。
+26Q1净利+44.8%，前五大客户集中度下降至20.3%（客户更多元化）。<br>
+<b class="gold">黑马逻辑：乐鑫的护城河不在芯片性能而在开发生态。全球数百万开发者用ESP-IDF框架，切换成本极高。
+当AI大模型需要"身体"（端侧设备），ESP32是最自然的选择。估值PE 55×偏高，
+但若AIoT放量验证，2027年利润有望冲击8-10亿（对应PE 30-37×）。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b>55.2×</b></div>
+<div class="met">ROE <b>12.0%</b></div>
+<div class="met">毛利率 <b class="green">48.5%</b></div>
+<div class="met">2025营收 <b>25.6亿</b></div>
+<div class="met">利润增速 <b class="green">+45%</b></div>
+</div>
+<div class="risk">⚠ 风险：PE 55×估值不低；IoT需求受宏观影响大；高通/瑞昱等巨头竞争</div>
+</div>
+
+<!-- #4 中科蓝讯 -->
+<div class="stock-card">
+<div class="name">④ 中科蓝讯 <span>688332 | 今日 156.00 +1.17%</span></div>
+<div class="logic">
+<b>细分赛道：蓝牙音频SoC | 对标：恒玄/炬芯/高通</b><br>
+2025年营收18.4亿，归母净利14.2亿（含投资收益），扣非仅2.33亿。
+营收增速仅+1.2%，增长动能偏弱。PE 20.4×看似极低，但需注意归母净利中<b>超80%是非经常性投资收益</b>，
+扣非PE实际约<b>130×</b>。<br>
+蓝牙耳机/音箱芯片是成熟市场，增长空间有限。智能穿戴芯片(7.7%)是唯一增量方向。
+毛利率22.2%偏低，属走量型商业模式。
+<b class="warn">结论：PE 20×是陷阱，扣非业绩一般，不作为重点推荐。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b class="green">20.4×</b></div>
+<div class="met">扣非PE <b class="red">~130×</b></div>
+<div class="met">毛利率 <b>22.2%</b></div>
+<div class="met">2025营收 <b>18.4亿</b></div>
+<div class="met">营收增速 <b class="warn">+1.2%</b></div>
+</div>
+</div>
+
+<!-- #5 赛微电子 -->
+<div class="stock-card">
+<div class="name">⑤ 赛微电子 <span>300456 | 今日 45.57 +2.54%</span></div>
+<div class="logic">
+<b>细分赛道：MEMS纯代工 | 全球对标：ST/Bosch/Silex</b><br>
+2025年营收8.2亿（-31.6%），归母净利14.7亿（+967%），扣非<b class="red">-3.42亿</b>。
+归母净利暴增来自投资收益，主营MEMS代工业务（占收入83%）收入下滑且毛利仅35.5%。
+瑞典子公司Silex是全球MEMS代工龙头，但产能利用率不足。
+车规级MEMS是增量方向（惯性导航IMU、激光雷达微镜等）。<br>
+<b class="warn">结论：MEMS赛道长期逻辑没问题（智能驾驶每车20-50颗MEMS），
+但当前时点营收下滑+扣非亏损，需要等拐点信号。列为"跟踪观察"，不宜现在介入。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b class="green">23.5×</b></div>
+<div class="met">扣非 <b class="red">亏损3.4亿</b></div>
+<div class="met">毛利率 <b>35.5%</b></div>
+<div class="met">2025营收 <b>8.2亿</b></div>
+<div class="met">营收增速 <b class="red">-31.6%</b></div>
+</div>
+</div>
+
+<!-- #6 扬杰科技 -->
+<div class="stock-card">
+<div class="name">⑥ 扬杰科技 <span>300373 | 今日 143.91 -5.32%</span></div>
+<div class="logic">
+<b>细分赛道：功率半导体(IDM) | 对标：英飞凌/安森美/斯达半导</b><br>
+2025年营收71.3亿（+18.2%），归母净利12.6亿（+25.6%），扣非11.5亿。
+26Q1营收+34.9%、利润+41.0%超预期。汽车电子增速翻倍。
+越南晶圆厂2027年投产（月产能20万片6寸）。
+SiC MOS第三代平台RSP 2.47mΩ·cm²对齐国际水平。研报目标价：26年PE 27×→27年PE 16×。<br>
+<b class="gold">逻辑：确定性最强，但也不"黑"。782亿市值已不算中小盘。
+若下半年汽车+光伏+储能需求共振，利润上调空间大。适合作为半导体的"确定仓位"。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b>57.0×</b></div>
+<div class="met">26E PE <b class="green">~27×</b></div>
+<div class="met">ROE <b>13.8%</b></div>
+<div class="met">2025营收 <b>71.3亿</b></div>
+<div class="met">Q1利润 <b class="green">+41%</b></div>
+</div>
+<div class="risk">⚠ 风险：市值偏大弹性有限；功率半导体周期性强；越南项目投产进度</div>
+</div>
+
+<!-- #7 豪威集团 (bonus)-->
+<div class="stock-card">
+<div class="name">⑦ 豪威集团 <span>603501 | 今日 104.70 +7.82% | A+H</span></div>
+<div class="logic">
+<b>细分赛道：CIS图像传感器全球第一（车载）| 对标：索尼/三星</b><br>
+2025年营收288.6亿（+12.1%），归母净利40.5亿。车载CIS收入74.7亿(+26.5%)稳居全球第一。
+2亿像素产品通过验证，LCOS卡位OCS/AR。研发投入36.8亿（占设计收入15.5%）。
+公司回购8-10亿。机构目标价130元（+43%空间）。<br>
+<b class="warn">结论：基本面最扎实，但1321亿市值已是明牌白马，不是"黑马"。
+适合作为半导体持仓压舱石，但不属于本次黑马挖掘范围。</b>
+</div>
+<div class="metrics">
+<div class="met">PE <b class="green">35.9×</b></div>
+<div class="met">目标价 <b class="green">130元</b></div>
+<div class="met">研发占比 <b>15.5%</b></div>
+<div class="met">2025营收 <b>288.6亿</b></div>
+<div class="met">市值 <b>1321亿</b></div>
+</div>
+</div>
+
+</div>
+
+<!-- ====== VISUALIZATION ====== -->
+<h2>三、对比可视化</h2>
+<div class="chart-box" id="chart1"></div>
+<div class="chart-box" id="chart2"></div>
+
+<!-- ====== FINAL SUMMARY ====== -->
+<h2>四、最终推荐与仓位建议</h2>
+
+<div class="card">
+<table>
+<tr><th>梯队</th><th>标的</th><th>代码</th><th>市值</th><th>赛道</th><th>推荐理由</th><th>建议仓位</th></tr>
+<tr class="pick">
+<td><span class="tag tag-star">S级黑马</span></td>
+<td><b>思特威-W</b></td><td>688213</td><td>~450亿</td><td>CIS</td>
+<td>CIS赛道增速+51%碾压豪威+12%，PE 42×仍合理。叠加AI视觉+智能驾驶双驱动，2-3年有3-5倍空间。对标豪威1300亿市值。</td>
+<td><b class="green">10-15%</b></td>
+</tr>
+<tr class="pick">
+<td><span class="tag tag-star">S级黑马</span></td>
+<td><b>炬芯科技</b></td><td>688049</td><td>~80亿</td><td>端侧AI SoC</td>
+<td>A股最纯正小市值端侧AI标的，毛利率51%，利润+92%，经营性现金流健康。若端侧AI下半年放量，弹性最大。</td>
+<td><b class="green">8-12%</b></td>
+</tr>
+<tr>
+<td><span class="tag tag-green">A级优质</span></td>
+<td><b>乐鑫科技</b></td><td>688018</td><td>298亿</td><td>IoT/WiFi</td>
+<td>生态护城河最深，端侧AI天然受益。Anthropic背书。PE 55×偏高，回调到PE 40-45×（100-110元）介入更安全。</td>
+<td><b>5-8%</b><br><span style="font-size:11px">等回调</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-green">A级确定</span></td>
+<td><b>扬杰科技</b></td><td>300373</td><td>782亿</td><td>功率半导体</td>
+<td>业绩最确定，26/27年PE 27/16×。但市值大弹性有限，适合作为半导体板块底仓。</td>
+<td><b>5-8%</b></td>
+</tr>
+<tr>
+<td><span class="tag tag-warn">观察池</span></td>
+<td><b>赛微电子</b></td><td>300456</td><td>~270亿</td><td>MEMS代工</td>
+<td>MEMS赛道逻辑对，但营收-31.6%+扣非亏损。等营收拐点（连续2季环比增长+扣非转正）再考虑。</td>
+<td><b>暂不介入</b></td>
+</tr>
+</table>
+</div>
+
+<div class="alert-card" style="margin-top:12px;">
+<b>💡 最重要的两句话</b><br><br>
+❶ <b>思特威</b>：CIS老三冲老二，增速是老大(豪威)的4倍。<br>
+当前410亿vs豪威1320亿，差距主要在品牌和车载份额——而车载正是思特威下半年最大的增量方向。<br><br>
+❷ <b>炬芯科技</b>：端侧AI是2026下半年最确定的主题，炬芯是赛道里市值最小+增速最快的纯正标的。
+Anthropic用ESP32做AI桌面宠物，炬芯的ATH系列同样适配这个场景。
+从9亿→15-18亿营收只需要几个爆款SKU。
+</div>
+
+<!-- ====== DISCLAIMER ====== -->
+<div class="footer">
+<b>数据来源：</b>WeStock Tool 条件选股(申万半导体pt01801081) | NeoData 主营构成/财务/行情/研报(2026-07-02) |
+华泰证券/东吴证券/中金公司 研报<br>
+<b>免责声明：</b>以上分析仅供参考，不构成投资建议。所有数据均来自公开来源。本报告中的"黑马"指具备超预期成长潜力的标的，
+不代表一定取得超额收益。投资有风险，决策需谨慎。<br>
+<b>生成时间：</b>2026-07-02 11:00 CST
+</div>
+
+<script>
+(function(){
+  var dom = document.getElementById('chart1');
+  var c = echarts.init(dom, null, {backgroundColor:'#161b22'});
+  c.setOption({
+    tooltip:{trigger:'axis'},
+    legend:{data:['营收增速%','利润增速%'],textStyle:{color:'#8b949e'},top:5},
+    grid:{left:'3%',right:'6%',bottom:'3%',top:'14%',containLabel:true},
+    xAxis:{type:'category',data:['思特威','炬芯','乐鑫','扬杰','中科蓝讯','赛微'],
+      axisLabel:{color:'#c9d1d9',fontSize:12},axisLine:{lineStyle:{color:'#30363d'}}},
+    yAxis:[
+      {type:'value',name:'%',nameTextStyle:{color:'#8b949e'},
+        axisLabel:{color:'#8b949e',fontSize:11},splitLine:{lineStyle:{color:'#21262d'}}}
+    ],
+    series:[
+      {name:'营收增速%',type:'bar',data:[51.3,41.5,16.2,18.2,1.2,-31.6],
+        itemStyle:{color:'#58a6ff',borderRadius:[4,4,0,0]},barWidth:20,
+        label:{show:true,position:'top',color:'#c9d1d9',fontSize:11,formatter:'{c}%'}},
+      {name:'利润增速%',type:'bar',data:[154.9,92.0,44.8,25.6,371.7,967],
+        itemStyle:{color:'#f0a500',borderRadius:[4,4,0,0]},barWidth:20,
+        label:{show:true,position:'top',color:'#c9d1d9',fontSize:11,formatter:'{c}%'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+(function(){
+  var dom = document.getElementById('chart2');
+  var c = echarts.init(dom, null, {backgroundColor:'#161b22'});
+  c.setOption({
+    tooltip:{trigger:'axis'},
+    grid:{left:'3%',right:'6%',bottom:'3%',top:'5%',containLabel:true},
+    xAxis:{type:'category',data:['思特威','炬芯','乐鑫','扬杰','中科蓝讯','赛微'],
+      axisLabel:{color:'#c9d1d9',fontSize:12},axisLine:{lineStyle:{color:'#30363d'}}},
+    yAxis:[
+      {type:'value',name:'PE',nameTextStyle:{color:'#f0a500'},
+        axisLabel:{color:'#8b949e',fontSize:11},splitLine:{lineStyle:{color:'#21262d'}}},
+      {type:'value',name:'ROE%',nameTextStyle:{color:'#26a69a'},
+        axisLabel:{color:'#8b949e',fontSize:11}}
+    ],
+    series:[
+      {name:'PE(x)',type:'bar',data:[41.8,38.7,55.2,57.0,20.4,23.5],
+        itemStyle:{color:'#f0a500',borderRadius:[4,4,0,0]},barWidth:20,
+        label:{show:true,position:'top',color:'#c9d1d9',fontSize:11}},
+      {name:'ROE(%)',type:'line',yAxisIndex:1,data:[21.1,10.5,12.0,13.8,25.8,21.5],
+        lineStyle:{color:'#26a69a',width:3},symbol:'circle',symbolSize:8,
+        itemStyle:{color:'#26a69a'},
+        label:{show:true,color:'#26a69a',fontSize:11,fontWeight:'bold',formatter:'{c}%'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘前简报 2026-07-03</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --border: #21262d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --red: #e15241;
+  --green: #26a69a;
+  --accent: #58a6ff;
+  --warn: #d29922;
+  --mega-warn: #ff6b6b;
+  --gold: #f0c040;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); padding: 24px; max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 24px; margin-bottom: 4px; }
+h2 { font-size: 17px; color: var(--accent); margin: 24px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 14px; color: var(--text-dim); margin: 16px 0 8px; }
+.subtitle { color: var(--text-dim); font-size: 13px; margin-bottom: 20px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+.alert-card { background: #1a0f0f; border: 1px solid #3d1f1f; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+.alert-card .title { color: var(--mega-warn); font-weight: 700; font-size: 16px; }
+.alert-card .body { margin-top: 8px; line-height: 1.7; font-size: 13px; }
+.alert-card.info { background: #0f1a1a; border: 1px solid #1f3d3d; }
+.alert-card.info .title { color: var(--accent); }
+.red { color: var(--red); }
+.green { color: var(--green); }
+.warn { color: var(--warn); }
+.gold { color: var(--gold); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { background: #1c2129; color: var(--text-dim); padding: 7px 8px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td { padding: 7px 8px; border-bottom: 1px solid rgba(33,38,45,0.5); }
+tr:hover { background: rgba(88,166,255,0.04); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-red { background: rgba(225,82,65,0.2); color: var(--red); }
+.tag-green { background: rgba(38,166,154,0.2); color: var(--green); }
+.tag-warn { background: rgba(210,153,34,0.2); color: var(--warn); }
+.tag-gold { background: rgba(240,192,64,0.2); color: var(--gold); }
+.tag-accent { background: rgba(88,166,255,0.2); color: var(--accent); }
+.chart-box { width: 100%; height: 380px; margin: 12px 0; }
+.news-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(33,38,45,0.5); }
+.news-item:last-child { border-bottom: none; margin-bottom: 0; }
+.news-title { font-weight: 600; font-size: 13px; }
+.news-meta { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.news-body { font-size: 12px; color: #a0aab4; margin-top: 4px; line-height: 1.6; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.summary-item { background: rgba(22,27,34,0.6); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+.summary-item .label { font-size: 11px; color: var(--text-dim); }
+.summary-item .value { font-size: 20px; font-weight: 700; margin: 4px 0; }
+.summary-item .sub { font-size: 11px; }
+.impact-card { background: rgba(22,27,34,0.6); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 10px; }
+.impact-card.risk-high { border-left: 3px solid var(--mega-warn); }
+.impact-card.risk-mid { border-left: 3px solid var(--warn); }
+.impact-card .stock-name { font-size: 15px; font-weight: 700; }
+.impact-card .estimate { font-size: 14px; margin-top: 6px; }
+.impact-card .detail { font-size: 11px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+.advice-block { background: #1a1f2b; border-left: 3px solid var(--accent); padding: 14px 18px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.7; }
+.advice-block.risk { border-left-color: var(--mega-warn); background: #1f1a1a; }
+.advice-block.hold { border-left-color: var(--warn); background: #1f1e1a; }
+.judgment-badge { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 14px; font-weight: 700; margin: 8px 0; }
+.judgment-action { background: rgba(225,82,65,0.15); color: var(--red); border: 1px solid rgba(225,82,65,0.3); }
+.judgment-wait { background: rgba(240,192,64,0.15); color: var(--gold); border: 1px solid rgba(240,192,64,0.3); }
+.footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-dim); line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<h1>📋 盘前简报 —— 2026年7月3日（周五）</h1>
+<div class="subtitle">数据截至 09:00 CST | 覆盖隔夜美股 + 亚太早盘 | NeoData + WeStock Calendar | 美股今晚休市</div>
+
+<!-- ====== MODULE 1: CORE ALERT ====== -->
+<h2>一、🚨 核心警示（结论前置）</h2>
+
+<div class="alert-card">
+<div class="title">⚠️ AI硬件恐慌第二波：费城半导体再跌5.44%，MRVL/COHR/LITE均暴跌9%+</div>
+<div class="body">
+<b>今日核心判断：连续两日冲击后，A股映射标的有望在开盘惯性下探后出现超跌反弹，但抄底需极度谨慎——今天是「忍耐日」而非「抄底日」。</b><br><br>
+美股7月2日再度分化：道指因非农数据疲软（仅+5.7万，预期11万）而飙升1.14%创历史新高，但费城半导体指数连续第二日暴跌5.44%。<b>MRVL -9.84%、COHR -9.57%、LITE -9.09%</b>，Meta卖算力消息引发的AI硬件恐慌在隔夜进一步发酵。<br><br>
+A股7月2日已先行消化第一波冲击（澜起-14.80%、罗博特科-8.83%、汇绿-7.50%、科创50-7.70%），今天面临<b>隔夜第二波补跌压力</b>。但两个缓冲因素值得注意：① 非农爆冷→加息预期降温→黄金涨2.27%→风险偏好可能边际改善；② 今晚美股休市，空头缺少夜间指引。<br><br>
+<b>化工板块反向确认：滨化股份涨停+10%，恒逸石化+2.94%，资金正在从过热AI硬件向低位化工/周期切换。</b>
+</div>
+</div>
+
+<div class="alert-card info">
+<div class="title">📊 市场状态：连续恐慌后的超卖修复窗口</div>
+<div class="body">
+上证指数7/2收4028.90（-2.03%），创业板指-5.71%，科创50-7.70%。两市成交3.47万亿缩量2089亿，<b>涨跌家数2219:3162</b>，跌停41家。融资余额减少64.45亿至2.99万亿。<br>
+外围：日经225今晨-0.27%相对温和，KOSPI -1.26%（昨日-7.89%后小幅续跌）。<br>
+<b>关键观察</b>：半导体板块7/2跌幅已部分消化7/1美股SOX暴跌，今日开盘若再度跳空低开3%+，可能出现短线超卖信号——但这仅是T+0级别的博弈机会，不适合中线加仓。
+</div>
+</div>
+
+<!-- ====== MODULE 2: GLOBAL MARKETS ====== -->
+<h2>二、🌍 隔夜全球市场概览</h2>
+
+<h3>美股（7月2日收盘）</h3>
+<div class="summary-grid">
+<div class="summary-item">
+  <div class="label">道琼斯工业</div>
+  <div class="value green">52,900.07</div>
+  <div class="sub green">+1.14% | 🔥创历史新高</div>
+</div>
+<div class="summary-item">
+  <div class="label">标普500</div>
+  <div class="value" style="color:#c9d1d9">7,483.24</div>
+  <div class="sub" style="color:#c9d1d9">+0.00% | 平收</div>
+</div>
+<div class="summary-item">
+  <div class="label">纳斯达克综指</div>
+  <div class="value red">25,832.67</div>
+  <div class="sub red">-0.80%</div>
+</div>
+<div class="summary-item">
+  <div class="label">费城半导体 SOX</div>
+  <div class="value red">暴跌5.44%</div>
+  <div class="sub red">连续两日重挫 | 30只成分股全跌</div>
+</div>
+<div class="summary-item">
+  <div class="label">英伟达 NVDA</div>
+  <div class="value red">$194.83</div>
+  <div class="sub red">-1.39% | SOX中跌幅最小</div>
+</div>
+<div class="summary-item">
+  <div class="label">纳斯达克中国金龙</div>
+  <div class="value red">-1.77%</div>
+  <div class="sub red">中概股多数下跌</div>
+</div>
+</div>
+
+<h3>亚太（7月3日早盘）</h3>
+<div class="summary-grid">
+<div class="summary-item">
+  <div class="label">日经225</div>
+  <div class="value red">68,546.94</div>
+  <div class="sub red">-0.27% | 相对温和</div>
+</div>
+<div class="summary-item">
+  <div class="label">韩国KOSPI</div>
+  <div class="value red">7,551.35</div>
+  <div class="sub red">-1.26% | 昨日-7.89%后续跌</div>
+</div>
+</div>
+
+<h3>大宗商品 & 汇率</h3>
+<div class="summary-grid">
+<div class="summary-item">
+  <div class="label">美元指数 DXY</div>
+  <div class="value green">100.88</div>
+  <div class="sub green">+0.01% | 非农后一度急挫至100.56</div>
+</div>
+<div class="summary-item">
+  <div class="label">美元/离岸人民币</div>
+  <div class="value green">6.7840</div>
+  <div class="sub green">-0.09% | 人民币微升</div>
+</div>
+<div class="summary-item">
+  <div class="label">伦敦金现货</div>
+  <div class="value red">$4,161.70</div>
+  <div class="sub red">+0.87% | 盘中一度+2.8%至4140</div>
+</div>
+<div class="summary-item">
+  <div class="label">WTI原油</div>
+  <div class="value green">$68.50</div>
+  <div class="sub green">-0.28% | 低位震荡</div>
+</div>
+</div>
+<p style="font-size:11px;color:var(--text-dim);margin-top:6px;">来源：NeoData 2026-07-03 09:05</p>
+
+<!-- ====== MODULE 3: US→A MAPPING IMPACT ====== -->
+<h2>三、🎯 美股→A股映射冲击测算</h2>
+
+<div class="impact-card risk-high">
+<div class="stock-name">澜起科技 688008 <span class="tag tag-red">高风险</span></div>
+<div class="estimate">
+  映射标的：<b>MRVL -9.84%</b>（7/1已-8.67%，两日累计约-17.6%）<br>
+  昨日A股收盘：269.15元（<span class="red">-14.80%</span>）<br>
+  今日低开预估：<b>-2% ~ -4%</b> → <b>258.38 ~ 263.77元</b><br>
+  <span style="color:var(--warn)">⚠️ 若低开超5%（跌破255.69），说明恐慌情绪未释放完毕</span>
+</div>
+<div class="detail">
+  澜起7/2已暴跌-14.80%充分反映7/1 MRVL的-8.67%，今日再受MRVL隔夜-9.84%冲击。但注意：澜起DDR5接口芯片与MRVL定制ASIC业务并非完全同步周期，且澜起中报业绩确定性较强（DDR5渗透率持续提升），连续两天累计-17%+跌幅已经price in较多悲观预期。<br>
+  来源：NeoData 2026-07-03
+</div>
+</div>
+
+<div class="impact-card risk-high">
+<div class="stock-name">汇绿生态 001267 <span class="tag tag-red">高风险</span></div>
+<div class="estimate">
+  映射标的：<b>COHR -9.57%、LITE -9.09%</b><br>
+  昨日A股收盘：46.85元（<span class="red">-7.50%</span>）<br>
+  今日低开预估：<b>-2% ~ -5%</b> → <b>44.51 ~ 45.91元</b><br>
+  <span style="color:var(--warn)">⚠️ COHR/LITE两日累计跌幅约-15%，汇绿昨日仅跌-7.5%，今日补跌压力大于澜起</span>
+</div>
+<div class="detail">
+  汇绿通过武汉钧恒切入光模块，核心客户为Coherent(51.91%)和Lumentum/CloudLight。COHR/LITE连续两日暴跌直接反映光模块需求预期恶化。但基本面没有变化——谷歌/甲骨文等终端需求仍在，武汉钧恒的订单可见度尚可。短期情绪冲击大于基本面恶化。<br>
+  来源：NeoData 2026-07-03
+</div>
+</div>
+
+<div class="impact-card risk-mid">
+<div class="stock-name">罗博特科 300757 <span class="tag tag-warn">中等风险</span></div>
+<div class="estimate">
+  映射标的：<b>NVDA -1.39%、MRVL -9.84%</b><br>
+  昨日A股收盘：529.27元（<span class="red">-8.83%</span>）<br>
+  今日低开预估：<b>-1% ~ -3%</b> → <b>513.39 ~ 523.98元</b><br>
+</div>
+<div class="detail">
+  NVDA仅跌-1.39%（SOX中跌幅最小），罗博特科作为ficonTEC的MPO自动化设备映射，与NVDA的AI GPU资本开支相关性更高。MRVL的ASIC定制业务大跌对罗博特科影响间接。跌幅已经较大，今日低开幅度预计相对收敛。<br>
+  来源：NeoData 2026-07-03
+</div>
+</div>
+
+<!-- ECharts: 美股映射联动图 -->
+<h3 style="margin-top:16px;">📊 美股→A股映射两日累计冲击对比</h3>
+<div class="chart-box" id="chart-mapping"></div>
+
+<!-- ====== MODULE 4: HOLDINGS REVIEW ====== -->
+<h2>四、📊 持仓股昨日复盘 + 今日预判</h2>
+
+<table>
+<thead>
+<tr>
+  <th>标的</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>成交量(万)</th><th>换手率</th><th>振幅</th><th>今日预判</th><th>操作建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><b>澜起科技</b></td>
+  <td>688008</td>
+  <td>269.15</td>
+  <td class="red">-14.80%</td>
+  <td>8,998</td>
+  <td>7.85%</td>
+  <td>9.43%</td>
+  <td>低开2-4%后博弈超跌反弹</td>
+  <td><span class="tag tag-warn">忍耐</span> 底仓不动，不抄底不加仓</td>
+</tr>
+<tr>
+  <td><b>汇绿生态</b></td>
+  <td>001267</td>
+  <td>46.85</td>
+  <td class="red">-7.50%</td>
+  <td>2,961</td>
+  <td>4.87%</td>
+  <td>7.07%</td>
+  <td>补跌压力最大，低开2-5%</td>
+  <td><span class="tag tag-warn">忍耐</span> S级但短期不抄底</td>
+</tr>
+<tr>
+  <td><b>罗博特科</b></td>
+  <td>300757</td>
+  <td>529.27</td>
+  <td class="red">-8.83%</td>
+  <td>662</td>
+  <td>4.07%</td>
+  <td>6.19%</td>
+  <td>低开1-3%，跌幅预计收敛</td>
+  <td><span class="tag tag-warn">忍耐</span> 关注510支撑</td>
+</tr>
+<tr>
+  <td><b>星环科技</b></td>
+  <td>688031</td>
+  <td>110.66</td>
+  <td class="red">-6.23%</td>
+  <td>718</td>
+  <td>5.93%</td>
+  <td>11.30%</td>
+  <td>跟随科技股下探，100元是心理关口</td>
+  <td><span class="tag tag-accent">利润仓</span> 趋势跟踪</td>
+</tr>
+<tr>
+  <td><b>兴森科技</b></td>
+  <td>002436</td>
+  <td>45.41</td>
+  <td class="red">-4.36%</td>
+  <td>12,759</td>
+  <td>8.41%</td>
+  <td>7.94%</td>
+  <td>半导体板块联动下探</td>
+  <td><span class="tag tag-accent">利润仓</span> 趋势跟踪</td>
+</tr>
+<tr>
+  <td><b>三祥新材</b></td>
+  <td>603663</td>
+  <td>89.60</td>
+  <td class="red">-4.70%</td>
+  <td>1,961</td>
+  <td>4.63%</td>
+  <td>7.79%</td>
+  <td>S级标的被错杀，关注88支撑</td>
+  <td><span class="tag tag-green">可关注</span> 88以下可小仓试探</td>
+</tr>
+<tr>
+  <td><b>软通动力</b></td>
+  <td>301236</td>
+  <td>41.50</td>
+  <td class="red">-0.34%</td>
+  <td>5,332</td>
+  <td>6.79%</td>
+  <td>6.29%</td>
+  <td>相对抗跌，科技股中防守性较好</td>
+  <td><span class="tag tag-green">持有</span> 核心浮盈标杆</td>
+</tr>
+<tr>
+  <td><b>泰和新材</b></td>
+  <td>002254</td>
+  <td>16.89</td>
+  <td class="red">-2.31%</td>
+  <td>6,335</td>
+  <td>7.45%</td>
+  <td>9.83%</td>
+  <td>化工分化中偏弱，关注16支撑</td>
+  <td><span class="tag tag-warn">观望</span> B+级，不急于加仓</td>
+</tr>
+<tr>
+  <td><b>华峰化学</b></td>
+  <td>002064</td>
+  <td>10.23</td>
+  <td class="green">+0.79%</td>
+  <td>5,704</td>
+  <td>1.15%</td>
+  <td>4.63%</td>
+  <td>化工板块中偏强，逆市收红</td>
+  <td><span class="tag tag-green">持有</span> 周期底仓</td>
+</tr>
+<tr>
+  <td><b>德展健康</b></td>
+  <td>000813</td>
+  <td>3.15</td>
+  <td class="green">+0.96%</td>
+  <td>3,813</td>
+  <td>1.82%</td>
+  <td>3.53%</td>
+  <td>医药防御属性，大盘跌时抗跌</td>
+  <td><span class="tag tag-green">持有</span></td>
+</tr>
+<tr>
+  <td><b>太钢不锈</b></td>
+  <td>000825</td>
+  <td>3.47</td>
+  <td class="red">-0.57%</td>
+  <td>3,364</td>
+  <td>0.59%</td>
+  <td>2.58%</td>
+  <td>低价股波动小，跟随大盘</td>
+  <td><span class="tag tag-green">持有</span></td>
+</tr>
+</tbody>
+</table>
+<p style="font-size:11px;color:var(--text-dim);margin-top:6px;">来源：NeoData 2026-07-02 A股收盘数据 | 负成本仓位（星环、兴森）仅提示趋势变化</p>
+
+<!-- ====== MODULE 5: WATCHLIST ====== -->
+<h2>五、🔍 跟踪池异动</h2>
+
+<table>
+<thead>
+<tr><th>标的</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>成交量(万)</th><th>换手率</th><th>振幅</th><th>异动说明</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><b>滨化股份</b></td>
+  <td>601678</td>
+  <td>7.70</td>
+  <td class="red">🔥 +10.00%</td>
+  <td>23,306</td>
+  <td>11.41%</td>
+  <td>13.43%</td>
+  <td><b>放量涨停！</b>化工板块独立行情信号。换手率11.41%显示资金大举介入。滨化为环氧丙烷龙头，受益于化工品涨价周期+低位补涨逻辑。<span class="warn">具备介入价值，但涨停次日不建议追高，等回调至7.20-7.40区间可考虑试探仓位。</span></td>
+</tr>
+<tr>
+  <td><b>恒逸石化</b></td>
+  <td>000703</td>
+  <td>15.07</td>
+  <td class="red">+2.94%</td>
+  <td>12,936</td>
+  <td>3.40%</td>
+  <td>8.20%</td>
+  <td>炼化/化工方向逆市走强，量能放大。与滨化形成化工板块共振。</td>
+</tr>
+<tr>
+  <td><b>巨化股份</b></td>
+  <td>600160</td>
+  <td>54.83</td>
+  <td class="red">-1.83%</td>
+  <td>12,696</td>
+  <td>4.70%</td>
+  <td>12.41%</td>
+  <td>氟化工龙头，盘中振幅12.41%显示分歧巨大。从58元高位回落，关注51元（20日均线）支撑。</td>
+</tr>
+<tr>
+  <td><b>中工国际</b></td>
+  <td>002051</td>
+  <td>11.13</td>
+  <td class="red">-4.05%</td>
+  <td>4,746</td>
+  <td>3.87%</td>
+  <td>3.62%</td>
+  <td>跟随大盘下跌，无明显独立行情信号。</td>
+</tr>
+<tr>
+  <td><b>中远海能</b></td>
+  <td>600026</td>
+  <td>16.50</td>
+  <td class="red">-1.20%</td>
+  <td>8,768</td>
+  <td>2.29%</td>
+  <td>5.27%</td>
+  <td>油运周期股跟随大盘调整，振幅温和。WTI原油低位震荡对油运需求端有利。</td>
+</tr>
+</tbody>
+</table>
+<p style="font-size:11px;color:var(--text-dim);margin-top:6px;">🔥 滨化股份涨停+10%：化工独立行情确认，资金从过热AI向低位化工切换的趋势正在形成。来源：NeoData 2026-07-02</p>
+
+<!-- ECharts: 持仓与跟踪池板块分化 -->
+<h3 style="margin-top:16px;">📊 7月2日持仓+跟踪池涨跌幅全景（板块分化）</h3>
+<div class="chart-box" id="chart-holding"></div>
+
+<!-- ====== MODULE 6: NEWS ====== -->
+<h2>六、📰 盘前要闻速览</h2>
+
+<div class="card">
+<div class="news-item">
+  <div class="news-title">1. 费城半导体指数连续两日暴跌5%+，MRVL/COHR/LITE隔夜再跌9%+</div>
+  <div class="news-meta">来源：财联社 / 中国基金报 | 2026-07-03 08:00</div>
+  <div class="news-body">7/2费城半导体跌5.44%，30只成分股全线下跌。MRVL -9.84%、COHR -9.57%、LITE -9.09%。Meta卖算力消息继续发酵，市场担忧AI算力过剩。但多位业内人士认为该消息系误读——Meta出售算力不是AI资本支出结束，而是AI基建商业模式成熟。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">2. 美国6月非农仅增5.7万远逊预期，加息预期大幅降温</div>
+  <div class="news-meta">来源：美国劳工统计局 / FX168 | 2026-07-02 20:30</div>
+  <div class="news-body">6月非农新增5.7万人（预期11万），4月和5月累计下修7.4万。失业率意外降至4.2%。数据公布后2年期美债收益率下跌，黄金直线拉升+2.8%至4140美元，美元指数急挫至100.56。市场削减美联储加息押注。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">3. A股7/2科技板块暴跌：科创50重挫7.70%，半导体/光通信全线崩溃</div>
+  <div class="news-meta">来源：腾讯自选股 | 2026-07-02 15:30</div>
+  <div class="news-body">上证-2.03%、深证-3.85%、创业板-5.71%。半导体板块跌超5%，北方华创跌停；光通信板块跌超4%，天孚通信-12%、新易盛-11%。贵金属板块逆市涨4%，招金黄金、赤峰黄金涨停。成交额3.47万亿缩量2089亿。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">4. 中金公司：中报业绩将成为市场主线，AI交易向中上游扩散</div>
+  <div class="news-meta">来源：中金公司研究部 | 2026-07-02</div>
+  <div class="news-body">中金认为A股震荡整理已在尾声，7-8月中报业绩将对指数形成支撑。AI产业链交易从光模块/PCB扩散至偏上游细分领域（小金属、化工新材料、建材、电力设备）。7月超配：电子硬件、通信设备、基础化工、电力电器设备、机械。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">5. 两市融资余额减少64.45亿元至2.99万亿</div>
+  <div class="news-meta">来源：交易所数据 | 2026-07-03 08:50</div>
+  <div class="news-body">截至7月2日，上交所融资余额15149.64亿（-47.24亿），深交所14761.73亿（-17.21亿）。融资资金在大跌中减仓，显示杠杆资金避险情绪上升，但减仓规模相对可控（-0.2%）。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">6. 苹果涨近5%创新高：折叠屏iPhone备货上调至1000万台</div>
+  <div class="news-meta">来源：财联社 | 2026-07-03 06:25</div>
+  <div class="news-body">苹果收涨4.84%，消息称苹果要求供应商将折叠屏iPhone备货预期从700-800万台上调至约1000万台，并为iPhone 18高端系列提前预留通用零部件。消费电子方向独立于AI硬件表现强劲。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">7. 黄金大涨2.27%收复4100美元，避险情绪浓厚</div>
+  <div class="news-meta">来源：中新经纬 | 2026-07-03</div>
+  <div class="news-body">COMEX黄金收涨1.3%报4135.5美元，现货黄金涨2.27%至4122美元。非农数据疲软+AI板块恐慌共同推动贵金属避险需求，A股贵金属板块7/2已涨4%领先反应。</div>
+</div>
+<div class="news-item">
+  <div class="news-title">8. 今晚美股休市（独立日补休），空头缺少夜间指引</div>
+  <div class="news-meta">来源：交易所公告 | 2026-07-03</div>
+  <div class="news-body">7月4日美国独立日适逢周六，美股周五提前休市。这意味着A股今日收盘后将面临一个没有美股夜间指引的长周末，可能制约部分资金在尾盘的做多意愿。</div>
+</div>
+</div>
+
+<!-- ====== MODULE 7: OPERATION ADVICE ====== -->
+<h2>七、🎯 今日操作建议</h2>
+
+<div class="judgment-badge judgment-wait">今日定性：忍耐日 ⏸️ 非抄底日</div>
+
+<p style="font-size:13px;color:var(--text-dim);margin:8px 0 16px;">
+核心逻辑：连续两日恐慌后可能触发超跌反弹，但反弹力度和持续性不确定。今晚美股休市提供喘息窗口，但下周一美股是否继续杀跌仍是未知。今天更适合<b>观察和等待</b>，而非主动出击。
+</p>
+
+<div class="advice-block risk">
+<b>⚠️ 澜起科技 688008（长期账户底仓）</b><br>
+➤ 操作：<b>底仓不动，不加仓，不抄底</b><br>
+➤ 关键价位：255元（今日跌5%对应价位）= 强支撑观察位；若跌破250元需重新评估MRVL映射逻辑是否失效<br>
+➤ 理由：MRVL两日-17.6%，澜起两日若累计-17%+已属超跌。但底仓规则是「不动」，遵守纪律。
+</div>
+
+<div class="advice-block risk">
+<b>⚠️ 汇绿生态 001267（S级）</b><br>
+➤ 操作：<b>忍耐，不抄底</b>，观察44.5-46元区间分时走势<br>
+➤ 关键价位：44.50元（今日-5%）= 若放量止跌可视为短线支撑；跌破44元（-6%+）则短期趋势进一步恶化<br>
+➤ 理由：补跌压力最大，今日可能比澜起更弱。COHR/LITE订单基本面未变，但短期情绪需要时间消化。
+</div>
+
+<div class="advice-block">
+<b>罗博特科 300757</b><br>
+➤ 操作：<b>持有观察</b>，关注510元整数关口<br>
+➤ 关键价位：510元 ≈ 20日均线附近；若今日能守住510且缩量，说明抛压衰竭<br>
+➤ 理由：NVDA跌1.39%相对温和，罗博特科跌幅已经较大（两日-10%+），继续暴跌概率较低。
+</div>
+
+<div class="advice-block">
+<b>三祥新材 603663（S级）</b><br>
+➤ 操作：<b>88元以下可小仓试探</b>，严格控制在总仓位2%以内<br>
+➤ 关键价位：88元支撑位（7/2最低88.88），上方96.20（7/2最高）是反弹第一目标<br>
+➤ 理由：锆材料/固态电池逻辑未变，-4.70%更多是被大盘拖累。S级标的在大跌中分批低吸符合策略。
+</div>
+
+<div class="advice-block">
+<b>软通动力 301236（核心标杆）</b><br>
+➤ 操作：<b>安心持有</b><br>
+➤ 理由：7/2仅跌-0.34%，是科技股中最抗跌的品种。+418%浮盈保护垫厚，不需要在大跌中操作。
+</div>
+
+<div class="advice-block hold">
+<b>🔶 化工板块（华峰化学/泰和新材 + 跟踪池滨化/恒逸）</b><br>
+➤ 操作：<b>关注化工板块独立行情的确立</b><br>
+➤ 滨化股份涨停+10%是重要信号。化工正在成为AI硬件的「反向对冲仓位」。华峰化学逆市+0.79%表现稳健。<br>
+➤ 泰和新材-2.31%表现偏弱，已降级B+，保持观望不急于加仓。若跌破16元需关注是否形成下降趋势。<br>
+➤ 滨化股份：涨停次日不宜追高，加入重点观察，等回调至7.20-7.40区间考虑试探仓位。
+</div>
+
+<div class="advice-block">
+<b>其他持仓（太钢/德展/华峰）</b><br>
+➤ 操作：<b>持有不动</b><br>
+➤ 这些非科技仓位在大盘暴跌中表现出防御性（德展+0.96%、华峰+0.79%），正是组合中需要的稳定器，不需要操作。
+</div>
+
+<hr style="border-color:var(--border);margin:16px 0;">
+
+<p style="font-size:13px;color:var(--accent);font-weight:600;">📌 巴蒂的判断：今天是典型的「让子弹飞一会儿」的日子。科技股连续两天暴跌后，短期超卖信号可能出现，但这不是中线加仓的理由。真正的机会在于：① 等待恐慌情绪充分释放后（量能萎缩+振幅收窄），② 等待中报业绩预告验证基本面韧性，③ 观察化工板块能否形成持续性独立行情。</p>
+
+<!-- ====== FOOTER ====== -->
+<div class="footer">
+<b>数据源汇总</b><br>
+• NeoData Financial Search：美股三大指数/SOX/映射股行情、A股持仓与跟踪池收盘数据、日韩开盘、外汇/大宗商品、盘前要闻<br>
+• WeStock Calendar：分红派息/股东大会/限售解禁日历<br>
+• 新闻来源：财联社、中新经纬、中国基金报、中金公司研究部、21世纪经济报道、FX168<br>
+• 数据时点：美股截至2026-07-02收盘，亚太截至2026-07-03 09:05 CST<br>
+<br>
+<b>⚠️ 免责声明</b><br>
+本简报由AI助手巴蒂生成，仅供老潘个人投研参考，不构成任何投资建议。所有数据均来自公开信息源，巴蒂不保证数据100%准确。股市有风险，投资需谨慎。最终买卖决策请以个人独立判断为准。<br>
+任何人在任何情况下接收本简报均不应被视为对其开展了任何形式的证券投资咨询业务。市场过去表现不代表未来收益。<br>
+<br>
+生成时间：2026-07-03 09:03 CST | 巴蒂（WorkBuddy AI 投资助手）
+</div>
+
+<script>
+(function(){
+  // Chart 1: US→A Mapping Two-Day Cumulative Impact
+  var c1 = echarts.init(document.getElementById('chart-mapping'));
+  c1.setOption({
+    tooltip: { trigger: 'axis' },
+    legend: { data: ['7/1美股跌幅', '7/2美股跌幅', '7/2 A股跌幅'], textStyle: { color: '#8b949e' } },
+    grid: { left: '8%', right: '5%', top: '15%', bottom: '10%' },
+    xAxis: {
+      type: 'category',
+      data: ['NVDA→罗博特科', 'MRVL→澜起科技', 'COHR→汇绿生态', 'LITE→汇绿生态'],
+      axisLabel: { color: '#8b949e', fontSize: 11 }
+    },
+    yAxis: {
+      type: 'value',
+      name: '跌幅(%)',
+      axisLabel: { color: '#8b949e', formatter: '{value}%' },
+      nameTextStyle: { color: '#8b949e' }
+    },
+    series: [
+      {
+        name: '7/1美股跌幅',
+        type: 'bar',
+        data: [-1.66, -8.67, -6.55, -6.63],
+        itemStyle: { color: '#d29922' },
+        label: { show: true, position: 'top', color: '#d29922', fontSize: 10, formatter: '{c}%' }
+      },
+      {
+        name: '7/2美股跌幅',
+        type: 'bar',
+        data: [-1.39, -9.84, -9.57, -9.09],
+        itemStyle: { color: '#e15241' },
+        label: { show: true, position: 'top', color: '#e15241', fontSize: 10, formatter: '{c}%' }
+      },
+      {
+        name: '7/2 A股跌幅',
+        type: 'bar',
+        data: [-8.83, -14.80, -7.50, -7.50],
+        itemStyle: { color: '#58a6ff' },
+        label: { show: true, position: 'bottom', color: '#58a6ff', fontSize: 10, formatter: '{c}%' }
+      }
+    ]
+  });
+
+  // Chart 2: Holdings & Watchlist Performance 7/2
+  var c2 = echarts.init(document.getElementById('chart-holding'));
+  c2.setOption({
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { data: ['持仓股 7/2涨跌幅', '跟踪池 7/2涨跌幅'], textStyle: { color: '#8b949e' } },
+    grid: { left: '12%', right: '5%', top: '15%', bottom: '12%' },
+    xAxis: {
+      type: 'value',
+      name: '涨跌幅(%)',
+      axisLabel: { color: '#8b949e', formatter: '{value}%' },
+      nameTextStyle: { color: '#8b949e' }
+    },
+    yAxis: {
+      type: 'category',
+      data: ['太钢不锈', '星环科技', '兴森科技', '软通动力', '德展健康', '华峰化学', '泰和新材', '三祥新材', '罗博特科', '汇绿生态', '澜起科技', '恒逸石化', '中远海能', '巨化股份', '中工国际', '滨化股份'],
+      axisLabel: { color: '#8b949e', fontSize: 10 }
+    },
+    series: [
+      {
+        name: '持仓股 7/2涨跌幅',
+        type: 'bar',
+        data: [
+          { value: -0.57, itemStyle: { color: '#26a69a' } },
+          { value: -6.23, itemStyle: { color: '#e15241' } },
+          { value: -4.36, itemStyle: { color: '#e15241' } },
+          { value: -0.34, itemStyle: { color: '#26a69a' } },
+          { value: 0.96, itemStyle: { color: '#e15241' } },
+          { value: 0.79, itemStyle: { color: '#e15241' } },
+          { value: -2.31, itemStyle: { color: '#26a69a' } },
+          { value: -4.70, itemStyle: { color: '#e15241' } },
+          { value: -8.83, itemStyle: { color: '#e15241' } },
+          { value: -7.50, itemStyle: { color: '#e15241' } },
+          { value: -14.80, itemStyle: { color: '#e15241' } },
+          null, null, null, null, null
+        ],
+        label: { show: true, position: 'right', color: '#c9d1d9', fontSize: 10, formatter: function(p){ return p.value != null ? p.value + '%' : ''; } }
+      },
+      {
+        name: '跟踪池 7/2涨跌幅',
+        type: 'bar',
+        data: [
+          null, null, null, null, null, null, null, null, null, null, null,
+          { value: 2.94, itemStyle: { color: '#e15241' } },
+          { value: -1.20, itemStyle: { color: '#26a69a' } },
+          { value: -1.83, itemStyle: { color: '#26a69a' } },
+          { value: -4.05, itemStyle: { color: '#26a69a' } },
+          { value: 10.00, itemStyle: { color: '#e15241' } }
+        ],
+        label: { show: true, position: 'right', color: '#c9d1d9', fontSize: 10, formatter: function(p){ return p.value != null ? p.value + '%' : ''; } }
+      }
+    ]
+  });
+
+  window.addEventListener('resize', function(){ c1.resize(); c2.resize(); });
+})();
+</script>
+
+</body>
+</html>

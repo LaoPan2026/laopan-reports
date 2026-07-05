@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>持仓体检报告 - 2026年7月1日</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:24px 20px}
+.header{text-align:center;padding:32px 0 24px;border-bottom:1px solid #21262d;margin-bottom:28px}
+.header h1{font-size:28px;color:#f0f6fc;margin-bottom:6px}
+.header .sub{font-size:14px;color:#8b949e}
+.header .date-tag{display:inline-block;background:#1f6feb22;color:#58a6ff;padding:3px 10px;border-radius:12px;font-size:12px;margin-bottom:8px;border:1px solid #30363d}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:28px}
+.summary-card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px 12px;text-align:center}
+.summary-card .label{font-size:11px;color:#8b949e;margin-bottom:4px}
+.summary-card .value{font-size:22px;font-weight:600}
+.up{color:#f85149}
+.down{color:#3fb950}
+.neutral{color:#c9d1d9}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.chart-box{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.chart-box h3{font-size:15px;color:#f0f6fc;margin-bottom:12px;font-weight:500}
+.chart-box .chart{width:100%;height:360px}
+.table-section{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px;margin-bottom:20px}
+.table-section h3{font-size:16px;color:#f0f6fc;margin-bottom:14px;font-weight:500;display:flex;align-items:center;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid #21262d}
+th{color:#8b949e;font-weight:500;font-size:12px;text-align:right;background:#0d1117;position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+td:first-child{font-weight:500;color:#f0f6fc}
+.grade{display:inline-block;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:600}
+.grade-strong{background:#3fb95022;color:#3fb950}
+.grade-mid{background:#d2992222;color:#d29922}
+.grade-weak{background:#f8514922;color:#f85149}
+.insight-box{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px;margin-bottom:20px}
+.insight-box h3{font-size:16px;color:#f0f6fc;margin-bottom:10px;font-weight:500}
+.insight-box ul{list-style:none;padding:0}
+.insight-box li{padding:8px 0;border-bottom:1px solid #21262d;font-size:13px}
+.insight-box li:last-child{border-bottom:none}
+.tag{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;margin-right:4px}
+.tag-bear{background:#f8514922;color:#f85149;border:1px solid #f8514933}
+.tag-bull{background:#3fb95022;color:#3fb950;border:1px solid #3fb95033}
+.tag-warn{background:#d2992222;color:#d29922;border:1px solid #d2992233}
+.tag-info{background:#58a6ff22;color:#58a6ff;border:1px solid #58a6ff33}
+.newsbox{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px;margin-bottom:20px}
+.newsbox h3{font-size:16px;color:#f0f6fc;margin-bottom:12px;font-weight:500}
+.news-item{padding:10px 0;border-bottom:1px solid #21262d;font-size:13px;line-height:1.5}
+.news-item:last-child{border-bottom:none}
+.news-item .stock-tag{color:#58a6ff;font-weight:500}
+.summary-bar{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 20px;margin-bottom:20px}
+.summary-bar .judge{font-size:16px;font-weight:600;margin-bottom:4px}
+.disclaimer{text-align:center;color:#484f58;font-size:12px;padding:24px 0;line-height:1.8;border-top:1px solid #21262d;margin-top:32px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(3,1fr)}}
+.flag{color:#d29922;font-weight:600}
+.sub-flag{color:#f85149;font-weight:600}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <span class="date-tag">2026-07-01 周三 16:00 数据</span>
+  <h1>持仓股体检报告</h1>
+  <div class="sub">上证 4,112.45 +0.44% | 深成指 16,119.17 -0.53% | 全市场涨跌互现</div>
+</div>
+
+<div class="summary-bar">
+  <div class="judge">今日核心判断：<span style="color:#d29922">中性偏分化</span></div>
+  <div style="font-size:13px;color:#8b949e">化工板块强势反弹，半导体/光通信高位回调，资金从高标流向低位。澜起逆势收红但主力净流出超10亿，兴森放量暴跌-6.81%警惕出货，汇绿5连跌需关注止损位。</div>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="label">持仓加权涨跌</div>
+    <div class="value down">-1.26%</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">上涨只数</div>
+    <div class="value up">5</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">下跌只数</div>
+    <div class="value down">6</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">主力净流入</div>
+    <div class="value down">-17.79亿</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">资金最强</div>
+    <div class="value up">星环科技</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">资金最弱</div>
+    <div class="value down">澜起科技</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">涨幅最大</div>
+    <div class="value up">华峰化学</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">跌幅最大</div>
+    <div class="value down">兴森科技</div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-box">
+    <h3>今日涨跌分布</h3>
+    <div class="chart" id="chart-price"></div>
+  </div>
+  <div class="chart-box">
+    <h3>主力资金净流入</h3>
+    <div class="chart" id="chart-fund"></div>
+  </div>
+</div>
+
+<div class="table-section">
+  <h3>行情快照 + 资金流向</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>名称</th><th>代码</th><th>现价</th><th>涨跌%</th><th>换手%</th><th>成交额(亿)</th>
+        <th>市值(亿)</th><th>PE</th><th>主力净流入(万)</th><th>5日%</th><th>20日%</th><th>判断</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>澜起科技</td><td>688008</td><td>315.89</td>
+        <td class="up">+1.93%</td><td>7.73%</td><td>279.8</td>
+        <td>3,861</td><td>151</td>
+        <td class="down">-108,424</td><td class="up">+18.54%</td><td class="up">+33.29%</td>
+        <td><span class="grade grade-mid">中</span></td>
+      </tr>
+      <tr style="background:#d2992208">
+        <td>华峰化学</td><td>002064</td><td>10.15</td>
+        <td class="up">+6.95%</td><td>1.50%</td><td>7.33</td>
+        <td>504</td><td>24.9</td>
+        <td class="up">+4,908</td><td class="down">-6.28%</td><td class="up">+2.11%</td>
+        <td><span class="grade grade-strong">强</span></td>
+      </tr>
+      <tr>
+        <td>星环科技</td><td>688031</td><td>118.01</td>
+        <td class="up">+2.46%</td><td>6.15%</td><td>8.89</td>
+        <td>143</td><td>-65.7</td>
+        <td class="up">+7,703</td><td class="down">-2.58%</td><td class="down">-13.88%</td>
+        <td><span class="grade grade-mid">中</span></td>
+      </tr>
+      <tr style="background:#3fb95008">
+        <td>太钢不锈钢</td><td>000825</td><td>3.49</td>
+        <td class="up">+2.35%</td><td>0.72%</td><td>1.42</td>
+        <td>199</td><td>-171</td>
+        <td class="up">+1,071</td><td class="down">-3.06%</td><td class="down">-9.61%</td>
+        <td><span class="grade grade-mid">中</span></td>
+      </tr>
+      <tr>
+        <td>德展健康</td><td>000813</td><td>3.12</td>
+        <td class="up">+2.97%</td><td>1.82%</td><td>1.17</td>
+        <td>65</td><td>-18.3</td>
+        <td class="down">-59</td><td class="up">+2.30%</td><td class="down">-4.29%</td>
+        <td><span class="grade grade-mid">中</span></td>
+      </tr>
+      <tr>
+        <td>软通动力</td><td>301236</td><td>41.64</td>
+        <td class="down">-1.91%</td><td>4.85%</td><td>15.95</td>
+        <td>431</td><td>800</td>
+        <td class="down">-19,293</td><td class="up">+9.06%</td><td class="down">-1.68%</td>
+        <td><span class="grade grade-mid">中</span></td>
+      </tr>
+      <tr style="background:#f8514908">
+        <td>三祥新材</td><td>603663</td><td>94.02</td>
+        <td class="down">-2.37%</td><td>4.64%</td><td>18.84</td>
+        <td>398</td><td>282</td>
+        <td class="up">+7,199</td><td class="down">-9.43%</td><td class="up">+52.16%</td>
+        <td><span class="grade grade-mid">中</span></td>
+      </tr>
+      <tr style="background:#f8514908">
+        <td>泰和新材</td><td>002254</td><td>17.29</td>
+        <td class="down">-4.95%</td><td>9.65%</td><td>14.49</td>
+        <td>148</td><td>317</td>
+        <td class="down">-5,062</td><td class="down">-5.73%</td><td class="up">+28.55%</td>
+        <td><span class="grade grade-weak">弱</span></td>
+      </tr>
+      <tr style="background:#f8514908">
+        <td>汇绿生态</td><td>001267</td><td>50.65</td>
+        <td class="down">-5.33%</td><td>5.65%</td><td>17.77</td>
+        <td>398</td><td>478</td>
+        <td class="down">-21,626</td><td class="down">-17.55%</td><td class="down">-8.74%</td>
+        <td><span class="grade grade-weak">弱</span></td>
+      </tr>
+      <tr style="background:#f8514908">
+        <td>罗博特科</td><td>300757</td><td>580.52</td>
+        <td class="down">-6.22%</td><td>4.12%</td><td>39.68</td>
+        <td>973</td><td>-1230</td>
+        <td class="down">-19,192</td><td class="down">-3.65%</td><td class="down">-10.77%</td>
+        <td><span class="grade grade-weak">弱</span></td>
+      </tr>
+      <tr style="background:#f8514908">
+        <td>兴森科技</td><td>002436</td><td>47.48</td>
+        <td class="down">-6.81%</td><td>10.29%</td><td>77.64</td>
+        <td>807</td><td>559</td>
+        <td class="down">-76,641</td><td class="down">-5.47%</td><td class="up">+12.46%</td>
+        <td><span class="grade grade-weak">弱</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="chart-row">
+  <div class="chart-box">
+    <h3>今日 vs 5日 vs 20日 涨跌对比</h3>
+    <div class="chart" id="chart-compare"></div>
+  </div>
+  <div class="chart-box">
+    <h3>PE-TTM 估值分布</h3>
+    <div class="chart" id="chart-pe"></div>
+  </div>
+</div>
+
+<div class="table-section">
+  <h3>技术面速查</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>名称</th><th>MA5</th><th>MA20</th><th>MA60</th><th>现价 vs MA5</th><th>MACD</th><th>KDJ-J</th><th>布林位置</th><th>短期趋势</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>太钢不锈钢</td><td>3.48</td><td>3.68</td><td>4.06</td><td class="up">+0.4%</td><td class="down">死叉</td><td class="down">14.8</td><td>下轨区域</td>
+        <td><span class="tag tag-bear">超卖反弹</span></td>
+      </tr>
+      <tr>
+        <td>华峰化学</td><td>10.19</td><td>10.25</td><td>10.65</td><td class="down">-0.4%</td><td class="down">死叉收窄</td><td class="neutral">35.4</td><td>下轨→中轨</td>
+        <td><span class="tag tag-bull">底部反转信号</span></td>
+      </tr>
+      <tr>
+        <td>软通动力</td><td>40.98</td><td>40.99</td><td>40.08</td><td class="up">+1.6%</td><td class="up">金叉</td><td class="up">94.6</td><td>中轨偏上</td>
+        <td><span class="tag tag-bull">多头排列</span></td>
+      </tr>
+      <tr>
+        <td>泰和新材</td><td>18.59</td><td>17.55</td><td>13.99</td><td class="down">-7.0%</td><td class="down">死叉初期</td><td class="down">10.6</td><td>中轨区域</td>
+        <td><span class="tag tag-bear">高位回调中</span></td>
+      </tr>
+      <tr>
+        <td>三祥新材</td><td>96.26</td><td>83.15</td><td>59.45</td><td class="down">-2.3%</td><td class="up">金叉（已疲）</td><td class="down">45.0</td><td>中轨偏上</td>
+        <td><span class="tag tag-warn">高位震荡</span></td>
+      </tr>
+      <tr>
+        <td>罗博特科</td><td>603.08</td><td>625.61</td><td>562.86</td><td class="down">-3.7%</td><td class="down">死叉</td><td class="down">21.6</td><td>中轨偏下</td>
+        <td><span class="tag tag-bear">跌破MA20</span></td>
+      </tr>
+      <tr>
+        <td>汇绿生态</td><td>55.05</td><td>54.62</td><td>53.46</td><td class="down">-8.0%</td><td class="down">死叉</td><td class="down">-9.5</td><td>下轨附近</td>
+        <td><span class="tag tag-bear">严重超卖</span></td>
+      </tr>
+      <tr>
+        <td>兴森科技</td><td>50.55</td><td>44.72</td><td>34.93</td><td class="down">-6.1%</td><td class="down">拐头</td><td class="down">24.0</td><td>中轨偏上</td>
+        <td><span class="tag tag-bear">高位巨量阴线</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-size:12px;color:#8b949e;margin-top:8px">注：星环科技、澜起科技技术指标API未返回，已用行情数据替代判断。</div>
+</div>
+
+<div class="insight-box">
+  <h3>S级标的重点关注</h3>
+  <ul>
+    <li><span class="tag tag-bull">澜起科技 688008</span> 底仓不动。<strong>今日+1.93%</strong>，盘中振幅10.62%，冲高至332.9后回落，成交额<strong>279.8亿</strong>（全市场前列）。主力净流出<strong>10.84亿</strong>，超大单净流出9.57亿——资金在拉高时出货。但收盘仍站上315，显示承接力不弱。20日涨幅+33.29%，估值PE 151倍，处于高位。关键：半导体板块今日-1.95%，澜起逆势走强靠独立逻辑（DDR5渗透+PCIe 6.0 Retimer），但主力大幅流出必须警惕，底仓不动但要设回撤线。</li>
+    <li><span class="tag tag-bear">汇绿生态 001267</span> <strong>今日-5.33%</strong>，5日累计-17.55%，缩量下杀（换手5.65%，量比0.72）。主力净流出2.16亿，超大单流出1.67亿。KDJ J值跌至<strong>-9.45</strong>极度超卖。现价50.65已跌穿MA5(55.05)和MA20(54.62)，逼近MA60(53.46)和布林下轨(46.44)。注意：成本价48.09元，现价仅余5.3%安全垫。需关注COHR/LITE美股走势作为映射锚定，若美股晚间续跌，明天可能挑战成本线。</li>
+    <li><span class="tag tag-warn">三祥新材 603663</span> <strong>今日-2.37%</strong>，换手4.64%，主力净流入7199万（资金并未看空）。5日-9.43%但20日仍有+52.16%，高位震荡回调整理。MACD金叉但柱状图收窄。现价94.02在MA5(96.26)下方但仍在MA20(83.15)上方，属正常技术回调。固态电池赛道逻辑不变，注意高位不追。</li>
+  </ul>
+</div>
+
+<div class="insight-box">
+  <h3>持仓健康度评估</h3>
+  <ul>
+    <li><span class="tag tag-bull">华峰化学</span> 今日最强，涨6.95%且主力净流入4908万，放量突破布林下轨站回中轨上方。PE仅24.9倍在化工中合理。但5日仍跌-6.28%，今日是底部反弹还是反转待确认。短期看板块热度延续。</li>
+    <li><span class="tag tag-bull">太钢不锈钢</span> 小幅反弹+2.35%，KDJ超卖后的技术修复。PE为负（亏损），PB仅0.61倍历史极低，下跌空间有限但上涨催化剂不足。钢铁板块+2.11%有所回暖。</li>
+    <li><span class="tag tag-bull">星环科技</span> 振幅9.08%冲高回落，主力净流入7703万但散户大幅流出。负成本仓位，趋势未破坏（MA5~MA60支撑），保持观察。20日仍跌-13.88%处于下降通道。</li>
+    <li><span class="tag tag-warn">软通动力</span> 微跌-1.91%，MACD金叉但J值94.6进入超买区。MA5/10/20接近汇聚，方向选择关口。PE 800倍极高，靠概念支撑，注意回调风险。</li>
+    <li><span class="tag tag-warn">德展健康</span> 小幅上涨，但<strong>美林控股被动减持至持股4.95%不再为5%以上股东</strong>——这改变了筹码结构。PE为负（亏损），ROE -7.77%，基本面弱势。关注后续司法拍卖进展。</li>
+    <li><span class="tag tag-bear">泰和新材</span> 放量下跌-4.95%（换手9.65%），MACD死叉。20日涨幅仍有+28.55%，属高位获利回吐。PE 317倍，基本面ROE仅0.66%。已降级B+，当前价位不宜加仓。</li>
+    <li><span class="tag tag-bear">罗博特科</span> 跌-6.22%跌破MA20(625.61)。重大消息：<strong>A+H赴港上市备案获批</strong>，ficonTEC在手光电子订单爆发但Q1仍亏损。光伏业务收入暴跌56%，双主业过渡期承压。PE为负，PB 59.85倍极高。关注晚间美股映射情绪。</li>
+    <li><span class="tag tag-bear">兴森科技</span> <strong>今日最大跌幅-6.81%，换手10.29%，成交77.64亿，主力狂流出7.66亿</strong>——典型的放量出货形态。振幅12.60%（高53.24→低46.82）。MACD即将死叉。尽管20日仍有+12.46%涨幅，今日形态偏空，警惕短线继续调整。</li>
+  </ul>
+</div>
+
+<div class="newsbox">
+  <h3>今日重大资讯 + 公告速览</h3>
+  <div class="news-item">
+    <span class="tag tag-bull">半导体重磅</span> <strong>7月1日起全球半导体开启第二轮涨价潮</strong>。超过20家国内外公司发函涨价，功率半导体涨幅15%起，AI服务器电源涨20%-85%。德州仪器、英飞凌、ST、士兰微、斯达半导全线跟进。利好半导体板块情绪，澜起科技（芯片设计/互联）上游制造成本传导需观察。
+  </div>
+  <div class="news-item">
+    <span class="tag tag-info">美股映射</span> <strong>Marvell FY27目标上调至115亿美元（同比+40%），FY28目标165亿美元（+43%）</strong>。黄仁勋公开宣称"Marvell将成为下一家万亿美元公司"。Marvell年初至今累涨214%。预计2026年北美四大CSP资本开支7000亿美元（+68%），光通信板块景气逻辑再获验证。澜起（DDR5/Retimer）直接受益。
+  </div>
+  <div class="news-item">
+    <span class="stock-tag">罗博特科</span> 赴港IPO备案获批。ficonTEC在手光电子订单约11亿（含硅光耦合设备），叠加两家纳斯达克客户近10亿新订单。但Q1仍亏损3882万（费用前置），收入确认存在时间错配。光伏业务2025年暴跌56%。A+H短期估值承压但长期拓宽融资渠道。
+  </div>
+  <div class="news-item">
+    <span class="stock-tag">德展健康</span> 美林控股司法拍卖强制减持，持股由8.85%降至4.95%，不再为5%以上股东。所有持股均已质押并司法冻结。筹码分散化趋势延续。
+  </div>
+  <div class="news-item">
+    <span class="tag tag-info">行业扫描</span> 医药生物板块今日大涨+3.88%（德展健康+2.97%跑输），基础化工+2.32%（华峰化学+6.95%大幅跑赢），电子-1.99%（澜起逆势+1.93%跑赢），机械设备-0.47%。
+  </div>
+</div>
+
+<div class="insight-box">
+  <h3>代码提醒</h3>
+  <ul>
+    <li><span class="tag tag-warn">注意</span> 老潘截图标注的<strong>兴森科技代码002046</strong>，系统识别为<strong>国机精工</strong>（002046）。兴森科技实际A股代码为<strong>002436</strong>。本报告已按002436拉取数据，请确认账号持仓代码是否正确。如实际持有的是002046国机精工，数据需要重新拉取。</li>
+  </ul>
+</div>
+
+<div class="disclaimer">
+<strong>免责声明</strong><br>
+本报告由巴蒂AI投资助手自动生成，数据来源为NeoData金融数据服务（腾讯自选股接口），数据截止2026年7月1日16:00。<br>
+以上分析仅供参考，不构成任何投资建议。报告中的"强/中/弱"判断仅反映当日盘面表现，不代表买入或卖出建议。<br>
+投资有风险，决策需谨慎。如需专业投资建议，请咨询持牌证券投资顾问机构。<br>
+老潘，盈亏自负，巴蒂只是你的数据助手。
+</div>
+
+</div>
+
+<script>
+var c1=echarts.init(document.getElementById('chart-price'));
+c1.setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:80,right:20,top:10,bottom:30},
+  xAxis:{type:'value',splitLine:{lineStyle:{color:'#21262d'}},axisLabel:{color:'#8b949e',fontSize:11}},
+  yAxis:{type:'category',data:['华峰化学','德展健康','星环科技','太钢不锈钢','澜起科技','软通动力','三祥新材','泰和新材','汇绿生态','罗博特科','兴森科技'].reverse(),
+    axisLabel:{color:'#c9d1d9',fontSize:12},inverse:true},
+  series:[{type:'bar',data:[6.95,2.97,2.46,2.35,1.93,-1.91,-2.37,-4.95,-5.33,-6.22,-6.81].reverse(),
+    itemStyle:{color:function(p){return p.value>=0?'#f85149':'#3fb950'}},
+    barWidth:18,label:{show:true,position:'right',formatter:'{c}%',color:'#c9d1d9',fontSize:11}}
+  ]
+});
+
+var c2=echarts.init(document.getElementById('chart-fund'));
+c2.setOption({
+  tooltip:{trigger:'axis',formatter:function(p){return p[0].name+'<br/>主力净流入：'+(p[0].value/10000).toFixed(2)+'亿'}},
+  grid:{left:80,right:20,top:10,bottom:30},
+  xAxis:{type:'value',splitLine:{lineStyle:{color:'#21262d'}},axisLabel:{color:'#8b949e',fontSize:11}},
+  yAxis:{type:'category',data:['星环科技','三祥新材','华峰化学','太钢不锈钢','德展健康','泰和新材','罗博特科','软通动力','汇绿生态','兴森科技','澜起科技'].reverse(),
+    axisLabel:{color:'#c9d1d9',fontSize:12},inverse:true},
+  series:[{type:'bar',data:[7703,7199,4908,1071,-59,-5062,-19192,-19293,-21626,-76641,-108424].reverse(),
+    itemStyle:{color:function(p){return p.value>=0?'#f85149':'#3fb950'}},
+    barWidth:18,label:{show:true,position:'right',formatter:function(p){return (p.value/10000).toFixed(2)+'亿'},color:'#c9d1d9',fontSize:11}}
+  ]
+});
+
+var c3=echarts.init(document.getElementById('chart-compare'));
+c3.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['今日','5日','20日'],textStyle:{color:'#8b949e',fontSize:12},top:5},
+  grid:{left:80,right:20,top:40,bottom:30},
+  xAxis:{type:'value',splitLine:{lineStyle:{color:'#21262d'}},axisLabel:{color:'#8b949e',fontSize:11}},
+  yAxis:{type:'category',data:['华峰化学','德展健康','星环科技','太钢不锈钢','澜起科技','软通动力','三祥新材','泰和新材','汇绿生态','罗博特科','兴森科技'].reverse(),
+    axisLabel:{color:'#c9d1d9',fontSize:12},inverse:true},
+  series:[
+    {name:'今日',type:'bar',data:[6.95,2.97,2.46,2.35,1.93,-1.91,-2.37,-4.95,-5.33,-6.22,-6.81].reverse(),barWidth:6,
+      itemStyle:{color:'#f85149'}},
+    {name:'5日',type:'bar',data:[-6.28,2.30,-2.58,-3.06,18.54,9.06,-9.43,-5.73,-17.55,-3.65,-5.47].reverse(),barWidth:6,
+      itemStyle:{color:'#d29922'}},
+    {name:'20日',type:'bar',data:[2.11,-4.29,-13.88,-9.61,33.29,-1.68,52.16,28.55,-8.74,-10.77,12.46].reverse(),barWidth:6,
+      itemStyle:{color:'#58a6ff'}}
+  ]
+});
+
+var c4=echarts.init(document.getElementById('chart-pe'));
+var peData=[151,24.9,282,317,478,800,559,-18.3,-65.7,-171,-1230];
+var peNames=['澜起','华峰','三祥','泰和','汇绿','软通','兴森','德展','星环','太钢','罗博'];
+var showPos=peData.filter(function(v,i){return v>0&&v<1000});
+var showNeg=peData.filter(function(v){return v<=0});
+c4.setOption({
+  tooltip:{trigger:'axis',formatter:function(p){return p[0].name+' PE:'+p[0].value}},
+  grid:{left:60,right:20,top:10,bottom:30},
+  xAxis:{type:'value',splitLine:{lineStyle:{color:'#21262d'}},axisLabel:{color:'#8b949e',fontSize:11},name:'PE-TTM',nameTextStyle:{color:'#8b949e'}},
+  yAxis:{type:'category',data:peNames.reverse(),axisLabel:{color:'#c9d1d9',fontSize:12},inverse:true},
+  series:[{type:'bar',data:peData.reverse(),
+    itemStyle:{color:function(p){
+      if(p.value<=0)return '#8b949e';
+      if(p.value<50)return '#3fb950';
+      if(p.value<200)return '#d29922';
+      return '#f85149'
+    }},
+    barWidth:16,label:{show:true,position:'right',color:'#c9d1d9',fontSize:11}}
+  ]
+});
+</script>
+</body>
+</html>
