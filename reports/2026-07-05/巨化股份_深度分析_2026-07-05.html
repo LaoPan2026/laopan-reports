@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巨化股份（600160）深度分析 · 制冷剂景气与AI氟材料双击</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--text:#c9d1d9;--sub:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--orange:#d2991d;--border:#30363d;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.65;padding:16px 20px 40px;max-width:960px;margin:0 auto}
+h1{font-size:22px;font-weight:700;color:#f0f6fc;margin-bottom:6px}
+h2{font-size:17px;font-weight:600;color:#f0f6fc;margin:20px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+h3{font-size:15px;font-weight:600;color:#f0f6fc;margin:12px 0 6px}
+.header{text-align:center;padding:14px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.header .sub{font-size:12px;color:var(--sub);margin-top:2px}
+.verdict{background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:10px;padding:14px;margin-bottom:12px}
+.verdict.bearish{background:rgba(248,81,73,0.08);border-color:rgba(248,81,73,0.25)}
+.verdict .main{font-size:17px;font-weight:700;color:#7ee787;margin-bottom:6px}
+.verdict.bearish .main{color:#ff7b72}
+.verdict .detail{font-size:14px;color:var(--text);line-height:1.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.bull{background:rgba(63,185,80,0.06);border-color:rgba(63,185,80,0.2)}
+.bear{background:rgba(248,81,73,0.06);border-color:rgba(248,81,73,0.2)}
+.info{background:rgba(88,166,255,0.05);border-color:rgba(88,166,255,0.2)}
+.chart-box{height:360px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th{text-align:left;padding:7px 8px;color:var(--sub);font-weight:500;border-bottom:1px solid var(--border);font-size:12px;vertical-align:bottom}
+td{padding:7px 8px;border-bottom:1px solid rgba(48,54,61,0.5);vertical-align:top;font-size:13px}
+td:first-child{white-space:nowrap;min-width:120px;overflow:hidden;text-overflow:ellipsis}
+.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:3px;margin-right:3px;font-weight:500}
+.tag-up{background:rgba(63,185,80,0.18);color:#7ee787}
+.tag-down{background:rgba(248,81,73,0.18);color:#ff7b72}
+.tag-warn{background:rgba(210,153,29,0.18);color:#e2b052}
+.tag-info{background:rgba(88,166,255,0.15);color:#79c0ff}
+.tag-s{background:rgba(188,140,255,0.18);color:var(--purple)}
+.row-flex{display:flex;gap:10px;flex-wrap:wrap}
+.row-flex>div{flex:1;min-width:240px}
+.footer{text-align:center;color:#6e7681;font-size:11px;padding:16px 0;border-top:1px solid var(--border);margin-top:12px;line-height:1.7}
+.highlight{background:rgba(63,185,80,0.08);padding:2px 6px;border-radius:3px}
+
+/* 情景卡片 */
+.scenario-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.scenario-card.bull{border-color:rgba(63,185,80,0.3)}
+.scenario-card.base{border-color:rgba(88,166,255,0.3)}
+.scenario-card.bear{border-color:rgba(248,81,73,0.3)}
+.scenario-card .title{font-size:15px;font-weight:700;margin-bottom:6px}
+.scenario-card.bull .title{color:#7ee787}
+.scenario-card.base .title{color:#79c0ff}
+.scenario-card.bear .title{color:#ff7b72}
+.scenario-card .body{font-size:14px;line-height:1.8}
+
+/* 关键指标网格 */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:8px 0}
+.metric-item{background:rgba(88,166,255,0.04);border:1px solid rgba(88,166,255,0.1);border-radius:8px;padding:10px;text-align:center}
+.metric-item .num{font-size:18px;font-weight:700;color:#f0f6fc}
+.metric-item .label{font-size:11px;color:var(--sub);margin-top:2px}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>巨化股份（600160）深度分析</h1>
+<div class="sub">制冷剂配额龙头 · AI数据中心液冷 · 含氟半导体材料 | 2026-07-05</div>
+</div>
+
+<div class="verdict">
+<div class="main">结论前置：中期产业逻辑仍硬，但短期股价已透支，适合等回调再布局</div>
+<div class="detail">
+<b>多空评分：65/100（中性偏多，但短期偏谨慎）</b><br><br>
+巨化股份是中国氟化工的绝对龙头，投资本质上是"买第三代制冷剂配额制度下的供给壁垒 + 含氟新材料在AI/半导体领域的第二增长曲线"。<b>这两个逻辑都是真实的，但2026年2月以来股价从25元涨至58元（涨幅约130%），已经较高程度反映了乐观预期。</b>07-03跌停（-9.99%）是短期情绪过热后的正常回吐，不代表制冷剂周期结束。对跟踪池而言，回调到42-45元区间是更具安全边际的观察窗口，若 AI 液冷/半导体材料出现实质性订单催化，可上调至优先建仓标的。<br><br>
+<b>一句话本质：买的不是普通化工股，而是"配额制稀缺资源 + 高端氟材料国产替代"的期权组合。</b>
+</div>
+</div>
+
+<h2>一、催化时间线</h2>
+
+<div class="card">
+<div style="font-size:14px;line-height:1.9">
+<b>2024-2025</b>：第三代制冷剂（HFCs）配额制正式实施，行业从"扩产抢配额"转入"限产保价"，R32/R125/R134a价格中枢持续上移。<br>
+<b>2025H2-2026H1</b>：空调排产超预期 + 高温天气预期，制冷剂需求旺盛；同时二代制冷剂（R22）加速淘汰，三代配额价值凸显。<br>
+<b>2026-05 至 2026-07-02</b>：股价从35元附近快速拉升至58元（区间涨幅约66%），市场对制冷剂景气周期充分定价。<br>
+<b>2026-07-03</b>：受科技板块整体调整及高位获利盘影响，股价跌停收于49.35元，全天成交额69.44亿，主力资金净流出6.0亿。<br>
+<b>未来关键节点</b>：① 7月空调零售数据；② 8月中报业绩；③ 三代制冷剂配额调整政策；④ AI数据中心液冷/含氟半导体材料订单进展。
+</div>
+</div>
+
+<h2>二、公司画像 · 财务速览</h2>
+
+<div class="row-flex">
+<div class="card" style="flex:1;min-width:220px">
+<h3>基本信息</h3>
+<div style="font-size:14px;line-height:1.8">
+• <b>全称</b>：浙江巨化股份有限公司<br>
+• <b>代码</b>：600160.SH（上海主板）<br>
+• <b>所属行业</b>：基础化工 · 氟化工<br>
+• <b>控股股东</b>：巨化集团（持股52.70%）<br>
+• <b>董事长</b>：周黎旸<br>
+• <b>主营业务</b>：基础化工原料、食品包装材料、氟化工原料及后续产品的研发、生产与销售<br>
+• <b>市值</b>：1332.32亿元（2026-07-03）
+</div>
+</div>
+<div class="card" style="flex:1;min-width:220px">
+<h3>最新行情（2026-07-03）</h3>
+<div style="font-size:14px;line-height:1.8">
+• <b>收盘价</b>：<span class="red">49.35元</span>（跌停 -9.99%）<br>
+• <b>成交额</b>：69.44亿元<br>
+• <b>换手率</b>：5.10%<br>
+• <b>52周区间</b>：25.55 - 58.00元<br>
+• <b>PE TTM</b>：32.09倍<br>
+• <b>PE Fwd</b>：28.40倍<br>
+• <b>PB</b>：6.47倍<br>
+• <b>股息率 TTM</b>：1.13%
+</div>
+</div>
+</div>
+
+<div class="card info">
+<h3>核心财务数据</h3>
+<div class="metric-grid">
+<div class="metric-item"><div class="num">272.08亿</div><div class="label">TTM营收</div></div>
+<div class="metric-item"><div class="num">41.52亿</div><div class="label">TTM归母净利</div></div>
+<div class="metric-item"><div class="num">29.5%</div><div class="label">TTM毛利率</div></div>
+<div class="metric-item"><div class="num">15.3%</div><div class="label">TTM净利率</div></div>
+<div class="metric-item"><div class="num">1.54元</div><div class="label">EPS TTM</div></div>
+<div class="metric-item"><div class="num">32.09x</div><div class="label">PE TTM</div></div>
+</div>
+<div style="font-size:13px;color:var(--sub);margin-top:6px">
+数据来源：WeStock 行情/财务数据，2026-07-03。2025年报营收269.91亿，归母净利润37.83亿；2026Q1营收60.18亿，归母净利润11.73亿，同比大幅增长。
+</div>
+</div>
+
+<div class="chart-box" id="chart-financial"></div>
+
+<h2>三、产业格局与景气度</h2>
+
+<div class="row-flex">
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>制冷剂配额制：供给壁垒</h3>
+<div style="font-size:14px;line-height:1.8">
+• 中国是全球最大HFCs生产国，配额制下产能被锁定<br>
+• 巨化为国内制冷剂配额龙头，R32/R125/R134a等品种份额领先<br>
+• 配额稀缺性类似于"资源属性"，超额利润来自配额溢价<br>
+• R22 60天涨价13.22%，景气周期延续信号
+</div>
+</div>
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>AI数据中心液冷：第二曲线</h3>
+<div style="font-size:14px;line-height:1.8">
+• 高功率GPU/TPU集群对散热要求激增<br>
+• 氟化液（如PFPE）是浸没式液冷核心介质<br>
+• 巨化在含氟冷却介质领域有技术储备和产能布局<br>
+• 该业务目前占比小，但远期空间可观
+</div>
+</div>
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>半导体材料：国产替代</h3>
+<div style="font-size:14px;line-height:1.8">
+• 电子级HF、特种气体是半导体制造关键材料<br>
+• 国产替代空间大，但认证周期长、客户黏性高<br>
+• 巨化在电子化学品领域持续扩产<br>
+• 属于"慢变量"，短期难兑现但长期提升估值
+</div>
+</div>
+</div>
+
+<div class="card info">
+<h3>行业竞争格局</h3>
+<div style="font-size:14px;line-height:1.8">
+<b>国内氟化工三梯队：</b><br>
+• <b>第一梯队</b>：巨化股份（规模最大、配额最多、产业链最全）<br>
+• <b>第二梯队</b>：三美股份、永和股份、东岳集团（细分品种有优势，但综合规模和配额少于巨化）<br>
+• <b>第三梯队</b>：多氟多等（侧重六氟磷酸锂等新能源氟材料，制冷剂业务占比低）<br><br>
+<b>巨化的核心竞争优势：</b>① 配额规模最大；② 产业链一体化（氯碱→氟化工→新材料）降低周期波动；③ 国资背景（巨化集团）+ 上市公司平台融资能力；④ 含氟新材料布局最全，AI/半导体叙事最完整。
+</div>
+</div>
+
+<h2>四、技术面 · 资金面</h2>
+
+<div class="row-flex">
+<div class="card" style="flex:1;min-width:220px">
+<h3>技术信号</h3>
+<div style="font-size:14px;line-height:1.8">
+• <b>MACD</b>：DIF 4.19，DEA 3.92，MACD 0.54—— still positive but momentum weakening<br>
+• <b>KDJ</b>：K 64.97，D 78.85，J 37.22——J线跌破K/D，短期超买后修正<br>
+• <b>RSI</b>：6日44.74，12日55.79，24日59.16——从高位回落，尚未进入超卖<br>
+• <b>均线</b>：股价跌破5日线（53.37），考验21日线（46.44）支撑<br>
+• <b>关键价位</b>：上方阻力58元前高；下方支撑46-47元（21日线）、42元（前期整理平台）
+</div>
+</div>
+<div class="card" style="flex:1;min-width:220px">
+<h3>资金流向</h3>
+<div style="font-size:14px;line-height:1.8">
+• <b>07-03 主力净流入</b>：<span class="red">-6.00亿</span>（显著流出）<br>
+• <b>近5日主力净流入</b>：<span class="red">-8.45亿</span><br>
+• <b>近10日主力净流入</b>：<span class="red">-13.66亿</span><br>
+• <b>散户资金</b>：07-03 净流入约4.63亿，承接明显<br>
+• <b>解读</b>：高位放量跌停+主力流出，短期调整压力仍在；但散户承接活跃，说明情绪尚未完全溃散
+</div>
+</div>
+</div>
+
+<div class="chart-box" id="chart-kline"></div>
+
+<h2>五、核心投资逻辑与风险</h2>
+
+<div class="card bull">
+<h3>三大核心逻辑</h3>
+<div style="font-size:14px;line-height:1.9">
+<b>1. 制冷剂配额制的供给壁垒（已兑现，但远未结束）</b><br>
+配额制不是一次性事件，而是持续10-15年的行业格局重塑。巨化作为配额龙头，拥有最大的"可销售配额"资产，其超额利润将随制冷剂价格上涨而持续释放。2025-2026年制冷剂价格处于上行通道，这是业绩高增长的核心来源。<br><br>
+<b>2. AI数据中心液冷（0→1的期权）</b><br>
+氟化液是浸没式液冷的关键材料，单数据中心用量可观。若AI算力建设持续高景气，液冷渗透率从目前的低个位数提升至20%+，巨化的含氟冷却介质业务有望打开第二增长曲线。这是估值从周期股向成长股切换的关键期权。<br><br>
+<b>3. 含氟半导体材料国产替代（长期估值提升）</b><br>
+电子级氢氟酸、氟化气体等半导体材料长期被日企/美企垄断。巨化依托完整氟化工产业链，持续推进国产替代，虽然短期收入占比有限，但一旦被头部晶圆厂认证，将显著提升公司估值中枢。
+</div>
+</div>
+
+<div class="card bear">
+<h3>主要风险与反一致预期</h3>
+<div style="font-size:14px;line-height:1.9">
+<b>1. 短期涨幅过大，估值已透支</b>：从25元到58元涨幅约130%，PE TTM从20倍以下升至32倍，市场已经较高程度定价了制冷剂景气。07-03跌停不是利空导致，而是情绪与获利盘的正常释放。<br><br>
+<b>2. 制冷剂价格可能阶段性见顶</b>：若2026年夏季空调需求不及预期或空调厂商备货提前结束，R32/R125价格可能高位回落，引发业绩增速预期下修。<br><br>
+<b>3. AI液冷/半导体材料进度慢于预期</b>：这两个叙事短期无法贡献利润，若AI板块整体回调（如近期），故事股属性会放大股价波动。<br><br>
+<b>4. 反一致预期：市场对"制冷剂周期见顶"的担忧可能过度</b>——配额制下的价格高点与以往产能扩张周期不同，只要配额不显著增加，价格中枢是逐年抬升的。真正的风险不是周期见顶，而是股价跑在业绩前面。<br><br>
+<b>5. 国资治理与资本开支</b>：巨化集团对上市公司持股52.7%，关联交易、分红率、资本开支效率是长期观察点。
+</div>
+</div>
+
+<h2>六、可比估值</h2>
+
+<div class="card info">
+<table>
+<tr><th>公司</th><th>代码</th><th>市值（亿）</th><th>PE TTM</th><th>PE Fwd</th><th>PB</th><th>2026年涨幅</th><th>60日涨幅</th></tr>
+<tr><td><b>巨化股份</b></td><td>600160</td><td>1332</td><td>32.09</td><td>28.40</td><td>6.47</td><td class="green">30.35%</td><td class="green">48.20%</td></tr>
+<tr><td>三美股份</td><td>603379</td><td>459</td><td>21.17</td><td>22.67</td><td>5.81</td><td class="green">26.23%</td><td class="green">24.02%</td></tr>
+<tr><td>永和股份</td><td>605020</td><td>228</td><td>35.44</td><td>31.67</td><td>4.00</td><td class="green">69.10%</td><td class="green">95.07%</td></tr>
+<tr><td>多氟多</td><td>002407</td><td>587</td><td>112.18</td><td>39.10</td><td>6.88</td><td class="green">46.34%</td><td class="green">83.52%</td></tr>
+</table>
+<div style="font-size:13px;color:var(--sub);margin-top:6px">
+数据来源：WeStock，2026-07-03。巨化PE TTM高于三美但低于永和/多氟多；考虑其龙头地位和配额规模，估值处于合理偏上区间。
+</div>
+</div>
+
+<h2>七、三级情景与操作建议</h2>
+
+<div class="scenario-card bull">
+<div class="title">乐观情景（概率25%）：AI液冷/半导体订单落地 + 制冷剂价格再超预期</div>
+<div class="body">
+• <b>假设</b>：液冷介质获得头部数据中心订单，R32/R125夏季价格再涨15-20%，中报业绩超预期。<br>
+• <b>目标区间</b>：65-70元（对应2026年PE 30x左右）。<br>
+• <b>触发条件</b>：7-8月出现AI液冷相关公告或制冷剂报价持续上行。
+</div>
+</div>
+
+<div class="scenario-card base">
+<div class="title">基准情景（概率50%）：配额制支撑价格，业绩稳定增长但股价需消化估值</div>
+<div class="body">
+• <b>假设</b>：制冷剂价格维持高位震荡，2026年EPS约2.20元，2027年EPS约2.61元；AI/半导体业务提供估值溢价但不贡献实质利润。<br>
+• <b>目标区间</b>：50-58元（对应2026年PE 22-26x）。<br>
+• <b>策略</b>：在45-48元区间分批观察，跌破42元可提升关注等级。
+</div>
+</div>
+
+<div class="scenario-card bear">
+<div class="title">审慎情景（概率25%）：科技板块回调 + 制冷剂价格阶段性见顶 + 获利盘持续涌出</div>
+<div class="body">
+• <b>假设</b>：AI叙事降温，市场风格转向防御，制冷剂旺季需求不及预期，股价进入中期调整。<br>
+• <b>目标区间</b>：38-42元（回调至前期整理平台上沿）。<br>
+• <b>策略</b>：不急抄底，等待基本面数据确认或估值回到更具吸引力位置。
+</div>
+</div>
+
+<div class="card info">
+<h3>对跟踪池的操作建议</h3>
+<div style="font-size:14px;line-height:1.9">
+<b>巨化股份目前属于"跟踪池"，尚未纳入持仓。</b>鉴于07-03出现跌停且短期涨幅过大，建议采取以下策略：<br><br>
+1. <b>不追高</b>：当前49.35元仍处于高位区间，不适合追高建仓。<br>
+2. <b>观察区间</b>：45-48元（21日线附近）可开始小仓位跟踪；42元以下（前期平台）可考虑提升配置意愿。<br>
+3. <b>催化剂跟踪</b>：重点关注7-8月制冷剂价格、中报业绩、AI液冷/半导体材料订单进展。<br>
+4. <b>仓位纪律</b>：若跌破38元且基本面无恶化，可视为错杀机会；若制冷剂价格确认见顶，则需重新评估周期位置。<br><br>
+<b>核心判断</b>：中期产业逻辑（配额制 + 高端氟材料）依然成立，但短期股价已经走在基本面之前。对跟踪池而言，这不是"必须立即买入"的机会，而是"值得持续跟踪、等待更好买点"的标的。
+</div>
+</div>
+
+<h2>八、数据溯源与版本追踪</h2>
+
+<div class="card">
+<div style="font-size:13px;line-height:1.8;color:var(--sub)">
+• <b>行情数据</b>：WeStock data_quote，截止2026-07-03收盘<br>
+• <b>财务数据</b>：WeStock data_finance，2024Q2-2026Q1<br>
+• <b>资金流向</b>：WeStock data_fund_flow，2026-07-03<br>
+• <b>技术指标</b>：WeStock data_technical，MACD/KDJ/RSI<br>
+• <b>一致预期</b>：WeStock data_consensus，40家机构覆盖，目标价46.51元<br>
+• <b>股东结构</b>：WeStock data_shareholder，2026-03-31<br>
+• <b>新闻公告</b>：WeStock data_news/data_notice，2026-07-03<br>
+• <b>报告版本</b>：V1.0，2026-07-05
+</div>
+</div>
+
+<div class="footer">
+巴蒂投研体系 | 老潘专属 | 数据来源：WeStock/腾讯自选股<br>
+⚠️ 以上内容为投研分析记录，不构成投资建议。投资有风险，决策需谨慎。
+</div>
+
+<script>
+(function(){
+// 财务趋势图
+var f=echarts.init(document.getElementById('chart-financial'));
+f.setOption({
+backgroundColor:'transparent',
+title:{text:'营收与归母净利润趋势（单位：亿元）',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{trigger:'axis'},
+legend:{data:['单季营收','单季归母净利'],bottom:0,textStyle:{color:'#8b949e',fontSize:10}},
+grid:{left:50,right:30,top:40,bottom:30},
+xAxis:{type:'category',data:['24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26Q1'],axisLabel:{color:'#8b949e',fontSize:11}},
+yAxis:[{type:'value',name:'营收(亿)',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},{type:'value',name:'净利(亿)',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}],
+series:[
+{name:'单季营收',type:'bar',data:[133.31,179.06,244.63,58.00,133.31,203.94,269.91,60.18],itemStyle:{color:'#58a6ff'},barMaxWidth:25},
+{name:'单季归母净利',type:'line',yAxisIndex:1,data:[12.42,7.86,12.65,7.99,20.51,11.97,5.35,11.73],lineStyle:{color:'#3fb950',width:2},symbol:'circle',symbolSize:6,itemStyle:{color:'#3fb950'}}
+]
+});
+
+// K线图
+var k=echarts.init(document.getElementById('chart-kline'));
+var dates=['25-12-31','26-01-06','26-01-12','26-01-20','26-01-28','26-02-06','26-02-13','26-02-24','26-03-04','26-03-12','26-03-20','26-03-27','26-04-03','26-04-14','26-04-22','26-04-30','26-05-08','26-05-15','26-05-22','26-05-29','26-06-04','26-06-11','26-06-18','26-06-25','26-07-02','26-07-03'];
+var ohlc=[[37.86,37.86,37.5,38.1],[37.12,38.14,36.84,38.37],[36.44,36.13,35.52,36.74],[38.87,38.73,37.74,39.06],[39.42,40.42,38.87,40.99],[37.02,38.92,36.71,39.47],[39.42,38.43,38.43,39.42],[38.9,40.28,38.53,40.4],[42.92,41.77,41.59,43.46],[40.52,39.27,38.82,40.59],[36.01,35.03,35.03,36.18],[34.09,34.65,33.93,34.77],[34.57,34.42,33.23,34.68],[33.72,34.96,32.54,35.11],[33.93,33.55,33.2,33.97],[36.3,36.25,36.1,36.97],[35.54,35.2,34.96,35.8],[35.62,35.53,35.32,37.28],[33.12,35.46,32.48,35.46],[34.19,32.64,32.64,34.26],[37.84,37.86,37.42,38.84],[40.65,41,39.24,42.56],[47.17,44.12,43.25,47.17],[50.73,50.8,50.3,52],[53.7,54.83,51.07,58],[53.51,49.35,49.35,54.68]];
+var vols=[151368,415719,445059,302140,417349,328886,163197,289764,332784,292685,231862,178675,171700,480659,377927,323435,334683,1069154,917476,389944,653343,1330375,1626784,1018932,1269606,1376048];
+k.setOption({
+backgroundColor:'transparent',
+title:{text:'近半年日K线（2025-12-31至2026-07-03）',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{trigger:'axis',axisPointer:{type:'cross'}},
+legend:{data:['日K','成交量'],bottom:0,textStyle:{color:'#8b949e',fontSize:10}},
+grid:{left:50,right:40,top:40,bottom:30},
+xAxis:{type:'category',data:dates,axisLabel:{color:'#8b949e',fontSize:10}},
+yAxis:[{scale:true,axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},{scale:true,axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}],
+series:[
+{name:'日K',type:'candlestick',data:ohlc,itemStyle:{color:'#f85149',color0:'#3fb950',borderColor:'#f85149',borderColor0:'#3fb950'}},
+{name:'成交量',type:'bar',yAxisIndex:1,data:vols,itemStyle:{color:'rgba(88,166,255,0.3)'},barMaxWidth:15}
+]
+});
+})();
+</script>
+</body>
+</html>
