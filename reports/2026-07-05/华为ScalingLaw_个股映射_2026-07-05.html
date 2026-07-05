@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华为Scaling Law v2 · 个股映射</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--text:#c9d1d9;--sub:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--orange:#d2991d;--border:#30363d;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.65;padding:16px 20px 40px;max-width:960px;margin:0 auto}
+h1{font-size:22px;font-weight:700;color:#f0f6fc;margin-bottom:6px}
+h2{font-size:17px;font-weight:600;color:#f0f6fc;margin:20px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+h3{font-size:15px;font-weight:600;color:#f0f6fc;margin:12px 0 6px}
+.header{text-align:center;padding:14px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.header .sub{font-size:12px;color:var(--sub);margin-top:2px}
+.verdict{background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.25);border-radius:10px;padding:14px;margin-bottom:12px}
+.verdict .main{font-size:17px;font-weight:700;color:#79c0ff;margin-bottom:6px}
+.verdict .detail{font-size:14px;color:var(--text);line-height:1.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.bull{background:rgba(63,185,80,0.06);border-color:rgba(63,185,80,0.2)}
+.bear{background:rgba(248,81,73,0.06);border-color:rgba(248,81,73,0.2)}
+.info{background:rgba(88,166,255,0.05);border-color:rgba(88,166,255,0.2)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:3px;margin-right:3px;font-weight:500}
+.tag-up{background:rgba(63,185,80,0.18);color:#7ee787}
+.tag-warn{background:rgba(210,153,29,0.18);color:#e2b052}
+.tag-info{background:rgba(88,166,255,0.15);color:#79c0ff}
+.tag-s{background:rgba(188,140,255,0.18);color:var(--purple)}
+.tag-hold{background:rgba(63,185,80,0.25);color:#7ee787}
+.footer{text-align:center;color:#6e7681;font-size:11px;padding:16px 0;border-top:1px solid var(--border);margin-top:12px;line-height:1.7}
+.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
+
+/* 映射卡片 */
+.map-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;overflow:hidden}
+.map-card .map-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(48,54,61,0.5)}
+.map-card .map-title{flex-shrink:0}
+.map-card .map-title .name{font-size:16px;font-weight:700;color:#f0f6fc}
+.map-card .map-title .code{font-size:12px;color:var(--sub);margin-top:2px}
+.map-card .map-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.map-card .map-category{font-size:12px;color:var(--accent);font-weight:600}
+.map-card .map-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr);gap:16px}
+.map-card .logic-col{font-size:14px;line-height:1.85;color:var(--text)}
+.map-card .logic-col ul{list-style:none;padding:0;margin:4px 0 0}
+.map-card .logic-col li{position:relative;padding-left:14px;margin-bottom:4px}
+.map-card .logic-col li:before{content:"•";position:absolute;left:0;color:var(--accent)}
+.map-card .status-col{background:rgba(88,166,255,0.04);border:1px solid rgba(88,166,255,0.12);border-radius:8px;padding:12px;align-self:start}
+.map-card .status-col .label{font-size:11px;color:var(--sub);margin-bottom:6px;letter-spacing:0.5px}
+.map-card .status-col .text{font-size:14px;font-weight:600;color:#f0f6fc;line-height:1.7}
+.map-card .tag-row{margin-bottom:8px}
+
+/* 技术环节标题 */
+.tech-section{border-left:3px solid var(--accent);padding-left:14px;margin:16px 0 10px}
+.tech-section .section-title{font-size:16px;font-weight:700;color:#f0f6fc;margin-bottom:4px}
+.tech-section .section-desc{font-size:12px;color:var(--sub);line-height:1.6}
+
+@media(max-width:640px){
+.map-card .map-body{grid-template-columns:1fr}
+.map-card .status-col{margin-top:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>华为 Scaling Law v2 · 个股映射</h1>
+<div class="sub">技术环节 → 供应链 → 具体标的 | 2026-07-05</div>
+</div>
+
+<div class="verdict">
+<div class="main">核心判断：这篇技术论文本身对A股的直接交易价值有限，但五条技术链路映射出的标的池值得加到跟踪视野</div>
+<div class="detail">
+华为 Scaling Law v2 的核心增量在于<b>3D堆叠/LogicFolding、内存带宽瓶颈、散热密度挑战、EDA设计规则</b>。从这些技术环节倒推，受益环节确定性排序：<b>先进封装 > 内存接口 > 散热材料 > EDA > 设备</b>。下面按技术环节逐层映射，标注持仓/跟踪池/新增关注三类状态。
+</div>
+</div>
+
+<!-- === 先进封装 === -->
+<div class="tech-section">
+<div class="section-title">技术环节1：3D堆叠 / LogicFolding → 先进封装</div>
+<div class="section-desc">论文重点讲 3D堆叠、LogicFolding、wafer-on-wafer键合。最最确定受益环节——任何3D设计最终都需要物理封装落地。</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">长电科技</div><div class="code">600584.SH · 先进封装龙头</div></div>
+<div class="map-meta"><div class="map-category">新增关注</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>国内先进封装产能最大、技术类型最全（FC-BGA/SiP/2.5D/3D）</li>
+<li>3D堆叠/LogicFolding量产最直接的封装受益方</li>
+<li>与华为有长期封测合作关系</li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-up">跟踪池候选</span></div>
+<div class="text">若3D堆叠技术路线被确认为华为下一代芯片方案，长电是最明确的封装受益标的</div>
+</div>
+</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">甬矽电子</div><div class="code">688362.SH · 先进封装二线龙头</div></div>
+<div class="map-meta"><div class="map-category">新增关注</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>SiP/FC-BGA 产能持续扩张，受益于先进封装整体需求增长</li>
+<li>ZX通信07-03周报重点推荐，卖方关注度上升</li>
+<li>弹性大于长电（市值小、纯先进封装标的）</li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-up">跟踪池候选</span></div>
+<div class="text">与长电形成互补——长电是大盘锚，甬矽是小盘弹性</div>
+</div>
+</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">通富微电</div><div class="code">002156.SZ · AMD封测核心</div></div>
+<div class="map-meta"><div class="map-category">新增关注</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>3D封装经验丰富（AMD主力封测厂，多年做多芯片堆叠）</li>
+<li>AMD的chiplet/3D封装路线与华为LogicFolding方向趋同</li>
+<li>国内先进封装产能第二</li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-info">关注</span></div>
+<div class="text">3D封装经验稀缺标的，但需关注其AMD客户集中度风险</div>
+</div>
+</div>
+</div>
+
+<!-- === 内存接口 === -->
+<div class="tech-section">
+<div class="section-title">技术环节2：内存带宽瓶颈 → 内存接口芯片</div>
+<div class="section-desc">论文强调 3D 堆叠后内存带宽和延迟是核心瓶颈，必须配套高带宽内存方案。</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">澜起科技</div><div class="code">688008.SH · 持仓 S 级</div></div>
+<div class="map-meta"><div class="map-category">已有持仓</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>DDR5/CXL 内存接口芯片——任何内存带宽升级都需要配套接口芯片</li>
+<li>3D堆叠后内存带宽需翻倍→DDR5接口芯片需求随之翻倍</li>
+<li>CXL内存池化是缓解带宽瓶颈的另一路径，澜起CXL控制器直接受益</li>
+<li><b>逻辑最顺：不依赖华为选择哪条具体技术路线，只要堆叠就需要更大内存带宽</b></li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-hold">S级 · 持仓</span></div>
+<div class="text">坚定持有。技术论文对澜起的映射最直接、最不可替代</div>
+</div>
+</div>
+</div>
+
+<!-- === 散热/材料 === -->
+<div class="tech-section">
+<div class="section-title">技术环节3：热密度上升 → 散热与特种材料</div>
+<div class="section-desc">论文明确提到"3D堆叠增加热密度"，散热设计是核心挑战。铪/锆/塑封料等上游材料也有增量需求。</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">三祥新材</div><div class="code">603663.SH · 持仓 S 级</div></div>
+<div class="map-meta"><div class="map-category">已有持仓</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>铪材料用于 high-k 介质/栅极，半导体工艺每代升级都用更多铪</li>
+<li>3D堆叠后热密度提升，散热需求可能延伸到锆/铪等耐高温特种材料</li>
+<li>传导链长（技术论文→芯片→晶圆厂→材料），但方向正确</li>
+<li><b>注意：论文对小金属材料的直接驱动有限，铪产线7月底投料是更直接的独立催化剂</b></li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-hold">S级 · 持仓</span></div>
+<div class="text">持有。论文映射是加分项，核心催化剂仍是7月底铪产线投料</div>
+</div>
+</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">华海诚科</div><div class="code">688535.SH · 先进封装材料</div></div>
+<div class="map-meta"><div class="map-category">新增关注</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>环氧塑封料（EMC）是3D封装必需材料</li>
+<li>国内少数能批量供货先进封装EMC的厂商</li>
+<li>3D堆叠/LogicFolding封装复杂度提升→EMC用量和单价同时增长</li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-info">关注</span></div>
+<div class="text">材料端最纯的先进封装受益标的，但公司体量小、产品认证周期长</div>
+</div>
+</div>
+</div>
+
+<!-- === EDA === -->
+<div class="tech-section">
+<div class="section-title">技术环节4：自研设计规则 → EDA 工具</div>
+<div class="section-desc">论文提到"EDA工具、设计规则"是华为自己做的，"设计方法和语言几个月内发表"。</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">华大九天</div><div class="code">301269.SZ · 国产EDA龙头</div></div>
+<div class="map-meta"><div class="map-category">新增关注</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>国产EDA龙头，如果华为将自研设计规则/语言外溢，华大九天最可能承接商业化落地</li>
+<li><b>但注意</b>：华为自用EDA不会直接产生收入——外溢到商业化是长期过程，非短期驱动</li>
+<li>估值贵，需要用产业趋势解释（而非业绩）</li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-warn">远观</span></div>
+<div class="text">长期方向正确，但短期没有催化剂。不纳入跟踪池，仅记录</div>
+</div>
+</div>
+</div>
+
+<!-- === 设备 === -->
+<div class="tech-section">
+<div class="section-title">技术环节5：Wafer-on-Wafer键合 → 薄膜/键合设备</div>
+<div class="section-desc">3D集成、LogicFolding需要薄膜沉积设备和键合设备。传导链最长、弹性最低，但确定性也最高。</div>
+</div>
+
+<div class="map-card">
+<div class="map-header">
+<div class="map-title"><div class="name">拓荆科技</div><div class="code">688072.SH · 薄膜沉积设备</div></div>
+<div class="map-meta"><div class="map-category">新增关注</div></div>
+</div>
+<div class="map-body">
+<div class="logic-col">
+<ul>
+<li>CVD/ALD薄膜设备龙头，3D堆叠需要多层薄膜沉积</li>
+<li>ALDep设备直接应用在LogicFolding的层间介质沉积</li>
+<li>属于设备板块中最贴近3D堆叠工艺的标的</li>
+</ul>
+</div>
+<div class="status-col">
+<div class="label">状态</div>
+<div class="tag-row"><span class="tag tag-info">关注</span></div>
+<div class="text">设备传导链长、弹性低，但技术确定性高——只要扩产就需要设备</div>
+</div>
+</div>
+</div>
+
+<h2>汇总：持仓 × 映射 × 行动</h2>
+
+<table>
+<tr><th>标的</th><th>技术环节</th><th>持仓/状态</th><th>映射置信度</th><th>行动</th></tr>
+<tr><td><b>澜起科技</b></td><td>内存接口</td><td class="green">S级 · 持仓</td><td class="green">最高</td><td>坚定持有</td></tr>
+<tr><td><b>三祥新材</b></td><td>散热/材料</td><td class="green">S级 · 持仓</td><td class="orange">中等</td><td>持有，催化剂独立</td></tr>
+<tr><td>长电科技</td><td>先进封装</td><td>候选观察</td><td class="green">高</td><td>同步观察</td></tr>
+<tr><td>甬矽电子</td><td>先进封装</td><td>候选观察</td><td class="green">高</td><td>弹性标的</td></tr>
+<tr><td>通富微电</td><td>先进封装</td><td>候选观察</td><td class="orange">中等</td><td>关注客户集中度</td></tr>
+<tr><td>华海诚科</td><td>封装材料</td><td>远观</td><td class="orange">中等</td><td>不急</td></tr>
+<tr><td>华大九天</td><td>EDA</td><td>远观</td><td class="red">低</td><td>短期不关注</td></tr>
+<tr><td>拓荆科技</td><td>薄膜设备</td><td>候选观察</td><td class="green">高</td><td>设备板块锚</td></tr>
+</table>
+
+<div class="card info" style="margin-top:12px">
+<div style="font-size:14px;line-height:1.9">
+<b>巴蒂独立判断：</b>这篇技术论文的映射价值集中在<b>先进封装+内存接口</b>两个环节。持仓中澜起科技逻辑最顺，三祥新材是间接受益。新增可关注的标的中，<b>长电科技最值得纳入跟踪池</b>——作为先进封装最大产能方，如果华为3D堆叠路线确定，封装产能是必须补齐的短板。<br><br>
+<b>不要过度解读</b>：这是技术论文不是产业新闻，传导链是"论文→设计→芯片→产能→供应链订单"，每一步有6-18个月时滞。短期不构成交易信号，长期作为框架参考。
+</div>
+</div>
+
+<div class="footer">
+巴蒂投研体系 | 老潘专属 | 来源：华为 Scaling Law v2 论文解读 | 2026-07-05<br>
+⚠️ 以上内容为投研分析记录，不构成投资建议。投资有风险，决策需谨慎。
+</div>
+
+</body>
+</html>
