@@ -37,6 +37,31 @@ td:first-child{white-space:nowrap;min-width:120px;overflow:hidden;text-overflow:
 .row-flex>div{flex:1;min-width:240px}
 .footer{text-align:center;color:#6e7681;font-size:11px;padding:16px 0;border-top:1px solid var(--border);margin-top:12px;line-height:1.7}
 .highlight{background:rgba(63,185,80,0.08);padding:2px 6px;border-radius:3px}
+.stock-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;overflow:hidden}
+.stock-card .stock-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(48,54,61,0.5)}
+.stock-card .stock-name{flex-shrink:0}
+.stock-card .stock-name .name{font-size:16px;font-weight:700;color:#f0f6fc}
+.stock-card .stock-name .code{font-size:12px;color:var(--sub);margin-top:2px}
+.stock-card .stock-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.stock-card .impact{font-size:13px;font-weight:600;color:var(--green);white-space:nowrap}
+.stock-card .intensity{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600;color:#fff;background:var(--green)}
+.stock-card .intensity.high{background:var(--green)}
+.stock-card .intensity.mid{background:var(--orange)}
+.stock-card .intensity.low{background:var(--sub)}
+.stock-card .stock-body{display:grid;grid-template-columns:minmax(0,2fr) minmax(160px,1fr);gap:16px}
+.stock-card .logic-col{font-size:14px;line-height:1.85;color:var(--text)}
+.stock-card .logic-col b{color:#f0f6fc}
+.stock-card .logic-col ul{list-style:none;padding:0;margin:4px 0 0}
+.stock-card .logic-col li{position:relative;padding-left:14px;margin-bottom:4px}
+.stock-card .logic-col li:before{content:"•";position:absolute;left:0;color:var(--accent)}
+.stock-card .action-col{background:rgba(88,166,255,0.04);border:1px solid rgba(88,166,255,0.12);border-radius:8px;padding:12px;align-self:start}
+.stock-card .action-label{font-size:11px;color:var(--sub);margin-bottom:6px;letter-spacing:0.5px}
+.stock-card .action-text{font-size:14px;font-weight:600;color:#f0f6fc;line-height:1.7}
+.stock-card .action-tag{margin-bottom:8px}
+@media (max-width:640px){
+.stock-card .stock-body{grid-template-columns:1fr}
+.stock-card .action-col{margin-top:8px}
+}
 </style>
 </head>
 <body>
@@ -148,88 +173,195 @@ td:first-child{white-space:nowrap;min-width:120px;overflow:hidden;text-overflow:
 
 <h2>三、持仓影响逐只评估（核心！）</h2>
 
-<table>
-<tr><th>标的</th><th>影响方向</th><th>强度</th><th>传导逻辑与关键数据点</th><th>操作建议</th></tr>
-<tr>
-<td><b>澜起科技<br>688008</b></td>
-<td class="green">★★★★★<br>强利好</td>
-<td class="green">最高</td>
-<td style="font-size:14px">
-<b>内存超越芯片算力成为 AI 第一瓶颈，这是澜起最核心的投资逻辑获得第三方重磅验证。</b><br>
-• 当前 HBM:DRAM 1:1~2 → 最优 1:10 → DRAM 需求理论上可再翻 5-10 倍<br>
-• 每张 TPU 需要配套的 DDR5 内存 + Retimer 芯片 → 澜起的 DDR5 接口芯片需求与 TPU 出货量正相关<br>
-• 文章虽称"CXL 标准未成主流"，但内存池化的刚需不会消失——私有方案只是过渡，CXL 标准化是必然<br>
-• 2028 年 TPU 年产突破 1000 万颗 → 对应数千万颗级别的 DDR5 Retimer 需求
-</td>
-<td><span class="tag tag-s">S级</span><b>坚定持有，可考虑逢低加仓</b></td>
-</tr>
-<tr>
-<td><b>中际旭创<br>300308<br>（跟踪）</b></td>
-<td class="green">★★★★☆<br>利好</td>
-<td>高</td>
-<td style="font-size:14px">
-• 3500 万颗 TPU 需求 → 海量数据中心互联 → 800G/1.6T 光模块需求暴增<br>
-• 编程场景千亿美元 ARR → 推理集群扩建 → 光模块需求从训练向推理延伸<br>
-• Anthropic 独占 200 万+ TPU → 其光模块采购需求体量巨大<br>
-• <b>与黑石文章形成完美对冲</b>：数据中心建设可能慢，但光模块需求不会少
-</td>
-<td><span class="tag tag-up">跟踪池</span><b>若因黑石文章继续下跌至 1000 元附近，强烈建议启动分批建仓</b></td>
-</tr>
-<tr>
-<td><b>汇绿生态<br>001267</b></td>
-<td class="green">★★★★☆<br>利好</td>
-<td>高</td>
-<td style="font-size:14px">
-• 光模块黑马，逻辑与中际旭创类似但弹性更大<br>
-• 核心客户 COHR/LITE 直接受益于 Anthropic/谷歌的 TPU 扩张<br>
-• 上周 −18.41% 的回调可能被黑石文章放大恐慌，本文可作为重新评估的锚
-</td>
-<td><span class="tag tag-info">A级</span><b>42 元警戒线不变，但回调中不宜恐慌减仓</b></td>
-</tr>
-<tr>
-<td><b>罗博特科<br>300757</b></td>
-<td class="green">★★★☆☆<br>偏利好</td>
-<td>中</td>
-<td style="font-size:14px">
-• ficonTEC 设备面向光模块生产端<br>
-• 光模块需求增长 → 扩产需求 → 设备订单增加<br>
-• 传导链较长（芯片→光模块→设备），弹性低于直接的光模块厂
-</td>
-<td><span class="tag tag-info">A级</span><b>维持，423 止损线不变</b></td>
-</tr>
-<tr>
-<td><b>三祥新材<br>603663</b></td>
-<td class="green">★★☆☆☆<br>微偏利好</td>
-<td>低</td>
-<td style="font-size:14px">
-• 铪材料用于半导体制造（high-k 介质/栅极）<br>
-• TPU/GPU 芯片生产量增加 → 铪需求提升<br>
-• 传导链极长（大模型→芯片→晶圆厂→铪靶材），但方向正确
-</td>
-<td><span class="tag tag-s">S级</span><b>持有，铪产线 7 月底投料是独立催化剂</b></td>
-</tr>
-<tr>
-<td><b>工业富联<br>601138<br>（跟踪）</b></td>
-<td class="green">★★★★☆<br>利好</td>
-<td>高</td>
-<td style="font-size:14px">
-• AI 服务器 ODM 龙头<br>
-• 3500 万颗 TPU 需要配套海量服务器<br>
-• 编程场景推理需求增长 → 推理服务器需求同步增长
-</td>
-<td><span class="tag tag-up">跟踪池</span><b>回调后有配置价值</b></td>
-</tr>
-<tr>
-<td><b>软通动力<br>301236</b></td>
-<td class="green">★★★☆☆<br>偏利好</td>
-<td>中</td>
-<td style="font-size:14px">
-• AIPC/服务器 ODM 方向受益<br>
-• 国产替代逻辑独立于北美调研
-</td>
-<td>持有</td>
-</tr>
-</table>
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">澜起科技</div>
+      <div class="code">688008</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★★★★ 强利好</div>
+      <div class="intensity high">最高强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <b>内存超越芯片算力成为 AI 第一瓶颈，这是澜起最核心的投资逻辑获得第三方重磅验证。</b>
+      <ul>
+        <li>当前 HBM:DRAM 1:1~2 → 最优 1:10 → DRAM 需求理论上可再翻 5-10 倍</li>
+        <li>每张 TPU 需要配套的 DDR5 内存 + Retimer 芯片 → 澜起的 DDR5 接口芯片需求与 TPU 出货量正相关</li>
+        <li>文章虽称"CXL 标准未成主流"，但内存池化的刚需不会消失——私有方案只是过渡，CXL 标准化是必然</li>
+        <li>2028 年 TPU 年产突破 1000 万颗 → 对应数千万颗级别的 DDR5 Retimer 需求</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-tag"><span class="tag tag-s">S级</span></div>
+      <div class="action-text">坚定持有，可考虑逢低加仓</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">中际旭创</div>
+      <div class="code">300308（跟踪池）</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★★★☆ 利好</div>
+      <div class="intensity high">高强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <ul>
+        <li>3500 万颗 TPU 需求 → 海量数据中心互联 → 800G/1.6T 光模块需求暴增</li>
+        <li>编程场景千亿美元 ARR → 推理集群扩建 → 光模块需求从训练向推理延伸</li>
+        <li>Anthropic 独占 200 万+ TPU → 其光模块采购需求体量巨大</li>
+        <li><b>与黑石文章形成完美对冲</b>：数据中心建设可能慢，但光模块需求不会少</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-tag"><span class="tag tag-up">跟踪池</span></div>
+      <div class="action-text">若因黑石文章继续下跌至 1000 元附近，强烈建议启动分批建仓</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">汇绿生态</div>
+      <div class="code">001267</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★★★☆ 利好</div>
+      <div class="intensity high">高强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <ul>
+        <li>光模块黑马，逻辑与中际旭创类似但弹性更大</li>
+        <li>核心客户 COHR/LITE 直接受益于 Anthropic/谷歌的 TPU 扩张</li>
+        <li>上周 −18.41% 的回调可能被黑石文章放大恐慌，本文可作为重新评估的锚</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-tag"><span class="tag tag-info">A级</span></div>
+      <div class="action-text">42 元警戒线不变，但回调中不宜恐慌减仓</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">罗博特科</div>
+      <div class="code">300757</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★★☆☆ 偏利好</div>
+      <div class="intensity mid">中强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <ul>
+        <li>ficonTEC 设备面向光模块生产端</li>
+        <li>光模块需求增长 → 扩产需求 → 设备订单增加</li>
+        <li>传导链较长（芯片→光模块→设备），弹性低于直接的光模块厂</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-tag"><span class="tag tag-info">A级</span></div>
+      <div class="action-text">维持，423 止损线不变</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">三祥新材</div>
+      <div class="code">603663</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★☆☆☆ 微偏利好</div>
+      <div class="intensity low">低强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <ul>
+        <li>铪材料用于半导体制造（high-k 介质/栅极）</li>
+        <li>TPU/GPU 芯片生产量增加 → 铪需求提升</li>
+        <li>传导链极长（大模型→芯片→晶圆厂→铪靶材），但方向正确</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-tag"><span class="tag tag-s">S级</span></div>
+      <div class="action-text">持有，铪产线 7 月底投料是独立催化剂</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">工业富联</div>
+      <div class="code">601138（跟踪池）</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★★★☆ 利好</div>
+      <div class="intensity high">高强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <ul>
+        <li>AI 服务器 ODM 龙头</li>
+        <li>3500 万颗 TPU 需要配套海量服务器</li>
+        <li>编程场景推理需求增长 → 推理服务器需求同步增长</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-tag"><span class="tag tag-up">跟踪池</span></div>
+      <div class="action-text">回调后有配置价值</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">
+      <div class="name">软通动力</div>
+      <div class="code">301236</div>
+    </div>
+    <div class="stock-meta">
+      <div class="impact">★★★☆☆ 偏利好</div>
+      <div class="intensity mid">中强度</div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="logic-col">
+      <ul>
+        <li>AIPC/服务器 ODM 方向受益</li>
+        <li>国产替代逻辑独立于北美调研</li>
+      </ul>
+    </div>
+    <div class="action-col">
+      <div class="action-label">操作建议</div>
+      <div class="action-text">持有</div>
+    </div>
+  </div>
+</div>
 
 <h2>四、关键数据点可视化</h2>
 
