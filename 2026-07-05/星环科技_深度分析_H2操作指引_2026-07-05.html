@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>星环科技 688031 深度分析 H2操作指引 2026-07-05 巴蒂</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#c9d1d9;--text-dim:#8b949e;--red:#e15241;--green:#26a69a;--accent:#58a6ff;--warn:#d29922;--gold:#f0a500}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);padding:24px;max-width:1100px;margin:0 auto}
+h1{font-size:22px;margin-bottom:4px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+h3{font-size:14px;color:var(--gold);margin:10px 0 4px}
+.subtitle{color:var(--text-dim);font-size:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px}
+.info{background:#0f1a1a;border:1px solid #1f3d3d;border-radius:8px;padding:14px;margin-bottom:8px}
+.bull{background:#0f1a10;border:1px solid #1f3d20;border-radius:8px;padding:14px;margin-bottom:8px}
+.bear{background:#1a0f0f;border:1px solid #3d1f1f;border-radius:8px;padding:14px;margin-bottom:8px}
+.warn-box{background:#1a160f;border:1px solid #3d331f;border-radius:8px;padding:14px;margin-bottom:8px}
+.red{color:var(--red)}.green{color:var(--green)}.warn{color:var(--warn)}.gold{color:var(--gold)}.accent{color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#1c2129;color:var(--text-dim);padding:7px 8px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,0.5);vertical-align:top}
+tr:hover{background:rgba(88,166,255,0.04)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.tag-red{background:rgba(225,82,65,0.2);color:var(--red)}
+.tag-green{background:rgba(38,166,154,0.2);color:var(--green)}
+.tag-warn{background:rgba(210,153,34,0.2);color:var(--warn)}
+.tag-accent{background:rgba(88,166,255,0.2);color:var(--accent)}
+.tag-gold{background:rgba(240,165,0,0.2);color:var(--gold)}
+.chart-box{width:100%;height:320px;margin:6px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.stat-card{background:rgba(22,27,34,0.6);border:1px solid var(--border);border-radius:6px;padding:10px}
+.stat-card .lbl{font-size:10px;color:var(--text-dim)}
+.stat-card .val{font-size:16px;font-weight:700;margin:2px 0}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);line-height:1.8}
+.highlight{border-left:3px solid var(--gold);padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0;background:rgba(240,165,0,0.06)}
+.blockquote{font-style:italic;color:var(--accent);font-size:13px;padding:8px 12px;border-left:2px solid var(--accent);margin:8px 0}
+</style>
+</head>
+<body>
+
+<h1>星环科技（688031）深度分析 · 2026H2 操作指引</h1>
+<div class="subtitle">分析基准：2026-07-05（周日）| 数据截止：7/3收盘 106.53元 | 持仓状态：利润仓（成本-44.48元）| 分级：观察/利润仓</div>
+
+<!-- VERDICT -->
+<div class="info" style="text-align:center">
+<div style="font-size:17px;font-weight:900;color:var(--gold);margin-bottom:8px">利润仓持有 · 等H股IPO催化 · 不加仓也不清仓</div>
+<div style="font-size:13px;color:var(--text-dim);line-height:1.7">
+星环科技是A股罕见的同时覆盖<b>大数据+AI基础设施+数据要素</b>全栈的软件平台公司。<br>
+当前处于"技术有壁垒、营收在增长、亏损在收窄、但估值依然很高"的拐点前夜。<br>
+老潘持仓成本<b class="green">-44.48元（负成本/利润仓）</b>，2358股，策略灵活度高。<br>
+<b>H2核心看点：</b>H股18C上市（6月已获备案）→ 国产AI基础设施2万亿政策催化 → Q2中报验证亏损收窄趋势。
+</div>
+</div>
+
+<h2>一、公司画像：国产AI基础设施的"操作系统"</h2>
+
+<div class="card">
+<div class="grid-2">
+<div>
+<h3 style="margin-top:0">业务本质</h3>
+<p style="font-size:12px;line-height:1.8">
+星环的核心产品是一套<b>分布式大数据+AI平台软件</b>——相当于企业数据处理的"国产操作系统"。覆盖数据全生命周期：集成→存储→治理→建模→分析→挖掘→流通，以及从数据到知识、从模型到应用的全流程。<br><br>
+<b>核心产品矩阵：</b><br>
+❶ 大数据基础平台（TDH）—— 替代Cloudera/Hortonworks<br>
+❷ 分布式分析型数据库（ArgoDB）—— 替代Oracle Exadata/Teradata<br>
+❸ AI基础设施平台（LLMOps/Sophon）—— 大模型训练推理+智能体编排<br>
+❹ 数据要素流通平台 —— 数据交易所底层技术支撑
+</p>
+</div>
+<div>
+<h3 style="margin-top:0">竞争格局</h3>
+<table style="margin-bottom:6px">
+<tr><th>维度</th><th>星环</th><th>海外对标</th></tr>
+<tr><td>大数据平台</td><td>TDH</td><td>Cloudera/Databricks</td></tr>
+<tr><td>分布式数据库</td><td>ArgoDB/KunDB</td><td>Snowflake/Oracle</td></tr>
+<tr><td>AI/ML平台</td><td>LLMOps/Sophon</td><td>Databricks ML</td></tr>
+<tr><td>数据要素</td><td>数据流通平台</td><td>无海外直接对标</td></tr>
+</table>
+<div style="font-size:10px;color:var(--text-dim)">
+<b>差异化优势：</b>国内唯一同时拥有大数据+AI+数据库三张牌的平台公司<br>
+<b>关键合作：</b>星环LLMOps + 海光DCU = 国产化AI智能体运营平台（2026.04发布）<br>
+<b>信创替代：</b>金融/政务/能源等关键领域国产化数据库替代主力
+</div>
+</div>
+</div>
+</div>
+
+<h2>二、财务体检：拐点前夜的亏损收窄</h2>
+
+<div class="grid-3">
+<div class="stat-card"><div class="lbl">2025营收</div><div class="val accent">4.47亿</div><div style="font-size:10px;color:var(--green)">+20.47%</div></div>
+<div class="stat-card"><div class="lbl">2025净利</div><div class="val red">-2.45亿</div><div style="font-size:10px;color:var(--green)">亏损收窄28.6%</div></div>
+<div class="stat-card"><div class="lbl">Q1 2026营收</div><div class="val accent">8125万</div><div style="font-size:10px;color:var(--green)">+26.24%</div></div>
+<div class="stat-card"><div class="lbl">Q1 2026净利</div><div class="val red">-5600万</div><div style="font-size:10px;color:var(--green)">亏损收窄33%</div></div>
+<div class="stat-card"><div class="lbl">毛利率</div><div class="val accent">54.14%</div><div style="font-size:10px;color:var(--text-dim)">软件高毛利特征</div></div>
+<div class="stat-card"><div class="lbl">资产负债率</div><div class="val accent">25.6%</div><div style="font-size:10px;color:var(--text-dim)">财务健康</div></div>
+<div class="stat-card"><div class="lbl">当前市价(7/3)</div><div class="val accent">106.53</div><div style="font-size:10px;color:var(--red)">高点回撤-60%</div></div>
+<div class="stat-card"><div class="lbl">YTD涨幅</div><div class="val accent">+123%</div><div style="font-size:10px;color:var(--text-dim)">vs 12/31基数47.7</div></div>
+<div class="stat-card"><div class="lbl">市销率PS</div><div class="val warn">~29x</div><div style="font-size:10px;color:var(--text-dim)">市值~128亿</div></div>
+</div>
+
+<div class="card" style="margin-top:8px">
+<table>
+<tr><th>财务趋势</th><th>2023</th><th>2024</th><th>2025</th><th>Q1 2026</th><th>趋势判断</th></tr>
+<tr><td>营收(亿)</td><td>3.91</td><td>3.71</td><td>4.47</td><td>0.81</td><td class="green">增速加快</td></tr>
+<tr><td>归母净利(亿)</td><td>-2.88</td><td>-3.44</td><td>-2.45</td><td>-0.56</td><td class="green">亏损收窄</td></tr>
+<tr><td>毛利率</td><td>60%</td><td>57.5%</td><td>54.1%</td><td>—</td><td class="warn">略降(产品结构变化)</td></tr>
+<tr><td>经营现金流(亿)</td><td>-3.01</td><td>-1.52</td><td>-1.10</td><td>-0.59</td><td class="green">逐步改善</td></tr>
+<tr><td>研发费用(亿)</td><td>~2.5</td><td>~2.8</td><td>~2.4</td><td>—</td><td class="green">趋稳</td></tr>
+</table>
+<div style="font-size:10px;color:var(--text-dim);margin-top:4px">来源：NeoData（2026-07-05）| 公司年报/季报 | 营收3年复合增长率6.3%，净利3年复合改善3.3%</div>
+</div>
+
+<div class="highlight">
+<b>关键判断：</b>星环一直是"有技术没利润"的典型。但2025年和Q1 2026的数据显示出清晰的拐点信号——<b>营收增速加快（20%→26%）、亏损加速收窄（29%→33%）、经营现金流改善</b>。H股18C上市若成功，将显著改善现金流并降低融资成本，加速盈亏平衡点到来。
+</div>
+
+<h2>三、H2核心催化剂清单</h2>
+
+<div class="card">
+<table>
+<tr><th width="5%">#</th><th width="22%">时间节点</th><th width="18%">催化剂</th><th width="18%">重要程度</th><th>对股价/持仓的影响</th></tr>
+<tr>
+<td>①</td><td><b>7月-8月</b></td><td><b>中报披露</b><br>验证Q2营收增速+亏损收窄</td><td><span class="tag tag-red">★★★★★</span></td>
+<td>最直接的验证点。若Q2营收>1亿(+25%+)且亏损继续收窄→市场会确认拐点趋势；若数据低于预期→短线回调</td>
+</tr>
+<tr>
+<td>②</td><td><b>Q3-Q4</b></td><td><b>H股18C上市</b><br>6月已获证监会备案</td><td><span class="tag tag-red">★★★★★</span></td>
+<td>H股上市=国际资本认可+融资渠道打开。18C通道专为未盈利科技企业设计，星环是首批获批的四企之一。上市后有望获得港股通+国际资金关注</td>
+</tr>
+<tr>
+<td>③</td><td><b>H2持续</b></td><td><b>国产AI基建2万亿政策</b><br>中国AI数据中心方案落地</td><td><span class="tag tag-gold">★★★★</span></td>
+<td>YZ硅谷观察+Capex框架下，国产替代AI基础设施是必选项。星环作为唯一的国产大数据+AI全栈平台，是信创替代的核心受益者</td>
+</tr>
+<tr>
+<td>④</td><td><b>Q3-Q4</b></td><td><b>星环×海光合作推进</b><br>国产化AI智能体运营平台</td><td><span class="tag tag-accent">★★★</span></td>
+<td>85%企业需要"算力+平台"一体化方案。星环LLMOps+海光DCU=国产替代最佳组合。订单落地=营收跳升</td>
+</tr>
+<tr>
+<td>⑤</td><td><b>H2持续</b></td><td><b>数据要素政策</b><br>数据交易所/数据资产化加速</td><td><span class="tag tag-accent">★★★</span></td>
+<td>星环是上海数据交易所核心技术服务商，数据要素市场化=星环数据流通平台需求</td>
+</tr>
+</table>
+</div>
+
+<h2>四、技术面与估值——"高处跌落的利润仓"</h2>
+
+<div class="grid-2">
+<div class="card">
+<h3 style="margin-top:0">股价路径回顾</h3>
+<div style="font-size:11px;line-height:2">
+<b>2024.12.31：</b>46.13元（启动前底部）<br>
+<b>2025.01-03：</b>从36.71底部缓慢爬升<br>
+<b>2026.02-03：</b><b class="red">爆发式上涨</b> — AI大数据概念全面发酵，冲至<span class="red">264.88元历史高点（3/10）</span><br>
+<b>2026.03-06：</b>高位崩塌，从265→150(4月)→120(5月)<br>
+<b>2026.06.01 & 06.04：</b>两次涨停(140元→152元)，AI+数据要素双催化<br>
+<b>2026.07.01-03：</b>118→110.66→106.53，同步科技股回调<br><br>
+<b class="warn">当前106.53元 = 距高点-59.8%，YTD仍+123%</b>
+</div>
+</div>
+<div class="card">
+<h3 style="margin-top:0">估值评价</h3>
+<table>
+<tr><th>方法</th><th>估值</th><th>判断</th></tr>
+<tr><td>PS(2025)</td><td>128亿÷4.47亿=<span class="red">28.7x</span></td><td>对于54%毛利率的软件公司，PS偏高但不是极端值</td></tr>
+<tr><td>PS(2026E)</td><td>128亿÷5.5亿=<span class="warn">23.3x</span></td><td>若全年营收~5.5亿(+23%)，PS略合理但仍高</td></tr>
+<tr><td>PE</td><td>亏损，不适用</td><td>2027年有望实现盈亏平衡</td></tr>
+<tr><td>可比：金山办公</td><td>PS ~25x</td><td>金办盈利+更高增速，星环PS溢价需要强劲催化支撑</td></tr>
+<tr><td>可比：Databricks</td><td>估值~620亿美元</td><td>全球AI数据平台龙头，星环是中国版"缩小版"</td></tr>
+</table>
+</div>
+</div>
+
+<div class="highlight">
+<b>利润仓的优势：</b>成本-44.48元意味着这2358股是"零成本"持仓——市场价格怎么波动都不会亏损本金。这给了老潘极大的策略灵活性：可以完全忽略短期波动，蹲H股上市这个最大的H2催化剂。这也是利润仓策略的核心价值——<b>让时间站在你这边</b>。
+</div>
+
+<div class="chart-box" id="chart-price"></div>
+
+<h2>五、持仓体系中的定位——利润仓策略</h2>
+
+<div class="card">
+<table>
+<tr><th width="18%">维度</th><th>评价</th><th>说明</th></tr>
+<tr>
+<td><b>供给侧壁垒</b></td>
+<td><span class="tag tag-accent">★★★★</span> 技术壁垒</td>
+<td>分布式数据库+AI平台+数据要素三层叠加。替换成本极高：金融/政务客户迁移数据库的成本远超软件授权费。但软件壁垒本质上不如硬件（澜起的专利、三祥的工艺）"硬"</td>
+</tr>
+<tr>
+<td><b>技术路线上卡位</b></td>
+<td><span class="tag tag-accent">★★★★</span> AI基础设施</td>
+<td>AI智能体时代，企业需要的不只是算力，还需要"数据层+模型层+应用层"的全栈平台。星环卡在数据→AI的中间层，位置类似数据时代的"交换机"</td>
+</tr>
+<tr>
+<td><b>利润持续性</b></td>
+<td><span class="tag tag-red">★★</span> 尚未盈利</td>
+<td>亏损在收窄但离盈亏平衡还有距离。2025年亏损2.45亿对应营收4.47亿——每赚1块钱要亏5毛4。但增速加快+亏损收窄的双趋势验证了拐点方向</td>
+</tr>
+<tr>
+<td><b>当前在12只持仓中的定位</b></td>
+<td><span class="tag tag-green">利润仓</span></td>
+<td>与兴森科技同属"利润仓"——负成本提供安全性。不同在于兴森的ABF载板有明确的Capex需求支撑（强β），星环更多依赖AI情绪+政策催化（中β+强α波动）</td>
+</tr>
+</table>
+</div>
+
+<h2>六、H2操作指引</h2>
+
+<div class="card">
+<h3 style="margin:0 0 8px 0">与三档情景挂钩的操作量化表</h3>
+<table>
+<tr><th width="15%">情景</th><th width="10%">概率</th><th width="18%">触发条件</th><th width="18%">预期价格</th><th>操作</th></tr>
+<tr style="background:rgba(38,166,154,0.05)">
+<td><b class="green">超预期</b></td><td>25%</td>
+<td>H股18C成功上市 + Q2营收超预期(+30%+) + AI基建政策密集落地</td>
+<td class="green"><b>140-160元</b></td>
+<td><b>减持1/3仓位</b>（锁定部分利润仓），剩余继续持有等2027年盈亏平衡。H股上市后关注A/H折溢价</td>
+</tr>
+<tr>
+<td><b class="accent">基准情景</b></td><td>50%</td>
+<td>Q2营收+25%-28%，亏损继续收窄。H股上市推进但未正式挂牌。AI政策温和推进</td>
+<td class="accent"><b>100-120元</b></td>
+<td><b>持仓不动。</b>利润仓不需要止损，也不需要加仓——等催化剂自然兑现</td>
+</tr>
+<tr style="background:rgba(225,82,65,0.04)">
+<td><b class="red">低于预期</b></td><td>25%</td>
+<td>Q2营收增速<20% + 亏损收窄停滞 + H股上市延期</td>
+<td class="red"><b>70-90元</b></td>
+<td><b>减持1/2至清仓。</b>如果三个催化剂同时miss→说明拐点判断可能偏早。利润仓的底线是不让浮盈全部回吐</td>
+</tr>
+</table>
+<div style="font-size:10px;color:var(--text-dim);margin-top:6px">概率为巴蒂基于公司趋势+产业逻辑的主观判断。不构成投资建议。</div>
+</div>
+
+<div class="grid-2" style="margin-top:8px">
+<div class="bull">
+<h3 style="margin-top:0">🟢 理由</h3>
+❶ 利润仓（负成本）= 极致安全垫，无心理压力<br>
+❷ 营收增速加速（20%→26%），方向正确<br>
+❸ H股18C上市是最确定的H2催化剂<br>
+❹ AI智能体时代需要数据层基础设施→星环是唯一的国产全栈平台<br>
+❺ 106元距高点265元已跌60%，赔率改善<br>
+❻ 数据要素+信创双政策加持
+</div>
+<div class="bear">
+<h3 style="margin-top:0">🔴 警惕</h3>
+❶ 至今未盈利，PS 29x对于收入仅5亿公司偏高<br>
+❷ 3月高点265→107暴跌说明前期涨幅是投机驱动<br>
+❸ 科创板软件股波动率极大——再跌40-50%也在历史范围内<br>
+❹ H股上市=融资但也=Dilution<br>
+❺ 下游客户以金融/政务为主——预算受宏观影响<br>
+❻ 星环LLMOps和海光的合作落地速度不确定
+</div>
+</div>
+
+<div class="chart-box" id="chart-scenario"></div>
+
+<h2>七、全面持仓映射下的星环定位</h2>
+
+<div class="card">
+<table>
+<tr><th>持仓对比</th><th>澜起科技</th><th>三祥新材</th><th>兴森科技</th><th style="background:rgba(240,165,0,0.06)">星环科技</th><th>软通动力</th></tr>
+<tr><td><b>壁垒类型</b></td><td class="green">硬件专利</td><td class="green">工艺唯一</td><td class="accent">产能壁垒</td><td class="warn">软件技术</td><td class="accent">规模+客户</td></tr>
+<tr><td><b>定价权</b></td><td class="green">全球寡头</td><td class="green">全球唯一扩产</td><td class="accent">国产替代</td><td class="warn">信创替代</td><td class="accent">大客户关系</td></tr>
+<tr><td><b>盈利状态</b></td><td class="green">年利润108亿</td><td class="green">Q1扭亏+372%浮盈</td><td class="green">已盈利</td><td class="red">尚未盈利</td><td class="green">Q1扭亏</td></tr>
+<tr><td><b>估值保护</b></td><td class="green">PE合理</td><td class="warn">PE偏高</td><td class="accent">PE合理</td><td class="red">PS 29x</td><td class="accent">适中</td></tr>
+<tr><td><b>H2催化强度</b></td><td class="green">中报+DDR5升级</td><td class="gold">铪产线投产</td><td class="accent">Capex传导</td><td class="gold">H股上市+AI政策</td><td class="accent">Token工厂</td></tr>
+<tr><td><b>风控底线</b></td><td>利润垫极厚</td><td>止损65元</td><td>利润仓安全</td><td class="green">利润仓安全</td><td>利润垫极厚</td></tr>
+</table>
+</div>
+
+<div class="highlight">
+<b class="gold">星环在12只持仓中的特殊价值：</b>它是唯一一只<b>"国产替代软件"</b>标的——其余持仓要么是硬件（澜起/三祥/兴森）、要么是化工/医药/钢铁。软件股的估值弹性和波动率都远高于硬件股。这意味着：<br><br>
+❶ 在AI热潮中，星环比澜起/三祥更容易出现短期暴涨（参考3月从47→265的5.6倍涨幅）<br>
+❷ 在情绪退潮中，星环比硬件股回调更深（+5.6倍→-60%只用了3个月）<br>
+❸ <b>利润仓策略正好匹配这种"高弹性+高波动"品种</b>——零成本持仓让你可以蹲下一次脉冲而不承受本金风险。
+</div>
+
+<div class="footer">
+<b>数据来源：</b>NeoData金融数据（2026-07-05）| 公司2025年报+2026Q1季报 | 证监会港股上市备案公告（2026-06-18）| 同花顺/东方财富 | 雪球投资者讨论<br>
+<b>免责声明：</b>本报告仅代表巴蒂（AI助手）基于公开信息的个人分析，不构成任何投资指令。星环科技为科创板未盈利企业，PS 29x+尚未盈利，波动性极高。老潘持仓成本为负（利润仓），策略选择范围更灵活。所有决策需独立判断。投资有风险，决策需谨慎。<br>
+<b>生成时间：</b>2026-07-05 12:20 CST | <b>分析人：</b>巴蒂（WorkBuddy AI）
+</div>
+
+<script>
+(function(){
+  var c1 = echarts.init(document.getElementById('chart-price'), null, {backgroundColor:'#161b22'});
+  c1.setOption({
+    title:{text:'股价走势：从46元到265元回头（2025.01-2026.07）',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'axis'},
+    grid:{left:'8%',right:'4%',bottom:'3%',top:'18%',containLabel:true},
+    xAxis:{type:'category',data:['24.12','25.03','25.06','25.09','25.12','26.01','26.02','26.03\n高点265','26.04','26.05','26.06\n涨停','26.07\n106'],
+      axisLabel:{color:'#8b949e',fontSize:9}},
+    yAxis:{type:'value',name:'元',nameTextStyle:{color:'#8b949e'},
+      axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}},min:30,max:280},
+    series:[{
+      type:'line',smooth:true,
+      data:[46,55,50,58,62,70,90,264.88,150,120,152,106.53],
+      itemStyle:{color:'#f0a500'},lineStyle:{width:2.5},
+      areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,
+        colorStops:[{offset:0,color:'rgba(240,165,0,0.2)'},{offset:1,color:'rgba(240,165,0,0.02)'}]}},
+      markLine:{silent:true,
+        data:[{yAxis:106.53,label:{formatter:'106.53(7/3)',color:'#f0a500',fontSize:9},lineStyle:{type:'solid'}},
+              {yAxis:264.88,label:{formatter:'高点264.88\n(3/10)',color:'#e15241',fontSize:9},lineStyle:{type:'dashed'}}],
+        lineStyle:{color:'#f0a500'}}
+    }]
+  });
+
+  var c2 = echarts.init(document.getElementById('chart-scenario'), null, {backgroundColor:'#161b22'});
+  c2.setOption({
+    title:{text:'H2情景概率 & 预期价格区间',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'axis'},
+    grid:{left:'8%',right:'4%',bottom:'3%',top:'22%',containLabel:true},
+    xAxis:{type:'category',data:['低于预期\n(25%)\n70-90元','基准情景\n(50%)\n100-120元','超预期\n(25%)\n140-160元'],
+      axisLabel:{color:'#8b949e',fontSize:9}},
+    yAxis:{type:'value',name:'元',nameTextStyle:{color:'#8b949e'},
+      axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}},min:60,max:180},
+    series:[{
+      type:'bar',
+      data:[
+        {value:80,itemStyle:{color:'#e15241'},label:{show:true,position:'top',color:'#e15241',fontSize:10,formatter:'80元\n减1/2'}},
+        {value:110,itemStyle:{color:'#58a6ff'},label:{show:true,position:'top',color:'#58a6ff',fontSize:10,formatter:'110元\n不动'}},
+        {value:150,itemStyle:{color:'#26a69a'},label:{show:true,position:'top',color:'#26a69a',fontSize:10,formatter:'150元\n减1/3'}}
+      ],
+      barWidth:38,itemStyle:{borderRadius:[4,4,0,0]},
+      markLine:{silent:true,
+        data:[{yAxis:106.53,label:{formatter:'当前106.53',color:'#f0a500',fontSize:9}}],
+        lineStyle:{color:'#f0a500',type:'dashed'}}
+    }]
+  });
+
+  window.addEventListener('resize',function(){c1.resize();c2.resize();});
+})();
+</script>
+
+</body>
+</html>

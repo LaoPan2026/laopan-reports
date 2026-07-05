@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026H1 A股业绩预增TOP5行业 | Wind数据出品</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root { --bg:#0d1117; --card:#161b22; --border:#21262d; --text:#c9d1d9; --tdim:#8b949e; --red:#e15241; --green:#26a69a; --accent:#58a6ff; --warn:#d29922; --gold:#f0c040; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,"Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding:24px; max-width:1100px; margin:0 auto; }
+h1 { font-size:24px; margin-bottom:4px; }
+h2 { font-size:17px; color:var(--accent); margin:24px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:14px; color:var(--tdim); margin:16px 0 8px; }
+.subtitle { color:var(--tdim); font-size:13px; margin-bottom:20px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:18px; margin-bottom:16px; }
+.warn-card { background:#1a0f0f; border:1px solid #3d1f1f; border-radius:8px; padding:18px; margin-bottom:16px; }
+.warn-card .title { color:#ff6b6b; font-weight:700; font-size:15px; }
+.warn-card .body { margin-top:8px; line-height:1.7; font-size:12px; color:#c9a0a0; }
+.red { color:var(--red); }
+.green { color:var(--green); }
+.warn { color:var(--warn); }
+.gold { color:var(--gold); }
+.rank-badge { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; font-size:15px; font-weight:800; }
+.rank-1 { background:linear-gradient(135deg,#ff6b6b,#e15241); color:#fff; }
+.rank-2 { background:linear-gradient(135deg,#d29922,#e8a030); color:#fff; }
+.rank-3 { background:linear-gradient(135deg,#58a6ff,#3b82f6); color:#fff; }
+.rank-4 { background:linear-gradient(135deg,#8b949e,#6e7681); color:#fff; }
+.rank-5 { background:linear-gradient(135deg,#8b5cf6,#7c3aed); color:#fff; }
+.top5-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; margin-bottom:16px; }
+.top5-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px; position:relative; }
+.top5-card .header { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.top5-card .name { font-size:17px; font-weight:700; }
+.top5-card .sectors { font-size:11px; color:var(--tdim); margin-top:2px; }
+.top5-card .kpi-row { display:flex; justify-content:space-between; margin:10px 0; padding:8px 0; border-bottom:1px solid rgba(33,38,45,0.5); }
+.top5-card .kpi-row:last-child { border-bottom:none; }
+.top5-card .kpi-label { font-size:11px; color:var(--tdim); }
+.top5-card .kpi-value { font-size:14px; font-weight:700; text-align:right; }
+.chart-box { width:100%; height:420px; margin:12px 0; }
+.chart-box2 { width:100%; height:340px; margin:12px 0; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:#1c2129; color:var(--tdim); padding:7px 8px; text-align:left; font-weight:600; border-bottom:1px solid var(--border); }
+td { padding:7px 8px; border-bottom:1px solid rgba(33,38,45,0.5); }
+tr:hover { background:rgba(88,166,255,0.04); }
+.footer { margin-top:32px; padding-top:16px; border-top:1px solid var(--border); font-size:11px; color:var(--tdim); line-height:1.8; }
+.insight-box { background:#0f1a1f; border-left:3px solid var(--accent); padding:12px 16px; margin:10px 0; border-radius:0 8px 8px 0; font-size:13px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<h1>📊 2026H1 业绩预增TOP5行业</h1>
+<div class="subtitle">数据来源：万得 Wind 金融数据 | 基于已发布中报业绩预告（截至2026-07-03）| 筛选标准：预告公司≥3家、剔除扭亏为盈极端值</div>
+
+<!-- ===== WARNING ===== -->
+<div class="warn-card">
+<div class="title">⚠️ 重要说明：数据时效性与样本局限</div>
+<div class="body">
+截至2026年7月3日，A股仅<b>少数公司</b>发布了2026年中报业绩预告。大多数行业仅有1-3家公司披露，样本量不足以做行业级推断。<br>
+<b>以下TOP5排名基于「已披露预告公司数≥3家」的行业</b>，反映的是这些早期披露者的趋势信号，不等同于行业最终成绩。7月中下旬随着更多公司发布预告，排名可能发生显著变化。<br>
+另外，农林牧渔（+4774%）、医药生物（+1615%）、石油石化（+1301%）、传媒（+413%）等行业虽然名义增速极高，但仅1-2家公司披露且为扭亏为盈基数效应，<b>已排除，不具参考意义</b>。
+</div>
+</div>
+
+<!-- ===== TOP5 CARDS ===== -->
+<h2>🏆 2026H1 业绩预增TOP5行业</h2>
+<div class="top5-grid">
+
+<div class="top5-card">
+  <div class="header">
+    <span class="rank-badge rank-1">1</span>
+    <div>
+      <div class="name">基础化工</div>
+      <div class="sectors">化纤 / 氟化工 / 农化 / 电子化学品</div>
+    </div>
+  </div>
+  <div class="kpi-row"><span class="kpi-label">预告公司数</span><span class="kpi-value gold">9家</span></div>
+  <div class="kpi-row"><span class="kpi-label">预告净利润总额</span><span class="kpi-value">154~175亿</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速中位数</span><span class="kpi-value red">82%~117%</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速平均值</span><span class="kpi-value red">122%~162%</span></div>
+  <div class="kpi-row"><span class="kpi-label">2025H1利润基数</span><span class="kpi-value">727亿</span></div>
+</div>
+
+<div class="top5-card">
+  <div class="header">
+    <span class="rank-badge rank-2">2</span>
+    <div>
+      <div class="name">电子</div>
+      <div class="sectors">半导体 / 光通信 / AI算力硬件</div>
+    </div>
+  </div>
+  <div class="kpi-row"><span class="kpi-label">预告公司数</span><span class="kpi-value gold">7家</span></div>
+  <div class="kpi-row"><span class="kpi-label">预告净利润总额</span><span class="kpi-value">111~117亿</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速中位数</span><span class="kpi-value red">69%</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速平均值</span><span class="kpi-value red">92%~114%</span></div>
+  <div class="kpi-row"><span class="kpi-label">2025H1利润基数</span><span class="kpi-value">886亿</span></div>
+</div>
+
+<div class="top5-card">
+  <div class="header">
+    <span class="rank-badge rank-3">3</span>
+    <div>
+      <div class="name">汽车</div>
+      <div class="sectors">汽车零部件 / 整车 / 新能源车</div>
+    </div>
+  </div>
+  <div class="kpi-row"><span class="kpi-label">预告公司数</span><span class="kpi-value gold">3家</span></div>
+  <div class="kpi-row"><span class="kpi-label">预告净利润总额</span><span class="kpi-value">14~16亿</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速平均值</span><span class="kpi-value red">104%~118%</span></div>
+  <div class="kpi-row"><span class="kpi-label">数据质量</span><span class="kpi-value warn">样本仅3家</span></div>
+  <div class="kpi-row"><span class="kpi-label">细分亮点</span><span class="kpi-value">机动车零配件</span></div>
+</div>
+
+<div class="top5-card">
+  <div class="header">
+    <span class="rank-badge rank-4">4</span>
+    <div>
+      <div class="name">通信</div>
+      <div class="sectors">光模块 / 通讯设备 / 5G</div>
+    </div>
+  </div>
+  <div class="kpi-row"><span class="kpi-label">预告公司数</span><span class="kpi-value gold">4家</span></div>
+  <div class="kpi-row"><span class="kpi-label">预告净利润总额</span><span class="kpi-value">10~12亿</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速中位数上限</span><span class="kpi-value red">84%</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速平均值</span><span class="kpi-value red">80%~113%</span></div>
+  <div class="kpi-row"><span class="kpi-label">2025H1利润基数</span><span class="kpi-value">1,379亿</span></div>
+</div>
+
+<div class="top5-card">
+  <div class="header">
+    <span class="rank-badge rank-5">5</span>
+    <div>
+      <div class="name">电力设备</div>
+      <div class="sectors">电气部件 / 新能源设备</div>
+    </div>
+  </div>
+  <div class="kpi-row"><span class="kpi-label">预告公司数</span><span class="kpi-value gold">4家</span></div>
+  <div class="kpi-row"><span class="kpi-label">预告净利润总额</span><span class="kpi-value">35~39亿</span></div>
+  <div class="kpi-row"><span class="kpi-label">增速平均值</span><span class="kpi-value red">33%~50%</span></div>
+  <div class="kpi-row"><span class="kpi-label">预告总额VS基数</span><span class="kpi-value warn">样本量小</span></div>
+  <div class="kpi-row"><span class="kpi-label">相关方向</span><span class="kpi-value">储能/电网升级</span></div>
+</div>
+
+</div>
+
+<!-- ===== CHART 1 ===== -->
+<h2>📈 TOP5行业预告净利润增速区间</h2>
+<div class="chart-box" id="chart-speed"></div>
+
+<!-- ===== CHART 2 ===== -->
+<h2>💰 各行业预告净利润总额 & 公司覆盖率</h2>
+<div class="chart-box2" id="chart-total"></div>
+
+<!-- ===== FULL TABLE ===== -->
+<h2>📋 全部申万一级行业预告数据一览</h2>
+<div class="card" style="overflow-x:auto;">
+<table>
+<thead>
+<tr><th>行业</th><th>预告公司数</th><th>净利润总额(亿)</th><th>增速平均值</th><th>增速中值上限</th><th>备注</th></tr>
+</thead>
+<tbody>
+<tr><td>农林牧渔</td><td>1</td><td>2.7~3.0</td><td class="red">4287%~4774%</td><td class="red">4774%</td><td class="warn">⚠ 扭亏基数</td></tr>
+<tr><td>医药生物</td><td>2</td><td>2.0~2.5</td><td class="red">1249%~1615%</td><td class="red">1615%</td><td class="warn">⚠ 扭亏基数</td></tr>
+<tr><td>石油石化</td><td>2</td><td>67~73</td><td class="red">1182%~1301%</td><td class="red">1301%</td><td class="warn">⚠ 扭亏基数</td></tr>
+<tr><td>传媒</td><td>1</td><td>1.5~1.9</td><td class="red">305%~413%</td><td class="red">413%</td><td class="warn">⚠ 扭亏基数</td></tr>
+<tr style="background:rgba(210,153,34,0.08)"><td><b>🏆 基础化工</b></td><td><b>9</b></td><td><b>155~175</b></td><td class="red"><b>122%~162%</b></td><td class="red"><b>117%</b></td><td>✅ 样本充足</td></tr>
+<tr style="background:rgba(88,166,255,0.08)"><td><b>🥈 电子</b></td><td><b>7</b></td><td><b>111~117</b></td><td class="red"><b>92%~114%</b></td><td class="red"><b>69%</b></td><td>✅ 样本充足</td></tr>
+<tr style="background:rgba(88,166,255,0.05)"><td><b>🥉 汽车</b></td><td><b>3</b></td><td><b>14~16</b></td><td class="red"><b>104%~118%</b></td><td class="red">—</td><td>样本3家</td></tr>
+<tr><td>有色金属</td><td>3</td><td>8~9</td><td class="red">146%~184%</td><td class="red">51%</td><td>内部分化大</td></tr>
+<tr style="background:rgba(139,92,246,0.05)"><td><b>4. 通信</b></td><td><b>4</b></td><td><b>10~12</b></td><td class="red"><b>80%~113%</b></td><td class="red"><b>84%</b></td><td>✅ 样本4家</td></tr>
+<tr style="background:rgba(139,92,246,0.03)"><td><b>5. 电力设备</b></td><td><b>4</b></td><td><b>35~39</b></td><td class="red"><b>33%~50%</b></td><td class="red">—</td><td>✅ 样本4家</td></tr>
+<tr><td>公用事业</td><td>1</td><td>1.6~2.0</td><td class="red">62%~103%</td><td class="red">103%</td><td>样本1家</td></tr>
+<tr><td>交通运输</td><td>1</td><td>31~34</td><td class="red">69%~86%</td><td class="red">86%</td><td>样本1家</td></tr>
+<tr><td>国防军工</td><td>1</td><td>-0.04~-0.03</td><td class="green">36%~55%</td><td class="red">55%</td><td>亏损</td></tr>
+<tr><td>食品饮料</td><td>2</td><td>8.6~9.2</td><td class="red">36%~47%</td><td class="red">47%</td><td>—</td></tr>
+<tr><td>机械设备</td><td>2</td><td>4.0~4.3</td><td class="red">31%~39%</td><td class="red">39%</td><td>—</td></tr>
+<tr><td>钢铁</td><td>1</td><td>-1.79</td><td class="green">-37%~-37%</td><td class="red">-37%</td><td>亏损</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== INSIGHTS ===== -->
+<h2>💡 巴蒂的行业洞察</h2>
+
+<div class="insight-box">
+<b>1. 基础化工是当之无愧的"利润王"</b>——9家公司预告总额154~175亿，中位数增速82%~117%。化纤（+2780%上限）、氟化工、电子化学品三条主线齐发力。这验证了你在持仓中配置华峰化学、泰和新材、三祥新材的化工逻辑。
+</div>
+
+<div class="insight-box">
+<b>2. 电子行业"利润总额大但增速分布不均匀"</b>——7家公司预告总额111~117亿，但中位数增速仅69%，说明头部公司（如半导体设备）体量虽大但增速已经被高基数稀释。真正的高增速来自中游材料（电子化学品、PCB上游原材料等），而非直接的光模块/芯片。
+</div>
+
+<div class="insight-box">
+<b>3. 通信行业预告总额仅10~12亿，偏低</b>——但增速中枢84%（上限）。光模块龙头公司如果还未发布预告，实际行业利润可能远高于此。老潘持仓中的汇绿生态（通信设备方向）处于正在爆发的子赛道上。
+</div>
+
+<div class="insight-box">
+<b>4. 有色金属内部分化极端</b>——3家预告公司平均增速高达146%~184%，但中位数仅31%~51%，说明增速分布严重右偏。工业金属和稀有小金属分化极大，不能一概而论。
+</div>
+
+<div class="insight-box">
+<b>5. 与老潘持仓的重合度</b>——TOP5行业中有<b>3个</b>（基础化工、电子、通信）与你的持仓方向完全匹配。软通动力（计算机）虽然不在TOP5，但属于高增长行业的中游软件方向，逻辑不冲突。
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+<b>数据源与方法论</b><br>
+• 数据来源：万得 Wind 金融数据（analytics_data.get_financial_data）<br>
+• 统计口径：2026年中报业绩预告（截至2026-07-03已发布数据）<br>
+• 筛选标准：预告公司数≥3家的行业才有资格入选TOP5<br>
+• 排除处理：剔除扭亏为盈导致的极端增速异常值（增速>1000%且预告公司<3家）<br>
+• 增速区间：基于预告净利润同比增长上限/下限的平均值<br>
+• 数据时点：2026-07-03 11:54 CST<br>
+<br>
+<b>⚠️ 免责声明</b><br>
+本报告由AI助手巴蒂生成，仅供老潘个人投研参考，不构成任何投资建议。所有数据均来源于万得Wind金融数据服务。业绩预告数据具有时效性和样本偏差，不等同于行业最终业绩。股市有风险，投资需谨慎。<br>
+<br>
+生成时间：2026-07-03 11:54 CST | 🎯 巴蒂（WorkBuddy AI 投资助手）
+</div>
+
+<script>
+(function(){
+  // Chart 1: TOP5 行业增速区间柱状图
+  var c1 = echarts.init(document.getElementById('chart-speed'));
+  c1.setOption({
+    tooltip: { trigger:'axis', axisPointer:{type:'shadow'} },
+    legend: { data:['增速下限','增速上限','预告公司数(右轴)'], textStyle:{color:'#8b949e'}, top:5 },
+    grid: { left:'8%', right:'8%', top:'18%', bottom:'10%' },
+    xAxis: { type:'category', data:['基础化工','电子','汽车','通信','电力设备'], axisLabel:{color:'#8b949e',fontSize:12} },
+    yAxis: [
+      { type:'value', name:'同比增速(%)', axisLabel:{color:'#8b949e',formatter:'{value}%'}, nameTextStyle:{color:'#8b949e'} },
+      { type:'value', name:'预告公司数(家)', axisLabel:{color:'#8b949e'}, nameTextStyle:{color:'#8b949e'} }
+    ],
+    series: [
+      { name:'增速下限', type:'bar', data:[81.9,92.2,104.0,79.8,32.9], itemStyle:{color:'#d29922'}, label:{show:true,position:'inside',color:'#fff',fontSize:10,formatter:'{c}%'} },
+      { name:'增速上限', type:'bar', data:[116.9,114.4,118.5,112.6,50.2], itemStyle:{color:'#e15241'}, label:{show:true,position:'top',color:'#e15241',fontSize:10,formatter:'{c}%'} },
+      { name:'预告公司数(右轴)', type:'line', yAxisIndex:1, data:[9,7,3,4,4], itemStyle:{color:'#58a6ff'}, lineStyle:{color:'#58a6ff',width:2}, symbol:'diamond', symbolSize:14, label:{show:true,color:'#58a6ff',fontSize:11,fontWeight:700} }
+    ]
+  });
+
+  // Chart 2: 各行业预告净利润总额气泡图
+  var c2 = echarts.init(document.getElementById('chart-total'));
+  c2.setOption({
+    tooltip: { trigger:'item', formatter:function(p){return p.name+'<br>预告总额:'+p.data[2]+'亿<br>预告公司:'+p.data[3]+'家<br>增速中值:'+p.data[4]+'%';} },
+    grid: { left:'12%', right:'5%', top:'8%', bottom:'8%' },
+    xAxis: { type:'value', name:'预告公司数(家)', axisLabel:{color:'#8b949e'}, nameTextStyle:{color:'#8b949e'}, min:0, max:10 },
+    yAxis: { type:'value', name:'净利润总额(亿,下限)', axisLabel:{color:'#8b949e'}, nameTextStyle:{color:'#8b949e'} },
+    series: [{
+      type:'scatter', symbolSize:function(d){return Math.sqrt(d[2])*4+8;},
+      data: [
+        ['基础化工',9,154.6,9,81.9],
+        ['电子',7,110.8,7,68.9],
+        ['汽车',3,14.4,3,104.0],
+        ['通信',4,9.5,4,84.4],
+        ['电力设备',4,35.4,4,32.9],
+        ['有色金属',3,8.1,3,50.8],
+        ['食品饮料',2,8.6,2,46.7],
+        ['机械设备',2,4.0,2,39.3],
+        ['公用事业',1,1.6,1,103.3],
+        ['交通运输',1,31.0,1,85.7],
+        ['国防军工',1,-0.04,1,54.8],
+        ['环保',1,1.8,1,80.0],
+        ['纺织服饰',1,3.7,1,70.3],
+        ['钢铁',1,-1.79,1,-36.6],
+      ],
+      itemStyle:{ color:'#58a6ff' },
+      label:{ show:true, formatter:'{b}', position:'right', color:'#c9d1d9', fontSize:10 },
+      emphasis:{ scale:2 }
+    }]
+  });
+
+  window.addEventListener('resize',function(){c1.resize();c2.resize();});
+})();
+</script>
+</body>
+</html>

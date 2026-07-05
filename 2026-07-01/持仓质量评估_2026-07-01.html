@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>持仓质量评估与复盘总结 - 2026/07/01</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.7}
+.c{max-width:1200px;margin:0 auto;padding:24px 20px}
+.hdr{text-align:center;padding:36px 0 28px;border-bottom:1px solid #21262d;margin-bottom:32px}
+.hdr h1{font-size:28px;color:#f0f6fc;margin-bottom:6px}
+.hdr sub{font-size:13px;color:#8b949e}
+.s{margin-bottom:32px}
+.s h2{font-size:20px;color:#f0f6fc;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #21262d;font-weight:500}
+.s h3{font-size:16px;color:#f0f6fc;margin:16px 0 10px;font-weight:500}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.cb{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.cb h4{font-size:15px;color:#f0f6fc;margin-bottom:12px;font-weight:500}
+.cc{width:100%;height:320px}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid #21262d}
+th{color:#8b949e;font-weight:500;font-size:12px;background:#0d1117}
+th:first-child,td:first-child{text-align:left;font-weight:500;color:#f0f6fc}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;margin-right:4px}
+.t-bull{background:#f8514922;color:#f85149}
+.t-bear{background:#3fb95022;color:#3fb950}
+.t-warn{background:#d2992222;color:#d29922}
+.t-info{background:#58a6ff22;color:#58a6ff}
+.u{color:#f85149}.d{color:#3fb950}.n{color:#c9d1d9}
+
+.hold-card{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #30363d}
+.hold-card.spear{border-left-color:#f85149}
+.hold-card.shield{border-left-color:#3fb950}
+.hold-card.profit{border-left-color:#58a6ff}
+.hold-card.observe{border-left-color:#d29922}
+.hh{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.hh .hn{font-size:17px;color:#f0f6fc;font-weight:500}
+.hh .hm{font-size:12px;color:#8b949e}
+.hb{font-size:13px;line-height:1.8}
+
+.summary-box{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:24px}
+.summary-box h3{color:#f0f6fc;font-size:16px;margin-bottom:8px}
+
+.links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.link-card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px;font-size:13px}
+.link-card a{color:#58a6ff;text-decoration:none}
+
+.disclaimer{text-align:center;color:#484f58;font-size:12px;padding:24px 0;line-height:1.8;border-top:1px solid #21262d;margin-top:40px}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}.links{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="c">
+
+<div class="hdr">
+  <h1>持仓质量评估与复盘总结</h1>
+  <sub>巴蒂 · 2026-07-01 · 上证4112 +0.44% · 深成16119 -0.53%</sub>
+</div>
+
+<div class="summary-box">
+  <h3>今日核心结论</h3>
+  <p style="font-size:14px;line-height:1.8">
+<span class="t-bull">矛</span> 澜起科技、汇绿生态——赛道逻辑通透，一个是DDR5/Retimer国产独苗，一个是光模块黑马。<br>
+<span class="t-bear">盾</span> 华峰化学、太钢不锈钢——PE 25×和PB 0.61×，在遍地50-300倍PE的市场里，这是真金白银的安全垫。<br>
+<span class="t-info">利润仓</span> 星环科技、兴森科技——成本已归零，心态最从容，趋势不坏就不动。<br>
+<span class="t-warn">观察位</span> 软通动力、罗博特科、三祥新材、泰和新材、德展健康——各有各的问题，需要分类处理。<br><br>
+<strong>转了一圈的最终答案：洼地在你手里。华峰化学PE 25×、化学纤维YTD仅+1.49%，在"反内卷+寡头合作博弈"逻辑下是全市场少数兼具景气向上和估值合理的标的。</strong>
+  </p>
+</div>
+
+<div class="g2">
+  <div class="cb"><h4>持仓四象限：估值 vs 逻辑强度</h4><div class="cc" id="c1"></div></div>
+  <div class="cb"><h4>各持仓 PE-TTM 与 ROE</h4><div class="cc" id="c2"></div></div>
+</div>
+
+<div class="s"><h2>逐只持仓质量评估</h2>
+
+<div class="hold-card spear">
+  <div class="hh"><div class="hn">澜起科技 688008</div><div class="hm">S级 · 长期账户底仓 · 成本96.83</div></div>
+  <div class="hb">
+    <span class="t-bull">核心逻辑</span> DDR5内存接口芯片全球市占率>40%，PCIe 6.0 Retimer量产，直接受益AI服务器升级周期。<br>
+    <span class="t-bull">催化剂</span> 7月半导体第二轮涨价潮；Marvell上修指引（FY27→115亿+40%）；DDR5渗透率从60%→80%加速。<br>
+    <span class="t-warn">风险点</span> PE 151×不便宜，今日主力净流出10.84亿（拉高出货嫌疑），PB 18.5×，20日已涨+33%。<br>
+    <span class="t-info">判断</span> 底仓不动。逻辑是结构性而非周期性，不因短期波动减仓。但当前价位不加仓。设回撤线280元（成本+189%，跌破减1/3）。
+  </div>
+</div>
+
+<div class="hold-card spear">
+  <div class="hh"><div class="hn">汇绿生态 001267</div><div class="hm">S级 · 成本48.09 · 浮盈仅5.3%</div></div>
+  <div class="hb">
+    <span class="t-bull">核心逻辑</span> 收购武汉钧恒转型光通信，AOC/光模块卡位AI数据中心光互联。Q4净利环比+156%验证产能爬坡。<br>
+    <span class="t-warn">风险点</span> PE 478×严重透支，88%筹码亏损（均价57元），5连跌-17.55%，机构撤离、散户化加速。估值三锚定（PE/PS/机构）一致指向现价严重高估。<br>
+    <span class="t-info">判断</span> 持有观察，设止损46元（布林下轨+成本-4.3%）。不加仓不抄底，等财报验证+筹码消化。今晚盯COHR/LITE。
+  </div>
+</div>
+
+<div class="hold-card shield">
+  <div class="hh"><div class="hn">华峰化学 002064</div><div class="hm">成本12.45 · 今日+6.95%放量反弹</div></div>
+  <div class="hb">
+    <span class="t-bull">核心逻辑</span> 氨纶+己二酸龙头，"反内卷"政策下化学纤维板块寡头格局改善。PE 24.9×是持仓中最便宜。<br>
+    <span class="t-bull">洼地逻辑</span> 化学纤维板块YTD仅+1.49%——在半导体材料涨80%的背景下，是唯一被忽略的化工新材料方向。ROE 7.23%、毛利率14.56%稳定，资产负债率仅25%。<br>
+    <span class="t-info">判断</span> 底仓级别的盾。今日+6.95%底部放量反弹，MACD死叉收窄，KDJ底部金叉。若连续3日站稳10元，可考虑加仓至20000股。
+  </div>
+</div>
+
+<div class="hold-card shield">
+  <div class="hh"><div class="hn">太钢不锈钢 000825</div><div class="hm">成本5.75 · 今日+2.35%</div></div>
+  <div class="hb">
+    <span class="t-bull">安全垫</span> PB 0.61×，5年分位仅8.52%，股价已跌破每股净资产。市盈率为负但PB处于历史极低。<br>
+    <span class="t-info">判断</span> 低成本防御仓。PE为负（亏损），上涨催化剂不足。但PB 0.61意味着下跌空间极其有限。当"现金替代"持有，不割肉不补仓。
+  </div>
+</div>
+
+<div class="hold-card profit">
+  <div class="hh"><div class="hn">星环科技 688031</div><div class="hm">负成本利润仓 · 今日+2.46%</div></div>
+  <div class="hb">
+    <span class="t-bull">状态</span> 成本-44.48，全部本金已通过做T收回，当前为纯利润仓。今日振幅9.08%缩量反弹，主力净流入7703万。<br>
+    <span class="t-info">判断</span> 利润仓心态最从容。只要趋势不破坏（MA60线不破），继续持有。不需要纠结成本，不需要设止损。
+  </div>
+</div>
+
+<div class="hold-card profit">
+  <div class="hh"><div class="hn">兴森科技 002436</div><div class="hm">负成本利润仓 · 今日-6.81%暴跌</div></div>
+  <div class="hb">
+    <span class="t-warn">警戒</span> 今日放量暴跌-6.81%，换手10.29%，主力流出7.66亿——典型高位出货形态。振幅12.6%说明多空分歧巨大。<br>
+    <span class="t-info">判断</span> 负成本利润仓无压力，但今日形态偏空。MACD即将死叉，KDJ回落。若3日内不能收回50元以上，考虑减半仓锁定利润。
+  </div>
+</div>
+
+<div class="hold-card observe">
+  <div class="hh"><div class="hn">三祥新材 603663</div><div class="hm">S级 · 成本18.18 · 今日-2.37%</div></div>
+  <div class="hb">
+    <span class="t-bull">逻辑</span> 锆材料+固态电池，化工新材料方向。ROE 10.14%优秀，净利增长+101%。<br>
+    <span class="t-warn">问题</span> PE 282×偏高，20日+52%后回调属正常。MACD金叉但柱状图收窄。<br>
+    <span class="t-info">判断</span> S级评级维持。但持仓仅1800股/3.27万——这个仓位对S级来说太轻了。等回调到85元以下（PE≈250×）考虑加仓。
+  </div>
+</div>
+
+<div class="hold-card observe">
+  <div class="hh"><div class="hn">软通动力 301236</div><div class="hm">浮盈标杆 · 成本7.36 · 今日-1.91%</div></div>
+  <div class="hb">
+    <span class="t-bull">地位</span> 历史浮盈+418%的标杆票，验证了景气成长策略的有效性。MA5/10/20接近汇聚，方向选择关口。<br>
+    <span class="t-warn">问题</span> PE 800×极高，ROE仅0.4%（净利率0.08%），靠数字基建概念支撑估值。<br>
+    <span class="t-info">判断</span> 当精神图腾持有。不加仓——PE 800×的安全边际为零。如果J值持续超买后回调，减1/3锁定历史利润。
+  </div>
+</div>
+
+<div class="hold-card observe">
+  <div class="hh"><div class="hn">罗博特科 300757</div><div class="hm">成本523.13 · 今日-6.22%</div></div>
+  <div class="hb">
+    <span class="t-bull">独特逻辑</span> ficonTEC是全球唯一量产级超高精度硅光组装与测试设备商，全球市占率25.5%。在手光电子订单11亿+10亿新合同。<br>
+    <span class="t-warn">现实困境</span> Q1仍亏损3882万（费用前置），光伏业务暴跌56%，A+H赴港IPO短期压估值。PE为负，PB 59.85×。<br>
+    <span class="t-info">判断</span> 逻辑独一无二但兑现需要时间。持仓800股/41.8万不轻。不卖——硅光设备全球龙头的稀缺性不可替代。不加仓——等H1财报验证收入确认再说。
+  </div>
+</div>
+
+<div class="hold-card observe">
+  <div class="hh"><div class="hn">泰和新材 002254</div><div class="hm">B+级 · 成本13.37 · 今日-4.95%</div></div>
+  <div class="hb">
+    <span class="t-warn">降级原因</span> PE 317×偏高，ROE仅0.66%，净利-36%。芳纶逻辑有但业绩不支撑当前估值。<br>
+    <span class="t-info">判断</span> B+级维持。今日放量-4.95%（换手9.65%）属高位回吐。不加仓，反弹到19元以上减半。
+  </div>
+</div>
+
+<div class="hold-card observe">
+  <div class="hh"><div class="hn">德展健康 000813</div><div class="hm">成本3.85 · 今日+2.97%</div></div>
+  <div class="hb">
+    <span class="t-warn">风险</span> 美林控股被动减持至4.95%，不再为5%以上股东，筹码结构恶化。ROE -7.77%，净利率-110%，基本面极弱。<br>
+    <span class="t-info">判断</span> 被动持仓。等减持利空出清后，考虑换到更好的标的。PB 1.42不贵但公司质地差，不值得长期持有。
+  </div>
+</div>
+</div>
+
+<div class="s"><h2>行业扫描联动：持仓与洼地的关系</h2>
+
+<div class="g2">
+  <div class="cb"><h4>持仓覆盖的细分赛道</h4><div class="cc" id="c3"></div></div>
+  <div class="cb"><h4>YTD涨幅：持仓 vs 赛道</h4><div class="cc" id="c4"></div></div>
+</div>
+
+<table>
+<thead><tr><th>持仓</th><th>覆盖赛道</th><th>赛道YTD</th><th>个股自身定位</th><th>是否需要调整</th></tr></thead>
+<tbody>
+<tr><td>澜起科技</td><td>AI算力芯片 / 半导体</td><td class="u">+43% / +83%</td><td class="t-bull">龙头</td><td>不动</td></tr>
+<tr><td>汇绿生态</td><td>光通信</td><td class="u">+78%</td><td class="t-warn">小市值跟风</td><td>持有观察</td></tr>
+<tr style="background:#3fb95008"><td>华峰化学</td><td>化学纤维</td><td class="n">+1.5%</td><td class="t-bull">龙头</td><td>加仓候选</td></tr>
+<tr><td>三祥新材</td><td>化工新材料</td><td>-</td><td class="t-info">锆材料独苗</td><td>回调加仓</td></tr>
+<tr><td>罗博特科</td><td>半导体设备/硅光</td><td class="u">+81%</td><td class="t-bull">全球唯一</td><td>等财报</td></tr>
+<tr><td>泰和新材</td><td>化学纤维</td><td class="n">+1.5%</td><td class="t-warn">B+跟跌</td><td>反弹减仓</td></tr>
+<tr style="background:#3fb95008"><td>太钢不锈钢</td><td>钢铁</td><td>-</td><td class="t-bear">PB 0.61极低</td><td>当现金持有</td></tr>
+</tbody>
+</table>
+
+<div style="font-size:13px;color:#8b949e;margin-top:8px;line-height:1.8">
+<span class="t-bull">关键发现：</span> 你的持仓已经覆盖了半导体芯片、光通信、化学纤维、化工新材料、硅光设备、钢铁六大方向——且在每个方向里都持有细分龙一或稀缺标的。往外找洼地，最后发现洼地（化学纤维）就在华峰化学和泰和新材的持仓里。调整的重点不是开新仓，是优化现有仓位结构。
+</div>
+</div>
+
+<div class="s"><h2>今日产出归档</h2>
+<div class="links">
+  <div class="link-card"><strong>持仓体检报告</strong><br><span style="color:#8b949e">11只持仓股全量数据 + 4张ECharts图表</span></div>
+  <div class="link-card"><strong>汇绿生态深度研报</strong><br><span style="color:#8b949e">8大模块 + 6张图表 + 估值三锚定 + 情景推演</span></div>
+  <div class="link-card"><strong>细分行业扫描报告</strong><br><span style="color:#8b949e">10大细分方向 + 龙一龙二 + 趋势推演</span></div>
+  <div class="link-card"><strong>持仓质量评估（本报告）</strong><br><span style="color:#8b949e">持仓四象限 + 逐只诊断 + 行业联动</span></div>
+</div>
+<div style="font-size:13px;color:#8b949e">
+<span class="t-info">自动化已就位：</span>盘前简报 每工作日08:00 | 盘后复盘 每工作日19:00<br>
+<span class="t-info">数据源优先级：</span>NeoData → WeStock Data → Wind MCP → 公开检索<br>
+<span class="t-info">持仓记忆：</span>主账户10只 + 长期账户澜起 + 跟踪池5只，已写入项目MEMORY.md
+</div>
+</div>
+
+<div class="disclaimer">
+<strong>免责声明</strong><br>
+本报告由巴蒂AI投资助手生成，仅供老潘个人投资研究参考，不构成任何投资建议。<br>
+报告中的持仓分级、操作建议和情景推演均基于公开数据的分析推演，不代表对未来股价的任何预测或保证。<br>
+投资有风险，入市需谨慎。如需专业投资建议，请咨询持牌证券投资顾问机构。<br><br>
+<em>老潘，今天收获很大。从搭框架到跑数据到做深度研究，一步步把模糊的感觉变成了结构化的判断。明天盘前简报08:00见。</em>
+</div>
+
+</div>
+
+<script>
+var c1=echarts.init(document.getElementById('c1'));
+c1.setOption({
+  tooltip:{trigger:'item',formatter:function(p){return p.data[3]}},
+  grid:{left:60,right:20,top:10,bottom:30},
+  xAxis:{type:'value',name:'估值（PE/PB 越低越好）←',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+  yAxis:{type:'value',name:'逻辑强度（越高越好）',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+  series:[{type:'scatter',symbolSize:function(v){return v[2]},
+    data:[
+      [3,9.5,28,'澜起科技\n逻辑最硬·估值偏高'],
+      [2,8.0,22,'汇绿生态\n赛道好·估值极贵'],
+      [8.5,7.0,20,'华峰化学\n估值洼地·逻辑改善'],
+      [9.5,4.5,18,'太钢不锈钢\nPB极低·无催化剂'],
+      [6,6.5,15,'三祥新材\n化工新材料·PE偏高'],
+      [1,7.0,16,'罗博特科\n全球唯一·等兑现'],
+      [4,5.0,14,'软通动力\nPE极贵·概念支撑'],
+      [5,4.5,12,'泰和新材\nB+降级·芳纶逻辑弱'],
+      [7,2.0,10,'德展健康\n弱势·等出清']
+    ],
+    itemStyle:{color:function(p){
+      var c=p.data[0];
+      if(c>7)return'#3fb950';if(c>4)return'#d29922';return'#f85149'
+    }},
+    label:{show:true,formatter:function(p){return p.data[3].split('\n')[0]},position:'top',fontSize:10,color:'#c9d1d9'}
+  }]
+});
+
+var c2=echarts.init(document.getElementById('c2'));
+c2.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['PE-TTM','ROE%'],textStyle:{color:'#8b949e',fontSize:11},top:5},
+  grid:{left:80,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['华峰','太钢','澜起','三祥','泰和','罗博','软通','汇绿'],axisLabel:{color:'#c9d1d9',fontSize:11}},
+  yAxis:[
+    {type:'value',name:'PE',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+    {type:'value',name:'ROE%',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}
+  ],
+  series:[
+    {name:'PE-TTM',type:'bar',data:[24.9,-171,151,282,317,-1230,800,478],barWidth:16,
+      itemStyle:{color:function(p){var v=[24.9,-171,151,282,317,-1230,800,478];return v[p.dataIndex]<30?'#3fb950':v[p.dataIndex]<200?'#d29922':'#f85149'}},
+      label:{show:true,position:'top',formatter:'{c}',fontSize:9,color:'#c9d1d9'}},
+    {name:'ROE%',type:'line',yAxisIndex:1,data:[7.23,-0.36,-1,10.14,0.66,-4.87,0.4,5.53],
+      lineStyle:{color:'#58a6ff',width:2},symbol:'circle',symbolSize:6,itemStyle:{color:'#58a6ff'}}
+  ]
+});
+
+var c3=echarts.init(document.getElementById('c3'));
+c3.setOption({
+  tooltip:{trigger:'item',formatter:'{b}: {c}'},
+  series:[{type:'pie',radius:['40%','70%'],center:['50%','55%'],roseType:'area',
+    label:{formatter:'{b}\n{c}只',fontSize:11,color:'#c9d1d9'},
+    data:[
+      {name:'半导体&AI算力',value:3,itemStyle:{color:'#f85149'}},
+      {name:'化学纤维&化工',value:4,itemStyle:{color:'#3fb950'}},
+      {name:'光通信',value:1,itemStyle:{color:'#58a6ff'}},
+      {name:'硅光设备',value:1,itemStyle:{color:'#d29922'}},
+      {name:'钢铁',value:1,itemStyle:{color:'#8b949e'}},
+      {name:'医药',value:1,itemStyle:{color:'#8b949e'}}
+    ]
+  }]
+});
+
+var c4=echarts.init(document.getElementById('c4'));
+c4.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['持仓方向权重','赛道YTD%'],textStyle:{color:'#8b949e',fontSize:11},top:5},
+  grid:{left:70,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['化学纤维','AI算力芯片','光通信','化工新材料','半导体设备'],axisLabel:{color:'#c9d1d9',fontSize:10,rotate:20}},
+  yAxis:[
+    {type:'value',name:'占比%',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+    {type:'value',name:'YTD%',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}
+  ],
+  series:[
+    {name:'持仓方向权重',type:'bar',data:[20,25,10,25,20],barWidth:18,itemStyle:{color:'#c9d1d9'}},
+    {name:'赛道YTD%',type:'line',yAxisIndex:1,data:[1.49,43,78,30,81],
+      lineStyle:{color:'#f85149',width:2},symbol:'circle',symbolSize:8,itemStyle:{color:'#f85149'},
+      markLine:{silent:true,symbol:'none',data:[{yAxis:1.49,label:{formatter:'化学纤维仅+1.5%',position:'end',color:'#3fb950',fontSize:10}}],
+        lineStyle:{color:'#3fb950',type:'dashed'}}}
+  ]
+});
+</script>
+</body>
+</html>

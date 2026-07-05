@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>欧林生物调研评估 2026-07-04 巴蒂</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#c9d1d9;--text-dim:#8b949e;--red:#e15241;--green:#26a69a;--accent:#58a6ff;--warn:#d29922;--gold:#f0a500}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);padding:24px;max-width:1100px;margin:0 auto}
+h1{font-size:22px;margin-bottom:4px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+h3{font-size:14px;color:var(--gold);margin:10px 0 4px}
+.subtitle{color:var(--text-dim);font-size:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px}
+.info{background:#0f1a1a;border:1px solid #1f3d3d;border-radius:8px;padding:14px;margin-bottom:8px}
+.bull{background:#0f1a10;border:1px solid #1f3d20;border-radius:8px;padding:14px;margin-bottom:8px}
+.bear{background:#1a0f0f;border:1px solid #3d1f1f;border-radius:8px;padding:14px;margin-bottom:8px}
+.warn-box{background:#1a160f;border:1px solid #3d331f;border-radius:8px;padding:14px;margin-bottom:8px}
+.red{color:var(--red)}.green{color:var(--green)}.warn{color:var(--warn)}.gold{color:var(--gold)}.accent{color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#1c2129;color:var(--text-dim);padding:7px 8px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,0.5);vertical-align:top}
+tr:hover{background:rgba(88,166,255,0.04)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.tag-red{background:rgba(225,82,65,0.2);color:var(--red)}
+.tag-green{background:rgba(38,166,154,0.2);color:var(--green)}
+.tag-warn{background:rgba(210,153,34,0.2);color:var(--warn)}
+.tag-accent{background:rgba(88,166,255,0.2);color:var(--accent)}
+.chart-box{width:100%;height:300px;margin:6px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat-card{background:rgba(22,27,34,0.6);border:1px solid var(--border);border-radius:6px;padding:10px}
+.stat-card .lbl{font-size:10px;color:var(--text-dim)}
+.stat-card .val{font-size:16px;font-weight:700;margin:2px 0}
+.verdict{font-size:18px;font-weight:900;text-align:center;padding:12px}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);line-height:1.8}
+.timeline{position:relative;padding-left:18px}
+.timeline-item{position:relative;margin-bottom:8px;padding-left:12px;font-size:12px}
+.timeline-item::before{content:'';position:absolute;left:-16px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.timeline-item::after{content:'';position:absolute;left:-13px;top:16px;width:2px;height:calc(100% - 8px);background:var(--border)}
+.timeline-item:last-child::after{display:none}
+</style>
+</head>
+<body>
+
+<h1>欧林生物（688319）调研评估</h1>
+<div class="subtitle">评估基准：2026-07-04（周六） | 数据截止：7/3收盘 | 焦点：金葡菌疫苗III期揭盲延迟 &amp; H股IPO二次递表</div>
+
+<!-- VERDICT -->
+<div class="info" style="text-align:center">
+<div class="verdict gold">保留在跟踪池 &middot; 不建仓</div>
+<div style="font-size:13px;color:var(--text-dim);line-height:1.7">
+<b>一句话结论：</b>金葡菌疫苗Q3揭盲是全球首创的binary事件，价值巨大但风险对称。<br>
+延迟≠失败，H股IPO二次递表证明公司在积极推进。当前252倍PE已price in成功预期，<br>
+跟踪池角色是"蹲催化信号"——揭盲数据出来后，成功则考虑建仓，失败则果断移除。
+</div>
+</div>
+
+<h2>一、核心催化时间线</h2>
+
+<div class="card">
+<div class="timeline">
+<div class="timeline-item"><b>2025.05</b> &mdash; 金葡菌疫苗完成全部6000+受试者III期入组</div>
+<div class="timeline-item"><b>2025.11</b> &mdash; 首次递交港股H股上市申请</div>
+<div class="timeline-item"><b>2026.Q1</b> &mdash; 营收1.58亿(+80.37%)，扭亏为盈，归母净利2719万</div>
+<div class="timeline-item"><b>2026.04-05</b> &mdash; 40+机构调研，公司公开表示"预计2026H1完成揭盲"</div>
+<div class="timeline-item"><b>2026.06.30</b> &mdash; H1 deadline到期&nbsp;<span class="tag tag-warn">未揭盲</span>；同日重新递交H股招股书（第二次）</div>
+<div class="timeline-item"><b>2026.07.01</b> &mdash; 股价暴跌<span class="red">-12.23%</span>，成交额11.34亿（天量换手），收盘38.60</div>
+<div class="timeline-item"><b>2026.07.02</b> &mdash; 小幅反弹+1.04%，收盘39.00</div>
+<div class="timeline-item"><b>2026.07.03</b> &mdash; <span class="green">大幅反弹+9.54%</span>，收盘42.72，成交额8.72亿</div>
+<div class="timeline-item"><b>2026.Q3（预计）</b> &mdash; <span class="gold">⭐ 金葡菌疫苗III期揭盲</span>（H股招股书确认Q3窗口）</div>
+<div class="timeline-item"><b>2026年底（预计）</b> &mdash; 提交NDA上市申请</div>
+</div>
+</div>
+
+<h2>二、公司基本面速览</h2>
+
+<div class="grid-3">
+<div class="stat-card"><div class="lbl">2025营收</div><div class="val accent">7.04亿</div><div style="font-size:10px;color:var(--green)">+19.6% YoY</div></div>
+<div class="stat-card"><div class="lbl">2025归母净利</div><div class="val accent">2226万</div><div style="font-size:10px;color:var(--green)">+7.24% YoY</div></div>
+<div class="stat-card"><div class="lbl">Q1 2026营收</div><div class="val accent">1.58亿</div><div style="font-size:10px;color:var(--green)">+80.37% YoY</div></div>
+<div class="stat-card"><div class="lbl">Q1 2026归母</div><div class="val green">2719万</div><div style="font-size:10px;color:var(--green)">扭亏为盈</div></div>
+<div class="stat-card"><div class="lbl">毛利率</div><div class="val accent">92.96%</div><div style="font-size:10px;color:var(--text-dim)">疫苗高毛利特征</div></div>
+<div class="stat-card"><div class="lbl">估值 PE(TTM)</div><div class="val warn">~252x</div><div style="font-size:10px;color:var(--text-dim)">基于0.05元EPS</div></div>
+</div>
+
+<div class="card">
+<table>
+<tr><th>产品</th><th>2025收入</th><th>占比</th><th>地位</th></tr>
+<tr><td><b>吸附破伤风疫苗</b></td><td>6.14亿</td><td>87.15%</td><td><span class="tag tag-green">现金牛</span> 国内市占率98.8%</td></tr>
+<tr><td>AC脑膜炎球菌多糖结合疫苗</td><td>6535万</td><td>9.28%</td><td>成熟品种</td></tr>
+<tr><td>Hib结合疫苗</td><td>1876万</td><td>2.66%</td><td>成熟品种</td></tr>
+<tr><td><b>重组金葡菌疫苗</b></td><td>—</td><td>—</td><td><span class="tag tag-star">在研</span> 全球首创，III期收官</td></tr>
+<tr><td><b>幽门螺杆菌疫苗</b></td><td>—</td><td>—</td><td><span class="tag tag-accent">在研</span> 口服给药，全球独家</td></tr>
+</table>
+</div>
+
+<h2>三、揭盲延迟：市场在担心什么</h2>
+
+<div class="card">
+<table>
+<tr><th width="25%">维度</th><th width="38%">市场担心的（熊观）</th><th width="37%">客观事实</th></tr>
+<tr>
+<td><b>延迟原因</b></td>
+<td>可能数据不理想，公司在拖时间</td>
+<td>III期临床数据清理流程长：中检院报告→数据清理→盲审会全套前置。H股招股书明确Q3揭盲，说明延迟是流程性而非实质问题。</td>
+</tr>
+<tr>
+<td><b>H股二次递表</b></td>
+<td>补交招股书=上次被否/撤回了</td>
+<td>首次递表后6个月自动失效是正常流程。新招股书增加了金葡菌更多细节+幽门螺杆菌疫苗口服剂型——信息量更大而不是更少。</td>
+</tr>
+<tr>
+<td><b>数据会不会"不好看"</b></td>
+<td>晚揭盲=有猫腻</td>
+<td>II期数据已显示良好安全性和快速免疫原性。6000+大样本本身增加了数据清理难度。辉瑞/赛诺菲/GSK在该领域全部落后——不是"做不好"，而是"只有它做到了III期"。<br><span style="font-size:10px;color:var(--text-dim)">来源：雪球用户分析+山西证券研报（2026-05）+H股招股书</span></td>
+</tr>
+<tr>
+<td><b>竞争格局</b></td>
+<td>万一失败了怎么办</td>
+<td>辉瑞、赛诺菲、GSK在金葡菌疫苗领域全部未进入III期——欧林是全球唯一推进到III期的药企。这种"容错空间"反而最大：失败了市场也不会突然冒出替代品。</td>
+</tr>
+</table>
+</div>
+
+<div class="warn-box">
+<b>💡 关键认知：</b>Biotech的临床延迟 ≠ 数据差。III期6000+样本的血清检测和第三方统计审查本身就可能超出原始时间表。H股招股书敢把Q3写在申报材料里，说明公司对这个窗口有把握。
+</div>
+
+<h2>四、估值体检：252倍PE到底贵不贵</h2>
+
+<div class="card">
+<table>
+<tr><th>估值方法</th><th>计算</th><th>结论</th></tr>
+<tr>
+<td><b>PE (2025)</b></td>
+<td>42.72元 / 0.05元EPS = 854倍<br>但2025年仅2226万净利润包含高研发费（1.33亿）</td>
+<td>传统PE完全失真</td>
+</tr>
+<tr>
+<td><b>PE (Q1年化)</b></td>
+<td>42.72元 / (0.0671×4) = 159倍<br>Q1净利润2719万，年化约1.09亿</td>
+<td>若全年维持Q1节奏，PE约159倍</td>
+</tr>
+<tr>
+<td><b>市值-现金流比</b></td>
+<td>市值约170亿 / 毛利6.55亿 = 26倍<br>破伤风疫苗毛利极高(93%)，经营现金流充裕</td>
+<td>按毛利估值不算离谱（但也不便宜）</td>
+</tr>
+<tr>
+<td><b>可比公司</b></td>
+<td>康希诺(PE亏损)、沃森(PE ~60x)、康泰(PE ~40x)<br>但欧林有First-in-class溢价</td>
+<td>First-in-class疫苗可以给溢价，但252x仍偏高</td>
+</tr>
+<tr>
+<td><b>DCF反算</b></td>
+<td>若金葡菌成功上市，峰值营收推测50-100亿<br>（手术5000万+人次×5-8%感染率×1000元/剂）<br>按20%净利率，峰值净利10-20亿</td>
+<td>若峰值净利15亿×30倍=450亿市值<br>当前170亿意味着"成功概率~38%"已被定价</td>
+</tr>
+</table>
+<div style="font-size:11px;color:var(--text-dim);margin-top:6px">
+来源：NeoData（2026-07-04）| 山西证券/中信建投研报 | 市值=约4亿总股本×42.72≈171亿（估算）
+</div>
+</div>
+
+<div class="grid-2">
+<div class="chart-box" id="chart-price"></div>
+<div class="chart-box" id="chart-revenue"></div>
+</div>
+
+<h2>五、多空综合评估</h2>
+
+<div class="grid-2">
+<div class="bull">
+<h3>🟢 多方理由</h3>
+<table>
+<tr><td>①</td><td><b>全球首创独占性。</b>金葡菌疫苗无竞品，辉瑞/赛诺菲/GSK均未进入III期。一旦成功获批，独占市场至少3-5年。</td></tr>
+<tr><td>②</td><td><b>破伤风疫苗安全垫。</b>6.14亿收入+93%毛利率+98.8%市占率=每年稳定现金流6-7亿，不是空壳biotech。</td></tr>
+<tr><td>③</td><td><b>Q1业绩大超预期。</b>营收+80%、净利扭亏，说明商业化能力在加速而非减速。</td></tr>
+<tr><td>④</td><td><b>H股IPO二次递表是利好不是利空。</b>新招股书细节更丰富，给国际市场讲故事。</td></tr>
+<tr><td>⑤</td><td><b>7/1暴跌后7/3强势反弹+9.54%。</b>11亿天量换手后直接回血，说明有资金在"抄底延迟"而不是"清仓跑路"。</td></tr>
+</table>
+</div>
+<div class="bear">
+<h3>🔴 空方理由</h3>
+<table>
+<tr><td>①</td><td><b>252倍PE赌一个不确定事件。</b>即使金葡菌成功，当前估值也已经price in了很大一部分预期。万一失败，50-70%的回撤是大概率。</td></tr>
+<tr><td>②</td><td><b>延迟本身削弱信心。</b>虽然流程性延迟合理，但市场已经用-12.23%投了票。</td></tr>
+<tr><td>③</td><td><b>销售费用率54%过高。</b>3.81亿销售费/7.04亿营收——二类疫苗依赖人海战术推广，利润被销售端大量消耗。</td></tr>
+<tr><td>④</td><td><b>单一产品依赖。</b>破伤风疫苗=87%营收，一旦遭遇政策风险或竞争格局变化，业绩弹性很脆。</td></tr>
+<tr><td>⑤</td><td><b>H股IPO可能压低A股估值。</b>港股对biotech估值偏保守，H股上市后A/H价差可能拉大。</td></tr>
+</table>
+</div>
+</div>
+
+<h2>六、决策框架：走还是留</h2>
+
+<div class="card">
+<table>
+<tr><th>决策</th><th>条件</th><th>理由</th></tr>
+<tr style="background:rgba(38,166,154,0.06)">
+<td><b class="green">保留在跟踪池</b></td>
+<td><b>默认选项</b></td>
+<td>
+❶ Q3揭盲是全球首创binary事件——赢了值2-3倍，输了砍掉。从跟踪池角度，现在撤退等于放弃一个"低成本蹲守高赔率事件"的机会<br>
+❷ H股IPO是额外催化剂，机构路演会持续释放信息<br>
+❸ 7/3反弹信号说明市场在重新定价延迟≠失败<br>
+❹ 持有成本为0（仅跟踪不持仓），没有真金白银压力
+</td>
+</tr>
+<tr style="background:rgba(225,82,65,0.04)">
+<td><b class="red">从跟踪池移除</b></td>
+<td>若出现以下情况之一</td>
+<td>
+❶ 揭盲数据明确失败（保护率不达标/安全性问题）→ 立即移除<br>
+❷ Q3结束（9/30）仍未揭盲 → 再次延期说明公司承诺不可靠，移除<br>
+❸ 破伤风疫苗出现重大政策风险（如国家集采/二类疫苗转一类）
+</td>
+</tr>
+</table>
+</div>
+
+<div class="info">
+<b>🎯 操作建议：</b><br><br>
+<b>当前：</b>保留在跟踪池，不建仓。等待7-8月揭盲结果。<br><br>
+<b>揭盲成功后的行动计划：</b><br>
+❶ 观察揭盲后2-3天股价反应，若高开高走放量→考虑建试仓（总仓位3-5%）<br>
+❷ 若高开低走（利好兑现）→ 不追，等回调至40元以下再评估<br>
+❸ 终极催化剂是NDA获批上市（2027年），但那是后话<br><br>
+<b>揭盲失败后的行动：</b><br>
+立即从跟踪池移除，不犹豫。<br><br>
+<b class="gold">核心结论：跟踪池的意义就是"低成本蹲催化"。欧林Q3揭盲是2026年最值得蹲的生物医药事件之一——不需要真金白银持仓，只需要保持关注。这就是跟踪池应有的用法。</b>
+</div>
+
+<h2>七、情景概率推演</h2>
+
+<div class="card">
+<table>
+<tr><th>情景</th><th>概率</th><th>股价预期</th><th>逻辑</th></tr>
+<tr><td><b class="green">揭盲成功，数据优异</b><br>保护率超80%+安全性良好</td><td style="text-align:center">40%</td><td class="green"><b>55-75元</b></td><td>First-in-class确定性落地，机构大幅上调目标价，散户追涨</td></tr>
+<tr><td><b class="warn">揭盲成功但数据一般</b><br>保护率60-70%，通过但不惊艳</td><td style="text-align:center">25%</td><td class="warn"><b>45-52元</b></td><td>通过是最重要的，但市场预期太高导致冲高回落</td></tr>
+<tr><td><b class="red">揭盲延迟到Q4</b><br>再次延期</td><td style="text-align:center">20%</td><td class="red"><b>28-35元</b></td><td>公司信誉受损，市场解读为数据有问题</td></tr>
+<tr><td><b class="red">揭盲失败</b><br>保护率不达标/安全性问题</td><td style="text-align:center">15%</td><td class="red"><b>15-22元</b></td><td>核心管线归零，回到破伤风疫苗单独估值（约80-100亿市值）</td></tr>
+</table>
+<div style="font-size:10px;color:var(--text-dim);margin-top:4px">
+概率为巴蒂主观判断，不代表任何机构的预测。来源：三期临床历史成功率（~60%抗感染疫苗）+欧林II期数据优异度上调。
+</div>
+</div>
+
+<div class="grid-2">
+<div class="chart-box" id="chart-scenario"></div>
+<div class="chart-box" id="chart-volume"></div>
+</div>
+
+<div class="footer">
+<b>数据来源：</b>NeoData金融数据（2026-07-04）| 公司公告（2025年报、2026Q1季报）| 山西证券/中信建投/兴业证券研报 | 雪球投资者分析 | H股招股书（2026-06-30二次递表）| 东方财富/同花顺<br>
+<b>免责声明：</b>本评估仅代表巴蒂（AI助手）基于公开信息的个人分析，不构成任何投资指令。欧林生物为高风险生物医药股，252倍PE+二进制临床结果意味着极端波动。所有决策需结合老潘自身风险偏好和实际情况独立判断。投资有风险，决策需谨慎。<br>
+<b>生成时间：</b>2026-07-04 10:20 CST | <b>分析人：</b>巴蒂（WorkBuddy AI）
+</div>
+
+<script>
+(function(){
+  // Chart 1 - Price history
+  var c1 = echarts.init(document.getElementById('chart-price'), null, {backgroundColor:'#161b22'});
+  c1.setOption({
+    title:{text:'近4日股价走势（7/1-7/3）',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'axis'},
+    grid:{left:'8%',right:'4%',bottom:'3%',top:'18%',containLabel:true},
+    xAxis:{type:'category',data:['6/30(盘前)','7/1','7/2','7/3'],
+      axisLabel:{color:'#8b949e',fontSize:10}},
+    yAxis:{type:'value',name:'元',nameTextStyle:{color:'#8b949e'},
+      axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}}},
+    series:[{
+      type:'line',smooth:true,
+      data:[44.59,38.60,39.00,42.72],
+      itemStyle:{color:'#58a6ff'},lineStyle:{width:2},
+      markLine:{silent:true,data:[{yAxis:44.59,label:{formatter:'开盘44.59',color:'#8b949e',fontSize:9}}],
+        lineStyle:{color:'#8b949e',type:'dashed'}},
+      areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,
+        colorStops:[{offset:0,color:'rgba(88,166,255,0.2)'},{offset:1,color:'rgba(88,166,255,0.02)'}]}}
+    }]
+  });
+
+  // Chart 2 - Revenue breakdown
+  var c2 = echarts.init(document.getElementById('chart-revenue'), null, {backgroundColor:'#161b22'});
+  c2.setOption({
+    title:{text:'2025年营收结构（7.04亿）',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'item',formatter:'{b}: {c}万 ({d}%)'},
+    series:[{
+      type:'pie',radius:['45%','72%'],center:['50%','55%'],
+      label:{color:'#c9d1d9',fontSize:9,formatter:'{b}\n{d}%'},
+      data:[
+        {value:61357,name:'破伤风疫苗',itemStyle:{color:'#58a6ff'}},
+        {value:6535,name:'AC脑膜炎',itemStyle:{color:'#26a69a'}},
+        {value:1876,name:'Hib疫苗',itemStyle:{color:'#d29922'}},
+        {value:639,name:'其他',itemStyle:{color:'#8b949e'}}
+      ]
+    }]
+  });
+
+  // Chart 3 - Scenario probability
+  var c3 = echarts.init(document.getElementById('chart-scenario'), null, {backgroundColor:'#161b22'});
+  c3.setOption({
+    title:{text:'情景概率 &amp; 预期价格区间',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'axis'},
+    grid:{left:'8%',right:'4%',bottom:'3%',top:'22%',containLabel:true},
+    xAxis:{type:'category',data:['揭盲失败\n(15%)','再次延期\n(20%)','成功一般\n(25%)','成功优异\n(40%)'],
+      axisLabel:{color:'#8b949e',fontSize:9}},
+    yAxis:{type:'value',name:'价格(元)',nameTextStyle:{color:'#8b949e'},
+      axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}},min:10,max:80},
+    series:[{
+      type:'bar',
+      data:[
+        {value:18.5,itemStyle:{color:'#e15241'},label:{show:true,position:'bottom',color:'#e15241',fontSize:9}},
+        {value:31.5,itemStyle:{color:'#d29922'},label:{show:true,position:'inside',color:'#fff',fontSize:9}},
+        {value:48.5,itemStyle:{color:'#58a6ff'},label:{show:true,position:'top',color:'#58a6ff',fontSize:9}},
+        {value:65,itemStyle:{color:'#26a69a'},label:{show:true,position:'top',color:'#26a69a',fontSize:9}}
+      ],
+      barWidth:28,itemStyle:{borderRadius:[4,4,0,0]},
+      markLine:{silent:true,
+        data:[{yAxis:42.72,label:{formatter:'当前42.72',color:'#f0a500',fontSize:9}}],
+        lineStyle:{color:'#f0a500',type:'dashed'}}
+    }]
+  });
+
+  // Chart 4 - Volume analysis
+  var c4 = echarts.init(document.getElementById('chart-volume'), null, {backgroundColor:'#161b22'});
+  c4.setOption({
+    title:{text:'近4日量价关系',textStyle:{color:'#c9d1d9',fontSize:13},left:'center'},
+    tooltip:{trigger:'axis'},
+    grid:{left:'8%',right:'4%',bottom:'3%',top:'22%',containLabel:true},
+    legend:{data:['成交量(万手)','涨跌幅(%)'],textStyle:{color:'#8b949e',fontSize:9},top:'14%'},
+    xAxis:{type:'category',data:['7/1','7/2','7/3'],
+      axisLabel:{color:'#8b949e',fontSize:10}},
+    yAxis:[
+      {type:'value',name:'万手',nameTextStyle:{color:'#8b949e'},
+        axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}}},
+      {type:'value',name:'%',nameTextStyle:{color:'#8b949e'},
+        axisLabel:{color:'#8b949e'}}
+    ],
+    series:[
+      {name:'成交量(万手)',type:'bar',data:[28.4,18.5,21.0],
+        itemStyle:{color:'#58a6ff',borderRadius:[3,3,0,0]},barWidth:24},
+      {name:'涨跌幅(%)',type:'line',yAxisIndex:1,
+        data:[-12.23,1.04,9.54],
+        itemStyle:{color:'#f0a500'},lineStyle:{width:2},
+        symbol:'circle',symbolSize:6}
+    ]
+  });
+
+  window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize();c4.resize();});
+})();
+</script>
+
+</body>
+</html>

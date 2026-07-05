@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>捷捷微电(300623) 深度研报 · V2.0 · 2026-07-01</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.7}
+.c{max-width:1200px;margin:0 auto;padding:24px 20px}
+.hdr{text-align:center;padding:28px 0 20px;border-bottom:1px solid #21262d;margin-bottom:24px}
+.hdr .mod{font-size:14px;color:#f85149;font-weight:600;margin-bottom:4px}
+.hdr h1{font-size:28px;color:#f0f6fc;margin-bottom:4px}
+.hdr .src{font-size:12px;color:#8b949e}
+
+.verdict-box{background:#161b22;border:2px solid #30363d;border-radius:14px;padding:24px 28px;margin-bottom:24px}
+.verdict-box .vt{font-size:22px;font-weight:600;margin-bottom:12px}
+.verdict-box .vk{font-size:14px;color:#c9d1d9;line-height:2}
+.bull{color:#f85149}.bear{color:#3fb950}.warn{color:#d29922}.info{color:#58a6ff}
+
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:20px}
+.kpi{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px 12px;text-align:center}
+.kpi .l{font-size:11px;color:#8b949e;margin-bottom:4px}
+.kpi .v{font-size:20px;font-weight:600}
+.kpi .s{font-size:11px;color:#8b949e;margin-top:3px}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.cb{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.cb h4{font-size:15px;color:#f0f6fc;margin-bottom:10px;font-weight:500}
+.cc{width:100%;height:320px}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid #21262d}
+th{color:#8b949e;font-weight:500;font-size:12px;background:#0d1117;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;font-weight:500;color:#f0f6fc}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;margin-right:4px}
+.t-bull{background:#f8514922;color:#f85149}
+.t-bear{background:#3fb95022;color:#3fb950}
+.t-warn{background:#d2992222;color:#d29922}
+.t-info{background:#58a6ff22;color:#58a6ff}
+
+.mod-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding:10px 0;border-bottom:1px solid #21262d}
+.mod-num{font-size:28px;font-weight:700;line-height:1}
+.mod-num.red{color:#f85149}.mod-num.blue{color:#58a6ff}
+.mod-title{font-size:18px;color:#f0f6fc;font-weight:500}
+.mod-src{font-size:11px;color:#8b949e;margin-left:auto}
+
+.card{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:20px;margin-bottom:16px}
+.card h3{font-size:15px;color:#f0f6fc;margin-bottom:10px;font-weight:500}
+.card li{font-size:13px;margin-bottom:6px;margin-left:18px}
+
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.sc{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px}
+.sc.opt{border-top:3px solid #3fb950}
+.sc.mid{border-top:3px solid #d29922}
+.sc.pes{border-top:3px solid #f85149}
+.sc h5{font-size:14px;color:#f0f6fc;margin-bottom:8px}
+.sc p{font-size:12px;color:#8b949e;line-height:1.7}
+
+.disclaimer{text-align:center;color:#484f58;font-size:12px;padding:24px 0;line-height:1.8;border-top:1px solid #21262d;margin-top:40px}
+@media(max-width:768px){.g2,.scenario-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="c">
+
+<div class="hdr">
+  <div class="mod">⚡ 模块一 · 核心结论前置</div>
+  <h1>捷捷微电 300623</h1>
+  <div class="src">功率半导体IDM龙头 · 数据源：万得 Wind + 券商研报 + 腾讯自选股 · 2026-07-01 22:00 北京</div>
+</div>
+
+<div class="verdict-box">
+  <div class="vt"><span class="bull">今日定调：</span>板块错杀，急跌是观察窗口——但不是买点。</div>
+  <div class="vk">
+    <span class="bull">7/1科创50暴跌2.48%</span>拖累下，捷捷微电重挫<strong>-6.85%</strong>（41.91元，盘中最高45.57→最低41.33，振幅10%），换手10.05%/成交33.49亿，主力净流出2.64亿。<br>
+    <span class="bull">行业背景：</span>功率半导体全面涨价周期——MOSFET 2/1调价、IGBT 5/1调价、扬杰科技7/1全品类+10~15%、英飞凌7/1全球涨价生效。<br>
+    <span class="warn">核心判断：</span>涨价周期逻辑确认，但Q1毛利率27.8%（2024年36.4%→2025年30.9%→持续下滑）是悬在头顶的剑。2026E EPS 0.87元对应Forward PE <strong>48×</strong>，在可比标的中偏高。<br>
+    <span class="bear">操作建议：</span><strong>41.91元不是买点，等待回调至38-40元区间。</strong>今日-6.85%放量下杀是20日+34%暴涨后的首次调整，大概率不是一日游。止损线37元。
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="l">现价 · 今日</div><div class="v bear">41.91 <span style="font-size:14px">-6.85%</span></div><div class="s">振幅10% · 高45.57</div></div>
+  <div class="kpi"><div class="l">PE-TTM</div><div class="v warn">~75×</div><div class="s">2026E PE ~48×</div></div>
+  <div class="kpi"><div class="l">总市值</div><div class="v" style="font-size:18px">348.7亿</div><div class="s">流通321.6亿</div></div>
+  <div class="kpi"><div class="l">2025营收</div><div class="v bull" style="font-size:18px">34.94亿</div><div class="s">+22.8% YoY</div></div>
+  <div class="kpi"><div class="l">2025净利</div><div class="v warn" style="font-size:18px">4.77亿</div><div class="s">+0.77% 几乎持平</div></div>
+  <div class="kpi"><div class="l">2025毛利率</div><div class="v bear">30.93%</div><div class="s">Q1仅27.8% · 持续下滑</div></div>
+  <div class="kpi"><div class="l">2026E EPS</div><div class="v bull" style="font-size:18px">0.87元</div><div class="s">+51.3% · 7家机构一致</div></div>
+  <div class="kpi"><div class="l">资产负债率</div><div class="v" style="color:#3fb950;font-size:18px">27.0%</div><div class="s">极低杠杆 · 安全</div></div>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">2</div>
+  <div class="mod-title">公司基本面全景</div>
+  <div class="mod-src">来源：公司年报 / NeoData</div>
+</div>
+
+<div class="g2">
+  <div class="cb"><h4>营收与净利趋势（年度）</h4><div class="cc" id="c1"></div></div>
+  <div class="cb"><h4>产品结构（2025）</h4><div class="cc" id="c2"></div></div>
+</div>
+
+<table>
+<thead><tr><th>项目</th><th>详情</th></tr></thead>
+<tbody>
+<tr><td>全称</td><td>江苏捷捷微电子股份有限公司 · 1995年成立 · 2017年创业板上市</td></tr>
+<tr><td>定位</td><td>国内稀缺的<span class="t-bull">功率半导体IDM</span>企业（芯片设计→晶圆制造→封装测试）</td></tr>
+<tr><td>核心产品</td><td>晶闸管国内#1（市占率28.5%/全球#3） · MOSFET第一大业务（100+车规产品） · IGBT子公司江苏易矽 · SiC/GaN布局中</td></tr>
+<tr><td>下游应用</td><td>消费电子40% · 工业控制36% · 汽车电子（快速增长/Tier-1量产） · 光伏储能 · 5G通信</td></tr>
+<tr><td>产能</td><td>6寸线（成熟） · <span class="t-bull">8寸线2026H2达产（核心增量）</span> · 投资高峰已过（2025年9.44亿→Q1仅0.60亿）</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>🔍 IDM模式的核心价值</h3>
+  <p style="font-size:13px">在功率半导体行业，IDM相比Fabless具有显著优势——自主掌控产能、品质和成本。尤其在全球供给收缩周期中（台积电/三星削减8寸产能），IDM企业的议价能力和交付保障远超纯设计公司。捷捷微电是国内少数具备完整IDM能力的功率器件企业。</p>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">3</div>
+  <div class="mod-title">财务数据仪表盘</div>
+  <div class="mod-src">来源：NeoData / 同花顺一致预期</div>
+</div>
+
+<div class="g2">
+  <div class="cb"><h4>盈利能力趋势</h4><div class="cc" id="c3"></div></div>
+  <div class="cb"><h4>季度营收 & 毛利率变化</h4><div class="cc" id="c4"></div></div>
+</div>
+
+<table>
+<thead><tr><th>指标</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>2026E</th><th>趋势</th></tr></thead>
+<tbody>
+<tr><td>营收(亿)</td><td>18.24</td><td>21.06</td><td>28.45</td><td>34.94</td><td class="bull">46.12</td><td class="bull">3年CAGR 24%</td></tr>
+<tr><td>归母净利(亿)</td><td>3.59</td><td>2.19</td><td>4.73</td><td>4.77</td><td class="bull">7.21</td><td class="warn">2025增速仅0.77%</td></tr>
+<tr><td>EPS(元)</td><td>0.49</td><td>0.30</td><td>0.63</td><td>0.57</td><td class="bull">0.87</td><td class="bull">+52.6%预期</td></tr>
+<tr><td>毛利率</td><td>-</td><td>-</td><td>~36.4%</td><td class="bear">30.9%</td><td class="warn">?%</td><td class="bear">持续下滑中</td></tr>
+<tr><td>净利率</td><td>19.7%</td><td>10.4%</td><td>16.6%</td><td>13.6%</td><td>15.6%</td><td class="warn">波动</td></tr>
+<tr><td>ROE</td><td>-</td><td>-</td><td>-</td><td>8.1%</td><td>-</td><td class="warn">偏低</td></tr>
+<tr><td>经营现金流</td><td>-</td><td>-</td><td>-</td><td class="bull">+7.74亿</td><td>-</td><td class="bull">健康</td></tr>
+<tr><td>资产负债率</td><td>-</td><td>-</td><td>-</td><td class="bull">27.0%</td><td>-</td><td class="bull">极低杠杆</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>⚠️ 关键验证矛盾</h3>
+  <p style="font-size:13px;line-height:1.8">
+    <span class="t-warn">券商一致预期2026年净利7.21亿（+51.3%）</span>，隐含Q2-Q4需实现净利6.21亿，即单季净利需跳升至<strong>~2.07亿/季</strong>。而Q1仅实现1.00亿。差异来源：涨价效应Q2才开始在报表体现 + 8寸线H2达产释放产能。<br><br>
+    <span class="t-bear">最大不确定性：毛利率。</span>2024年约36.4%→2025年30.9%→Q1仅27.8%。若Q2毛利率不能回升至30%+，全年7.21亿的预期将显著下修。<br><br>
+    <span class="t-warn">应收+存货双高：</span>应收10.86亿（周转75天）+ 存货7.17亿（周转96天），需关注减值风险。
+  </p>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">4</div>
+  <div class="mod-title">上下游产业链全景</div>
+  <div class="mod-src">来源：行业研报 / 公司年报 / 大摩报告</div>
+</div
+
+<table>
+<thead><tr><th>环节</th><th>核心标的</th><th>逻辑</th></tr></thead>
+<tbody>
+<tr><td><span class="t-info">⬆️ 上游</span></td><td>沪硅产业(硅片) · 天岳先进(SiC衬底) · 晶瑞电材(光刻胶) · 北方华创(设备)</td><td>上游成本占营业成本60%+，Q1营业成本+58%是毛利率下滑主因</td></tr>
+<tr><td><span class="t-bull">🏭 中游</span></td><td><strong>捷捷微电(晶闸管#1)</strong> · 扬杰科技(二极管→MOSFET) · 华润微(IDM全品类) · 士兰微(IDM+SiC)</td><td>全行业涨价周期——海外大厂交期拉长至6-12个月</td></tr>
+<tr><td><span class="t-info">⬇️ 下游</span></td><td>AI数据中心(8-18x功率价值跳升) · 新能源车(800V/SiC 41%渗透) · 光伏(短期拖累) · 消费电子</td><td>AI+电动车双轮驱动；光伏2026 YTD-51%为拖累项</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>📌 核心矛盾</h3>
+  <p style="font-size:13px"><strong>涨价速度 vs 成本上涨速度</strong>，决定毛利率方向。如果MOSFET/IGBT涨价能覆盖硅片/化学品成本上升，毛利率将拐头向上；如果涨价被成本吞噬，利润将继续承压。</p>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">5</div>
+  <div class="mod-title">功率半导体行业景气度分析</div>
+  <div class="mod-src">来源：摩根士丹利 / 芯谋研究 / 英飞凌公告</div>
+</div>
+
+<table>
+<thead><tr><th>时间</th><th>事件</th><th>影响</th></tr></thead>
+<tbody>
+<tr><td>2026.02</td><td>捷捷微电MOSFET调价 + 大中华区厂商发涨价函</td><td class="t-bull">涨价周期启动</td></tr>
+<tr><td>2026.04</td><td>MOSFET价格+1% YoY，出货量+23%（大摩数据）</td><td class="t-bull">量>价，需求真实</td></tr>
+<tr><td>2026.05</td><td>捷捷微电IGBT调价</td><td class="t-bull">第二轮调价</td></tr>
+<tr><td>2026.06</td><td>扬杰科技宣布7/1全品类+10~15%（年内第二轮）</td><td class="t-bull">行业龙头确认</td></tr>
+<tr><td>2026.07.01</td><td>英飞凌全球涨价 + 扬杰涨价生效</td><td class="t-bull">全球共振</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>🔍 摩根士丹利核心观点</h3>
+  <p style="font-size:13px;line-height:1.8">"功率半导体涨价——不是需求爆发，是供给收缩。"海外大厂（英飞凌、意法半导体、安森美）交期已拉长至6-12个月；分销商主动接受涨价——库存低，且担心下半年价格更高。4月数据验证：MOSFET出货量+23% YoY远超价格涨幅+1%，说明下游需求是实打实的。台积电/三星战略性削减8寸产能，2026年全球8寸代工总产能预计萎缩2.4%。</p>
+</div>
+
+<div class="g2">
+  <div class="cb"><h4>AI数据中心功率价值跳升</h4><div class="cc" id="c5"></div></div>
+  <div class="cb"><h4>2026E Forward PE 对比</h4><div class="cc" id="c6"></div></div>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">6</div>
+  <div class="mod-title">股价技术面与资金面</div>
+  <div class="mod-src">来源：东方财富行情 / NeoData</div>
+</div>
+
+<table>
+<thead><tr><th>日期</th><th>收盘</th><th>涨跌</th><th>换手</th><th>主力资金</th><th>背景</th></tr></thead>
+<tbody>
+<tr><td>6/29(一)</td><td>42.06</td><td class="bull">+4.65%</td><td>9.36%</td><td class="bull">+1.80亿</td><td>科创50+4.61%新高</td></tr>
+<tr><td>6/30(二)</td><td>44.99</td><td class="bull">+6.97%</td><td>10.98%</td><td class="bull">+3.93亿</td><td>科创50+3.85%续新高</td></tr>
+<tr><td>7/1(三)</td><td>41.91</td><td class="bear">-6.85%</td><td>10.05%</td><td class="bear">-2.64亿</td><td>科创50-2.48%暴跌</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>指标</th><th>数值</th><th>判断</th></tr></thead>
+<tbody>
+<tr><td>MA5</td><td>42.11</td><td class="bear">现价已跌破 → 短期走弱</td></tr>
+<tr><td>MA20</td><td>36.75</td><td class="bull">现价仍远高于 → 中期趋势完好</td></tr>
+<tr><td>MACD</td><td>DIF 2.79 / DEA 2.18 / +1.23</td><td class="bull">金叉但柱状图收窄</td></tr>
+<tr><td>KDJ</td><td>K 78.7 / D 82.8 / J 70.6</td><td>超买区回落中</td></tr>
+<tr><td>布林带</td><td>上轨45.7 / 中轨36.8 / 下轨27.8</td><td>从上轨回落至中轨附近</td></tr>
+<tr><td>筹码</td><td>股东71,774户(-1,236户)</td><td class="bull">筹码在集中</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>📐 关键价位</h3>
+  <table>
+    <thead><tr><th>类型</th><th>价格</th><th>逻辑</th></tr></thead>
+    <tbody>
+      <tr><td class="bear">支撑1</td><td>40.00</td><td>整数关口 + 前期平台下沿（6/29低点39.58）</td></tr>
+      <tr><td class="bear">支撑2</td><td>38.00</td><td>前期密集成交区 · 强支撑（20日+34%启动位附近）</td></tr>
+      <tr><td class="bear">支撑3</td><td>36.75</td><td>MA20 · 布林中轨 · 中期趋势生命线</td></tr>
+      <tr><td class="bull">压力1</td><td>45.00</td><td>今日高点45.57 + 昨日收盘44.99</td></tr>
+      <tr><td class="bull">压力2</td><td>50.00</td><td>整数关口 + 2026E PE 57×</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">7</div>
+  <div class="mod-title">核心逻辑与风险（5+5）</div>
+  <div class="mod-src">来源：综合分析</div>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <h3>🟢 做多逻辑</h3>
+    <ol style="font-size:13px;line-height:2">
+      <li><strong>涨价周期Q2毛利率拐点：</strong>MOSFET 2/1 + IGBT 5/1已调价，扬杰7/1涨价+英飞凌全球涨价——涨价效应Q2开始体现，毛利率有望从27.8%回升至30%+</li>
+      <li><strong>产能释放降本：</strong>8寸线2026H2达产，投资高峰已过（2025年9.44亿→Q1仅0.60亿），折旧压力边际递减</li>
+      <li><strong>车规级放量：</strong>100+款车规MOSFET进入Tier-1供应链，车规出货量翻倍</li>
+      <li><strong>AI+电动车双轮：</strong>数据中心功率价值跳升8-18倍 + 800V平台下沉至20万级</li>
+      <li><strong>晶闸管护城河：</strong>国内#1/全球#3，市占率28.5%，稀缺性给予估值溢价</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h3>🔴 做空风险</h3>
+    <ol style="font-size:13px;line-height:2">
+      <li><strong>毛利率持续恶化：</strong>2024~36.4%→2025 30.9%→Q1 27.8%，若Q2未企稳将严重低于预期</li>
+      <li><strong>估值偏高：</strong>TTM PE 75×，Forward PE仍48×。扬杰科技Forward PE仅26×——性价比差距明显</li>
+      <li><strong>应收+存货双高：</strong>应收10.86亿（周转75天）+存货7.17亿（周转96天），减值风险不可忽视</li>
+      <li><strong>板块情绪退潮：</strong>科创50-2.48%，67家科创板集中发风险提示，短期板块承压</li>
+      <li><strong>光伏储能拖累：</strong>2026年国内光伏装机YTD-51%，下游需求结构性风险</li>
+    </ol>
+  </div>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num blue">8</div>
+  <div class="mod-title">可比公司估值</div>
+  <div class="mod-src">来源：东方财富行情 / 机构一致预期</div>
+</div>
+
+<table>
+<thead><tr><th>公司</th><th>代码</th><th>市值(亿)</th><th>PE(TTM)</th><th>2026E PE</th><th>毛利率</th><th>核心产品</th><th>涨价</th></tr></thead>
+<tbody>
+<tr><td><strong>捷捷微电</strong></td><td>300623</td><td>348.7</td><td>~75×</td><td class="warn">~48×</td><td>30.9%</td><td>晶闸管#1+MOSFET</td><td>MOSFET/IGBT已调</td></tr>
+<tr><td>扬杰科技</td><td>300373</td><td>~450</td><td>60×</td><td class="bull">~26×</td><td>34.9%</td><td>二极管+MOSFET</td><td>7/1全品类+10~15%</td></tr>
+<tr><td>华润微</td><td>688396</td><td>~800</td><td>~60×</td><td>~40×</td><td>26.4%</td><td>IDM全品类</td><td>跟进涨价</td></tr>
+<tr><td>士兰微</td><td>600460</td><td>~500</td><td>193×</td><td>~71×</td><td>18.5%</td><td>IDM+SiC</td><td>跟进涨价</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>📊 估值结论</h3>
+  <p style="font-size:13px;line-height:1.8">
+捷捷微电TTM PE 75×在同行中处于中等偏高位置。晶闸管国内第一的稀缺性+车规MOSFET高成长性给予一定估值溢价合理，但<strong>扬杰科技2026E PE仅26×——同为功率半导体涨价受益者，性价比差距显著</strong>。<br><br>
+<span class="warn">捷捷微电Forward PE 48×：</span>一旦Q2毛利率确认拐点，估值有向上修复至55-60×的空间（目标价48-52元）。但如果毛利率继续恶化，PE将被杀至35-40×（目标价30-35元）。
+  </p>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num" style="color:#f85149">9</div>
+  <div class="mod-title">操作建议 — 三级情景 + 精确买点</div>
+  <div class="mod-src">来源：巴蒂定量推演</div>
+</div>
+
+<div class="scenario-grid">
+  <div class="sc opt">
+    <h5>🟢 乐观情景（40%）</h5>
+    <p><strong>触发：</strong>Q2毛利率回升至30%+，Q2单季净利≥1.5亿<br><strong>目标：</strong>48-52元（2026E PE 55-60×）<br><strong>策略：</strong>38-40元建仓4成，持有至H1兑现<br><strong>收益：</strong>+15%~+24%</p>
+  </div>
+  <div class="sc mid">
+    <h5>🟡 中性情景（40%）</h5>
+    <p><strong>触发：</strong>涨价被成本部分抵消，毛利率小幅回升至29-30%，Q2净利1.2-1.5亿<br><strong>目标：</strong>45-48元（2026E PE 52-55×）<br><strong>策略：</strong>38-42元波段操作3-4成<br><strong>收益：</strong>+7%~+15%</p>
+  </div>
+  <div class="sc pes">
+    <h5>🔴 悲观情景（20%）</h5>
+    <p><strong>触发：</strong>毛利率继续下行至25-27%，板块持续回调<br><strong>目标：</strong>32-35元（PB 4.3-4.7×）<br><strong>策略：</strong>止损37元，跌破清仓<br><strong>风险：</strong>-11.7%~-23.6%</p>
+  </div>
+</div>
+
+<table>
+<thead><tr><th>操作</th><th>价格区间</th><th>仓位</th><th>逻辑</th><th>盈亏比</th></tr></thead>
+<tbody>
+<tr style="background:#f8514908"><td class="bull">试探建仓</td><td>40-42元</td><td>2成</td><td>靠近40元整数支撑+MA20~36.75之上</td><td>-</td></tr>
+<tr style="background:#d2992208"><td class="warn">加仓</td><td>38-40元</td><td>4成</td><td>前期平台支撑+安全边际充足</td><td>2.5:1</td></tr>
+<tr style="background:#3fb95008"><td class="bear">重仓</td><td>35-38元</td><td>6成</td><td>极端错杀，估值底部区域</td><td>3.5:1</td></tr>
+<tr style="background:#f8514908"><td class="bull">止损</td><td>跌破37元</td><td>清仓</td><td>上升趋势破坏，等重新筑底</td><td>-</td></tr>
+<tr style="background:#3fb95008"><td class="bear">止盈1</td><td>48-50元</td><td>减半仓</td><td>2026E PE 55-57×，估值合理偏高</td><td>+15~19%</td></tr>
+<tr style="background:#3fb95008"><td class="bear">止盈2</td><td>55元+</td><td>清仓</td><td>2026E PE 63×+，充分反映乐观预期</td><td>+31%+</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <h3>🔍 关键观察节点时间线</h3>
+  <table>
+    <thead><tr><th>时间</th><th>事件</th><th>验证要点</th></tr></thead>
+    <tbody>
+      <tr><td>7月15日前</td><td class="t-bull">半年报预告窗口</td><td>毛利率是否回升到30%+——这是全年最关键的多空分界线</td></tr>
+      <tr><td>7-8月</td><td>半年报正式披露</td><td>Q2单季净利≥1.5亿则逻辑确认，<1.2亿降低预期</td></tr>
+      <tr><td>H2 2026</td><td>8寸线达产</td><td>产能利用率数据（互动易/调研纪要），是否贡献增量营收</td></tr>
+      <tr><td>持续跟踪</td><td>行业价格信号</td><td>扬杰/英飞凌涨价后经销商接受度，MOSFET/IGBT月度价格指数</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="text-align:center;padding:24px">
+  <p style="font-size:16px;color:#f0f6fc;line-height:2;font-style:italic">
+    "41.91元——这是7月1日科创50暴跌送给功率半导体的'礼物'。<br>
+    毛利率从27.8%到30%的那2.2个百分点，<br>
+    就是捷捷微电接下来最重要的多空分界线。<br>
+    <strong>等半年报预告出来，答案自然见分晓。<br>
+    在那之前，耐心比勇气更值钱。"</strong>
+  </p>
+</div>
+
+<div class="mod-header">
+  <div class="mod-num" style="color:#8b949e">10</div>
+  <div class="mod-title">数据源汇总</div>
+</div>
+
+<table>
+<thead><tr><th>数据</th><th>来源</th><th>时间</th></tr></thead>
+<tbody>
+<tr><td>行情/PE/PB/市值/换手</td><td class="t-bull">万得 Wind</td><td>get_stock_price_indicators · 2026-07-01</td></tr>
+<tr><td>财务数据（营收/净利/毛利率/ROE）</td><td class="t-bull">万得 Wind</td><td>get_stock_fundamentals · 2026Q1</td></tr>
+<tr><td>日K线（22个交易日）</td><td class="t-bull">万得 Wind</td><td>get_stock_kline · 2026-06-01~07-01</td></tr>
+<tr><td>技术指标（MACD/KDJ/RSI/均线/布林）</td><td class="t-bull">万得 Wind</td><td>get_stock_technicals · 2026-07-01</td></tr>
+<tr><td>行业新闻（涨价/产能/公司动态）</td><td class="t-bull">万得 Wind</td><td>get_financial_news · 15篇文章</td></tr>
+<tr><td>券商一致预期</td><td>NeoData / 同花顺</td><td>7家机构 · 2026-07-01</td></tr>
+<tr><td>可比公司估值</td><td>万得 Wind + 东方财富</td><td>2026-07-01</td></tr>
+</tbody>
+</table>
+
+<div style="font-size:13px;color:#8b949e;margin:16px 0">
+<span class="t-info">#捷捷微电</span> <span class="t-info">#300623</span> <span class="t-bull">#功率半导体</span> <span class="t-bull">#MOSFET涨价</span> <span class="t-bull">#IGBT涨价</span> <span class="t-info">#晶闸管国内第一</span> <span class="t-bull">#车规级放量</span> <span class="t-info">#IDM龙头</span> <span class="t-bull">#毛利率拐点</span> <span class="t-info">#AI数据中心</span> <span class="t-info">#800V平台</span> <span class="t-bear">#板块错杀</span> <span class="t-warn">#等待买点</span>
+</div>
+
+<div class="disclaimer">
+<strong>免责声明</strong><br>
+本报告由巴蒂AI投资助手按V2.0模板生成，仅供老潘个人投资研究参考，不构成任何投资建议。<br>
+报告中的估值区间、情景推演和买卖点均基于公开数据的定量推演，不代表对未来股价的任何预测或保证。<br>
+捷捷微电TTM PE 75×，对利润变化高度敏感——Q2毛利率一个小小的miss可能引发10%+的股价波动。<br>
+投资有风险，入市需谨慎。盈亏自负。<br><br>
+<em>老潘，捷捷微电是好赛道好公司，但不是好价格。等40以下再动手，别追。</em>
+</div>
+
+</div>
+
+<script>
+var darkBg='#161b22',gridColor='#30363d',textColor='#c9d1d9',mutedColor='#8b949e';
+var c1=echarts.init(document.getElementById('c1'));
+c1.setOption({
+  backgroundColor:darkBg,
+  tooltip:{trigger:'axis',backgroundColor:'#21262d',borderColor:'#30363d',textStyle:{color:textColor}},
+  legend:{data:['营收(亿)','归母净利(亿)'],textStyle:{color:textColor,fontSize:12},top:8},
+  grid:{left:60,right:60,top:50,bottom:30},
+  xAxis:{type:'category',data:['2022','2023','2024','2025','2026E'],axisLabel:{color:textColor,fontSize:12},axisLine:{lineStyle:{color:gridColor}}},
+  yAxis:[
+    {type:'value',name:'营收(亿)',nameTextStyle:{color:textColor,fontSize:11},axisLabel:{color:textColor,fontSize:11},splitLine:{lineStyle:{color:gridColor}}},
+    {type:'value',name:'净利(亿)',nameTextStyle:{color:textColor,fontSize:11},axisLabel:{color:textColor,fontSize:11},splitLine:{show:false}}
+  ],
+  series:[
+    {name:'营收(亿)',type:'bar',data:[18.24,21.06,28.45,34.94,46.12],barWidth:22,itemStyle:{color:'#58a6ff',borderRadius:[4,4,0,0]},
+      label:{show:true,position:'top',color:textColor,fontSize:10,formatter:'{c}',fontWeight:500}},
+    {name:'归母净利(亿)',type:'line',yAxisIndex:1,data:[3.59,2.19,4.73,4.77,7.21],
+      lineStyle:{color:'#f85149',width:3},symbol:'circle',symbolSize:10,itemStyle:{color:'#f85149',borderColor:'#0d1117',borderWidth:2},
+      label:{show:true,color:'#f85149',fontSize:10,formatter:'{c}',fontWeight:500,position:'top'}}
+  ]
+});
+
+var c2=echarts.init(document.getElementById('c2'));
+c2.setOption({
+  backgroundColor:darkBg,
+  tooltip:{trigger:'item',formatter:'{b}: {c}亿 ({d}%)',backgroundColor:'#21262d',borderColor:'#30362d',textStyle:{color:textColor}},
+  series:[{type:'pie',radius:['45%','70%'],center:['50%','55%'],
+    label:{formatter:'{b}\n{d}%',fontSize:13,color:textColor,fontWeight:500,lineHeight:18},
+    labelLine:{lineStyle:{color:'#484f58'}},
+    emphasis:{label:{fontSize:16,fontWeight:'bold'}},
+    data:[
+      {name:'功率半导体器件\n22.37亿',value:22.37,itemStyle:{color:'#f85149'}},
+      {name:'功率半导体芯片\n11.87亿',value:11.87,itemStyle:{color:'#58a6ff'}},
+      {name:'功率器件封测\n0.25亿',value:0.25,itemStyle:{color:'#d29922'}},
+      {name:'其他\n0.45亿',value:0.45,itemStyle:{color:'#8b949e'}}
+    ]
+  }]
+});
+
+var c3=echarts.init(document.getElementById('c3'));
+c3.setOption({
+  backgroundColor:darkBg,
+  tooltip:{trigger:'axis',backgroundColor:'#21262d',borderColor:'#30362d',textStyle:{color:textColor}},
+  legend:{data:['毛利率%','净利率%','ROE%'],textStyle:{color:textColor,fontSize:12},top:8},
+  grid:{left:55,right:20,top:50,bottom:30},
+  xAxis:{type:'category',data:['2023','2024','2025','2026Q1'],axisLabel:{color:textColor,fontSize:12},axisLine:{lineStyle:{color:gridColor}}},
+  yAxis:{type:'value',name:'%',nameTextStyle:{color:textColor,fontSize:11},min:0,max:40,axisLabel:{color:textColor,fontSize:11},splitLine:{lineStyle:{color:gridColor}}},
+  series:[
+    {name:'毛利率%',type:'line',data:[null,36.4,30.93,27.79],lineStyle:{color:'#f85149',width:3},symbol:'circle',symbolSize:10,itemStyle:{color:'#f85149',borderColor:'#0d1117',borderWidth:2},
+      label:{show:true,color:'#f85149',fontSize:11,fontWeight:500,formatter:'{c}%',position:'top'}},
+    {name:'净利率%',type:'line',data:[10.4,16.6,13.6,10.87],lineStyle:{color:'#58a6ff',width:2.5},symbol:'circle',symbolSize:8,itemStyle:{color:'#58a6ff',borderColor:'#0d1117',borderWidth:2},
+      label:{show:true,color:'#58a6ff',fontSize:10,formatter:'{c}%',position:'bottom'}},
+    {name:'ROE%',type:'line',data:[null,null,8.1,1.65],lineStyle:{color:'#3fb950',width:2.5,type:'dashed'},symbol:'diamond',symbolSize:9,itemStyle:{color:'#3fb950',borderColor:'#0d1117',borderWidth:2},
+      label:{show:true,color:'#3fb950',fontSize:10,formatter:'{c}%'}}
+  ]
+});
+
+var c4=echarts.init(document.getElementById('c4'));
+c4.setOption({
+  backgroundColor:darkBg,
+  tooltip:{trigger:'axis',backgroundColor:'#21262d',borderColor:'#30362d',textStyle:{color:textColor}},
+  legend:{data:['季度营收(亿)','毛利率%'],textStyle:{color:textColor,fontSize:12},top:8},
+  grid:{left:55,right:60,top:50,bottom:30},
+  xAxis:{type:'category',data:['2025Q1','2025Q2','2025Q3','2025Q4','2026Q1'],axisLabel:{color:textColor,fontSize:11},axisLine:{lineStyle:{color:gridColor}}},
+  yAxis:[
+    {type:'value',name:'营收(亿)',nameTextStyle:{color:textColor,fontSize:11},axisLabel:{color:textColor,fontSize:11},splitLine:{lineStyle:{color:gridColor}}},
+    {type:'value',name:'毛利率%',nameTextStyle:{color:textColor,fontSize:11},axisLabel:{color:textColor,fontSize:11},splitLine:{show:false}}
+  ],
+  series:[
+    {name:'季度营收(亿)',type:'bar',data:[7.58,8.49,8.62,9.20,9.20],barWidth:22,itemStyle:{color:'#58a6ff',borderRadius:[4,4,0,0]},
+      label:{show:true,position:'top',color:textColor,fontSize:11,fontWeight:500,formatter:'{c}'}},
+    {name:'毛利率%',type:'line',yAxisIndex:1,data:[32.5,33.7,30.8,27.6,27.79],
+      lineStyle:{color:'#f85149',width:3},symbol:'circle',symbolSize:10,itemStyle:{color:'#f85149',borderColor:'#0d1117',borderWidth:2},
+      label:{show:true,color:'#f85149',fontSize:11,fontWeight:500,formatter:'{c}%',position:'bottom'}}
+  ]
+});
+
+var c5=echarts.init(document.getElementById('c5'));
+c5.setOption({
+  backgroundColor:darkBg,
+  tooltip:{trigger:'axis',backgroundColor:'#21262d',borderColor:'#30362d',textStyle:{color:textColor}},
+  grid:{left:100,right:80,top:15,bottom:30},
+  xAxis:{type:'value',name:'万美元/GW',nameTextStyle:{color:textColor,fontSize:11},axisLabel:{color:textColor,fontSize:12},splitLine:{lineStyle:{color:gridColor}}},
+  yAxis:{type:'category',data:['传统数据中心','AI数据中心'].reverse(),axisLabel:{color:textColor,fontSize:13,fontWeight:500},inverse:true},
+  series:[{type:'bar',data:[8000,18000].reverse(),barWidth:32,
+    label:{show:true,position:'right',formatter:'$ {c}',color:textColor,fontSize:14,fontWeight:600},
+    itemStyle:{color:function(p){return p.dataIndex===0?'#58a6ff':'#f85149'},borderRadius:[0,6,6,0]}},
+    {type:'bar',data:[0,0].reverse(),barWidth:0,markLine:{silent:true,symbol:'none',
+      data:[{xAxis:8000,label:{formatter:'8,000\n传统',color:'#58a6ff',fontSize:11,position:'start'},lineStyle:{color:'#58a6ff',type:'dashed',width:1.5}},
+            {xAxis:18000,label:{formatter:'18,000\n×2.25',color:'#f85149',fontSize:11,position:'end'},lineStyle:{color:'#f85149',type:'dashed',width:1.5}}]}}]
+});
+
+var c6=echarts.init(document.getElementById('c6'));
+c6.setOption({
+  backgroundColor:darkBg,
+  tooltip:{trigger:'axis',backgroundColor:'#21262d',borderColor:'#30362d',textStyle:{color:textColor}},
+  grid:{left:90,right:60,top:15,bottom:30},
+  xAxis:{type:'value',name:'2026E 前瞻PE',nameTextStyle:{color:textColor,fontSize:11},axisLabel:{color:textColor,fontSize:12},splitLine:{lineStyle:{color:gridColor}}},
+  yAxis:{type:'category',data:['扬杰科技','华润微','捷捷微电','士兰微'].reverse(),axisLabel:{color:textColor,fontSize:13,fontWeight:500},inverse:true},
+  series:[{type:'bar',data:[26,40,48,71].reverse(),barWidth:28,
+    label:{show:true,position:'right',formatter:'{c}×',color:textColor,fontSize:14,fontWeight:600},
+    itemStyle:{color:function(p){var v=[26,40,48,71].reverse();
+      if(v[p.dataIndex]<30)return'#3fb950';if(v[p.dataIndex]<50)return'#d29922';return'#f85149';
+    },borderRadius:[0,6,6,0]}},
+    {type:'bar',data:[0,0,0,0].reverse(),barWidth:0,markLine:{silent:true,symbol:'none',
+      data:[{xAxis:26,label:{formatter:'扬杰 26×',position:'start',color:'#3fb950',fontSize:11},lineStyle:{color:'#3fb950',type:'dashed',width:1}},
+            {xAxis:48,label:{formatter:'捷捷 48×',position:'start',color:'#d29922',fontSize:11},lineStyle:{color:'#d29922',type:'dashed',width:1}}]}}]
+});
+</script>
+</body>
+</html>

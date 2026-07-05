@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘报告 | 2026-07-02（周四）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0f1117; color:#c9d1d9; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+.container { max-width:1400px; margin:0 auto; padding:24px; }
+h1 { font-size:28px; color:#f0f6fc; margin-bottom:4px; }
+h1 span { font-size:14px; color:#8b949e; font-weight:400; margin-left:12px; }
+h2 { font-size:20px; color:#f0f6fc; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid #21262d; }
+h3 { font-size:16px; color:#e6edf3; margin:16px 0 8px; }
+.alert-box { border-radius:8px; padding:20px 24px; margin:20px 0; border-left:4px solid; }
+.alert-danger { background:rgba(248,81,73,0.1); border-color:#f85149; }
+.alert-danger h3 { color:#f85149; }
+.alert-warning { background:rgba(210,153,34,0.1); border-color:#d29922; }
+.alert-warning h3 { color:#d29922; }
+.alert-info { background:rgba(56,139,253,0.1); border-color:#388bfd; }
+.alert-info h3 { color:#388bfd; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13px; }
+th { background:#161b22; color:#e6edf3; padding:10px 12px; text-align:left; border-bottom:2px solid #30363d; font-weight:600; white-space:nowrap; }
+td { padding:8px 12px; border-bottom:1px solid #21262d; }
+tr:hover td { background:rgba(56,139,253,0.05); }
+.red { color:#f85149; font-weight:600; }
+.green { color:#3fb950; font-weight:600; }
+.yellow { color:#d29922; font-weight:600; }
+.badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; }
+.badge-red { background:rgba(248,81,73,0.2); color:#f85149; }
+.badge-green { background:rgba(63,185,80,0.2); color:#3fb950; }
+.badge-yellow { background:rgba(210,153,34,0.2); color:#d29922; }
+.badge-gray { background:rgba(139,148,158,0.2); color:#8b949e; }
+.chart-box { background:#161b22; border-radius:8px; padding:16px; margin:16px 0; border:1px solid #21262d; }
+.chart-box h4 { color:#8b949e; font-size:13px; margin-bottom:8px; }
+.card { background:#161b22; border-radius:8px; padding:16px; margin:12px 0; border:1px solid #21262d; }
+.card h4 { color:#e6edf3; margin-bottom:8px; font-size:15px; }
+.card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px; }
+.metric-row { display:flex; gap:24px; flex-wrap:wrap; }
+.metric { background:#0d1117; border-radius:6px; padding:12px 16px; min-width:140px; }
+.metric .label { font-size:12px; color:#8b949e; }
+.metric .value { font-size:20px; font-weight:700; margin-top:4px; }
+.footer { margin-top:48px; padding:24px 0; border-top:1px solid #21262d; color:#6e7681; font-size:12px; line-height:1.8; }
+.tag { display:inline-block; padding:1px 6px; border-radius:3px; font-size:11px; margin-right:4px; }
+.tag-strong { background:rgba(63,185,80,0.15); color:#3fb950; }
+.tag-weak { background:rgba(248,81,73,0.15); color:#f85149; }
+.tag-neutral { background:rgba(139,148,158,0.15); color:#8b949e; }
+.tag-warn { background:rgba(210,153,34,0.15); color:#d29922; }
+.highlight { background:rgba(210,153,34,0.15); padding:1px 4px; border-radius:2px; }
+code { background:#21262d; padding:2px 6px; border-radius:3px; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>盘后复盘报告 <span>2026-07-02（周四）巴蒂出品</span></h1>
+
+<!-- ====== 结论前置 ====== -->
+<div class="alert-box alert-danger">
+<h3>核心警示：全球半导体/AI芯片恐慌性抛售，持仓遭重创</h3>
+<p style="margin-top:8px;color:#c9d1d9;">
+<b>2026年7月2日是今年以来持仓组合最惨烈的一天。</b>受美联储超鹰派表态（取消利率前瞻指引+死守2%通胀底线+维持缩表）+ 任正非"算力过剩"论发酵 + 韩国KOSPI一度熔断的三重冲击，全球存储芯片/AI半导体板块无差别杀跌。
+</p>
+<ul style="margin:12px 0 0 20px;color:#c9d1d9;line-height:2;">
+<li>澜起科技（688008）<span class="red">-14.80%</span>，数字经济指数领跌股，单日主力净流出 <span class="red">29.48亿</span></li>
+<li>罗博特科（300757）<span class="red">-8.83%</span>，主力净流出 <span class="red">5.39亿</span>，MACD死叉深度-24.87</li>
+<li>汇绿生态（001267）<span class="red">-7.50%</span>，5日累计跌幅已超23%，KDJ-J=-17.91极端超卖</li>
+<li>兴森科技（002436）<span class="red">-4.36%</span>，主力净流出 <span class="red">6.12亿</span>，定增压顶持续</li>
+<li>三祥新材（603663）<span class="red">-4.70%</span>，大单净流出1.42亿</li>
+<li>星环科技（688031）<span class="red">-6.23%</span>，近20日主力累计-4.91亿</li>
+</ul>
+<p style="margin-top:12px;color:#d29922;"><b>唯一亮点：</b>化工/周期股逆势抗跌——滨化股份涨停+10%（H股发行驱动）、恒逸石化+2.94%、华峰化学+0.79%（半年度业绩预告利好）。化工板块作为半导体反向观察，共振开始显现。</p>
+</div>
+
+<div class="alert-box alert-warning">
+<h3>今日核心判断：情绪性杀跌 > 基本面恶化</h3>
+<p style="margin-top:8px;">
+本轮暴跌的核心驱动是美联储鹰派引发的板块轮动（资金从科技切向道指）+ "算力过剩"恐慌叙事，而非芯片公司基本面出现实质性恶化。费城半导体指数单日-5.44%，MRVL-10%、美光-10%、闪迪-14%。但澜起科技2025Q1扣非净利润+147%、在手订单饱满的基本面并未改变。这是典型的<b>"逻辑未破但情绪先崩"</b>场景。
+<br><br>
+<b>操作建议：忍耐日，非行动日。</b>芯片/AI硬件持仓全线超卖，恐慌中割肉是最差选择。等待美股盘后企稳信号（MRVL盘后+0.32%微涨，COHR盘后数据待确认），若明日A股继续低开，反而是超跌反弹的博弈窗口而非逃跑窗口。
+</p>
+</div>
+
+<!-- ====== 当日行情回顾 ====== -->
+<h2>一、当日行情回顾</h2>
+
+<div class="chart-box">
+<h4>持仓股涨跌幅全景（2026-07-02）</h4>
+<div id="chart-daily" style="width:100%;height:420px;"></div>
+</div>
+
+<div class="card">
+<h4>持仓股行情速览</h4>
+<table>
+<thead><tr><th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>成交额(亿)</th><th>换手率</th><th>量比(vs上日)</th><th>判断</th></tr></thead>
+<tbody>
+<tr><td>sh688008</td><td>澜起科技</td><td>269.15</td><td class="red">-14.80%</td><td>256.43</td><td>7.85%</td><td>量能相近</td><td><span class="badge badge-red">极弱</span></td></tr>
+<tr><td>sz300757</td><td>罗博特科</td><td>529.27</td><td class="red">-8.83%</td><td>35.91</td><td>4.07%</td><td>持平</td><td><span class="badge badge-red">极弱</span></td></tr>
+<tr><td>sz001267</td><td>汇绿生态</td><td>46.85</td><td class="red">-7.50%</td><td>14.31</td><td>4.87%</td><td>缩量(-14%)</td><td><span class="badge badge-red">极弱</span></td></tr>
+<tr><td>sh688031</td><td>星环科技</td><td>110.66</td><td class="red">-6.23%</td><td>8.27</td><td>5.93%</td><td>缩量(-4%)</td><td><span class="badge badge-red">弱</span></td></tr>
+<tr><td>sh603663</td><td>三祥新材</td><td>89.60</td><td class="red">-4.70%</td><td>18.00</td><td>4.63%</td><td>持平</td><td><span class="badge badge-red">弱</span></td></tr>
+<tr><td>sz002436</td><td>兴森科技</td><td>45.41</td><td class="red">-4.36%</td><td>58.81</td><td>8.41%</td><td>缩量(-18%)</td><td><span class="badge badge-red">弱</span></td></tr>
+<tr><td>sz002254</td><td>泰和新材</td><td>16.89</td><td class="red">-2.31%</td><td>10.74</td><td>7.45%</td><td>缩量(-23%)</td><td><span class="badge badge-yellow">偏弱</span></td></tr>
+<tr><td>sz000825</td><td>太钢不锈</td><td>3.47</td><td class="red">-0.57%</td><td>1.17</td><td>0.59%</td><td>缩量(-18%)</td><td><span class="badge badge-gray">中性</span></td></tr>
+<tr><td>sz301236</td><td>软通动力</td><td>41.50</td><td class="red">-0.34%</td><td>22.76</td><td>6.79%</td><td>放量(+40%)</td><td><span class="badge badge-green">中性偏强</span></td></tr>
+<tr><td>sz002064</td><td>华峰化学</td><td>10.23</td><td class="green">+0.79%</td><td>5.84</td><td>1.15%</td><td>缩量(-23%)</td><td><span class="badge badge-green">中性偏强</span></td></tr>
+<tr><td>sz000813</td><td>德展健康</td><td>3.15</td><td class="green">+0.96%</td><td>1.21</td><td>1.82%</td><td>持平</td><td><span class="badge badge-green">中性偏强</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+<h4>跟踪池行情</h4>
+<table>
+<thead><tr><th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>成交额(亿)</th><th>换手率</th><th>异动</th></tr></thead>
+<tbody>
+<tr><td>sh601678</td><td><b>滨化股份</b></td><td>7.70</td><td><b class="green">+10.00%</b></td><td>17.12</td><td>11.41%</td><td><span class="badge badge-green">涨停</span> ⚠️ 异常波动公告</td></tr>
+<tr><td>sz000703</td><td>恒逸石化</td><td>15.07</td><td class="green">+2.94%</td><td>19.22</td><td>3.40%</td><td><span class="badge badge-green">放量上涨</span></td></tr>
+<tr><td>sh600026</td><td>中远海能</td><td>16.50</td><td class="red">-1.20%</td><td>14.74</td><td>2.29%</td><td>5日累计-17.3%极端超卖</td></tr>
+<tr><td>sh600160</td><td>巨化股份</td><td>54.83</td><td class="red">-1.83%</td><td>70.27</td><td>4.70%</td><td>主力净流出4.54亿但大散承接</td></tr>
+<tr><td>sz002051</td><td>中工国际</td><td>11.13</td><td class="red">-4.05%</td><td>5.33</td><td>3.87%</td><td>跌破20日线</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ====== 资金动向 ====== -->
+<h2>二、资金动向</h2>
+
+<div class="chart-box">
+<h4>主力净流入/流出对比（2026-07-02，单位：亿元）</h4>
+<div id="chart-fundflow" style="width:100%;height:450px;"></div>
+</div>
+
+<div class="card">
+<h4>主力资金流向明细</h4>
+<table>
+<thead><tr><th>代码</th><th>名称</th><th>主力净流入(亿)</th><th>大单净流入(亿)</th><th>中单净流入(亿)</th><th>小单净流入(亿)</th><th>近5日主力(亿)</th><th>近20日主力(亿)</th></tr></thead>
+<tbody>
+<tr><td>sh688008</td><td>澜起科技</td><td class="red">-29.48</td><td class="red">-35.57</td><td class="green">+29.95</td><td class="green">+29.47</td><td class="green">+12.61</td><td class="red">-52.81</td></tr>
+<tr><td>sz300757</td><td>罗博特科</td><td class="red">-5.39</td><td class="red">-4.69</td><td class="green">+5.39</td><td class="red">-0.002</td><td class="red">-3.09</td><td class="red">-40.34</td></tr>
+<tr><td>sz002436</td><td>兴森科技</td><td class="red">-6.12</td><td class="red">-6.09</td><td class="green">+1.36</td><td class="green">+4.76</td><td class="red">-9.70</td><td class="red">-49.50</td></tr>
+<tr><td>sz001267</td><td>汇绿生态</td><td class="red">-1.92</td><td class="red">-1.21</td><td class="red">-0.008</td><td class="green">+1.92</td><td class="red">-9.17</td><td class="red">-6.02</td></tr>
+<tr><td>sh603663</td><td>三祥新材</td><td class="red">-1.74</td><td class="red">-1.42</td><td class="red">-0.09</td><td class="green">+1.83</td><td class="red">-2.62</td><td class="green">+0.84</td></tr>
+<tr><td>sz002254</td><td>泰和新材</td><td class="red">-0.62</td><td class="red">-0.31</td><td class="green">+0.23</td><td class="green">+0.39</td><td class="red">-0.67</td><td class="green">+5.63</td></tr>
+<tr><td>sz000825</td><td>太钢不锈</td><td class="red">-0.04</td><td class="red">-0.008</td><td class="red">-0.04</td><td class="green">+0.08</td><td class="green">+0.04</td><td class="green">+0.28</td></tr>
+<tr><td>sz301236</td><td>软通动力</td><td class="green">+0.91</td><td class="green">+0.93</td><td class="red">-0.30</td><td class="red">-0.61</td><td class="green">+0.28</td><td class="red">-8.36</td></tr>
+<tr><td>sh688031</td><td>星环科技</td><td class="green">+0.01</td><td class="green">+0.20</td><td class="green">+0.28</td><td class="red">-0.29</td><td class="red">-0.91</td><td class="red">-4.91</td></tr>
+<tr><td>sz002064</td><td>华峰化学</td><td class="green">+0.12</td><td class="green">+0.18</td><td class="green">+0.26</td><td class="red">-0.38</td><td class="green">+0.28</td><td class="green">+1.08</td></tr>
+<tr><td>sz000813</td><td>德展健康</td><td class="red">-0.05</td><td class="red">-0.02</td><td class="red">-0.01</td><td class="green">+0.06</td><td class="green">+0.06</td><td class="red">-0.11</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+<h4>资金面要点</h4>
+<ul style="line-height:2; padding-left:20px;">
+<li><span class="red">澜起科技</span>：大单净流出35.57亿，但中单和小单合计承接近60亿。机构出货、散户接盘特征明显，但整体BlockNetFlow为+6.09亿，说明有部分大资金在跌停价附近吸筹</li>
+<li><span class="red">兴森科技</span>：近20日主力累计-49.5亿，资金面持续恶化，定增预期压制仍未解除</li>
+<li><span class="red">罗博特科</span>：近20日主力累计-40.34亿，为持仓股中20日维度资金流出最严重的标的之一</li>
+<li><span class="green">软通动力</span>：逆势获得主力净流入+0.91亿，大单净流入+0.93亿，量比1.40放量，资金在恐慌中逆向布局</li>
+<li><span class="green">华峰化学</span>：主力小幅净流入+0.12亿，近20日累计+1.08亿，配合半年度业绩预告利好，资金面中性偏多</li>
+</ul>
+</div>
+
+<!-- ====== 公告速览 ====== -->
+<h2>三、公告速览</h2>
+
+<div class="card-grid">
+<div class="card">
+<h4>华峰化学（002064）<span class="badge badge-green">重要</span></h4>
+<p style="color:#3fb950;font-weight:600;">2026年半年度业绩预告</p>
+<p style="color:#8b949e;font-size:12px;">2026-07-02 16:18</p>
+<p style="margin-top:4px;">业绩预告利好，叠加募投项目正式达产（6月9日公告），基本面持续改善。</p>
+</div>
+<div class="card">
+<h4>兴森科技（002436）</h4>
+<p>回购股份进展公告</p>
+<p style="color:#8b949e;font-size:12px;">2026-07-02 16:32</p>
+<p style="margin-top:4px;">公司持续推进回购，但定增方案压制股价效果有限。近期还有临时股东大会通知（6月23日）。</p>
+</div>
+<div class="card">
+<h4>澜起科技（688008）</h4>
+<p>第二次回购A股股份方案进展</p>
+<p style="color:#8b949e;font-size:12px;">2026-07-02 16:57</p>
+<p style="margin-top:4px;">回购进展公告，属于常规披露。当前股价269.15已低于前期多个回购区间，关注后续是否加大回购力度。</p>
+</div>
+<div class="card">
+<h4>滨化股份（601678）<span class="badge badge-red">异动</span></h4>
+<p style="color:#d29922;font-weight:600;">股票交易异常波动公告</p>
+<p style="color:#8b949e;font-size:12px;">2026-07-02 18:24</p>
+<p style="margin-top:4px;">两连板后触发异常波动公告。H股发行聆讯通过（6月24日）+ H股招股书刊发（6月30日）是核心驱动。</p>
+</div>
+<div class="card">
+<h4>三祥新材（603663）</h4>
+<p>股票期权激励计划Q2行权结果</p>
+<p style="color:#8b949e;font-size:12px;">2026-07-01 16:23</p>
+<p style="margin-top:4px;">常规股权激励行权公告，非重大事项。</p>
+</div>
+<div class="card">
+<h4>中远海能（600026）<span class="badge badge-yellow">跟踪</span></h4>
+<p>股票期权激励计划限制行权延长</p>
+<p style="color:#8b949e;font-size:12px;">2026-07-02 17:01</p>
+<p style="margin-top:4px;">期权行权相关公告。5日跌-17.3%，KDJ-J=-22.68极端超卖，需关注是否触发反弹。</p>
+</div>
+</div>
+
+<!-- ====== 美股盘前映射 ====== -->
+<h2>四、美股盘前映射（对持仓影响判断）</h2>
+
+<div class="alert-box alert-danger">
+<h3>费城半导体指数（SOX）单日暴跌 -5.44%~-6%+</h3>
+<p style="margin-top:8px;">7月2日美股上演"冰火两重天"——道指创历史新高+1.14%，纳指-0.8%，纳指100重挫-1.61%。半导体板块遭遇全面血洗：</p>
+<ul style="margin:8px 0 0 20px;line-height:2;">
+<li><b>MRVL（Marvell）</b>：收盘 ~$254，跌近-10%。盘后微涨+0.32%至$246.07 <span style="color:#8b949e;">(来源: public.com)</span></li>
+<li><b>COHR（Coherent）</b>：收盘 $333.36 <span style="color:#8b949e;">(来源: stockscan.io)</span>，预计跌幅与SOX接近</li>
+<li><b>美光科技</b>：-10.57% / <b>闪迪</b>：-14%+ / <b>科磊</b>：-11.77% / <b>Arm</b>：-6%+</li>
+<li><b>特斯拉</b>：Q2交付超预期+25%，但仍跌-7.49%（板块性杀跌，个股利好被淹没）</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>三大映射标的冲击测算</h4>
+<table>
+<thead><tr><th>A股标的</th><th>映射美股</th><th>美股跌幅</th><th>A股已跌</th><th>盘后信号</th><th>明日判断</th></tr></thead>
+<tbody>
+<tr>
+<td><b>澜起科技 688008</b></td>
+<td>MRVL</td>
+<td class="red">~-10%</td>
+<td class="red">-14.80%</td>
+<td>盘后+0.32%微涨</td>
+<td><span class="badge badge-red">已超跌映射幅度，继续低开空间有限</span></td>
+</tr>
+<tr>
+<td><b>汇绿生态 001267</b></td>
+<td>COHR / LITE</td>
+<td class="red">SOX -5.44%</td>
+<td class="red">-7.50%</td>
+<td>数据待确认</td>
+<td><span class="badge badge-red">5日累计-23%，极端超卖，低开可能是反弹前最后一跌</span></td>
+</tr>
+<tr>
+<td><b>罗博特科 300757</b></td>
+<td>NVDA / MRVL</td>
+<td class="red">NVDA跌 / MRVL -10%</td>
+<td class="red">-8.83%</td>
+<td>MRVL盘后+0.32%</td>
+<td><span class="badge badge-red">MACD死叉深度-24.87，技术面恶化严重</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert-box alert-info">
+<h3>映射逻辑判断：A股已提前PRICE-IN大部分恐慌</h3>
+<p style="margin-top:8px;">
+澜起-14.8%的跌幅已超过MRVL的-10%，说明A股恐慌程度已超出映射基准。汇绿5日累计-23%更是远超COHR的单日跌幅。从历史联动规律看，当A股映射标的跌幅超过美股对应标的时，后续超跌反弹的概率提升。<br><br>
+<b>关键变量：</b>今夜美股（7月3日北京时间21:30开盘）能否企稳。若SOX继续下杀，则明日A股半导体再承压；若美股反弹，A股半导体有望迎来报复性反弹。
+</p>
+</div>
+
+<!-- ====== 跟踪池异动 ====== -->
+<h2>五、跟踪池异动</h2>
+
+<div class="card">
+<h4>⚠️ 滨化股份（601678）—— 涨停 +10.00% <span class="badge badge-green">重大异动</span></h4>
+<table>
+<tr><td style="width:80px;color:#8b949e;">收盘价</td><td><b>7.70元</b></td></tr>
+<tr><td style="color:#8b949e;">驱动</td><td>H股发行聆讯通过（6/24）→ 招股书刊发（6/30）→ 两连板后触发异动公告</td></tr>
+<tr><td style="color:#8b949e;">资金</td><td>主力净流入 <span class="green">+2.21亿</span>，大单净流入 <span class="green">+2.48亿</span></td></tr>
+<tr><td style="color:#8b949e;">技术</td><td>股价远超MA5(6.79)/MA10(6.50)/MA20(6.09)，MACD金叉持续，RSI=97.88超买</td></tr>
+<tr><td style="color:#8b949e;">判断</td><td><b>H股发行概念驱动，短期情绪过热（RSI超买+异常波动公告），不建议追涨。</b>但化工品周期+新材料转型逻辑中长期成立，若回调至6.5-6.8区间考虑跟踪介入。</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>⚠️ 中远海能（600026）—— 极端超卖，观察反弹窗口</h4>
+<table>
+<tr><td style="width:80px;color:#8b949e;">收盘价</td><td><b>16.50元（-1.20%）</b></td></tr>
+<tr><td style="color:#8b949e;">5日跌幅</td><td class="red">-17.3%（6/26: 19.96 → 7/2: 16.50）</td></tr>
+<tr><td style="color:#8b949e;">KDJ</td><td>K=17.5 / D=37.6 / <b>J=-22.68（极端超卖！）</b></td></tr>
+<tr><td style="color:#8b949e;">筹码</td><td>主力净流入+0.48亿（BlockNetFlow），但大单净流出-0.79亿，信号分化</td></tr>
+<tr><td style="color:#8b949e;">判断</td><td><b>油运板块近期受原油价格波动和全球经济预期影响持续走弱，但J值-22.68已到极端超卖区间，技术上具备反弹条件。跟踪价值仍在，但介入需等待V型反转信号（放量阳线+主力回补确认）。</b></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>巨化股份（600160）—— 强势整理，化工板块扛旗</h4>
+<p>收盘54.83（-1.83%），但BlockNetFlow +1.00亿显示有机构资金在吸纳。MACD仍金叉，DIF=4.61为正。氟化工/制冷剂周期景气逻辑不变，半导体杀跌反而让化工板块的相对价值凸显。维持跟踪，56-58区间压力大但突破后可看高。</p>
+</div>
+
+<!-- ====== 技术面扫描 ====== -->
+<h2>六、技术面扫描</h2>
+
+<div class="chart-box">
+<h4>MACD信号状态（2026-07-02）</h4>
+<div id="chart-macd" style="width:100%;height:400px;"></div>
+</div>
+
+<div class="chart-box">
+<h4>KDJ-J值分布（极端超卖预警）</h4>
+<div id="chart-kdj" style="width:100%;height:400px;"></div>
+</div>
+
+<div class="card">
+<h4>均线系统评估</h4>
+<table>
+<thead><tr><th>代码</th><th>名称</th><th>收盘价</th><th>MA5</th><th>MA10</th><th>MA20</th><th>MA60</th><th>均线状态</th><th>MACD</th><th>KDJ-J</th><th>RSI-6</th></tr></thead>
+<tbody>
+<tr><td>688008</td><td>澜起科技</td><td class="red">269.15</td><td>290.56</td><td>280.64</td><td>259.88</td><td>222.50</td><td><span class="badge badge-red">跌破MA5/10</span></td><td>金叉收窄</td><td>39.05</td><td>45.19</td></tr>
+<tr><td>300757</td><td>罗博特科</td><td class="red">529.27</td><td>579.53</td><td>600.04</td><td>617.70</td><td>565.18</td><td><span class="badge badge-red">全线失守</span></td><td class="red">死叉-24.87</td><td class="red">2.72</td><td>31.29</td></tr>
+<tr><td>001267</td><td>汇绿生态</td><td class="red">46.85</td><td>51.98</td><td>55.94</td><td>54.03</td><td>53.57</td><td><span class="badge badge-red">全线失守</span></td><td class="red">死叉-1.73</td><td class="red">-17.91</td><td>24.12</td></tr>
+<tr><td>688031</td><td>星环科技</td><td class="red">110.66</td><td>112.33</td><td>116.61</td><td>124.72</td><td>130.36</td><td><span class="badge badge-red">全线失守</span></td><td class="red">死叉-1.96</td><td>29.46</td><td>37.45</td></tr>
+<tr><td>603663</td><td>三祥新材</td><td class="red">89.60</td><td>94.09</td><td>95.95</td><td>84.23</td><td>60.26</td><td><span class="badge badge-red">跌破MA5/10</span></td><td>MACD柱转负</td><td class="red">4.21</td><td>44.60</td></tr>
+<tr><td>002436</td><td>兴森科技</td><td class="red">45.41</td><td>48.93</td><td>50.23</td><td>45.00</td><td>35.35</td><td><span class="badge badge-red">跌破MA5/10</span></td><td>金叉收窄</td><td class="red">-1.36</td><td>40.22</td></tr>
+<tr><td>002254</td><td>泰和新材</td><td class="red">16.89</td><td>17.94</td><td>18.15</td><td>17.71</td><td>14.10</td><td><span class="badge badge-red">跌破MA5/10/20</span></td><td>死叉边缘</td><td class="red">2.40</td><td>39.73</td></tr>
+<tr><td>301236</td><td>软通动力</td><td>41.50</td><td>41.85</td><td>40.26</td><td>40.89</td><td>40.15</td><td><span class="badge badge-green">站上MA10/20/60</span></td><td>金叉</td><td>84.54</td><td>56.34</td></tr>
+<tr><td>002064</td><td>华峰化学</td><td>10.23</td><td>10.07</td><td>10.20</td><td>10.25</td><td>10.64</td><td><span class="badge badge-yellow">MA5附近</span></td><td>死叉边缘</td><td>45.43</td><td>50.44</td></tr>
+<tr><td>000825</td><td>太钢不锈</td><td>3.47</td><td>3.45</td><td>3.56</td><td>3.66</td><td>4.04</td><td><span class="badge badge-red">全线下行</span></td><td>死叉</td><td>21.33</td><td>33.57</td></tr>
+<tr><td>000813</td><td>德展健康</td><td>3.15</td><td>3.08</td><td>3.05</td><td>3.06</td><td>3.40</td><td><span class="badge badge-green">站上MA5/10/20</span></td><td>金叉</td><td>92.74</td><td>58.86</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+<h4>关键支撑阻力位变化</h4>
+<table>
+<thead><tr><th>标的</th><th>筹码均价</th><th>获利比例</th><th>90%集中度</th><th>关键支撑</th><th>关键阻力</th></tr></thead>
+<tbody>
+<tr><td>澜起科技</td><td>266.94</td><td class="green">53.83%</td><td>27.61%</td><td>260（MA60附近）</td><td>290（MA5）</td></tr>
+<tr><td>罗博特科</td><td>605.67</td><td class="red">14.66%</td><td>18.87%</td><td>500（整数关口）</td><td>580（MA5）</td></tr>
+<tr><td>汇绿生态</td><td>56.82</td><td class="red">1.70%</td><td>13.26%</td><td>45（前低平台）</td><td>52（MA5）</td></tr>
+<tr><td>三祥新材</td><td>81.51</td><td class="green">54.72%</td><td>40.61%</td><td>85（MA20附近）</td><td>94（MA5）</td></tr>
+<tr><td>兴森科技</td><td>49.29</td><td class="red">27.04%</td><td>18.41%</td><td>44（近期低点）</td><td>49（MA10）</td></tr>
+<tr><td>泰和新材</td><td>17.90</td><td class="red">16.65%</td><td>18.22%</td><td>16（整数关口）</td><td>18（MA10）</td></tr>
+<tr><td>软通动力</td><td>41.69</td><td class="green">47.88%</td><td>9.42%</td><td>40（MA60）</td><td>42（前高）</td></tr>
+</tbody>
+</table>
+<p style="color:#d29922;font-size:12px;margin-top:8px;">⚠️ 汇绿生态获利盘仅1.70%，几乎全部套牢。罗博特科14.66%获利盘也极低。这两只标的在反弹时面临较大的解套抛压。</p>
+</div>
+
+<!-- ====== 次日事件 ====== -->
+<h2>七、次日事件（2026-07-03 周五）</h2>
+
+<div class="card">
+<h4>📅 明日投资日历</h4>
+<table>
+<thead><tr><th>类型</th><th>标的</th><th>事件</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>分红派息</td><td>顾家家居(603816)</td><td>10派13.8元</td><td>非持仓相关</td></tr>
+<tr><td>限售解禁</td><td>迈威生物-U(688062)</td><td>2607万股(11.32%)</td><td>解禁比例较大，但非持仓</td></tr>
+<tr><td>股东大会</td><td>长江证券(000783)</td><td>临时股东大会</td><td>非持仓相关</td></tr>
+</tbody>
+</table>
+<p style="color:#8b949e;margin-top:8px;">明日无持仓股相关重大事件（解禁/业绩披露/分红除权/股东大会）。</p>
+</div>
+
+<div class="alert-box alert-info">
+<h3>明日关注要点</h3>
+<ul style="margin:8px 0 0 20px;line-height:2;">
+<li><b>今夜美股（7/3 北京时间21:30）</b>：SOX能否止跌企稳是明日A股半导体的关键变量。MRVL盘后微涨+0.32%是中性偏正信号</li>
+<li><b>韩国KOSPI</b>：7/2一度熔断-7%，7/3开盘能否企稳将影响亚太市场情绪</li>
+<li><b>华峰化学业绩预告</b>：明日关注市场对半年度业绩预告的反应，若高开确认利好，是化工板块情绪指标</li>
+<li><b>滨化股份</b>：异常波动公告后是否继续涨停，测试H股发行概念的持续性</li>
+<li><b>澜起科技回购</b>：269元已低于回购区间，关注公司是否在低位加大回购力度</li>
+</ul>
+</div>
+
+<!-- ====== 逐只持仓判断 ====== -->
+<h2>八、逐只持仓判断汇总</h2>
+
+<div class="card">
+<table>
+<thead><tr><th>代码</th><th>名称</th><th>持仓成本</th><th>收盘价</th><th>浮盈/亏</th><th>今日判断</th><th>操作建议</th></tr></thead>
+<tbody>
+<tr>
+<td>688008</td><td>澜起科技</td><td>96.83</td><td>269.15</td><td class="green">+177.9%</td><td><span class="badge badge-red">极弱</span></td><td>底仓不动。逻辑未破。存储/AI芯片恐慌性杀跌非基本面恶化。等待SOX企稳。</td>
+</tr>
+<tr>
+<td>300757</td><td>罗博特科</td><td>523.13</td><td>529.27</td><td class="green">+1.17%</td><td><span class="badge badge-red">极弱</span></td><td>逼近成本线！MACD死叉深度-24.87严重恶化。若跌破500考虑风控减仓。</td>
+</tr>
+<tr>
+<td>001267</td><td>汇绿生态</td><td>48.09</td><td>46.85</td><td class="red">-2.58%</td><td><span class="badge badge-red">极弱</span></td><td>已跌穿成本！KDJ-J=-17.91极端超卖。反弹窗口临近但需美股企稳配合。</td>
+</tr>
+<tr>
+<td>688031</td><td>星环科技</td><td><span style="color:#8b949e;">负成本</span></td><td>110.66</td><td class="green">利润仓</td><td><span class="badge badge-red">弱</span></td><td>趋势遭破坏（跌破所有均线），但负成本仓位无止损压力，观察为主。</td>
+</tr>
+<tr>
+<td>603663</td><td>三祥新材</td><td>18.18</td><td>89.60</td><td class="green">+392.9%</td><td><span class="badge badge-red">弱</span></td><td>S级持仓，利润丰厚。短期回调-4.7%在锆材料/固态电池大逻辑面前可承受。</td>
+</tr>
+<tr>
+<td>002436</td><td>兴森科技</td><td><span style="color:#8b949e;">负成本</span></td><td>45.41</td><td class="green">利润仓</td><td><span class="badge badge-red">弱</span></td><td>定增压顶+近20日主力-49.5亿，资金面持续恶化。利润仓但需警惕趋势破坏。</td>
+</tr>
+<tr>
+<td>002254</td><td>泰和新材</td><td>13.37</td><td>16.89</td><td class="green">+26.3%</td><td><span class="badge badge-yellow">偏弱</span></td><td>B+级，下跌缩量(-23%)说明非恐慌抛售。化工板块今日相对抗跌，耐心持有。</td>
+</tr>
+<tr>
+<td>000825</td><td>太钢不锈</td><td>5.75</td><td>3.47</td><td class="red">-39.6%</td><td><span class="badge badge-gray">中性</span></td><td>底部横盘，跌幅不大(-0.57%)，筹码获利仅1.68%。等待周期回暖。</td>
+</tr>
+<tr>
+<td>301236</td><td>软通动力</td><td>7.36</td><td>41.50</td><td class="green">+463.9%</td><td><span class="badge badge-green">中性偏强</span></td><td>核心标杆！逆势放量+40%且主力净流入+0.91亿，资金在用行动投票。</td>
+</tr>
+<tr>
+<td>002064</td><td>华峰化学</td><td>12.45</td><td>10.23</td><td class="red">-17.8%</td><td><span class="badge badge-green">中性偏强</span></td><td>半年度业绩预告利好+募投达产，基本面改善中。化工板块今日少数红盘。</td>
+</tr>
+<tr>
+<td>000813</td><td>德展健康</td><td>3.85</td><td>3.15</td><td class="red">-18.2%</td><td><span class="badge badge-green">中性偏强</span></td><td>逆势微涨+0.96%，站上MA5/10/20，KDJ金叉。底部企稳信号。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ====== 免责声明 ====== -->
+<div class="footer">
+<p><b>免责声明</b></p>
+<p>以上分析仅供参考，不构成投资建议。报告中所有数据来源于腾讯自选股数据接口（westock-data）、公开网络搜索，数据时点为2026-07-02收盘后。美股数据来源于public.com、stockscan.io、同花顺、雪球等公开渠道。投资有风险，决策需谨慎。过往业绩不预示未来表现。本报告中的"操作建议"仅为分析框架下的参考判断，不构成任何买卖指令。老潘作为投资者，应独立做出最终决策并对自己的交易结果负责。</p>
+<p style="margin-top:12px;">数据来源：WeStock Data | 美股数据：public.com / stockscan.io / 百度百家号 / 同花顺 / 雪球 | 报告生成时间：2026-07-03 09:00 CST</p>
+</div>
+
+</div><!-- container end -->
+
+<script>
+// Daily P&L Chart
+(function(){
+var dom = document.getElementById('chart-daily');
+var chart = echarts.init(dom);
+var names = ['澜起科技','罗博特科','汇绿生态','星环科技','三祥新材','兴森科技','泰和新材','太钢不锈','软通动力','华峰化学','德展健康','滨化股份','恒逸石化','中远海能','巨化股份','中工国际'];
+var changes = [-14.80,-8.83,-7.50,-6.23,-4.70,-4.36,-2.31,-0.57,-0.34,0.79,0.96,10.00,2.94,-1.20,-1.83,-4.05];
+var colors = changes.map(function(v){ return v>=0?'#3fb950':'#f85149'; });
+var option = {
+  tooltip: { trigger:'axis', axisPointer:{type:'shadow'}, formatter:function(p){ return p[0].name+'<br/>涨跌幅: '+p[0].value+'%'; }},
+  grid: { left:'3%', right:'4%', bottom:'15%', top:'8%', containLabel:true },
+  xAxis: { type:'category', data:names, axisLabel:{rotate:35,color:'#8b949e',fontSize:12}, axisLine:{lineStyle:{color:'#30363d'}} },
+  yAxis: { type:'value', name:'涨跌幅(%)', nameTextStyle:{color:'#8b949e'}, axisLabel:{color:'#8b949e',formatter:'{value}%'}, splitLine:{lineStyle:{color:'#21262d'}} },
+  series: [{ type:'bar', data:changes.map(function(v,i){ return {value:v,itemStyle:{color:colors[i],borderRadius:[4,4,0,0]}}; }),
+    markLine:{ silent:true, symbol:'none', lineStyle:{color:'#30363d',type:'dashed'}, data:[{yAxis:0}] },
+    label:{ show:true, position:'outside', color:'#c9d1d9', fontSize:11, formatter:'{c}%' }
+  }]
+};
+dom.style.height = Math.max(400, names.length * 24 + 100) + 'px';
+chart.setOption(option);
+window.addEventListener('resize',function(){ chart.resize(); });
+})();
+
+// Fund Flow Chart
+(function(){
+var dom = document.getElementById('chart-fundflow');
+var chart = echarts.init(dom);
+var names = ['澜起科技','罗博特科','兴森科技','汇绿生态','三祥新材','泰和新材','太钢不锈','软通动力','星环科技','华峰化学','德展健康'];
+var mainFlow = [-29.48,-5.39,-6.12,-1.92,-1.74,-0.62,-0.04,0.91,0.01,0.12,-0.05];
+var colors = mainFlow.map(function(v){ return v>=0?'#3fb950':'#f85149'; });
+var option = {
+  tooltip: { trigger:'axis', formatter:function(p){ return p[0].name+'<br/>主力净流入: '+p[0].value.toFixed(2)+'亿'; }},
+  grid: { left:'3%', right:'4%', bottom:'15%', top:'8%', containLabel:true },
+  xAxis: { type:'category', data:names, axisLabel:{rotate:35,color:'#8b949e',fontSize:12}, axisLine:{lineStyle:{color:'#30363d'}} },
+  yAxis: { type:'value', name:'主力净流入(亿元)', nameTextStyle:{color:'#8b949e'}, axisLabel:{color:'#8b949e'}, splitLine:{lineStyle:{color:'#21262d'}} },
+  series: [{ type:'bar', data:mainFlow.map(function(v,i){ return {value:v,itemStyle:{color:colors[i],borderRadius:[4,4,0,0]}}; }),
+    markLine:{ silent:true, symbol:'none', lineStyle:{color:'#30363d',type:'dashed'}, data:[{yAxis:0}] },
+    label:{ show:true, position:'outside', color:'#c9d1d9', fontSize:11, formatter:'{c}亿' }
+  }]
+};
+chart.setOption(option);
+window.addEventListener('resize',function(){ chart.resize(); });
+})();
+
+// MACD Signal Chart
+(function(){
+var dom = document.getElementById('chart-macd');
+var chart = echarts.init(dom);
+var names = ['澜起','罗博特科','汇绿','星环','三祥','兴森','泰和','太钢','软通','华峰','德展'];
+var macdVals = [4.97,-24.87,-1.73,-1.96,-1.14,-0.89,-0.54,-0.02,0.43,-0.02,0.06];
+var colors = macdVals.map(function(v){ return v>=0?'#3fb950':'#f85149'; });
+var option = {
+  tooltip: { trigger:'axis', formatter:function(p){ return p[0].name+'<br/>MACD柱: '+p[0].value.toFixed(2); }},
+  grid: { left:'3%', right:'4%', bottom:'15%', top:'8%', containLabel:true },
+  xAxis: { type:'category', data:names, axisLabel:{rotate:30,color:'#8b949e',fontSize:12}, axisLine:{lineStyle:{color:'#30363d'}} },
+  yAxis: { type:'value', name:'MACD值', nameTextStyle:{color:'#8b949e'}, axisLabel:{color:'#8b949e'}, splitLine:{lineStyle:{color:'#21262d'}} },
+  series: [{ type:'bar', data:macdVals.map(function(v,i){ return {value:v,itemStyle:{color:colors[i],borderRadius:[4,4,0,0]}}; }),
+    markLine:{ silent:true, symbol:'none', lineStyle:{color:'#30363d',type:'dashed'}, data:[{yAxis:0}] },
+    label:{ show:true, position:'outside', color:'#c9d1d9', fontSize:11, formatter:'{c}' }
+  }]
+};
+chart.setOption(option);
+window.addEventListener('resize',function(){ chart.resize(); });
+})();
+
+// KDJ-J Chart
+(function(){
+var dom = document.getElementById('chart-kdj');
+var chart = echarts.init(dom);
+var names = ['澜起','罗博特科','汇绿','星环','三祥','兴森','泰和','太钢','软通','华峰','德展','中远海能'];
+var kdjVals = [39.05,2.72,-17.91,29.46,4.21,-1.36,2.40,21.33,84.54,45.43,92.74,-22.68];
+var colors = kdjVals.map(function(v){ if(v<0) return '#f85149'; if(v>80) return '#d29922'; if(v<20) return '#388bfd'; return '#3fb950'; });
+var option = {
+  tooltip: { trigger:'axis', formatter:function(p){ 
+    var v = p[0].value;
+    var label = v<0?'极端超卖':v<20?'超卖':v>80?'超买':v>100?'极端超买':'正常';
+    return p[0].name+'<br/>KDJ-J: '+v.toFixed(2)+' ('+label+')'; 
+  }},
+  grid: { left:'3%', right:'4%', bottom:'15%', top:'8%', containLabel:true },
+  xAxis: { type:'category', data:names, axisLabel:{rotate:30,color:'#8b949e',fontSize:12}, axisLine:{lineStyle:{color:'#30363d'}} },
+  yAxis: { type:'value', name:'KDJ-J值', nameTextStyle:{color:'#8b949e'}, axisLabel:{color:'#8b949e'}, splitLine:{lineStyle:{color:'#21262d'}},
+    min:-30, max:110 },
+  series: [{ type:'bar', data:kdjVals.map(function(v,i){ return {value:v,itemStyle:{color:colors[i],borderRadius:[4,4,0,0]}}; }),
+    markLine:{ silent:true, symbol:'none', data:[
+      {yAxis:0,lineStyle:{color:'#f85149',type:'dashed'},label:{formatter:'超卖线',color:'#f85149'}},
+      {yAxis:20,lineStyle:{color:'#388bfd',type:'dashed'},label:{formatter:'20',color:'#388bfd'}},
+      {yAxis:80,lineStyle:{color:'#d29922',type:'dashed'},label:{formatter:'80',color:'#d29922'}},
+      {yAxis:100,lineStyle:{color:'#f85149',type:'dashed'},label:{formatter:'超买线',color:'#f85149'}}
+    ]},
+    label:{ show:true, position:'outside', color:'#c9d1d9', fontSize:11, formatter:'{c}' }
+  }]
+};
+chart.setOption(option);
+window.addEventListener('resize',function(){ chart.resize(); });
+})();
+</script>
+
+</body>
+</html>
