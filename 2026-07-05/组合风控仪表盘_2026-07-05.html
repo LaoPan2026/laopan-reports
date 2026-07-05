@@ -26,9 +26,10 @@ h3{font-size:14px;font-weight:600;color:#f0f6fc;margin:10px 0 4px}
 .chart-w{height:280px}
 .row-flex{display:flex;gap:10px;flex-wrap:wrap}
 .row-flex>div{flex:1;min-width:300px}
-table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
-th{text-align:left;padding:6px 8px;color:var(--sub);font-weight:500;border-bottom:1px solid var(--border);font-size:11px}
-td{padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.5)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0;table-layout:fixed}
+th{text-align:left;padding:6px 8px;color:var(--sub);font-weight:500;border-bottom:1px solid var(--border);font-size:11px;vertical-align:bottom}
+td{padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.5);vertical-align:top}
+td:first-child{white-space:nowrap;min-width:120px;overflow:hidden;text-overflow:ellipsis}
 .green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
 .tag{display:inline-block;font-size:10px;padding:1px 5px;border-radius:3px;margin-right:3px;font-weight:500}
 .tag-s{background:rgba(188,140,255,0.18);color:var(--purple)}
