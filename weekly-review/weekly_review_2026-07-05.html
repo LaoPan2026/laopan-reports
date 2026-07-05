@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>周度复盘 2026-07-05</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--fg:#e6edf3;--muted:#8b949e;--red:#ff6b6b;--green:#3fb950;--yellow:#d29922;--blue:#58a6ff;--purple:#bc8cff;--accent:#f0883e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-size:15px;line-height:1.75;font-family:'PingFang SC','Microsoft YaHei',sans-serif}
+.container{max-width:960px;margin:0 auto;padding:20px 16px}
+h1{font-size:22px;margin:24px 0 12px;font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:6px}
+h2{font-size:17px;margin:20px 0 10px;font-weight:600;color:var(--accent)}
+h3{font-size:15px;margin:12px 0 6px;font-weight:600;color:var(--blue)}
+.card{background:var(--card);border:1px solid var(--border);padding:14px;margin-bottom:8px;border-radius:6px}
+.bull{border-left:3px solid var(--green)}.bear{border-left:3px solid var(--red)}.info{border-left:3px solid var(--blue)}.alert-card{border-left:3px solid var(--yellow)}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:3px;font-weight:600;margin-right:4px}
+.tag-s{background:#ff4757;color:#fff}.tag-a{background:#f0883e;color:#fff}.tag-b{background:#d29922;color:#fff}.tag-def{background:#8b949e;color:#fff}.tag-profit{background:#3fb950;color:#fff}
+.tag-up{background:#3fb950;color:#fff}.tag-down{background:#ff6b6b;color:#fff}.tag-flat{background:#8b949e;color:#fff}
+.red{color:var(--red)}.green{color:var(--green)}.yellow{color:var(--yellow)}.blue{color:var(--blue)}.muted{color:var(--muted)}.bold{font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th{background:#21262d;color:var(--muted);font-size:12px;padding:7px 8px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top;word-break:break-word}
+td:first-child{white-space:nowrap;min-width:120px}
+.sub{font-size:12px;color:var(--muted)}
+.chart-box{width:100%;height:380px;margin:10px 0}
+.two-col{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.op-card{background:#1c2128;border:1px solid #30363d;padding:10px;border-radius:4px}
+.footer{font-size:11px;color:var(--muted);margin-top:20px;padding-top:12px;border-top:1px solid var(--border)}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}.container{padding:12px 8px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 核心警示 -->
+<h1>🎯 周度复盘 · 2026年6月29日—7月3日</h1>
+<div class="card alert-card">
+<span class="tag tag-down">⚠ 核心警示</span>
+<b>本周AI/光通信方向遭受美股映射重创：</b>MRVL -12.79%、COHR -18.14%、LITE -15.51%三只映射美股集体暴跌，持仓中汇绿生态-18.41%、罗博特科-12.79%、兴森科技-10.50%遭遇传染性杀跌。但<b>NVDA仅-0.46%</b>，说明暴跌并非"AI叙事崩塌"，而是<b>光通信细分产业链的阶段性回调</b>。防御仓位（德展+6.69%、华峰+0.29%）撑住了底。澜起科技+1.90%逆势走强，验证S级底仓逻辑。
+<br><span class="sub">周度定性：<b class="red">科技杀跌周</b> · 成长方向大面积回调 · 防防御仓位韧性凸显 · 关注下周美股是否企稳</span>
+</div>
+
+<!-- ===== 一、本周大盘回顾 ===== -->
+<h2>一、本周大盘回顾</h2>
+<div class="card info">
+<b>指数周涨跌：</b>
+<table>
+<tr><th>指数</th><th>收盘</th><th>周涨跌</th><th>5日涨跌</th><th>20日涨跌</th><th>60日涨跌</th></tr>
+<tr><td>上证指数</td><td>4043.64</td><td class="green">+0.41%</td><td class="green">+0.41%</td><td class="red">-0.35%</td><td class="green">+4.21%</td></tr>
+<tr><td>深证成指</td><td>15597.51</td><td class="red">-1.17%</td><td class="red">-1.17%</td><td class="red">-0.41%</td><td class="green">+16.81%</td></tr>
+<tr><td>科创50</td><td>1975.60</td><td class="red">-2.79%</td><td class="red">-2.79%</td><td class="green">+13.67%</td><td class="green">+57.27%</td></tr>
+<tr><td>创业板指</td><td>4019.93</td><td class="red">-4.16%</td><td class="red">-4.16%</td><td class="red">-1.69%</td><td class="green">+27.63%</td></tr>
+</table>
+</div>
+<div class="card info">
+<b>市场画像（7月3日）：</b><br>
+风格：<b class="green">成长主导</b>（成长指数 > 价值指数 +5%） · 大小盘：<b>小盘占优</b> · 板块宽度：<b>防御为主</b>（上涨板块20~40%） · 情绪：<b class="yellow">狂热</b>（涨停>50只） · 技术：<b class="red">极弱</b>（MACD死叉发散） · 估值：<b>高估强势</b>（PE分位>90%）
+</div>
+<div class="card info">
+<b>风格轮动：</b>沪深300 5日-0.54%，全指成长+0.82%，全指价值+1.52%，中证1000+0.23%。<br>
+<b>领涨行业：</b>贵金属+7.62%、航海装备+6.76%、航天装备+6.34%、电机+6.29%、汽车零部件+4.82%<br>
+<b>领跌行业：</b>电子化学品-5.91%、光学光电子-4.17%、半导体-1.36%<br>
+<b>领涨概念：</b>机器人执行器+9.68%、华为机器人+8.21%、空心杯电机+7.13%
+</div>
+
+<div id="chart-index" class="chart-box"></div>
+
+<!-- ===== 二、持仓股本周表现排名 ===== -->
+<h2>二、持仓股本周表现排名</h2>
+<div class="card">
+<table>
+<tr><th>排名</th><th>名称</th><th>代码</th><th>收盘价</th><th>成本价</th><th>浮盈/亏</th><th>周涨跌</th><th>评级</th><th>周度变化</th></tr>
+<tr><td>1</td><td>德展健康</td><td>000813</td><td>3.19</td><td>3.8456</td><td class="red">-17.0%</td><td class="green">+6.69%</td><td><span class="tag tag-def">防御</span></td><td><span class="tag tag-flat">→持平</span></td></tr>
+<tr><td>2</td><td>澜起科技</td><td>688008</td><td>266.80</td><td>96.83</td><td class="green">+175.5%</td><td class="green">+1.90%</td><td><span class="tag tag-s">S级</span></td><td><span class="tag tag-up">↑韧性验证</span></td></tr>
+<tr><td>3</td><td>太钢不锈</td><td>000825</td><td>3.46</td><td>5.7476</td><td class="red">-39.8%</td><td class="green">+0.87%</td><td><span class="tag tag-def">防御</span></td><td><span class="tag tag-flat">→持平</span></td></tr>
+<tr><td>4</td><td>软通动力</td><td>301236</td><td>42.02</td><td>7.3635</td><td class="green">+471%</td><td class="green">+0.79%</td><td><span class="tag tag-a">A级</span></td><td><span class="tag tag-flat">→持平</span></td></tr>
+<tr><td>5</td><td>华峰化学</td><td>002064</td><td>10.45</td><td>12.446</td><td class="red">-16.1%</td><td class="green">+0.29%</td><td><span class="tag tag-def">防御</span></td><td><span class="tag tag-flat">→持平</span></td></tr>
+<tr><td>6</td><td>星环科技</td><td>688031</td><td>106.53</td><td>-44.48</td><td class="green">利润仓</td><td class="red">-0.91%</td><td><span class="tag tag-profit">利润仓</span></td><td><span class="tag tag-flat">→持平</span></td></tr>
+<tr><td>7</td><td>三祥新材</td><td>603663</td><td>85.79</td><td>18.18</td><td class="green">+373%</td><td class="red">-9.25%</td><td><span class="tag tag-s">S级</span></td><td><span class="tag tag-down">↓关注</span></td></tr>
+<tr><td>8</td><td>兴森科技</td><td>002436</td><td>46.37</td><td>-20.39</td><td class="green">利润仓</td><td class="red">-10.50%</td><td><span class="tag tag-profit">利润仓</span></td><td><span class="tag tag-flat">→持平</span></td></tr>
+<tr><td>9</td><td>罗博特科</td><td>300757</td><td>512.73</td><td>523.13</td><td class="red">-2.0%</td><td class="red">-12.79%</td><td><span class="tag tag-a">A级</span></td><td><span class="tag tag-down">↓承压</span></td></tr>
+<tr><td>10</td><td>泰和新材</td><td>002254</td><td>16.68</td><td>13.37</td><td class="green">+24.7%</td><td class="red">-13.80%</td><td><span class="tag tag-b">B+</span></td><td><span class="tag tag-down">↓进一步承压</span></td></tr>
+<tr><td>11</td><td>汇绿生态</td><td>001267</td><td>45.70</td><td>48.09</td><td class="red">-4.98%</td><td class="red">-18.41%</td><td><span class="tag tag-a">A级</span></td><td><span class="tag tag-down">↓重挫</span></td></tr>
+</table>
+</div>
+
+<div id="chart-holding" class="chart-box"></div>
+
+<!-- ===== 三、持仓股逐只回顾 ===== -->
+<h2>三、持仓股逐只回顾</h2>
+
+<!-- 澜起科技 -->
+<div class="two-col">
+<div>
+<h3>① 澜起科技 688008 · <span class="tag tag-s">S级</span> <span class="tag tag-up">↑韧性验证</span></h3>
+<div class="card bull">
+<b>本周走势：</b>收盘266.80，周+1.90%，逆势走强。周内经历剧烈震荡：7/1触及332.9（52周新高）后快速回落，7/2大幅低开至268区域，7/3在255-280之间宽幅震荡最终收于266.80。成交量维持高位（7日均量约8900万股），换手率6-9%区间。<br>
+<b>资金面：</b>主力5日净流出27.3亿（大单流出），但中小单流入。10日净流出54亿、20日净流出82.7亿，属高位获利盘出逃特征。<br>
+<b>技术面：</b>MACD DIF 13.70 > DEA 13.30，MACD柱+0.80，尚在金叉区域但柱缩短；KDJ K=46.9 D=64.7 J=11.3，K/D回落中；RSI6=44.1，中性偏弱区。<b class="yellow">关键位：</b>支撑255（本周低点），压力280（本周高点），强支撑215（price_floor）<br>
+<b>下周关注点：</b>MRVL本周暴跌-12.79%，但澜起仅+1.9%，<b class="green">A股映射独立性增强</b>。关注MRVL能否在下周企稳，若美股反弹则澜起有望重上280+。重点关注7月中旬澜起H1业绩预告窗口。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-s">操作建议</span><br>
+<b class="green">HOLD · 底仓不动</b><br>
+成本96.83，浮盈+175%<br>
+短线若跌至255可小幅加仓<br>
+目标：等待业绩催化再冲300+
+</div>
+</div>
+</div>
+
+<!-- 三祥新材 -->
+<div class="two-col">
+<div>
+<h3>② 三祥新材 603663 · <span class="tag tag-s">S级</span> <span class="tag tag-down">↓关注回调</span></h3>
+<div class="card bear">
+<b>本周走势：</b>收盘85.79，周-9.25%，高位回调。6/25触及105后连续杀跌，本周从89.6跌至85.79，跌破90整数关口。周内最高96.2最低85.77，振幅4.4%。<br>
+<b>资金面：</b>主力5日净流出2.08亿，10日净流出3.33亿。大单流出明显，散户小幅流入接盘。<br>
+<b>技术面：</b>MACD DIF 8.68 < DEA 10.03，MACD柱-2.71，已死叉；KDJ K=30.0 D=53.6 J=-17.1，超卖区；RSI2=2.82极度超卖，RSI6=36.6偏低。<b class="yellow">关键位：</b>支撑80.64（price_floor），压力90（整数关口），强支撑73（前期支撑）<br>
+<b>下周关注点：</b>锆材料/固态电池逻辑未变，当前属高位获利回吐。RSI2仅2.82属极端超卖，反弹概率高。关注80附近是否出现企稳信号。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-s">操作建议</span><br>
+<b class="green">HOLD · S级底仓不割</b><br>
+成本18.18，浮盈+373%<br>
+若跌至80可少量加仓<br>
+反弹目标90+再评估
+</div>
+</div>
+</div>
+
+<!-- 汇绿生态 -->
+<div class="two-col">
+<div>
+<h3>③ 汇绿生态 001267 · <span class="tag tag-a">A级</span> <span class="tag tag-down">↓重挫</span></h3>
+<div class="card bear">
+<b>本周走势：</b>收盘45.70，周<b class="red">-18.41%</b>，本周持仓最大跌幅！从54区域连续5日杀跌至45.70。映射美股COHR -18.14%、LITE -15.51%，A股光通信方向遭受传染性暴跌。<br>
+<b>资金面：</b>主力5日净流出<b class="red">11.99亿</b>，10日净流出1.93亿，20日净流出9.92亿。大单疯狂出逃，属恐慌性抛售。<br>
+<b>技术面：</b>MACD DIF -1.37 < DEA -0.20，MACD柱-2.34，死叉加深；KDJ K=12.8 D=29.4 J=-20.5，深度超卖；RSI2=2.68极度超卖，RSI6=22.2严重偏低。<b class="yellow">关键位：</b>支撑42.17（price_floor），压力50，前期支撑45附近<br>
+<b>下周关注点：</b>光模块逻辑是否被破坏？COHR/LITE暴跌源于美股光通信板块集体回调，并非公司基本面恶化。核心问题：<b>A股汇绿生态的映射逻辑是否仍然成立</b>？若美股企稳反弹，汇绿有望45-50区间修复。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-a">操作建议</span><br>
+<b class="yellow">HOLD但高度警惕</b><br>
+成本48.09，当前浮亏-4.98%<br>
+若跌破42.17需评估是否降级<br>
+反弹至50+可减仓止损
+</div>
+</div>
+</div>
+
+<!-- 罗博特科 -->
+<div class="two-col">
+<div>
+<h3>④ 罗博特科 300757 · <span class="tag tag-a">A级</span> <span class="tag tag-down">↓承压</span></h3>
+<div class="card bear">
+<b>本周走势：</b>收盘512.73，周-12.79%，高位大幅回调。6/25冲至673.65后急速回落，本周从619跌至512，跌幅深且成交量缩减（缩量杀跌特征）。<br>
+<b>资金面：</b>主力5日净流出11.93亿，10日净流出41.8亿，20日净流出46.4亿。高位持续大额流出。<br>
+<b>技术面：</b>MACD DIF -9.89 < DEA 5.23，MACD柱-30.23，<b class="red">严重死叉</b>；KDJ K=14.5 D=24.8 J=-5.9，超卖区；RSI2=9.4极度超卖，RSI6=28.6偏低。<b class="yellow">关键位：</b>支撑423（price_floor），压力530，关键位500整数关口<br>
+<b>下周关注点：</b>映射NVDA仅-0.46%，说明罗博特科回调更多是A股自身高位获利回吐而非NVDA映射驱动。AI硬件/光通信清洗设备逻辑未变。500关口若失守则需警惕423支撑。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-a">操作建议</span><br>
+<b class="yellow">HOLD · 观察为主</b><br>
+成本523.13，当前浮亏-2.0%<br>
+若跌破423考虑降级<br>
+企稳500+可继续持有
+</div>
+</div>
+</div>
+
+<!-- 软通动力 -->
+<div class="two-col">
+<div>
+<h3>⑤ 软通动力 301236 · <span class="tag tag-a">A级</span> <span class="tag tag-flat">→持平</span></h3>
+<div class="card bull">
+<b>本周走势：</b>收盘42.02，周+0.79%，窄幅震荡。6/26从38暴涨至43.36后回落，本周在40-43区间震荡整理，成交量逐步回落。<br>
+<b>资金面：</b>主力5日净流入1.67亿，10日净流入1.47亿。资金面转正，属近期改善。<br>
+<b>技术面：</b>MACD DIF 0.35 > DEA 0.11，金叉；KDJ K=67.6 D=59.6 J=83.8，偏强区；RSI6=60.2，中性偏强。<b class="yellow">关键位：</b>支撑37（前期低点），压力45，重要位42<br>
+<b>下周关注点：</b>作为持仓浮盈标杆（+471%），走势独立于AI杀跌方向，体现软件服务板块的防御属性。关注华为生态催化。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-a">操作建议</span><br>
+<b class="green">HOLD · 浮盈安全垫厚</b><br>
+成本7.36，浮盈+471%<br>
+当前无需操作<br>
+若冲45+可减仓1/3
+</div>
+</div>
+</div>
+
+<!-- 泰和新材 -->
+<div class="two-col">
+<div>
+<h3>⑥ 泰和新材 002254 · <span class="tag tag-b">B+</span> <span class="tag tag-down">↓进一步承压</span></h3>
+<div class="card bear">
+<b>本周走势：</b>收盘16.68，周<b class="red">-13.80%</b>。6/26从20.54急跌至19.35后本周继续杀跌，从18.19跌至16.68。6/29当日跌幅达-7.4%（从19.25跌至17.97）。<br>
+<b>资金面：</b>主力5日净流出3.12亿，10日净流出0.99亿。高位获利盘离场。<br>
+<b>技术面：</b>MACD DIF 0.71 < DEA 1.05，MACD柱-0.68，死叉；KDJ K=25.4 D=39.4 J=-2.6，偏弱；RSI2=8.52极度超卖，RSI6=37.9偏低。<b class="yellow">关键位：</b>支撑15.20（price_floor），压力18.58<br>
+<b>下周关注点：</b>芳纶/氨纶景气度是否恶化？本周大幅回调暗示市场对化工新材料景气预期降温。需关注行业订单/价格数据。若跌至15.20附近需评估是否降级至B。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-b">操作建议</span><br>
+<b class="yellow">HOLD · 降级风险上升</b><br>
+成本13.37，浮盈+24.7%<br>
+跌破15.2考虑降级至B<br>
+反弹18+可减仓
+</div>
+</div>
+</div>
+
+<!-- 兴森科技 -->
+<div class="two-col">
+<div>
+<h3>⑦ 兴森科技 002436 · <span class="tag tag-profit">利润仓</span> <span class="tag tag-flat">→持平</span></h3>
+<div class="card">
+<b>本周走势：</b>收盘46.37，周-10.50%。高位回调但周五逆势反弹+2.11%（从44.03拉回46.37），体现利润仓韧性。<br>
+<b>资金面：</b>主力当日净流入4.13亿（7/3单日），但5日累计净流出22.05亿。整体高位出逃，但周五出现回流信号。<br>
+<b>技术面：</b>MACD DIF 3.19 < DEA 3.84，MACD柱-1.30，死叉；KDJ K=32.8 D=49.6 J=-1.0，偏弱区；RSI6=44.4中性。<b class="yellow">关键位：</b>支撑40.87（price_floor），压力50<br>
+<b>下周关注点：</b>PCB/AI硬件逻辑未变，负成本仓安全垫极厚。回调属正常高位波动，无需恐慌。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-profit">操作建议</span><br>
+<b class="green">HOLD · 利润仓不割</b><br>
+成本为负，全仓为利润<br>
+跌至40以下可做T加仓<br>
+反弹50+可卖1/3落袋
+</div>
+</div>
+</div>
+
+<!-- 星环科技 -->
+<div class="two-col">
+<div>
+<h3>⑧ 星环科技 688031 · <span class="tag tag-profit">利润仓</span> <span class="tag tag-flat">→持平</span></h3>
+<div class="card">
+<b>本周走势：</b>收盘106.53，周-0.91%，跌幅温和。6/30-7/1间出现宽幅震荡（113-124区间），7/2大幅回落至110.66，7/3继续回落至106.53。整体属高位横盘整理。<br>
+<b>资金面：</b>主力5日净流入0.35亿（近日回流），10日净流出2.43亿。资金面边际改善。<br>
+<b>技术面：</b>MACD DIF -5.82 < DEA -4.64，MACD柱-2.36，空头排列；KDJ K=16.1 D=19.5 J=9.1，低位区；RSI6=32.3偏低。<b class="yellow">关键位：</b>支撑88.53（price_floor），压力130<br>
+<b>下周关注点：</b>大数据/AI软件逻辑持续，负成本仓完全无忧。等待反弹窗口。
+</div>
+</div>
+<div>
+<div class="op-card">
+<span class="tag tag-profit">操作建议</span><br>
+<b class="green">HOLD · 利润仓不动</b><br>
+成本为负，安全垫极厚<br>
+反弹120+可卖1/4<br>
+跌至88以下可做T
+</div>
+</div>
+</div>
+
+<!-- 防御仓位组 -->
+<h3>⑨-⑪ 防御仓位组</h3>
+<div class="card">
+<table>
+<tr><th>名称</th><th>收盘</th><th>成本</th><th>浮盈/亏</th><th>周涨跌</th><th>技术面</th><th>操作建议</th></tr>
+<tr><td>德展健康 000813</td><td>3.19</td><td>3.85</td><td class="red">-17%</td><td class="green">+6.69%</td><td>KDJ K=78偏强,MACD金叉微亮</td><td>HOLD · 等反弹3.5+</td></tr>
+<tr><td>华峰化学 002064</td><td>10.45</td><td>12.45</td><td class="red">-16%</td><td class="green">+0.29%</td><td>KDJ K=52中性,RSI6=55.6</td><td>HOLD · 化工景气观察</td></tr>
+<tr><td>太钢不锈 000825</td><td>3.46</td><td>5.75</td><td class="red">-40%</td><td class="green">+0.87%</td><td>KDJ K=22超卖,RSI全系列30+</td><td>HOLD · 长期等待钢价复苏</td></tr>
+</table>
+<span class="sub">防御仓位本周集体走强，提供组合韧性。深度浮亏但逻辑未破，继续持有等待周期回暖。</span>
+</div>
+
+<!-- ===== 四、美股映射周度联动 ===== -->
+<h2>四、美股映射周度联动</h2>
+<div class="card bear">
+<table>
+<tr><th>映射链</th><th>美股标的</th><th>美股周涨跌</th><th>A股标的</th><th>A股周涨跌</th><th>5日相关性</th><th>下周展望</th></tr>
+<tr><td>澜起 → MRVL</td><td>迈威尔科技</td><td class="red">-12.79%</td><td>澜起科技</td><td class="green">+1.90%</td><td><b class="yellow">严重背离</b></td><td>MRVL企稳则澜起有望独立走强</td></tr>
+<tr><td>汇绿 → COHR</td><td>Coherent</td><td class="red">-18.14%</td><td>汇绿生态</td><td class="red">-18.41%</td><td><b class="red">高度同步</b></td><td>COHR若继续杀跌则汇绿承压</td></tr>
+<tr><td>汇绿 → LITE</td><td>Lumentum</td><td class="red">-15.51%</td><td>汇绿生态</td><td class="red">-18.41%</td><td><b class="red">同步暴跌</b></td><td>LITE企稳是汇绿反弹前提</td></tr>
+<tr><td>罗博特科 → NVDA</td><td>英伟达</td><td class="red">-0.46%</td><td>罗博特科</td><td class="red">-12.79%</td><td><b class="yellow">背离扩大</b></td><td>罗博特科回调非NVDA驱动</td></tr>
+<tr><td>罗博特科 → MRVL</td><td>迈威尔科技</td><td class="red">-12.79%</td><td>罗博特科</td><td class="red">-12.79%</td><td><b>同步</b></td><td>MRVL企稳为关键</td></tr>
+</table>
+</div>
+<div class="card info">
+<b>映射分析核心结论：</b><br>
+①<b>澜起 vs MRVL严重背离</b>（A股+1.9% vs 美股-12.79%）：澜起科技作为S级底仓，A股独立性增强。原因：澜起H1业绩预期强（DDR5/CXL出货量上升），MRVL则受美股光通信板块恐慌拖累。<br>
+②<b>汇绿 vs COHR/LITE高度同步</b>（三者均在-15~-18%区间）：汇绿生态的A股走势完全由美股光通信龙头驱动，映射链紧密度高。下周COHR/LITE能否企稳将直接决定汇绿方向。<br>
+③<b>罗博特科 vs NVDA背离</b>（罗博-12.79% vs NVDA-0.46%）：NVDA基本面稳固（AI Capex周期不变），罗博特科的杀跌更多是A股自身高位获利回吐+MRVL映射传染，而非NVDA映射崩塌。<br>
+④<b>下周关键变量：</b>美股7/4休市后7/7开盘，MRVL/COHR/LITE能否止跌企稳是全周方向的决定性因素。
+</div>
+
+<div id="chart-usmapping" class="chart-box"></div>
+
+<!-- ===== 五、跟踪池周度扫描 ===== -->
+<h2>五、跟踪池周度扫描</h2>
+<div class="card">
+<table>
+<tr><th>名称</th><th>代码</th><th>收盘</th><th>周涨跌</th><th>20日涨跌</th><th>技术面信号</th><th>主力5日净流</th><th>纳入评估</th></tr>
+<tr><td>恒逸石化</td><td>000703</td><td>14.56</td><td class="red">-12.66%</td><td class="green">+11.44%</td><td>KDJ K=49.7中性,RSI6=51.9中性</td><td class="red">-2.19亿</td><td>暂不具备 · 等企稳13.5</td></tr>
+<tr><td>中远海能</td><td>600026</td><td>17.37</td><td class="red">-12.98%</td><td class="red">-1.86%</td><td>KDJ K=16.6超卖,RSI6=39.0偏低</td><td class="red">-7.91亿</td><td>周期高位回落 · 暂不纳入</td></tr>
+<tr><td>巨化股份</td><td>600160</td><td>49.35</td><td class="red">-3.14%</td><td class="green">+30.35%</td><td>KDJ K=65偏强,RSI6=44.7中性</td><td class="red">-8.44亿</td><td>高位回调 · 关注45支撑</td></tr>
+<tr><td>中工国际</td><td>002051</td><td>10.52</td><td class="red">-17.88%</td><td class="red">-11.67%</td><td>KDJ K=19.7超卖,RSI2=7.5极度超卖</td><td class="red">-1.03亿</td><td>急跌后观望 · 等10支撑</td></tr>
+<tr><td>滨化股份</td><td>601678</td><td>6.93</td><td class="green">+11.59%</td><td class="green">+30.02%</td><td>KDJ K=74偏强,换手20.9%</td><td class="green">+4.60亿</td><td><b class="yellow">关注！</b>放量冲高后回调 · 等回踩6.5</td></tr>
+</table>
+</div>
+<div class="card info">
+<b>跟踪池异动重点：</b><br>
+①<b>滨化股份</b>：本周+11.59%，换手率20.9%极高，主力5日净流入4.60亿。7/2涨停（7.70），7/3冲高7.84后回落至6.93（-10%）。短线暴涨暴跌，属化工周期资金博弈。若回踩6.5附近企稳，可考虑建仓，但需等情绪冷却。<br>
+②<b>中工国际</b>：周-17.88%暴跌，RSI2仅7.5极度超卖。前期从7.9涨至13.89后急速回落，属典型高位杀跌。观望。<br>
+③<b>巨化股份</b>：氟化工龙头高位回调，7/3触及跌停价49.35。长周期景气逻辑仍存，但短期需等回调到位。
+</div>
+
+<!-- ===== 六、核心矛盾与反一致预期审查 ===== -->
+<h2>六、核心矛盾与反一致预期审查</h2>
+<div class="card alert-card">
+<b>本周市场最流行的叙事：</b><br>
+<span class="bold">"AI/光通信行情见顶，科技股要集体回调了"</span> —— MRVL/COHR/LITE三只光通信美股暴跌，A股映射标的同步杀跌，市场开始质疑AI Capex周期的持续性。
+</div>
+<div class="card bull">
+<b>🛡 反一致预期审查：</b><br>
+<b>1. 这个叙事的逻辑漏洞：</b>NVDA仅跌-0.46%，说明<b>AI叙事的核心锚点（英伟达）并未崩塌</b>。光通信细分（MRVL/COHR/LITE）的暴跌更多是该细分产业链的阶段性回调+美股板块轮动（贵金属+7.62%、航海装备+6.76%领涨），而非AI Capex逻辑被证伪。<br><br>
+<b>2. 什么事件可能证伪"AI见顶"叙事：</b><br>
+- 7月中旬美国大厂Q2财报（Meta/Google/Microsoft）若Capex指引上调→直接证伪<br>
+- NVDA若在7/7开盘后反弹至200+→光通信恐慌消退<br>
+- 澜起科技H1业绩预告若超预期→A股AI半导体独立走强<br><br>
+<b>3. 什么事件可能确认"AI见顶"叙事：</b><br>
+- 美国大厂Q2 Capex指引下调或低于预期→叙事确认，需大幅减仓科技股<br>
+- NVDA跌破190→AI叙事核心崩塌信号<br>
+- MRVL/COHR/LITE继续暴跌至技术破位→光通信方向确认为"假摔失败"<br><br>
+<b>4. 当前判断：</b><b class="green">倾向于"假摔"而非"见顶"</b>。依据：①NVDA稳如磐石（-0.46%）②澜起逆势走强③科创50虽周跌-2.79%但60日+57.27%趋势未变④H2投研框架六大判断仍成立（尤其"Capex不会放缓"）。<b>但汇绿生态需高度警惕——如果COHR/LITE继续杀跌，汇绿的A级评级需重新评估。</b>
+</div>
+
+<!-- ===== 七、下周操作规划 ===== -->
+<h2>七、下周操作规划</h2>
+<div class="card info">
+<b>下周关键日历：</b><br>
+- 7/4（周四）：美股休市（Independence Day）→7/7开盘方向决定性<br>
+- 7/7-7/11：A股正常交易周，关注美股映射开盘冲击<br>
+- 7月中旬：澜起科技等科创板公司H1业绩预告窗口<br>
+- 关注美国大厂财报发布时间（Meta 7/30、Google 7/28预期）
+</div>
+<div class="card">
+<table>
+<tr><th>标的</th><th>当前评级</th><th>触发条件</th><th>操作</th><th>关键价位</th></tr>
+<tr><td>澜起科技 688008</td><td><span class="tag tag-s">S级</span></td><td>MRVL企稳反弹</td><td class="green">继续持有/255小幅加仓</td><td>支撑255 / 压力280</td></tr>
+<tr><td>三祥新材 603663</td><td><span class="tag tag-s">S级</span></td><td>RSI2极度超卖反弹</td><td class="green">持有/80附近可加仓</td><td>支撑80.64 / 压力90</td></tr>
+<tr><td>汇绿生态 001267</td><td><span class="tag tag-a">A级</span></td><td>COHR/LITE止跌</td><td class="yellow">持有观察/跌破42降级</td><td>支撑42.17 / 压力50</td></tr>
+<tr><td>罗博特科 300757</td><td><span class="tag tag-a">A级</span></td><td>500关口保卫</td><td class="yellow">持有/破423降级</td><td>支撑423 / 压力530</td></tr>
+<tr><td>软通动力 301236</td><td><span class="tag tag-a">A级</span></td><td>无触发</td><td class="green">继续持有</td><td>支撑37 / 压力45</td></tr>
+<tr><td>泰和新材 002254</td><td><span class="tag tag-b">B+</span></td><td>跌破15.2</td><td class="red">考虑降级至B</td><td>支撑15.2 / 压力18.6</td></tr>
+<tr><td>防御仓位组</td><td><span class="tag tag-def">防御</span></td><td>无触发</td><td class="green">继续持有</td><td>—</td></tr>
+<tr><td>利润仓组</td><td><span class="tag tag-profit">利润仓</span></td><td>反弹至压力位</td><td class="green">可卖1/3落袋</td><td>兴森50/星环120</td></tr>
+</table>
+</div>
+<div class="card alert-card">
+<b>仓位建议：</b><br>
+本周科技方向大面积回调后，<b>不建议追涨加仓</b>。当前策略：<br>
+①<b>S级（澜起、三祥）</b>：底仓不动，若跌至关键支撑位可小幅加仓（总仓位不超原有比例）<br>
+②<b>A级承压组（汇绿、罗博特科）</b>：持有观察，设好降级触发线（汇绿42.17、罗博特科423），跌破则降级<br>
+③<b>B+级（泰和新材）</b>：持有但降级风险上升，跌破15.2正式降级<br>
+④<b>防御/利润仓</b>：不动，等待反弹窗口再操作<br>
+<b class="yellow">总体仓位维持不变，等美股7/7开盘定方向后再做加减仓决策。</b>
+</div>
+
+<!-- ===== 八、持仓评级更新汇总表 ===== -->
+<h2>八、持仓评级更新汇总表</h2>
+<div class="card">
+<table>
+<tr><th>名称</th><th>代码</th><th>当前评级</th><th>较上周变化</th><th>收盘价</th><th>成本价</th><th>浮盈/亏</th><th>下周核心观察点</th></tr>
+<tr><td>澜起科技</td><td>688008</td><td><span class="tag tag-s">S级</span></td><td><span class="tag tag-up">↑韧性验证</span></td><td>266.80</td><td>96.83</td><td class="green">+175%</td><td>MRVL企稳+H1业绩预告</td></tr>
+<tr><td>三祥新材</td><td>603663</td><td><span class="tag tag-s">S级</span></td><td><span class="tag tag-down">↓关注回调</span></td><td>85.79</td><td>18.18</td><td class="green">+373%</td><td>80支撑是否企稳</td></tr>
+<tr><td>汇绿生态</td><td>001267</td><td><span class="tag tag-a">A级</span></td><td><span class="tag tag-down">↓重挫警示</span></td><td>45.70</td><td>48.09</td><td class="red">-5%</td><td>COHR/LITE止跌+42支撑</td></tr>
+<tr><td>罗博特科</td><td>300757</td><td><span class="tag tag-a">A级</span></td><td><span class="tag tag-down">↓承压</span></td><td>512.73</td><td>523.13</td><td class="red">-2%</td><td>500关口保卫+423底线</td></tr>
+<tr><td>软通动力</td><td>301236</td><td><span class="tag tag-a">A级</span></td><td><span class="tag tag-flat">→持平</span></td><td>42.02</td><td>7.36</td><td class="green">+471%</td><td>华为生态催化</td></tr>
+<tr><td>泰和新材</td><td>002254</td><td><span class="tag tag-b">B+</span></td><td><span class="tag tag-down">↓降级风险上升</span></td><td>16.68</td><td>13.37</td><td class="green">+25%</td><td>15.2底线+化工景气</td></tr>
+<tr><td>兴森科技</td><td>002436</td><td><span class="tag tag-profit">利润仓</span></td><td><span class="tag tag-flat">→持平</span></td><td>46.37</td><td>负成本</td><td class="green">利润仓</td><td>反弹50+可减仓</td></tr>
+<tr><td>星环科技</td><td>688031</td><td><span class="tag tag-profit">利润仓</span></td><td><span class="tag tag-flat">→持平</span></td><td>106.53</td><td>负成本</td><td class="green">利润仓</td><td>反弹120+可减仓</td></tr>
+<tr><td>华峰化学</td><td>002064</td><td><span class="tag tag-def">防御</span></td><td><span class="tag tag-flat">→持平</span></td><td>10.45</td><td>12.45</td><td class="red">-16%</td><td>化工景气观察</td></tr>
+<tr><td>德展健康</td><td>000813</td><td><span class="tag tag-def">防御</span></td><td><span class="tag tag-flat">→持平</span></td><td>3.19</td><td>3.85</td><td class="red">-17%</td><td>反弹3.5+评估</td></tr>
+<tr><td>太钢不锈</td><td>000825</td><td><span class="tag tag-def">防御</span></td><td><span class="tag tag-flat">→持平</span></td><td>3.46</td><td>5.75</td><td class="red">-40%</td><td>钢价周期回暖</td></tr>
+</table>
+</div>
+<div class="card alert-card">
+<b>评级调整说明：</b><br>
+①<b>澜起科技</b>：维持S级，但标记"韧性验证"——逆MRVL暴跌独立走强，底仓逻辑更坚实<br>
+②<b>三祥新材</b>：维持S级，标记"关注回调"——RSI2极度超卖暗示反弹在近，但需确认80支撑<br>
+③<b>汇绿生态</b>：维持A级，标记"重挫警示"——本周-18.41%是持仓最大跌幅，若下周COHR/LITE继续杀跌，<b>需评估是否降级至A-或B+</b><br>
+④<b>罗博特科</b>：维持A级，标记"承压"——与NVDA背离扩大，回调属A股自身获利回吐<br>
+⑤<b>泰和新材</b>：维持B+，标记"降级风险上升"——跌破15.2则正式降级至B<br>
+⑥<b>其余不变</b>
+</div>
+
+<!-- 末尾 -->
+<div class="footer">
+<b>数据源：</b>WeStock（行情/K线/资金流/技术面/板块轮动） · NeoData（市场总览） · WeStock MCP（美股行情） · 持仓成本数据来自投资组合记录<br>
+<b>置信度：</b>行情数据★★★（实时） · 技术指标★★★（计算值） · 资金流向★★☆（估算） · 评级判断★★☆（主观分析）<br>
+<b>免责声明：</b>本报告仅供投资研究参考，不构成任何投资建议。市场有风险，投资需谨慎。报告中的评级和操作建议基于公开数据和景气成长框架分析，可能存在偏差。投资者应独立判断并自行承担投资风险。<br>
+<b>生成时间：</b>2026-07-05 18:00 · 周度复盘自动化任务
+</div>
+
+</div>
+
+<script>
+// Chart 1: Index weekly trend
+var c1=echarts.init(document.getElementById('chart-index'));
+c1.setOption({
+  backgroundColor:'#0d1117',
+  title:{text:'四大指数本周走势（6/29-7/3）',textStyle:{color:'#e6edf3',fontSize:14}},
+  tooltip:{trigger:'axis'},
+  legend:{data:['上证指数','深证成指','科创50','创业板指'],textStyle:{color:'#8b949e'},top:30},
+  grid:{left:60,right:30,top:60,bottom:30},
+  xAxis:{type:'category',data:['6/29','6/30','7/1','7/2','7/3'],axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e'}},
+  yAxis:{type:'value',scale:true,axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}}},
+  series:[
+    {name:'上证指数',type:'line',data:[4073.9,4094.4,4112.45,4028.9,4043.64],smooth:true,lineStyle:{width:2},itemStyle:{color:'#58a6ff'}},
+    {name:'深证成指',type:'line',data:[15812.87,16205.56,16119.17,15498.81,15597.51],smooth:true,lineStyle:{width:2},itemStyle:{color:'#bc8cff'}},
+    {name:'科创50',type:'line',data:[2126.01,2207.86,2153.04,1987.29,1975.6],smooth:true,lineStyle:{width:2},itemStyle:{color:'#f0883e'}},
+    {name:'创业板指',type:'line',data:[4216.7,4342.71,4260.72,4017.27,4019.93],smooth:true,lineStyle:{width:2},itemStyle:{color:'#3fb950'}}
+  ]
+});
+
+// Chart 2: Holdings weekly performance bar
+var c2=echarts.init(document.getElementById('chart-holding'));
+c2.setOption({
+  backgroundColor:'#0d1117',
+  title:{text:'持仓股本周涨跌幅排名',textStyle:{color:'#e6edf3',fontSize:14}},
+  tooltip:{trigger:'axis',formatter:function(p){return p[0].name+': '+p[0].value+'%'}},
+  grid:{left:100,right:30,top:40,bottom:30},
+  xAxis:{type:'value',axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e',formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}}},
+  yAxis:{type:'category',data:['汇绿生态','泰和新材','罗博特科','兴森科技','三祥新材','星环科技','华峰化学','软通动力','太钢不锈','澜起科技','德展健康'],axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#e6edf3'}},
+  series:[{type:'bar',data:[-18.41,-13.80,-12.79,-10.50,-9.25,-0.91,0.29,0.79,0.87,1.90,6.69],
+    itemStyle:{color:function(p){return p.value>=0?'#3fb950':'#ff6b6b'}},
+    label:{show:true,position:'right',formatter:'{c}%',color:'#e6edf3',fontSize:11}
+  }]
+});
+
+// Chart 3: US stock mapping comparison
+var c3=echarts.init(document.getElementById('chart-usmapping'));
+c3.setOption({
+  backgroundColor:'#0d1117',
+  title:{text:'美股映射标的本周走势对比',textStyle:{color:'#e6edf3',fontSize:14}},
+  tooltip:{trigger:'axis'},
+  legend:{data:['MRVL','COHR','LITE','NVDA','澜起科技','汇绿生态','罗博特科'],textStyle:{color:'#8b949e'},top:30},
+  grid:{left:60,right:30,top:60,bottom:30},
+  xAxis:{type:'category',data:['6/29','6/30','7/1','7/2','7/3'],axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e'}},
+  yAxis:{type:'value',axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e'},splitLine:{lineStyle:{color:'#21262d'}}},
+  series:[
+    {name:'MRVL',type:'line',data:[277.75,297.89,272.05,245.29,null],smooth:true,lineStyle:{width:2},itemStyle:{color:'#ff6b6b'}},
+    {name:'COHR',type:'line',data:[391.22,394.47,368.65,333.36,null],smooth:true,lineStyle:{width:2},itemStyle:{color:'#d29922'}},
+    {name:'LITE',type:'line',data:[851.4,858.06,801.16,728.32,null],smooth:true,lineStyle:{width:2},itemStyle:{color:'#bc8cff'}},
+    {name:'NVDA',type:'line',data:[194.97,200.09,197.58,194.83,null],smooth:true,lineStyle:{width:2},itemStyle:{color:'#3fb950'}},
+    {name:'澜起科技',type:'line',data:[296.06,309.9,315.89,269.15,266.8],smooth:true,lineStyle:{width:3},itemStyle:{color:'#58a6ff'}},
+    {name:'汇绿生态',type:'line',data:[52.88,53.5,50.65,46.85,45.7],smooth:true,lineStyle:{width:2},itemStyle:{color:'#ff4757'}},
+    {name:'罗博特科',type:'line',data:[580.98,619,580.52,529.27,512.73],smooth:true,lineStyle:{width:2},itemStyle:{color:'#f0883e'}}
+  ]
+});
+
+window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize()});
+</script>
+</body>
+</html>
