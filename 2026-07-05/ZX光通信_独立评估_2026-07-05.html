@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZX通信光通信点评 · 独立评估</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--text:#c9d1d9;--sub:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--orange:#d2991d;--border:#30363d;--mint:#56d3ad;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.65;padding:16px 20px 40px;max-width:960px;margin:0 auto}
+h1{font-size:22px;font-weight:700;color:#f0f6fc;margin-bottom:6px}
+h2{font-size:17px;font-weight:600;color:#f0f6fc;margin:20px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+h3{font-size:15px;font-weight:600;color:#f0f6fc;margin:12px 0 6px}
+.header{text-align:center;padding:14px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.header .sub{font-size:12px;color:var(--sub);margin-top:2px}
+.verdict{background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);border-radius:10px;padding:14px;margin-bottom:12px}
+.verdict .main{font-size:17px;font-weight:700;color:#7ee787;margin-bottom:6px}
+.verdict .detail{font-size:14px;color:var(--text);line-height:1.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.bull{background:rgba(63,185,80,0.06);border-color:rgba(63,185,80,0.2)}
+.bear{background:rgba(248,81,73,0.06);border-color:rgba(248,81,73,0.2)}
+.info{background:rgba(88,166,255,0.05);border-color:rgba(88,166,255,0.2)}
+.chart-box{height:360px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th{text-align:left;padding:7px 8px;color:var(--sub);font-weight:500;border-bottom:1px solid var(--border);font-size:12px}
+td{padding:7px 8px;border-bottom:1px solid rgba(48,54,61,0.5);vertical-align:top;font-size:13px}
+.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:3px;margin-right:3px;font-weight:500}
+.tag-up{background:rgba(63,185,80,0.18);color:#7ee787}
+.tag-down{background:rgba(248,81,73,0.18);color:#ff7b72}
+.tag-warn{background:rgba(210,153,29,0.18);color:#e2b052}
+.tag-info{background:rgba(88,166,255,0.15);color:#79c0ff}
+.tag-s{background:rgba(188,140,255,0.18);color:var(--purple)}
+.row-flex{display:flex;gap:10px;flex-wrap:wrap}
+.row-flex>div{flex:1;min-width:240px}
+.footer{text-align:center;color:#6e7681;font-size:11px;padding:16px 0;border-top:1px solid var(--border);margin-top:12px;line-height:1.7}
+.highlight{background:rgba(63,185,80,0.08);padding:2px 6px;border-radius:3px}
+
+/* 股票推荐卡片 */
+.stock-rec-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;overflow:hidden}
+.stock-rec-card .rec-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(48,54,61,0.5)}
+.stock-rec-card .rec-stock{flex-shrink:0}
+.stock-rec-card .rec-stock .name{font-size:16px;font-weight:700;color:#f0f6fc}
+.stock-rec-card .rec-stock .code{font-size:12px;color:var(--sub);margin-top:2px}
+.stock-rec-card .rec-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.stock-rec-card .rec-category{font-size:12px;color:var(--sub);letter-spacing:0.5px}
+.stock-rec-card .rec-body{display:grid;grid-template-columns:minmax(0,2fr) minmax(160px,1fr);gap:16px}
+.stock-rec-card .rec-logic{font-size:14px;line-height:1.85;color:var(--text)}
+.stock-rec-card .rec-logic b{color:#f0f6fc}
+.stock-rec-card .rec-logic ul{list-style:none;padding:0;margin:4px 0 0}
+.stock-rec-card .rec-logic li{position:relative;padding-left:14px;margin-bottom:4px}
+.stock-rec-card .rec-logic li:before{content:"•";position:absolute;left:0;color:var(--accent)}
+.stock-rec-card .rec-action{background:rgba(88,166,255,0.04);border:1px solid rgba(88,166,255,0.12);border-radius:8px;padding:12px;align-self:start}
+.stock-rec-card .rec-action .label{font-size:11px;color:var(--sub);margin-bottom:6px;letter-spacing:0.5px}
+.stock-rec-card .rec-action .text{font-size:14px;font-weight:600;color:#f0f6fc;line-height:1.7}
+.stock-rec-card .tag-row{margin-bottom:6px}
+@media(max-width:640px){
+.stock-rec-card .rec-body{grid-template-columns:1fr}
+.stock-rec-card .rec-action{margin-top:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>ZX通信光通信点评：调整就是机遇 · 独立评估</h1>
+<div class="sub">原文：中信证券 通信团队 2026-07-03 | 三步走投研协作框架</div>
+</div>
+
+<div class="verdict">
+<div class="main">结论前置：逻辑方向正确，但推荐列表过于宽泛，需聚焦持仓/跟踪池交集</div>
+<div class="detail">
+ZX这篇点评的核心逻辑线是<b>"Meta转型云服务≠砍Capex，反而可能是加码信号"</b>。这与我们已经建立的四份框架文献（YZ硅谷观察、纳瓦尔圆桌、北美大模型调研、华为韬定律）<b>方向一致但不及它们的数据深度</b>。对持仓的核心价值在于：①为汇绿的"小光"定位提供卖方背书；②确认中际旭创是光通信链最优弹性标的；③五类标的的推荐逻辑可作为持仓安全垫的参考系。<br><br>
+<b>最大硬伤</b>：推荐列表涵盖 12 只股票，覆盖大光/小光/光芯片/光纤/薄膜铌酸锂五个赛道，过于宽泛——本质上是"覆盖清单"而非"推荐清单"，对实操指导有限。
+</div>
+</div>
+
+<h2>一、核心逻辑拆解</h2>
+
+<div class="row-flex">
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>Meta 不砍反加</h3>
+<div style="font-size:14px;line-height:1.8">
+• Meta 转型做云服务 = 拓宽商业化路径<br>
+• 云收入反哺 AI Capex，形成正循环<br>
+• Semianalysis 同持此观点<br>
+• 需等待 Q2 财报正式确认
+</div>
+</div>
+<div class="card bull" style="flex:1;min-width:220px">
+<h3>Token 驱动需求</h3>
+<div style="font-size:14px;line-height:1.8">
+• 算力需求 = 消费者 Token 使用量<br>
+• 模型竞争持续缩圈至头部 3-4 家<br>
+• 二线厂商转算力提供商 ≠ 投资下滑<br>
+• 头部模型迭代持续推高资本开支
+</div>
+</div>
+<div class="card bear" style="flex:1;min-width:220px">
+<h3>逻辑弱点</h3>
+<div style="font-size:14px;line-height:1.8">
+• "Meta 不砍"论据是推理而非实锤<br>
+• "可能上调"的说服力取决于后续财报<br>
+• 未讨论美股科技股估值偏高的争议<br>
+• 时点滞后：07-03 发布，周五已有新跌
+</div>
+</div>
+</div>
+
+<h2>二、独立评价</h2>
+
+<div class="card bull">
+<h3>巴蒂评价：★★★☆☆（有用但不够深）</h3>
+<div style="font-size:14px;line-height:1.8">
+<b>值得肯定：</b><br>
+• Meta 转型云服务的逻辑切入点有新意——市场恐慌 Meta 砍单，ZX 反向论证 Meta 加码，属于<b>反共识视角</b><br>
+• 三段论结构清晰（Capex 方向 → Meta 特殊性 → 买什么），适合作为快速说服材料<br>
+• 与 Semianalysis 的独立判断交叉验证，增强了 Meta 不砍论的可靠性<br><br>
+
+<b>明显局限：</b><br>
+• <b>推荐列表泛滥</b>：12 只股票覆盖 5 个赛道，任何光通信方向的投资者都能在其中找到"被推荐"的标的——这不是研究，这是覆盖<br>
+• <b>缺少定量支撑</b>：没有预测 Meta Capex 的具体数字区间，没有给出光模块出货量预测，无法做情景测算<br>
+• <b>时点滞后</b>：07-03 发布，而 07-03 当天正是科技股反弹日，周五又有新高后回落——这篇看多逻辑能否 hold 住后续行情存疑<br>
+• <b>忽略竞争格局变化</b>：只提 Meta 转云服务，未讨论这可能导致的光模块采购竞争加剧或价格压力<br><br>
+
+<b>与已有框架的交叉验证：</b>
+<table>
+<tr><th>框架文献</th><th>核心判断</th><th>与 ZX 一致？</th></tr>
+<tr><td>YZ 硅谷观察</td><td>"算力一直缺"、Capex 万亿美元级</td><td class="green">✓ 方向一致</td></tr>
+<tr><td>纳瓦尔圆桌</td><td>"算力是最确定稀缺"、NVIDIA=新FAANG</td><td class="green">✓ 方向一致</td></tr>
+<tr><td>北美大模型调研</td><td>3500 万颗 TPU、HBM:DRAM 1:10</td><td class="green">✓ 但数据深度远不及</td></tr>
+<tr><td>华为韬定律</td><td>τ₄ 系统级优化 → 光互联是关键瓶颈</td><td class="green">✓ 方向一致</td></tr>
+</table>
+</div>
+</div>
+
+<h2>三、五类推荐标的 × 持仓映射</h2>
+
+<div class="stock-rec-card">
+<div class="rec-header">
+<div class="rec-stock">
+<div class="name">中际旭创</div>
+<div class="code">300308 · 大光 · 跟踪池</div>
+</div>
+<div class="rec-meta">
+<div class="rec-category">ZX 推荐类别：大光（最优弹性）</div>
+</div>
+</div>
+<div class="rec-body">
+<div class="rec-logic">
+<b>ZX 的核心大光推荐，Meta 核心供应商，800G/1.6T 光模块全球龙头。</b>
+<ul>
+<li>业绩增长性强、Meta 出货占比高，若 Meta Capex 确实不砍反加，旭创是第一受益标的</li>
+<li>与已有多份框架文献（北美大模型 3500 万 TPU、YZ 算力一直缺）的方向完全一致</li>
+<li>H1 预计 400-445 亿营收，2026 全年 1.6T 放量是核心催化剂</li>
+</ul>
+</div>
+<div class="rec-action">
+<div class="label">巴蒂操作评估</div>
+<div class="tag-row"><span class="tag tag-up">跟踪池</span></div>
+<div class="text">若因 Meta 恐慌继续下跌至 1000 元附近，强烈建议启动分批建仓</div>
+</div>
+</div>
+</div>
+
+<div class="stock-rec-card">
+<div class="rec-header">
+<div class="rec-stock">
+<div class="name">汇绿生态</div>
+<div class="code">001267 · 小光 · 持仓 A 级</div>
+</div>
+<div class="rec-meta">
+<div class="rec-category">ZX 推荐类别：小光（核心代工龙头）</div>
+</div>
+</div>
+<div class="rec-body">
+<div class="rec-logic">
+<b>ZX 在小光赛道中唯一明确点名汇绿，这是重要的卖方背书信号。</b>
+<ul>
+<li>ZX 选择的逻辑是"物料准备充分 + 核心龙头代工厂商"——这正是汇绿的核心竞争力</li>
+<li>核心客户 COHR/LITE 直接受益于 Meta/Anthropic 的产能扩张</li>
+<li>上周 −18.41% 的回调中，若 Meta 恐慌是主要驱动因素，ZX 此篇恰好构成反驳</li>
+<li>但需区分：ZX 的推荐是基于行业逻辑（小光会受益），而非基于汇绿自身的独立催化剂</li>
+</ul>
+</div>
+<div class="rec-action">
+<div class="label">巴蒂操作评估</div>
+<div class="tag-row"><span class="tag tag-info">A级 · 持仓</span></div>
+<div class="text">42 元警戒线不变；ZX 的点名推荐是情绪面加分项，但不改变以 COHR/LITE 财报为核心的基本面判断锚</div>
+</div>
+</div>
+</div>
+
+<div class="stock-rec-card">
+<div class="rec-header">
+<div class="rec-stock">
+<div class="name">罗博特科 + ficonTEC</div>
+<div class="code">300757 · 光模块设备 · 持仓 A 级</div>
+</div>
+<div class="rec-meta">
+<div class="rec-category">ZX 未直接提及，属间接受益</div>
+</div>
+</div>
+<div class="rec-body">
+<div class="rec-logic">
+<b>ZX 未推荐罗博特科，但推荐了光模块链条整体，逻辑可从上游设备端传导。</b>
+<ul>
+<li>大光/小光扩产 → 光模块设备需求增加 → ficonTEC 订单增长</li>
+<li>传导链较长（芯片→光模块→设备），弹性低于直接的模块厂</li>
+<li>独立催化剂：ficonTEC 自身技术卡位 + AI 光互联设备升级周期</li>
+</ul>
+</div>
+<div class="rec-action">
+<div class="label">巴蒂操作评估</div>
+<div class="tag-row"><span class="tag tag-info">A级 · 持仓</span></div>
+<div class="text">维持，423 止损线不变；ZX 未点名是情理之中（设备股不在通信研究员覆盖范围），不影响独立逻辑</div>
+</div>
+</div>
+</div>
+
+<div class="stock-rec-card">
+<div class="rec-header">
+<div class="rec-stock">
+<div class="name">其他 ZX 推荐 · 快速映射</div>
+<div class="code">光芯片 / 光纤 / 薄膜铌酸锂</div>
+</div>
+<div class="rec-meta">
+<div class="rec-category">三赛道均不在持仓或跟踪池</div>
+</div>
+</div>
+<div class="rec-body">
+<div class="rec-logic">
+<b>ZX 推荐的光芯片（源杰/长光）、光纤光缆（长飞/亨通/烽火/中天/大族）、薄膜铌酸锂（天通）——均不在我们的持仓和跟踪池范围内。</b>
+<ul>
+<li>光芯片：行业持续紧缺是事实，但源杰/长光的估值已在较高位置</li>
+<li>光纤光缆：逻辑是行业紧缺推升盈利能力，属于周期见底反转逻辑，与 AI 硬件的景气成长逻辑不同</li>
+<li>薄膜铌酸锂：未来确定性方案，但产业化时间点可能在 2027-2028 年，短期不落地</li>
+<li><b>综上：这三个赛道不需要重点跟踪，维持现有聚焦</b></li>
+</ul>
+</div>
+<div class="rec-action">
+<div class="label">巴蒂操作评估</div>
+<div class="text">不纳入跟踪池，聚焦现有半导体/光通信/AI硬件/化工四大赛道</div>
+</div>
+</div>
+</div>
+
+<h2>四、关键对比：ZX vs 已有框架</h2>
+
+<div class="chart-box" id="chart-main"></div>
+
+<h2>五、操作建议汇总</h2>
+
+<div class="card info">
+<div style="font-size:14px;line-height:1.9">
+<b>这篇 ZX 点评的核心价值不在于"发现了什么新东西"，而在于"为已有的做多框架提供了卖方层面的背书"。</b>具体来看：<br><br>
+1. <b>汇绿生态</b>：ZX 点名是加分项——这意味着后续如果汇绿出研究报告/被覆盖，"小光代工龙头"的标签可能被更多卖方采用，提升市场认知度和估值<br>
+2. <b>中际旭创（跟踪池）</b>：若因 Meta 恐慌出现 1000 元附近机会，ZX 的报告可作为分批建仓的辅助论据之一。但不要只看这篇——要等 Q2 财报 Capex 数据实锤<br>
+3. <b>罗博特科</b>：ZX 未覆盖是卖方行业研究的正常边界（通信 vs 机械），不影响 ficonTEC 的独立逻辑<br>
+4. <b>三祥/澜起/泰和/华峰/防御仓</b>：与光通信点评无直接关联，不调整<br>
+5. <b>整体策略</b>：ZX 这篇与北美大模型调研形成<b>"卖方背书 + 产业调研"的双重验证</b>，对 AI 硬件长逻辑的信心有边际增强。但不要因为一篇卖方点评就急着做交易——真正的关键节点是<b>北美云厂商 Q2 财报（7 月下旬起）的 Capex 数据</b><br><br>
+<b>核心判断</b>：关注逻辑，忽略推荐列表；等财报实锤，不抢跑。
+</div>
+</div>
+
+<div class="footer">
+巴蒂投研体系 | 老潘专属 | 原文：中信证券 通信团队《调整就是机遇，关注光通信布局机会》2026-07-03<br>
+三步走投研协作框架：①拆核心逻辑 ②独立评价（含硬伤+交叉验证） ③持仓操作价值落实<br>
+⚠️ 以上内容为投研分析记录，不构成投资建议。投资有风险，决策需谨慎。
+</div>
+
+<script>
+(function(){
+var c=echarts.init(document.getElementById('chart-main'));
+c.setOption({
+backgroundColor:'transparent',
+title:{text:'五大框架 × 核心观点一致性对照',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{trigger:'item'},
+radar:{
+  center:['50%','55%'],
+  radius:'65%',
+  indicator:[
+    {name:'AI Capex\n持续增长',max:5},
+    {name:'算力/\n光模块\n长期紧缺',max:5},
+    {name:'Meta\n不砍反加',max:5},
+    {name:'数据\n颗粒度',max:5},
+    {name:'反共识\n视角',max:5},
+    {name:'持仓\n实操指导',max:5}
+  ],
+  axisName:{color:'#8b949e',fontSize:9}
+},
+series:[{
+  type:'radar',
+  data:[
+    {value:[4,4,3.5,1,3.5,3.5],name:'ZX通信(07-03)',itemStyle:{color:'#58a6ff'},lineStyle:{color:'#58a6ff',width:2},areaStyle:{color:'rgba(88,166,255,0.1)'}},
+    {value:[5,5,3,4,4,5],name:'北美大模型调研',itemStyle:{color:'#3fb950'},lineStyle:{color:'#3fb950',width:2},areaStyle:{color:'rgba(63,185,80,0.08)'}},
+    {value:[4.5,5,2.5,3,4.5,3],name:'YZ硅谷观察',itemStyle:{color:'#bc8cff'},lineStyle:{color:'#bc8cff',width:2},areaStyle:{color:'rgba(188,140,255,0.06)'}},
+    {value:[4,4,2,2,5,2],name:'纳瓦尔圆桌',itemStyle:{color:'#d2991d'},lineStyle:{color:'#d2991d',width:2},areaStyle:{color:'rgba(210,153,29,0.06)'}}
+  ]
+}],
+legend:{data:['ZX通信(07-03)','北美大模型调研','YZ硅谷观察','纳瓦尔圆桌'],bottom:0,textStyle:{color:'#8b949e',fontSize:10}}
+});
+})();
+</script>
+</body>
+</html>
