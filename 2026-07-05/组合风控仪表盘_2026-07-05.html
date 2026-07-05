@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>组合风控仪表盘 2026-07-05</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--text:#c9d1d9;--sub:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--orange:#d2991d;--border:#30363d;--mint:#56d3ad;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.6;padding:16px 20px 40px;max-width:1000px;margin:0 auto}
+h1{font-size:20px;font-weight:700;color:#f0f6fc;margin-bottom:4px}
+h2{font-size:16px;font-weight:600;color:#f0f6fc;margin:16px 0 8px;border-bottom:1px solid var(--border);padding-bottom:4px}
+h3{font-size:14px;font-weight:600;color:#f0f6fc;margin:10px 0 4px}
+.header{text-align:center;padding:14px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.header .sub{font-size:11px;color:var(--sub);margin-top:2px}
+.metrics{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.metric{flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.metric .val{font-size:22px;font-weight:700;color:#f0f6fc}
+.metric .lbl{font-size:11px;color:var(--sub);margin-top:2px}
+.metric.danger .val{color:#ff7b72}
+.metric.warn .val{color:#e2b052}
+.metric.ok .val{color:#7ee787}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.chart-box{height:380px}
+.chart-w{height:280px}
+.row-flex{display:flex;gap:10px;flex-wrap:wrap}
+.row-flex>div{flex:1;min-width:300px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
+th{text-align:left;padding:6px 8px;color:var(--sub);font-weight:500;border-bottom:1px solid var(--border);font-size:11px}
+td{padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.5)}
+.green{color:var(--green)}.red{color:var(--red)}.orange{color:var(--orange)}
+.tag{display:inline-block;font-size:10px;padding:1px 5px;border-radius:3px;margin-right:3px;font-weight:500}
+.tag-s{background:rgba(188,140,255,0.18);color:var(--purple)}
+.tag-a{background:rgba(88,166,255,0.15);color:#79c0ff}
+.tag-b{background:rgba(210,153,29,0.18);color:#e2b052}
+.tag-def{background:rgba(86,211,173,0.15);color:var(--mint)}
+.tag-pl{background:rgba(63,185,80,0.15);color:#7ee787}
+.footer{text-align:center;color:#6e7681;font-size:10px;padding:16px 0;border-top:1px solid var(--border);margin-top:12px;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>组合风控仪表盘</h1>
+<div class="sub">主账户 10 只持仓 | 60 交易日回测 | 数据源：WeStock 2026-03 ~ 2026-07-03</div>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="val">256.7<span style="font-size:14px">万</span></div><div class="lbl">主账户总市值</div></div>
+<div class="metric warn"><div class="val">33.5%</div><div class="lbl">年化波动率</div></div>
+<div class="metric danger"><div class="val">8.0<span style="font-size:14px">万</span></div><div class="lbl">日 VaR (95%)</div></div>
+<div class="metric danger"><div class="val">11.0<span style="font-size:14px">万</span></div><div class="lbl">日 VaR (99%)</div></div>
+<div class="metric danger"><div class="val">10.6<span style="font-size:14px">万</span></div><div class="lbl">日 CVaR (95%)</div></div>
+</div>
+
+<h2>一、持仓市值与集中度</h2>
+<div class="row-flex">
+<div style="flex:3;min-width:350px"><div class="chart-box" id="chart-position"></div></div>
+<div style="flex:2;min-width:280px">
+<table>
+<tr><th>标的</th><th>分级</th><th>市值(万)</th><th>权重</th><th>年化波动</th></tr>
+<tr><td>泰和新材</td><td><span class="tag tag-b">B+</span></td><td>42.7</td><td>16.6%</td><td class="orange">80.9%</td></tr>
+<tr><td>罗博特科</td><td><span class="tag tag-a">A</span></td><td>41.0</td><td>16.0%</td><td class="orange">79.4%</td></tr>
+<tr><td>兴森科技</td><td><span class="tag tag-pl">利润</span></td><td>27.8</td><td>10.8%</td><td class="orange">75.4%</td></tr>
+<tr><td>太钢不锈</td><td><span class="tag tag-def">防御</span></td><td>27.1</td><td>10.6%</td><td>30.2%</td></tr>
+<tr><td>汇绿生态</td><td><span class="tag tag-a">A</span></td><td>27.0</td><td>10.5%</td><td class="orange">83.5%</td></tr>
+<tr><td>星环科技</td><td><span class="tag tag-pl">利润</span></td><td>25.1</td><td>9.8%</td><td class="red">91.0%</td></tr>
+<tr><td>软通动力</td><td><span class="tag tag-a">A</span></td><td>21.0</td><td>8.2%</td><td>71.5%</td></tr>
+<tr><td>华峰化学</td><td><span class="tag tag-def">防御</span></td><td>16.7</td><td>6.5%</td><td>51.0%</td></tr>
+<tr><td>三祥新材</td><td><span class="tag tag-s">S</span></td><td>15.4</td><td>6.0%</td><td>75.2%</td></tr>
+<tr><td>德展健康</td><td><span class="tag tag-def">防御</span></td><td>12.8</td><td>5.0%</td><td>50.5%</td></tr>
+</table>
+<div style="margin-top:6px;font-size:11px;color:var(--sub)">
+<span class="tag tag-s">科技核心 6 只</span> 合计权重 67.1% &nbsp;
+<span class="tag tag-def">防御 3 只</span> 合计 22.1% &nbsp;
+<span class="tag tag-b">化工</span> 16.6%
+</div>
+</div>
+</div>
+
+<h2>二、相关性热力图</h2>
+<div class="chart-box" id="chart-corr"></div>
+<div class="card" style="font-size:12px;line-height:1.8">
+<strong>关键发现：</strong><br>
+<span class="green">正向分散</span>：德展健康 与 兴森科技（−0.31）、泰和新材（−0.34），防御仓与科技呈负相关，分散效果有效<br>
+<span class="red">风险集中</span>：兴森↔罗博特科（0.48）、澜起↔兴森（0.48）、澜起↔罗博（0.47），科技内核高度同向波动<br>
+<span class="orange">泰和新材</span>：B+ 级且权重最大（16.6%），但波动率 80.9% 仅次于星环，是组合最大隐忧
+</div>
+
+<h2>三、压力测试</h2>
+<div class="chart-w" id="chart-stress"></div>
+<div class="row-flex">
+<div class="card" style="font-size:12px">
+<strong>假设：科技线（6只）再集体下跌</strong><br>
+• 跌 5% → 损失 <span style="color:#e2b052">9.7万</span>（−3.8%）<br>
+• 跌 10% → 损失 <span style="color:#f85149">19.4万</span>（−7.6%）<br>
+• 跌 15% → 损失 <span style="color:#f85149">29.1万</span>（−11.4%）<br>
+• 跌 20% → 损失 <span style="color:#f85149">38.9万</span>（−15.1%）<br>
+<span style="color:var(--sub)">假设防御仓跌幅为科技线的 20%，化工为 60%</span>
+</div>
+<div class="card" style="font-size:12px">
+<strong>VaR 解读：</strong><br>
+• 日 VaR(95%) = 8.0万：5% 概率单日亏损 > 8万<br>
+• 日 VaR(99%) = 11.0万：1% 极端日亏损 > 11万<br>
+• CVaR(95%) = 10.6万：统计上发生极端情况的平均亏损<br>
+• 组合年化波动 33.5%，属于中高风险水平<br>
+<span style="color:var(--sub)">基准：沪深300年化波动约 20%，创业板约 35%</span>
+</div>
+</div>
+
+<h2>四、个股风险排名</h2>
+<table>
+<tr><th>排序</th><th>标的</th><th>年化波动</th><th>权重</th><th>风险贡献</th><th>分级</th><th>建议</th></tr>
+<tr><td>1</td><td class="red">星环科技</td><td class="red">91.0%</td><td>9.8%</td><td>高</td><td>利润仓</td><td>负成本，不必焦虑</td></tr>
+<tr><td>2</td><td class="red">汇绿生态</td><td class="red">83.5%</td><td>10.5%</td><td>高</td><td>A级</td><td>本周最大回撤，密切观察</td></tr>
+<tr><td>3</td><td class="red">泰和新材</td><td class="red">80.9%</td><td>16.6%</td><td class="red">最高</td><td>B+级</td><td>权重最大×波动高=风险敞口第一</td></tr>
+<tr><td>4</td><td>罗博特科</td><td>79.4%</td><td>16.0%</td><td>高</td><td>A级</td><td>三周连阴，独立风险待查</td></tr>
+<tr><td>5</td><td>兴森科技</td><td>75.4%</td><td>10.8%</td><td>中高</td><td>利润仓</td><td>60日+136%趋势未破</td></tr>
+<tr><td>6</td><td>三祥新材</td><td>75.2%</td><td>6.0%</td><td>中</td><td>S级</td><td>S级底仓，铪产线催化在即</td></tr>
+<tr><td>7</td><td>软通动力</td><td>71.5%</td><td>8.2%</td><td>中</td><td>A级</td><td>科技股中波动最低</td></tr>
+<tr><td>8</td><td>华峰化学</td><td>51.0%</td><td>6.5%</td><td>低</td><td>防御</td><td>防御配置有效</td></tr>
+<tr><td>9</td><td>德展健康</td><td>50.5%</td><td>5.0%</td><td>低</td><td>防御</td><td>分散效果最佳</td></tr>
+<tr><td>10</td><td>太钢不锈</td><td>30.2%</td><td>10.6%</td><td class="green">最低</td><td>防御</td><td>组合定海神针</td></tr>
+</table>
+
+<h2>五、优化建议</h2>
+<div class="card" style="font-size:12px;line-height:1.8">
+<strong>当前组合的核心矛盾：</strong><br>
+1. <b>科技集中度偏高</b>：6 只科技股合计权重 67%，且两两相关性普遍在 0.3-0.5，极端行情下容易同涨同跌<br>
+2. <b>泰和新材定位尴尬</b>：B+ 级 + 最大权重(16.6%) + 第三高波动(80.9%)，与防御仓/科技仓都不同步<br>
+3. <b>防御仓配置有效</b>：太钢(30.2%波动)+德展(与科技负相关)成功对冲，本周科技暴跌时防御仓全部收红<br><br>
+<strong>可考虑的动作：</strong><br>
+• 如果持续看好科技线，可接受当前波动（33.5% 与创业板 35% 相当）<br>
+• 如果想降低波动，优先考虑减配泰和新材（最大风险贡献者）<br>
+• 防御仓占比可从 22% 适度提升至 30%，通过加仓华峰或太钢<br>
+• <b>利润仓（星环+兴森）无需操作</b>：负成本让极端波动不影响心态
+</div>
+
+<div class="footer">
+巴蒂投研体系 | 老潘专属 | 数据源：腾讯自选股 WeStock（2026-03 ~ 2026-07-03, ~60交易日）<br>
+VaR 采用历史模拟法 | 相关性基于日收益率 Pearson 系数<br>
+⚠️ 以上内容为投研分析记录，不构成投资建议。投资有风险，决策需谨慎。
+</div>
+
+<script>
+// Chart 1: Position pie
+(function(){
+var c=echarts.init(document.getElementById('chart-position'));
+c.setOption({
+backgroundColor:'transparent',
+title:{text:'持仓市值占比',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{trigger:'item',formatter:'{b}: {c}万 ({d}%)'},
+legend:{orient:'vertical',right:10,top:40,textStyle:{color:'#8b949e',fontSize:10},itemWidth:10,itemHeight:10},
+series:[{type:'pie',radius:['40%','70%'],center:['40%','55%'],label:{color:'#8b949e',fontSize:10,formatter:'{b}\n{d}%'},data:[{value:42.7,name:'泰和新材',itemStyle:{color:'#d2991d'}},{value:41.0,name:'罗博特科',itemStyle:{color:'#58a6ff'}},{value:27.8,name:'兴森科技',itemStyle:{color:'#3fb950'}},{value:27.1,name:'太钢不锈',itemStyle:{color:'#56d3ad'}},{value:27.0,name:'汇绿生态',itemStyle:{color:'#58a6ff'}},{value:25.1,name:'星环科技',itemStyle:{color:'#3fb950'}},{value:21.0,name:'软通动力',itemStyle:{color:'#58a6ff'}},{value:16.7,name:'华峰化学',itemStyle:{color:'#56d3ad'}},{value:15.4,name:'三祥新材',itemStyle:{color:'#bc8cff'}},{value:12.8,name:'德展健康',itemStyle:{color:'#56d3ad'}}]}]
+});
+})();
+
+// Chart 2: Correlation heatmap
+(function(){
+var c=echarts.init(document.getElementById('chart-corr'));
+var names=['太钢','星环','兴森','软通','德展','华峰','泰和','三祥','罗博','汇绿','澜起'];
+var cmat=[[1,0.331,0.229,0.204,0.054,0.238,-0.107,0.237,0.181,0.131,0.296],[0.331,1,0.311,0.277,-0.034,-0.182,-0.051,0.03,-0.019,-0.001,0.232],[0.229,0.311,1,0.025,-0.312,-0.285,0.182,0.184,0.481,0.265,0.477],[0.204,0.277,0.025,1,0.12,0.033,-0.098,0.127,-0.145,-0.106,-0.05],[0.054,-0.034,-0.312,0.12,1,0.041,-0.34,-0.238,-0.206,0.06,-0.126],[0.238,-0.182,-0.285,0.033,0.041,1,-0.083,0.087,-0.106,-0.064,-0.062],[-0.107,-0.051,0.182,-0.098,-0.34,-0.083,1,-0.095,0.281,0.206,0.172],[0.237,0.03,0.184,0.127,-0.238,0.087,-0.095,1,0.309,0.184,0.221],[0.181,-0.019,0.481,-0.145,-0.206,-0.106,0.281,0.309,1,0.482,0.472],[0.131,-0.001,0.265,-0.106,0.06,-0.064,0.206,0.184,0.482,1,0.267],[0.296,0.232,0.477,-0.05,-0.126,-0.062,0.172,0.221,0.472,0.267,1]];
+var data=[];
+for(var i=0;i<names.length;i++)for(var j=0;j<names.length;j++)data.push([j,i,cmat[i][j].toFixed(2)]);
+c.setOption({
+backgroundColor:'transparent',
+title:{text:'11×11 日收益率相关性矩阵',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{formatter:function(p){return names[p.value[1]]+' vs '+names[p.value[0]]+'<br/>相关性: '+p.value[2];}},
+grid:{left:80,right:40,top:60,bottom:40},
+xAxis:{type:'category',data:names,axisLabel:{color:'#8b949e',fontSize:10,rotate:45},position:'top'},
+yAxis:{type:'category',data:names,axisLabel:{color:'#8b949e',fontSize:10},inverse:true},
+visualMap:{min:-0.5,max:1,left:0,bottom:10,text:['强正','负相关'],textStyle:{color:'#8b949e',fontSize:10},inRange:{color:['#3b6d11','#161b22','#e24b4a']},calculable:true},
+series:[{type:'heatmap',data:data,label:{show:true,color:'#c9d1d9',fontSize:9}}]
+});
+})();
+
+// Chart 3: Stress test bar
+(function(){
+var c=echarts.init(document.getElementById('chart-stress'));
+c.setOption({
+backgroundColor:'transparent',
+title:{text:'科技线下跌情景压力测试',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+tooltip:{trigger:'axis',formatter:function(p){return p[0].name+'<br/>组合损失: ¥'+p[0].value.toFixed(0)+'万 ('+['3.8%','7.6%','11.4%','15.1%'][p[0].dataIndex]+')';}},
+grid:{left:80,right:30,top:50,bottom:30},
+xAxis:{type:'category',data:['科技−5%','科技−10%','科技−15%','科技−20%'],axisLabel:{color:'#8b949e',fontSize:10}},
+yAxis:{type:'value',name:'损失(万)',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+series:[{type:'bar',data:[{value:9.72,itemStyle:{color:'rgba(210,153,29,0.7)'}},{value:19.43,itemStyle:{color:'rgba(248,81,73,0.5)'}},{value:29.15,itemStyle:{color:'rgba(248,81,73,0.7)'}},{value:38.86,itemStyle:{color:'rgba(248,81,73,0.9)'}}],barMaxWidth:40,label:{show:true,position:'top',color:'#8b949e',fontSize:10,formatter:function(p){return '¥'+p.value.toFixed(1)+'万';}}}]
+});
+})();
+</script>
+</body>
+</html>
