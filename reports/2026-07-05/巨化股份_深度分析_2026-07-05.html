@@ -310,10 +310,10 @@ td:first-child{white-space:nowrap;min-width:120px;overflow:hidden;text-overflow:
 var f=echarts.init(document.getElementById('chart-financial'));
 f.setOption({
 backgroundColor:'transparent',
-title:{text:'营收与归母净利润趋势（单位：亿元）',textStyle:{color:'#8b949e',fontSize:13},left:0,top:0},
+title:{text:'营收与归母净利润趋势（单位：亿元）',textStyle:{color:'#8b949e',fontSize:13},left:0,top:4},
 tooltip:{trigger:'axis'},
-legend:{data:['单季营收','单季归母净利'],bottom:0,textStyle:{color:'#8b949e',fontSize:10}},
-grid:{left:50,right:30,top:40,bottom:30},
+legend:{data:['单季营收','单季归母净利'],top:26,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+grid:{left:50,right:45,top:55,bottom:40},
 xAxis:{type:'category',data:['24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26Q1'],axisLabel:{color:'#8b949e',fontSize:11}},
 yAxis:[{type:'value',name:'营收(亿)',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},{type:'value',name:'净利(亿)',axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}],
 series:[
