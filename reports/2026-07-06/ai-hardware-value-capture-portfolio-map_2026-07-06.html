@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI硬件链价值捕获研究 · 持仓映射报告 | 2026-07-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --card:#161b22; --border:#21262d; --text:#c9d1d9; --text2:#8b949e;
+  --green:#3fb950; --red:#f85149; --yellow:#d29922; --blue:#58a6ff; --purple:#bc8cff;
+  --orange:#f0883e; --teal:#39d353;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; max-width:920px; margin:0 auto; padding:24px 18px; }
+h1 { font-size:22px; color:#fff; margin-bottom:4px; }
+h2 { font-size:17px; color:var(--blue); margin:28px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:15px; color:var(--text); margin:16px 0 8px; }
+.sub { font-size:12px; color:var(--text2); margin-bottom:16px; }
+.card,.bull,.bear,.info,.alert-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:10px; }
+.alert-card { border-left:3px solid var(--red); }
+.bull { border-left:3px solid var(--green); }
+.bear { border-left:3px solid var(--yellow); }
+.info { border-left:3px solid var(--blue); }
+.tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px; margin-right:4px; font-weight:600; }
+.tag-red { background:rgba(248,81,73,0.18); color:var(--red); }
+.tag-green { background:rgba(63,185,80,0.18); color:var(--green); }
+.tag-yellow { background:rgba(210,153,34,0.18); color:var(--yellow); }
+.tag-blue { background:rgba(88,166,255,0.18); color:var(--blue); }
+.tag-purple { background:rgba(188,140,255,0.18); color:var(--purple); }
+table { width:100%; border-collapse:collapse; font-size:13px; table-layout:fixed; margin:8px 0; }
+th { font-size:12px; color:var(--text2); text-align:left; padding:7px 8px; border-bottom:1px solid var(--border); font-weight:600; }
+td { padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+tr:hover td { background:rgba(88,166,255,0.04); }
+.stars { color:var(--yellow); }
+.footer { font-size:11px; color:var(--text2); margin-top:32px; padding-top:12px; border-top:1px solid var(--border); }
+.chart-wrap { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px; margin:14px 0; }
+.chart-box { width:100%; height:420px; }
+.chart-box-sm { width:100%; height:340px; }
+.portfolio-card { background:var(--card); border:1px solid var(--border); border-radius:8px; margin-bottom:10px; overflow:hidden; }
+.pc-header { padding:12px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+.pc-name { font-size:15px; font-weight:600; color:#fff; }
+.pc-code { font-size:12px; color:var(--text2); }
+.pc-body { padding:14px 16px; display:flex; gap:14px; flex-wrap:wrap; }
+.pc-left { flex:2; min-width:280px; font-size:14px; line-height:1.7; }
+.pc-right { flex:1; min-width:180px; background:rgba(88,166,255,0.06); border-radius:6px; padding:12px; font-size:13px; line-height:1.7; }
+.pc-right h4 { font-size:13px; color:var(--blue); margin-bottom:6px; }
+.impact-badge { font-size:12px; padding:3px 10px; border-radius:4px; font-weight:600; }
+.impact-positive { background:rgba(63,185,80,0.15); color:var(--green); }
+.impact-moderate { background:rgba(210,153,34,0.15); color:var(--yellow); }
+.impact-neutral { background:rgba(88,166,255,0.12); color:var(--blue); }
+.score-bar { height:6px; border-radius:3px; margin:4px 0 8px; background:var(--border); overflow:hidden; }
+.score-fill { height:100%; border-radius:3px; }
+.score-fill-high { background:linear-gradient(90deg,var(--green),var(--teal)); }
+.score-fill-mid { background:linear-gradient(90deg,var(--yellow),var(--orange)); }
+.score-fill-low { background:linear-gradient(90deg,var(--text2),var(--blue)); }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+@media(max-width:640px){ .grid-2,.grid-3 { grid-template-columns:1fr; } .pc-body { flex-direction:column; } }
+.scenario-tag { display:inline-block; font-size:11px; padding:1px 7px; border-radius:3px; margin-right:4px; }
+.sc-bull { background:rgba(63,185,80,0.18); color:var(--green); }
+.sc-base { background:rgba(210,153,34,0.18); color:var(--yellow); }
+.sc-bear { background:rgba(248,81,73,0.18); color:var(--red); }
+.highlight { color:var(--yellow); font-weight:600; }
+.num { font-family:"SF Mono",monospace; font-variant-numeric:tabular-nums; }
+.warn { color:var(--red); font-weight:600; }
+</style>
+</head>
+<body>
+
+<h1>AI 硬件链价值捕获研究 &middot; 持仓映射</h1>
+<div class="sub">基于 「吴话可 Talk」全球AI硬件链价值捕获研究（2026-07） | 巴蒂投研 &middot; 2026-07-06</div>
+
+<!-- ========== 结论前置 ========== -->
+<div class="alert-card">
+<div style="font-size:15px;font-weight:600;color:var(--red);margin-bottom:8px;">核心判断 · 结论前置</div>
+<div style="font-size:14px;line-height:1.8;">
+<strong>中国在 AI 硬件链中的价值捕获处于斜率最陡的上升通道。</strong>
+2026 年广义 AI 硬件链规模约 <span class="num">$650B</span>，中国市场利润口径仅占 <span class="highlight">5%</span>，到 2030 年基准情景升至 <span class="highlight">16%</span>、乐观情景 <span class="highlight">25%</span>。
+这 11-20 个百分点的份额迁移，对应 <span class="highlight">$70B→$137B 的增量价值创造空间</span>，是 A 股科技牛的核心底层逻辑。<br><br>
+<strong>光模块/CPO/光芯片</strong>（边际增量强度 90）和 <strong>先进封装链</strong>（倍股概率 88）是 A 股最确定的 α 来源。<br>
+持仓中 <strong>汇绿生态、罗博特科</strong> 处于赛道 beta 最强的象限，<strong>澜起科技</strong> 需等待 CXL/光连接内存升级逻辑兑现，<strong>软通动力、星环科技</strong> 软件方向在 2026-2027 硬件 β 扩散期可能跑输硬件链。
+</div>
+</div>
+
+<!-- ========== 一、产业格局 ========== -->
+<h2>一、全球 AI 硬件链价值捕获全景（2026）</h2>
+
+<div class="grid-2">
+  <div>
+    <div class="chart-wrap"><div class="chart-box" id="chart-country-pie"></div></div>
+  </div>
+  <div>
+    <div class="chart-wrap"><div class="chart-box" id="chart-segment-bar"></div></div>
+  </div>
+</div>
+
+<div class="card">
+<h3>按利润口径，中国仅占 5%——但这是起点，不是终点</h3>
+<table>
+<tr><th style="width:20%;">国家/地区</th><th style="width:15%;">份额</th><th style="width:65%;">核心优势环节</th></tr>
+<tr><td>美国</td><td class="num highlight">47%</td><td>芯片设计（NVIDIA/AMD/Broadcom）、设备（AMAT/LAM/KLA）</td></tr>
+<tr><td>中国台湾</td><td class="num">20%</td><td>先进制程代工（TSMC）、先进封装（CoWoS）、系统整机</td></tr>
+<tr><td>韩国</td><td class="num">12%</td><td>HBM 存储（SK Hynix/Samsung）</td></tr>
+<tr><td>日本</td><td class="num">8%</td><td>半导体材料（硅片/光刻胶/电子特气）</td></tr>
+<tr><td>欧洲</td><td class="num">6%</td><td>光刻设备（ASML）、IP 授权（ARM）</td></tr>
+<tr><td><strong>中国</strong></td><td class="num warn">5%</td><td>系统组装、光模块、部分材料/封装</td></tr>
+<tr><td>其他</td><td class="num">2%</td><td>—</td></tr>
+</table>
+</div>
+
+<!-- ========== 二、份额迁移 ========== -->
+<h2>二、2026→2030 份额迁移：中国斜率最陡</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-migration"></div></div>
+
+<div class="grid-3">
+  <div class="bull">
+    <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:4px;">乐观情景</div>
+    <div style="font-size:22px;font-weight:700;color:var(--green);">25%</div>
+    <div style="font-size:12px;color:var(--text2);">中国利润份额 2030E<br>对应 <span class="num">$250B+</span></div>
+  </div>
+  <div class="info">
+    <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:4px;">基准情景</div>
+    <div style="font-size:22px;font-weight:700;color:var(--blue);">16%</div>
+    <div style="font-size:12px;color:var(--text2);">中国利润份额 2030E<br>对应 <span class="num">$160B+</span></div>
+  </div>
+  <div class="bear">
+    <div style="font-size:13px;color:var(--yellow);font-weight:600;margin-bottom:4px;">保守情景</div>
+    <div style="font-size:22px;font-weight:700;color:var(--yellow);">13%</div>
+    <div style="font-size:12px;color:var(--text2);">中国利润份额 2030E<br>对应 <span class="num">$130B+</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;">
+<h3>2030 年国产捕获率结构拆解</h3>
+<p style="font-size:14px;line-height:1.8;">
+从 <strong>16% 基准</strong> 到 <strong>25% 乐观</strong>，<span class="highlight">多出的 9 个百分点</span>主要来自三个方向：
+<span class="tag tag-green">芯片设计</span>
+<span class="tag tag-purple">系统+光模块+电源</span>
+<span class="tag tag-blue">存储</span><br>
+这三个方向也是我们持仓直接映射的赛道——
+汇绿生态（系统/光模块）、罗博特科（设备/先进封装）、澜起科技（存储/内存接口）、兴森科技（封装基板/PCB）。
+</p>
+</div>
+
+<!-- ========== 三、A股映射 ========== -->
+<h2>三、A 股各环节边际增量与倍股概率</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-ashare-ranking"></div></div>
+
+<div class="card">
+<h3>A 股 AI 硬件链各环节排序（综合边际增量 × 可持续性）</h3>
+<table>
+<tr><th style="width:28%;">环节</th><th style="width:10%;">边际增量</th><th style="width:14%;">倍股概率 / 可持续</th><th style="width:48%;">关键驱动 / 风险</th></tr>
+<tr>
+  <td>电子特气 · 材料卡脖子</td>
+  <td class="num highlight">92</td>
+  <td class="num">85 / <span style="color:var(--green);">高</span></td>
+  <td>日本替代空间大；认证周期长→护城河深</td>
+</tr>
+<tr>
+  <td><strong>光模块 · CPO · 光芯片</strong></td>
+  <td class="num highlight">90</td>
+  <td class="num">80 / <span style="color:var(--green);">高</span></td>
+  <td>带宽 30x 增长 + NPO/CPO 渗透；<strong>汇绿生态←→中际旭创</strong></td>
+</tr>
+<tr>
+  <td>存储原厂 · 模组 · HBM 链</td>
+  <td class="num">85</td>
+  <td class="num">82 / <span style="color:var(--yellow);">中高</span></td>
+  <td>HBM 国产化 0→1；<strong>澜起科技 ↑</strong></td>
+</tr>
+<tr>
+  <td><strong>先进封装 · HBM 封测</strong></td>
+  <td class="num">82</td>
+  <td class="num">88 / <span style="color:var(--green);">高</span></td>
+  <td>3D 堆叠 + CoWoS 国产替代；<strong>罗博特科 ↑↑</strong></td>
+</tr>
+<tr>
+  <td>半导体设备</td>
+  <td class="num">80</td>
+  <td class="num">76 / <span style="color:var(--green);">高</span></td>
+  <td>国产替代确定性最强，但估值已高</td>
+</tr>
+<tr>
+  <td>国产 AI 芯片设计</td>
+  <td class="num">79</td>
+  <td class="num">90 / <span style="color:var(--red);">低（最脆弱）</span></td>
+  <td>弹性最大但不确定性最高；华为昇腾生态</td>
+</tr>
+<tr>
+  <td>稀土磁材 · 钨</td>
+  <td class="num">72</td>
+  <td class="num">60 / <span style="color:var(--green);">中高</span></td>
+  <td>受益 AI 数据中心电力需求</td>
+</tr>
+<tr>
+  <td>液冷 · 电源 · 温控</td>
+  <td class="num">70</td>
+  <td class="num">65 / <span style="color:var(--yellow);">中</span></td>
+  <td>AI 数据中心基础设施标配</td>
+</tr>
+<tr>
+  <td>PCB · 覆铜板 · ABF 载板</td>
+  <td class="num">68</td>
+  <td class="num">62 / <span style="color:var(--yellow);">中</span></td>
+  <td>量增但价格竞争激烈；<strong>兴森科技</strong></td>
+</tr>
+<tr>
+  <td>CMP · 前驱体 · 光刻胶 · 靶材</td>
+  <td class="num">66</td>
+  <td class="num">58 / <span style="color:var(--green);">中高</span></td>
+  <td>耗材逻辑，跟随晶圆开工率</td>
+</tr>
+<tr>
+  <td>内存接口 · 高端模拟</td>
+  <td class="num">60</td>
+  <td class="num">55 / <span style="color:var(--yellow);">中</span></td>
+  <td>成熟赛道增量有限；<strong>澜起科技←需 CXL 升级逻辑</strong></td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 四、2026-2030 路线图 ========== -->
+<h2>四、2026→2030 A 股科技牛阶段路线图</h2>
+
+<div class="chart-wrap"><div class="chart-box-sm" id="chart-roadmap"></div></div>
+
+<div class="card" style="margin-top:10px;">
+<p style="font-size:14px;line-height:1.8;">
+<strong>我们当前处于：</strong><span class="tag tag-green" style="font-size:13px;padding:4px 12px;">2026 · 主线启动·β 普涨</span> — 泡沫温度低，是进攻窗口。<br>
+今天（7月6日）科技股集体回撤，在路线图框架下属于 <strong>β 普涨中的正常震荡</strong>，不是顶部信号。<br><br>
+<strong>各阶段持仓策略：</strong><br>
+<span class="sc-bull">2026</span> 材料+封装主线启动 → <strong>重仓汇绿、罗博</strong>，维持澜起底仓<br>
+<span class="sc-base">2027</span> 设备国产化+ HBM 放量 → 兴森、澜起加仓窗口，跟踪设备链<br>
+<span class="sc-base">2028</span> 存储/设计量利之辨 → 分水岭，需区分真成长 vs 伪成长<br>
+<span class="sc-bear">2029</span> 高位分化 → 逐步减仓 β 标的，留核心 α<br>
+<span class="sc-bear">2030</span> 见顶验证 → 收获撤退，转防御仓位
+</p>
+</div>
+
+<!-- ========== 五、持仓逐标的映射 ========== -->
+<h2>五、持仓逐标的映射与再定位</h2>
+
+<!-- 汇绿生态 -->
+<div class="portfolio-card">
+  <div class="pc-header">
+    <div><span class="pc-name">汇绿生态</span> <span class="pc-code">001267</span></div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span class="tag tag-green">S级</span>
+      <span class="impact-badge impact-positive">直接受益 · 高弹性</span>
+    </div>
+  </div>
+  <div class="pc-body">
+    <div class="pc-left">
+      <strong>映射环节：</strong>光模块 · CPO · 光芯片（边际增量 <span class="num highlight">90</span>）<br>
+      <strong>传导逻辑：</strong>处于图表中边际增量 TOP2 和倍股概率 TOP5 的交叉象限。NPO/CPO 光引擎渗透带来量价齐升，带宽 2026→2030 年 30x 增长，市场空间 10x 扩容。作为 A 股光模块黑马，直接受益于中国在"系统/光模块"环节份额提升。<br>
+      <strong>美股映射：</strong>COHR / LITE
+    </div>
+    <div class="pc-right">
+      <h4>操作建议</h4>
+      <span class="tag tag-green">核心进攻仓位</span><br>
+      当前位置建议 <strong>坚定持有</strong>，回调可适度加仓。光连接是 AI 降本最大结构性机会，汇绿在该赛道中弹性最优。
+    </div>
+  </div>
+</div>
+
+<!-- 罗博特科 -->
+<div class="portfolio-card">
+  <div class="pc-header">
+    <div><span class="pc-name">罗博特科</span> <span class="pc-code">300757</span></div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span class="tag tag-blue">A级</span>
+      <span class="impact-badge impact-positive">直接受益 · 高弹性</span>
+    </div>
+  </div>
+  <div class="pc-body">
+    <div class="pc-left">
+      <strong>映射环节：</strong>先进封装（倍股概率 <span class="num highlight">88</span>） + HBM 封测（边际增量 <span class="num">82</span>）<br>
+      <strong>传导逻辑：</strong>子公司 ficonTEC 是先进封装设备核心供应商，3D 堆叠/CoWoS 国产替代中最稀缺的设备环节。先进封装链在图表中综合评分最高（倍股概率 88 + 可持续性高），是 2026 年主线启动的核心赛道。<br>
+      <strong>美股映射：</strong>NVDA / MRVL
+    </div>
+    <div class="pc-right">
+      <h4>操作建议</h4>
+      <span class="tag tag-green">核心进攻仓位</span><br>
+      与汇绿并列持仓中 AI 硬件链 β 最强的两只标的。建议 <strong>维持仓位</strong>，关注 ficonTEC 订单和华为"韬定律 V2"NPO 推进速度。
+    </div>
+  </div>
+</div>
+
+<!-- 澜起科技 -->
+<div class="portfolio-card">
+  <div class="pc-header">
+    <div><span class="pc-name">澜起科技</span> <span class="pc-code">688008</span></div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span class="tag tag-green">S级</span>
+      <span class="impact-badge impact-moderate">间接受益 · 需逻辑升级</span>
+    </div>
+  </div>
+  <div class="pc-body">
+    <div class="pc-left">
+      <strong>映射环节：</strong>内存接口 · 高端模拟（边际增量 <span class="num">60</span>） + HBM 链（80+）<br>
+      <strong>传导逻辑：</strong>传统 DDR 内存接口芯片是成熟赛道，增量有限（60分）。但图表中"HBM 国产链"（82分）和"CXL 光连接内存池"（光连接研报新方向）为澜起打开了升级空间。从"内存接口芯片"→"CXL Retimer + 光连接内存"，估值逻辑可重估。<br>
+      <strong>美股映射：</strong>MRVL（CXL 方向）
+    </div>
+    <div class="pc-right">
+      <h4>操作建议</h4>
+      <span class="tag tag-blue">长期底仓 · 等待催化剂</span><br>
+      底仓维持不动。需跟踪：① CXL 2.0/3.0 标准化进展 ② 华为/国内云商 CXL 采购落地 ③ 光连接内存池商用节奏。这些变量落地后才是重仓窗口。
+    </div>
+  </div>
+</div>
+
+<!-- 兴森科技 -->
+<div class="portfolio-card">
+  <div class="pc-header">
+    <div><span class="pc-name">兴森科技</span> <span class="pc-code">002436</span></div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span class="tag tag-purple">利润仓</span>
+      <span class="impact-badge impact-moderate">间接受益 · 中等</span>
+    </div>
+  </div>
+  <div class="pc-body">
+    <div class="pc-left">
+      <strong>映射环节：</strong>PCB · 覆铜板 · ABF 载板（边际增量 <span class="num">68</span>）<br>
+      <strong>传导逻辑：</strong>ABF 载板是先进封装基板核心材料，受益封装链整体 β。但 PCB/载板环节量增确定、价增不确定（竞争格局弱于设备/材料），68 分属中等偏上，适合作为封装主线的配套仓位。<br>
+      <strong>优势：</strong>已完成做 T 成本归零，利润仓安全性极高。
+    </div>
+    <div class="pc-right">
+      <h4>操作建议</h4>
+      <span class="tag tag-purple">利润仓 · 长期持有</span><br>
+      负成本 → 零压力，享受封装链 β 扩散即可。不主动加仓，但也不减仓。
+    </div>
+  </div>
+</div>
+
+<!-- 软通动力 -->
+<div class="portfolio-card">
+  <div class="pc-header">
+    <div><span class="pc-name">软通动力</span> <span class="pc-code">301236</span></div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span class="tag tag-blue">A级</span>
+      <span class="impact-badge impact-neutral">不直接映射 · 弱相关</span>
+    </div>
+  </div>
+  <div class="pc-body">
+    <div class="pc-left">
+      <strong>映射环节：</strong>不在 AI 硬件链价值捕获主线内<br>
+      <strong>判断：</strong>软通动力主营 IT 服务/软件外包/华为生态，不在图表分析的硬件链各环节中。历史浮盈标杆（+418%），但在 2026-2027 硬件 β 扩散期，软件方向可能跑输硬件链。<br>
+      <strong>YTD 表现佐证：</strong>今日 -7.23%，科技股回撤中软件方向跌幅更深。
+    </div>
+    <div class="pc-right">
+      <h4>操作建议</h4>
+      <span class="tag tag-yellow">持有观察 · 不追</span><br>
+      利润仓特征赋予高安全性，维持现有仓位。但 <strong>不宜在"AI 硬件链主线"逻辑下加仓</strong>，它的 β 来自软件/信创而非硬件链。
+    </div>
+  </div>
+</div>
+
+<!-- 防御仓位汇总 -->
+<div class="portfolio-card">
+  <div class="pc-header">
+    <div><span class="pc-name">防御仓位汇总</span></div>
+    <div><span class="impact-badge impact-neutral">不直接映射</span></div>
+  </div>
+  <div class="pc-body">
+    <div class="pc-left">
+      <table>
+        <tr><th style="width:25%;">标的</th><th style="width:25%;">代码</th><th style="width:50%;">在 AI 硬件链中的定位</th></tr>
+        <tr><td>泰和新材</td><td>002254</td><td>芳纶/新材料，若能切入电子材料供应链可重估</td></tr>
+        <tr><td>三祥新材</td><td>603663</td><td>锆材料/固态电池，独立于 AI 硬件链</td></tr>
+        <tr><td>华峰化学</td><td>002064</td><td>化工周期，作为半导体板块反向观察+防御</td></tr>
+        <tr><td>德展健康</td><td>000813</td><td>医药/VGX-3100，独立逻辑</td></tr>
+        <tr><td>太钢不锈</td><td>000825</td><td>不锈钢/特钢，周期防御</td></tr>
+        <tr><td>星环科技</td><td>688031</td><td>大数据/AI 软件，不在硬件链主线</td></tr>
+      </table>
+    </div>
+    <div class="pc-right">
+      <h4>操作建议</h4>
+      防御仓位整体 <strong>维持现状</strong>，不做调整。三祥新材（S级/固态电池）和泰和新材（B+级）有独立逻辑，继续持有观察。
+    </div>
+  </div>
+</div>
+
+<!-- ========== 六、三级情景测算 ========== -->
+<h2>六、三级情景：基准→持仓损益弹性测算</h2>
+
+<div class="card">
+<table>
+<tr><th style="width:16%;">情景</th><th style="width:16%;">2030中国份额</th><th style="width:16%;">市场总规模</th><th style="width:52%;">持仓影响</th></tr>
+<tr>
+  <td><span class="scenario-tag sc-bull">乐观</span></td>
+  <td class="num highlight">25%</td>
+  <td class="num">$1.5T+</td>
+  <td><strong>汇绿 → 3-5x</strong>（光模块量价齐升+CPO渗透）<br><strong>罗博 → 2-3x</strong>（封装设备订单爆发）<br><strong>澜起 → 1.5-2x</strong>（CXL+光连接内存逻辑兑付）<br><strong>兴森 → 1-1.5x</strong>（封装基板放量）<br>化工/医药防御仓跑输但拖累可控</td>
+</tr>
+<tr>
+  <td><span class="scenario-tag sc-base">基准</span></td>
+  <td class="num">16%</td>
+  <td class="num">$1.25T</td>
+  <td><strong>汇绿 → 1-2x</strong>（跟随行业 β）<br><strong>罗博 → 1-1.5x</strong>（封装链稳健增长）<br><strong>澜起 → 0.5-1x</strong>（传统接口+部分 CXL）<br><strong>兴森 → 0.5-1x</strong><br>持仓整体年化回报 12-18%</td>
+</tr>
+<tr>
+  <td><span class="scenario-tag sc-bear">保守</span></td>
+  <td class="num">13%</td>
+  <td class="num">$1.0T</td>
+  <td><strong>汇绿 → 0.3-0.6x</strong>（β 收窄但光连接结构性需求仍存）<br><strong>罗博 → 0-0.5x</strong><br><strong>澜起 → -0.2~0.3x</strong>（老赛道承压）<br>防御仓位提供下行保护<br>整体仍为正回报（防御仓+利润仓缓冲）</td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 七、关键催化剂时间线 ========== -->
+<h2>七、关键催化剂与跟踪节点</h2>
+
+<div class="card">
+<table>
+<tr><th style="width:20%;">时间窗口</th><th style="width:35%;">催化剂事件</th><th style="width:45%;">影响标的</th></tr>
+<tr>
+  <td class="num">2026 Q3</td>
+  <td>华为"韬定律 V2" NPO 光引擎（Hi-ONE）技术细节发布<br>美国云商 Capex Q2 指引</td>
+  <td>汇绿生态、罗博特科、澜起科技</td>
+</tr>
+<tr>
+  <td class="num">2026 Q4</td>
+  <td>NPO/CPO 首批样品交付 + 良率数据<br>CXL 3.0 标准最终版</td>
+  <td>汇绿生态（最直接）、澜起科技（CXL 催化）</td>
+</tr>
+<tr>
+  <td class="num">2027 H1</td>
+  <td>NPO 光引擎小规模量产验证<br>国内云商（阿里/字节/腾讯）CXL 采购招标</td>
+  <td>汇绿生态、罗博特科、澜起科技</td>
+</tr>
+<tr>
+  <td class="num">2027 H2</td>
+  <td>HBM 国产链 0→1 突破<br>先进封装设备国产替代放量</td>
+  <td>罗博特科（ficonTEC）、兴森科技</td>
+</tr>
+<tr>
+  <td class="num">2028</td>
+  <td>CPO 大规模商用元年<br>CXL 光连接内存池商用</td>
+  <td>汇绿生态（价值重估）、澜起科技（逻辑升级）</td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 八、数据溯源 ========== -->
+<h2>八、数据溯源与免责声明</h2>
+
+<div class="card" style="font-size:13px;line-height:1.8;">
+<strong>数据来源（按置信度排序）：</strong><br>
+<span class="tag tag-green">★★★</span> 「吴话可 Talk」全球AI硬件链价值捕获研究（李梓贤转发，2026-07）—— 图表引用<br>
+<span class="tag tag-green">★★★</span> 项目内光连接研报解读（2026-07-06）—— 光连接降本路径/带宽增长数据<br>
+<span class="tag tag-blue">★★☆</span> 项目内持仓数据（2026-07-06 盘中快照）<br>
+<span class="tag tag-blue">★★☆</span> A 股各环节倍股概率/可持续性（「吴话可 Talk」主观评估，需交叉验证）<br><br>
+
+<strong>免责声明：</strong><br>
+本报告为内部投研参考，不构成投资建议。所有情景测算基于当前可得信息，未来实际结果可能因宏观环境、技术路线变革、政策变化等因素产生重大偏差。图表中的"倍股概率""边际增量强度"为主观评估框架，非量化模型输出，不应作为唯一决策依据。投资有风险，入市需谨慎。
+</div>
+
+<div class="footer">
+报告生成：巴蒂投研 · 项目 ID workbuddy-20260701 | 数据截至 2026-07-06 11:38 CST | 下次更新：触发型（重大催化剂/持仓变动时）
+</div>
+
+<script>
+// === Chart 1: 国家份额玫瑰图 ===
+(function(){
+  var c = echarts.init(document.getElementById('chart-country-pie'));
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'2026 全球 AI 硬件链价值捕获\n（利润口径）',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13,lineHeight:20}},
+    tooltip:{trigger:'item',formatter:'{b}: {c}%'},
+    legend:{top:52,left:'center',textStyle:{color:'#8b949e',fontSize:10}},
+    series:[{
+      type:'pie',roseType:'radius',radius:['28%','72%'],center:['50%','56%'],
+      label:{color:'#c9d1d9',fontSize:10,formatter:'{b}\n{c}%'},
+      labelLine:{lineStyle:{color:'#30363d'}},
+      data:[
+        {value:47,name:'美国',itemStyle:{color:'#f85149'}},
+        {value:20,name:'中国台湾',itemStyle:{color:'#58a6ff'}},
+        {value:12,name:'韩国',itemStyle:{color:'#bc8cff'}},
+        {value:8,name:'日本',itemStyle:{color:'#f0883e'}},
+        {value:6,name:'欧洲',itemStyle:{color:'#3fb950'}},
+        {value:5,name:'中国',itemStyle:{color:'#d29922'}},
+        {value:2,name:'其他',itemStyle:{color:'#8b949e'}}
+      ],
+      emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}
+    }]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+// === Chart 2: 各环节国别优势对比棒图 ===
+(function(){
+  var c = echarts.init(document.getElementById('chart-segment-bar'));
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'各环节国别优势',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:90,right:20,top:58,bottom:40},
+    xAxis:{type:'value',max:100,axisLabel:{color:'#8b949e',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}}},
+    yAxis:{type:'category',data:['系统整机','先进封装','存储','代工','芯片设计','设备','材料'],axisLabel:{color:'#c9d1d9',fontSize:11},axisLine:{lineStyle:{color:'#30363d'}}},
+    series:[
+      {name:'美国',type:'bar',stack:'total',data:[35,12,5,5,70,50,20],itemStyle:{color:'#f85149'},label:{show:true,position:'inside',fontSize:9,color:'#fff',formatter:function(p){return p.value>12?p.value+'%':'';}}},
+      {name:'中国台湾',type:'bar',stack:'total',data:[30,60,8,75,5,5,5],itemStyle:{color:'#58a6ff'}},
+      {name:'韩国',type:'bar',stack:'total',data:[8,8,60,5,5,5,8],itemStyle:{color:'#bc8cff'}},
+      {name:'日本',type:'bar',stack:'total',data:[5,5,5,3,5,12,40],itemStyle:{color:'#f0883e'}},
+      {name:'中国',type:'bar',stack:'total',data:[12,10,15,5,5,8,12],itemStyle:{color:'#d29922'}},
+      {name:'欧洲',type:'bar',stack:'total',data:[5,3,2,2,8,18,10],itemStyle:{color:'#3fb950'}},
+      {name:'其他',type:'bar',stack:'total',data:[5,2,5,5,2,2,5],itemStyle:{color:'#8b949e'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+// === Chart 3: 2026-2030 份额迁移 ===
+(function(){
+  var c = echarts.init(document.getElementById('chart-migration'));
+  var years = ['2026','2027E','2028E','2029E','2030E'];
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'2026→2030 各国 AI 硬件链份额迁移',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:50,right:20,top:58,bottom:40},
+    xAxis:{type:'category',data:years,axisLabel:{color:'#8b949e',fontSize:11}},
+    yAxis:{type:'value',max:50,axisLabel:{color:'#8b949e',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}}},
+    series:[
+      {name:'美国',type:'line',data:[47,45,43,41,39],lineStyle:{color:'#f85149',width:2},itemStyle:{color:'#f85149'},symbol:'circle',symbolSize:6},
+      {name:'中国台湾',type:'line',data:[20,19,19,18,17],lineStyle:{color:'#58a6ff',width:2},itemStyle:{color:'#58a6ff'},symbol:'circle',symbolSize:6},
+      {name:'韩国',type:'line',data:[12,13,12,11,10],lineStyle:{color:'#bc8cff',width:2},itemStyle:{color:'#bc8cff'},symbol:'circle',symbolSize:6},
+      {name:'日本',type:'line',data:[8,8,7,7,6],lineStyle:{color:'#f0883e',width:2},itemStyle:{color:'#f0883e'},symbol:'circle',symbolSize:6},
+      {name:'欧洲',type:'line',data:[6,6,5,5,4],lineStyle:{color:'#3fb950',width:2},itemStyle:{color:'#3fb950'},symbol:'circle',symbolSize:6},
+      {name:'中国·基准',type:'line',data:[5,8,11,14,16],lineStyle:{color:'#d29922',width:3,type:'dashed'},itemStyle:{color:'#d29922'},symbol:'diamond',symbolSize:8,areaStyle:{color:'rgba(210,153,34,0.08)'}},
+      {name:'中国·乐观',type:'line',data:[5,10,15,20,25],lineStyle:{color:'#d29922',width:3},itemStyle:{color:'#d29922'},symbol:'diamond',symbolSize:8,areaStyle:{color:'rgba(210,153,34,0.15)'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+// === Chart 4: A股环节横向排名 ===
+(function(){
+  var c = echarts.init(document.getElementById('chart-ashare-ranking'));
+  var items = ['电子特气\n材料卡脖子','光模块\nCPO·光芯片','存储原厂\nHBM链','先进封装\nHBM封测','半导体设备','国产AI\n芯片设计','稀土·钨','液冷·电源\n温控','PCB·载板\n覆铜板','CMP·前驱体\n光刻胶','内存接口\n高端模拟'];
+  var marginal = [92,90,85,82,80,79,72,70,68,66,60];
+  var prob = [85,80,82,88,76,90,60,65,62,58,55];
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'A股AI硬件链：边际增量强度 vs 倍股概率',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:105,right:50,top:58,bottom:40},
+    xAxis:{type:'value',min:50,max:100,axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+    yAxis:{type:'category',data:items,axisLabel:{color:'#c9d1d9',fontSize:10},inverse:true},
+    series:[
+      {name:'边际增量强度',type:'bar',data:marginal,itemStyle:{color:'#58a6ff',borderRadius:[0,3,3,0]},label:{show:true,position:'right',fontSize:10,color:'#58a6ff'}},
+      {name:'倍股概率',type:'bar',data:prob,itemStyle:{color:'#3fb950',borderRadius:[0,3,3,0]},label:{show:true,position:'right',fontSize:10,color:'#3fb950'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+// === Chart 5: 2026-2030 路线图甘特 ===
+(function(){
+  var c = echarts.init(document.getElementById('chart-roadmap'));
+  var phases = ['2026\n主线启动\nβ普涨','2027\nβ扩散\nIPO扩容','2028\n量利之辨\n分水岭','2029\n高位分化\nβ退潮','2030\n见顶验证\n收获撤退'];
+  var themes = [
+    ['材料卡脖子','先进封装','光模块/CPO'],
+    ['设备国产化','HBM国产链','存储原厂'],
+    ['存储/设计分化','真伪成长检验'],
+    ['高位α分化','capex拐点'],
+    ['顶部博弈','收获撤退']
+  ];
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'2026→2030 A股科技牛阶段路线图',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    grid:{left:60,right:20,top:58,bottom:40},
+    xAxis:{type:'category',data:phases,axisLabel:{color:'#c9d1d9',fontSize:9,lineHeight:18}},
+    yAxis:{type:'value',show:false,min:0,max:5},
+    series:[
+      {type:'bar',data:[3,3,3,3,3],itemStyle:{color:'rgba(88,166,255,0.08)',borderRadius:4},barWidth:'60%',label:{show:true,position:'inside',fontSize:11,color:'#fff',formatter:function(p){return themes[p.dataIndex].join('\n');}}},
+      {type:'line',data:[4,3.2,2.4,1.6,0.8],lineStyle:{color:'#f85149',width:2,type:'dashed'},symbol:'none',name:'泡沫温度（越低越安全）'},
+      {type:'line',data:[0.8,1.6,2.4,3.2,4],lineStyle:{color:'#3fb950',width:2},symbol:'none',name:'确定性（越高越确定）'}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+</script>
+
+</body>
+</html>
