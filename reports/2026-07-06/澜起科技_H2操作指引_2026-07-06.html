@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澜起科技 · 深度分析与H2操作指引 | 2026-07-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --card:#161b22; --border:#21262d; --text:#c9d1d9; --text2:#8b949e;
+  --green:#3fb950; --red:#f85149; --yellow:#d29922; --blue:#58a6ff; --purple:#bc8cff;
+  --orange:#f0883e; --teal:#39d353;
+  --accent-warm:#e6b450; --accent-rose:#e0558a; --surface-raise:#1c2128;
+  --gradient-core:linear-gradient(135deg,rgba(230,180,80,0.15),rgba(248,81,73,0.08));
+  --gradient-bull:linear-gradient(135deg,rgba(63,185,80,0.12),rgba(57,211,83,0.06));
+  --gradient-bear:linear-gradient(135deg,rgba(248,81,73,0.12),rgba(210,153,34,0.06));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;max-width:920px;margin:0 auto;padding:24px 18px}
+h1{font-size:22px;color:#fff;margin-bottom:4px}
+h2{font-size:17px;color:var(--blue);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:15px;color:var(--text);margin:16px 0 8px}
+.sub{font-size:12px;color:var(--text2);margin-bottom:16px}
+.card,.bull,.bear,.info,.alert-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:10px}
+.alert-card{border-left:3px solid var(--red);background:var(--gradient-bear)}
+.bull{border-left:3px solid var(--green);background:var(--gradient-bull)}
+.bear{border-left:3px solid var(--yellow)}
+.info{border-left:3px solid var(--blue)}
+.core-block{background:var(--gradient-core);border:1px solid rgba(230,180,80,0.25);border-radius:8px;padding:16px 18px;margin-bottom:12px}
+.core-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent-warm);background:rgba(230,180,80,0.18);padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.core-text{font-size:16px;font-weight:600;line-height:1.8;color:#f0f6fc}
+.vs-row{display:flex;gap:10px;margin:10px 0;flex-wrap:wrap}
+.vs-card{flex:1;min-width:130px;background:var(--surface-raise);border:1px solid var(--border);border-radius:6px;padding:12px 14px;text-align:center}
+.vs-num{font-size:22px;font-weight:700;font-family:"SF Mono",monospace}
+.vs-label{font-size:11px;color:var(--text2);margin-top:2px}
+.source-inline{font-size:10px;color:var(--text2);margin-left:6px;white-space:nowrap}
+.source-inline::before{content:'· '}
+.last-word{background:var(--surface-raise);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 16px;margin-top:20px;font-size:14px;font-weight:600;color:#f0f6fc;line-height:1.6}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin-right:4px;font-weight:600}
+.tag-red{background:rgba(248,81,73,0.18);color:var(--red)}
+.tag-green{background:rgba(63,185,80,0.18);color:var(--green)}
+.tag-yellow{background:rgba(210,153,34,0.18);color:var(--yellow)}
+.tag-blue{background:rgba(88,166,255,0.18);color:var(--blue)}
+.tag-purple{background:rgba(188,140,255,0.18);color:var(--purple)}
+.tag-gold{background:rgba(230,180,80,0.18);color:var(--accent-warm)}
+.tag-rose{background:rgba(224,85,138,0.18);color:var(--accent-rose)}
+.tag-teal{background:rgba(57,211,83,0.18);color:var(--teal)}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;margin:8px 0}
+th{font-size:12px;color:var(--text2);text-align:left;padding:7px 8px;border-bottom:1px solid var(--border);font-weight:600}
+td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover td{background:rgba(88,166,255,0.04)}
+.footer{font-size:11px;color:var(--text2);margin-top:32px;padding-top:12px;border-top:1px solid var(--border)}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px;margin:14px 0}
+.chart-box{width:100%;height:380px}
+.highlight{color:var(--yellow);font-weight:600}
+.num{font-family:"SF Mono",monospace;font-variant-numeric:tabular-nums}
+.warn{color:var(--red);font-weight:600}
+.green{color:var(--green)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<h1>澜起科技 · 深度分析与 H2 操作指引</h1>
+<div class="sub">Wind 万得一致预期 + 上下游产业交叉验证 | V3.0 | 巴蒂投研 · 2026-07-06</div>
+
+<!-- ========== CORE ========== -->
+<div class="core-block">
+  <div class="core-tag">CORE</div>
+  <div class="core-text">澜起科技不是一家"跟着存储周期走"的公司——它的商业模式是：每代DDR升级=ASP×1.5~2倍，每增加一颗配套芯片（CKD/MRDIMM）= TAM扩大。传统DRAM利润率已经超过HBM，三星有充分动力扩大DDR5产能。这场"记忆风暴"里，澜起是卖水人，不是矿工。</div>
+</div>
+
+<!-- ========== 关键数据 ========== -->
+<div class="vs-row">
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--accent-warm);">51.4<span style="font-size:12px;">亿</span></div>
+    <div class="vs-label">2025营收 · 3年CAGR 32%<span class="source-inline">Wind</span></div>
+  </div>
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--green);">62.2<span style="font-size:12px;">%</span></div>
+    <div class="vs-label">毛利率 · 从48%持续提升<span class="source-inline">Wind</span></div>
+  </div>
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--blue);">33.6→45.1<span style="font-size:12px;">亿</span></div>
+    <div class="vs-label">2026E→2027E净利一致预期<span class="source-inline">Wind</span></div>
+  </div>
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--red);">97<span style="font-size:12px;">×</span></div>
+    <div class="vs-label">PE Forward · PEG 2.9×<span class="source-inline">Wind+WeStock</span></div>
+  </div>
+</div>
+
+<!-- ========== 一、业务 ========== -->
+<h2>一、业务结构与竞争壁垒</h2>
+
+<h3>产品矩阵：四层递进</h3>
+<div class="card">
+<table>
+<tr><th style="width:20%;">产品线</th><th style="width:12%;">阶段</th><th style="width:14%;">2025收入</th><th style="width:54%;">核心逻辑</th></tr>
+<tr>
+  <td><strong>DDR5 内存接口</strong></td>
+  <td><span class="tag tag-green">成熟放量</span></td>
+  <td class="num">~40亿</td>
+  <td>全球份额>40%，DDR5渗透→ASP提升（第4→第5→第6子代，每代+50%~100%），MRDIMM/CKD配套芯片从0→1</td>
+</tr>
+<tr>
+  <td><strong>CXL Retimer</strong></td>
+  <td><span class="tag tag-gold">商业化前夜</span></td>
+  <td class="num">~数千万</td>
+  <td><span class="highlight">最大弹性来源。</span>CXL 2.0标准已冻结，CXL 3.0预计2026H2发布。全球唯三供应商（澜起/AsteraLabs/Rambus）</td>
+</tr>
+<tr>
+  <td><strong>PCIe Retimer</strong></td>
+  <td><span class="tag tag-blue">增长期</span></td>
+  <td class="num">~5亿</td>
+  <td>AI服务器NVLink/GPU互联标配，PCIe 6.0每通道速率翻倍→Retimer需求量×2</td>
+</tr>
+<tr>
+  <td><strong>MXC 内存扩展</strong></td>
+  <td><span class="tag tag-purple">远期</span></td>
+  <td class="num">—</td>
+  <td>CXL内存池控制器，2028+放量</td>
+</tr>
+</table>
+</div>
+
+<h3>护城河：三重壁垒</h3>
+<div class="bull">
+<strong>① 标准壁垒：</strong>JEDEC内存标准制定参与者，每一代DDR的接口芯片规格都是澜起联合Intel/AMD/三星共同定义的。后来者拿不到标准制定权。<br>
+<strong>② 认证壁垒：</strong>内存接口芯片需要CPU平台（Intel/AMD）+ 内存原厂（三星/海力士/美光）+ 服务器OEM（戴尔/惠普/浪潮）三重认证，周期18-24个月。<br>
+<strong>③ 规模壁垒：</strong>全球内存接口芯片份额>40%，第二大是Rambus（~25%），第三是IDT（被瑞萨收购，~20%）。三寡头格局极其稳定。<span class="source-inline">Wind 券商研报, 2026-05</span>
+</div>
+
+<!-- ========== 二、上下游 ========== -->
+<h2>二、上下游产业格局——2026年的关键变化</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-chain"></div></div>
+
+<div class="card">
+<h3>三条产业链暗线，2026下半年同时加速</h3>
+<table>
+<tr><th style="width:5%;">#</th><th style="width:30%;">趋势</th><th style="width:15%;">对澜起影响</th><th style="width:50%;">关键数据</th></tr>
+<tr>
+  <td class="num">1</td>
+  <td><strong>传统DRAM利润率 > HBM</strong></td>
+  <td><span class="tag tag-green">强利好</span></td>
+  <td>三星Q1电话会确认：企业级DDR5毛利率已超过HBM。DRAM合同价Q1涨100%+Q2涨30%，累计160%。三星Q2财报明天(7/7)发布，预计营业利润86万亿韩元。<span class="source-inline">三星法说 Q1 2026</span></td>
+</tr>
+<tr>
+  <td class="num">2</td>
+  <td><strong>HBM 挤干通用 DRAM</strong></td>
+  <td><span class="tag tag-green">利好</span></td>
+  <td>HBM吃掉22%晶圆产能，只贡献9% bit供给。通用DRAM净新增产能趋近于零。供给紧缺→ DDR5涨价→内存接口芯片ASP跟涨。<span class="source-inline">K Research 2026-07-05</span></td>
+</tr>
+<tr>
+  <td class="num">3</td>
+  <td><strong>AI服务器推高内存接口需求</strong></td>
+  <td><span class="tag tag-green">利好</span></td>
+  <td>GB200配54TB LPDDR+Vera Rubin更大的内存配置。每台AI服务器=更多的内存通道=更多的接口芯片。2026-2028 DRAM供给缺口7-9%。<span class="source-inline">SemiAnalysis 2026</span></td>
+</tr>
+</table>
+</div>
+
+<div class="info">
+<strong>关键反共识：</strong>市场担心HBM挤占产能对澜起是利空。完全相反——HBM用不到内存接口芯片（直接封装在GPU旁），但HBM挤走的通用DRAM产能让DDR5更稀缺、利润更高，三星/海力士更有动力加速DDR5扩产。澜起吃的是DDR5的饭，HBM只是把DDR5的菜做得更香了。
+</div>
+
+<!-- ========== 三、财务 ========== -->
+<h2>三、财务与估值框架</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-fin"></div></div>
+
+<div class="grid-2">
+  <div class="bull">
+    <strong>✅ 盈利质量极高</strong><br>
+    · 毛利率62.2%，5年从48%→62%，持续爬升<br>
+    · ROE 18.4%，恢复到20%+只是时间问题<br>
+    · 研发费率仅~3.7%（1.88亿/51.4亿），标准化产品边际成本极低<br>
+    · 营收3年CAGR 32%，利润增速更快
+  </div>
+  <div class="bear">
+    <strong>⚠️ 估值极贵</strong><br>
+    · PE TTM 128× / PE Fwd 97× / PE 2027E 73×<br>
+    · PEG = 97/(33.6→45.1增速34%) = <span class="warn">2.9×</span><br>
+    · 即使按2027E净利润45亿，PE仍73×<br>
+    · 市值3284亿，已price in大量乐观预期
+  </div>
+</div>
+
+<h3>估值锚定：三期对比</h3>
+<div class="card">
+<table>
+<tr><th style="width:16%;">指标</th><th style="width:20%;">2025A</th><th style="width:20%;">2026E（Wind一致）</th><th style="width:20%;">2027E（Wind一致）</th><th style="width:24%;">隐含增速</th></tr>
+<tr><td>营收</td><td class="num">51.4亿</td><td class="num">74.6亿</td><td class="num">97.3亿</td><td class="highlight">+45%/+30%</td></tr>
+<tr><td>净利</td><td class="num">21.3亿</td><td class="num">33.6亿</td><td class="num">45.1亿</td><td class="highlight">+58%/+34%</td></tr>
+<tr><td>EPS</td><td class="num">1.74元</td><td class="num">2.75元</td><td class="num">3.69元</td><td>—</td></tr>
+<tr><td>PE(现价268.68)</td><td class="num warn">154×</td><td class="num warn">97×</td><td class="num warn">73×</td><td>—</td></tr>
+</table>
+</div>
+
+<!-- ========== 四、三级情景 ========== -->
+<h2>四、三级情景与目标市值</h2>
+
+<div class="card">
+<table>
+<tr><th style="width:12%;">情景</th><th style="width:16%;">2027E净利</th><th style="width:12%;">PE</th><th style="width:16%;">目标市值</th><th style="width:14%;">目标股价</th><th style="width:30%;">触发条件</th></tr>
+<tr>
+  <td><span class="tag tag-green">乐观</span></td>
+  <td class="num highlight">55亿</td>
+  <td class="num">60×</td>
+  <td class="num">3,300亿</td>
+  <td class="num green">270元</td>
+  <td>CXL Retimer大单落地 + DDR6标准提前发布 → ASP再跳升</td>
+</tr>
+<tr>
+  <td><span class="tag tag-yellow">基准</span></td>
+  <td class="num">45亿</td>
+  <td class="num">50×</td>
+  <td class="num">2,250亿</td>
+  <td class="num warn">184元</td>
+  <td>DDR5渗透率70%→85%，CKD/MRDIMM放量，CXL小规模贡献</td>
+</tr>
+<tr>
+  <td><span class="tag tag-red">悲观</span></td>
+  <td class="num">30亿</td>
+  <td class="num">35×</td>
+  <td class="num">1,050亿</td>
+  <td class="num warn">86元</td>
+  <td>DDR5竞争加剧 + CXL落地延迟 + 存储周期反转下行</td>
+</tr>
+</table>
+</div>
+
+<div class="last-word">
+概率加权(25%×3300 + 50%×2250 + 25%×1050) = <span style="color:var(--yellow);">2,213亿</span>，较当前3284亿存在 <span style="color:var(--red);">33% 下行空间</span>。即使基准情景，50× PE对应的2250亿也意味着32%的回调。
+</div>
+
+<div class="bear" style="margin-top:10px;">
+<strong>⚠️ 诚实的判断：</strong>澜起科技是A股科技股中商业模式最好的之一（62%毛利率+标准化产品+三寡头格局），但当前估值已经把2026-2027年的乐观预期全部定价了。"好公司≠好价格"——当前价位下，你赚的不是"澜起成长"的钱，而是"市场维持97× PE不降"的钱。
+</div>
+
+<!-- ========== 五、催化时间线 ========== -->
+<h2>五、H2 催化时间线（Q3-Q4 操作指引）</h2>
+
+<div class="card">
+<table>
+<tr><th style="width:10%;">时间</th><th style="width:22%;">催化剂</th><th style="width:14%;">影响方向</th><th style="width:54%;">操作指引</th></tr>
+<tr>
+  <td class="num">7/7</td>
+  <td><strong>三星 Q2 财报</strong></td>
+  <td><span class="tag tag-green">短期催化</span></td>
+  <td>如果DDR5利润率持续>HBM，验证澜起核心逻辑。如果不及预期，短期回调压力</td>
+</tr>
+<tr>
+  <td class="num">7/7</td>
+  <td><strong>澜起除权除息</strong></td>
+  <td><span class="tag tag-yellow">短期扰动</span></td>
+  <td>每10股派4.41HKD，除息日股价自然下调。不影响基本面，短期可能压制股价</td>
+</tr>
+<tr>
+  <td class="num">7月下旬</td>
+  <td><strong>澜起 Q2 业绩预告</strong></td>
+  <td><span class="tag tag-green">核心催化</span></td>
+  <td><strong>Q3最重要事件。</strong>市场一致预期H1净利~15-17亿。若超预期→突破300元阻力；若miss→短期回调至240-250区间</td>
+</tr>
+<tr>
+  <td class="num">8-9月</td>
+  <td><strong>CXL 3.0 标准发布</strong></td>
+  <td><span class="tag tag-gold">中长期催化</span></td>
+  <td>CXL 3.0标准冻结→国内云商（阿里/字节/腾讯）启动CXL采购招标→澜起CXL Retimer订单可预期</td>
+</tr>
+<tr>
+  <td class="num">Q4</td>
+  <td><strong>DDR5 第六子代送样</strong></td>
+  <td><span class="tag tag-green">结构性催化</span></td>
+  <td>第六子代ASP比第五子代+50%，2027年量产。送样成功→锁定2027年增长</td>
+</tr>
+<tr>
+  <td class="num">Q4</td>
+  <td><strong>PCIe 6.0 Retimer 放量</strong></td>
+  <td><span class="tag tag-blue">增量催化</span></td>
+  <td>Intel/AMD新平台全面支持PCIe 6.0，Retimer需求×2</td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 六、操作指引 ========== -->
+<h2>六、Q3-Q4 操作指引</h2>
+
+<div class="alert-card">
+<h3 style="margin-top:0;">当前持仓（长期账户S级，成本96.83元）：底仓不动</h3>
+
+<div class="grid-2" style="margin-top:12px;">
+  <div>
+    <strong style="color:var(--red);">Q3 (7-9月)：核心观察窗口</strong><br><br>
+    · <strong>7月除息后</strong>：不操作。除息短期扰动后自然恢复<br>
+    · <strong>Q2业绩预告（关键节点）</strong>：若H1净利>18亿（超预期），维持底仓+考虑小仓位波段加仓（总仓位上限不变）；若<14亿（miss），需重新审视DDR5渗透率假设<br>
+    · <strong>CXL 3.0标准发布</strong>：若明确澜起在CXL Retimer的份额优势，可上调CXL收入预期<br>
+    · <strong>短期回调至240-250元区间</strong>：若业绩+产业逻辑未破，可用波段仓位小幅加仓（对应PE 2026E ~87-91×）
+  </div>
+  <div>
+    <strong style="color:var(--green);">Q4 (10-12月)：验证窗口</strong><br><br>
+    · <strong>DDR5第六子代送样</strong>：技术里程碑，确认2027年增长底线<br>
+    · <strong>PCIe 6.0放量</strong>：关注季报中PCIe Retimer收入占比是否突破10%<br>
+    · <strong>2027年一致预期调整</strong>：若Wind一致预期上调至50亿+，PE 2027E降至<65× → 估值吸引力上升<br>
+    · <strong>极端情景</strong>：若股价回调至200以下（对应2027E PE <55×）且产业逻辑完好 → 可较大幅度加仓
+  </div>
+</div>
+</div>
+
+<div class="card" style="margin-top:8px;">
+<h3>底线清单（触发后必须审视）</h3>
+<table>
+<tr><th style="width:5%;">#</th><th style="width:30%;">触发条件</th><th style="width:30%;">含义</th><th style="width:35%;">应对</th></tr>
+<tr><td>1</td><td>DDR5份额下降至<35%</td><td>竞争格局恶化（Rambus/国产替代）</td><td><span class="warn">减仓</span></td></tr>
+<tr><td>2</td><td>CXL 3.0标准推迟至2027H2+</td><td>CXL Retimer商业化时间表延后</td><td>下调CXL收入预期，不影响底仓</td></tr>
+<tr><td>3</td><td>三星/海力士大幅削减DDR5资本开支</td><td>DDR5供需格局逆转</td><td><span class="warn">减仓</span></td></tr>
+<tr><td>4</td><td>连续两个季度净利miss一致预期>15%</td><td>成长逻辑可能被证伪</td><td><span class="warn">大幅减仓</span></td></tr>
+</table>
+</div>
+
+<!-- ========== 七、来源 ========== -->
+<h2>七、数据溯源</h2>
+<div class="card" style="font-size:13px;line-height:1.8;">
+<span class="tag tag-green">★★★</span> Wind 万得（营收/净利/毛利率/ROE/一致预期/估值，2026-07-06）<br>
+<span class="tag tag-green">★★★</span> WeStock 实时行情（268.68元，PE 128.39×，2026-07-06收盘）<br>
+<span class="tag tag-green">★★★</span> 三星电子 Q1 2026 财报电话会（传统DRAM利润率>HBM确认）<br>
+<span class="tag tag-blue">★★☆</span> K Research（HBM挤干DRAM，2026-07-05）<br>
+<span class="tag tag-blue">★★☆</span> 澜起科技深度研报（凤凰财经/雪球，2026-04~05）<br>
+<span class="tag tag-blue">★★☆</span> SemiAnalysis/TrendForce（DRAM供给缺口7-9%，2026）<br><br>
+<strong>免责声明：</strong>本报告为内部投研参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+
+<div class="footer">
+巴蒂投研 · V3.0 | Wind + WeStock + 产业交叉验证 | 2026-07-06 22:15 CST
+</div>
+
+<script>
+(function(){
+  var c=echarts.init(document.getElementById('chart-fin'));
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'营收·净利·毛利率趋势',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:60,right:60,top:58,bottom:40},
+    xAxis:{type:'category',data:['2021','2022','2023','2024','2025','2026E','2027E'],axisLabel:{color:'#8b949e',fontSize:10}},
+    yAxis:[
+      {type:'value',name:'营收/净利(亿)',nameTextStyle:{color:'#58a6ff',fontSize:10},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+      {type:'value',name:'毛利率%',nameTextStyle:{color:'#d29922',fontSize:10},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}
+    ],
+    series:[
+      {name:'营收',type:'bar',data:[17.2,27.3,21.8,33.5,51.4,74.6,97.3],itemStyle:{color:'#58a6ff',borderRadius:[3,3,0,0]},barWidth:'35%'},
+      {name:'归母净利',type:'bar',data:[8.3,13.0,4.5,13.4,21.3,33.6,45.1],itemStyle:{color:'#3fb950',borderRadius:[3,3,0,0]},barWidth:'35%'},
+      {name:'毛利率',type:'line',yAxisIndex:1,data:[48.1,46.4,58.9,58.1,62.2,null,null],lineStyle:{color:'#d29922',width:2.5},itemStyle:{color:'#d29922'},symbol:'circle',symbolSize:7}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+(function(){
+  var c=echarts.init(document.getElementById('chart-chain'));
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'澜起科技产业链定位与价值流向',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'item'},
+    series:[{
+      type:'sankey',layout:'none',
+      data:[
+        {name:'HBM挤占\n晶圆产能'},{name:'DDR5供给\n持续紧缺'},
+        {name:'DDR5价格\nQ1+100% Q2+30%'},{name:'企业级DDR5\n利润率>HBM'},
+        {name:'澜起科技\n(内存接口芯片)'},{name:'AI服务器\n内存需求暴增'},
+        {name:'DDR5渗透\n70%→85%'},{name:'CXL Retimer\n(2026H2商业化)'},
+        {name:'MRDIMM/CKD\n配套芯片'},{name:'营收增长\n2025:51亿→2027E:97亿'}
+      ],
+      links:[
+        {source:'HBM挤占\n晶圆产能',target:'DDR5供给\n持续紧缺',value:8},
+        {source:'DDR5供给\n持续紧缺',target:'DDR5价格\nQ1+100% Q2+30%',value:7},
+        {source:'DDR5价格\nQ1+100% Q2+30%',target:'企业级DDR5\n利润率>HBM',value:6},
+        {source:'AI服务器\n内存需求暴增',target:'DDR5渗透\n70%→85%',value:6},
+        {source:'企业级DDR5\n利润率>HBM',target:'澜起科技\n(内存接口芯片)',value:8},
+        {source:'DDR5渗透\n70%→85%',target:'澜起科技\n(内存接口芯片)',value:7},
+        {source:'DDR5渗透\n70%→85%',target:'MRDIMM/CKD\n配套芯片',value:4},
+        {source:'MRDIMM/CKD\n配套芯片',target:'澜起科技\n(内存接口芯片)',value:4},
+        {source:'澜起科技\n(内存接口芯片)',target:'营收增长\n2025:51亿→2027E:97亿',value:10},
+        {source:'CXL Retimer\n(2026H2商业化)',target:'营收增长\n2025:51亿→2027E:97亿',value:3}
+      ],
+      label:{color:'#c9d1d9',fontSize:10},
+      lineStyle:{color:'gradient',curveness:0.5}
+    }]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+</script>
+</body>
+</html>
