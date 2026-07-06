@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锡业股份 · 深度分析 | 2026-07-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --card:#161b22; --border:#21262d; --text:#c9d1d9; --text2:#8b949e;
+  --green:#3fb950; --red:#f85149; --yellow:#d29922; --blue:#58a6ff; --purple:#bc8cff;
+  --orange:#f0883e; --teal:#39d353;
+  --accent-warm: #e6b450;
+  --accent-rose: #e0558a;
+  --surface-raise: #1c2128;
+  --surface-dim: #0f1218;
+  --gradient-core: linear-gradient(135deg, rgba(230,180,80,0.15), rgba(248,81,73,0.08));
+  --gradient-bull: linear-gradient(135deg, rgba(63,185,80,0.12), rgba(57,211,83,0.06));
+  --gradient-bear: linear-gradient(135deg, rgba(248,81,73,0.12), rgba(210,153,34,0.06));
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; max-width:920px; margin:0 auto; padding:24px 18px; }
+h1 { font-size:22px; color:#fff; margin-bottom:4px; }
+h2 { font-size:17px; color:var(--blue); margin:28px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:15px; color:var(--text); margin:16px 0 8px; }
+.sub { font-size:12px; color:var(--text2); margin-bottom:16px; }
+.card,.bull,.bear,.info,.alert-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:10px; }
+.alert-card { border-left:3px solid var(--red); background:var(--gradient-bear); }
+.bull { border-left:3px solid var(--green); background:var(--gradient-bull); }
+.bear { border-left:3px solid var(--yellow); }
+.info { border-left:3px solid var(--blue); }
+.core-block {
+  background:var(--gradient-core);
+  border:1px solid rgba(230,180,80,0.25);
+  border-radius:8px; padding:16px 18px; margin-bottom:12px;
+}
+.core-tag {
+  display:inline-block; font-size:10px; font-weight:700; letter-spacing:1.5px;
+  color:var(--accent-warm); background:rgba(230,180,80,0.18);
+  padding:2px 8px; border-radius:3px; margin-bottom:8px;
+}
+.core-text { font-size:16px; font-weight:600; line-height:1.8; color:#f0f6fc; }
+.vs-row { display:flex; gap:10px; margin:10px 0; flex-wrap:wrap; }
+.vs-card {
+  flex:1; min-width:140px; background:var(--surface-raise);
+  border:1px solid var(--border); border-radius:6px; padding:12px 14px; text-align:center;
+}
+.vs-num { font-size:22px; font-weight:700; font-family:"SF Mono",monospace; }
+.vs-label { font-size:11px; color:var(--text2); margin-top:2px; }
+.source-inline { font-size:10px; color:var(--text2); margin-left:6px; white-space:nowrap; }
+.source-inline::before { content:'· '; }
+.last-word {
+  background:var(--surface-raise); border-left:2px solid var(--blue);
+  border-radius:0 6px 6px 0; padding:12px 16px; margin-top:20px;
+  font-size:14px; font-weight:600; color:#f0f6fc; line-height:1.6;
+}
+.tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px; margin-right:4px; font-weight:600; }
+.tag-red { background:rgba(248,81,73,0.18); color:var(--red); }
+.tag-green { background:rgba(63,185,80,0.18); color:var(--green); }
+.tag-yellow { background:rgba(210,153,34,0.18); color:var(--yellow); }
+.tag-blue { background:rgba(88,166,255,0.18); color:var(--blue); }
+.tag-purple { background:rgba(188,140,255,0.18); color:var(--purple); }
+.tag-gold { background:rgba(230,180,80,0.18); color:var(--accent-warm); }
+.tag-rose { background:rgba(224,85,138,0.18); color:var(--accent-rose); }
+.tag-teal { background:rgba(57,211,83,0.18); color:var(--teal); }
+table { width:100%; border-collapse:collapse; font-size:13px; table-layout:fixed; margin:8px 0; }
+th { font-size:12px; color:var(--text2); text-align:left; padding:7px 8px; border-bottom:1px solid var(--border); font-weight:600; }
+td { padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+tr:hover td { background:rgba(88,166,255,0.04); }
+.footer { font-size:11px; color:var(--text2); margin-top:32px; padding-top:12px; border-top:1px solid var(--border); }
+.chart-wrap { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px; margin:14px 0; }
+.chart-box { width:100%; height:380px; }
+.highlight { color:var(--yellow); font-weight:600; }
+.num { font-family:"SF Mono",monospace; font-variant-numeric:tabular-nums; }
+.warn { color:var(--red); font-weight:600; }
+.green { color:var(--green); }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+@media(max-width:640px){ .grid-2,.grid-3 { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<h1>锡业股份 · 深度分析</h1>
+<div class="sub">Wind / WeStock / 全网交叉验证 | V3.0 模板首秀 | 巴蒂投研 · 2026-07-06</div>
+
+<!-- ========== CORE ========== -->
+<div class="core-block">
+  <div class="core-tag">CORE</div>
+  <div class="core-text">锡业股份不是简单的"锡矿涨了所以股价涨"——这是一家"AI算力第一金属"的全球绝对龙头，锡价从4月到7月涨了25%，但它的毛利率反而从28%降到11%。量增价涨却利薄，这才是真正的认知增量。</div>
+</div>
+
+<!-- ========== 关键数据对比 ========== -->
+<div class="vs-row">
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--accent-warm);">86,233<span style="font-size:12px;"> 吨</span></div>
+    <div class="vs-label">2025年锡锭产量 · 全球第一<span class="source-inline">Wind 2025年报</span></div>
+  </div>
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--red);">11.4<span style="font-size:12px;">%</span></div>
+    <div class="vs-label">锡锭毛利率 · 2021年曾是28.5%<span class="source-inline">Wind</span></div>
+  </div>
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--blue);">28.5<span style="font-size:12px;">×</span></div>
+    <div class="vs-label">PE TTM · Forward 19.2×<span class="source-inline">WeStock 07-06</span></div>
+  </div>
+  <div class="vs-card">
+    <div class="vs-num" style="color:var(--green);">+46.8<span style="font-size:12px;">%</span></div>
+    <div class="vs-label">YTD涨幅 · 但5日-9.9%<span class="source-inline">WeStock 07-06</span></div>
+  </div>
+</div>
+
+<!-- ========== 一、业务 ========== -->
+<h2>一、业务与竞争</h2>
+
+<h3>核心产品与收入结构</h3>
+<div class="card">
+<table>
+<tr><th style="width:18%;">产品</th><th style="width:15%;">2025产量</th><th style="width:15%;">2025营收</th><th style="width:15%;">毛利率</th><th style="width:37%;">关键特征</th></tr>
+<tr>
+  <td><strong>锡锭</strong></td>
+  <td class="num">86,233吨</td>
+  <td class="num">193.2亿</td>
+  <td class="num warn">11.4%</td>
+  <td>全球最大锡生产商，产量连续5年增长（2021: 46,971吨 → 2025: 86,233吨，CAGR 16%）</td>
+</tr>
+<tr>
+  <td>锡材</td>
+  <td class="num">4,640吨</td>
+  <td>—</td>
+  <td>—</td>
+  <td>锡焊料/锡粉/锡膏，半导体封装核心耗材</td>
+</tr>
+<tr>
+  <td><strong>铟锭</strong></td>
+  <td class="num">106吨</td>
+  <td>—</td>
+  <td>—</td>
+  <td><span class="highlight">铟价$820/kg</span>，ITO靶材核心原料，半导体/显示/光伏多场景</td>
+</tr>
+</table>
+</div>
+
+<div class="info">
+<strong>铟——被低估的"第二金属"：</strong>全球铟储量中国占72%，锡业股份年产106吨，占全球约15%。铟价从6月初$695/kg涨至7月$820/kg（+18%），与锡形成"双金属"弹性。ITO靶材是半导体溅射工艺的刚需耗材。<span class="source-inline">Wind 金属价格, 2026-07-06</span>
+</div>
+
+<h3>竞争壁垒</h3>
+<div class="card">
+<ul style="font-size:14px;line-height:1.9;padding-left:18px;">
+  <li><strong>资源壁垒（极高）：</strong>全球锡储量中国占23%，佤邦停产+印尼限制出口，供给端持续收紧</li>
+  <li><strong>规模壁垒（极高）：</strong>锡产量全球第一，8.6万吨/年远超第二名云南乘风（~2万吨）</li>
+  <li><strong>铟的"副产品逻辑"：</strong>铟是锌/锡冶炼的副产品，没有独立铟矿，只有大型锡/锌冶炼厂能稳定产出——锡业股份天然垄断</li>
+  <li><strong>弱点：</strong>毛利率持续下滑（28.5%→11.4%），规模扩张未转化为盈利质量提升</li>
+</ul>
+</div>
+
+<!-- ========== 二、财务 ========== -->
+<h2>二、财务与估值</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-fin"></div></div>
+
+<div class="grid-2">
+  <div class="bull">
+    <strong>✅ 正面信号</strong><br>
+    · 净利从2024年14.4亿→2025年19.7亿（+36%）<br>
+    · 营收稳定在420-435亿区间<br>
+    · ROE从7.5%回升至9.2%<br>
+    · 锡产量5年CAGR 16%<br>
+    · Forward PE仅19.2×，不算贵
+  </div>
+  <div class="bear">
+    <strong>⚠️ 负面信号</strong><br>
+    · 毛利率从28.5%暴跌至11.4%<br>
+    · 量增价涨但利薄——成本端吞噬利润<br>
+    · 营收从538亿（2021）降至435亿（2025），缩水19%<br>
+    · ROE从未回到20%以上<br>
+    · 5日-9.9%，高位回调压力
+  </div>
+</div>
+
+<h3>估值锚定</h3>
+<div class="card">
+<table>
+<tr><th style="width:22%;">指标</th><th style="width:26%;">当前值</th><th style="width:26%;">2025年末</th><th style="width:26%;">5年低位</th></tr>
+<tr><td>PE TTM</td><td class="num">28.5×</td><td class="num">24.1×</td><td class="num">9.8×（2022）</td></tr>
+<tr><td>PE Forward</td><td class="num highlight">19.2×</td><td class="num">—</td><td class="num">—</td></tr>
+<tr><td>PB</td><td class="num">3.27×</td><td class="num">2.30×</td><td class="num">1.24×（2024）</td></tr>
+<tr><td>市值</td><td class="num">665亿</td><td class="num">459亿</td><td class="num">232亿（2022）</td></tr>
+</table>
+</div>
+
+<!-- ========== 三、锡价与AI关联 ========== -->
+<h2>三、锡价驱动——"AI 算力第一金属"</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-tin"></div></div>
+
+<div class="bull">
+<strong>锡价的 AI 传导链：</strong><br>
+先进封装（CoWoS/3D堆叠/HBM）→ 焊料需求暴增 → 锡是焊料核心原料（Sn-Ag-Cu合金）→ 全球锡供给偏紧（缅甸佤邦停产+印尼出口限制）→ 锡价突破$60,000/吨。<br><br>
+<strong>这和我们早上研究的"韬定律V2"完全同频——</strong>LogicFolding+TSV+混合键合，每增加一层3D堆叠，焊料用量就翻一倍。华为要做，台积电也要做，锡是绕不开的。
+<span class="source-inline">长江有色, 2026-05-27</span>
+</div>
+
+<div class="bear">
+<strong>但锡业股份并没有充分受益：</strong>锡价从4月$48,566涨到7月$60,951（+25%），但公司锡锭毛利率反而从2021年的28.5%降到2025年的11.4%。核心原因是：<br>
+① 自有矿比例不足（大量外购精矿加工）<br>
+② 冶炼加工费被上游矿端挤压<br>
+③ 锡材/锡化工等深加工产品毛利率更低<br><br>
+<strong>换句话说：锡价涨了，矿老板赚翻了，但冶炼厂只喝了点汤。</strong>
+</div>
+
+<!-- ========== 四、三级情景 ========== -->
+<h2>四、三级情景测算</h2>
+
+<div class="card">
+<table>
+<tr><th style="width:14%;">情景</th><th style="width:14%;">锡价假设</th><th style="width:14%;">2026E利润</th><th style="width:14%;">目标PE</th><th style="width:14%;">目标市值</th><th style="width:30%;">较现价</th></tr>
+<tr>
+  <td><span class="tag tag-green">乐观</span></td>
+  <td class="num">$70,000+</td>
+  <td class="num">28亿</td>
+  <td class="num">25×</td>
+  <td class="num">700亿</td>
+  <td class="green">+5%</td>
+</tr>
+<tr>
+  <td><span class="tag tag-yellow">基准</span></td>
+  <td class="num">$60,000</td>
+  <td class="num">23亿</td>
+  <td class="num">20×</td>
+  <td class="num">460亿</td>
+  <td class="warn">-31%</td>
+</tr>
+<tr>
+  <td><span class="tag tag-red">悲观</span></td>
+  <td class="num">$45,000</td>
+  <td class="num">15亿</td>
+  <td class="num">15×</td>
+  <td class="num">225亿</td>
+  <td class="warn">-66%</td>
+</tr>
+</table>
+</div>
+
+<div class="last-word">
+概率加权（20%×700 + 55%×460 + 25%×225）= <span style="color:var(--yellow);">449亿</span>，较当前市值665亿存在 <span style="color:var(--red);">32% 下行空间</span>。当前估值已充分定价锡价$60,000+的乐观预期。
+</div>
+
+<!-- ========== 五、操作建议 ========== -->
+<h2>五、操作建议</h2>
+
+<div class="alert-card">
+<h3 style="margin-top:0;">结论：暂不纳入持仓，加入跟踪池观察</h3>
+<div style="font-size:14px;line-height:1.9;">
+<strong>不买的三条理由（比买的理由更强）：</strong><br>
+① <strong>毛利率断崖式下滑</strong>——锡价涨25%，毛利率却从28%→11%，这是结构性问题，不是周期波动<br>
+② <strong>概率加权市值449亿 vs 现价665亿</strong>——32%下行空间，赔率不友好<br>
+③ <strong>YTD已+47%，锡价已在高位</strong>——现在追进去，赚的是"锡价继续涨"的钱，而不是"估值修复"的钱<br><br>
+
+<strong>但值得跟踪的理由：</strong><br>
+① "AI算力第一金属"定位独特，先进封装大趋势确定性高<br>
+② 铟的"副产品垄断"逻辑在靶材需求增长下有重估可能<br>
+③ PE Forward 19.2×不算离谱——如果毛利率能企稳回升，估值有支撑<br><br>
+
+<strong>跟踪触发条件：</strong><br>
+· 锡价回落至$50,000以下或公司毛利率回升至15%+ → 重新评估<br>
+· 铟价突破$1,000/kg → 铟业务重估催化剂<br>
+· 先进封装对锡焊料需求出现明确量价数据 → 逻辑验证
+</div>
+</div>
+
+<!-- ========== 六、来源 ========== -->
+<h2>六、数据溯源</h2>
+<div class="card" style="font-size:13px;line-height:1.8;">
+<span class="tag tag-green">★★★</span> Wind 万得（锡价/铟价/产量/销量/财务/估值，2026-07-06）<br>
+<span class="tag tag-green">★★★</span> WeStock 实时行情（40.41元，PE 28.5×，2026-07-06 收盘）<br>
+<span class="tag tag-blue">★★☆</span> 长江有色/中邮证券（先进封装焊料需求分析，2026-05）<br>
+<span class="tag tag-blue">★★☆</span> 雪球/同花顺（6N高纯锡、铟靶材，2026-05~07）<br><br>
+<strong>免责声明：</strong>本报告为内部投研参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+
+<div class="footer">
+巴蒂投研 · V3.0 模板首秀 | Wind + WeStock 双源 | 2026-07-06 21:45 CST
+</div>
+
+<script>
+(function(){
+  var c = echarts.init(document.getElementById('chart-fin'));
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'营收·净利·毛利率·锡价趋势',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:60,right:60,top:58,bottom:40},
+    xAxis:{type:'category',data:['2021','2022','2023','2024','2025'],axisLabel:{color:'#8b949e',fontSize:10}},
+    yAxis:[
+      {type:'value',name:'营收/净利(亿)',nameTextStyle:{color:'#58a6ff',fontSize:10},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+      {type:'value',name:'毛利率%',nameTextStyle:{color:'#d29922',fontSize:10},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}
+    ],
+    series:[
+      {name:'营收',type:'bar',data:[538.4,520.0,423.6,419.7,435.3],itemStyle:{color:'#58a6ff',borderRadius:[3,3,0,0]},barWidth:'40%'},
+      {name:'归母净利',type:'bar',data:[28.2,13.5,14.1,14.4,19.7],itemStyle:{color:'#3fb950',borderRadius:[3,3,0,0]},barWidth:'40%'},
+      {name:'锡锭毛利率',type:'line',yAxisIndex:1,data:[28.5,12.5,11.7,11.8,11.4],lineStyle:{color:'#d29922',width:2.5},itemStyle:{color:'#d29922'},symbol:'circle',symbolSize:7}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+(function(){
+  var c = echarts.init(document.getElementById('chart-tin'));
+  var months = ['01','02','03','04','05','06','07(6日)'];
+  var avgPrice = [47000,48000,50233,51432,60537,60149,60951];
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'2026年中国1#锡均价走势（美元/吨）',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis',formatter:'{b}月: ${c}/吨'},
+    grid:{left:60,right:20,top:58,bottom:40},
+    xAxis:{type:'category',data:months.map(function(m){return m+'月';}),axisLabel:{color:'#8b949e',fontSize:10}},
+    yAxis:{type:'value',min:45000,axisLabel:{color:'#8b949e',fontSize:10,formatter:'${value}'},splitLine:{lineStyle:{color:'#21262d'}}},
+    series:[
+      {type:'line',data:avgPrice,lineStyle:{color:'#d29922',width:3},itemStyle:{color:'#d29922'},symbol:'circle',symbolSize:8,areaStyle:{color:'rgba(210,153,34,0.12)'},markLine:{silent:true,data:[{yAxis:48566,label:{formatter:'4月低点\n$48,566',color:'#8b949e',fontSize:10},lineStyle:{color:'#f85149',type:'dashed'}},{yAxis:60951,label:{formatter:'7月\n$60,951',color:'#d29922',fontSize:10},lineStyle:{color:'#3fb950',type:'dashed'}}]}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+</script>
+</body>
+</html>
