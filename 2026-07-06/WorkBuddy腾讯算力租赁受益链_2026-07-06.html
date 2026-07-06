@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorkBuddy 爆火 → 腾讯算力租赁受益链拆解 | 2026-07-06</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --border: #21262d;
+      --text: #c9d1d9;
+      --text2: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d29922;
+      --blue: #58a6ff;
+      --purple: #bc8cff;
+      --orange: #f0883e;
+      --teal: #39d353;
+      --accent-warm: #e6b450;
+      --accent-rose: #e0558a;
+      --surface-raise: #1c2128;
+      --gradient-core: linear-gradient(135deg, rgba(230,180,80,0.15), rgba(248,81,73,0.08));
+      --gradient-bull: linear-gradient(135deg, rgba(63,185,80,0.12), rgba(57,211,83,0.06));
+      --gradient-bear: linear-gradient(135deg, rgba(248,81,73,0.12), rgba(210,153,34,0.06));
+      --gradient-info: linear-gradient(135deg, rgba(88,166,255,0.1), rgba(188,140,255,0.04));
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 20px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 22px; color: #f0f6fc; margin: 0 0 6px; font-weight: 700; }
+    h2 { font-size: 17px; color: var(--blue); margin: 20px 0 10px; font-weight: 600; }
+    h3 { font-size: 15px; color: #f0f6fc; margin: 12px 0 6px; font-weight: 600; }
+    .sub { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+    .card, .bull, .bear, .info, .alert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 8px;
+    }
+    .bull { background: var(--gradient-bull); border-color: rgba(63,185,80,0.25); }
+    .bear { background: var(--gradient-bear); border-color: rgba(248,81,73,0.25); }
+    .info { background: var(--gradient-info); border-color: rgba(88,166,255,0.25); }
+    .alert-card { background: rgba(224,85,138,0.1); border-color: rgba(224,85,138,0.3); }
+    .core-block {
+      background: var(--gradient-core);
+      border: 1px solid rgba(230,180,80,0.25);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .core-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--accent-warm);
+      background: rgba(230,180,80,0.18);
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .core-text { font-size: 16px; font-weight: 600; line-height: 1.8; color: #f0f6fc; }
+    .last-word {
+      background: var(--surface-raise);
+      border-left: 2px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #f0f6fc;
+      line-height: 1.6;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; table-layout: fixed; }
+    th, td { padding: 7px 8px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { background: var(--surface-raise); color: var(--text2); font-weight: 600; font-size: 12px; }
+    td:first-child, th:first-child { white-space: nowrap; min-width: 120px; }
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
+    .tag-red { background: rgba(248,81,73,0.18); color: var(--red); }
+    .tag-green { background: rgba(63,185,80,0.18); color: var(--green); }
+    .tag-gold { background: rgba(230,180,80,0.18); color: var(--accent-warm); }
+    .tag-rose { background: rgba(224,85,138,0.18); color: var(--accent-rose); }
+    .tag-blue { background: rgba(88,166,255,0.18); color: var(--blue); }
+    .tag-purple { background: rgba(188,140,255,0.18); color: var(--purple); }
+    .source-inline { font-size: 10px; color: var(--text2); margin-left: 6px; white-space: nowrap; }
+    .source-inline::before { content: '· '; }
+    .company-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .company-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .company-name { font-size: 16px; font-weight: 700; color: #f0f6fc; }
+    .company-code { font-size: 12px; color: var(--text2); }
+    .company-rank {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+    .rank-1 { background: rgba(248,81,73,0.18); color: var(--red); }
+    .rank-2 { background: rgba(230,180,80,0.18); color: var(--accent-warm); }
+    .rank-3 { background: rgba(88,166,255,0.18); color: var(--blue); }
+    .company-section { margin: 8px 0; }
+    .company-section-title { font-size: 12px; color: var(--text2); font-weight: 600; margin-bottom: 2px; }
+    .company-section-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .pros-cons .box { padding: 10px; border-radius: 6px; font-size: 12px; line-height: 1.6; }
+    .pros-box { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.2); }
+    .cons-box { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.2); }
+    ul, ol { margin: 8px 0; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text2); line-height: 1.6; }
+    @media (max-width: 640px) {
+      body { padding: 12px; font-size: 14px; }
+      h1 { font-size: 18px; }
+      h2 { font-size: 15px; }
+      .pros-cons { grid-template-columns: 1fr; }
+      table { font-size: 12px; }
+      td:first-child, th:first-child { white-space: normal; min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WorkBuddy 爆火 → 腾讯算力租赁受益链拆解</h1>
+    <div class="sub">2026-07-06 23:10 · 主题研究 · 3 家核心标的对比 + 跟踪池建议</div>
+
+    <div class="core-block">
+      <div class="core-tag">CORE</div>
+      <div class="core-text">WorkBuddy（腾讯版 AI 智能体/"龙虾"）用户规模持续攀升 + CodeBuddy/WorkBuddy 5 月涨价 88–154%，本质是腾讯 AI 推理算力进入量价齐升周期。但 A 股真正深度绑定腾讯算力租赁的标的只有那么几家——确定性最高的是<strong>数据港</strong>（长三角独家）、<strong>奥飞数据</strong>（华南 38 亿智算中心 EPC）、<strong>利通电子</strong>（50 亿算力租赁订单）。</div>
+    </div>
+
+    <h2>一、WorkBuddy 为什么需要海量算力？</h2>
+    <div class="info">
+      <strong>WorkBuddy 是什么：</strong>腾讯旗下全场景 AI 智能体，兼容 OpenClaw 技能体系，可远程操控电脑、处理文档/数据、跨微信/企业微信/钉钉/飞书协同。2026 年 3 月 9 日正式上线，被市场称为腾讯"小龙虾"。<span class="source-inline">南方财经, 2026.03</span>
+    </div>
+    <div class="info">
+      <strong>涨价信号：</strong>腾讯云官网 4 月 28 日公告，CodeBuddy/WorkBuddy 5 月 15 日起执行新计费方案：旗舰版涨幅 +154%，专享版 +88.6%。<span class="source-inline">今日头条/腾讯云公告, 2026.04</span>
+    </div>
+    <div class="bull">
+      <strong>算力需求传导链：</strong><br>
+      WorkBuddy 用户量↑ → 云端推理并发↑ → 腾讯混元大模型/元宝算力扩容 → 智算中心机柜/服务器/液冷采购↑ → IDC/算力租赁商租金与利用率双升。
+    </div>
+
+    <h2>二、腾讯算力租赁产业链分层</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>层级</th>
+          <th>角色</th>
+          <th>A股代表</th>
+          <th>受益确定性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>IDC/算力租赁</td>
+          <td>直接承接腾讯智算机房、提供机柜托管与算力租赁</td>
+          <td>数据港、奥飞数据、利通电子、润泽科技</td>
+          <td><span class="tag tag-red">最高</span></td>
+        </tr>
+        <tr>
+          <td>AI 服务器</td>
+          <td>为腾讯提供智算服务器硬件</td>
+          <td>浪潮信息、中科曙光、华勤技术、工业富联</td>
+          <td><span class="tag tag-gold">高</span></td>
+        </tr>
+        <tr>
+          <td>液冷/温控</td>
+          <td>高功耗 AI 机柜配套</td>
+          <td>英维克、科华数据</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>渠道/代理</td>
+          <td>销售 CodeBuddy/WorkBuddy 订阅</td>
+          <td>世纪恒通、常山北明</td>
+          <td><span class="tag tag-purple">低</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>三、三家核心标的深度对比</h2>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div>
+          <div class="company-name">数据港 <span class="company-code">603881</span></div>
+          <div class="company-code">腾讯长三角 AI 算力枢纽独家运营商</div>
+        </div>
+        <div class="company-rank rank-1">首选</div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">腾讯绑定度</div>
+        <div class="company-section-text">独家运营腾讯长三角 AI 算力枢纽；承担腾讯元宝约 30% 推理算力；混元 2000P 集群 15 亿合同；液冷 PUE≈1.1，AI 高密机柜壁垒高。</div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">财务近况</div>
+        <div class="company-section-text">2026Q1 营收 3.8 亿元（同比 -3.76%），归母净利润 4477 万元（同比 +1.64%）。收入短期承压，但盈利质量在改善。<span class="source-inline">证券之星, 2026.04</span></div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">核心逻辑</div>
+        <div class="company-section-text">独家运营商+长期锁量，WorkBuddy 涨价直接传导至算力租赁单价；国资背景（上海静安区国资委控股），融资成本低。</div>
+      </div>
+      <div class="pros-cons">
+        <div class="box pros-box">
+          <strong>优势</strong><br>
+          腾讯绑定最深；独家运营；液冷技术领先；国资背景
+        </div>
+        <div class="box cons-box">
+          <strong>风险</strong><br>
+          估值偏高（PE 约 200x）；收入短期下滑；机柜上架爬坡慢
+        </div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">巴蒂判断</div>
+        <div class="company-section-text"><span class="tag tag-green">可纳入跟踪池</span> 算力租赁链中确定性最高，适合作为 WorkBuddy 主题的核心映射标的。但需等估值回调或业绩放量确认。</div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div>
+          <div class="company-name">奥飞数据 <span class="company-code">300738</span></div>
+          <div class="company-code">华南智算中心 38 亿 EPC 中标方</div>
+        </div>
+        <div class="company-rank rank-2">次选</div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">腾讯绑定度</div>
+        <div class="company-section-text">2025 年 11 月中标腾讯华南（东莞）智算中心 EPC，规模 400MW / 3 万机柜，合同金额 38 亿元，建设期 18 个月；同时参与腾讯长三角 AI 超算中心算力集群。<span class="source-inline">东方财富财富号, 2026.04</span></div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">财务近况</div>
+        <div class="company-section-text">券商上调 2026-2028 年盈利预测，预计归母净利润 4.03/5.50/5.91 亿元，对应 PE 57/42/39x；2026Q1 股价约 21.5 元，市值约 198 亿。<span class="source-inline">同花顺F10/英为财情, 2026.04-05</span></div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">核心逻辑</div>
+        <div class="company-section-text">38 亿大单进入交付期，AI 推理需求爆发带动机柜利用率与租金双升；华南区位优势明显，覆盖广州/深圳/清远。</div>
+      </div>
+      <div class="pros-cons">
+        <div class="box pros-box">
+          <strong>优势</strong><br>
+          在手大单确定性高；估值相对合理；华南核心节点
+        </div>
+        <div class="box cons-box">
+          <strong>风险</strong><br>
+          EPC 毛利率低于纯租赁；资本开支大；客户集中度（腾讯）高
+        </div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">巴蒂判断</div>
+        <div class="company-section-text"><span class="tag tag-green">可纳入跟踪池</span> 业绩弹性比数据港更明确，估值也更合理。38 亿订单是硬催化。</div>
+      </div>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <div>
+          <div class="company-name">利通电子 <span class="company-code">603629</span></div>
+          <div class="company-code">算力租赁龙头 + 50 亿腾讯订单</div>
+        </div>
+        <div class="company-rank rank-3">弹性</div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">腾讯绑定度</div>
+        <div class="company-section-text">2025 年与腾讯签署《AI 算力战略合作备忘录》，锁定 2025-2027 年累计 50 亿元订单，覆盖 H20 服务器租赁、边缘计算节点、液冷改造等；2026 年 5 月原腾讯云副总裁道峰升任利通电子总裁。<span class="source-inline">雪球/爱企查, 2026.04-05</span></div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">财务近况</div>
+        <div class="company-section-text">2025 年归母净利润预计 2.7-3.3 亿元，同比增长近 12 倍；截至 2025Q3 掌控总算力规模达 33000P；7 月 1 日公告拟新增 50 亿元授信、40 亿元担保加码算力业务。<span class="source-inline">爱企查/百度百家号, 2026.04-07</span></div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">核心逻辑</div>
+        <div class="company-section-text">纯算力租赁模式，涨价弹性最大；与腾讯关系绑定深（高管来自腾讯）；是当前板块情绪龙+弹性龙。</div>
+      </div>
+      <div class="pros-cons">
+        <div class="box pros-box">
+          <strong>优势</strong><br>
+          纯租赁弹性最大；50 亿订单可见性高；高管来自腾讯
+        </div>
+        <div class="box cons-box">
+          <strong>风险</strong><br>
+          资产负债率 69.9%、有息负债 19.4 亿；高杠杆扩张；业绩兑现需持续 GPU 交付；估值波动极大
+        </div>
+      </div>
+      <div class="company-section">
+        <div class="company-section-title">巴蒂判断</div>
+        <div class="company-section-text"><span class="tag tag-gold">高风险高弹性跟踪</span> 适合作为主题交易的弹性标的，但不适合老潘的长线底仓风格。若参与，仓位必须轻。</div>
+      </div>
+    </div>
+
+    <h2>四、三标的关键指标对比</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>数据港 603881</th>
+          <th>奥飞数据 300738</th>
+          <th>利通电子 603629</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>腾讯绑定形式</td>
+          <td>独家运营长三角枢纽</td>
+          <td>华南智算中心 EPC 38 亿</td>
+          <td>50 亿算力租赁订单</td>
+        </tr>
+        <tr>
+          <td>业务模式</td>
+          <td>IDC 托管+租赁</td>
+          <td>IDC+EPC+智算</td>
+          <td>纯算力租赁</td>
+        </tr>
+        <tr>
+          <td>业绩可见性</td>
+          <td>高（长期锁量）</td>
+          <td>高（38 亿订单）</td>
+          <td>中高（50 亿框架协议）</td>
+        </tr>
+        <tr>
+          <td>估值水平</td>
+          <td>高（PE~200x）</td>
+          <td>中等（PE~57x）</td>
+          <td>高波动</td>
+        </tr>
+        <tr>
+          <td>财务风险</td>
+          <td>低（国资）</td>
+          <td>中</td>
+          <td>高（负债率 70%）</td>
+        </tr>
+        <tr>
+          <td>适合老潘风格</td>
+          <td><span class="tag tag-green">适合</span></td>
+          <td><span class="tag tag-green">适合</span></td>
+          <td><span class="tag tag-gold">轻仓博弈</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>五、对老潘持仓的联动影响</h2>
+    <div class="info">
+      <strong>现有持仓中暂无直接映射</strong>：老潘当前持仓聚焦半导体、光通信、化工新材料，没有 IDC/算力租赁标的。
+    </div>
+    <div class="bull">
+      <strong>间接利好现有核心仓：</strong>
+      <ul>
+        <li><strong>澜起科技</strong>：腾讯算力扩容→服务器/存储需求↑→DDR5/CXL 渗透率↑</li>
+        <li><strong>汇绿生态</strong>：智算中心光互连需求↑→光模块/CPO 需求↑</li>
+        <li><strong>罗博特科</strong>：硅光设备需求↑→AI 服务器光互联制造设备需求↑</li>
+        <li><strong>工业富联</strong>（跟踪池）：AI 服务器 ODM 直接受益</li>
+      </ul>
+    </div>
+
+    <h2>六、跟踪池建议</h2>
+    <div class="bull">
+      <strong>建议新增至跟踪池：</strong>
+      <ul>
+        <li><strong>数据港 603881</strong>：WorkBuddy/腾讯算力链确定性最高，适合长期跟踪</li>
+        <li><strong>奥飞数据 300738</strong>：38 亿大单+估值合理，业绩弹性更明确</li>
+        <li><strong>利通电子 603629</strong>：高风险高弹性，仅作为主题观察仓</li>
+      </ul>
+    </div>
+    <div class="alert-card">
+      <strong>⚠️ 关键风险</strong><br>
+      1. <strong>主题炒作成分</strong>：WorkBuddy 相关概念已被市场反复炒作，部分标的估值透支。<br>
+      2. <strong>上游供给约束</strong>：H20 等 GPU 采购受美国出口管制影响，利通电子等租赁商扩张存在不确定性。<br>
+      3. <strong>价格战风险</strong>：算力租赁行业供给过剩时，租金可能下行。<br>
+      4. <strong>高杠杆风险</strong>：利通电子资产负债率近 70%，扩张依赖外部融资。<br>
+      5. <strong>腾讯自建替代</strong>：腾讯若加大自建 IDC 比例，第三方租赁商份额可能被挤压。
+    </div>
+
+    <div class="last-word">
+      WorkBuddy 爆火确实是腾讯 AI 推理算力需求爆发的信号，但 A 股里真正深度绑定的标的屈指可数。<strong>数据港</strong>和<strong>奥飞数据</strong>更适合纳入老潘的跟踪池长期观察，<strong>利通电子</strong>只能作为高弹性主题筹码。老潘现有持仓（澜起/汇绿/罗博）反而能从算力扩容中获得间接业绩支撑，不必舍近求远。
+    </div>
+
+    <footer>
+      数据来源：腾讯云官网公告、南方财经、东方财富、同花顺 F10、证券之星、爱企查、雪球、百度百家号、券商研报<br>
+      免责声明：本文为投研主题分析，不构成投资建议。涉及标的多为题材驱动，需谨慎评估估值与业绩兑现节奏。
+    </footer>
+  </div>
+</body>
+</html>
