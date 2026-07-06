@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>持仓映射股Q2财报前瞻表 | 2026-07-06</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --border: #21262d;
+      --text: #c9d1d9;
+      --text2: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d29922;
+      --blue: #58a6ff;
+      --purple: #bc8cff;
+      --orange: #f0883e;
+      --teal: #39d353;
+      --accent-warm: #e6b450;
+      --accent-rose: #e0558a;
+      --surface-raise: #1c2128;
+      --gradient-core: linear-gradient(135deg, rgba(230,180,80,0.15), rgba(248,81,73,0.08));
+      --gradient-bull: linear-gradient(135deg, rgba(63,185,80,0.12), rgba(57,211,83,0.06));
+      --gradient-bear: linear-gradient(135deg, rgba(248,81,73,0.12), rgba(210,153,34,0.06));
+      --gradient-info: linear-gradient(135deg, rgba(88,166,255,0.1), rgba(188,140,255,0.04));
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 20px;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 22px; color: #f0f6fc; margin: 0 0 6px; font-weight: 700; }
+    h2 { font-size: 17px; color: var(--blue); margin: 20px 0 10px; font-weight: 600; }
+    h3 { font-size: 15px; color: #f0f6fc; margin: 12px 0 6px; font-weight: 600; }
+    .sub { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+    .card, .bull, .bear, .info, .alert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 8px;
+    }
+    .bull { background: var(--gradient-bull); border-color: rgba(63,185,80,0.25); }
+    .bear { background: var(--gradient-bear); border-color: rgba(248,81,73,0.25); }
+    .info { background: var(--gradient-info); border-color: rgba(88,166,255,0.25); }
+    .alert-card { background: rgba(224,85,138,0.1); border-color: rgba(224,85,138,0.3); }
+    .core-block {
+      background: var(--gradient-core);
+      border: 1px solid rgba(230,180,80,0.25);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .core-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--accent-warm);
+      background: rgba(230,180,80,0.18);
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .core-text { font-size: 16px; font-weight: 600; line-height: 1.8; color: #f0f6fc; }
+    .last-word {
+      background: var(--surface-raise);
+      border-left: 2px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #f0f6fc;
+      line-height: 1.6;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; table-layout: fixed; }
+    th, td { padding: 7px 8px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { background: var(--surface-raise); color: var(--text2); font-weight: 600; font-size: 12px; }
+    td:first-child, th:first-child { white-space: nowrap; min-width: 120px; }
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
+    .tag-red { background: rgba(248,81,73,0.18); color: var(--red); }
+    .tag-green { background: rgba(63,185,80,0.18); color: var(--green); }
+    .tag-gold { background: rgba(230,180,80,0.18); color: var(--accent-warm); }
+    .tag-rose { background: rgba(224,85,138,0.18); color: var(--accent-rose); }
+    .tag-blue { background: rgba(88,166,255,0.18); color: var(--blue); }
+    .tag-purple { background: rgba(188,140,255,0.18); color: var(--purple); }
+    .source-inline { font-size: 10px; color: var(--text2); margin-left: 6px; white-space: nowrap; }
+    .source-inline::before { content: '· '; }
+    .chart { width: 100%; height: 420px; margin: 14px 0; }
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .watch-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .watch-date { font-size: 12px; color: var(--accent-warm); font-weight: 700; margin-bottom: 6px; }
+    .watch-title { font-size: 14px; font-weight: 600; color: #f0f6fc; margin-bottom: 4px; }
+    .watch-map { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+    .watch-focus { font-size: 13px; color: var(--text); line-height: 1.6; }
+    footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text2); line-height: 1.6; }
+    @media (max-width: 640px) {
+      body { padding: 12px; font-size: 14px; }
+      h1 { font-size: 18px; }
+      h2 { font-size: 15px; }
+      .chart { height: 520px; }
+      table { font-size: 12px; }
+      td:first-child, th:first-child { white-space: normal; min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>持仓映射股 Q2 财报前瞻表</h1>
+    <div class="sub">2026-07-06 22:50 · 覆盖 7–9 月全球科技/半导体重点财报 · 来源交叉：Bloomberg / TipRanks / Zacks / 公司 IR</div>
+
+    <div class="core-block">
+      <div class="core-tag">CORE</div>
+      <div class="core-text">财报日历不是"看看而已"，而是持仓映射交易的先手牌——Marvell / Coherent / Lumentum / NVIDIA 四份财报，直接决定澜起、汇绿、罗博次日的开盘情绪。</div>
+    </div>
+
+    <div class="info">
+      <strong>为什么现在做这张表？</strong><br>
+      老潘的打法是"美股信号 → A 股映射"。过去我们只在盘中被异动后才问"为什么拉/砸"；有了财报前瞻表，可以在美股收盘前就判断次日 A 股开盘方向，把被动应对变成主动埋伏/规避。
+    </div>
+
+    <h2>一、与老潘持仓/跟踪池的映射总表</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>美股公司</th>
+          <th>代码</th>
+          <th>财报日期</th>
+          <th>A股映射标的</th>
+          <th>影响权重</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Marvell</td>
+          <td>MRVL</td>
+          <td>8月27日 <span class="source-inline">TipRanks/Zacks</span></td>
+          <td><strong>澜起科技</strong>、罗博特科</td>
+          <td><span class="tag tag-red">最高</span></td>
+        </tr>
+        <tr>
+          <td>NVIDIA</td>
+          <td>NVDA</td>
+          <td>8月26日 <span class="source-inline">雪球/东方财富</span></td>
+          <td><strong>罗博特科</strong>、澜起科技</td>
+          <td><span class="tag tag-red">最高</span></td>
+        </tr>
+        <tr>
+          <td>Coherent</td>
+          <td>COHR</td>
+          <td>8月13日 <span class="source-inline">TipRanks</span> <span style="color:var(--text2);font-size:11px;">(Bloomberg截图显示8/6)</span></td>
+          <td><strong>汇绿生态</strong></td>
+          <td><span class="tag tag-red">最高</span></td>
+        </tr>
+        <tr>
+          <td>Lumentum</td>
+          <td>LITE</td>
+          <td>8月18日 <span class="source-inline">TipRanks</span> <span style="color:var(--text2);font-size:11px;">(Bloomberg截图显示8/11)</span></td>
+          <td><strong>汇绿生态</strong></td>
+          <td><span class="tag tag-red">最高</span></td>
+        </tr>
+        <tr>
+          <td>SK 海力士</td>
+          <td>000660/HXSCL</td>
+          <td>7月29日 <span class="source-inline">雪球</span></td>
+          <td><strong>澜起科技</strong>（DDR5/CXL 存储链）</td>
+          <td><span class="tag tag-red">最高</span></td>
+        </tr>
+        <tr>
+          <td>三星电子</td>
+          <td>005930</td>
+          <td>7月7日速报 / 7月23日完整财报 <span class="source-inline">雪球</span></td>
+          <td><strong>澜起科技</strong>、存储链</td>
+          <td><span class="tag tag-gold">高</span></td>
+        </tr>
+        <tr>
+          <td>台积电</td>
+          <td>TSM</td>
+          <td>7月14日 <span class="source-inline">Bloomberg截图</span> / 7月16日 <span class="source-inline">雪球</span></td>
+          <td>半导体/先进封装/光通信</td>
+          <td><span class="tag tag-gold">高</span></td>
+        </tr>
+        <tr>
+          <td>ASML</td>
+          <td>ASML</td>
+          <td>7月15日 <span class="source-inline">雪球/TipRanks</span></td>
+          <td>半导体设备/光刻链</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>KLA</td>
+          <td>KLAC</td>
+          <td>7月23日 <span class="source-inline">TipRanks</span></td>
+          <td>半导体设备/量测</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>应用材料</td>
+          <td>AMAT</td>
+          <td>8月13日 <span class="source-inline">TipRanks</span></td>
+          <td>半导体设备/先进封装</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>Lam Research</td>
+          <td>LRCX</td>
+          <td>8月5日 <span class="source-inline">TipRanks</span></td>
+          <td>半导体设备/刻蚀</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>AMD</td>
+          <td>AMD</td>
+          <td>7月29日 <span class="source-inline">雪球</span></td>
+          <td>算力/AI芯片映射</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>博通</td>
+          <td>AVGO</td>
+          <td>9月3日 <span class="source-inline">TipRanks</span></td>
+          <td>AI ASIC/光通信</td>
+          <td><span class="tag tag-blue">中</span></td>
+        </tr>
+        <tr>
+          <td>MACOM</td>
+          <td>MTSI</td>
+          <td>8月6日 <span class="source-inline">TipRanks/Zacks</span></td>
+          <td>光通信/射频</td>
+          <td><span class="tag tag-purple">低</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>二、财报时间线可视化</h2>
+    <div id="timelineChart" class="chart"></div>
+
+    <h2>三、重点日期盯盘指引</h2>
+    <div class="watch-grid">
+      <div class="watch-card">
+        <div class="watch-date">7月23日 周三</div>
+        <div class="watch-title">三星完整财报 + 英特尔 + KLA</div>
+        <div class="watch-map">映射：<strong>澜起科技</strong></div>
+        <div class="watch-focus">DRAM/NAND/HBM 价格、存储盈利、全年资本开支。三星 HBM 良率与扩产指引，直接影响市场对存储景气度的判断。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">7月29日 周三</div>
+        <div class="watch-title">SK 海力士 + AMD + 微软</div>
+        <div class="watch-map">映射：<strong>澜起科技</strong>、算力链</div>
+        <div class="watch-focus">SK 海力士 HBM 出货、ASP、库存周期。若 HBM 指引上调 → 存储链情绪升温；微软 Azure/CapEx 增速 → 光模块需求预期。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">8月5日 周二</div>
+        <div class="watch-title">Lam Research</div>
+        <div class="watch-map">映射：半导体设备链 / 罗博特科（设备景气）</div>
+        <div class="watch-focus">WFE 展望、先进封装设备增速、DRAM/3D NAND 资本开支。若 WFE 上修 → 设备链情绪传导至 A 股。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">8月6日 周四</div>
+        <div class="watch-title">MACOM</div>
+        <div class="watch-map">映射：光通信/射频</div>
+        <div class="watch-focus">数据中心通信收入、硅光/光子学进展。光通信二线情绪指标。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">8月13日 周四</div>
+        <div class="watch-title">Coherent + 应用材料</div>
+        <div class="watch-map">映射：<strong>汇绿生态</strong> / 半导体设备</div>
+        <div class="watch-focus">Coherent 数据中心收入、CPO/NPO 进展、NVIDIA 合作落地、铟磷产能爬坡。对汇绿生态情绪影响最直接。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">8月18日 周二</div>
+        <div class="watch-title">Lumentum</div>
+        <div class="watch-map">映射：<strong>汇绿生态</strong></div>
+        <div class="watch-focus">1.6T 光模块出货、EML/CW 激光器供应、云客户资本开支。与 Coherent 共同构成光通信海外锚。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">8月26日 周三</div>
+        <div class="watch-title">NVIDIA</div>
+        <div class="watch-map">映射：<strong>罗博特科</strong>、澜起科技</div>
+        <div class="watch-focus">数据中心芯片收入、HBM 订单、Blackwell 出货节奏、全年指引。全球 AI 硬件情绪总开关。</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-date">8月27日 周四</div>
+        <div class="watch-title">Marvell</div>
+        <div class="watch-map">映射：<strong>澜起科技</strong>、罗博特科</div>
+        <div class="watch-focus">数据中心收入增速、硅光/CPO 进展、定制 ASIC 订单。与澜起科技在 CXL/DDR5 存储链上情绪共振最强。</div>
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <strong>⚠️ 日期差异说明</strong><br>
+      Bloomberg 截图中的 Coherent（8/6）、Lumentum（8/11）与 TipRanks/Zacks 最新数据（COHR 8/13、LITE 8/18）存在偏差。原因可能是：① 截图基于历史平均披露日；② 公司实际公告日调整。巴蒂以 <strong>TipRanks/公司 IR 已确认或最新预期日期</strong> 为准，但会在盘前简报中持续校正。
+    </div>
+
+    <h2>四、落地机制：如何嵌入日常报告</h2>
+    <div class="bull">
+      <strong>盘前简报（每日）</strong>：若当夜/次日清晨有重点映射股财报，在"核心警示"模块加一句：「今晚 Marvell 盘后财报，直接影响明日澜起/罗博开盘情绪」。
+    </div>
+    <div class="info">
+      <strong>周度复盘（每周）</strong>：新增「下周映射股财报前瞻」小节，列出未来 7 天内相关公司的财报日期、关注焦点、对持仓可能影响。
+    </div>
+    <div class="bear">
+      <strong>盘中异动归因</strong>：当 A 股持仓出现无消息波动时，优先回查前夜是否有相关美股财报或法说会指引变化。
+    </div>
+
+    <div class="last-word">
+      把财报日历从"静态截图"变成"动态前瞻模块"，是老潘美股→A股映射框架的最后一次前置动作。接下来两个月，澜起、汇绿、罗博的每一次大幅高开或低开，大概率都能在这张表上找到源头。
+    </div>
+
+    <footer>
+      数据来源：Bloomberg 财报日历截图（用户提供）、TipRanks Earnings Calendar、Zacks Earnings Calendar、雪球/东方财富财报整理、各公司 IR 页面。<br>
+      免责声明：本表仅供信息跟踪，不构成投资建议。财报日期可能变动，以公司最终公告为准。
+    </footer>
+
+    <script>
+      // Timeline chart
+      var chartDom = document.getElementById('timelineChart');
+      var myChart = echarts.init(chartDom);
+      var option = {
+        backgroundColor: 'transparent',
+        title: {
+          text: '2026年7-9月 持仓映射股财报时间线',
+          left: 'center',
+          top: 10,
+          textStyle: { color: '#f0f6fc', fontSize: 15, fontWeight: 600 }
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: function(params) {
+            return '<strong>' + params.name + '</strong><br/>' +
+                   '日期：' + params.value[1] + '<br/>' +
+                   '映射：' + params.data.mapTo + '<br/>' +
+                   '权重：' + params.data.weight;
+          },
+          backgroundColor: '#161b22',
+          borderColor: '#21262d',
+          textStyle: { color: '#c9d1d9' }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '15%',
+          top: '18%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'time',
+          min: '2026-07-01',
+          max: '2026-09-10',
+          axisLabel: {
+            color: '#8b949e',
+            formatter: '{MM}-{dd}'
+          },
+          axisLine: { lineStyle: { color: '#21262d' } },
+          splitLine: { lineStyle: { color: '#21262d', type: 'dashed' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: ['存储/内存', '代工/设备', '光通信', 'AI芯片/算力', '云/互联网'],
+          axisLabel: { color: '#8b949e', fontSize: 12 },
+          axisLine: { lineStyle: { color: '#21262d' } },
+          splitLine: { lineStyle: { color: '#21262d' } }
+        },
+        series: [{
+          type: 'scatter',
+          symbolSize: function(val) {
+            return val[3] === '最高' ? 22 : (val[3] === '高' ? 18 : 14);
+          },
+          data: [
+            { name: '三星电子', value: ['2026-07-07', '存储/内存', '三星电子', '高'], mapTo: '澜起科技', weight: '高', itemStyle: { color: '#d29922' } },
+            { name: '台积电', value: ['2026-07-14', '代工/设备', '台积电', '高'], mapTo: '半导体/光通信', weight: '高', itemStyle: { color: '#d29922' } },
+            { name: 'ASML', value: ['2026-07-15', '代工/设备', 'ASML', '中'], mapTo: '半导体设备', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: '英特尔', value: ['2026-07-22', 'AI芯片/算力', '英特尔', '中'], mapTo: '算力链', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: 'KLA', value: ['2026-07-23', '代工/设备', 'KLA', '中'], mapTo: '半导体设备', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: '三星完整财报', value: ['2026-07-23', '存储/内存', '三星完整财报', '高'], mapTo: '澜起科技', weight: '高', itemStyle: { color: '#d29922' } },
+            { name: 'SK 海力士', value: ['2026-07-29', '存储/内存', 'SK 海力士', '最高'], mapTo: '澜起科技', weight: '最高', itemStyle: { color: '#f85149' } },
+            { name: 'AMD', value: ['2026-07-29', 'AI芯片/算力', 'AMD', '中'], mapTo: '算力链', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: '微软', value: ['2026-07-29', '云/互联网', '微软', '中'], mapTo: '光模块需求', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: 'Lam Research', value: ['2026-08-05', '代工/设备', 'Lam Research', '中'], mapTo: '半导体设备', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: 'MACOM', value: ['2026-08-06', '光通信', 'MACOM', '低'], mapTo: '光通信', weight: '低', itemStyle: { color: '#bc8cff' } },
+            { name: 'Coherent', value: ['2026-08-13', '光通信', 'Coherent', '最高'], mapTo: '汇绿生态', weight: '最高', itemStyle: { color: '#f85149' } },
+            { name: '应用材料', value: ['2026-08-13', '代工/设备', '应用材料', '中'], mapTo: '半导体设备', weight: '中', itemStyle: { color: '#58a6ff' } },
+            { name: 'Lumentum', value: ['2026-08-18', '光通信', 'Lumentum', '最高'], mapTo: '汇绿生态', weight: '最高', itemStyle: { color: '#f85149' } },
+            { name: 'NVIDIA', value: ['2026-08-26', 'AI芯片/算力', 'NVIDIA', '最高'], mapTo: '罗博特科/澜起', weight: '最高', itemStyle: { color: '#f85149' } },
+            { name: 'Marvell', value: ['2026-08-27', 'AI芯片/算力', 'Marvell', '最高'], mapTo: '澜起科技/罗博特科', weight: '最高', itemStyle: { color: '#f85149' } },
+            { name: '博通', value: ['2026-09-03', 'AI芯片/算力', '博通', '中'], mapTo: 'AI ASIC/光通信', weight: '中', itemStyle: { color: '#58a6ff' } }
+          ],
+          label: {
+            show: true,
+            position: 'top',
+            color: '#c9d1d9',
+            fontSize: 11,
+            formatter: '{b}'
+          }
+        }]
+      };
+      myChart.setOption(option);
+      window.addEventListener('resize', function() { myChart.resize(); });
+    </script>
+  </div>
+</body>
+</html>
