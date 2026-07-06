@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘 | 2026-07-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --card:#161b22; --border:#21262d; --text:#c9d1d9; --text2:#8b949e;
+  --green:#3fb950; --red:#f85149; --yellow:#d29922; --blue:#58a6ff; --purple:#bc8cff;
+  --orange:#f0883e; --teal:#39d353;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; max-width:920px; margin:0 auto; padding:24px 18px; }
+h1 { font-size:22px; color:#fff; margin-bottom:4px; }
+h2 { font-size:17px; color:var(--blue); margin:28px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+h3 { font-size:15px; color:var(--text); margin:16px 0 8px; }
+.sub { font-size:12px; color:var(--text2); margin-bottom:16px; }
+.card,.bull,.bear,.info,.alert-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:10px; }
+.alert-card { border-left:3px solid var(--red); }
+.bull { border-left:3px solid var(--green); }
+.bear { border-left:3px solid var(--yellow); }
+.info { border-left:3px solid var(--blue); }
+.tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px; margin-right:4px; font-weight:600; }
+.tag-red { background:rgba(248,81,73,0.18); color:var(--red); }
+.tag-green { background:rgba(63,185,80,0.18); color:var(--green); }
+.tag-yellow { background:rgba(210,153,34,0.18); color:var(--yellow); }
+.tag-blue { background:rgba(88,166,255,0.18); color:var(--blue); }
+table { width:100%; border-collapse:collapse; font-size:13px; table-layout:fixed; margin:8px 0; }
+th { font-size:12px; color:var(--text2); text-align:left; padding:7px 8px; border-bottom:1px solid var(--border); font-weight:600; }
+td { padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top; white-space:nowrap; }
+td:nth-child(3),td:nth-child(4),td:nth-child(6) { white-space:normal; }
+tr:hover td { background:rgba(88,166,255,0.04); }
+.footer { font-size:11px; color:var(--text2); margin-top:32px; padding-top:12px; border-top:1px solid var(--border); }
+.chart-wrap { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px; margin:14px 0; }
+.chart-box { width:100%; height:400px; }
+.highlight { color:var(--yellow); font-weight:600; }
+.num { font-family:"SF Mono",monospace; font-variant-numeric:tabular-nums; }
+.warn { color:var(--red); font-weight:600; }
+.green { color:var(--green); }
+.red { color:var(--red); }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+@media(max-width:640px){ .grid-2,.grid-3 { grid-template-columns:1fr; } }
+.news-tag { display:inline-block; font-size:10px; padding:1px 6px; border-radius:3px; margin-right:4px; }
+.nt-impact { background:rgba(248,81,73,0.18); color:var(--red); }
+.nt-positive { background:rgba(63,185,80,0.18); color:var(--green); }
+.nt-neutral { background:rgba(88,166,255,0.12); color:var(--blue); }
+</style>
+</head>
+<body>
+
+<h1>盘后复盘 · 2026-07-06 周一</h1>
+<div class="sub">WeStock 收盘行情 + NeoData 盘中资讯 | 巴蒂投研</div>
+
+<!-- ========== 结论前置 ========== -->
+<div class="alert-card">
+<h3 style="margin-top:0;color:var(--red);">今日核心判断</h3>
+<div style="font-size:14px;line-height:1.9;">
+<strong>科技板块系统性回撤进入第三周，但半导体率先企稳（+0.37%），CPO/光通信仍在探底。</strong>
+今日核心变量：英伟达Kyber NVL144延迟12个月（PCB中板工艺挑战）——这是今天CPO/PCB下杀的元凶，但<strong>对汇绿/罗博/澜起影响几乎为零</strong>，属于板块联动型错杀。<br><br>
+<strong>风格切换信号明确：</strong>化工（华峰+6.41%）/医药（德展+1.57%）逆势走强，白酒/创新药上涨，与科技回撤形成跷跷板。"高低切换、多点开花"（中信建投原话）正在兑现。<br><br>
+<strong>持仓操作建议：</strong>今日是"忍耐日"——科技逻辑没破，但短期情绪需要时间消化。不动。
+</div>
+</div>
+
+<!-- ========== 一、大盘 ========== -->
+<h2>一、大盘环境</h2>
+<div class="card">
+<table>
+<tr><th style="width:16%;">指数</th><th style="width:14%;">收盘</th><th style="width:14%;">涨跌幅</th><th style="width:56%;">关键特征</th></tr>
+<tr><td>上证指数</td><td class="num">4046.71</td><td class="green">+0.08%</td><td>冲高回落，午盘一度翻绿尾盘拉回</td></tr>
+<tr><td>深证成指</td><td class="num">15541.62</td><td class="red">-0.36%</td><td>科技权重拖累，内部分化严重</td></tr>
+<tr><td>创业板指</td><td class="num">3999.28</td><td class="red">-0.51%</td><td>连续回调，逼近4000整数关口</td></tr>
+<tr><td>科创50</td><td class="num">—</td><td class="green">+1.88%</td><td>早盘存储/先进封装带动走强，午后回落</td></tr>
+</table>
+</div>
+
+<div class="grid-3">
+  <div class="card" style="text-align:center;">
+    <div style="font-size:11px;color:var(--text2);">上涨家数</div>
+    <div style="font-size:24px;font-weight:700;color:var(--red);">1839</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div style="font-size:11px;color:var(--text2);">下跌家数</div>
+    <div style="font-size:24px;font-weight:700;color:var(--green);">3577</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div style="font-size:11px;color:var(--text2);">两市成交</div>
+    <div style="font-size:24px;font-weight:700;color:var(--blue);">2.2万亿</div>
+  </div>
+</div>
+
+<div class="info">
+<strong>市场结构：</strong>主力资金净流入化学制药、电源设备、医疗服务；净流出通信设备、半导体、元件。风格从"梭哈科技"向"高低切换"扩散，白酒+创新药+化工逆势走强验证"老登股"回归。
+</div>
+
+<!-- ========== 二、板块表现 ========== -->
+<h2>二、核心板块表现</h2>
+<div class="chart-wrap"><div class="chart-box" id="chart-sector"></div></div>
+
+<div class="card">
+<table>
+<tr><th style="width:22%;">板块</th><th style="width:12%;">今日</th><th style="width:12%;">5日</th><th style="width:54%;">驱动因素</th></tr>
+<tr>
+  <td>CPO</td>
+  <td class="red">-2.42%</td>
+  <td class="red">—</td>
+  <td>Kyber延迟 + 康宁Glass Bridge分化，中际旭创辟谣但板块跟跌</td>
+</tr>
+<tr>
+  <td>光通信</td>
+  <td class="red">-2.23%</td>
+  <td class="red">-10.13%</td>
+  <td>杭电-10%跌停、永鼎-8.33%、亨通-4.14%，光纤股重灾</td>
+</tr>
+<tr>
+  <td>半导体</td>
+  <td class="green">+0.37%</td>
+  <td class="red">-10.74%</td>
+  <td>存储+先进封装独秀，中芯+3.03%、长电+5.63%、江波龙+12%</td>
+</tr>
+<tr>
+  <td>化工</td>
+  <td class="green">走强</td>
+  <td>—</td>
+  <td>华峰化学领涨+6.41%，周期反转预期升温</td>
+</tr>
+<tr>
+  <td>创新药</td>
+  <td class="green">走强</td>
+  <td>—</td>
+  <td>甘李药业涨停，风格切换资金涌入</td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 三、持仓复盘 ========== -->
+<h2>三、持仓逐标复盘</h2>
+
+<div class="chart-wrap"><div class="chart-box" id="chart-portfolio"></div></div>
+
+<div class="card">
+<table>
+<tr><th style="width:16%;">标的</th><th style="width:10%;">收盘</th><th style="width:10%;">涨跌</th><th style="width:10%;">5日</th><th style="width:10%;">20日</th><th style="width:44%;">诊断</th></tr>
+
+<tr>
+  <td><strong>华峰化学</strong></td>
+  <td class="num green">11.12</td>
+  <td class="num green">+6.41%</td>
+  <td class="num green">+10.65%</td>
+  <td class="num green">+9.88%</td>
+  <td>🏆 今日MVP。化工风格切换受益，放量突破11元关口。量比1.46，主力有介入迹象但尾盘有抛压</td>
+</tr>
+
+<tr>
+  <td>德展健康</td>
+  <td class="num green">3.24</td>
+  <td class="num green">+1.57%</td>
+  <td class="num green">+3.85%</td>
+  <td class="num green">+4.52%</td>
+  <td>独立医药逻辑，小幅放量，VGX-3100揭盲已兑现后续待复星合作落地</td>
+</tr>
+
+<tr>
+  <td>澜起科技</td>
+  <td class="num green">268.68</td>
+  <td class="num green">+0.70%</td>
+  <td class="num red">-9.25%</td>
+  <td class="num green">+12.24%</td>
+  <td>盘中巨震（277→252→268），振幅9.34%。早盘冲高受存储景气带动，午盘被科技拖累，尾盘拉回收红——<strong>V形反转，多头顽强</strong></td>
+</tr>
+
+<tr>
+  <td>太钢不锈</td>
+  <td class="num green">3.47</td>
+  <td class="num green">+0.29%</td>
+  <td class="num green">+0.58%</td>
+  <td class="num red">-9.66%</td>
+  <td>横盘缩量，无增量信息。防御仓位不变</td>
+</tr>
+
+<tr>
+  <td>兴森科技</td>
+  <td class="num red">45.29</td>
+  <td class="num red">-2.33%</td>
+  <td class="num red">-7.57%</td>
+  <td class="num green">+19.50%</td>
+  <td>跟跌PCB板块（Kyber延迟情绪冲击），换手8.47%偏高但未放量恐慌。封装基板逻辑不受Kyber影响</td>
+</tr>
+
+<tr>
+  <td>罗博特科</td>
+  <td class="num red">494.30</td>
+  <td class="num red">-3.59%</td>
+  <td class="num red">-14.92%</td>
+  <td class="num red">-23.83%</td>
+  <td>港股IPO + 硅光8倍利好未能对冲科技整体回撤。20日-23.83%进入深调。关注475（今日低点）支撑</td>
+</tr>
+
+<tr>
+  <td>汇绿生态</td>
+  <td class="num red">44.01</td>
+  <td class="num red">-3.70%</td>
+  <td class="num red">-16.77%</td>
+  <td class="num red">-19.23%</td>
+  <td>光通信板块整体承压，汇绿跟跌。距52周高69.72已回撤37%，但距起涨点10.62仍有300%+涨幅——<strong>利润盘仍在</strong></td>
+</tr>
+
+<tr>
+  <td>三祥新材</td>
+  <td class="num red">81.54</td>
+  <td class="num red">-4.95%</td>
+  <td class="num red">-15.04%</td>
+  <td class="num green">+24.93%</td>
+  <td>固态电池概念降温，连续回撤。60日+102%和YTD+130%说明获利盘巨大，短期回调正常</td>
+</tr>
+
+<tr>
+  <td>星环科技</td>
+  <td class="num red">101.29</td>
+  <td class="num red">-4.92%</td>
+  <td class="num red">-8.17%</td>
+  <td class="num red">-24.66%</td>
+  <td>软件/AI方向持续疲弱，软件不在当前主线风口。利润仓零压力</td>
+</tr>
+
+<tr>
+  <td>软通动力</td>
+  <td class="num red">38.54</td>
+  <td class="num red">-8.28%</td>
+  <td class="num red">-8.13%</td>
+  <td class="num red">-7.69%</td>
+  <td>今日持仓跌幅最大。软件外包+华为生态，不在AI硬件链主线，被资金抛弃。YTD-18.66%验证判断</td>
+</tr>
+
+<tr>
+  <td class="warn">泰和新材</td>
+  <td class="num red">15.17</td>
+  <td class="num red">-9.05%</td>
+  <td class="num red">-15.58%</td>
+  <td class="num red">-2.32%</td>
+  <td><strong>今日持仓跌幅最深。</strong>"光纤芳纶"概念退潮+估值回归。光缆收入<10%的事实仍在消化中。今日受整体科技回撤叠加自身逻辑瑕疵双杀</td>
+</tr>
+</table>
+</div>
+
+<div class="info" style="font-size:13px;">
+<strong>⚠️ 泰和新材提醒：</strong>今日-9.05%，5日-15.58%。从52周高21.50跌至15.17，回撤29.4%。当前距成本价13.37仅浮盈约13.5%。若再跌10%至13.65以下，浮盈将收窄至个位数百分比——触发审视线。
+</div>
+
+<!-- ========== 四、跟踪池 ========== -->
+<h2>四、跟踪池表现</h2>
+<div class="card">
+<table>
+<tr><th style="width:18%;">标的</th><th style="width:10%;">收盘</th><th style="width:10%;">涨跌</th><th style="width:10%;">5日</th><th style="width:52%;">备注</th></tr>
+<tr>
+  <td>中际旭创</td>
+  <td class="num">1098.92</td>
+  <td class="num red">-1.53%</td>
+  <td class="num red">-9.92%</td>
+  <td>近9日累计跌近20%，辟谣Glass Bridge不是替代方案，Q1营收+192%基本面强劲</td>
+</tr>
+<tr>
+  <td>华丰科技</td>
+  <td class="num green">201.26</td>
+  <td class="num green">+11.81%</td>
+  <td class="num green">+17.70%</td>
+  <td><span class="highlight">跟踪池今日最佳！</span>电连接器+卫星通信双主线，60日新高，量比1.15温和放量</td>
+</tr>
+<tr>
+  <td>工业富联</td>
+  <td class="num">63.59</td>
+  <td class="num red">-1.75%</td>
+  <td class="num red">-8.65%</td>
+  <td>AI服务器ODM龙头，10日-19.38%回调较深，关注60元支撑</td>
+</tr>
+<tr>
+  <td>胜宏科技</td>
+  <td class="num">292.77</td>
+  <td class="num red">-4.97%</td>
+  <td class="num red">-7.17%</td>
+  <td>AI PCB受Kyber延迟冲击最直接，今日-4.97%，但基本面未变</td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 五、今日核心资讯 ========== -->
+<h2>五、今日核心资讯回顾</h2>
+
+<div class="card">
+<table>
+<tr><th style="width:5%;">#</th><th style="width:32%;">资讯</th><th style="width:10%;">方向</th><th style="width:53%;">对持仓影响</th></tr>
+<tr>
+  <td class="num">1</td>
+  <td><strong>英伟达 Kyber NVL144 延迟 12 个月</strong><br><span style="font-size:11px;color:var(--text2);">SemiAnalysis：PCB中板工艺挑战，推迟至2028年</span></td>
+  <td><span class="news-tag nt-impact">利空</span></td>
+  <td>冲击PCB/CPO板块情绪（杭电跌停、沃格-10%），但<strong>对汇绿/罗博/澜起无实质影响</strong>——兴森科技跟跌属于板块联动错杀</td>
+</tr>
+<tr>
+  <td class="num">2</td>
+  <td><strong>康宁 Glass Bridge 光互连技术发布</strong><br><span style="font-size:11px;color:var(--text2);">玻璃波导+光纤-PIC直接连接，NPO场景扩大</span></td>
+  <td><span class="news-tag nt-neutral">分化</span></td>
+  <td>中际旭创回应"不是替代方案"；NPO场景扩大→<strong>对汇绿生态边际利好</strong>；玻璃基板链受益（京东方A合作康宁）</td>
+</tr>
+<tr>
+  <td class="num">3</td>
+  <td><strong>华为韬定律 V2 正式发布</strong><br><span style="font-size:11px;color:var(--text2);">LogicFolding+混合键合+TSV+Hi-ONE光引擎五大技术</span></td>
+  <td><span class="news-tag nt-positive">利好</span></td>
+  <td>先进封装成核心环节→<strong>罗博特科受益</strong>；Hi-ONE光引擎首次纳入华为路线图→<strong>汇绿生态逻辑强化</strong></td>
+</tr>
+<tr>
+  <td class="num">4</td>
+  <td><strong>江波龙 H1 净利 92-110 亿 +62204%~74394%</strong><br><span style="font-size:11px;color:var(--text2);">存储产业景气度验证，三星Q3 DRAM提价20%</span></td>
+  <td><span class="news-tag nt-positive">利好</span></td>
+  <td>存储景气向上→<strong>澜起科技内存接口需求增长</strong>。但今日存储冲高回落，获利盘兑现</td>
+</tr>
+<tr>
+  <td class="num">5</td>
+  <td><strong>罗博特科港股 IPO 备案 + 硅光暴增 8 倍</strong></td>
+  <td><span class="news-tag nt-positive">利好</span></td>
+  <td>硅光智能制造设备全球最大供应商，港股上市打开融资通道。利好被科技整体回撤对冲</td>
+</tr>
+<tr>
+  <td class="num">6</td>
+  <td><strong>韩国央行警告杠杆 ETF 风险</strong></td>
+  <td><span class="news-tag nt-impact">情绪</span></td>
+  <td>三星/SK海力士杠杆ETF可能放大波动，亚太科技股承压</td>
+</tr>
+</table>
+</div>
+
+<!-- ========== 六、次日预判 ========== -->
+<h2>六、明日 (7/7) 关键看点</h2>
+<div class="card" style="font-size:14px;line-height:1.9;">
+<strong>1. 三星 Q2 财报（周二）</strong>——如果超预期（市场共识营业利润 86 万亿韩元），存储链可能二次上涨；如果低于预期，科技情绪将进一步恶化。澜起科技直接关联。<br><br>
+<strong>2. 澜起科技除权除息 (7/7)</strong>——每股派 0.441 HKD，除息日股价自然调整。短期可能继续承压，但除息后估值更便宜（PE从128x降至约126x）。<br><br>
+<strong>3. CPO/光通信是否有超跌反弹</strong>——连续三日下杀（CPO区间-9.06%，光通信-10.13%），技术面有反弹需求。关注中际旭创能否在1100附近企稳。<br><br>
+<strong>4. 风格切换是否延续</strong>——如化工/医药/白酒继续走强而科技继续回撤，说明资金在进行系统性调仓。华峰化学能否站稳11元是关键观察点。<br><br>
+<strong>5. Kyber延迟情绪消化程度</strong>——杭电股份/沃格光电/永鼎股份等PCB/光纤重灾股能否止跌，是判断恐慌是否消散的风向标。
+</div>
+
+<!-- ========== 七、操作建议 ========== -->
+<h2>七、明日操作建议</h2>
+<div class="alert-card">
+<h3 style="margin-top:0;">明日定性：忍耐日 X 2</h3>
+<table>
+<tr><th style="width:16%;">标的</th><th style="width:16%;">操作</th><th style="width:68%;">理由</th></tr>
+<tr><td>汇绿生态</td><td><span class="tag tag-blue">持有不动</span></td><td>逻辑没变（NPO/CPO + Glass Bridge扩大NPO场景），回撤是行业β不是α问题</td></tr>
+<tr><td>罗博特科</td><td><span class="tag tag-blue">持有不动</span></td><td>港股IPO+硅光利好被大盘对冲，等情绪消化后独立逻辑可兑现</td></tr>
+<tr><td>澜起科技</td><td><span class="tag tag-blue">持有不动</span></td><td>除息日短期扰动，存储景气向上中期逻辑坚固。底仓不动</td></tr>
+<tr><td>兴森科技</td><td><span class="tag tag-blue">持有不动</span></td><td>Kyber延迟跟跌属错杀，封装基板不受PCB中板工艺影响</td></tr>
+<tr><td>三祥新材</td><td><span class="tag tag-blue">持有不动</span></td><td>YTD+130%获利盘消化中，固态电池长逻辑没变</td></tr>
+<tr><td>华峰化学</td><td><span class="tag tag-green">持有观察</span></td><td>化工风格切换受益，若能站稳11元可确认底部反转</td></tr>
+<tr><td>泰和新材</td><td><span class="tag tag-yellow">关注13.37</span></td><td>距成本线仅13.5%浮盈，若跌破13.37触发止损纪律审视（非立即卖出，但需重新评估）</td></tr>
+<tr><td>软通动力</td><td><span class="tag tag-blue">持有不动</span></td><td>利润仓，不着急。等软件/AI应用风口回归</td></tr>
+<tr><td>防御仓</td><td><span class="tag tag-blue">持有不动</span></td><td>太钢/德展/星环作为对冲，今日表现符合预期</td></tr>
+</table>
+</div>
+
+<!-- ========== 八、数据溯源 ========== -->
+<h2>八、数据溯源</h2>
+<div class="card" style="font-size:13px;line-height:1.8;">
+<strong>数据来源：</strong><br>
+<span class="tag tag-green">★★★</span> WeStock MCP 实时收盘行情（15只标的，2026-07-06 15:00）<br>
+<span class="tag tag-green">★★★</span> NeoData 盘中板块数据与资金流向（CPO -2.42% / 光通信 -2.23% / 半导体 +0.37%）<br>
+<span class="tag tag-blue">★★☆</span> NeoData / 腾讯自选股 今日资讯（SemiAnalysis Kyber爆料、康宁Glass Bridge、韬定律V2等6条）<br>
+<span class="tag tag-blue">★★☆</span> 国泰海通/中信建投/国金证券 盘后策略观点<br><br>
+<strong>免责声明：</strong>本报告为内部投研参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+
+<div class="footer">
+巴蒂投研 · 盘后复盘 V2.0 | 数据截至 2026-07-06 15:00 CST | 下次更新：明日盘前
+</div>
+
+<script>
+// Chart 1: 板块涨跌对比
+(function(){
+  var c = echarts.init(document.getElementById('chart-sector'));
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'核心板块涨跌对比',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:80,right:20,top:58,bottom:40},
+    xAxis:{type:'value',axisLabel:{color:'#8b949e',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}}},
+    yAxis:{type:'category',data:['CPO','光通信','半导体'],axisLabel:{color:'#c9d1d9',fontSize:11}},
+    series:[
+      {name:'今日',type:'bar',data:[-2.42,-2.23,0.37],itemStyle:{color:function(p){return p.value>=0?'#3fb950':'#f85149';},borderRadius:[0,3,3,0]},barWidth:'50%',label:{show:true,position:'right',fontSize:10,color:'#c9d1d9',formatter:'{c}%'}},
+      {name:'5日累计',type:'bar',data:[-9.06,-10.13,-10.74],itemStyle:{color:'rgba(248,81,73,0.35)',borderRadius:[0,3,3,0]},barWidth:'50%',label:{show:true,position:'right',fontSize:10,color:'#8b949e',formatter:'{c}%'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+
+// Chart 2: 持仓涨跌幅横向
+(function(){
+  var c = echarts.init(document.getElementById('chart-portfolio'));
+  var names = ['华峰化学','德展健康','澜起科技','太钢不锈','兴森科技','罗博特科','汇绿生态','三祥新材','星环科技','软通动力','泰和新材'];
+  var today = [6.41,1.57,0.70,0.29,-2.33,-3.59,-3.70,-4.95,-4.92,-8.28,-9.05];
+  var d5 = [10.65,3.85,-9.25,0.58,-7.57,-14.92,-16.77,-15.04,-8.17,-8.13,-15.58];
+  c.setOption({
+    backgroundColor:'transparent',
+    title:{text:'持仓涨跌幅（今日 vs 5日）',left:'center',top:8,textStyle:{color:'#c9d1d9',fontSize:13}},
+    tooltip:{trigger:'axis'},
+    legend:{top:34,right:0,textStyle:{color:'#8b949e',fontSize:10}},
+    grid:{left:90,right:50,top:58,bottom:40},
+    xAxis:{type:'value',axisLabel:{color:'#8b949e',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'#21262d'}}},
+    yAxis:{type:'category',data:names,axisLabel:{color:'#c9d1d9',fontSize:11},inverse:true},
+    series:[
+      {name:'今日%',type:'bar',data:today.map(function(v){return {value:v,itemStyle:{color:v>=0?'#3fb950':'#f85149',borderRadius:[0,3,3,0]}};}),barWidth:'45%',label:{show:true,position:'right',fontSize:10,color:'#c9d1d9',formatter:'{c}%'}},
+      {name:'5日%',type:'bar',data:d5.map(function(v){return {value:v,itemStyle:{color:v>=0?'rgba(63,185,80,0.35)':'rgba(248,81,73,0.35)',borderRadius:[0,3,3,0]}};}),barWidth:'45%',label:{show:true,position:'right',fontSize:10,color:'#8b949e',formatter:'{c}%'}}
+    ]
+  });
+  window.addEventListener('resize',function(){c.resize();});
+})();
+</script>
+
+</body>
+</html>
