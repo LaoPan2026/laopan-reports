@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘前简报 2026-07-07</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#c9d1d9;--text-dim:#8b949e;--red:#f85149;--green:#3fb950;--accent:#58a6ff;--warn:#d29922;--gold:#e6b450;--purple:#bc8cff;--rose:#e0558a;--surface-raise:#1c2128;--surface-dim:#0f1218}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);padding:24px;max-width:1100px;margin:0 auto;line-height:1.7;font-size:15px}
+h1{font-size:22px;margin-bottom:4px;color:#f0f6fc}
+h2{font-size:17px;color:var(--accent);margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border);font-weight:700}
+h3{font-size:14px;color:var(--text-dim);margin:16px 0 8px;font-weight:600}
+.subtitle{color:var(--text-dim);font-size:12px;margin-bottom:20px}
+.core-block{background:linear-gradient(135deg,rgba(230,180,80,.15),rgba(248,81,73,.08));border:1px solid rgba(230,180,80,.25);border-radius:8px;padding:16px 18px;margin-bottom:16px}
+.core-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold);background:rgba(230,180,80,.18);padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.core-text{font-size:16px;font-weight:600;line-height:1.8;color:#f0f6fc}
+.card,.bull,.info,.alert-card{border-radius:8px;padding:14px;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--border)}
+.bull{background:linear-gradient(135deg,rgba(63,185,80,.12),rgba(57,211,83,.06));border-color:rgba(63,185,80,.25)}
+.info{background:linear-gradient(135deg,rgba(88,166,255,.1),rgba(188,140,255,.04));border-color:rgba(88,166,255,.25)}
+.alert-card{background:rgba(224,85,138,.1);border:1px solid rgba(224,85,138,.3)}
+.alert-card.info{background:linear-gradient(135deg,rgba(88,166,255,.1),rgba(188,140,255,.04));border:1px solid rgba(88,166,255,.25)}
+.alert-card .title{color:var(--rose);font-weight:700;font-size:16px}
+.alert-card.info .title{color:var(--accent)}
+.alert-card .body{margin-top:8px;line-height:1.7;font-size:14px}
+.red{color:var(--red)}.green{color:var(--green)}.warn{color:var(--warn)}.gold{color:var(--gold)}.purple{color:var(--purple)}.rose{color:var(--rose)}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+th{background:var(--surface-dim);color:var(--text-dim);padding:7px 8px;text-align:left;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,.5);vertical-align:top}
+td:first-child,th:first-child{white-space:nowrap;min-width:120px}
+tr:hover{background:rgba(88,166,255,.04)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin:0 4px 4px 0}
+.tag-red{background:rgba(248,81,73,.18);color:var(--red)}.tag-green{background:rgba(63,185,80,.18);color:var(--green)}
+.tag-warn{background:rgba(210,153,34,.18);color:var(--warn)}.tag-gold{background:rgba(230,180,80,.18);color:var(--gold)}
+.tag-accent{background:rgba(88,166,255,.18);color:var(--accent)}.tag-rose{background:rgba(224,85,138,.18);color:var(--rose)}.tag-purple{background:rgba(188,140,255,.18);color:var(--purple)}
+.chart-box{width:100%;height:380px;margin:12px 0;background:var(--card);border:1px solid var(--border);border-radius:8px}
+.news-item{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(33,38,45,.5)}
+.news-item:last-child{border-bottom:none;margin-bottom:0}
+.news-title{font-weight:600;font-size:13px}.news-meta{font-size:11px;color:var(--text-dim);margin-top:2px}.news-body{font-size:12px;color:#a0aab4;margin-top:4px;line-height:1.6}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.summary-item{background:rgba(22,27,34,.6);border:1px solid var(--border);border-radius:6px;padding:14px}
+.summary-item .label{font-size:11px;color:var(--text-dim)}.summary-item .value{font-size:20px;font-weight:700;margin:4px 0}.summary-item .sub{font-size:11px}
+.impact-card{background:rgba(22,27,34,.6);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:10px}
+.impact-card.risk-mid{border-left:3px solid var(--warn)}
+.impact-card .stock-name{font-size:15px;font-weight:700}.impact-card .estimate{font-size:14px;margin-top:6px}.impact-card .detail{font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.5}
+.advice-block{background:#1a1f2b;border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;border-radius:0 8px 8px 0;font-size:13px;line-height:1.7}
+.advice-block.bull{border-left-color:var(--green);background:#1a2b1f}.advice-block.hold{border-left-color:var(--warn);background:#1f1e1a}
+.judgment-badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:14px;font-weight:700;margin:8px 0}
+.judgment-bull{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3)}
+.source-inline{font-size:10px;color:var(--text-dim);margin-left:6px;white-space:nowrap}.source-inline::before{content:"· "}
+.footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);line-height:1.8}
+.small{font-size:11px;color:var(--text-dim)}
+@media(max-width:640px){table{font-size:12px}h1{font-size:20px}.summary-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<h1>盘前简报 - 2026年7月7日（周二）</h1>
+<div class="subtitle">数据截至 10:01 CST | 隔夜美股全线反弹+三星Q2暴增18倍 | Wind + WeStock</div>
+
+<h2>一、核心警示（结论前置）</h2>
+<div class="core-block">
+  <div class="core-tag">CORE</div>
+  <div class="core-text">美股科技一夜回血，费城半导体大涨+2.17%，但A股映射股早盘反而低开——<span class="red">这看似矛盾，实则是"美股叙事修复"与"A股情绪惯性"的错位</span>。今日关键：三星Q2营业利润预增18倍，存储链基本面没被证伪，反而强化。这是逢低看多的核心抓手。</div>
+</div>
+<div class="alert-card info">
+  <div class="title">市场状态：从恐慌修复转向基本面验证</div>
+  <div class="body">
+    <b>隔夜美股：</b>道琼斯+0.29%创新高53055点，纳斯达克+1.12%，SOX+2.17%，AMD+6.61%、MRVL+1.62%、NVDA+0.37%。<span class="source-inline">Wind 2026-07-07</span><br><br>
+    <b>亚太早盘：</b>上证4024.57(-0.41%)，创业板3959.85(+0.28%)。A股开盘沪指低开-0.54%，科创50低开-1.52%。<br><br>
+    <b>核心判断：</b>外围情绪回暖，但A股科技股开盘仍带惯性抛压。今天不宜追涨，重点观察存储/半导体能否盘中由跌转涨——三星业绩是最大催化。
+  </div>
+</div>
+<div class="bull">
+  <span class="tag tag-gold">财报催化</span><span class="tag tag-purple">存储链</span>
+  <p style="margin:8px 0 0;font-size:14px"><b>三星Q2速报：</b>销售额171万亿韩元(+129%)，营业利润约89.4万亿韩元(约3969亿人民币)，同比暴增18倍。核心驱动：AI需求拉动HBM/DRAM/NAND价格大涨。<span class="source-inline">快科技/路透社 2026-07-07</span></p>
+</div>
+
+<h2>二、隔夜全球市场概览</h2>
+<h3>美股（7月6日收盘）</h3>
+<div class="summary-grid">
+  <div class="summary-item"><div class="label">道琼斯工业</div><div class="value green">53,055.91</div><div class="sub green">+0.29% 创新高</div></div>
+  <div class="summary-item"><div class="label">标普500</div><div class="value green">7,537.43</div><div class="sub green">+0.72%</div></div>
+  <div class="summary-item"><div class="label">纳斯达克</div><div class="value green">26,121.16</div><div class="sub green">+1.12%</div></div>
+  <div class="summary-item"><div class="label">费城半导体</div><div class="value green">12,900.14</div><div class="sub green">+2.17% 反弹</div></div>
+  <div class="summary-item"><div class="label">中概金龙</div><div class="value green">+1.71%</div><div class="sub green">多数上涨</div></div>
+  <div class="summary-item"><div class="label">英伟达NVDA</div><div class="value green">$195.55</div><div class="sub green">+0.37%</div></div>
+</div>
+<p class="small" style="margin-top:6px">来源：Wind 2026-07-07</p>
+
+<h3>重点映射股表现</h3>
+<table>
+<thead><tr><th>美股标的</th><th>最新价</th><th>涨跌幅</th><th>成交额</th><th>A股映射</th></tr></thead>
+<tbody>
+<tr><td><b>Marvell(MRVL)</b></td><td>$249.27</td><td class="green">+1.62%</td><td>65.1亿</td><td>澜起科技、罗博特科</td></tr>
+<tr><td><b>Coherent(COHR)</b></td><td>$335.70</td><td class="green">+0.70%</td><td>11.1亿</td><td>汇绿生态</td></tr>
+<tr><td><b>Lumentum(LITE)</b></td><td>$731.25</td><td class="green">+0.40%</td><td>27.9亿</td><td>汇绿生态</td></tr>
+<tr><td><b>NVIDIA(NVDA)</b></td><td>$195.55</td><td class="green">+0.37%</td><td>213.6亿</td><td>罗博特科</td></tr>
+<tr><td><b>AMD</b></td><td>$552.05</td><td class="green">+6.61%</td><td>171.0亿</td><td>半导体/AI硬件链</td></tr>
+<tr><td><b>Broadcom(AVGO)</b></td><td>$373.90</td><td class="green">+3.73%</td><td>92.3亿</td><td>AI ASIC/交换机</td></tr>
+</tbody>
+</table>
+<p class="small" style="margin-top:6px">来源：Wind 2026-07-07 | 映射股全线收涨，涨幅温和，不足以驱动A股大幅高开。</p>
+
+<h3>亚太早盘 & 大宗</h3>
+<div class="summary-grid">
+  <div class="summary-item"><div class="label">上证指数</div><div class="value green">4,024.57</div><div class="sub red">-0.41% 低开-0.54%</div></div>
+  <div class="summary-item"><div class="label">创业板指</div><div class="value green">3,959.85</div><div class="sub green">+0.28%</div></div>
+  <div class="summary-item"><div class="label">恒生指数</div><div class="value green">23,616.32</div><div class="sub green">+1.14%</div></div>
+  <div class="summary-item"><div class="label">伦敦金</div><div class="value">$4,135</div><div class="sub">高位震荡</div></div>
+</div>
+<p class="small" style="margin-top:6px">来源：Wind/东方财富 2026-07-07</p>
+
+<h2>三、美股→A股映射冲击测算</h2>
+<div class="impact-card risk-mid">
+  <div class="stock-name">澜起科技 688008 <span class="tag tag-warn">温和偏多</span></div>
+  <div class="estimate">
+    映射标的：<b>MRVL +1.62%</b>（隔夜）<br>
+    今日最新价：263.20元（<span class="red">-2.04%</span>）<br>
+    美股映射正面，开盘惯性低开。三星Q2业绩暴增18倍是更强催化。<br>
+    <span class="warn">关键价位：255元支撑；275元反弹首目标</span>
+  </div>
+</div>
+<div class="impact-card risk-mid">
+  <div class="stock-name">汇绿生态 001267 <span class="tag tag-warn">中性偏多</span></div>
+  <div class="estimate">
+    映射标的：<b>COHR+0.70%、LITE+0.40%</b><br>
+    今日最新价：43.33元（<span class="red">-1.55%</span>）<br>
+    映射微涨支撑有但力度不强。从高点回撤38%超跌。<br>
+    <span class="warn">关键价位：42.50元支撑；44.50元压力</span>
+  </div>
+</div>
+<div class="impact-card risk-mid">
+  <div class="stock-name">罗博特科 300757 <span class="tag tag-warn">温和偏多</span></div>
+  <div class="estimate">
+    映射标的：<b>NVDA+0.37%、MRVL+1.62%</b><br>
+    今日最新价：495.54元（<span class="green">+0.25%</span>）<br>
+    已翻红，硅光暴增8倍支撑。<br>
+    <span class="warn">关键价位：510元压力；485元支撑</span>
+  </div>
+</div>
+
+<h1>盘前简报 - 2026年7月7日（周二）</h1>
+<div class="subtitle">数据截至 10:01 CST | 隔夜美股全线反弹+三星Q2暴增18倍 | Wind + WeStock</div>
+
+<h2>一、核心警示（结论前置）</h2>
+<div class="core-block">
+  <div class="core-tag">CORE</div>
+  <div class="core-text">美股科技一夜回血，费城半导体大涨+2.17%，但A股映射股早盘反而低开——<span class="red">这看似矛盾，实则是"美股叙事修复"与"A股情绪惯性"的错位</span>。今日关键：三星Q2营业利润预增18倍，存储链基本面没被证伪，反而强化。这是逢低看多的核心抓手。</div>
+</div>
+<div class="alert-card info">
+  <div class="title">市场状态：从恐慌修复转向基本面验证</div>
+  <div class="body">
+    <b>隔夜美股：</b>道琼斯+0.29%创新高53055点，纳斯达克+1.12%，SOX+2.17%，AMD+6.61%、MRVL+1.62%、NVDA+0.37%。<span class="source-inline">Wind 2026-07-07</span><br><br>
+    <b>亚太早盘：</b>上证4024.57(-0.41%)，创业板3959.85(+0.28%)。A股开盘沪指低开-0.54%，科创50低开-1.52%。<br><br>
+    <b>核心判断：</b>外围情绪回暖，但A股科技股开盘仍带惯性抛压。今天不宜追涨，重点观察存储/半导体能否盘中由跌转涨——三星业绩是最大催化。
+  </div>
+</div>
+<div class="bull">
+  <span class="tag tag-gold">财报催化</span><span class="tag tag-purple">存储链</span>
+  <p style="margin:8px 0 0;font-size:14px"><b>三星Q2速报：</b>销售额171万亿韩元(+129%)，营业利润约89.4万亿韩元(约3969亿人民币)，同比暴增18倍。AI需求拉动HBM/DRAM/NAND价格大涨。<span class="source-inline">快科技/路透社 2026-07-07</span></p>
+</div>
+
+<h2>二、隔夜全球市场概览</h2>
+<h3>美股（7月6日收盘）</h3>
+<div class="summary-grid">
+  <div class="summary-item"><div class="label">道琼斯工业</div><div class="value green">53,055.91</div><div class="sub green">+0.29% 创新高</div></div>
+  <div class="summary-item"><div class="label">标普500</div><div class="value green">7,537.43</div><div class="sub green">+0.72%</div></div>
+  <div class="summary-item"><div class="label">纳斯达克</div><div class="value green">26,121.16</div><div class="sub green">+1.12%</div></div>
+  <div class="summary-item"><div class="label">费城半导体</div><div class="value green">12,900.14</div><div class="sub green">+2.17% 反弹</div></div>
+  <div class="summary-item"><div class="label">中概金龙</div><div class="value green">+1.71%</div><div class="sub green">多数上涨</div></div>
+  <div class="summary-item"><div class="label">英伟达NVDA</div><div class="value green">$195.55</div><div class="sub green">+0.37%</div></div>
+</div>
+<p class="small" style="margin-top:6px">来源：Wind 2026-07-07</p>
+
+<h3>重点映射股表现</h3>
+<table>
+<thead><tr><th>美股标的</th><th>最新价</th><th>涨跌幅</th><th>成交额</th><th>A股映射</th></tr></thead>
+<tbody>
+<tr><td><b>Marvell(MRVL)</b></td><td>$249.27</td><td class="green">+1.62%</td><td>65.1亿</td><td>澜起科技、罗博特科</td></tr>
+<tr><td><b>Coherent(COHR)</b></td><td>$335.70</td><td class="green">+0.70%</td><td>11.1亿</td><td>汇绿生态</td></tr>
+<tr><td><b>Lumentum(LITE)</b></td><td>$731.25</td><td class="green">+0.40%</td><td>27.9亿</td><td>汇绿生态</td></tr>
+<tr><td><b>NVIDIA(NVDA)</b></td><td>$195.55</td><td class="green">+0.37%</td><td>213.6亿</td><td>罗博特科</td></tr>
+<tr><td><b>AMD</b></td><td>$552.05</td><td class="green">+6.61%</td><td>171.0亿</td><td>半导体/AI链</td></tr>
+<tr><td><b>Broadcom</b></td><td>$373.90</td><td class="green">+3.73%</td><td>92.3亿</td><td>AI ASIC/交换机</td></tr>
+</tbody>
+</table>
+<p class="small" style="margin-top:6px">来源：Wind | 映射股全线收涨，涨幅温和。</p>
+
+<h3>亚太早盘+大宗</h3>
+<div class="summary-grid">
+  <div class="summary-item"><div class="label">上证</div><div class="value green">4,024.57</div><div class="sub red">-0.41%</div></div>
+  <div class="summary-item"><div class="label">创业板</div><div class="value green">3,959.85</div><div class="sub green">+0.28%</div></div>
+  <div class="summary-item"><div class="label">恒生</div><div class="value green">23,616.32</div><div class="sub green">+1.14%</div></div>
+  <div class="summary-item"><div class="label">伦敦金</div><div class="value">$4,135</div><div class="sub">高位震荡</div></div>
+</div>
+<p class="small" style="margin-top:6px">来源：Wind/东方财富 2026-07-07</p>
+
+<h2>三、美股→A股映射冲击测算</h2>
+<div class="impact-card risk-mid">
+  <div class="stock-name">澜起科技 688008 <span class="tag tag-warn">温和偏多</span></div>
+  <div class="estimate">MRVL +1.62% | 最新263.20元 <span class="red">-2.04%</span><br>三星Q2暴增18倍是更强催化，DDR5/CXL逻辑强化。<br><span class="warn">255元支撑 | 275元反弹首目标</span></div>
+</div>
+<div class="impact-card risk-mid">
+  <div class="stock-name">汇绿生态 001267 <span class="tag tag-warn">中性偏多</span></div>
+  <div class="estimate">COHR+0.70% LITE+0.40% | 最新43.33元 <span class="red">-1.55%</span><br>映射微涨支撑有限，从高点回撤38%超跌。<br><span class="warn">42.50支撑 | 44.50压力</span></div>
+</div>
+<div class="impact-card risk-mid">
+  <div class="stock-name">罗博特科 300757 <span class="tag tag-warn">温和偏多</span></div>
+  <div class="estimate">NVDA+0.37% MRVL+1.62% | 最新495.54元 <span class="green">+0.25%</span><br>已翻红，硅光业务暴增8倍支撑。<br><span class="warn">510压力 | 485支撑</span></div>
+</div>
+
+<h2>四、持仓早盘复盘+今日预判</h2>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>最新价</th><th>涨跌幅</th><th>成交量万</th><th>换手率</th><th>今日预判</th><th>操作</th></tr></thead>
+<tbody>
+<tr><td><b>澜起科技</b></td><td>688008</td><td>263.20</td><td class="red">-2.04%</td><td>1,102</td><td>0.96%</td><td>三星催化，若翻红即为拐点</td><td><span class="tag tag-warn">持有</span></td></tr>
+<tr><td><b>汇绿生态</b></td><td>001267</td><td>43.33</td><td class="red">-1.55%</td><td>437</td><td>0.72%</td><td>惯性低开，暂不加仓</td><td><span class="tag tag-warn">持有</span></td></tr>
+<tr><td><b>罗博特科</b></td><td>300757</td><td>495.54</td><td class="green">+0.25%</td><td>67</td><td>0.41%</td><td>已翻红，关注放量</td><td><span class="tag tag-warn">持有</span></td></tr>
+<tr><td><b>三祥新材</b></td><td>603663</td><td>80.70</td><td class="red">-1.03%</td><td>319</td><td>0.75%</td><td>S级抗跌，78以下小仓</td><td><span class="tag tag-green">持有</span></td></tr>
+<tr><td><b>泰和新材</b></td><td>002254</td><td>15.18</td><td class="green">+0.07%</td><td>919</td><td>1.08%</td><td>B+观望</td><td><span class="tag tag-warn">观望</span></td></tr>
+<tr><td><b>华峰化学</b></td><td>002064</td><td>10.97</td><td class="red">-1.35%</td><td>1,804</td><td>0.36%</td><td>业绩兑现后回吐正常</td><td><span class="tag tag-green">底仓持有</span></td></tr>
+<tr><td><b>兴森科技</b></td><td>002436</td><td>-</td><td>-</td><td>-</td><td>-</td><td>利润仓</td><td><span class="tag tag-accent">跟踪</span></td></tr>
+<tr><td><b>星环科技</b></td><td>688031</td><td>-</td><td>-</td><td>-</td><td>-</td><td>利润仓</td><td><span class="tag tag-accent">跟踪</span></td></tr>
+<tr><td><b>软通动力</b></td><td>301236</td><td>-</td><td>-</td><td>-</td><td>-</td><td>核心标杆</td><td><span class="tag tag-green">持有</span></td></tr>
+<tr><td><b>德展健康</b></td><td>000813</td><td>-</td><td>-</td><td>-</td><td>-</td><td>防御</td><td><span class="tag tag-green">持有</span></td></tr>
+<tr><td><b>太钢不锈</b></td><td>000825</td><td>-</td><td>-</td><td>-</td><td>-</td><td>低价周期</td><td><span class="tag tag-green">持有</span></td></tr>
+</tbody>
+</table>
+<p class="small">来源：Wind 2026-07-07 10:01 CST</p>
+
+
+<h2>五、跟踪池异动</h2>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>最新价</th><th>涨跌幅</th><th>异动说明</th></tr></thead>
+<tbody>
+<tr><td><b>数据港</b></td><td>603881</td><td>22.96</td><td class="red">-0.04%</td><td>腾讯算力链首选，今日基本持平。</td></tr>
+<tr><td><b>中际旭创</b></td><td>300308</td><td>-</td><td>-</td><td>光模块龙头，隔夜光通信微涨，板块情绪支撑。</td></tr>
+<tr><td><b>工业富联</b></td><td>601138</td><td>-</td><td>-</td><td>AI服务器ODM，三星业绩间接验证需求。</td></tr>
+</tbody>
+</table>
+
+<h2>六、盘前要闻速览</h2>
+<div class="card">
+  <div class="news-item">
+    <div class="news-title">1. 三星Q2营业利润暴增18倍，存储链景气再确认</div>
+    <div class="news-meta">快科技/路透社 07-07</div>
+    <div class="news-body">销售额171万亿韩元(+129%)，营业利润约3969亿人民币。AI需求推动HBM/DRAM/NAND大涨。</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">2. 美股科技全线反弹，费城半导体+2.17%</div>
+    <div class="news-meta">财联社 07-07</div>
+    <div class="news-body">AMD+6.61%、AVGO+3.73%、MRVL+1.62%。AI硬件恐慌情绪修复。</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">3. 央视财经：内存条价格暴涨超300%</div>
+    <div class="news-meta">央视财经 07-07</div>
+    <div class="news-body">与三星业绩交叉验证，存储周期上行逻辑强化。</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">4. 韩国人半年爆买28亿美元中国AI股 | 南向资金小幅减持澜起8.46万股</div>
+    <div class="news-meta">腾讯自选股 07-06/07</div>
+    <div class="news-body">外资加持与资金小幅流出一正一反，减持量级不大需关注连续动向。</div>
+  </div>
+</div>
+
+<h2>七、今日操作建议</h2>
+<div class="judgment-badge judgment-bull">今日定性：修复窗口 + 逢低看多 不追高</div>
+<p style="font-size:13px;color:var(--text-dim);margin:8px 0 16px">核心逻辑：隔夜美股反弹+三星业绩暴增，情绪与基本面双重支撑。策略："持有为主、逢低小试、不追涨"。</p>
+
+<div class="advice-block bull">
+  <b>澜起科技 688008（长期账户底仓）</b><br>
+  操作：<b>底仓不动，若盘中放量翻红可视为情绪拐点</b><br>
+  关键价位：255元强支撑；275元反弹首目标<br>
+  理由：三星Q2业绩暴增18倍，存储链景气确认。DDR5/CXL核心标的。
+</div>
+<div class="advice-block">
+  <b>罗博特科 300757</b><br>
+  操作：<b>持有观察，不追高</b><br>
+  关键价位：510元压力；485元支撑<br>
+  理由：已翻红，硅光暴增8倍支撑。510以上不追。
+</div>
+<div class="advice-block">
+  <b>汇绿生态 001267</b><br>
+  操作：<b>持有，暂不加仓</b><br>
+  关键价位：42.50支撑；44.50压力<br>
+  理由：从高点回撤38%超跌，但板块修复需时间。站稳44元后再考虑加仓。
+</div>
+<div class="advice-block">
+  <b>三祥新材 603663（S级）</b><br>
+  操作：<b>78元以下可小仓试探</b>，总仓位2%以内<br>
+  关键价位：78支撑；85反弹目标<br>
+  理由：锆材料/固态电池逻辑未变，-1.03%已属抗跌。
+</div>
+<div class="advice-block hold">
+  <b>化工板块（华峰/泰和）</b><br>
+  华峰：H1业绩大涨后正常回吐，周期底仓不动。<br>
+  泰和：B+级观望，15元以下再评估。
+</div>
+<div class="advice-block">
+  <b>其他持仓</b><br>
+  操作：<b>持有不动</b>。利润仓趋势跟踪，防御仓稳定器，软通标杆持有。
+</div>
+
+<div class="card info">
+  <h3>巴蒂的判断</h3>
+  <p style="font-size:14px;line-height:1.7">今天不是恐慌日，而是<b>"验证日"</b>——验证A股科技板块能否跟上美股修复。三星18倍增长是强信号，但真正能让老潘赚钱的是<b>盘中由跌转涨的拐点</b>。若收盘澜起/罗博/汇绿收复开盘价，情绪拐点确认；若继续缩量阴跌，仍需耐心。不追高，也不必再恐慌割肉。</p>
+</div>
+
+<div class="footer">
+  <b>数据源</b><br>
+  Wind万得：美股/SOX/映射股/A股持仓行情、指数<br>
+  WeStock：A股行情、盘前新闻<br>
+  东方财富/网易财经：亚太/A股开盘<br>
+  快科技/路透社/财联社/央视财经：新闻<br>
+  时点：美股07-06收盘，A股07-07 10:01 CST<br><br>
+  <b>免责声明</b><br>
+  本简报由AI助手巴蒂生成，仅供老潘个人投研参考，不构成投资建议。数据来自公开信息源，巴蒂不保证数据完整性和准确性。市场有风险，决策需独立。
+</div>
+</body>
+</html>
