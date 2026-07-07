@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老潘投资资料合集 V2 | 2026-07-07</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#c9d1d9;--text-dim:#8b949e;--red:#f85149;--green:#3fb950;--accent:#58a6ff;--warn:#d29922;--gold:#e6b450;--purple:#bc8cff;--rose:#e0558a;--surface-raise:#1c2128;--surface-dim:#0f1218}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);padding:20px;max-width:1000px;margin:0 auto;line-height:1.65;font-size:14px}
+h1{font-size:24px;margin-bottom:4px;color:#f0f6fc}
+h2{font-size:18px;color:var(--accent);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border);font-weight:700}
+h3{font-size:15px;color:#f0f6fc;margin:18px 0 8px;font-weight:600}
+.sub{color:var(--text-dim);font-size:12px;margin-bottom:16px}
+.card,.bull,.info,.alert-card,.bear{border-radius:8px;padding:14px;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--border)}
+.bull{background:linear-gradient(135deg,rgba(63,185,80,.12),rgba(57,211,83,.06));border:1px solid rgba(63,185,80,.25)}
+.info{background:linear-gradient(135deg,rgba(88,166,255,.1),rgba(188,140,255,.04));border:1px solid rgba(88,166,255,.25)}
+.alert-card{background:rgba(224,85,138,.1);border:1px solid rgba(224,85,138,.3)}
+.bear{background:linear-gradient(135deg,rgba(248,81,73,.12),rgba(210,153,34,.06));border:1px solid rgba(248,81,73,.25)}
+.core-block{background:linear-gradient(135deg,rgba(230,180,80,.15),rgba(248,81,73,.08));border:1px solid rgba(230,180,80,.25);border-radius:8px;padding:16px;margin-bottom:16px}
+.core-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold);background:rgba(230,180,80,.18);padding:2px 8px;border-radius:3px;margin-bottom:6px}
+.red{color:var(--red)}.green{color:var(--green)}.warn{color:var(--warn)}.gold{color:var(--gold)}.purple{color:var(--purple)}
+table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;margin:8px 0}
+th{background:var(--surface-dim);color:var(--text-dim);padding:7px 8px;text-align:left;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap;font-size:11px}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,.5);vertical-align:top}
+td:first-child,th:first-child{white-space:nowrap;min-width:100px}
+tr:hover{background:rgba(88,166,255,.04)}
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;margin:0 3px 3px 0}
+.tag-red{background:rgba(248,81,73,.18);color:var(--red)}.tag-green{background:rgba(63,185,80,.18);color:var(--green)}
+.tag-warn{background:rgba(210,153,34,.18);color:var(--warn)}.tag-gold{background:rgba(230,180,80,.18);color:var(--gold)}
+.tag-accent{background:rgba(88,166,255,.18);color:var(--accent)}.tag-rose{background:rgba(224,85,138,.18);color:var(--rose)}
+.chart-box{width:100%;height:400px;margin:12px 0;background:var(--card);border:1px solid var(--border);border-radius:8px}
+.stars{color:var(--gold);font-size:12px}
+.last-word{background:var(--surface-raise);border-left:2px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:20px;font-size:13px;line-height:1.6}
+.footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--border);font-size:10px;color:var(--text-dim);line-height:1.6}
+.source-inline{font-size:10px;color:var(--text-dim);margin-left:4px;white-space:nowrap}.source-inline::before{content:'· '}
+@media(max-width:640px){table{font-size:11px}h1{font-size:20px}}
+</style>
+</head>
+<body>
+
+<h1>老潘投资资料合集 V2</h1>
+<div class="sub">巴蒂整理 · 2026年7月7日更新 · 含7/6-7/7全量研究 · <span class="gold">【V2新增：泰和新材校准、大摩报告、算力链、财报日历】</span></div>
+
+<div class="core-block">
+  <div class="core-tag">V2 更新说明</div>
+  <div style="font-size:13px;line-height:1.8;color:var(--text)">
+    <span class="red">⚠ 修正项：</span>泰和新材定位从"A+级核心"降级为"B+级"，光缆收入&lt;10%，AI光纤芳纶故事严重夸大，PE 286倍/98.6%分位。详见第五节。<br>
+    <span class="green">➕ 新增三项：</span>
+    ①大摩"存储变化速率顶峰"报告解读（对澜起短期压制）；
+    ②WorkBuddy腾讯算力租赁受益链（数据港/奥飞数据/利通电子入跟踪池）；
+    ③持仓映射股Q2财报前瞻日历（7/29-8/27五个关键节点）。
+  </div>
+</div>
+
+<h2>目录</h2>
+<div class="card" style="font-size:13px;line-height:2">
+  一、光连接研报解读 · 三条主线与持仓映射<br>
+  二、最新持仓清单（12只）+ 跟踪池（15只）<br>
+  三、15条修正版个股分析框架<br>
+  四、7月6日每日复盘<br>
+  五、持仓逻辑复核 + <span class="gold">泰和新材深度校准</span><br>
+  六、<span class="gold">【新增】</span>大摩"存储变化速率顶峰"报告解读<br>
+  七、<span class="gold">【新增】</span>WorkBuddy腾讯算力租赁受益链<br>
+  八、<span class="gold">【新增】</span>持仓映射股Q2财报前瞻日历<br>
+  九、7月7日盘中关键时刻记录
+</div>
+
+<!-- ========== 一、光连接研报 ========== -->
+<h2>一、光连接研报解读：光连接是AI降本最大福音</h2>
+
+<h3>核心结论</h3>
+<div class="card">AI算力瓶颈不在算力本身，而在"数据搬运"——先进封装+光连接是降本最大福音。源自YZ"硅谷AI观察笔记"框架（2026-07-03）。</div>
+
+<h3>三条主线</h3>
+<table>
+<thead><tr><th>主线</th><th>核心逻辑</th><th>关键技术/案例</th></tr></thead>
+<tbody>
+<tr><td><b>先进封装</b></td><td>算力瓶颈从"计算"转向"数据传输"</td><td>3D DRAM、CoWoS/SoIC</td></tr>
+<tr><td><b>光连接渗透</b></td><td>光从"机柜间"下沉到"芯片间"</td><td>Celestial AI、CXL+光交换</td></tr>
+<tr><td><b>网络架构升级</b></td><td>超节点是系统级性能Buff</td><td>Rubin Ultra 576（NPO/CPO引擎）</td></tr>
+</tbody>
+</table>
+
+<h3>光连接降本路径</h3>
+<table>
+<thead><tr><th>阶段</th><th>技术方案</th><th>单位成本($/Gbps)</th><th>降幅</th></tr></thead>
+<tbody>
+<tr><td>早期</td><td>400G光模块</td><td>0.6-0.7</td><td>基准</td></tr>
+<tr><td>当前</td><td>400G→1.6T迭代</td><td>0.4-0.5</td><td>-30%</td></tr>
+<tr><td>下一代</td><td>NPO/CPO引擎</td><td>0.2-0.3</td><td>-50%</td></tr>
+</tbody>
+</table>
+
+<h3>带宽增长曲线</h3>
+<div class="card" style="font-size:13px">
+2023年: 417 Tbps → <span class="gold">2026年: 7,666 Tbps（3年18倍）</span> → 2027年: Scale-up光连接启动(NPO/CPO) → <span class="gold">2030年: ~230,000 Tbps（还有30x增长，市场规模扩容10x）</span>
+</div>
+
+<h3>华为"韬定律"V2信号（2026-07-03）</h3>
+<table>
+<thead><tr><th>技术模块</th><th>含义</th></tr></thead>
+<tbody>
+<tr><td>统一总线架构（Unified Bus）</td><td>内存语义的统一总线</td></tr>
+<tr><td>近封装光I/O（Hi-ONE）</td><td>NPO光引擎，关键新增</td></tr>
+<tr><td>边到面3D Folding</td><td>3D堆叠延伸</td></tr>
+</tbody>
+</table>
+<div class="info" style="font-size:12px">目标：到2035年硬件集成度增长超过100倍。华为明确将NPO光引擎纳入技术栈，国内大厂开始跟进。</div>
+
+<h3>持仓映射与受益度</h3>
+<table>
+<thead><tr><th>持仓</th><th>对应逻辑</th><th>受益度</th><th>关键卡位点</th></tr></thead>
+<tbody>
+<tr><td><b>汇绿生态</b></td><td>光模块迭代+硅光+成本下降</td><td><span class="green">⭐⭐⭐⭐⭐</span></td><td>光模块占营收72%；客户COHR/LITE</td></tr>
+<tr><td><b>罗博特科</b></td><td>先进封装设备+NPO自动化</td><td><span class="green">⭐⭐⭐⭐⭐</span></td><td>ficonTEC做NPO/CPO光引擎组装设备</td></tr>
+<tr><td><b>澜起科技</b></td><td>内存接口+CXL交换</td><td><span class="green">⭐⭐⭐⭐</span></td><td>CXL内存池芯片(MXC)，谷歌先推广</td></tr>
+<tr><td><b>兴森科技</b></td><td>先进封装载板</td><td><span class="green">⭐⭐⭐⭐</span></td><td>3D堆叠/CoWoS需高阶IC载板</td></tr>
+</tbody>
+</table>
+
+<h3>美股映射</h3>
+<table>
+<thead><tr><th>A股标的</th><th>对标美股</th><th>映射逻辑</th></tr></thead>
+<tbody>
+<tr><td>汇绿生态</td><td>COHR / LITE</td><td>NPO光引擎主力供应商</td></tr>
+<tr><td>罗博特科</td><td>NVDA / MRVL</td><td>NPO/CPO组装设备</td></tr>
+<tr><td>澜起科技</td><td>MRVL（CXL）</td><td>内存池交换芯片</td></tr>
+</tbody>
+</table>
+
+<!-- ========== 二、最新持仓 ========== -->
+<h2>二、最新持仓清单（12只）+ 跟踪池（15只）</h2>
+
+<h3>核心持仓（12只）</h3>
+
+<h3 style="font-size:13px;color:var(--accent)">AI硬件/半导体主线（4只）</h3>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>定位</th><th>美股映射</th><th>现评级</th></tr></thead>
+<tbody>
+<tr><td><b>澜起科技</b></td><td>688008</td><td>DDR5内存接口+CXL，底仓不动，成本96.83元</td><td>MRVL / Rambus</td><td><span class="tag tag-green">S级</span></td></tr>
+<tr><td><b>汇绿生态</b></td><td>001267</td><td>二线光模块弹性最大，营收72%，成本48.09元</td><td>COHR / LITE</td><td><span class="tag tag-accent">A级</span></td></tr>
+<tr><td><b>罗博特科</b></td><td>300757</td><td>ficonTEC NPO/CPO光引擎设备，硅光暴增8倍</td><td>NVDA / MRVL设备链</td><td><span class="tag tag-accent">A级</span></td></tr>
+<tr><td><b>兴森科技</b></td><td>002436</td><td>先进封装载板（CoWoS/3D Folding），负成本利润仓</td><td>载板龙头对标</td><td><span class="tag tag-accent">利润仓</span></td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:13px;color:var(--accent)">化工/周期主线（4只）</h3>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>定位</th><th>现评级</th></tr></thead>
+<tbody>
+<tr><td><b>三祥新材</b></td><td>603663</td><td>锆材料/固态电池，S级。全球电熔氧化锆亚洲最大</td><td><span class="tag tag-green">S级</span></td></tr>
+<tr><td><b>泰和新材</b></td><td>002254</td><td><span class="gold">【V2修正】</span>B+级降级。芳纶40%供货光纤光缆但光缆收入&lt;10%，PE 286倍严重高估</td><td><span class="tag tag-warn">B+级</span></td></tr>
+<tr><td><b>华峰化学</b></td><td>002064</td><td>化工/氨纶周期反转，H1净利16.8-20.8亿（+70.9%~111.5%）</td><td><span class="tag tag-warn">防御仓</span></td></tr>
+<tr><td><b>太钢不锈</b></td><td>000825</td><td>钢铁/周期，成本5.75元</td><td><span class="tag tag-warn">防御仓</span></td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:13px;color:var(--accent)">软件/科技（2只）</h3>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>定位</th><th>现评级</th></tr></thead>
+<tbody>
+<tr><td><b>星环科技-U</b></td><td>688031</td><td>大数据/AI软件，负成本利润仓</td><td><span class="tag tag-accent">利润仓</span></td></tr>
+<tr><td><b>软通动力</b></td><td>301236</td><td>华为生态/软件服务，原浮盈+418%标杆。Q1亏损3.5亿需关注</td><td><span class="tag tag-warn">收益仓/观察</span></td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:13px;color:var(--accent)">医药（2只）</h3>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>定位</th><th>现评级</th></tr></thead>
+<tbody>
+<tr><td><b>德展健康</b></td><td>000813</td><td>参股东方略22.70%，VGX-3100揭盲成功，等复星8亿合作落地</td><td><span class="tag tag-warn">防御仓</span></td></tr>
+<tr><td><b>欧林生物</b></td><td>688319</td><td>金葡菌疫苗III期揭盲在即+H股递表</td><td><span class="tag tag-accent">跟踪</span></td></tr>
+</tbody>
+</table>
+
+<h3>跟踪池（15只）</h3>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>跟踪逻辑</th><th>来源</th></tr></thead>
+<tbody>
+<tr><td>中际旭创</td><td>300308</td><td>光模块龙头，汇绿对标锚</td><td>原跟踪</td></tr>
+<tr><td>工业富联</td><td>601138</td><td>AI服务器/GB200产业链</td><td>原跟踪</td></tr>
+<tr><td>胜宏科技</td><td>300476</td><td>AI高阶PCB，HDI核心</td><td>原跟踪</td></tr>
+<tr><td>立讯精密</td><td>002475</td><td>消费电子+AI硬件</td><td>原跟踪</td></tr>
+<tr><td>盛合晶微</td><td>688820</td><td>2.5D封装85%市占率，华为昇腾唯一供应商。建仓条件：大盘4000+股价150-170</td><td>原跟踪</td></tr>
+<tr><td>炬芯科技</td><td>688049</td><td>端侧AI SoC，目标建仓价38-42元</td><td>原跟踪</td></tr>
+<tr><td>华丰科技</td><td>688629</td><td>电连接器/卫星通信</td><td>原跟踪</td></tr>
+<tr><td>巨化股份</td><td>600160</td><td>氟化工/制冷剂周期</td><td>原跟踪</td></tr>
+<tr><td>中远海能</td><td>600026</td><td>航运/油运周期</td><td>原跟踪</td></tr>
+<tr><td>恒逸石化</td><td>000703</td><td>炼化/PTA周期</td><td>原跟踪</td></tr>
+<tr><td>滨化股份</td><td>601678</td><td>氯碱/化工周期</td><td>原跟踪</td></tr>
+<tr><td>中工国际</td><td>002051</td><td>国际工程/一带一路</td><td>原跟踪</td></tr>
+<tr><td><span class="gold">【新增】</span>数据港</td><td>603881</td><td>腾讯长三角AI算力枢纽独家运营，承担元宝30%推理算力</td><td>WorkBuddy算力链</td></tr>
+<tr><td><span class="gold">【新增】</span>奥飞数据</td><td>300738</td><td>中标腾讯华南智算中心38亿EPC，性价比均衡</td><td>WorkBuddy算力链</td></tr>
+<tr><td><span class="gold">【新增】</span>利通电子</td><td>603629</td><td>与腾讯签50亿算力租赁订单，高弹性高风险</td><td>WorkBuddy算力链</td></tr>
+</tbody>
+</table>
+
+<!-- ========== 三、15条框架 ========== -->
+<h2>三、15条修正版个股分析框架</h2>
+<div class="sub">原22条精简为15条，消除重叠冗余。每一条定义唯一不重叠。</div>
+
+<h3>A. 业务与竞争（4条）</h3>
+<table>
+<thead><tr><th>#</th><th>问题</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>公司核心产品是什么？现在和未来各有什么竞争力？</td></tr>
+<tr><td>2</td><td>主营收入结构：前3大业务收入及金额、占比、毛利率</td></tr>
+<tr><td>3</td><td>核心竞争力与护城河：技术壁垒/客户绑定/规模效应/牌照/网络效应，用唯一性和垄断性描述</td></tr>
+<tr><td>4</td><td>市场地位：核心产品市占率、行业排名、竞争对手及挑战</td></tr>
+</tbody>
+</table>
+
+<h3>B. 风险与战略（2条）</h3>
+<table>
+<thead><tr><th>#</th><th>问题</th></tr></thead>
+<tbody>
+<tr><td>5</td><td>替代风险：是否存在颠覆性替代技术或产品？</td></tr>
+<tr><td>6</td><td>战略路径与失败陷阱：成为行业顶级需做什么？失败需避免什么？</td></tr>
+</tbody>
+</table>
+
+<h3>C. 财务与估值（4条）</h3>
+<table>
+<thead><tr><th>#</th><th>问题</th></tr></thead>
+<tbody>
+<tr><td>7</td><td>财务健康度：是否存在财务问题？盈利质量、现金流、负债、应收</td></tr>
+<tr><td>8</td><td>关键财务指标：PE/PB/PS/ROE/PEG/营收增速/净利率，必须含PEG</td></tr>
+<tr><td>9</td><td>估值分析：当前估值在历史分位、同行对比、是否合理</td></tr>
+<tr><td>10</td><td>买入判断：当前股价是否值得购买？给出明确理由和触发条件</td></tr>
+</tbody>
+</table>
+
+<h3>D. 成长与空间（3条）</h3>
+<table>
+<thead><tr><th>#</th><th>问题</th></tr></thead>
+<tbody>
+<tr><td>11</td><td>成长逻辑：未来成长性如何？决定成长的关键因素是什么？</td></tr>
+<tr><td>12</td><td>业绩预测：未来1年预期净利润及增速；3年预期市值/股价/PE</td></tr>
+<tr><td>13</td><td>市值天花板：远期市值上限多少？对应股价？基于什么假设？</td></tr>
+</tbody>
+</table>
+
+<h3>E. 行业与参照（2条）</h3>
+<table>
+<thead><tr><th>#</th><th>问题</th></tr></thead>
+<tbody>
+<tr><td>14</td><td>行业阶段与竞争格局：行业处于什么阶段？竞争激烈程度？</td></tr>
+<tr><td>15</td><td>同业推荐与题材归属：推荐同行业值得买的股票？该股属于哪些题材？</td></tr>
+</tbody>
+</table>
+
+<!-- ========== 四、7月6日复盘 ========== -->
+<h2>四、7月6日每日复盘</h2>
+
+<h3>大盘总览</h3>
+<table>
+<thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>点评</th></tr></thead>
+<tbody>
+<tr><td>上证指数</td><td>4041.24</td><td class="red">-0.06%</td><td>跌破20日均线第3天未收复</td></tr>
+<tr><td>深证成指</td><td>15416.80</td><td class="red">-1.16%</td><td>空头主导</td></tr>
+<tr><td>创业板指</td><td>3948.86</td><td class="red">-1.77%</td><td>主跌走势</td></tr>
+<tr><td>科创50</td><td>1996.10</td><td class="green">+1.04%</td><td>唯一红盘，探底回升</td></tr>
+</tbody>
+</table>
+<div class="card" style="font-size:12px">成交额3.09万亿（缩量约1000亿）| 北向资金+42亿逆势加仓 | 涨跌比约2:8</div>
+
+<h3>板块表现</h3>
+<table>
+<thead><tr><th>强势板块</th><th>驱动</th><th>弱势板块</th><th>驱动</th></tr></thead>
+<tbody>
+<tr><td>机器人（超40股涨停）</td><td>宇树科技IPO+特斯拉Optimus量产</td><td>PCB/CCL</td><td>前期涨幅过高获利了结</td></tr>
+<tr><td>创新药/医药</td><td>药监局30日通道催化</td><td>玻璃基板</td><td>前期热炒后回调</td></tr>
+<tr><td>煤炭/石油石化</td><td>油价企稳+高低切换</td><td>光纤/光通信</td><td>算力硬件链整体回调</td></tr>
+</tbody>
+</table>
+
+<h3>持仓表现</h3>
+<table>
+<thead><tr><th>板块</th><th>表现</th><th>关键点</th></tr></thead>
+<tbody>
+<tr><td>AI硬件(4只)</td><td><span class="warn">分化</span></td><td>澜起+0.70%抗跌，兴森约-4.90%重挫</td></tr>
+<tr><td>化工/周期(4只)</td><td><span class="gold">平稳</span></td><td>未在涨跌前列</td></tr>
+<tr><td>软件(2只)</td><td><span class="gold">平稳</span></td><td>软通可能有机器人溢出</td></tr>
+<tr><td>医药(2只)</td><td><span class="green">逆势走强</span></td><td>欧林+9.54%，创新药板块强势</td></tr>
+</tbody>
+</table>
+
+<h3>重点事件</h3>
+<div class="card" style="font-size:12px;line-height:1.8">
+• <b>存储业绩炸裂</b>：江波龙半年报净利92-110亿（+62204%），高开低走<br>
+• <b>央行1万亿逆回购</b>：净投放2000亿，利好未转化做多动能<br>
+• <b>A股交易新规</b>：ST涨跌幅5%→10%，长期利好价值发现<br>
+• <b>创新药催化</b>：药监局30日通道，直接利好欧林/德展
+</div>
+
+<!-- ========== 五、持仓复核+泰和校准 ========== -->
+<h2>五、持仓逻辑复核 + 泰和新材深度校准</h2>
+
+<h3>逐只复核</h3>
+<table>
+<thead><tr><th>标的</th><th>逻辑变化</th><th>基本面</th><th>回撤原因</th><th>结论</th></tr></thead>
+<tbody>
+<tr><td>澜起科技</td><td><span class="green">不变</span></td><td>正向（美光超预期+CXL预测）</td><td>系统性回调+大摩报告压制</td><td>持有，底仓不动</td></tr>
+<tr><td>汇绿生态</td><td><span class="green">不变</span></td><td>正向（产能扩张+全资控股）</td><td>板块回调+筹码分散</td><td>持有，注意波动</td></tr>
+<tr><td>罗博特科</td><td><span class="green">不变</span></td><td>正向（订单21.87亿+港股递表）</td><td>系统性回调</td><td>持有，逻辑最硬</td></tr>
+<tr><td>泰和新材</td><td><span class="red">【V2降级】</span></td><td>PE 286倍，光缆收入&lt;10%</td><td>AI光纤芳纶故事夸大</td><td><b>B+级</b>，不加仓</td></tr>
+<tr><td>三祥新材</td><td><span class="green">不变</span></td><td>S级，锆材料壁垒清晰</td><td>随化工波动</td><td>S级持有</td></tr>
+<tr><td>兴森科技</td><td><span class="green">不变</span></td><td>正向（产能扩张+玻璃基板期权）</td><td>PCB板块重挫</td><td>利润仓跟踪</td></tr>
+<tr><td>星环科技</td><td><span class="green">不变</span></td><td>无重大变化</td><td>科创板波动</td><td>利润仓跟踪</td></tr>
+<tr><td>软通动力</td><td><span class="warn">注意</span></td><td>Q1亏损3.5亿，盈利承压</td><td>自身盈利质量</td><td>收益仓持有，不加仓</td></tr>
+<tr><td>华峰化学</td><td><span class="green">不变</span></td><td>H1净利+70.9%~111.5%超预期</td><td>获利回吐</td><td>防御底仓持有</td></tr>
+<tr><td>太钢不锈</td><td><span class="green">不变</span></td><td>无负面</td><td>随周期波动</td><td>防御底仓持有</td></tr>
+<tr><td>德展健康</td><td><span class="green">不变</span></td><td>正向（揭盲成功，等合作落地）</td><td>等催化</td><td>耐心持有</td></tr>
+<tr><td>欧林生物</td><td><span class="green">不变</span></td><td>正向（揭盲窗口期）</td><td>随医药波动</td><td>持有，不追高</td></tr>
+</tbody>
+</table>
+
+<h3>泰和新材校准说明 <span class="tag tag-red">V2关键修正</span></h3>
+<div class="alert-card" style="font-size:13px">
+  <b>原资料定位：</b>A+级核心，目标股价45.57元，芳纶40%供货光纤=光通信共振<br>
+  <b>巴蒂深度评估结论（2026-07-06）：</b><br>
+  • 光缆收入占比 <b>&lt;10%</b>（公司IR数据），"AI光纤芳纶"故事严重夸大<br>
+  • PE <b>286倍</b>，处于历史 <b>98.6%分位</b>，严重高估<br>
+  • 概率加权市值 92.5亿 vs 当前134亿 → <b>31%下行空间</b><br>
+  • 已从 A+级核心 <span class="red">降级为B+级</span>，不推荐加仓，跌破13.65元再评估<br>
+  <span class="source-inline">reports/2026-07-06/tayho-para-aramid-fiber-optic-deep-dive_2026-07-06.html</span>
+</div>
+
+<!-- ========== 六、大摩报告 ========== -->
+<h2>六、【新增】大摩"存储变化速率顶峰"报告解读</h2>
+<div class="sub">来源：华尔街见闻 2026-07-07 09:46 | 大摩亚太区科技团队 Shawn Kim / Ryan Kim</div>
+
+<h3>核心结论</h3>
+<div class="core-block">
+  <div class="core-tag">CORE</div>
+  <div style="font-size:14px;line-height:1.8">涨价的变化速度在触顶，但周期没结束。<span class="warn">短期谨慎，长期看多</span>（2027年盈利增长35-40%）。三个同步触顶信号：DRAM价格同比涨幅从
+Q1的高位显著回落、库存改善趋于平稳、EPS修正广度已达89%历史高位。</div>
+
+<h3>三大核心争议</h3>
+<table>
+<thead><tr><th>争议</th><th>空头逻辑</th><th>多头逻辑</th></tr></thead>
+<tbody>
+<tr><td>算力过剩？</td><td>大买家据传出售闲置算力</td><td>企业优化资本回报≠过剩</td></tr>
+<tr><td>Token极小化</td><td>企业用开源模型降本，冲击Capex</td><td>2季度没问题，3季度指引是关键</td></tr>
+<tr><td>LTA估值重估</td><td>过去LTA会被重谈或导致积压库存</td><td>若AI需求强劲则有结构性意义</td></tr>
+</tbody>
+</table>
+
+<h3>对澜起科技的影响</h3>
+<div class="card" style="font-size:13px;line-height:1.7">
+<b>短期战术压制，不破长期逻辑。</b><br>
+• 存储板块仓位极度拥挤（EPS修正广度89%），短期获利盘抛压加大<br>
+• 三星18倍增长已被充分定价，进一步超预期门槛更高<br>
+• <b>关键验证节点：7/29 MSFT+SK海力士财报</b>——云厂商Capex指引决定短期方向<br>
+• <b>操作调整</b>：275元反弹目标下调至268-270，255元为短线铁底<br>
+• 与YZ框架不矛盾：YZ看3-5年超级周期，大摩看3-6月战术调整
+</div>
+
+<!-- ========== 七、WorkBuddy算力链 ========== -->
+<h2>七、【新增】WorkBuddy腾讯算力租赁受益链</h2>
+<div class="sub">2026-07-06 老潘主题研究 | WorkBuddy爆火→推理算力需求→腾讯智算扩容→A股IDC/租赁商受益</div>
+
+<h3>传导逻辑</h3>
+<div class="info" style="font-size:13px;line-height:1.7">
+WorkBuddy/CodeBuddy 5月已涨价88-154%，本质是AI推理算力量价齐升。<br>
+<b>WorkBuddy用户规模攀升只是让这个趋势更显性。</b>
+</div>
+
+<h3>三家核心标的对比</h3>
+<table>
+<thead><tr><th></th><th>数据港 603881</th><th>奥飞数据 300738</th><th>利通电子 603629</th></tr></thead>
+<tbody>
+<tr><td><b>定位</b></td><td><span class="tag tag-accent">首选</span></td><td><span class="tag tag-warn">次选</span></td><td><span class="tag tag-rose">弹性</span></td></tr>
+<tr><td><b>核心逻辑</b></td><td>腾讯长三角AI枢纽独家运营</td><td>中标腾讯38亿华南智算EPC</td><td>签50亿算力租赁订单</td></tr>
+<tr><td><b>优势</b></td><td>确定性最高，独家绑定</td><td>估值合理，弹性明确</td><td>涨价弹性最大</td></tr>
+<tr><td><b>风险</b></td><td>估值稍贵</td><td>EPC交付节奏</td><td>负债率70%高杠杆</td></tr>
+<tr><td><b>适合老潘</b></td><td>长线跟踪</td><td>性价比均衡</td><td>仅主题观察</td></tr>
+</tbody>
+</table>
+
+<h3>对现有持仓间接影响</h3>
+<div class="card" style="font-size:12px;line-height:1.7">
+• <b>澜起科技</b>：算力扩容→服务器/存储需求↑→DDR5/CXL渗透率↑<br>
+• <b>汇绿生态</b>：智算中心光互连需求↑→光模块/CPO需求↑<br>
+• <b>罗博特科</b>：硅光设备需求↑→AI服务器光互联制造设备需求↑<br>
+• <b>工业富联</b>（跟踪池）：AI服务器ODM直接受益
+</div>
+
+<!-- ========== 八、财报前瞻 ========== -->
+<h2>八、【新增】持仓映射股Q2财报前瞻日历</h2>
+<div class="sub">来源：TipRanks + Bloomberg截图 + 各公司IR | 2026-07-06 | 巴蒂持续每周日更新</div>
+
+<div class="core-block">
+  <div class="core-tag">CORE</div>
+  <div style="font-size:13px;line-height:1.7">真正左右A股开盘情绪的，不只是隔夜美股涨跌，更是持仓映射股财报里的资本开支与订单指引。</div>
+</div>
+
+<h3>最高权重五场</h3>
+<table>
+<thead><tr><th>日期</th><th>美股公司</th><th>A股映射</th><th>关注焦点</th></tr></thead>
+<tbody>
+<tr><td><span class="gold">7/29</span></td><td><b>SK海力士</b> + <b>Microsoft</b></td><td>澜起科技</td><td>HBM出货/ASP、云Capex</td></tr>
+<tr><td><span class="gold">8/13</span></td><td><b>Coherent</b> + 应用材料</td><td>汇绿生态</td><td>数据中心收入、NPO/CPO进展</td></tr>
+<tr><td><span class="gold">8/18</span></td><td><b>Lumentum</b></td><td>汇绿生态</td><td>1.6T光模块ramp、EML供应</td></tr>
+<tr><td><span class="gold">8/26</span></td><td><b>NVIDIA</b></td><td>罗博特科</td><td>Blackwell出货、CPO供应链措辞</td></tr>
+<tr><td><span class="gold">8/27</span></td><td><b>Marvell</b></td><td>澜起/罗博</td><td>数据中心收入、硅光/CPO指引</td></tr>
+</tbody>
+</table>
+
+<h3>完整18场财报表</h3>
+<div class="card" style="font-size:12px;line-height:1.8">
+<b>7月</b>：7/7三星速报 | 7/15 ASML | 7/16 TSMC | 7/22 Google | 7/23 Samsung完整+KLA+Intel | 7/28 Meta | <span class="gold">7/29 SK海力士+MSFT+AMD</span> | 7/30 Apple | 7/31 Amazon<br>
+<b>8月</b>：8/5 Lam Research | 8/6 MACOM | <span class="gold">8/13 Coherent+AMAT</span> | <span class="gold">8/18 Lumentum</span> | <span class="gold">8/26 NVIDIA</span> | <span class="gold">8/27 Marvell</span><br>
+<b>9月</b>：9/3 Broadcom
+</div>
+
+<div class="info" style="font-size:12px;line-height:1.6">
+<b>嵌入机制</b>：盘前简报遇到当夜/次日重点财报，在"核心警示"加提醒；周度复盘新增"下周映射股财报前瞻"小节；盘中异动优先回查前夜美股。
+</div>
+
+<!-- ========== 九、7月7日关键时刻 ========== -->
+<h2>九、7月7日盘中关键时刻记录</h2>
+<div class="sub">数据来源：WeStock实时行情 | 上证破4000、科创深V</div>
+
+<h3>大盘收盘</h3>
+<table>
+<thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>日内低点</th></tr></thead>
+<tbody>
+<tr><td>上证指数</td><td>3999.03</td><td class="red">-1.04%</td><td>3990.96（破4000）</td></tr>
+<tr><td>科创50</td><td>2009.24</td><td class="green">+0.66%</td><td>1950.98（V型反弹+3%）</td></tr>
+<tr><td>创业板指</td><td>3918.22</td><td class="red">-0.78%</td><td>3906.67</td></tr>
+</tbody>
+</table>
+
+<h3>持仓表现</h3>
+<table>
+<thead><tr><th>标的</th><th>收盘价</th><th>涨跌幅</th><th>日内低点</th><th>关键验证</th></tr></thead>
+<tbody>
+<tr><td><b>澜起科技</b></td><td>256.87</td><td class="red">-4.40%</td><td>255.00</td><td><span class="gold">精准打到早盘255支撑位</span></td></tr>
+<tr><td><b>汇绿生态</b></td><td>41.81</td><td class="red">-5.00%</td><td>41.39</td><td>跌穿42.50支撑</td></tr>
+<tr><td><b>罗博特科</b></td><td>487.30</td><td class="red">-1.42%</td><td>484.41</td><td>唯一翻红品种，最抗跌</td></tr>
+<tr><td><b>三祥新材</b></td><td>81.22</td><td class="red">-0.39%</td><td>79.20</td><td>S级抗跌确认</td></tr>
+<tr><td><b>兴森科技</b></td><td>42.88</td><td class="red">-5.32%</td><td>42.67</td><td>领跌全仓</td></tr>
+<tr><td><b>星环科技</b></td><td>101.92</td><td class="green">+0.62%</td><td>97.45</td><td><span class="green">唯一翻红</span></td></tr>
+<tr><td><b>华峰化学</b></td><td>10.74</td><td class="red">-3.42%</td><td>10.70</td><td>昨日+6.4%后正常回吐</td></tr>
+</tbody>
+</table>
+
+<h3>7月7日操作纪律总结</h3>
+<div class="card" style="font-size:13px;line-height:1.7">
+<b>• 澜起科技</b>：255元铁底确认。下午不破=强，底仓不动。275目标下调至268-270。<br>
+<b>• 三祥新材</b>：78元以下小仓试探，收盘81未触发。<br>
+<b>• 汇绿生态</b>：跌破42.50不补仓，等明天企稳。<br>
+<b>• 兴森科技</b>：领跌不恐慌，负成本利润仓安全垫厚。<br>
+<b>• 华峰化学</b>：业绩兑现后获利回吐，周期底仓不动。<br>
+<b>• 其余持仓</b>：持有不动。急跌时不动比乱动强。
+</div>
+
+<h3>箱体纪律（上证3999）</h3>
+<div class="alert-card" style="font-size:13px;line-height:1.7">
+<b>上证失守4000点，处于55日线下方。</b>当前箱体中枢4000，下沿3800-3850。<br>
+• 线上重仓，线下控仓<br>
+• 不追涨，急跌才买，反弹减一点<br>
+• 减少看盘次数，增加触发条件
+</div>
+
+<div class="last-word">
+12只持仓中11只逻辑未变，回撤是系统性压力非逻辑证伪。核心AI硬件链基本面均有正面进展。泰和新材已做深度校准从A+降至B+。新增三项研究（大摩报告/WorkBuddy算力链/财报前瞻日历）使框架更加完整。不恐慌，等拐点。
+</div>
+
+<div class="footer">
+<b>数据来源</b><br>
+Wind万得：美股/SOX/映射股行情、A股持仓实时数据<br>
+WeStock（腾讯自选股）：A股行情<br>
+华尔街见闻：大摩研报解读<br>
+快科技/路透社/财联社：新闻<br>
+<br>
+<b>免责声明</b><br>
+本资料由AI助手巴蒂生成，仅供老潘个人投研参考，不构成任何投资建议。市场有风险，决策需独立。
+</div>
+</body>
+</html>
