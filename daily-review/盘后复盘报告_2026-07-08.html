@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘 · 2026-07-08</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --card:#161b22; --text:#c9d1d9; --sub:#8b949e;
+  --accent:#58a6ff; --green:#3fb950; --orange:#d2991d; --red:#f85149;
+  --purple:#bc8cff; --teal:#56d4dd; --pink:#f778ba; --yellow:#e3b341;
+  --border:#30363d; --card-border:#21262d;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:var(--bg); color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  font-size:15px; line-height:1.7; padding:16px 18px 40px; max-width:800px; margin:0 auto;
+}
+h1 { font-size:22px; color:#f0f6fc; margin-bottom:4px; }
+h2 { font-size:17px; color:#f0f6fc; margin:20px 0 10px; border-left:3px solid var(--accent); padding-left:10px; }
+h3 { font-size:15px; color:var(--accent); margin:12px 0 6px; }
+.sub { font-size:12px; color:var(--sub); margin-bottom:12px; }
+
+/* Alert Box */
+.alert-box {
+  background:linear-gradient(135deg,rgba(248,81,73,0.12),rgba(248,81,73,0.04));
+  border:1px solid rgba(248,81,73,0.3); border-radius:8px; padding:14px 16px; margin-bottom:12px;
+}
+.alert-box .alert-title { color:var(--red); font-weight:700; font-size:15px; margin-bottom:4px; }
+.alert-box .alert-body { font-size:14px; color:var(--text); line-height:1.6; }
+
+/* Tags */
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 14px; }
+.tag { font-size:11px; padding:3px 10px; border-radius:4px; font-weight:600; letter-spacing:0.3px; }
+.tag-red { background:rgba(248,81,73,0.2); color:var(--red); border:1px solid rgba(248,81,73,0.3); }
+.tag-green { background:rgba(63,185,80,0.2); color:var(--green); border:1px solid rgba(63,185,80,0.3); }
+.tag-blue { background:rgba(88,166,255,0.2); color:var(--accent); border:1px solid rgba(88,166,255,0.3); }
+.tag-orange { background:rgba(210,153,29,0.2); color:var(--orange); border:1px solid rgba(210,153,29,0.3); }
+.tag-purple { background:rgba(188,140,255,0.2); color:var(--purple); border:1px solid rgba(188,140,255,0.3); }
+
+/* Cards */
+.card { background:var(--card); border:1px solid var(--card-border); border-radius:8px; padding:14px; margin-bottom:8px; }
+.card-header { font-size:14px; font-weight:600; color:#f0f6fc; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.card-body { font-size:14px; line-height:1.65; }
+.card .sub { font-size:11px; color:var(--sub); margin-top:4px; }
+
+/* Table */
+table { width:100%; border-collapse:collapse; margin:8px 0; font-size:13px; table-layout:fixed; }
+th { background:rgba(88,166,255,0.1); color:var(--accent); font-weight:600; padding:7px 6px; text-align:center; border-bottom:1px solid var(--border); font-size:12px; }
+td { padding:7px 6px; text-align:center; border-bottom:1px solid rgba(48,54,61,0.4); vertical-align:top; white-space:nowrap; min-width:60px; }
+td:first-child { white-space:nowrap; min-width:80px; text-align:left; font-weight:500; }
+.up { color:var(--red); } .dn { color:var(--green); }
+
+.chart-box { background:var(--card); border:1px solid var(--card-border); border-radius:8px; padding:10px; margin:10px 0; height:320px; }
+
+.source { font-size:11px; color:var(--sub); margin-top:2px; }
+.source::before { content:'来源：'; }
+
+.last-word {
+  margin-top:20px; padding:14px; background:linear-gradient(135deg,rgba(88,166,255,0.08),rgba(188,140,255,0.05));
+  border:1px solid var(--card-border); border-radius:8px; font-size:14px; line-height:1.7; color:var(--sub);
+}
+.last-word strong { color:var(--accent); }
+
+footer { margin-top:24px; padding-top:12px; border-top:1px solid var(--border); font-size:11px; color:#6e7681; text-align:center; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<h1>🌙 盘后复盘 · 2026-07-08</h1>
+<div class="sub">上证破4000回落 · 科创半日强反最终收红 · 算力链爆发vs化工重挫 · 德展逆势领涨+4.15%</div>
+<div class="sub">生成时间：2026-07-08 15:02 | 数据截至收盘</div>
+
+<!-- 🔥 Tags -->
+<div class="tags">
+  <span class="tag tag-red">算力租赁爆发</span>
+  <span class="tag tag-green">科创50独立收红+0.73%</span>
+  <span class="tag tag-blue">半导体探底回升</span>
+  <span class="tag tag-orange">化工重挫-3.44%</span>
+  <span class="tag tag-purple">ASIC 2027超GPU</span>
+  <span class="tag tag-red">中东局势升温</span>
+  <span class="tag tag-blue">数据港涨停</span>
+  <span class="tag tag-red">美股SOX-4.65%冲击</span>
+</div>
+
+<!-- Core Alert -->
+<div class="alert-box">
+  <div class="alert-title">⚠️ 核心警示</div>
+  <div class="alert-body">
+    <strong>昨夜美股SOX暴跌-4.65%冲击下，A股低开V反，算力链独立走强。</strong> 科创50盘中振幅5.85%，早盘一度跌超2%后直线翻红涨超3%，最终收+0.73%。<br>
+    <strong>但结构严重分化：</strong> 算力/AI服务器（数据港涨停、奥飞+5.83%、工业富联+3.50%）、软件（星环+3.08%）走强；化工全线重挫（华峰-6.18%、三祥-5.52%、泰和-5.48%）。<br>
+    <strong>美股映射压制仍在：</strong> SOX-4.65%且高盛定性为"丑陋的一天"，今夜若续跌，明日科技权重仍有低开压力。
+  </div>
+</div>
+
+<!-- Section 1: Global Market -->
+<h2>🌍 全球市场</h2>
+
+<h3>A股 | 指数冲高回落，科创独立收红</h3>
+<table>
+<thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>振幅</th><th>成交额(亿)</th></tr></thead>
+<tbody>
+<tr><td>上证指数</td><td>3,970.88</td><td class="dn">-0.49%</td><td>1.21%</td><td>11,924</td></tr>
+<tr><td>深证成指</td><td>14,939.73</td><td class="dn">-1.87%</td><td>2.53%</td><td>13,712</td></tr>
+<tr><td>创业板指</td><td>3,845.35</td><td class="dn">-1.70%</td><td>3.61%</td><td>6,518</td></tr>
+<tr><td>科创50</td><td>2,016.23</td><td class="up">+0.73%</td><td><strong>5.85%</strong></td><td>1,694</td></tr>
+<tr><td>沪深300</td><td>4,755.53</td><td class="dn">-0.77%</td><td>1.64%</td><td>7,832</td></tr>
+</tbody>
+</table>
+<div class="sub">早盘A股在SOX-4.65%冲击下集体低开逾1%，创业板一度跌超2%。随后半导体探底回升、算力租赁爆发，科创板直线拉升涨超3%。午后量能不足，三大指数回落收跌，仅科创50收红。（来源：NeoData, 2026-07-08）</div>
+
+<h3>亚太 | 港股科网强势反弹，恒科指+4.71%</h3>
+<table>
+<thead><tr><th>市场</th><th>表现</th></tr></thead>
+<tbody>
+<tr><td>恒生指数</td><td class="up">+2.85%，科网股午后走高，阿里+10%、快手+7%</td></tr>
+<tr><td>恒生科技</td><td class="up"><strong>+4.71%</strong>，恒科指领涨全球</td></tr>
+<tr><td>智谱</td><td class="up">+18%，解禁日获近七成基石表态长期持有</td></tr>
+<tr><td>日经225</td><td>同步承压（SOX映射)，存储链个股下跌</td></tr>
+</tbody>
+</table>
+<div class="sub">港股在A股半导体反弹+智谱解禁事件驱动下强势反弹，恒科指盘中涨超5%。但今早三星电子大跌-9%（营收略低于买方预期）对亚太存储链形成压力。（来源：NeoData, 2026-07-08）</div>
+
+<h3>美股（7月7日收盘）| SOX-4.65%重挫，高盛定性"丑陋的一天"</h3>
+<table>
+<thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+<tbody>
+<tr><td>道琼斯</td><td>52,925.15</td><td class="dn">-0.25%</td></tr>
+<tr><td>纳斯达克</td><td>25,818.69</td><td class="dn"><strong>-1.16%</strong></td></tr>
+<tr><td>标普500</td><td>7,503.85</td><td class="dn">-0.45%</td></tr>
+<tr><td>费城半导体(SOX)</td><td>—</td><td class="dn"><strong>-4.65%</strong></td></tr>
+<tr><td>英特尔</td><td>—</td><td class="dn">-9.66%</td></tr>
+<tr><td>西部数据</td><td>—</td><td class="dn">-7%</td></tr>
+<tr><td>ARM</td><td>—</td><td class="dn">-6%</td></tr>
+<tr><td>美光科技</td><td>—</td><td class="dn">-4.71%</td></tr>
+<tr><td>英伟达</td><td>—</td><td class="up">+0.71%</td></tr>
+</tbody>
+</table>
+<div class="sub">高盛交易台将7月7日定性为"丑陋的一天"——高贝塔动量因子单日重挫约6%，5日累计跌超20%，但强调尚未进入恐慌模式，散户盘中转为净买入，流入规模处近三年第90百分位。（来源：格隆汇/高盛, 2026-07-08）</div>
+
+<!-- ECharts: 持仓涨跌幅横柱 -->
+<div class="chart-box" id="chart-positions"></div>
+
+<!-- Section 2: Portfolio Review -->
+<h2>📋 持仓复盘</h2>
+<table>
+<thead><tr><th>名称/代码</th><th>收盘</th><th>涨跌幅</th><th>振幅</th><th>成交额(亿)</th><th>评级</th></tr></thead>
+<tbody>
+<tr><td>德展健康 000813</td><td>3.26</td><td class="up">+4.15%</td><td class="up">11.18%</td><td>1.93</td><td><span class="tag tag-green">领涨</span></td></tr>
+<tr><td>星环科技 688031</td><td>102.36</td><td class="up">+3.08%</td><td>5.56%</td><td>5.02</td><td>利润仓</td></tr>
+<tr><td>软通动力 301236</td><td>37.88</td><td class="up">+0.80%</td><td>4.84%</td><td>9.01</td><td>A级</td></tr>
+<tr><td>汇绿生态 001267</td><td>41.28</td><td class="dn">-0.79%</td><td class="up">8.65%</td><td>12.05</td><td><span class="tag tag-blue">S级·洗盘</span></td></tr>
+<tr><td>太钢不锈 000825</td><td>3.35</td><td class="dn">-1.18%</td><td>2.36%</td><td>0.72</td><td>防御</td></tr>
+<tr><td>罗博特科 300757</td><td>475.20</td><td class="dn">-2.42%</td><td>6.74%</td><td>22.38</td><td>A级</td></tr>
+<tr><td>澜起科技 688008</td><td>247.15</td><td class="dn">-2.39%</td><td>7.94%</td><td>128.23</td><td><span class="tag tag-purple">S级底仓</span></td></tr>
+<tr><td>兴森科技 002436</td><td>40.41</td><td class="dn">-4.31%</td><td>7.06%</td><td>35.44</td><td>利润仓</td></tr>
+<tr><td>泰和新材 002254</td><td>13.97</td><td class="dn">-5.48%</td><td>6.77%</td><td>5.89</td><td>B+级</td></tr>
+<tr><td>三祥新材 603663</td><td>76.23</td><td class="dn">-5.52%</td><td>7.56%</td><td>8.63</td><td><span class="tag tag-purple">S级·纪律坚守</span></td></tr>
+<tr><td>华峰化学 002064</td><td>10.18</td><td class="dn"><strong>-6.18%</strong></td><td>6.36%</td><td>4.79</td><td>防御</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+  <div class="card-header">📌 持仓要点</div>
+  <div class="card-body">
+    <strong>✅ 德展健康 +4.15% 领涨：</strong> 量比1.56明显放量，振幅11.18%盘中最高触及涨停价3.43元，尾盘回落至3.26。防御品种在科技分化日获短线资金关注。化工全线承压大环境下，德展作为医药防御品种反而受益。（来源：NeoData）<br><br>
+    <strong>✅ 星环科技 +3.08% 软件板块共振：</strong> 软件板块今日+1.92%，星环涨4天以来首次放量站上102元。计算机板块获主力净流入，逻辑上属于"算力链溢出效应"——算力基建→软件应用传导。（来源：NeoData）<br><br>
+    <strong>⚠️ 汇绿生态 -0.79% 振幅8.65%：</strong> 老潘昨日分析的洗盘特征今天继续验证。开盘冲高43.18后回落，最低39.58近乎触及前低，午后回升至41.28收窄跌幅。量比0.99接近平量，说明不是恐慌出逃，是正常的筹码交换行为。（来源：NeoData）<br><br>
+    <strong>⚠️ 三祥新材 -5.52%（收76.23）：</strong> 化工板块整体重挫-3.44%，三祥同步回调。距55日线支撑约70元还有约8%空间。当前市值≈323亿，距离老潘定下的500亿门槛还有55%空间。S级纪律：逻辑未破（固态电池/半导体锆铪/核能锆三条线均无负面变化），静候修复。（来源：NeoData）<br><br>
+    <strong>⚠️ 华峰化学 -6.18% 跌幅居首：</strong> 化工全线重挫领跌A股，华峰作为周期化工品种跌幅最大。量比0.54缩量下跌，若无基本面利空（预告7月15日前），大概率是板块系统性能量释放。H1预告净利润20亿+，PE 25x在化工中不算贵。（来源：NeoData）
+  </div>
+</div>
+
+<!-- Section 3: Tracking Pool -->
+<h2>🔭 跟踪池异动</h2>
+<table>
+<thead><tr><th>名称/代码</th><th>收盘</th><th>涨跌幅</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>数据港 603881</td><td>24.21</td><td class="up"><strong>+10.00%</strong></td><td>💰 涨停！算力租赁龙头，腾讯AI算力核心受益</td></tr>
+<tr><td>奥飞数据 300738</td><td>20.33</td><td class="up"><strong>+5.83%</strong></td><td>算力租赁+华南智算中心EPC</td></tr>
+<tr><td>利通电子 603629</td><td>115.37</td><td class="up">+3.87%</td><td>腾讯50亿算力订单弹性品种</td></tr>
+<tr><td>工业富联 601138</td><td>66.01</td><td class="up">+3.50%</td><td>AI服务器，量比1.28放量反弹</td></tr>
+<tr><td>华丰科技 688629</td><td>205.98</td><td class="up">+3.30%</td><td>电连接器，溢价预喜后低位修复</td></tr>
+<tr><td>炬芯科技 688049</td><td>44.18</td><td class="up">+0.91%</td><td>端侧AI SoC，量比1.27</td></tr>
+<tr><td>中际旭创 300308</td><td>1,128.35</td><td class="up">+0.57%</td><td>光模块龙头，量比1.04</td></tr>
+<tr><td>海光信息 688041</td><td>343.00</td><td class="up">+0.12%</td><td>大摩首次覆盖，国产CPU对标</td></tr>
+<tr><td>恒逸石化 000703</td><td>13.72</td><td class="dn">-2.70%</td><td>化工拖累</td></tr>
+<tr><td>滨化股份 601678</td><td>5.74</td><td class="dn">-3.37%</td><td>化工拖累</td></tr>
+<tr><td>中远海能 600026</td><td>15.83</td><td class="dn">-3.53%</td><td>油运调整中</td></tr>
+<tr><td>欧林生物 688319</td><td>39.36</td><td class="dn">-5.38%</td><td>医药板块拖累</td></tr>
+<tr><td>中工国际 002051</td><td>9.00</td><td class="dn"><strong>-9.55%</strong></td><td>⚡ 大跌！国防工程板块-2.37%，量比0.88</td></tr>
+</tbody>
+</table>
+<div class="sub">（来源：NeoData, 2026-07-08 收盘）</div>
+
+<div class="card" style="border-left:3px solid var(--accent);">
+  <div class="card-header">💡 跟踪池核心看点</div>
+  <div class="card-body">
+    <strong>数据港涨停验证算力租赁逻辑：</strong> 作为腾讯长三角AI算力枢纽独家运营，今日随算力赛道全面爆发封板涨停。云计算板块主力净流入+12.54亿，算力租赁净流入+8.96亿。昨晚巴蒂在复盘V2报告中刚标注的跟踪池，今日即获涨停验证。（来源：NeoData）<br><br>
+    <strong>ASIC时代确认开启：</strong> 摩根大通预计2027年ASIC出货量1250万颗（占比53%），首超GPU的1090万颗。这对国产算力链（海光、寒武纪）是结构性利好。（来源：NeoData自建资讯, 2026-07-08）
+  </div>
+</div>
+
+<!-- ECharts: 板块资金流向 -->
+<div class="chart-box" id="chart-flow"></div>
+
+<!-- Section 4: Key News -->
+<h2>📰 今日要闻</h2>
+
+<div class="card">
+  <div class="card-header">🧠 半导体系列</div>
+  <div class="card-body">
+    <strong>① 半导体探底回升，科创50半日涨超3%</strong><br>
+    早盘在SOX-4.65%冲击下跌超2%，随后算力租赁+半导体设备拉动V反。中科飞测+14%，华虹宏力+10%，灿芯股份20cm涨停。美银证券明确表态："半导体类股回调属于正常市场修正，非AI需求转弱信号"。（来源：中国基金报/NeoData, 2026-07-08）<br><br>
+    <strong>② 摩根大通：ASIC芯片2027年出货量首超GPU</strong><br>
+    2026年ASIC出货680万颗vs GPU 950万颗（占比42%）；2027年ASIC 1250万颗（53%）vs GPU 1090万颗。国产ASIC链（海光、寒武纪）中长期受益。（来源：NeoData, 2026-07-08）<br><br>
+    <strong>③ 英伟达否认Kyber延迟：路线图不变</strong><br>
+    回应SemiAnalysis关于PCB制造问题致延期一年的报道，称产品路线图保持不变。Kyber采用144颗Rubin Ultra垂直机架，对PCB/CPO要求极高。（来源：NeoData, 2026-07-08）
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🔥 算力链主线</div>
+  <div class="card-body">
+    <strong>④ 算力租赁全线爆发，深信服/网宿科技20cm涨停</strong><br>
+    网宿科技+20%、深信服+20%、浪潮信息+10%、数据港+10%、恒为科技+10%，云计算板块主力净流入+12.54亿。银河证券：算力租赁从"卖资源"向"MaaS卖Token"模式演变。（来源：中国基金报/NeoData, 2026-07-08）<br><br>
+    <strong>⑤ 发改委披露AI"十五五"五大思路</strong><br>
+    自主创新、应用牵引、生态协同、开放共赢、安全可控。国产算力链政策背书再加一层。（来源：NeoData, 2026-07-08）
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🌍 宏观与地缘</div>
+  <div class="card-body">
+    <strong>⑥ 中东局势骤紧：美军打击伊朗，油价大涨</strong><br>
+    美中央司令部7月7日表示对伊朗发动打击，回应伊方袭击商业航运。WTI原油+2.76%至70.44美元，油气板块大涨。这一事件与化工板块大跌形成对照——油气涨≠化工涨，化工当前更多受内部供需周期影响。（来源：新华社/NeoData, 2026-07-08）<br><br>
+    <strong>⑦ 高盛：美股动量股遭凶猛抛售，但尚未恐慌</strong><br>
+    高贝塔动量因子单日重挫6%，5日跌超20%。但高盛强调"尚未看到恐慌模式"，散户盘中转净买入，净流入规模处近三年第90百分位。（来源：高盛/NeoData, 2026-07-08）
+  </div>
+</div>
+
+<!-- Section 5: Operations -->
+<h2>📐 操作建议</h2>
+
+<div class="card">
+  <div class="card-body">
+    <strong>📌 今日关键词：分化日，静候修复</strong><br>
+    算力链和化工的"冰火两重天"是今日最显著的结构特征。老潘的持仓组合中，算力/软件方向品种（星环+3%、软通+0.8%）提供了对冲；化工方向（华峰-6.18%、三祥-5.52%、泰和-5.48%）拖累明显。<br><br>
+    <strong>推荐策略：</strong>
+    <ul style="margin:6px 0 0 20px; padding:0;">
+      <li><strong>S级三祥（603663）→ 忍耐日：</strong> 今日-5.52%收76.23，跌破80整数关。但化工板块系统性回调，个股层面无增量利空。距离55日线支撑（约70元）还有8%。老潘硬纪律：500亿市值前不减仓。不动。</li>
+      <li><strong>S级澜起（688008）→ 忍耐日：</strong> -2.39%收247.15，盘中低点240逼近前低。SOX-4.65%冲击叠加SK海力士-9%情绪传导。但美银定性"正常修正非逻辑破"。底仓不动。</li>
+      <li><strong>S级汇绿（001267）→ 观察日：</strong> 振幅8.65%洗盘特征明显，平量说明非恐慌。关注今夜Coherent/Lumentum股价方向，若美股光通信修复，明日汇绿有望收阳。</li>
+      <li><strong>防御端：</strong> 德展+4.15%走高，华峰-6.18%急跌。华峰H1预告20亿+利润有基本面支撑，缩量急跌通常不是卖点。关注7月15日前业绩预告。</li>
+      <li><strong>跟踪池关注：</strong> 数据港涨停后如明天继续封板，算力链情绪扩散可能推动奥飞、利通。但追高需谨慎。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Last Word -->
+<div class="last-word">
+  <strong>📝 巴蒂收评 · 2026-07-08</strong><br><br>
+  今日走势是典型的<strong>"外部冲击消化日"</strong>——SOX-4.65%的创伤+高盛"丑陋的一天"定性，换任何市场都够喝一壶。A股科创50能从-2%拉到+3%后收+0.73%，算力链涨停潮，说明<strong>国产替代叙事在美股暴跌时反而被强化了</strong>。<br><br>
+  但同时，化工全线溃败也提醒一件事：<strong>"景气度是动态的"</strong>。昨天华峰还有H1 20亿的闪光点，今天市场不管，先跌了再说。巴蒂的建议仍然是：把化工防御仓当成观测窗口，但不做情绪化减仓。真正的卖点是逻辑破，不是板块跌。<br><br>
+  <strong>今夜看点：</strong> 美联储6月会议纪要（沃什首次）将于今晚发布，关注其对通胀和利率路径的表态。若鹰派超预期，可能再次冲击科技股。同时关注SOX今夜能否企稳——如果SOX继续深跌，明日A股科技权重仍有低开压力。
+</div>
+
+<footer>
+  巴蒂投研 · 盘后复盘 V3.0（2026-07-08）<br>
+  所有数据来源已标注，非投资建议。投资有风险，决策须谨慎。<br>
+  在线查看：<a href="https://laopan2026.github.io/laopan-reports/" style="color:var(--accent);">laopan2026.github.io/laopan-reports/</a>
+</footer>
+
+<script>
+// Chart 1: 持仓涨跌幅横向柱状图
+(function(){
+  var c = echarts.init(document.getElementById('chart-positions'));
+  var names = ['德展健康','星环科技','软通动力','汇绿生态','太钢不锈','罗博特科','澜起科技','兴森科技','泰和新材','三祥新材','华峰化学'];
+  var vals  = [4.15, 3.08, 0.80, -0.79, -1.18, -2.42, -2.39, -4.31, -5.48, -5.52, -6.18];
+  var colors = vals.map(v => v >= 0 ? '#f85149' : '#3fb950');
+  c.setOption({
+    backgroundColor:'transparent',
+    grid:{left:90, right:20, top:55, bottom:30},
+    title:{text:'📊 持仓涨跌幅排行(%)', textStyle:{color:'#f0f6fc',fontSize:14}, left:'center', top:6},
+    xAxis:{type:'value', axisLabel:{color:'#8b949e',fontSize:11}, splitLine:{lineStyle:{color:'rgba(48,54,61,0.3)'}}},
+    yAxis:{type:'category', data:names.reverse(), axisLabel:{color:'#c9d1d9',fontSize:11}},
+    series:[{
+      type:'bar', data:vals.reverse().map((v,i)=>({value:v, itemStyle:{color:colors[vals.length-1-i]}})),
+      barWidth:12, label:{show:true, position:'right', color:'#c9d1d9', fontSize:11, formatter:'{c}%'}
+    }],
+    tooltip:{trigger:'item', backgroundColor:'#161b22', borderColor:'#30363d', textStyle:{color:'#c9d1d9',fontSize:12}}
+  });
+  window.addEventListener('resize',()=>c.resize());
+})();
+
+// Chart 2: 板块资金流向
+(function(){
+  var c = echarts.init(document.getElementById('chart-flow'));
+  c.setOption({
+    backgroundColor:'transparent',
+    grid:{left:90, right:20, top:55, bottom:30},
+    title:{text:'💸 今日板块资金流向（主力净流入，万元）', textStyle:{color:'#f0f6fc',fontSize:14}, left:'center', top:6},
+    xAxis:{type:'value', axisLabel:{color:'#8b949e',fontSize:11}, splitLine:{lineStyle:{color:'rgba(48,54,61,0.3)'}}},
+    yAxis:{
+      type:'category',
+      data:['云计算','网络安全','算力租赁','光通信','基础化工','半导体'],
+      axisLabel:{color:'#c9d1d9',fontSize:11}
+    },
+    series:[{
+      type:'bar',
+      data:[
+        {value:1254109.68, itemStyle:{color:'#f85149'}},
+        {value:917571.59, itemStyle:{color:'#f85149'}},
+        {value:895957.47, itemStyle:{color:'#f85149'}},
+        {value:-3105997.84, itemStyle:{color:'#3fb950'}},
+        {value:-6562090.93, itemStyle:{color:'#3fb950'}},
+        {value:-11530546.05, itemStyle:{color:'#3fb950'}}
+      ],
+      barWidth:12,
+      label:{
+        show:true, position:'right', color:'#c9d1d9', fontSize:11,
+        formatter:function(p){ return (p.value/10000).toFixed(1)+'亿'; }
+      }
+    }],
+    tooltip:{
+      trigger:'item', backgroundColor:'#161b22', borderColor:'#30363d', textStyle:{color:'#c9d1d9',fontSize:12},
+      formatter:function(p){
+        var v = Math.abs(p.value);
+        return p.name+'<br>主力净流入：'+(p.value > 0 ? '+' : '-')+(v/10000).toFixed(2)+'亿';
+      }
+    }
+  });
+  window.addEventListener('resize',()=>c.resize());
+})();
+</script>
+
+</body>
+</html>
