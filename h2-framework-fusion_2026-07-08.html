@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投研框架三件套·融合升级版 | 巴蒂投研</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117; --card:#161b22; --card2:#1c2330; --line:#283040;
+  --text:#e6edf3; --muted:#8b949e; --sub:#adbac7;
+  --red:#f85149; --green:#3fb950; --blue:#58a6ff; --orange:#f0883e;
+  --purple:#bc8cff; --cyan:#39d0d8; --yellow:#e3b341; --pink:#ff7b9c;
+  --teal:#2dd4bf; --lime:#a3e635; --gold:#d4a017; --rose:#e11d48;
+  --indigo:#818cf8; --sky:#38bdf8; --emerald:#34d399; --amber:#fbbf24;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif; font-size:15px; line-height:1.75; padding:24px 16px 60px; }
+.wrap { max-width:920px; margin:0 auto; }
+h1 { font-size:22px; line-height:1.4; margin-bottom:6px; letter-spacing:.5px; }
+h2 { font-size:17px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); color:var(--text); }
+h3 { font-size:15px; margin:16px 0 8px; color:var(--cyan); }
+p { margin:8px 0; color:var(--sub); }
+.sub { color:var(--muted); font-size:12px; }
+.muted { color:var(--muted); }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:8px; }
+.bull { background:rgba(63,185,80,.08); border:1px solid rgba(63,185,80,.35); border-radius:10px; padding:14px; margin-bottom:8px; }
+.bear { background:rgba(248,81,73,.08); border:1px solid rgba(248,81,73,.35); border-radius:10px; padding:14px; margin-bottom:8px; }
+.info { background:rgba(88,166,255,.08); border:1px solid rgba(88,166,255,.35); border-radius:10px; padding:14px; margin-bottom:8px; }
+.alert-card { background:rgba(240,136,62,.10); border:1px solid rgba(240,136,62,.40); border-radius:10px; padding:14px; margin-bottom:8px; }
+.core { background:linear-gradient(135deg,rgba(88,166,255,.12),rgba(188,140,255,.10)); border:1px solid rgba(88,166,255,.40); border-radius:12px; padding:18px; margin:16px 0; }
+.core .lbl { font-size:11px; color:var(--blue); letter-spacing:2px; font-weight:700; }
+.core .txt { font-size:16px; line-height:1.7; margin-top:6px; color:var(--text); font-weight:600; }
+.last-word { border-top:2px solid var(--purple); padding-top:14px; margin-top:24px; }
+.last-word .lbl { color:var(--purple); font-size:11px; letter-spacing:2px; font-weight:700; }
+table { width:100%; border-collapse:collapse; table-layout:fixed; margin:10px 0; font-size:13px; }
+th { background:var(--card2); color:var(--text); text-align:left; padding:7px 8px; font-size:12px; border-bottom:1px solid var(--line); }
+td { padding:7px 8px; border-bottom:1px solid var(--line); color:var(--sub); vertical-align:top; }
+td:first-child, th:first-child { white-space:nowrap; min-width:120px; color:var(--text); font-weight:600; }
+.tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:11px; margin:2px 3px 2px 0; font-weight:600; }
+.tag.r { background:rgba(248,81,73,.16); color:#ff9a93; }
+.tag.g { background:rgba(63,185,80,.16); color:#7ee787; }
+.tag.b { background:rgba(88,166,255,.16); color:#a3c8ff; }
+.tag.y { background:rgba(227,179,65,.16); color:#f0cd7a; }
+.tag.p { background:rgba(188,140,255,.16); color:#d3bcff; }
+.tag.c { background:rgba(57,208,216,.16); color:#7fe3e8; }
+.source-inline { font-size:11px; color:var(--muted); border-top:1px dashed var(--line); padding-top:6px; margin-top:8px; }
+.source-inline b { color:var(--cyan); }
+.chart { width:100%; height:380px; margin:14px 0; background:var(--card); border:1px solid var(--line); border-radius:10px; }
+.flow { display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin:12px 0; }
+.flow .step { flex:1; min-width:150px; background:var(--card2); border:1px solid var(--line); border-radius:8px; padding:10px; font-size:13px; }
+.flow .step .n { color:var(--blue); font-weight:700; font-size:12px; }
+.flow .arrow { display:flex; align-items:center; color:var(--muted); font-size:18px; }
+.grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:12px 0; }
+.grid3 .gcard { background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:12px; }
+.grid3 .gcard .gt { font-size:13px; font-weight:700; color:var(--text); margin-bottom:4px; }
+.grid3 .gcard .gs { font-size:12px; color:var(--muted); }
+@media(max-width:680px){ .grid3{ grid-template-columns:1fr; } .flow .arrow{ display:none; } }
+.footer { margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--muted); }
+.kpi { display:inline-block; background:var(--card2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; margin:4px 6px 4px 0; font-size:13px; }
+.kpi b { color:var(--yellow); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>🧭 投研框架三件套 · 融合升级版</h1>
+  <p class="sub">硅谷 AI 观察笔记 × 四因子主线推演法 × 持仓映射表 — 一套从「全球趋势 → 国产主线 → A股持仓」的可执行操作系统</p>
+
+  <div class="core">
+    <div class="lbl">CORE · 一句话定调</div>
+    <div class="txt">我们不是「在主线上找票」，而是在主线还没被市场喊出来时，就已经按框架卡在了最纯暴露的位置。三件套的融合，让「看多 AI」从一句口号变成可验证、可追踪、可纪律化的投研闭环。</div>
+  </div>
+
+  <!-- ============ 模块1：三件套架构总览 ============ -->
+  <h2>① 三件套架构总览：各自回答一个问题</h2>
+  <div class="grid3">
+    <div class="gcard">
+      <div class="gt">📕 件一 · 硅谷 AI 观察笔记</div>
+      <div class="gs">来源：YZ《Q2 硅谷 AI 观察笔记》2026-07-03<br>职能：回答「<b>全球 AI 产业往哪走</b>」——六大判断定调需求侧</div>
+    </div>
+    <div class="gcard">
+      <div class="gt">📗 件二 · 四因子主线推演法</div>
+      <div class="gs">来源：巴蒂推演 2026-07-08（融合老潘提问）<br>职能：回答「<b>国产主线是什么、怎么推出来</b>」——把全球判断落到 A股选线</div>
+    </div>
+    <div class="gcard">
+      <div class="gt">📘 件三 · 持仓映射表</div>
+      <div class="gs">来源：MEMORY 持仓映射 2026-07-04 起<br>职能：回答「<b>我们卡在主线哪个位置</b>」——个股卡位 + 美股映射链</div>
+    </div>
+  </div>
+  <div class="info">
+    <b>融合升级点</b>：三者并非并列摆放，而是<b>自上而下咬合的传导链</b>——硅谷判断提供「需求确定性」，四因子把它翻译成「国产主线」，持仓映射表再把主线落到「我们已持有的牌」。下一节用一张 sankey 图展示这条咬合关系。
+    <div class="source-inline">来源：巴蒂融合升级 · <b>2026-07-08</b> · 基于 MEMORY 三件套原始素材</div>
+  </div>
+
+  <!-- ============ 模块2：件一 硅谷六大判断 ============ -->
+  <h2>② 件一 · 硅谷 AI 观察笔记：六大判断 + A股映射</h2>
+  <table>
+    <tr><th style="white-space:nowrap;min-width:120px">判断</th><th>核心内容</th><th>A股映射含义</th></tr>
+    <tr><td>判断①</td><td>AGI 加速、Scaling law 未见顶，AI 自迭代 1–2 年内超人类研究员</td><td>算力需求是<b>长期刚性</b>，非周期波动 → 卖铲子逻辑可持续</td></tr>
+    <tr><td>判断②</td><td>Capex 不会放缓：美国大厂 2026 万亿美元、明年近两万亿，债权融资支撑多年</td><td>设备/材料/光通信订单有<b>多年可见度</b> → 估值有锚</td></tr>
+    <tr><td>判断③</td><td>「算力、存储、光、几乎所有 AI Semi 在相当长时间内都会一直缺」</td><td><b>供给侧稀缺</b>是定价核心 → 国产替代有价有量</td></tr>
+    <tr><td>判断④</td><td>模型格局：Anthropic 领先 / OpenAI 紧追 / Google 结构性掉队 / Meta 不掉牌</td><td>算力需求分散到多家 → 不押单一模型赢家，押<b>底层硬件</b></td></tr>
+    <tr><td>判断⑤</td><td>AI-native 组织取代碳基组织是不可逆的结构性趋势</td><td>企业级 AI 基建渗透率抬升 → 国产算力需求<b>内生增长</b></td></tr>
+    <tr><td>判断⑥</td><td>最确定 = 卖铲子的 AI 半导体，Capex 基建周期堪比房地产</td><td>结论级判断 → 我们的持仓正是「卖铲子」环节（材料/接口/光模块）</td></tr>
+  </table>
+  <div class="source-inline">来源：YZ《Q2 硅谷 AI 观察笔记》· <b>2026-07-03</b> · 引用自 reports/2026-07-04/硅谷AI观察笔记_持仓映射_2026-07-04.html</div>
+
+  <!-- ============ 模块3：件二 四因子推演 ============ -->
+  <h2>③ 件二 · 四因子主线推演法：主线是怎么「推」出来的</h2>
+  <p>方法不是「看今天涨什么」，而是反过来问：<b>未来 2–3 年确定性最高的增量需求来自哪里？</b> 用四个因子叠加筛选，找同时被最多因子命中的方向。</p>
+  <table>
+    <tr><th style="white-space:nowrap;min-width:120px">因子</th><th>回答的问题</th><th>在本主线的作用</th></tr>
+    <tr><td>① 外部约束</td><td>这件事「不得不做」吗？</td><td>美对华半导体设备/材料/EUV/EDA 层层加码 → 国产替代从「可选」变「必选」</td></tr>
+    <tr><td>② 内部政策</td><td>有资金/意志推动吗？</td><td>大基金三期（3440 亿）、举国体制、科创板融资 → 钱与优先级到位</td></tr>
+    <tr><td>③ 需求爆发</td><td>空间够大吗？</td><td>硅谷判断②：美国大厂 2026 万亿美元 Capex → 算力需求井喷</td></tr>
+    <tr><td>④ 业绩验证</td><td>真的发生了吗？</td><td>设备/材料公司营收利润高增，替代从概念进入订单期</td></tr>
+  </table>
+  <div class="alert-card">
+    <b>筛选规则</b>：一个方向<b>同时被 4 因子命中 = 主线</b>；只命中 1–2 个 = 支线 / 主题炒作。以下两条线均满命中 4 因子。
+  </div>
+  <h3>线一 · 半导体国产替代（设备 + 材料）</h3>
+  <div class="flow">
+    <div class="step"><span class="n">①约束</span><br>美制裁收紧，晶圆厂不敢用「随时断供」的进口设备/材料</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">②政策</span><br>大基金三期 + 政策强推国产验证导入</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">③需求</span><br>AI/汽车/工业拉动晶圆厂扩产</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">④验证</span><br>订单从「试样」变「批量」，份额向 30–50% 提升</div>
+  </div>
+  <h3>线二 · 国产算力</h3>
+  <div class="flow">
+    <div class="step"><span class="n">①约束</span><br>英伟达高端芯片受限，国内只能用国产卡（昇腾/寒武纪/海光）</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">②政策</span><br>互联网大厂+运营商+政府智算中心全力建国产算力</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">③需求</span><br>DeepSeek 等国产模型爆发，推理算力需求国产化</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">④验证</span><br>芯片→服务器→液冷→IDC 租赁全链订单真实</div>
+  </div>
+  <div class="source-inline">来源：巴蒂四因子推演法 · <b>2026-07-08</b> · 融合老潘「后期主线推演」提问与硅谷笔记判断②</div>
+
+  <!-- ============ 模块4：件三 持仓映射 ============ -->
+  <h2>④ 件三 · 持仓映射表：我们卡在主线的哪个位置</h2>
+  <table>
+    <tr><th style="white-space:nowrap;min-width:120px">主线环节</th><th>持仓 / 跟踪</th><th>卡位</th><th>美股映射</th></tr>
+    <tr><td>半导体材料<br>(最上游卡脖子)</td><td><span class="tag r">三祥新材 603663 · S级</span></td><td>锆铪分离，高 K 介质 / EUV 光刻胶核心</td><td>—</td></tr>
+    <tr><td>半导体芯片<br>(存储接口)</td><td><span class="tag r">澜起科技 688008 · S级</span></td><td>CXL / 内存接口，长期账户底仓</td><td>→ MRVL</td></tr>
+    <tr><td>AI 光模块</td><td><span class="tag r">汇绿生态 001267 · S级</span></td><td>Coherent JDM 主代工 + Lumentum 实锤 + 索尔思将合作</td><td>→ COHR / LITE</td></tr>
+    <tr><td>AI 硬件映射</td><td><span class="tag y">罗博特科 300757 · A级</span></td><td>MPO 自动化设备，ficonTEC 竞争地位</td><td>→ NVDA / MRVL</td></tr>
+    <tr><td>算力基建租赁</td><td><span class="tag b">数据港 / 奥飞 / 利通</span><br><span class="muted">(跟踪池)</span></td><td>腾讯算力枢纽 / 华南智算中心 / 算力租赁</td><td>—</td></tr>
+    <tr><td>软件 / 弹性</td><td><span class="tag p">软通动力 301236 · 标杆</span></td><td>核心浮盈标杆（曾 +418%）</td><td>—</td></tr>
+  </table>
+  <div class="source-inline">来源：MEMORY.md 持仓映射 + 持仓分级（2026-07-04 更新）+ 汇绿电话会增量（2026-07-08 · 顶级券商通信组）</div>
+
+  <!-- ============ 模块5：融合升级 三层咬合 ============ -->
+  <h2>⑤ 融合升级 · 三件套如何咬合（核心创新）</h2>
+  <div class="info">
+    <b>传导链（自上而下）</b>：<br>
+    硅谷判断③「AI Semi 一直缺」→ 四因子③「需求爆发」→ 国产主线（设备材料 + 算力）→ 四因子④「业绩验证」→ 持仓映射（三祥/澜起/汇绿/罗博 已卡位）。<br><br>
+    反过来看：<b>当市场终于喊出「后期主线 = 半导体国产替代 + 国产算力」时，我们早已在主线里</b>——这不是预判神准，而是框架咬合的必然结果。
+  </div>
+  <div id="sankey" class="chart"></div>
+  <div class="source-inline">图：三层咬合 sankey（主线 → 环节 → 个股）· 巴蒂融合升级 · 2026-07-08</div>
+
+  <!-- ============ 模块6：四因子命中度对比 ============ -->
+  <h2>⑥ 四因子命中度对比：为什么是这两条线，而非其他</h2>
+  <p>把若干候选方向放到四因子上打分（命中=1 / 部分=0.5 / 不命中=0），高下立判。</p>
+  <div id="bar" class="chart"></div>
+  <div class="source-inline">图：四因子命中度矩阵 · 评分基于巴蒂推演框架 · 2026-07-08 · 评分口径：约束/政策/需求/验证各 0–1</div>
+
+  <!-- ============ 模块7：核心观点重梳 ============ -->
+  <h2>⑦ 核心观点重梳（给老潘的 Actionable 结论）</h2>
+  <div class="bull">
+    <p><b>观点一 · 主线是筛出来的，不是猜出来的。</b> 四因子共振法给出客观筛选标准：只有同时命中外约束、内政策、需求爆发、业绩验证的方向才配叫「主线」。半导体国产替代与国产算力均满命中，这是逻辑硬度，不是情绪。</p>
+  </div>
+  <div class="bull">
+    <p><b>观点二 · 我们的持仓 = 主线的纯暴露，不是巧合。</b> 三祥（材料最上游）→ 澜起（接口芯片）→ 汇绿（光模块）→ 罗博（硬件映射），恰好覆盖「设备材料线 + 算力线」的关键卡位点。框架早在市场喊「主线」前就把我们送进了主线。</p>
+  </div>
+  <div class="bull">
+    <p><b>观点三 · 国产映射 = 硅谷判断的 A股落地版。</b> 硅谷说「卖铲子的 AI 半导体最确定」（判断⑥），A股对应就是材料/接口/光模块这些「铲子」环节——我们的持仓结构与该判断高度自洽。</p>
+  </div>
+  <div class="alert-card">
+    <p><b>观点四 · 估值已不便宜，对策是「底仓拿住、不追高」。</b> 半导体设备材料很多 PE 50–100 倍，国产算力概念更高。涨的是「预期」，跌的也是「预期」。最优解是：S 级底仓长拿主线，用「底仓吃主线 + 波段仓做弹性」的结构扛过估值波动，不在高位追涨。</p>
+  </div>
+  <div class="info">
+    <p><b>观点五 · 纪律锚已立，未来动作以门槛为界。</b></p>
+    <span class="kpi">三祥新材 <b>市值稳站 500 亿前不减仓</b></span>
+    <span class="kpi">澜起科技 <b>长期账户底仓不动</b></span>
+    <span class="kpi">汇绿生态 <b>中短期波段兑现回流</b></span>
+    <p class="muted" style="margin-top:6px">S级纪律（2026-07-08 老潘口授）：三祥 ≈79 元 / 336 亿 → 500 亿 ≈118 元（约 +49%）前只进不出；唯一卖出理由＝逻辑破 / 基本面恶化。</p>
+  </div>
+
+  <!-- ============ 模块8：风险与纪律 ============ -->
+  <h2>⑧ 风险红线与应对</h2>
+  <div class="bear">
+    <p><b>脆弱点一 · 制裁阶段性缓和。</b> 若中美关系缓和、设备/材料进口松动，国产替代叙事短期受冲击——但这改变的是节奏不是方向，底仓不受影响。</p>
+    <p><b>脆弱点二 · AI Capex 不及预期。</b> 硅谷判断「不会放缓」是预判非事实；若大厂 Capex 下修，双击变双杀。关注 7/29 SK海力士、8/26 NVIDIA 等映射股财报验证。</p>
+    <p><b>脆弱点三 · 估值消化不及预期。</b> 高 PE 需要业绩持续兑现来熨平，中报（三祥 8-22、汇绿待定）是第一个验证窗口。</p>
+  </div>
+  <div class="info">
+    <p><b>应对纪律（不变）</b>：S 级底仓（三祥 500 亿纪律、澜起长期不动）长拿主线；汇绿波段兑现回流；A 级（罗博）观察美股映射；跟踪池（数据港/奥飞/利通）作为算力链补充观察。所有简报/复盘严格按此口径给动作，不在门槛前提「减仓」。</p>
+  </div>
+
+  <!-- ============ 模块9：数据溯源与版本 ============ -->
+  <h2>⑨ 数据溯源与版本</h2>
+  <table>
+    <tr><th style="white-space:nowrap;min-width:120px">组件</th><th>来源</th><th>时间戳</th></tr>
+    <tr><td>硅谷六大判断</td><td>YZ《Q2 硅谷 AI 观察笔记》</td><td>2026-07-03</td></tr>
+    <tr><td>四因子推演法</td><td>巴蒂融合老潘提问推演</td><td>2026-07-08</td></tr>
+    <tr><td>持仓映射 / 分级</td><td>MEMORY.md 持仓分级 + 映射链</td><td>2026-07-04 起</td></tr>
+    <tr><td>汇绿客户增量</td><td>顶级券商通信组电话会（非公告口径）</td><td>2026-07-08</td></tr>
+    <tr><td>三祥减仓纪律</td><td>老潘口授（市值 500 亿门槛）</td><td>2026-07-08</td></tr>
+  </table>
+
+  <div class="last-word">
+    <div class="lbl">LAST WORD · 收尾定调</div>
+    <p style="color:var(--text);margin-top:6px">这套三件套融合后，投研从「看新闻─找票─拍脑袋」升级为「趋势定调→因子选线→持仓卡位→纪律兑现」的闭环。<b>我们不需要比市场更聪明，只需要比市场更早用对框架。</b> 下次盘前/盘后简报，凡涉及科技股回调或主线质疑，优先回查本框架判断是否为「假摔」。</p>
+  </div>
+
+  <div class="footer">
+    <p>版本 V1.0 · 融合升级版 · 2026-07-08 · 模板 HTML V3.0（暗底研报风）</p>
+    <p>免责声明：本报告为个人投研框架梳理，非投资建议。框架判断含主观推演，需以公告 / 财报 / 订单实质验证为准。持仓分级与操作纪律为老潘个人决策口径。</p>
+  </div>
+
+</div>
+
+<script>
+// ===== Sankey: 三层咬合传导链 =====
+(function(){
+  var chart = echarts.init(document.getElementById('sankey'));
+  var data = {
+    nodes: [
+      {name:'半导体国产替代', itemStyle:{color:'#58a6ff'}},
+      {name:'国产算力', itemStyle:{color:'#bc8cff'}},
+      {name:'半导体材料', itemStyle:{color:'#39d0d8'}},
+      {name:'半导体设备', itemStyle:{color:'#2dd4bf'}},
+      {name:'存储接口芯片', itemStyle:{color:'#38bdf8'}},
+      {name:'AI 光模块', itemStyle:{color:'#ff7b9c'}},
+      {name:'AI 硬件映射', itemStyle:{color:'#f0883e'}},
+      {name:'算力基建租赁', itemStyle:{color:'#e3b341'}},
+      {name:'三祥新材', itemStyle:{color:'#7ee787'}},
+      {name:'北方华创/中微(跟踪)', itemStyle:{color:'#8b949e'}},
+      {name:'澜起科技', itemStyle:{color:'#7ee787'}},
+      {name:'汇绿生态', itemStyle:{color:'#7ee787'}},
+      {name:'罗博特科', itemStyle:{color:'#a3e635'}},
+      {name:'数据港/奥飞/利通(跟踪)', itemStyle:{color:'#8b949e'}}
+    ],
+    links: [
+      {source:'半导体国产替代', target:'半导体材料', value:3},
+      {source:'半导体国产替代', target:'半导体设备', value:3},
+      {source:'半导体国产替代', target:'存储接口芯片', value:2},
+      {source:'国产算力', target:'AI 光模块', value:3},
+      {source:'国产算力', target:'AI 硬件映射', value:2},
+      {source:'国产算力', target:'算力基建租赁', value:2},
+      {source:'半导体材料', target:'三祥新材', value:3},
+      {source:'半导体设备', target:'北方华创/中微(跟踪)', value:3},
+      {source:'存储接口芯片', target:'澜起科技', value:2},
+      {source:'AI 光模块', target:'汇绿生态', value:3},
+      {source:'AI 硬件映射', target:'罗博特科', value:2},
+      {source:'算力基建租赁', target:'数据港/奥飞/利通(跟踪)', value:2}
+    ]
+  };
+  chart.setOption({
+    backgroundColor:'transparent',
+    title:{ text:'三件套咬合：主线 → 环节 → 个股', left:'center', top:6, textStyle:{color:'#e6edf3', fontSize:14} },
+    tooltip:{ trigger:'item', triggerOn:'mousemove', backgroundColor:'#161b22', borderColor:'#283040', textStyle:{color:'#e6edf3'} },
+    series:[{
+      type:'sankey',
+      left:'3%', right:'14%', top:48, bottom:20,
+      nodeWidth:14, nodeGap:9,
+      data:data.nodes,
+      links:data.links,
+      label:{ color:'#e6edf3', fontSize:11 },
+      lineStyle:{ color:'gradient', opacity:0.45, curveness:0.5 },
+      emphasis:{ focus:'adjacency' }
+    }]
+  });
+  window.addEventListener('resize', function(){ chart.resize(); });
+})();
+
+// ===== Bar: 四因子命中度矩阵 =====
+(function(){
+  var chart = echarts.init(document.getElementById('bar'));
+  var factors = ['外部约束','内部政策','需求爆发','业绩验证'];
+  var matrix = {
+    '半导体国产替代\n(设备材料)':[1,1,1,1],
+    '国产算力':[1,1,1,1],
+    '消费电子复苏':[0,0.5,0.5,0.5],
+    '周期化工':[0,0,0.5,0.5],
+    '创新药':[0,0.5,0,0.3]
+  };
+  var cats = Object.keys(matrix);
+  var sDef = factors.map(function(f, i){
+    return {
+      name: f, type:'bar',
+      itemStyle:{ color:['#f85149','#3fb950','#58a6ff','#e3b341'][i] },
+      data: cats.map(function(c){ return matrix[c][i]; })
+    };
+  });
+  chart.setOption({
+    backgroundColor:'transparent',
+    title:{ text:'候选方向 × 四因子命中度（命中=1 / 部分=0.5 / 不命中=0）', left:'center', top:6, textStyle:{color:'#e6edf3', fontSize:14} },
+    tooltip:{ trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'#161b22', borderColor:'#283040', textStyle:{color:'#e6edf3'} },
+    legend:{ top:30, right:0, textStyle:{color:'#8b949e', fontSize:12} },
+    grid:{ top:62, bottom:40, left:90, right:20 },
+    xAxis:{ type:'value', max:1, axisLabel:{color:'#8b949e'}, splitLine:{lineStyle:{color:'#283040'}} },
+    yAxis:{ type:'category', data:cats, axisLabel:{color:'#e6edf3', fontSize:11, lineHeight:14}, axisLine:{lineStyle:{color:'#283040'}} },
+    series: sDef
+  });
+  window.addEventListener('resize', function(){ chart.resize(); });
+})();
+</script>
+</body>
+</html>
