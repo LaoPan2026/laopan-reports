@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘 2026-07-08 · V3.0</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#c9d1d9;--text-dim:#8b949e;--red:#f85149;--green:#3fb950;--accent:#58a6ff;--warn:#d29922;--gold:#e6b450;--purple:#bc8cff;--rose:#e0558a;--surface-raise:#1c2128;--surface-dim:#0f1218}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);padding:20px;max-width:960px;margin:0 auto;line-height:1.65;font-size:14px}
+h1{font-size:22px;margin-bottom:4px;color:#f0f6fc}
+h2{font-size:17px;color:var(--accent);margin:24px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--border);font-weight:700}
+h3{font-size:14px;color:var(--text-dim);margin:14px 0 6px;font-weight:600}
+.sub{color:var(--text-dim);font-size:11px;margin-bottom:16px}
+
+/* 今日关键词标签行 */
+.keywords{margin:12px 0 16px;padding:10px 12px;background:var(--surface-raise);border:1px solid var(--border);border-radius:8px}
+.keywords .kw-label{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:1.5px;margin-right:10px;display:inline-block}
+.keywords .kw{display:inline-block;background:rgba(88,166,255,.12);color:var(--accent);padding:3px 10px;border-radius:20px;font-size:11px;margin:3px 4px 3px 0}
+.keywords .kw.hot{background:rgba(230,180,80,.18);color:var(--gold)}
+.keywords .kw.warn{background:rgba(248,81,73,.14);color:var(--red)}
+.keywords .kw.done{background:rgba(63,185,80,.14);color:var(--green)}
+
+.core-block{background:linear-gradient(135deg,rgba(230,180,80,.15),rgba(248,81,73,.08));border:1px solid rgba(230,180,80,.25);border-radius:8px;padding:16px;margin-bottom:12px}
+.core-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold);background:rgba(230,180,80,.18);padding:2px 8px;border-radius:3px;margin-bottom:6px}
+.core-text{font-size:15px;font-weight:600;line-height:1.8;color:#f0f6fc}
+.alert-card{background:rgba(224,85,138,.1);border:1px solid rgba(224,85,138,.3);border-radius:8px;padding:14px;margin-bottom:8px}
+.alert-card.info{background:linear-gradient(135deg,rgba(88,166,255,.1),rgba(188,140,255,.04));border:1px solid rgba(88,166,255,.25)}
+.red{color:var(--red)}.green{color:var(--green)}.warn{color:var(--warn)}.gold{color:var(--gold)}.purple{color:var(--purple)}
+.card,.bull,.info{border-radius:8px;padding:14px;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--border)}
+.bull{background:linear-gradient(135deg,rgba(63,185,80,.12),rgba(57,211,83,.06));border:1px solid rgba(63,185,80,.25)}
+.info{background:linear-gradient(135deg,rgba(88,166,255,.1),rgba(188,140,255,.04));border:1px solid rgba(88,166,255,.25)}
+table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;margin:8px 0}
+th{background:var(--surface-dim);color:var(--text-dim);padding:7px 8px;text-align:left;font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap;font-size:11px}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,.5);vertical-align:top}
+td:first-child,th:first-child{white-space:nowrap;min-width:100px}
+tr:hover{background:rgba(88,166,255,.04)}
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;margin:0 3px 3px 0}
+.tag-red{background:rgba(248,81,73,.18);color:var(--red)}.tag-green{background:rgba(63,185,80,.18);color:var(--green)}.tag-warn{background:rgba(210,153,34,.18);color:var(--warn)}.tag-gold{background:rgba(230,180,80,.18);color:var(--gold)}.tag-accent{background:rgba(88,166,255,.18);color:var(--accent)}.tag-rose{background:rgba(224,85,138,.18);color:var(--rose)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+.idx-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.idx-card .name{font-size:11px;color:var(--text-dim)}.idx-card .val{font-size:20px;font-weight:700;margin:3px 0}.idx-card .chg{font-size:11px}
+.reg-card{background:var(--surface-raise);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:12px;line-height:1.7}
+.reg-card .reg{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.advice-block{background:#1a1f2b;border-left:3px solid var(--accent);padding:12px 16px;margin:8px 0;border-radius:0 8px 8px 0;font-size:13px;line-height:1.7}
+.advice-block.bull{border-left-color:var(--green);background:#1a2b1f}.advice-block.hold{border-left-color:var(--warn);background:#1f1e1a}
+.advice-block.bear{border-left-color:var(--red);background:#2b1a1f}
+.footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--border);font-size:10px;color:var(--text-dim);line-height:1.6}
+.source-inline{font-size:10px;color:var(--text-dim);border-top:1px dashed var(--border);padding-top:4px;margin-top:6px}
+@media(max-width:640px){table{font-size:11px}.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<h1>盘后复盘 · 2026年7月8日（周三）</h1>
+<div class="sub">V3.0格式升级首版 · A股收盘15:00 CST · WeStock / Wind数据</div>
+
+<!-- V3.0新增：今日关键词标签行 -->
+<div class="keywords">
+  <span class="kw-label">🔥 今日关键词</span>
+  <span class="kw hot">软件领涨+3.94%</span>
+  <span class="kw hot">科创50+2.18%</span>
+  <span class="kw">大摩海光首评</span>
+  <span class="kw hot">国产算力主线</span>
+  <span class="kw warn">汇绿振幅8.65%</span>
+  <span class="kw done">三祥V1.2发布</span>
+  <span class="kw warn">华峰-6.18%买预期卖事实</span>
+  <span class="kw">泰和底背离加速跌</span>
+  <span class="kw">腾讯混元Hy3开源</span>
+  <span class="kw">ABF载板涨价</span>
+</div>
+
+<div class="core-block">
+  <div class="core-tag">今日核心</div>
+  <div class="core-text">科创50一枝独秀<span class="green">+2.18%</span>，从1961低点深V拉回，资金流向软件/IT服务（+3.94%）和国产算力链。上证微涨<span class="green">+0.12%</span>至3995收窄跌幅。大摩海光首评（超配/目标480元）激活国产算力叙事，与中午的软件板块拉升形成共振。但主线品种<span class="red">三祥-4.03%</span>、<span class="red">华峰-6.18%</span>进一步回调——市场在做高低切换，而非趋势反转。</div>
+</div>
+
+<!-- V3.0新增：三段式全球市场 -->
+<h2>一、全球市场 · 今日透视（V3.0三段式）</h2>
+<div class="grid3">
+  <div class="reg-card">
+    <div class="reg">🇨🇳 A股</div>
+    <p>上证 <b>3995</b> <span class="green">+0.12%</span> · 科创50 <b>2045</b> <span class="green">+2.18%</span> · 创业板 <span class="red">-0.68%</span></p>
+    <p>成交额 ~1.04万亿。资金净流入前三：IT服务（+4.67亿）、计算机设备（+2.48亿）、云计算（+11.6亿）。化工/材料承压流出。</p>
+    <p>盘面：软件板块全面启动，腾讯云概念<span class="green">+5.51%</span>，深信服+19.86%，绿盟科技涨停。半导体分化（+1.70%但主力净流出-7.8亿）。（来源：WeStock板块排名，2026-07-08）</p>
+  </div>
+  <div class="reg-card">
+    <div class="reg">🌏 亚太</div>
+    <p>昨夜三星电子约<span class="red">-7%</span>、SK海力士约<span class="red">-6%</span>，二季度强业绩（营业利润89.4万亿韩元+19倍）被兑现。韩KOSPI约-4.8%。</p>
+    <p>启示：存储/NAND上行已充分price in，对A股澜起（MRVL映射）情绪偏空。日经同步走弱。</p>
+    <p class="source-inline">来源：光大TMT晨报/MarketWatch，2026-07-07~08</p>
+  </div>
+  <div class="reg-card">
+    <div class="reg">🇺🇸 美股（7/7夜盘）</div>
+    <p>费城SOX <span class="red">-4.65%</span> · 纳指100 -1.85% · 标普 -0.48%。</p>
+    <p>映射影响：MRVL <span class="red">-7.45%</span> → 澜起 · COHR <span class="red">-4.55%</span> → 汇绿。10Y美债收益率升至4.55%。</p>
+    <p>今夜关注：AI/半导体拥挤交易继续降温。Meta+贝克休斯+戴尔相对抗跌。（来源：Wind，2026-07-07夜盘）</p>
+  </div>
+</div>
+
+<h2>二、持仓收盘表现</h2>
+<table>
+<thead><tr><th>标的</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>日内低点</th><th>振幅</th><th>成本参考</th><th>浮盈/亏</th></tr></thead>
+<tbody>
+<tr><td><b>澜起科技</b></td><td>688008</td><td>251.88</td><td class="red">-0.52%</td><td>240.01</td><td>7.94%</td><td>96.83</td><td class="green">+160%</td></tr>
+<tr><td><b>汇绿生态</b></td><td>001267</td><td>41.59</td><td class="red">-0.05%</td><td>39.58</td><td>8.65%</td><td>48.09</td><td class="red">-13.5%</td></tr>
+<tr><td><b>三祥新材</b></td><td>603663</td><td>77.43</td><td class="red">-4.03%</td><td>76.10</td><td>7.44%</td><td>18.18</td><td class="green">+326%</td></tr>
+<tr><td><b>罗博特科</b></td><td>300757</td><td>483.46</td><td class="red">-0.73%</td><td>473.00</td><td>6.74%</td><td>523.13</td><td class="red">-7.6%</td></tr>
+<tr><td><b>星环科技</b></td><td>688031</td><td>103.49</td><td class="green">+4.22%</td><td>98.28</td><td>5.56%</td><td>—</td><td class="green">利润仓</td></tr>
+<tr><td><b>软通动力</b></td><td>301236</td><td>38.10</td><td class="green">+1.38%</td><td>37.56</td><td>4.84%</td><td>7.36</td><td class="green">+418%</td></tr>
+<tr><td><b>兴森科技</b></td><td>002436</td><td>40.94</td><td class="red">-3.05%</td><td>40.30</td><td>7.06%</td><td>—</td><td class="green">利润仓</td></tr>
+<tr><td><b>华峰化学</b></td><td>002064</td><td>10.18</td><td class="red">-6.18%</td><td>10.16</td><td>6.08%</td><td>12.44</td><td class="red">-18.2%</td></tr>
+<tr><td><b>泰和新材</b></td><td>002254</td><td>14.01</td><td class="red">-5.21%</td><td>13.90</td><td>6.77%</td><td>13.36</td><td class="green">+4.9%</td></tr>
+<tr><td><b>德展健康</b></td><td>000813</td><td>3.26</td><td class="green">+4.15%</td><td>3.08</td><td>11.18%</td><td>3.84</td><td class="red">-15.1%</td></tr>
+<tr><td><b>太钢不锈</b></td><td>000825</td><td>3.36</td><td class="red">-0.88%</td><td>3.34</td><td>2.36%</td><td>5.74</td><td class="red">-41.5%</td></tr>
+</tbody>
+</table>
+
+<h2>三、今日关键事件</h2>
+
+<div class="card">
+  <p><b>1️⃣ 软件板块全面爆发 · 国产算力叙事激活</b></p>
+  <p>IT服务+3.94%，主力净流入+4.67亿。深信服+19.86%，绿盟科技+20%涨停。催化剂：大摩海光首次覆盖（超配/目标480元）+ 腾讯混元Hy3开源双重共振。大摩报告将海光重新定义为「CPU+GPU一体化算力平台」，而非单纯国产GPU对标，激活了从芯片→软件→云计算的整链。</p>
+  <p class="source-inline">来源：大行投研（转载大摩报告，2026-07-04）/ 腾讯混元开源公告（2026-07-06）/ WeStock板块排名</p>
+</div>
+
+<div class="card">
+  <p><b>2️⃣ 汇绿生态日内振幅8.65% · 洗盘信号</b></p>
+  <p>开42→急跌至39.58（-4.88%）→反弹至43.18→收41.59（-0.05%）。量比1.06正常，换手4.39%。盘中分时V型拉起站上均价线，老潘判断为「有资金有意而为增加振幅清洗浮筹」——该观察合理，需明后日是否站稳40确认有效性。汇绿亦受益午后软件板块修复情绪。</p>
+  <p class="source-inline">来源：WeStock分时数据 / 老潘盘口观察（2026-07-08 13:10）</p>
+</div>
+
+<div class="card">
+  <p><b>3️⃣ 三祥新材加速回调至77.43 · V1.2更新发布</b></p>
+  <p>三祥-4.03%至77.43，自6/23高点105.86已累计回撤-27%。距500亿市值门槛（≈118元）更远了一步。今日竞争格局段文字已校准为「全球电熔氧化锆产能第一」，新增全流程垂直整合护城河与营收规模偏小风险。基本面逻辑未破，回调是上涨中继而非趋势反转。</p>
+  <p class="source-inline">来源：三祥深度报告V1.2（2026-07-08）/ 抖音「最小股东」第538集三位一体框架</p>
+</div>
+
+<div class="card">
+  <p><b>4️⃣ 华峰化学业绩预增+71~112% · 股价反跌-6.18%</b></p>
+  <p>7/2公告半年利润16.8-20.8亿，Forward PE降至19倍。但股价连续阴跌今日加速-6.18%至10.18。经典「买预期卖事实」：从52周低点6.54→前高13.88已翻倍，利好兑现即出货。Forward PE 19倍+PB 1.84提供安全垫，静候估值修复。</p>
+  <p class="source-inline">来源：华峰化学业绩预告公告（2026-07-02）/ 巴蒂分析</p>
+</div>
+
+<div class="card">
+  <p><b>5️⃣ 泰和新材30分钟MACD底背离 · 但日内仍-5.21%</b></p>
+  <p>RSI(13)=18严重超卖，MACD底背离已成立，但收盘14.01（-5.21%）。技术信号在化工板块整体承压下暂时失效。B+级定位不变，不加仓，等待8/25中报验证。</p>
+  <p class="source-inline">来源：同花顺30分钟K线 / 巴蒂分析（2026-07-08）</p>
+</div>
+
+<div class="card">
+  <p><b>6️⃣ 海外要闻一览（光大TMT晨报摘要）</b></p>
+  <p>· Broadcom与Apple协议延至2031年，覆盖多代定制ASIC（来源：IBD/Barron's, 260706）<br>
+  · Intel Xeon 6/Xeon 8000系列涨价超1000美元（来源：Tom's Hardware, 260703）<br>
+  · ABF载板上修：大摩上调Unimicron毛利率假设至22.1%（来源：大摩, 260706）<br>
+  · AI电力融资：Bloom Energy框架扩至250亿美元（来源：IBD, 260701）<br>
+  · Meta评估出售闲置AI算力云业务（来源：Tom's Hardware, 260702-260707）</p>
+</div>
+
+<h2>四、明日预判与操作建议</h2>
+
+<div class="advice-block hold">
+  <b>🚀 三祥新材</b> · 今日回调至77.43，距500亿目标更远但纪律不变。S级底仓不动，唯一关注点：7月15日前是否补发业绩预告。
+</div>
+
+<div class="advice-block hold">
+  <b>🔄 汇绿生态</b> · 今日振幅8.65%洗盘信号积极。若明后日站稳40且未创新低，可判断洗盘有效。若跌破39.58，则洗盘失败，需重新评估。
+</div>
+
+<div class="advice-block hold">
+  <b>📌 澜起科技</b> · 盘中240.01低开但收盘251.88仅-0.52%，说明A股资金在国产算力叙事下开始承接。长期账户底仓不动。
+</div>
+
+<div class="advice-block hold">
+  <b>⏳ 华峰化学</b> · 业绩预增公告后连续下跌，Free PE 19倍不贵。防御仓位不需要在跌的时候卖，等估值修复。
+</div>
+
+<div class="advice-block bull">
+  <b>📈 星环科技</b> · 今日+4.22%跟涨软件板块，负成本利润仓无需操作。
+</div>
+
+<div class="risk-box" style="border:1px solid rgba(248,81,73,.25);border-radius:8px;padding:14px;background:rgba(248,81,73,.08)">
+  <b>⚠️ 7月15日前需关注：三祥是否补发业绩预告、持仓各标的中报披露安排</b>
+</div>
+
+<div class="footer">
+  <p>格式版本 V3.0（2026-07-08 升级：今日关键词标签行 + 三段式全球市场 + 来源固化） · 本报告为个人投研复盘，不构成投资建议。数据来源：WeStock / Wind MCP / 公开资讯。</p>
+</div>
+</body>
+</html>
