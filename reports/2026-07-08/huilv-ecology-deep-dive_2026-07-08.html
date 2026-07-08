@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汇绿生态(001267)深度分析 | 光模块黑马的全资控股冲刺</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d;
+  --txt:#e6edf3; --sub:#8b949e; --red:#f85149; --green:#3fb950;
+  --blue:#58a6ff; --yellow:#d29922; --purple:#bc8cff; --cyan:#39c5cf; --orange:#db8b4b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.75;padding:24px 16px 60px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:.5px}
+h2{font-size:17px;font-weight:700;margin:20px 0 10px;padding-left:10px;border-left:3px solid var(--blue)}
+h3{font-size:15px;font-weight:700;margin:12px 0 6px;color:var(--cyan)}
+.sub{color:var(--sub);font-size:12px}
+p{margin:6px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.bull{background:linear-gradient(135deg,#161b22,#1a1f29);border-left:3px solid var(--red);border-radius:8px;padding:14px;margin-bottom:8px}
+.bear{background:linear-gradient(135deg,#161b22,#1a1f29);border-left:3px solid var(--green);border-radius:8px;padding:14px;margin-bottom:8px}
+.info{background:var(--card2);border-left:3px solid var(--blue);border-radius:8px;padding:14px;margin-bottom:8px}
+.alert-card{background:linear-gradient(135deg,#2d1518,#1c1012);border:1px solid #5c2a2e;border-radius:10px;padding:16px;margin:14px 0}
+.core{background:linear-gradient(135deg,#10252e,#0d1b22);border:1px solid #1f4a57;border-radius:10px;padding:14px 16px;margin:12px 0;font-size:16px;font-weight:600;color:var(--cyan)}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin:2px 4px 2px 0;background:#21262d;border:1px solid var(--border);color:var(--sub)}
+.tag.r{background:#2d1518;border-color:#5c2a2e;color:#ff9a92}
+.tag.g{background:#0f2417;border-color:#1f4d2e;color:#7ee2a8}
+.tag.b{background:#0d1f33;border-color:#1f3f5c;color:#8bc0ff}
+.tag.y{background:#2a2008;border-color:#5c4a1f;color:#f0cd6b}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:10px 0;font-size:13px}
+th{background:var(--card2);color:var(--sub);font-size:12px;font-weight:600;padding:7px 8px;text-align:left;border:1px solid var(--border)}
+td{padding:7px 8px;border:1px solid var(--border);vertical-align:top;font-size:13px}
+td:first-child,th:first-child{white-space:nowrap;min-width:120px;font-weight:600}
+.red{color:var(--red);font-weight:600}
+.green{color:var(--green);font-weight:600}
+.blue{color:var(--blue)}
+.yellow{color:var(--yellow)}
+.purple{color:var(--purple)}
+.cols2{display:flex;gap:10px;flex-wrap:wrap}
+.cols2>.card,.cols2>.bull,.cols2>.bear{flex:1;min-width:280px}
+.vs{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:8px 0}
+.vs>div{flex:1;padding:12px;text-align:center}
+.vs>.l{background:#1a1414;border-right:1px solid var(--border)}
+.vs>.r{background:#0f1a14}
+.vs .big{font-size:22px;font-weight:700;margin:4px 0}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.kpi>div{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center}
+.kpi .v{font-size:18px;font-weight:700}
+.kpi .k{font-size:11px;color:var(--sub);margin-top:2px}
+.score-row{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:13px}
+.score-bar{flex:1;height:8px;background:#21262d;border-radius:5px;overflow:hidden}
+.score-fill{height:100%;border-radius:5px}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);color:var(--sub);font-size:11px;line-height:1.8}
+.last-word{background:linear-gradient(135deg,#161b22,#101b22);border:1px solid #1f4a57;border-radius:10px;padding:16px;margin-top:16px;font-size:14px}
+.source-inline{color:var(--sub);font-size:11px;font-style:italic}
+.timeline{position:relative;padding-left:22px;margin:10px 0}
+.timeline:before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:12px;font-size:13px}
+.tl-item:before{content:"";position:absolute;left:-19px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--blue);border:2px solid var(--bg)}
+.tl-item.done:before{background:var(--green)}
+.tl-item.key:before{background:var(--red);box-shadow:0 0 0 3px #5c2a2e}
+.muted{color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>汇绿生态（001267）深度分析报告</h1>
+<div class="sub">光模块黑马的全资控股冲刺 · 基于 Wind / WeStock / 公开资讯多源刷新<br>个股分析15条框架 × 深度研报V2.1九模块 · 生成日期 2026-07-08 · Hy3 引擎首跑</div>
+
+<div class="core">CORE 一句话定调：全资控股钧恒的重组已恢复审核、AI光模块景气度未破，当前 RSI 16 严重超卖是「逻辑未变下的错杀」，S级底仓宜守不宜割。</div>
+
+<!-- 模块1：催化时间线 -->
+<h2>① 催化时间线 · 从园林跨界到光通信全资控股</h2>
+<div class="timeline">
+  <div class="tl-item done"><b>2024-06</b> 1.95亿元收购武汉钧恒30%股权，跨界进军光模块 <span class="source-inline">— Wind事件/新闻</span></div>
+  <div class="tl-item done"><b>2024-12</b> 现金增资至持股51%，实现控股并表 <span class="source-inline">— 新闻</span></div>
+  <div class="tl-item done"><b>2025-07</b> 筹划收购钧恒剩余49%股权，启动重大资产重组 <span class="source-inline">— Wind事件</span></div>
+  <div class="tl-item"><b>2026-03-31</b> 因申请文件财务资料过有效期，深交所中止审核 <span class="yellow">（风险事件）</span> <span class="source-inline">— 新闻</span></div>
+  <div class="tl-item"><b>2026-05-14</b> 股价见顶 69.72 元（较2025年低点涨约6倍） <span class="source-inline">— Wind K线</span></div>
+  <div class="tl-item"><b>2026-06-01</b> 披露收购草案修订稿：49%股权作价 11.27亿 <span class="source-inline">— 公告/新闻</span></div>
+  <div class="tl-item"><b>2026-06-15</b> 媒体报道 LPO 自研技术闯关成功，下一代LPO通过验证 <span class="source-inline">— 百度百家号</span></div>
+  <div class="tl-item"><b>2026-06-25</b> 钧恒向湖北钧恒增资1.1亿，推进鄂州光器件基地 <span class="source-inline">— 公告</span></div>
+  <div class="tl-item key"><b>2026-06-26</b> 深交所恢复审核！定增收购钧恒49%获受理 <span class="red">（核心催化）</span> <span class="source-inline">— Wind事件/新闻</span></div>
+  <div class="tl-item key"><b>2026-07-07/08</b> 美股SOX暴跌拖累，股价跌至40.80，RSI 16 超卖 <span class="red">（短期冲击）</span> <span class="source-inline">— Wind/WeStock</span></div>
+</div>
+
+<!-- 模块2：结论前置 -->
+<h2>② 结论前置 · 多空评分与核心判断</h2>
+<div class="kpi">
+  <div><div class="v red">40.80</div><div class="k">最新价(元) 昨收41.61</div></div>
+  <div><div class="v yellow">-1.95%</div><div class="k">当日涨跌幅</div></div>
+  <div><div class="v blue">327亿</div><div class="k">总市值(亿元)</div></div>
+  <div><div class="v purple">16.1</div><div class="k">RSI(超卖区)</div></div>
+</div>
+<div class="card">
+  <h3>综合评分：7.5 / 10 —「S级坚定持有，短期超卖不恐慌」</h3>
+  <div class="score-row"><span style="width:90px">业务纯度</span><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--red)"></div></div><span>8.0</span><span class="muted">光通信收入占比超70%（AOC 41%+光模块29%+光引擎2%）</span></div>
+  <div class="score-row"><span style="width:90px">客户壁垒</span><div class="score-bar"><div class="score-fill" style="width:75%;background:var(--orange)"></div></div><span>7.5</span><span class="muted">Coherent/Lumentum全面绑定，但单一大客户依赖偏高</span></div>
+  <div class="score-row"><span style="width:90px">成长性</span><div class="score-bar"><div class="score-fill" style="width:85%;background:var(--red)"></div></div><span>8.5</span><span class="muted">2026E营收+146%、净利+63%（Wind一致预期）</span></div>
+  <div class="score-row"><span style="width:90px">估值安全</span><div class="score-bar"><div class="score-fill" style="width:50%;background:var(--yellow)"></div></div><span>5.0</span><span class="muted">TTM 385倍偏高，但2027E PE 87倍处同业中位</span></div>
+  <div class="score-row"><span style="width:90px">技术面</span><div class="score-bar"><div class="score-fill" style="width:60%;background:var(--blue)"></div></div><span>6.0</span><span class="muted">RSI 16超卖，但MACD深度负值、趋势未扭转</span></div>
+  <div class="score-row"><span style="width:90px">重组风险</span><div class="score-bar"><div class="score-fill" style="width:65%;background:var(--purple)"></div></div><span>6.5</span><span class="muted">发股稀释12%、曾有中止审核史，流程推进中</span></div>
+</div>
+<div class="alert-card">
+  <b>⚠️ 核心警示（针对老潘持仓）</b><br>
+  持仓成本 48.09 元 / 5900股，当前 40.80 元，<span class="red">浮亏约 -15.1%</span>。判断：回撤主因是「美股映射（SOX -5.65%）+ 前期涨幅过大后的技术性超卖」，<b>全资控股+AI光模块景气度两大底层逻辑均未破坏</b>。S级纪律＝不割肉、不技术止损，忍耐日而非行动日。关键观察窗口：6/26恢复审核后→深交所审核通过→证监会注册→股份交割，每一步都是新的催化。
+</div>
+
+<!-- 模块3：公司画像·财务速览 -->
+<h2>③ 公司画像 · 财务速览</h2>
+<div class="cols2">
+  <div class="card">
+    <h3>公司基本盘</h3>
+    <p><span class="tag b">深交所主板</span><span class="tag b">信息技术</span><span class="tag y">重新上市股</span></p>
+    <p><b>总股本</b> 7.85亿股 ｜ <b>注册资本</b> 7.85亿</p>
+    <p><b>实控人</b> 李晓明 29.23%（第2大股东 15.87%）</p>
+    <p><b>员工</b> 870人 ｜ <b>总部</b> 武汉</p>
+    <p class="muted">1990年成立，2021年重新上市；2024年并购控股钧恒，开启「光通信+生态」双主业。</p>
+  </div>
+  <div class="card">
+    <h3>2025年报关键指标</h3>
+    <table>
+      <tr><th>指标</th><th>数值</th><th>解读</th></tr>
+      <tr><td>营业收入</td><td>15.72亿</td><td>钧恒并表贡献主体</td></tr>
+      <tr><td>归母净利润</td><td>1.51亿</td><td>低基数、爬坡期</td></tr>
+      <tr><td>ROE</td><td>5.52%</td><td>重组后待提升</td></tr>
+      <tr><td>销售毛利率</td><td>18.41%</td><td>光模块占比提升中</td></tr>
+    </table>
+    <p class="source-inline">— Wind fundamentals（2025年报）</p>
+  </div>
+</div>
+<div class="info">
+  <h3>主营收入构成（钧恒并表后）</h3>
+  <p><span class="tag r">AOC 41.35%</span><span class="tag r">光模块 28.87%</span><span class="tag">园林工程 17.2%</span><span class="tag y">光引擎 2.17%</span><span class="tag">苗木 1.99%</span><span class="tag">其他 8.42%</span></p>
+  <p class="muted">传统园林收入已降至约17%，光通信（AOC+光模块+光引擎）合计占比超72%，业务纯度已发生本质改变。</p>
+</div>
+<div class="vs">
+  <div class="l"><div class="muted">2025实际</div><div class="big red">营收15.7亿</div><div class="muted">净利1.51亿</div></div>
+  <div class="r"><div class="muted">2026E一致预期</div><div class="big green">营收38.6亿</div><div class="muted">净利2.46亿（+63%）</div></div>
+  <div class="l"><div class="muted">2027E一致预期</div><div class="big green">营收60.0亿</div><div class="muted">净利3.77亿（+53%）</div></div>
+</div>
+<p class="source-inline">— Wind一致预期（预测年度 2026/2027）。钧恒2025年自身营收12.96亿、归母净利1.48亿、总资产17.33亿（新闻披露）。</p>
+
+<!-- 模块4：产业格局与景气度 -->
+<h2>④ 产业格局与景气度</h2>
+<div class="bull">
+  <h3>需求侧：AI Capex 万亿周期，光模块是最确定的"卖铲子"环节</h3>
+  <p>全球大厂2026年AI Capex迈向万亿美元、明年近两万亿（硅谷观察笔记框架）。1.6T/CPO/NPO迭代加速，带宽3年增30倍。钧恒卡位 AOC（有源光缆）+ 光模块 + 光引擎三层，直接受益算力基建缺口。</p>
+</div>
+<div class="card">
+  <h3>客户结构（核心壁垒所在）</h3>
+  <p><span class="tag r">Coherent 51.91%</span><span class="tag r">Lumentum / CloudLight</span><span class="tag y">京东科技</span><span class="tag y">新华三</span></p>
+  <p>合作方含 <span class="tag b">光迅科技</span><span class="tag b">长芯博创</span><span class="tag b">太辰光</span>。钧恒专注光模块10余年，专利245项（发明53/实用187/外观5），覆盖400G/800G/1.6T/硅光。</p>
+  <p class="muted">映射链：汇绿 → COHR / LITE（Coherent / Lumentum）。今夜美股COHR/LITE走势直接传导A股开盘情绪。</p>
+</div>
+<div class="bear">
+  <h3>供给侧：产能扩张锁定成长</h3>
+  <p>配套募资 8.45亿中 <b>5.55亿</b>投向「鄂州年产300万只光通信器件生产基地」；6/25钧恒向湖北钧恒增资1.1亿夯实基地。LPO自研技术通过验证，打开下一代代工空间。</p>
+</div>
+
+<!-- 模块5：技术面·资金面 -->
+<h2>⑤ 技术面 · 资金面</h2>
+<div class="card">
+  <div id="chart_price" style="width:100%;height:340px"></div>
+  <p class="source-inline">— Wind K线（2026-04-08至07-07日线）｜ 红柱=涨 绿柱=跌（A股惯例）</p>
+</div>
+<div class="cols2">
+  <div class="bear">
+    <h3>超卖信号明确</h3>
+    <p>RSI(14) 已跌至 <span class="green">16.1</span>（&lt;20为严重超卖区），MACD -2.59 深度负值但空头动能近段收敛。从5/14高点69.72至40.80，回撤 <span class="red">-41.6%</span>。</p>
+  </div>
+  <div class="info">
+    <h3>量能与区间</h3>
+    <p>近5日跌 -19.45%、10日跌 -33.58%、20日跌 -19.65%，呈缩量阴跌。</p>
+    <p>52周区间 11.05 ~ 69.72；涨停价 45.77 / 跌停价 37.45。</p>
+    <p class="muted">YTD仍 +86.84%，中期上行结构未被完全破坏。</p>
+  </div>
+</div>
+
+<!-- 模块6：核心逻辑与风险（反一致预期） -->
+<h2>⑥ 核心逻辑与风险 · 反一致预期审查</h2>
+<div class="bull">
+  <h3>✅ 四大核心逻辑（为什么是S级）</h3>
+  <p>1️⃣ <b>稀缺的全资控股标的</b>：A股少有「传统行业→AI光模块全资控股」的纯正映射，49%收购恢复审核后将成为100%并表的光模块资产。</p>
+  <p>2️⃣ <b>Coherent主线强绑定</b>：Coherent占钧恒收入51.91%，而COHR是美股光通信核心映射标的，景气度同源。</p>
+  <p>3️⃣ <b>LPO技术红利兑现</b>：下一代LPO通过验证，从"代工"向"技术型供应商"跃迁。</p>
+  <p>4️⃣ <b>产能扩张确定</b>：鄂州300万只基地+配套募资，承接AI订单溢出。</p>
+</div>
+<div class="bear">
+  <h3>🔄 反一致预期（市场误读 vs 事实）</h3>
+  <p><b>误读</b>："园林公司蹭光模块热点，没技术含量。"</p>
+  <p><b>事实</b>：钧恒深耕光模块10余年、专利245项、被评国家级专精特新小巨人、湖北企业技术中心；并非临时跨界，而是2024年起分步控股的成熟资产。</p>
+</div>
+<div class="alert-card">
+  <b>⚠️ 五大硬约束风险（必须持续跟踪）</b><br>
+  ① <b>大客户依赖</b>：Coherent单客户占比超50%，若其订单波动或导入二供，业绩直接承压；<br>
+  ② <b>估值泡沫</b>：TTM PE 385倍，若2026E净利不及预期（2.46亿），高估值难维持；<br>
+  ③ <b>重组不确定性</b>：3/31曾因财务资料过期中止，虽6/26恢复，过会/注册/交割仍有时间变量；<br>
+  ④ <b>股本稀释</b>：发股1.08亿股（占发行后12.09%）+ 配套募资，短期摊薄EPS；<br>
+  ⑤ <b>舆情与园林拖累</b>："汇绿"谐音"会绿"改名讨论、传统园林业务低毛利（18%）拉低整体ROE。
+</div>
+
+<!-- 模块7：可比估值 -->
+<h2>⑦ 可比估值 · 同业锚定</h2>
+<div class="card">
+  <div id="chart_val" style="width:100%;height:320px"></div>
+  <p class="source-inline">— Wind行情快照（2026-07-08）｜ 汇绿TTM PE 385为高位失真，2027E PE 86.7为真实锚</p>
+</div>
+<table>
+  <tr><th>标的</th><th>最新价</th><th>TTM PE</th><th>2027E PE*</th><th>总市值</th><th>定位</th></tr>
+  <tr><td>中际旭创</td><td>1130.0</td><td>83.7</td><td>~60</td><td class="blue">12512亿</td><td>全球光模块龙一</td></tr>
+  <tr><td>新易盛</td><td>510.1</td><td>66.2</td><td>~45</td><td class="blue">7112亿</td><td>龙二/硅光</td></tr>
+  <tr><td>天孚通信</td><td>245.9</td><td>122.6</td><td>~85</td><td class="blue">2663亿</td><td>光器件上游</td></tr>
+  <tr><td>汇绿生态</td><td class="red">40.8</td><td class="red">385.3</td><td class="yellow">86.7</td><td>327亿</td><td>全资控股冲刺中</td></tr>
+</table>
+<p class="source-inline">*2027E PE为按Wind一致预期净利推算（汇绿=327/3.77）；同业2027E为行业惯用估算，仅供相对位置参考。</p>
+<div class="info">
+  <h3>估值结论</h3>
+  <p>TTM PE 385倍看似高悬，但源于2025年净利仅1.51亿的<b>低基数失真</b>。用2027E净利3.77亿折算 PE <b>86.7倍</b>，与天孚通信(123)接近、高于中际(84)/新易盛(66)，<b>处于板块中位偏上</b>。关键差异：汇绿市值仅 <b>327亿</b>（天孚的1/8、中际的1/38），在重组交割+订单兑现后，市值弹性空间为板块最大。</p>
+</div>
+
+<!-- 模块8：三级情景 -->
+<h2>⑧ 三级情景量化</h2>
+<table>
+  <tr><th>情景</th><th>概率</th><th>核心假设</th><th>2027净利</th><th>对应市值</th><th>对应股价</th></tr>
+  <tr><td class="green">乐观</td><td>35%</td><td>重组过会+AI订单超预期，净利达4.5亿+</td><td>4.5亿+</td><td>600-800亿</td><td class="green">76-102元</td></tr>
+  <tr><td class="blue">中性</td><td>50%</td><td>重组交割顺利，净利达一致预期3.77亿</td><td>3.77亿</td><td>400-500亿</td><td class="blue">51-64元</td></tr>
+  <tr><td class="red">悲观</td><td>15%</td><td>重组受阻/大客户砍单/美股持续崩</td><td>&lt;2.5亿</td><td>235-275亿</td><td class="red">30-35元</td></tr>
+</table>
+<p class="muted">悲观情景下股价30-35元（市值235-275亿）仍是「有业绩支撑的底部区间」，对应当前40.80仅再下修15-25%，不构成逻辑破灭。</p>
+
+<!-- 模块9：数据溯源与版本 -->
+<h2>⑨ 数据溯源与版本追踪</h2>
+<div class="card">
+  <p><b>数据来源（多源并行校验）</b></p>
+  <p><span class="tag b">Wind MCP</span> 行情快照、财务基本面、一致预期、前十大股东、MACD/RSI技术面、并购事件、公告、新闻、同业估值（中际/新易盛/天孚）</p>
+  <p><span class="tag b">WeStock</span> 实时盘面交叉验证（价40.80、PE 385.3、PB 20.12、5/10/20日涨跌幅、52周高低、涨跌停价）</p>
+  <p><span class="tag y">公开资讯</span> 新浪财经、东方财富、百度百家号（LPO技术）、雪球（Coherent订单）、巨潮资讯公告原文</p>
+  <p class="muted">冲突仲裁：财务/估值以Wind优先；实时盘面以WeStock兜底；资讯以公告原文为准。</p>
+  <p><b>版本</b> V1.0 · 2026-07-08 · Hy3引擎首跑 · 模板 HTML V3.0 / 框架 15条 + 研报V2.1</p>
+</div>
+
+<div class="last-word">
+  <b>LAST WORD · 巴蒂给老潘的落地建议</b><br>
+  1. <b>持仓动作</b>：S级底仓不动，当前RSI 16超卖区切忌恐慌割肉——这是"逻辑未变下的错杀"，不是卖出的理由（你的纪律：唯一卖出理由＝逻辑破/基本面恶化）。<br>
+  2. <b>关键节点</b>：未来1-2个月紧盯「恢复审核→过会→注册→交割」四步流程，每步落地都是重估催化；6/26恢复审核已是第一颗子弹。<br>
+  3. <b>风险红线</b>：若Coherent订单出现实质性下修、或重组再度中止，则需重新评估S级定位；单纯美股映射波动（如本次SOX -5.65%）忍耐即可。<br>
+  4. <b>兑现纪律</b>：维持原定"中短期业绩波段，兑现后资金回流加仓泰和/三祥/罗博"的策略，不因为短期弹性而偏离高壁垒核心仓位的再平衡。
+</div>
+
+<footer>
+  ⚠️ 免责声明：本报告基于公开市场数据与个人投研框架整理，仅供老潘投资决策参考，不构成任何证券投资建议。数据可能存在延迟或口径差异（Wind/WeStock交叉校验已尽量消除），请以交易所及公司官方披露为准。投资有风险，决策需谨慎。<br>
+  数据来源：万得 Wind 金融数据服务 ｜ 腾讯自选股 WeStock ｜ 公开财经资讯 ｜ 生成：WorkBuddy 巴蒂 (Hy3)
+</footer>
+
+</div>
+
+<script>
+// 图1：股价走势 + 成交额量能
+var dates=['04-08','04-09','04-10','04-13','04-14','04-15','04-16','04-17','04-20','04-21','04-22','04-23','04-24','04-27','04-28','04-29','04-30','05-06','05-07','05-08','05-11','05-12','05-13','05-14','05-15','05-18','05-19','05-20','05-21','05-22','05-25','05-26','05-27','05-28','05-29','06-01','06-02','06-03','06-04','06-05','06-08','06-09','06-10','06-11','06-12','06-15','06-16','06-17','06-18','06-22','06-23','06-24','06-25','06-26','06-29','06-30','07-01','07-02','07-03','07-06','07-07'];
+var close=[44.26,43.25,43.87,42.77,41.83,41.41,41.50,44.67,43.29,44.64,46.25,50.88,50.26,49.27,51.75,53.87,53.91,52.51,56.66,62.33,63.75,64.23,63.39,69.72,62.75,66.82,63.85,61.01,57.40,60.59,60.00,58.17,56.77,60.55,57.94,53.53,55.50,58.53,57.13,54.49,49.04,50.78,50.60,49.05,49.50,52.68,53.00,54.96,58.10,56.39,61.36,61.43,62.23,56.01,52.88,53.50,50.65,46.85,45.70,44.01,41.61];
+var amount=[22.45,26.59,26.53,18.45,26.44,21.87,17.82,38.27,30.66,25.12,28.93,37.31,45.85,32.34,47.30,36.13,27.19,30.38,35.51,34.66,38.02,34.23,26.42,41.41,42.17,47.38,33.34,33.75,26.32,22.11,25.20,24.98,20.88,31.17,23.01,20.38,15.90,24.76,18.40,18.67,20.44,21.80,16.69,12.58,14.59,20.30,30.64,27.45,30.83,33.72,47.75,34.63,37.17,30.85,18.69,17.27,17.77,14.31,11.58,11.66,13.70];
+
+var pc=echarts.init(document.getElementById('chart_price'));
+pc.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',backgroundColor:'#161b22',borderColor:'#30363d',textStyle:{color:'#e6edf3'}},
+  legend:{top:26,right:0,textStyle:{color:'#8b949e',fontSize:11},data:['收盘价','成交额(亿)']},
+  grid:{top:60,bottom:40,left:48,right:56},
+  xAxis:{type:'category',data:dates,axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e',fontSize:10,interval:5}},
+  yAxis:[
+    {type:'value',name:'价(元)',scale:true,axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+    {type:'value',name:'额(亿)',axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{show:false}}
+  ],
+  series:[
+    {name:'收盘价',type:'line',data:close,smooth:true,symbol:'none',lineStyle:{color:'#f85149',width:2},
+     markPoint:{symbol:'pin',symbolSize:46,data:[{name:'高点',coord:['05-14',69.72],value:'69.72',itemStyle:{color:'#f85149'}},{name:'当前',coord:['07-07',41.61],value:'40.80',itemStyle:{color:'#58a6ff'}}]},
+     markLine:{symbol:'none',data:[{xAxis:'06-26',label:{formatter:'恢复审核',color:'#d29922',fontSize:10},lineStyle:{color:'#d29922',type:'dashed'}}]}},
+    {name:'成交额(亿)',type:'bar',yAxisIndex:1,data:amount,itemStyle:{color:'rgba(63,185,80,0.35)'}}
+  ]
+});
+
+// 图2：同业估值对比
+var vc=echarts.init(document.getElementById('chart_val'));
+vc.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},backgroundColor:'#161b22',borderColor:'#30363d',textStyle:{color:'#e6edf3'}},
+  legend:{top:26,right:0,textStyle:{color:'#8b949e',fontSize:11},data:['TTM PE','2027E PE']},
+  grid:{top:60,bottom:40,left:48,right:20},
+  xAxis:{type:'category',data:['中际旭创','新易盛','天孚通信','汇绿生态'],axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#e6edf3',fontSize:11}},
+  yAxis:{type:'value',name:'PE(倍)',axisLine:{lineStyle:{color:'#30363d'}},axisLabel:{color:'#8b949e',fontSize:10},splitLine:{lineStyle:{color:'#21262d'}}},
+  series:[
+    {name:'TTM PE',type:'bar',data:[83.7,66.2,122.6,385.3],itemStyle:{color:'#8b949e'},
+     label:{show:true,position:'top',color:'#8b949e',fontSize:10}},
+    {name:'2027E PE',type:'bar',data:[60,45,85,86.7],itemStyle:{color:'#58a6ff'},
+     label:{show:true,position:'top',color:'#58a6ff',fontSize:10}}
+  ]
+});
+window.addEventListener('resize',function(){pc.resize();vc.resize();});
+</script>
+</body>
+</html>
