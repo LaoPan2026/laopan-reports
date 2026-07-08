@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球存储2026 · 巴蒂提炼可适用观点</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117; --card:#161b22; --card2:#1c2230; --line:#30363d;
+  --text:#e6edf3; --sub:#9aa7b4; --dim:#6e7681;
+  --red:#f85149; --green:#3fb950; --blue:#58a6ff; --purple:#bc8cff;
+  --gold:#e3b341; --cyan:#39d0d8; --orange:#ff8c42; --pink:#ff7eb6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.75;padding:22px 16px 60px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:.3px}
+h2{font-size:17px;font-weight:700;margin:24px 0 10px;padding-left:10px;border-left:3px solid var(--blue)}
+h3{font-size:15px;font-weight:700;margin:14px 0 6px;color:var(--cyan)}
+.sub{font-size:12px;color:var(--dim);margin-bottom:14px}
+.tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:11px;margin:2px 4px 2px 0;background:var(--card2);color:var(--sub);border:1px solid var(--line)}
+.tag.core{background:rgba(227,179,65,.14);color:var(--gold);border-color:rgba(227,179,65,.4)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px}
+.bull{background:linear-gradient(180deg,rgba(63,185,80,.08),transparent);border:1px solid rgba(63,185,80,.35)}
+.bear{background:linear-gradient(180deg,rgba(248,81,73,.08),transparent);border:1px solid rgba(248,81,73,.35)}
+.info{background:linear-gradient(180deg,rgba(88,166,255,.07),transparent);border:1px solid rgba(88,166,255,.3)}
+.alert-card{background:linear-gradient(180deg,rgba(227,179,65,.10),transparent);border:1px solid rgba(227,179,65,.4);border-radius:10px;padding:14px;margin-bottom:10px}
+.core-box{background:linear-gradient(135deg,rgba(188,140,255,.12),rgba(88,166,255,.06));border:1px solid rgba(188,140,255,.45);border-radius:12px;padding:16px;margin:14px 0;font-size:15px;line-height:1.7}
+.core-box .lbl{font-size:11px;color:var(--purple);letter-spacing:2px;font-weight:700}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:8px 0;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 8px;vertical-align:top;text-align:left}
+th{background:var(--card2);color:var(--sub);font-size:12px;font-weight:600}
+td:first-child,th:first-child{white-space:nowrap;min-width:120px}
+.kw{font-weight:700;color:var(--gold)}
+.src{font-size:11px;color:var(--dim);font-style:italic}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.vs .col{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px}
+.vs .col h4{font-size:13px;margin-bottom:6px}
+.op-list{list-style:none}
+.op-list li{padding:9px 11px;border-radius:8px;margin-bottom:7px;background:var(--card);border-left:3px solid var(--blue);font-size:14px}
+.last-word{margin-top:18px;background:linear-gradient(135deg,rgba(63,185,80,.10),rgba(88,166,255,.05));border:1px solid rgba(63,185,80,.4);border-radius:12px;padding:16px;font-size:14px;line-height:1.7}
+.last-word .lbl{font-size:11px;color:var(--green);letter-spacing:2px;font-weight:700}
+.footer{margin-top:26px;font-size:11px;color:var(--dim);border-top:1px solid var(--line);padding-top:12px;line-height:1.6}
+.chart{width:100%;height:300px;margin:10px 0}
+@media(max-width:620px){.vs{grid-template-columns:1fr}body{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>全球存储 2026 · 巴蒂提炼可适用观点</h1>
+<div class="sub">源文件：起点财经 × 报告厅《全球存储 2026》（10篇深度+多空对质）｜ 数据截至 2026-07-02 收盘，更新 2026-07-03 ｜ 巴蒂提炼于 2026-07-08</div>
+
+<div>
+<span class="tag core">供给纪律造涨价</span><span class="tag core">四种生意分层</span><span class="tag core">周期PE陷阱</span><span class="tag">盯供给别盯需求</span><span class="tag">澜起=接口α</span><span class="tag">两存扩产=唯一硬风险</span>
+</div>
+
+<div class="core-box">
+<div class="lbl">CORE · 一句话定调</div>
+这份材料对老潘最有价值的不是"存储还能不能涨"，而是给了<strong>三把尺</strong>：① 分层（一个板块四种生意，毛利 4%~62% 跨 15 倍）、② 周期估值红线（禁静态 PE 平面横比）、③ 盯供给别盯需求。三把尺直接校准 H2 框架，并<strong>强化澜起作为接口层 α 标的的定位</strong>——但同步把"两存扩产"钉为唯一真实周期顶风险，必须纳入监测。
+</div>
+
+<!-- 模块1 核心结论 -->
+<h2>01 · 提炼的 7 条可适用观点</h2>
+<ul class="op-list">
+<li><strong>观点1｜涨价是供给纪律造的，不是需求爆发。</strong>三巨头把先进产能挪去做 HBM、常规颗粒供给收缩，合约价累计 4.4~4.8 倍。适用：把 H2 框架"供给侧支撑"从"需求爆发"叙事里摘出来，改为"供给约束＝定价权"。（来源：起点财经×报告厅, 2026-07-03）</li>
+<li><strong>观点2｜一个板块四种生意，毛利率 4%~62% 跨 15 倍。</strong>原厂赚周期弹性、设计赚代际卡位、模组赚库存 β、流通赚流水薄利。适用：澜起属最高层"接口设计"（62% 毛利断层第一），兴森属制造/载板层，不可一把尺量。（来源：同上, 2026-07-03）</li>
+<li><strong>观点3｜α 与 β 分野：有代际卡位的赚 α，只跟涨的吃 β。</strong>同设计层 Q1 净利普冉 +1260% vs 聚辰 -69%；澜起归母 +61% 但扣非仅 +20%（近四成靠投资收益）。适用：评估澜起须看扣非主业，投资收益不可外推。（来源：同上, 2026-07-03）</li>
+<li><strong>观点4｜两存（长鑫/长存）扩产是唯一硬风险（红）。</strong>CXMT 过会募 295 亿创科创板纪录、2026Q1 归母 247.6 亿；长存 294 层。这是真实周期顶风险，也是澜起"国产替代双击"的另一面。（来源：同上, 2026-07-03）</li>
+<li><strong>观点5｜周期股高点低 PE 是陷阱。</strong>海力士 2018 顶 PE 仅 2.54 是铁证；原厂/模组须用"周期位置 + PB 分位法"，禁静态 PE 横比。适用：澜起/兴森若 PE 低不可简单判便宜。（来源：同上, 2026-07-03）</li>
+<li><strong>观点6｜盯供给别盯需求。</strong>核心变量是三巨头供给纪律；三星 5-19 预警"2026 或供过于求"首触 A 股大跌，监控 capex 与产能分配领先需求一个身位。适用：盘前简报"美股映射冲击"前置监测三星/SK 海力士供给指引。（来源：同上, 2026-07-03）</li>
+<li><strong>观点7｜HBM 市占迁移：SK 海力士 59%→50%，三星 28% 补位。</strong>HBM 是供给收缩的抽水机，三星补位扩产反而利好供应链接口需求。适用：映射到澜起（→MRVL）的 DDR5/CXL/MRCD 增量逻辑不变。（来源：TrendForce 引用, 2026-07-03）</li>
+</ul>
+
+<!-- 模块2 一份账本 -->
+<h2>02 · 一份账本：多空共识底座</h2>
+<div class="vs">
+<div class="col bull">
+<h4>🔵 多头（JPM 27E TAM 1.3 万亿$）</h4>
+需求结构确已移动（服务器超手机成 DRAM 第一大下游 37.6%）、AI capex"更高更久"、原厂利润真金白银（美光 FY26Q3 营业利润率 80.4%）。三根柱子立得住——但把牛市上限当基准。
+</div>
+<div class="col bear">
+<h4>🔴 空头（存储收入 2-2.5 万亿$）</h4>
+质疑"需求端付不起"。7 条论点对权威数字重算：<span class="kw">4 黄 2 绿 1 红</span>。唯一硬论点（红）＝两存扩产冲击存量格局；其余多为口径旧、量级矛盾或虚构比例。
+</div>
+</div>
+<div class="alert-card">
+<strong>巴蒂判定：</strong>多空都认"存储收入要暴涨"，分歧只在"谁付得起、能否兑现"。所以裁判是<strong>四组买单方的可核验数字</strong>（需求结构 / 涨价传导上限 / AI capex 真实盘子 / 两存新增供给），而不是"涨价对不对"。——这条方法论本身，比任何多空结论都更值得老潘拿走。
+</div>
+
+<!-- 模块3 四种生意 -->
+<h2>03 · 一个板块四种生意（分层方法论）</h2>
+<div class="card">
+<p style="font-size:14px;color:var(--sub)">2025 年 A 股存储各层毛利率阶梯——同一"存储板块"实为四五种生意，平面横比即系统性误判。</p>
+<div id="chartBiz" class="chart"></div>
+<div class="src">数据来源：起点财经×报告厅《全球存储2026》，Wind 口径，截至 2026-07-02（来源：起点财经×报告厅, 2026-07-03）</div>
+</div>
+
+<table>
+<thead><tr><th>生意层</th><th>代表标的</th><th>毛利率</th><th>赚钱本质</th><th>老潘持仓对号</th></tr></thead>
+<tbody>
+<tr><td>接口/设计</td><td>澜起科技 / 聚辰</td><td>62% / 57%</td><td>代际卡位 α</td><td><span class="kw">澜起（S级底仓）</span>属此层，用设计层估值锚</td></tr>
+<tr><td>模组</td><td>江波龙</td><td>19%</td><td>库存 β（不可持续）</td><td>兴森偏制造/载板层，警惕低 PE 幻觉</td></tr>
+<tr><td>分销/流通</td><td>香农芯创</td><td>4%</td><td>流水薄利放大器</td><td>非老潘体系，不碰</td></tr>
+<tr><td>原厂</td><td>美光/海力士/长鑫</td><td>70%+</td><td>周期弹性</td><td>映射：MRVL/SK海力士→澜起</td></tr>
+</tbody>
+</table>
+<div class="info card">
+<strong>关键洞察：</strong>香农 352 亿营收的含金量，不如澜起 54.6 亿。营收虚胖（分销 4% 毛利）≠ 好生意。老潘"弃大票取弹性"的体系，天然应站在接口/设计层，而非模组/分销层。
+</div>
+
+<!-- 模块4 澜起专项 -->
+<h2>04 · 澜起科技专项：接口层 α 标的再确认与风险点</h2>
+<div class="card bull">
+<h3>✅ 再确认：接口层毛利断层第一</h3>
+<p style="font-size:14px">澜起毛利率 62% 居 A 股存储池断层第一，属"设计赚代际卡位"层——DDR5 渗透 + CXL + MRCD/MDB 是真实代际卡位，不是跟风 β。与 H2 框架"澜起→MRVL 映射、卖铲子最确定"完全咬合。<strong>长期底仓不动的纪律不被本文动摇。</strong></p>
+</div>
+<div class="card bear">
+<h3>⚠️ 风险点：扣非 α 含金量需复核</h3>
+<p style="font-size:14px">澜起 Q1 归母 +61% 但扣非仅 +20%，近四成靠投资收益。本文提示"涨价不普惠——有卡位赚 α，只跟涨吃 β"。<strong>操作含义：评估澜起须剔除投资收益看接口芯片主业景气度</strong>，不可把投资收益外推为成长斜率。</p>
+</div>
+<div class="card info">
+<h3>📌 双监测锚（新增至澜起持仓跟踪）</h3>
+<p style="font-size:14px">① <strong>长鑫产能释放节奏</strong>（CXMT 招股书一手源＞第三方估算）：长鑫自身也用澜起接口，是"国产替代双击"——利空估值（周期顶）、利好份额（供应链），须区分；② <strong>SK 海力士 7-29 财报前瞻</strong>（映射模块已设）：其 HBM 份额与供给指引直接定调澜起开盘情绪。</p>
+</div>
+
+<!-- 模块5 两存扩产 -->
+<h2>05 · 两存扩产：唯一硬风险的操作含义</h2>
+<div class="alert-card">
+<strong>空头 7 条中唯一的红（硬论点）：</strong>两存新增供给是真实周期顶风险。CXMT 过会募 295 亿（科创板纪录）、2026Q1 归母 247.6 亿；长存 294 层。量级属实。<br><br>
+<strong>巴蒂落到持仓：</strong>这与老潘"三祥减仓唯一理由＝逻辑破"形成<strong>对照框架</strong>——存储周期顶会冲击澜起估值，但澜起逻辑破的判定标准不是"存储跌"，而是"接口代际卡位被替代 / CXL 量产证伪"。两存扩产应设为<strong>估值监测变量</strong>，而非减仓触发条件。减仓触发仍锚定 S 级纪律（澜起长期底仓不动；三祥 500 亿门槛）。
+</div>
+
+<!-- 模块6 周期估值红线 -->
+<h2>06 · 周期估值红线：禁静态 PE 平面横比</h2>
+<table>
+<thead><tr><th>红线</th><th>铁证</th><th>老潘应用</th></tr></thead>
+<tbody>
+<tr><td>高点低 PE 是陷阱</td><td>海力士 2018 顶 PE 仅 2.54</td><td>澜起/兴森 PE 低 ≠ 便宜，改用 PB 分位 + 产能利用率 + 合约价方向</td></tr>
+<tr><td>合约价 ≠ 现货价</td><td>DDR4 现货一年 18 倍属现货口径，另计</td><td>判断原厂盈利看合约价（4.4~4.8 倍），不混用现货暴涨叙事</td></tr>
+<tr><td>分层不可平面比</td><td>模组 15-20% vs 接口 60%+ 是模式差异</td><td>澜起与江波龙不可横比，各自用本层估值尺</td></tr>
+<tr><td>两存数据分级</td><td>招股书＞审计＞第三方＞传闻</td><td>引长鑫数据须标一手源，混用即作废</td></tr>
+</tbody>
+</table>
+
+<!-- 模块7 H2共振 -->
+<h2>07 · 与 H2 投研框架的共振 / 张力</h2>
+<div class="vs">
+<div class="col bull">
+<h4>✅ 共振点</h4>
+• "供给纪律造涨价" ↔ H2"算力/存储/光持续紧缺"——供给侧视角一致，强化持有<br>
+• "盯供给别盯需求" ↔ H2"卖铲子最确定"——都指向供给侧定价权<br>
+• 接口层 α ↔ 持仓映射"澜起→MRVL"代际卡位逻辑
+</div>
+<div class="col bear">
+<h4>⚠️ 张力点（须并列）</h4>
+• 空头硬论点"两存扩产" ↔ H2"国产替代叙事"——同一硬币两面，不能只讲利好<br>
+• H2 称"持续紧缺"，本文示"三星预警 2026 或供过于求"——需把供给翻转设为情景压力测试
+</div>
+</div>
+<div class="info card" style="font-size:14px">
+<strong>巴蒂结论：</strong>本文不构成对 H2 框架的证伪，而是<strong>补上了供给侧的"反转触发器"</strong>。建议将"三星/SK 海力士供给指引 + 长鑫产能"写入 H2 框架的情景压力测试模块，作为"假摔 vs 真顶"的裁决开关。
+</div>
+
+<!-- 模块8 操作清单 -->
+<h2>08 · 落到持仓的操作清单</h2>
+<table>
+<thead><tr><th>持仓</th><th>分层定位</th><th>操作含义</th></tr></thead>
+<tbody>
+<tr><td>澜起科技（S级底仓）</td><td>接口设计层 α</td><td>维持不动；估值用 PB 分位法复核；剔除投资收益看扣非；设长鑫产能 + 7-29 SK海力士双监测锚</td></tr>
+<tr><td>兴森科技（利润仓）</td><td>制造/载板层</td><td>确认载板认证卡位真实性（α or β）；周期顶部警惕低 PE 幻觉，不追</td></tr>
+<tr><td>罗博特科（A级）</td><td>先进封装设备</td><td>HBM/CPO 产能扩张→设备订单，供给纪律下逻辑强化；维持观察</td></tr>
+<tr><td>三祥新材（S级）</td><td>新材料/固态</td><td>与存储弱相关；维持 500 亿市值前不减仓纪律</td></tr>
+<tr><td>汇绿生态（S级）</td><td>光模块</td><td>与存储弱相关；中短期波段，主看客户结构兑现</td></tr>
+<tr><td>江波龙等模组层</td><td>库存 β</td><td>过山车不可持续（2023 亏→2026Q1 超全年），不符合"真成长"体系，不新开仓</td></tr>
+</tbody>
+</table>
+
+<!-- 空头7条裁定 -->
+<h2>09 · 空头 7 条裁定可视化</h2>
+<div class="card">
+<div id="chartVerdict" class="chart"></div>
+<div class="src">裁定口径：🟢=前提失真/站不住 2条；🟡=部分成立需限定 4条；🔴=硬论点属实 1条（两存扩产）。来源：起点财经×报告厅, 2026-07-03</div>
+</div>
+
+<div class="last-word">
+<div class="lbl">LAST WORD · 收尾定调</div>
+这份《全球存储 2026》的本质，是教市场<strong>用四组可核验数字当裁判，而不是用情绪站队</strong>。对老潘而言，它把 H2 框架从"供给侧永远紧缺"的单向叙事，补成了"紧缺 + 反转触发器"的双向框架——这是更有韧性的持仓底座。澜起作为接口层 α 标的定位被本文强化，长期底仓不动；但"两存扩产"与"三星供给预警"必须成为澜起估值的常态化监测变量。一句话：<strong>逻辑更稳了，但眼睛要更尖了。</strong>
+</div>
+
+<div class="footer">
+数据来源标注：起点财经 × 报告厅《全球存储 2026》（2026-07-03 更新，行情截至 2026-07-02 收盘）；Wind（A股财务/估值）、TrendForce（合约价/HBM份额）、高盛/摩根大通（TAM谱系）、美光/SK海力士/三星 IR、CXMT 招股书（上交所披露）。空头 7 条为"市场流传测算（待核）"，非权威源，引用请标"市场流传的空头测算"。<br>
+⚠️ 风险提示：本报告基于公开信息整理，仅供老潘个人研究参考，不构成任何投资建议、不预测涨跌、不承诺收益。市场有风险，决策需谨慎。文中数据截至 2026-07-02，部分涨幅/回撤与最新盘面或有差异，框架结论不失效但须用最新价复核。
+</div>
+
+</div>
+
+<script>
+// 图1：四种生意毛利率阶梯
+var c1 = echarts.init(document.getElementById('chartBiz'));
+c1.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis', formatter:function(p){return p[0].name+'<br/>毛利率: '+p[0].value+'%';}},
+  grid:{left:70,right:24,top:30,bottom:40},
+  xAxis:{type:'category', data:['分销','模组','设计','接口'], axisLabel:{color:'#9aa7b4'}, axisLine:{lineStyle:{color:'#30363d'}}},
+  yAxis:{type:'value', name:'毛利率%', max:70, axisLabel:{color:'#9aa7b4'}, splitLine:{lineStyle:{color:'#21262d'}}, nameTextStyle:{color:'#9aa7b4'}},
+  series:[{
+    type:'bar', barWidth:'46%',
+    data:[
+      {value:4, itemStyle:{color:'#6e7681'}},
+      {value:19, itemStyle:{color:'#ff8c42'}},
+      {value:57, itemStyle:{color:'#58a6ff'}},
+      {value:62, itemStyle:{color:'#3fb950'}}
+    ],
+    label:{show:true, position:'top', color:'#e6edf3', formatter:'{c}%'},
+    markPoint:{data:[{coord:['接口',62], value:'澜起62%\n断层第一', label:{color:'#0d1117', fontSize:11}, itemStyle:{color:'#3fb950'}}]}
+  }]
+});
+
+// 图2：空头7条裁定
+var c2 = echarts.init(document.getElementById('chartVerdict'));
+c2.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'item'},
+  legend:{show:false},
+  grid:{left:60,right:24,top:26,bottom:40},
+  xAxis:{type:'value', max:7, axisLabel:{color:'#9aa7b4'}, splitLine:{lineStyle:{color:'#21262d'}}},
+  yAxis:{type:'category', data:['绿·失真','黄·部分成立','红·硬论点'], axisLabel:{color:'#9aa7b4'}, axisLine:{lineStyle:{color:'#30363d'}}},
+  series:[{
+    type:'bar', barWidth:'52%',
+    data:[
+      {value:2, itemStyle:{color:'#3fb950'}},
+      {value:4, itemStyle:{color:'#e3b341'}},
+      {value:1, itemStyle:{color:'#f85149'}}
+    ],
+    label:{show:true, position:'right', color:'#e6edf3', formatter:'{c} 条'}
+  }]
+});
+window.addEventListener('resize', function(){c1.resize();c2.resize();});
+</script>
+</body>
+</html>
