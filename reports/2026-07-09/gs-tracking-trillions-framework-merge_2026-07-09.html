@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高盛Tracking Trillions × H2框架整合 | 2026-07-09</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root { --bg:#0d1117; --card:#161b22; --card-light:#1c2128; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#58a6ff; --accent2:#f0883e; --red:#ff7b72; --green:#3fb950; --warn:#d29922; }
+    * { box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.7; margin:0; padding:16px; }
+    .container { max-width:860px; margin:0 auto; }
+    .header { border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:20px; }
+    .header h1 { font-size:20px; margin:0 0 6px; color:#f0f6fc; }
+    .header .meta { font-size:12px; color:var(--muted); display:flex; gap:14px; flex-wrap:wrap; }
+    .tag { display:inline-block; padding:2px 8px; border-radius:12px; font-size:11px; margin-right:6px; border:1px solid var(--border); color:var(--muted); }
+    .tag-hot { border-color:var(--red); color:var(--red); background:rgba(255,123,114,0.1); }
+    .tag-green { border-color:var(--green); color:var(--green); background:rgba(63,185,80,0.1); }
+    .tag-warn { border-color:var(--warn); color:var(--warn); background:rgba(210,153,34,0.1); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:14px; }
+    .card h2 { font-size:16px; color:#f0f6fc; margin:0 0 12px; border-left:3px solid var(--accent); padding-left:10px; }
+    .card h3 { font-size:14px; color:#f0f6fc; margin:14px 0 8px; }
+    .core { border-left:4px solid var(--accent2); background:var(--card-light); }
+    .core h2 { border-left:none; padding-left:0; color:var(--accent2); }
+    .core .lead { font-size:14px; color:#f0f6fc; margin-bottom:8px; font-weight:500; }
+    .source { font-size:11px; color:var(--muted); display:inline-block; margin-left:4px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0; }
+    th, td { border:1px solid var(--border); padding:7px 8px; text-align:left; }
+    th { background:var(--card-light); color:var(--accent); font-weight:600; white-space:nowrap; }
+    .chart-box { width:100%; height:320px; margin:14px 0; }
+    .callout { background:rgba(88,166,255,0.08); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+    .callout-green { background:rgba(63,185,80,0.08); border-left-color:var(--green); }
+    .callout-warn { background:rgba(210,153,34,0.08); border-left-color:var(--warn); }
+    .kv { display:flex; justify-content:space-between; font-size:13px; border-bottom:1px dashed var(--border); padding:6px 0; }
+    .kv span:last-child { color:var(--muted); }
+    .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+    .grid-item { background:var(--card-light); border:1px solid var(--border); border-radius:8px; padding:14px; text-align:center; }
+    .grid-item .num { font-size:24px; font-weight:700; color:#f0f6fc; }
+    .grid-item .num1 { font-size:24px; font-weight:700; color:var(--accent); }
+    .grid-item .num2 { font-size:24px; font-weight:700; color:var(--accent2); }
+    .grid-item .num3 { font-size:24px; font-weight:700; color:var(--green); }
+    .grid-item .label { font-size:11px; color:var(--muted); margin-top:4px; }
+    .grid-item .sub { font-size:11px; color:var(--text); margin-top:2px; }
+    .last-word { background:var(--card-light); border-left:4px solid var(--green); padding:14px 18px; border-radius:0 10px 10px 0; }
+    .last-word h2 { border-left:none; padding-left:0; color:var(--green); }
+    @media (max-width:640px) { .grid-3 { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>高盛《Tracking Trillions》× H2框架整合</h1>
+    <div class="meta">
+      <span>日期：2026-07-09</span>
+      <span>来源：高盛全球研究院《Tracking Trillions》2026年7月 + 老潘抖音分享</span>
+    </div>
+    <div style="margin-top:8px;">
+      <span class="tag tag-hot">7.6万亿</span>
+      <span class="tag tag-hot">物理世界模型</span>
+      <span class="tag tag-green">需求接棒逻辑</span>
+      <span class="tag tag-warn">电力瓶颈</span>
+    </div>
+  </div>
+
+  <!-- CORE -->
+  <div class="card core">
+    <h2>CORE 定调</h2>
+    <div class="lead">高盛《Tracking Trillions》与老潘已有的H2框架、吴话可Talk价值捕获体系高度共振。核心增量信息有三：①7.6万亿中33%≈2.5万亿投向了非芯片的配套基建（土建/液冷/电力）；②物理世界模型将成为第二轮算力扩张的核心引擎——这是对"需求接力"判断的最强外部背书；③电力被正式定义为AI扩张的最大硬性瓶颈。</div>
+    <p class="source">来源：高盛全球研究院《Tracking Trillions》专题研报（2026年7月），数据经财联社、知乎、东方财富等中文渠道复核。</p>
+  </div>
+
+  <!-- 核心数据 -->
+  <div class="card">
+    <h2>7.6万亿美元三年金流向</h2>
+    <p style="font-size:13px;color:var(--muted);margin-top:-6px;">周期：2026-2031年 | 来源：高盛《Tracking Trillions》</p>
+    <div id="pieChart" class="chart-box"></div>
+    <div class="grid-3">
+      <div class="grid-item">
+        <div class="num1">5.1万亿</div>
+        <div class="label">算力硬件</div>
+        <div class="sub">GPU·服务器·存储·光互联</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">67%</div>
+      </div>
+      <div class="grid-item">
+        <div class="num2">2.1万亿</div>
+        <div class="label">数据中心基建</div>
+        <div class="sub">土建·液冷·机柜·机房配套</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">28%</div>
+      </div>
+      <div class="grid-item">
+        <div class="num3">3580亿</div>
+        <div class="label">电力能源配套</div>
+        <div class="sub">电网扩容·自备电站·储能</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">5%</div>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>核心理解：</strong>每投1块钱到AI，7毛买芯片，3毛盖机房拉电网。这3毛就是我们的跟踪池（数据港/奥飞/利通电子/巨化股份）所覆盖的生意，也是TOP3材料股（南大/雅克/安集）的芯片制造环节在基建端的需求放大器。
+    </div>
+  </div>
+
+  <!-- 框架对接 -->
+  <div class="card">
+    <h2>与已有框架的三重对接</h2>
+
+    <h3>1️⃣ 对着 H2 框架 → 需求接棒逻辑获最强背书</h3>
+    <table>
+      <thead><tr><th style="width:140px;">H2六大判断</th><th>高盛印证</th></tr></thead>
+      <tbody>
+        <tr><td>AGI加速，Scaling law未见顶</td><td>物理世界模型将驱动新一轮算力需求</td></tr>
+        <tr><td>Capex万亿美元级</td><td>✅ 7.6万亿，年度从7650亿→1.64万亿</td></tr>
+        <tr><td>算力/存储/光/AI Semi长期紧缺</td><td>✅ 电力被定为"最大硬性瓶颈"</td></tr>
+        <tr><td>卖铲子AI半导体最确定</td><td>✅ 5.1万亿算力硬件占比最大（67%）</td></tr>
+        <tr><td>物理AI/边缘AI接棒</td><td><strong>✅ 物理世界模型是第二轮核心引擎</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="callout-green">
+      <strong>关键升级：</strong>原框架"需求接力判断"仅为逻辑推演，高盛报告提供了顶级投行的数据背书——物理世界模型（工业仿真/机器人/数字孪生/自动驾驶）是真实正在发生的第二轮引擎。
+    </div>
+
+    <h3>2️⃣ 对着 吴话可Talk 框架 → 2026-2030路线图实锤</h3>
+    <table>
+      <thead><tr><th style="width:140px;">吴话可Talk路线图</th><th>高盛印证</th></tr></thead>
+      <tbody>
+        <tr><td>2026 材料/封装主线</td><td>✅ 5.1万亿算力硬件→材料是底层消耗品</td></tr>
+        <tr><td>2027 设备扩散/HBM链</td><td>✅ 存储/HBM在5.1万亿算力硬件中占比显著</td></tr>
+        <tr><td>2029 高位分化盯Capex拐点</td><td>✅ 高盛明确给出7.6万亿基准与四个变量风险</td></tr>
+        <tr><td>唯一指标：CSP capex首次下修</td><td>✅ 高盛指出四大云巨头到2030年AI投入超6万亿</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3️⃣ 对着 供给侧反转触发器 → 短期不触发</h3>
+    <p style="font-size:13px;">高盛报告同时确认了四个风险，但未触发我们的反转开关：</p>
+    <table>
+      <thead><tr><th style="width:180px;">反转开关</th><th>高盛评估</th><th>结论</th></tr></thead>
+      <tbody>
+        <tr><td>高盛双信号①：供给>需求</td><td>未提及供过于求；"电力瓶颈"反而是供给不足</td><td style="color:var(--green);">✓ 不触发</td></tr>
+        <tr><td>高盛双信号②：低成本替代/技术放缓</td><td>未出现；世界模型反推高端算力需求上行</td><td style="color:var(--green);">✓ 不触发</td></tr>
+        <tr><td>两存扩产（长鑫/长存）</td><td>报告视角是全球级，未涉及中国存储产能</td><td style="color:var(--green);">✓ 不触发</td></tr>
+        <tr><td>三星capex转向常规颗粒</td><td>GS原文未提及三星ep转向</td><td style="color:var(--green);">✓ 不触发</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 对持仓的影响 -->
+  <div class="card">
+    <h2>对持仓与跟踪池的影响评估</h2>
+    <table>
+      <thead><tr><th style="width:100px;">标的</th><th style="width:80px;">级别</th><th>高盛7.6万亿映射</th></tr></thead>
+      <tbody>
+        <tr><td>澜起科技</td><td><span style="color:var(--red);font-weight:600;">S</span></td><td>内存接口/DSP→5.1万亿算力硬件中的存储互联环节，最直接受益</td></tr>
+        <tr><td>汇绿生态</td><td><span style="color:var(--red);font-weight:600;">S</span></td><td>光模块黑马→光互联在5.1万亿中属高价值量环节，COHR/LITE映射实锤</td></tr>
+        <tr><td>三祥新材</td><td><span style="color:var(--red);font-weight:600;">S</span></td><td>锆铪材料→半导体材料是5.1万亿算力硬件的底层消耗品，500亿目标不变</td></tr>
+        <tr><td>罗博特科</td><td><span style="color:var(--accent);font-weight:600;">A</span></td><td>硅光封装设备→位于算力硬件+数据中心基建交叉点</td></tr>
+        <tr><td>软通动力</td><td><span style="color:var(--accent);font-weight:600;">A</span></td><td>软件服务→受7.6万亿溢出效应，但非直接受益</td></tr>
+        <tr><td>南大/雅克/安集</td><td><span style="color:var(--accent2);font-weight:600;">新候选</span></td><td>半导体材料→5.1万亿底层消耗品+"材料卡脖子绿档"双逻辑加持</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;">
+      <strong>跟踪池强化：</strong>
+      <p style="font-size:13px;">✅ <strong>巨化股份</strong>（液冷氟化液）→ 2.1万亿数据中心基建中的液冷环节</p>
+      <p style="font-size:13px;">✅ <strong>数据港/奥飞数据/利通电子</strong>（IDC/算力租赁）→ 2.1万亿基建中的运营环节</p>
+      <p style="font-size:13px;">✅ <strong>中际旭创</strong>（光模块）→ 5.1万亿中的光互联核心</p>
+    </div>
+  </div>
+
+  <!-- 核心增量 -->
+  <div class="card">
+    <h2>对H2框架的新增沉淀</h2>
+    <div class="callout-green">
+      <strong>新增1：「物理世界模型 → 第二轮算力引擎」已从逻辑推演升级为实锤判断。</strong>
+      <p style="font-size:13px;margin:6px 0 0;">来源：高盛《Tracking Trillions》明确提出"物理世界模型将成为第二轮算力扩张核心引擎"，模拟物理规则、工业流程、机器人运动、交通系统——若落地超预期，7.6万亿基准预测将大幅上修。</p>
+    </div>
+    <div class="callout-warn">
+      <strong>新增2：「电力 = AI扩张最大硬性瓶颈」需纳入日常监测。</strong>
+      <p style="font-size:13px;margin:6px 0 0;">高盛将电力视为决定性变量——电网容量不足、单机架功耗飙升、专业人才缺口，正卡住算力扩张上限。CSP长周期锁定新能源电站/核电已成趋势。</p>
+    </div>
+    <div class="callout">
+      <strong>新增3：「7.6万亿中约33%投向了非芯片领域」——配套基建确定性不亚于算力硬件。</strong>
+      <p style="font-size:13px;margin:6px 0 0;">这一数据强化了IDC运维/液冷/电力相关标的的长期逻辑，但不改变核心持仓纪律（S级不动、材料优先、不追高）。</p>
+    </div>
+  </div>
+
+  <!-- 原数据校准 -->
+  <div class="card">
+    <h2>附：抖音视频数据校准</h2>
+    <table>
+      <thead><tr><th>项目</th><th>抖音视频</th><th>高盛原文</th><th>偏差</th></tr></thead>
+      <tbody>
+        <tr><td>算力硬件</td><td>~4万亿</td><td>5.1万亿（67%）</td><td>少算~1万亿</td></tr>
+        <tr><td>配套基建</td><td>~3.7万亿</td><td>2.458万亿（33%）=2.1万亿基建+0.358万亿电力</td><td>多算~1.2万亿</td></tr>
+        <tr><td>方向判断</td><td>配套占比近半</td><td>配套占比1/3</td><td>抖音夸大了配套比例</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--muted);margin-top:6px;">结论：抖音数字四舍五入后方向感基本正确（配套确实不可忽视），但具体比例有偏差，引用时应以高盛原文5.1+2.1+0.358万亿为准。</p>
+  </div>
+
+  <!-- LAST WORD -->
+  <div class="last-word">
+    <h2>Last Word</h2>
+    <p><strong>高盛《Tracking Trillions》是我们在H2框架、吴话可Talk之后遇到的第三份大级别基准文献。</strong>不是因为它的数字多么震撼——7.6万亿我们早就在框架中讨论过了——而是它从全球顶级投行的角度，独立验证了我们已有的三条核心判断：</p>
+    <p>① "卖铲子最确定" → 5.1万亿算力硬件占67%，方向正确。<br>
+    ② "需求接力" → 物理世界模型是第二轮引擎，逻辑升级为实锤。<br>
+    ③ "电力/制冷瓶颈" → 不是A股小作文，是高盛定位的最大硬约束。</p>
+    <p>这份报告的增量信息，已全部沉淀进H2框架。下次持仓科技股回调时，可以直接引用7.6万亿×物理世界模型来质问"AI逻辑是否告终"的有罪推断。</p>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:var(--muted);margin-top:20px;padding-bottom:10px;">
+    巴蒂出品 · 2026-07-09 · 仅供老潘投资决策参考
+  </div>
+</div>
+
+<script>
+  var pieChart = echarts.init(document.getElementById('pieChart'));
+  var pieOption = {
+    backgroundColor:'transparent',
+    tooltip:{trigger:'item',formatter:'{b}: ${c}万亿 ({d}%)'},
+    series:[{
+      type:'pie',radius:['30%','60%'],center:['50%','50%'],
+      avoidLabelOverlap:true,itemStyle:{borderColor:'#0d1117',borderWidth:2},
+      label:{color:'#c9d1d9',fontSize:12,formatter:'{b}\n${c}万亿'},
+      emphasis:{label:{fontSize:14,fontWeight:'bold'}},
+      data:[
+        {value:5.1,name:'算力硬件',itemStyle:{color:'#58a6ff'}},
+        {value:2.1,name:'数据中心基建',itemStyle:{color:'#f0883e'}},
+        {value:0.358,name:'电力能源配套',itemStyle:{color:'#3fb950'}}
+      ]
+    }]
+  };
+  pieChart.setOption(pieOption);
+  window.addEventListener('resize',function(){pieChart.resize();});
+</script>
+</body>
+</html>
