@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>换仓方案：TOP3 国产替代材料 | 2026-07-09</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root { --bg:#0d1117; --card:#161b22; --card-light:#1c2128; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#58a6ff; --accent2:#f0883e; --red:#ff7b72; --green:#3fb950; --warn:#d29922; }
+    * { box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.7; margin:0; padding:16px; }
+    .container { max-width:860px; margin:0 auto; }
+    .header { border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:20px; }
+    .header h1 { font-size:20px; margin:0 0 6px; color:#f0f6fc; }
+    .header .meta { font-size:12px; color:var(--muted); display:flex; gap:14px; flex-wrap:wrap; }
+    .tag { display:inline-block; padding:2px 8px; border-radius:12px; font-size:11px; margin-right:6px; border:1px solid var(--border); color:var(--muted); }
+    .tag-top { border-color:var(--accent2); color:var(--accent2); background:rgba(240,136,62,0.1); }
+    .tag-warn { border-color:var(--warn); color:var(--warn); }
+    .tag-info { border-color:var(--accent); color:var(--accent); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:14px; }
+    .card h2 { font-size:16px; color:#f0f6fc; margin:0 0 12px; border-left:3px solid var(--accent); padding-left:10px; }
+    .card h3 { font-size:14px; color:#f0f6fc; margin:14px 0 8px; }
+    .core { border-left:4px solid var(--accent2); background:var(--card-light); }
+    .core h2 { border-left:none; padding-left:0; color:var(--accent2); }
+    .core .lead { font-size:14px; color:#f0f6fc; margin-bottom:8px; font-weight:500; }
+    .stock-card { background:var(--card-light); border:1px solid var(--border); border-radius:10px; padding:16px; margin:12px 0; }
+    .stock-card .rank { font-size:20px; font-weight:700; display:inline-block; }
+    .rank-1 { color:#f0883e; }
+    .rank-2 { color:#58a6ff; }
+    .rank-3 { color:#3fb950; }
+    .stock-card .code { font-size:16px; font-weight:600; color:#f0f6fc; }
+    .stock-card .price-row { display:flex; gap:16px; flex-wrap:wrap; margin:8px 0; font-size:13px; }
+    .stock-card .price-row span { display:inline-flex; align-items:center; gap:4px; }
+    .pos { color:var(--red); }
+    .neg { color:var(--green); }
+    .key-metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0; }
+    .metric { background:rgba(48,54,61,0.4); border-radius:6px; padding:7px 10px; font-size:12px; }
+    .metric .label { color:var(--muted); }
+    .metric .val { float:right; color:#f0f6fc; font-weight:600; }
+    .callout { background:rgba(88,166,255,0.08); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+    .callout-warn { background:rgba(210,153,34,0.08); border-left-color:var(--warn); }
+    .callout-red { background:rgba(255,123,114,0.08); border-left-color:var(--red); }
+    .callout-green { background:rgba(63,185,80,0.08); border-left-color:var(--green); }
+    .plan-box { background:var(--card-light); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; }
+    .plan-box h4 { margin:0 0 8px; color:var(--accent); font-size:14px; }
+    .plan-box ul { margin:0; padding-left:18px; font-size:13px; }
+    .plan-box li { margin-bottom:4px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0; }
+    th, td { border:1px solid var(--border); padding:7px 8px; text-align:left; }
+    th { background:var(--card-light); color:var(--accent); font-weight:600; white-space:nowrap; }
+    .chart-box { width:100%; height:300px; margin:14px 0; }
+    .last-word { background:var(--card-light); border-left:4px solid var(--green); padding:14px 18px; border-radius:0 10px 10px 0; }
+    .last-word h2 { border-left:none; padding-left:0; color:var(--green); }
+    @media (max-width:640px) { .key-metrics { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>换仓方案：TOP3 国产替代材料</h1>
+    <div class="meta">
+      <span>日期：2026-07-09 13:30</span>
+      <span>来源：H2框架 + 吴话可Talk + 实时行情</span>
+    </div>
+    <div style="margin-top:8px;">
+      <span class="tag tag-top">TOP1 南大光电</span>
+      <span class="tag tag-top">TOP2 雅克科技</span>
+      <span class="tag tag-top">TOP3 安集科技</span>
+      <span class="tag tag-info">材料优先</span>
+      <span class="tag tag-warn">不追高分批</span>
+    </div>
+  </div>
+
+  <!-- CORE -->
+  <div class="card core">
+    <h2>CORE 定调</h2>
+    <div class="lead">国产替代设备材料 → 优选材料 → 最终锁定 TOP3：南大光电 > 雅克科技 > 安集科技。今日午盘三股全线上涨（南大+3.87%、雅克+8.74%、安集+2.78%），短期情绪偏热。巴蒂建议：不追高，等回调分批布局。</div>
+    <p><strong>排序逻辑：</strong>弹性优先 → 性价比优先 → 确定性优先。南大光电子赛道最稀缺（光刻胶+特气），雅克平台型最优性价比（客户结构、存储/HBM直接受益），安集基本面最扎实（CMP龙头、毛利率57%、净利率31%）。</p>
+    <div id="compareChart" class="chart-box"></div>
+  </div>
+
+  <!-- TOP1 -->
+  <div class="stock-card">
+    <div class="rank rank-1">#1</div> <span class="code">南大光电 300346</span>
+    <div style="font-size:12px;color:var(--muted);margin-top:2px;">电子特气 · ArF光刻胶 · 国产替代双β</div>
+    <div class="price-row">
+      <span>最新价：<strong>77.00</strong></span>
+      <span>今日：<span class="pos">+3.87%</span></span>
+      <span>近1月：<span class="pos">+34.64%</span></span>
+      <span>近1月高：98.82 → 低：57.33</span>
+    </div>
+    <div class="key-metrics">
+      <div class="metric"><span class="label">PE(TTM)</span><span class="val" style="color:var(--warn)">147.06</span></div>
+      <div class="metric"><span class="label">PB</span><span class="val" style="color:var(--warn)">15.04</span></div>
+      <div class="metric"><span class="label">毛利率</span><span class="val">39.89%</span></div>
+      <div class="metric"><span class="label">净利率</span><span class="val">16.27%</span></div>
+      <div class="metric"><span class="label">营收增速</span><span class="val">6.06%</span></div>
+      <div class="metric"><span class="label">净利增速</span><span class="val">22.49%</span></div>
+      <div class="metric"><span class="label">ROE</span><span class="val">9.68%</span></div>
+      <div class="metric"><span class="label">行业PE中位</span><span class="val" style="color:var(--muted)">~55</span></div>
+    </div>
+    <p style="font-size:13px;"><strong>推荐逻辑：</strong>ArF光刻胶是国产替代最难攻克的环节之一，壁垒极高；电子特气直接受益长鑫/长存扩产。当前估值处于5年86.6%分位（偏高），但若光刻胶放量预期兑现，估值将快速消化。⚠️ 营收增速仅6%，业绩爆发需验证。</p>
+    <div class="callout-warn">⚠️ PE 147、PB 15，估值偏贵。建议等回调至55日线（约67-70元）或换手率回落至3%以下时介入。</div>
+  </div>
+
+  <!-- TOP2 -->
+  <div class="stock-card">
+    <div class="rank rank-2">#2</div> <span class="code">雅克科技 002409</span>
+    <div style="font-size:12px;color:var(--muted);margin-top:2px;">电子材料平台 · 前驱体龙头 · 存储/HBM直供</div>
+    <div class="price-row">
+      <span>最新价：<strong>206.61</strong></span>
+      <span>今日：<span class="pos">+8.74%</span></span>
+      <span>近1月：<span class="pos">+95.62%</span></span>
+      <span>近1月高：246.44 → 低：105.81</span>
+    </div>
+    <div class="key-metrics">
+      <div class="metric"><span class="label">PE(TTM)</span><span class="val" style="color:var(--warn)">89.82</span></div>
+      <div class="metric"><span class="label">PB</span><span class="val" style="color:var(--warn)">11.37</span></div>
+      <div class="metric"><span class="label">毛利率</span><span class="val">31.64%</span></div>
+      <div class="metric"><span class="label">净利率</span><span class="val">12.53%</span></div>
+      <div class="metric"><span class="label">2025营收</span><span class="val">86.11亿</span></div>
+      <div class="metric"><span class="label">2025净利</span><span class="val">10.00亿</span></div>
+      <div class="metric"><span class="label">营收增速</span><span class="val">15%</span></div>
+      <div class="metric"><span class="label">净利增速</span><span class="val">13.63%</span></div>
+    </div>
+    <p style="font-size:13px;"><strong>推荐逻辑：</strong>营收86亿体量适中，前驱体直接受益HBM扩产（用量是普通DRAM的3-5倍）。客户覆盖海力士/三星/长鑫/长存，平台型抗风险。PE 90虽高但增速25%+，性价比优于南大光电的PE 147。⚠️ 1个月翻倍，短期过热。</p>
+    <div class="callout-warn">⚠️ 1月涨95%！今日再涨8.74%，绝对需要耐心等回调。关注175-185区间（55日线附近）或换手率<5%时。</div>
+  </div>
+
+  <!-- TOP3 -->
+  <div class="stock-card">
+    <div class="rank rank-3">#3</div> <span class="code">安集科技 688019</span>
+    <div style="font-size:12px;color:var(--muted);margin-top:2px;">CMP抛光液龙头 · 高确定性 · 材料底仓</div>
+    <div class="price-row">
+      <span>最新价：<strong>324.87</strong></span>
+      <span>今日：<span class="pos">+2.78%</span></span>
+      <span>近1月：<span class="pos">+62.88%</span></span>
+      <span>近1月高：366.00 → 低：201.92</span>
+    </div>
+    <div class="key-metrics">
+      <div class="metric"><span class="label">PE(估)</span><span class="val" style="color:var(--warn)">~70</span></div>
+      <div class="metric"><span class="label">毛利率</span><span class="val" style="color:var(--green)">56.72%</span></div>
+      <div class="metric"><span class="label">净利率</span><span class="val" style="color:var(--green)">31.29%</span></div>
+      <div class="metric"><span class="label">2025营收</span><span class="val">25.04亿</span></div>
+      <div class="metric"><span class="label">2025净利</span><span class="val">7.84亿</span></div>
+      <div class="metric"><span class="label">营收增速</span><span class="val" style="color:var(--green)">36.47%</span></div>
+      <div class="metric"><span class="label">净利增速</span><span class="val" style="color:var(--green)">46.85%</span></div>
+      <div class="metric"><span class="label">ROE</span><span class="val" style="color:var(--green)">25.18%</span></div>
+      <div class="metric"><span class="label">EPS</span><span class="val">4.66元</span></div>
+    </div>
+    <p style="font-size:13px;"><strong>推荐逻辑：</strong>财务表现断层领先——毛利率57%、净利率31%、ROE 25%、营收增速36%、净利增速47%。基本面在A股材料板块属顶尖水平。CMP抛光液国产替代确定性强，客户粘性高（验证周期18个月+）。估值最合理（PE~70），适合做材料配置的底仓。</p>
+    <div class="callout-green">✅ 安集是TOP3中基本面最强的标的。PE 70虽不便宜但增速36%+可支撑，建议作为材料配置的主力仓位。</div>
+  </div>
+
+  <!-- 换仓方案 -->
+  <div class="card">
+    <h2>换仓方案</h2>
+
+    <h3 style="margin-top:0;">可腾挪来源</h3>
+    <table>
+      <thead><tr><th>名称</th><th>代码</th><th>估算仓位</th><th>腾挪建议</th></tr></thead>
+      <tbody>
+        <tr><td>太钢不锈</td><td>000825</td><td>~45万</td><td>全部腾挪（与材料主线无关）</td></tr>
+        <tr><td>德展健康</td><td>000813</td><td>~15万</td><td>全部腾挪</td></tr>
+        <tr><td>欧林生物</td><td>688319</td><td>迷你仓</td><td>全部腾挪</td></tr>
+        <tr><td>泰和新材</td><td>002254</td><td>~34万</td><td>可部分腾挪（保留半仓）</td></tr>
+      </tbody>
+    </table>
+
+    <h3>推荐分配（保守方案 ~15万）</h3>
+    <div class="plan-box">
+      <h4>保守方案（适合第一步试水）</h4>
+      <ul>
+        <li><strong>腾挪：</strong>太钢不锈（部分）+ 欧林生物 → 约15万</li>
+        <li><strong>建仓：</strong>
+          <br> 南大光电：8万（观察仓，占55%）
+          <br> 雅克科技：4万（观察仓，占27%）
+          <br> 安集科技：3万（底仓，占18%）
+        </li>
+        <li><strong>触发条件：</strong>不追涨，等三股中任一回调至55日线或单日跌幅>5%时介入</li>
+      </ul>
+    </div>
+
+    <h3>推荐分配（积极方案 ~60万）</h3>
+    <div class="plan-box">
+      <h4>积极方案（等回调分批建仓）</h4>
+      <ul>
+        <li><strong>腾挪：</strong>太钢不锈 + 德展健康 + 欧林生物 + 泰和新材(半仓) → 约60万</li>
+        <li><strong>建仓：</strong>
+          <br> 安集科技：25万（主力底仓，占42%）
+          <br> 雅克科技：20万（核心配置，占33%）
+          <br> 南大光电：15万（弹性配置，占25%）
+        </li>
+        <li><strong>分期：</strong>分3批，每批间隔1-2周或跌幅>5%时加筹</li>
+        <li><strong>触发：</strong>长鑫IPO情绪低点（7/13询价后）或7/29海力士财报确认后</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <strong>巴蒂建议：</strong>当前三股短期涨幅已大（1月+35%~+96%），此时追高风险较高。建议本周只做功课不做交易，等下周情绪消化后分批介入。如果实在想试水，先拿<strong>1万</strong>开南大光电观察仓感受波动即可。
+    </div>
+
+    <h3>操作时序表</h3>
+    <table>
+      <thead><tr><th>时间</th><th>事件</th><th>动作</th></tr></thead>
+      <tbody>
+        <tr><td>7/9 本周</td><td>三股情绪偏热</td><td>仅观察，不做买入；设置自选监控</td></tr>
+        <tr><td>7/13 前后</td><td>长鑫IPO询价</td><td>如果情绪带动科技股回调，是布局窗口</td></tr>
+        <tr><td>7/16</td><td>长鑫申购</td><td>抽血效应下若材料股大幅回调（>8%），考虑第一笔</td></tr>
+        <tr><td>7/29</td><td>SK海力士财报</td><td>HBM确认超预期 → 雅克直接受益（前驱体逻辑强化）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 风险 -->
+  <div class="card">
+    <h2>核心风险</h2>
+    <table>
+      <thead><tr><th style="width:130px;">风险</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>估值偏高</td><td>三股PE均在70-147区间，是A股整体PE（~15）的数倍。需要高增速支撑，一旦业绩不及预期将面临杀估值。</td></tr>
+        <tr><td>短期涨幅已大</td><td>1月涨幅34%-96%，短期追高风险显著。雅克科技从105涨到206翻倍，回撤30%到150也完全合理。</td></tr>
+        <tr><td>业绩兑现不确定</td><td>南大光电营收增速仅6%，PE 147估值难以持续。需密切跟踪Q2财报验证。</td></tr>
+        <tr><td>长鑫IPO分流</td><td>7/16长鑫申购，预计冻结资金巨大，可能阶段性分流科创板/半导体板块的资金。</td></tr>
+        <tr><td>替代逻辑证伪</td><td>如果美国制裁放松、国产替代进度慢于预期，材料溢价将收缩。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LAST WORD -->
+  <div class="last-word">
+    <h2>Last Word</h2>
+    <p>TOP3的顺序是巴蒂基于 <strong>框架逻辑 > 基本面 > 估值纪律</strong> 综合排序后的结果。</p>
+    <p>南大光电代表最高弹性（也最高风险），雅克科技代表最佳性价比（平台型、客户结构优），安集科技代表最确定性（财务最佳、底仓首选）。</p>
+    <p><strong>当前建议：</strong>不急。三股短期涨太多，先加入自选监控；重点关注回调后55日线附近的介入机会。长鑫IPO情绪低点（7/13-7/16）可能是第一个合适的窗口。</p>
+    <p style="font-size:13px;color:var(--muted;margin-top:8px;">盘中数据说明：行情数据来自NeoData实时接口 2026-07-09 午盘；财务数据为2025年报。</p>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:var(--muted);margin-top:20px;padding-bottom:10px;">
+    巴蒂出品 · 2026-07-09 13:30 · 仅供老潘投资决策参考
+  </div>
+</div>
+
+<script>
+  var compareChart = echarts.init(document.getElementById('compareChart'));
+  var compareOption = {
+    backgroundColor:'transparent',
+    title:{text:'TOP3 核心指标对比', left:'center', textStyle:{color:'#c9d1d9',fontSize:14}},
+    tooltip:{trigger:'axis'},
+    legend:{data:['营收增速%','净利增速%','毛利率%','净利率%','ROE%'], top:26, right:0, textStyle:{color:'#8b949e',fontSize:11}},
+    grid:{left:50,right:20,bottom:60,top:80},
+    xAxis:{type:'category',data:['南大光电','雅克科技','安集科技'],axisLabel:{color:'#8b949e'},axisLine:{lineStyle:{color:'#30363d'}}},
+    yAxis:{type:'value',axisLabel:{color:'#8b949e',formatter:'{value}%'},splitLine:{lineStyle:{color:'#30363d',type:'dashed'}}},
+    series:[
+      {name:'营收增速%',type:'bar',data:[6.06,15,36.47],itemStyle:{color:'#58a6ff'}},
+      {name:'净利增速%',type:'bar',data:[22.49,13.63,46.85],itemStyle:{color:'#3fb950'}},
+      {name:'毛利率%',type:'line',data:[39.89,31.64,56.72],lineStyle:{color:'#f0883e',width:2},symbol:'circle',symbolSize:8,itemStyle:{color:'#f0883e'}},
+      {name:'净利率%',type:'line',data:[16.27,12.53,31.29],lineStyle:{color:'#d29922',width:2},symbol:'circle',symbolSize:8,itemStyle:{color:'#d29922'}},
+      {name:'ROE%',type:'line',data:[9.68,12.43,25.18],lineStyle:{color:'#bc8cff',width:2},symbol:'circle',symbolSize:8,itemStyle:{color:'#bc8cff'}}
+    ]
+  };
+  compareChart.setOption(compareOption);
+  window.addEventListener('resize',function(){compareChart.resize();});
+</script>
+</body>
+</html>
