@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>换仓方向融合考量：国产替代设备材料 | 2026-07-09</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --bg:#0d1117; --card:#161b22; --card-light:#1c2128; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#58a6ff; --accent2:#f0883e; --red:#ff7b72; --green:#3fb950; --warn:#d29922;
+    }
+    * { box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.7; margin:0; padding:16px; }
+    .container { max-width:900px; margin:0 auto; }
+    .header { border-bottom:1px solid var(--border); padding-bottom:18px; margin-bottom:22px; }
+    .header h1 { font-size:22px; margin:0 0 8px; color:#f0f6fc; letter-spacing:-0.02em; }
+    .header .meta { font-size:12px; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; }
+    .tag { display:inline-block; padding:2px 8px; border-radius:12px; font-size:11px; margin-right:6px; border:1px solid var(--border); color:var(--muted); }
+    .tag-hot { border-color:var(--red); color:var(--red); }
+    .tag-green { border-color:var(--green); color:var(--green); }
+    .tag-warn { border-color:var(--warn); color:var(--warn); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:16px; }
+    .card h2 { font-size:16px; color:#f0f6fc; margin:0 0 12px; border-left:3px solid var(--accent); padding-left:10px; }
+    .card h3 { font-size:14px; color:#f0f6fc; margin:14px 0 8px; }
+    .core { border-left:4px solid var(--accent2); background:var(--card-light); }
+    .core h2 { border-left:none; padding-left:0; color:var(--accent2); }
+    .core .lead { font-size:15px; color:#f0f6fc; margin-bottom:10px; font-weight:500; }
+    .core p { margin:8px 0; }
+    .source-inline { font-size:11px; color:var(--muted); display:inline-block; margin-left:4px; }
+    .last-word { background:var(--card-light); border-left:4px solid var(--green); padding:14px 18px; border-radius:0 10px 10px 0; }
+    .last-word h2 { border-left:none; padding-left:0; color:var(--green); }
+    table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0; table-layout:fixed; }
+    th, td { border:1px solid var(--border); padding:7px 8px; text-align:left; vertical-align:top; }
+    th { background:var(--card-light); color:var(--accent); font-weight:600; white-space:nowrap; }
+    td:first-child { white-space:nowrap; min-width:120px; }
+    .nowrap { white-space:nowrap; }
+    .grade-S { color:var(--red); font-weight:600; }
+    .grade-A { color:var(--accent); font-weight:600; }
+    .grade-B { color:var(--warn); font-weight:600; }
+    .grade-def { color:var(--green); }
+    .grade-profit { color:var(--accent2); }
+    .vs-compare { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0; }
+    .vs-box { background:var(--card-light); border:1px solid var(--border); border-radius:8px; padding:14px; }
+    .vs-box h4 { margin:0 0 8px; font-size:14px; color:var(--accent); }
+    .vs-box ul { margin:0; padding-left:18px; font-size:13px; }
+    .vs-box li { margin-bottom:4px; }
+    .callout { background:rgba(88,166,255,0.08); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13px; }
+    .callout-warn { background:rgba(210,153,34,0.08); border-left-color:var(--warn); }
+    .callout-red { background:rgba(255,123,114,0.08); border-left-color:var(--red); }
+    .kv { display:flex; justify-content:space-between; font-size:13px; border-bottom:1px dashed var(--border); padding:6px 0; }
+    .kv span:last-child { color:var(--muted); }
+    .chart-box { width:100%; height:340px; margin:16px 0; }
+    @media (max-width:640px) {
+      .vs-compare { grid-template-columns:1fr; }
+      table { font-size:12px; }
+      .header h1 { font-size:18px; }
+    }
+    .section { margin-bottom:22px; }
+    .keywords { font-size:13px; color:var(--muted); margin:8px 0 14px; }
+    .keywords strong { color:var(--text); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>换仓方向融合考量：国产替代设备材料</h1>
+    <div class="meta">
+      <span>日期：2026-07-09</span>
+      <span>来源：老潘截图（刘老师头号粉丝-亮亮）+ H2框架/吴话可Talk/存储三把尺</span>
+      <span>类型：持仓换仓策略</span>
+    </div>
+    <div class="keywords" style="margin-top:10px;">
+      <span class="tag tag-hot">国产替代</span>
+      <span class="tag tag-hot">设备材料</span>
+      <span class="tag tag-green">材料更优</span>
+      <span class="tag">H2框架共振</span>
+      <span class="tag">吴话可Talk绿档</span>
+      <span class="tag">长鑫IPO情绪窗口</span>
+    </div>
+  </div>
+
+  <!-- CORE -->
+  <div class="card core">
+    <h2>CORE 定调</h2>
+    <div class="lead">老潘截图方向：聚焦“国产替代 设备材料”，并明确“更看好材料”。巴蒂将其纳入现有投研体系后，结论为——该方向与H2框架四因子高度共振，且落在吴话可Talk价值捕获框架的“绿档”高毛利环节；可作为下一阶段换仓主线，但需遵守“不追高、分批换、S级不动”的纪律。</div>
+    <p><strong>1. 与H2框架对齐：</strong>外部约束（美国管制）+ 内部政策（国产替代）双因子已命中；需求爆发（AI算力/HBM扩产）+ 业绩验证（长鑫/长存/海力士财报）正在路上。<span class="source-inline">（来源：H2投研框架 2026-07-04）</span></p>
+    <p><strong>2. 与吴话可Talk对齐：</strong>“电子特气/材料卡脖子”位列边际增量排序第一（绿=真卖铲子、垄断定价）；设备国产化排第四（绿但节奏滞后于材料）。因此“更看好材料”与框架一致。<span class="source-inline">（来源：吴话可Talk《谁在给世界的算力收税》2026-07-07）</span></p>
+    <p><strong>3. 与存储三把尺关联：</strong>长鑫IPO募资295亿、长存294层扩产，直接拉动上游设备材料；三星/海力士 capex 方向是HBM与先进制程，国产设备材料渗透率提升是长逻辑。<span class="source-inline">（来源：全球存储2026提炼 2026-07-08）</span></p>
+    <p><strong>4. 为什么材料>设备：</strong>材料是设备的消耗品，资本开支弹性更大；且电子特气、光刻胶、CMP材料、靶材等品类国产替代率更低，龙头份额提升空间大，毛利率更稳定。</p>
+  </div>
+
+  <!-- 框架四因子 vs 截图方向 -->
+  <div class="card">
+    <h2>方向与框架共振图</h2>
+    <div id="factorChart" class="chart-box"></div>
+    <div class="callout">
+      <strong>解读：</strong>四因子中“外部约束+内部政策”已实质共振，“需求爆发”由AI算力/HBM/先进封装驱动，“业绩验证”需跟踪长鑫IPO、7/29 SK海力士、8/13 COHR等财报节点。
+    </div>
+  </div>
+
+  <!-- 可换仓来源 -->
+  <div class="card">
+    <h2>现有持仓可换仓来源</h2>
+    <p style="font-size:13px;color:var(--muted);margin-top:-4px;">纪律：S级/A级核心不动；优先从防御仓、B+级、迷你仓、利润仓中腾挪。</p>
+    <table>
+      <thead>
+        <tr><th style="width:90px;">分级</th><th style="width:100px;">名称</th><th style="width:90px;">代码</th><th>可换仓逻辑</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="grade-def">防御</td><td>太钢不锈</td><td>000825</td><td>不锈钢/特钢周期，与AI/国产替代主线无关；估值修复空间有限，可作为第一腾挪来源。</td></tr>
+        <tr><td class="grade-def">防御</td><td>德展健康</td><td>000813</td><td>医药防御，非主线；逻辑未破但向上弹性不足，可作为第二腾挪来源。</td></tr>
+        <tr><td class="grade-B">B+</td><td>泰和新材</td><td>002254</td><td>芳纶/化工新材料，周期属性强；若国产替代材料给出更好风险收益比，可换。</td></tr>
+        <tr><td class="grade-def">迷你仓</td><td>欧林生物</td><td>688319</td><td>创新药，非主线且不影响组合评估；可直接换。</td></tr>
+        <tr><td class="grade-profit">利润仓</td><td>兴森科技</td><td>002436</td><td>ABF载板，属于AI硬件链；若非高位且国产替代材料出现更好买点，可部分兑现回流。</td></tr>
+        <tr><td class="grade-profit">利润仓</td><td>星环科技</td><td>688031</td><td>大数据/AI软件，已负成本；可部分兑现利润，但需保留观察仓。</td></tr>
+        <tr><td class="grade-def">防御</td><td>华峰化学</td><td>002064</td><td>化工周期对冲仓位；保留部分作为组合压舱石，不建议全部清空。</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout-red">
+      <strong>不可动：</strong><span class="grade-S">S级</span> 澜起（长期底仓）、三祥（500亿市值前不减）、汇绿（光模块黑马）；<span class="grade-A">A级</span> 软通（浮盈标杆）、罗博（AI硬件映射）。这些仓位仍按原纪律持有。
+    </div>
+  </div>
+
+  <!-- 候选标的 -->
+  <div class="card">
+    <h2>候选标的池：国产替代设备材料</h2>
+    <p style="font-size:13px;color:var(--muted);margin-top:-4px;">按“更看好材料”优先排序；新标的需结合估值、业绩拐点、技术走势进一步筛选。</p>
+
+    <h3>🟢 优先材料（国产替代+高毛利）</h3>
+    <table>
+      <thead>
+        <tr><th style="width:100px;">子赛道</th><th style="width:100px;">候选</th><th style="width:90px;">代码</th><th>逻辑</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>电子特气</td><td>南大光电</td><td>300346</td><td>ArF光刻胶、电子特气；国产替代核心，契合“材料卡脖子”绿档。</td></tr>
+        <tr><td>电子特气</td><td>雅克科技</td><td>002409</td><td>电子特气+前驱体，半导体材料平台型，客户覆盖头部存储厂。</td></tr>
+        <tr><td>电子特气</td><td>华特气体</td><td>688268</td><td>特种气体龙头，直接受益国产晶圆厂扩产。</td></tr>
+        <tr><td>CMP材料</td><td>安集科技</td><td>688019</td><td>CMP抛光液龙头，国内份额持续提升，高毛利。</td></tr>
+        <tr><td>CMP/PI</td><td>鼎龙股份</td><td>300054</td><td>抛光垫、PI浆料，平台型材料公司。</td></tr>
+        <tr><td>溅射靶材</td><td>江丰电子</td><td>300666</td><td>高纯靶材龙头，逻辑纯正，业绩可见度较高。</td></tr>
+        <tr><td>光刻胶</td><td>彤程新材</td><td>603650</td><td>半导体光刻胶，KrF/ArF放量。</td></tr>
+        <tr><td>光刻胶/湿电</td><td>上海新阳</td><td>300236</td><td>光刻胶+湿电子化学品，扩产周期受益。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warn">
+      <strong>硅片暂列为监测锚点：</strong>沪硅产业（688126）、立昂微（605358）属于硅片方向，但沪硅财务刚扭亏、立昂微逻辑不纯；仅在12英寸硅片涨价/国产替代大单/业绩拐点信号出现后再评估开仓。<span class="source-inline">（来源：MEMORY预警锚点 2026-07-08）</span>
+    </div>
+
+    <h3>🟡 设备（滞后材料，但长逻辑确定）</h3>
+    <table>
+      <thead>
+        <tr><th style="width:100px;">子赛道</th><th style="width:100px;">候选</th><th style="width:90px;">代码</th><th>逻辑</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>平台型</td><td>北方华创</td><td>002371</td><td>国产设备平台龙头，刻蚀/薄膜/炉管全面覆盖，业绩最稳。</td></tr>
+        <tr><td>刻蚀</td><td>中微公司</td><td>688012</td><td>CCP/ICP刻蚀，先进制程关键设备。</td></tr>
+        <tr><td>CVD</td><td>拓荆科技</td><td>688072</td><td>薄膜沉积设备，高增长但估值波动大。</td></tr>
+        <tr><td>CMP</td><td>华海清科</td><td>688120</td><td>CMP设备龙头，与材料端安集/鼎龙形成映射。</td></tr>
+        <tr><td>清洗</td><td>盛美上海</td><td>688082</td><td>清洗设备，平台化扩展。</td></tr>
+        <tr><td>涂胶显影</td><td>芯源微</td><td>688037</td><td>涂胶显影，前道国产替代。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>🔵 现有跟踪池中的相关标的</h3>
+    <table>
+      <thead>
+        <tr><th style="width:100px;">名称</th><th style="width:90px;">代码</th><th>与“设备材料”关联</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>中际旭创</td><td>300308</td><td>光模块/CPO，在吴话可Talk框架中属“绿档”高毛利，但属于光通信而非设备材料；可部分配置。</td></tr>
+        <tr><td>胜宏科技</td><td>300476</td><td>AI PCB，直接吃AI Capex，但属于PCB/载板而非设备材料。</td></tr>
+        <tr><td>华丰科技</td><td>688629</td><td>电连接器/卫星通信，与设备材料关联较弱。</td></tr>
+        <tr><td>炬芯科技</td><td>688049</td><td>端侧AI SoC，目标价38-42元，属于AI终端接棒逻辑，非设备材料。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 换仓方案 -->
+  <div class="card">
+    <h2>推荐换仓方案</h2>
+    <p style="font-size:13px;color:var(--muted);margin-top:-4px;">以“收益最大化”为目标，但优先保证核心仓位不动；分保守/积极两档。</p>
+    <div class="vs-compare">
+      <div class="vs-box">
+        <h4>保守方案</h4>
+        <ul>
+          <li>腾挪来源：太钢不锈、德展健康、欧林生物</li>
+          <li>调入方向：电子特气/材料（南大光电/雅克科技/华特气体）</li>
+          <li>比例：约占主账户 10-15%</li>
+          <li>触发条件：回调至55日线附近或放量突破确认</li>
+          <li>风险：低，因为来源本身弹性有限</li>
+        </ul>
+      </div>
+      <div class="vs-box">
+        <h4>积极方案</h4>
+        <ul>
+          <li>腾挪来源：+ 泰和新材、兴森/星环利润仓部分</li>
+          <li>调入方向：材料龙头（安集/鼎龙/江丰）+ 设备龙头（北方华创/中微）</li>
+          <li>比例：约占主账户 20-25%</li>
+          <li>触发条件：长鑫IPO情绪低点或7/29海力士财报催化</li>
+          <li>风险：中高，板块短期可能已部分反映预期</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>巴蒂建议：</strong>先执行“保守方案”的三分之一，观察市场反应后再决定是否加码至“积极方案”。这样既锁定方向，又避免一次性追高。
+    </div>
+
+    <h3>操作时序参考</h3>
+    <table>
+      <thead>
+        <tr><th style="width:130px;">时间节点</th><th style="width:180px;">事件</th><th>操作建议</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>7/9 午后</td><td>刚收到方向</td><td>不急于追高，先建立观察仓或纳入自选池。</td></tr>
+        <tr><td>7/13 前后</td><td>长鑫IPO询价</td><td>若市场情绪偏冷，可能是材料/设备布局窗口。</td></tr>
+        <tr><td>7/16</td><td>长鑫申购</td><td>观察抽血效应；若板块回调，逢低加仓。</td></tr>
+        <tr><td>7/29</td><td>SK海力士财报</td><td>存储链验证点，若HBM/DRAM景气确认，材料端逻辑强化。</td></tr>
+        <tr><td>8月中</td><td>COHR/LITE财报</td><td>光通信映射验证，不影响设备材料主线。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 风险与纪律 -->
+  <div class="card">
+    <h2>风险与纪律</h2>
+    <div class="vs-compare">
+      <div class="vs-box">
+        <h4>主要风险</h4>
+        <ul>
+          <li>国产替代设备材料板块前期已积累涨幅，短期估值不低</li>
+          <li>长鑫IPO可能短期分流科创板/半导体资金</li>
+          <li>部分材料公司业绩兑现节奏慢于预期</li>
+          <li>美国管制政策变化可能带来情绪波动</li>
+        </ul>
+      </div>
+      <div class="vs-box">
+        <h4>执行纪律</h4>
+        <ul>
+          <li>S级仓位不动，核心逻辑未破不减</li>
+          <li>不追高，买点锚定55日线/放量突破</li>
+          <li>分批换仓，单次不超过计划比例的1/3</li>
+          <li>换仓后持续跟踪：国产替代率、产能利用率、 capex 指引</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAST WORD -->
+  <div class="last-word">
+    <h2>Last Word</h2>
+    <p>老潘的这个方向与我们已经沉淀的H2框架、吴话可Talk价值捕获、存储三把尺方法论高度一致，说明“下一盏灯”大概率就在国产替代设备材料里，且<strong>材料优先于设备</strong>。</p>
+    <p>建议先以“保守方案”小试：从太钢、德展、欧林这些非主线仓位中腾挪，买入电子特气/材料龙头的观察仓；等长鑫IPO情绪落地、7/29海力士财报确认后，再决定是否加码到积极方案。</p>
+    <p>核心纪律不变：S级（澜起/三祥/汇绿）和A级核心（软通/罗博）继续按原纪律持有；换仓只动边缘仓位，不为了追求收益而稀释主线。</p>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:var(--muted);margin-top:20px;padding-bottom:10px;">
+    巴蒂出品 · 2026-07-09 · 仅供老潘投资决策参考
+  </div>
+</div>
+
+<script>
+  var factorChart = echarts.init(document.getElementById('factorChart'));
+  var factorOption = {
+    backgroundColor: 'transparent',
+    title: { text: 'H2四因子 × 截图方向 共振度', left: 'center', textStyle: { color: '#c9d1d9', fontSize: 14 } },
+    tooltip: { trigger: 'axis' },
+    legend: { data: ['外部约束', '内部政策', '需求爆发', '业绩验证'], top: 26, right: 0, textStyle: { color: '#8b949e', fontSize: 11 } },
+    radar: {
+      indicator: [
+        { name: '国产替代\n设备材料', max: 100 },
+        { name: '材料\n优先', max: 100 },
+        { name: 'H2框架\n共振', max: 100 },
+        { name: '吴话可Talk\n绿档', max: 100 },
+        { name: '存储三把尺\n上游拉动', max: 100 }
+      ],
+      radius: '65%',
+      center: ['50%', '55%'],
+      axisName: { color: '#8b949e', fontSize: 11 },
+      splitArea: { areaStyle: { color: ['rgba(88,166,255,0.05)', 'rgba(88,166,255,0.02)'] } },
+      axisLine: { lineStyle: { color: '#30363d' } },
+      splitLine: { lineStyle: { color: '#30363d' } }
+    },
+    series: [{
+      type: 'radar',
+      data: [
+        { value: [95, 90, 85, 95, 80], name: '四因子综合', areaStyle: { color: 'rgba(88,166,255,0.25)' }, lineStyle: { color: '#58a6ff', width: 2 }, itemStyle: { color: '#58a6ff' } }
+      ]
+    }]
+  };
+  factorChart.setOption(factorOption);
+  window.addEventListener('resize', function() { factorChart.resize(); });
+</script>
+</body>
+</html>
