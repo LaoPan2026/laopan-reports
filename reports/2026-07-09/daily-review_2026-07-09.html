@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盘后复盘 · 2026-07-09 | 科创50暴拉8.4%</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root { --bg:#0d1117; --card:#161b22; --card-light:#1c2128; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#58a6ff; --accent2:#f0883e; --red:#ff7b72; --green:#3fb950; --warn:#d29922; }
+    * { box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; line-height:1.6; margin:0; padding:14px; }
+    .container { max-width:880px; margin:0 auto; }
+    .header { border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:16px; }
+    .header h1 { font-size:20px; margin:0 0 4px; color:#f0f6fc; }
+    .header .meta { font-size:11px; color:var(--muted); display:flex; gap:12px; flex-wrap:wrap; }
+    .tag { display:inline-block; padding:2px 7px; border-radius:10px; font-size:10px; margin-right:4px; border:1px solid var(--border); color:var(--muted); }
+    .tag-hot { border-color:var(--red); color:var(--red); }
+    .tag-green { border-color:var(--green); color:var(--green); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:12px; }
+    .card h2 { font-size:15px; color:#f0f6fc; margin:0 0 10px; border-left:3px solid var(--accent); padding-left:10px; }
+    .core { border-left:4px solid var(--accent2); background:var(--card-light); }
+    .core h2 { border-left:none; padding-left:0; color:var(--accent2); }
+    table { width:100%; border-collapse:collapse; font-size:12px; margin:8px 0; }
+    th, td { border:1px solid var(--border); padding:6px 7px; text-align:left; }
+    th { background:var(--card-light); color:var(--accent); font-weight:600; white-space:nowrap; }
+    .grid-4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin:8px 0; }
+    .grid-item { background:var(--card-light); border:1px solid var(--border); border-radius:8px; padding:10px; text-align:center; }
+    .grid-item .num { font-size:22px; font-weight:700; }
+    .grid-item .label { font-size:10px; color:var(--muted); margin-top:2px; }
+    .pos { color:var(--red); }
+    .neg { color:var(--green); }
+    .chart-box { width:100%; height:260px; margin:10px 0; }
+    .callout { background:rgba(88,166,255,0.06); border-left:3px solid var(--accent); padding:8px 12px; border-radius:0 6px 6px 0; margin:8px 0; font-size:12px; }
+    .callout-green { background:rgba(63,185,80,0.06); border-left-color:var(--green); }
+    .callout-warn { background:rgba(210,153,34,0.06); border-left-color:var(--warn); }
+    .last-word { background:var(--card-light); border-left:4px solid var(--green); padding:12px 16px; border-radius:0 10px 10px 0; }
+    .last-word h2 { border-left:none; padding-left:0; color:var(--green); }
+    .grade-S { color:var(--red);font-weight:600; }
+    .grade-A { color:var(--accent);font-weight:600; }
+    .grade-B { color:var(--warn); }
+    .grade-def { color:var(--green); }
+    @media (max-width:640px) { .grid-4 { grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>盘后复盘 · 2026-07-09</h1>
+    <div class="meta">
+      <span>科创50暴拉8.4% · 半导体全线爆发</span>
+      <span>今日框架更新：小侯·三次大辩论 / 渗透率判断 / MS日本电子元器件</span>
+    </div>
+    <div style="margin-top:6px;">
+      <span class="tag tag-hot">科创50+8.41%</span>
+      <span class="tag tag-hot">中芯国际创新高</span>
+      <span class="tag">长鑫7/16申购</span>
+      <span class="tag">海力士IPO超额7倍</span>
+      <span class="tag">DeepSeek-V4即将发布</span>
+    </div>
+  </div>
+
+  <!-- CORE -->
+  <div class="card core">
+    <h2>CORE 定调</h2>
+    <p style="font-size:13px;margin:6px 0;"><strong>今日是"假摔→共识收复→加速"的标准走势。上午4600只个股下跌，下午科创50暴拉8.41%，中芯国际创历史新高。核心驱动不是单一消息，而是长鑫IPO、海力士超额认购、DeepSeek-V4发布三重催化叠加，配合资金从化工/有色/钢铁大规模换仓至半导体。组合中5盏灯全部大涨（澜起+15.6%/罗博+9.7%/软通+6.7%/汇绿+5.5%/三祥+4.5%），7把工具中化工类几乎不动（泰和+0.7%/华峰+0.2%），符合"灯亮工具暗"的结构特征。</strong></p>
+  </div>
+
+  <!-- 大盘 -->
+  <div class="card">
+    <h2>大盘收盘</h2>
+    <div class="grid-4">
+      <div class="grid-item"><div class="num pos">+1.65%</div><div class="label">上证 4,037</div></div>
+      <div class="grid-item"><div class="num pos">+3.07%</div><div class="label">深证 15,399</div></div>
+      <div class="grid-item"><div class="num pos" style="color:var(--accent2);">+8.41%🔥</div><div class="label">科创50 2,186</div></div>
+      <div class="grid-item"><div class="num pos">+4.49%</div><div class="label">创业板 4,018</div></div>
+    </div>
+    <div style="font-size:12px;text-align:center;color:var(--muted);margin-bottom:6px;">成交额 29,137亿（放量3,502亿）</div>
+    <div class="callout-warn">
+      <strong>结构真相：</strong>指数大涨但2486只涨/2888只跌——涨的是半导体/算力/光模块/PCB，跌的是化工/有色/钢铁/煤炭。这是极致的结构性行情，不是普涨。
+    </div>
+  </div>
+
+  <!-- 领涨板块 -->
+  <div class="card">
+    <h2>领涨板块TOP5</h2>
+    <table>
+      <thead><tr><th style="width:100px;">板块</th><th style="width:90px;">涨幅</th><th>龙头</th></tr></thead>
+      <tbody>
+        <tr><td>大硅片</td><td class="pos">+9.89%</td><td>有研硅+20%</td></tr>
+        <tr><td>CPU概念</td><td class="pos">+9.07%</td><td><strong>澜起科技+15.64%</strong></td></tr>
+        <tr><td>靶材</td><td class="pos">+8.41%</td><td>有研新材+10%</td></tr>
+        <tr><td>国家大基金</td><td class="pos">+8.10%</td><td>长川科技+17.9%</td></tr>
+        <tr><td>HBM/存储</td><td class="pos">+7.47%</td><td>艾森股份+20%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 持仓复盘 -->
+  <div class="card">
+    <h2>持仓复盘</h2>
+    <table>
+      <thead><tr><th style="width:70px;">分级</th><th style="width:80px;">名称</th><th style="width:70px;">收盘</th><th style="width:70px;">涨幅</th><th style="width:130px;">今日点评</th></tr></thead>
+      <tbody>
+        <tr><td><span class="grade-S">S</span></td><td>澜起科技</td><td>285.80</td><td class="pos"><strong>+15.64%</strong></td><td>CPU概念板块第2，SK海力士IPO超额7倍直接映射，长鑫IPO情绪催化。最强表现</td></tr>
+        <tr><td><span class="grade-A">A</span></td><td>罗博特科</td><td>521.27</td><td class="pos"><strong>+9.69%</strong></td><td>NVDA+3.65%隔夜拉动+半导体权重情绪扩散，硅光设备逻辑强化</td></tr>
+        <tr><td><span class="grade-A">A</span></td><td>软通动力</td><td>40.43</td><td class="pos"><strong>+6.73%</strong></td><td>跟随计算机板块+2.64%，AIPC/鸿蒙情绪受益</td></tr>
+        <tr><td><span class="grade-S">S</span></td><td>汇绿生态</td><td>43.55</td><td class="pos"><strong>+5.50%</strong></td><td>通信板块+5.37%，光模块方向随CPO/光纤反弹，Lumentum实锤支撑</td></tr>
+        <tr><td><span class="grade-S">S</span></td><td>三祥新材</td><td>79.63</td><td class="pos">+4.46%</td><td>科创板情绪扩散+半导体材料方向，但化工板块仅+0.26%，全靠自身逻辑</td></tr>
+        <tr><td><span class="grade-profit">利</span></td><td>兴森科技</td><td>-</td><td>~持平</td><td>ABF载板逻辑不受影响，MS报告利好</td></tr>
+        <tr><td><span class="grade-B">B+</span></td><td>泰和新材</td><td>14.07</td><td class="pos">+0.72%</td><td>化工板块仅+0.26%，泰和走势符合"工具"定位</td></tr>
+        <tr><td><span class="grade-def">防</span></td><td>华峰化学</td><td>10.20</td><td class="pos">+0.20%</td><td>化工防御仓，今日资金流出化工板块</td></tr>
+      </tbody>
+    </table>
+    <div class="callout-green">
+      <strong>持仓加权表现：</strong>5盏灯平均涨幅约+8.4%（接近科创50涨幅），防御/工具类几乎不动。组合结构今日的收益来源完全来自S/A级持仓，验证了"灯亮工具暗"的判断。
+    </div>
+  </div>
+
+  <!-- 三大催化 -->
+  <div class="card">
+    <h2>今日V反三重催化</h2>
+    <table>
+      <thead><tr><th style="width:40px;">#</th><th style="width:120px;">催化</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>长鑫科技IPO启动<br>7/16申购</td><td>招股书落地意味着大基金三期进入实战阶段，市场将"国产替代"从口号落实为数字。这是情绪质变的根源。</td></tr>
+        <tr><td>2</td><td>SK海力士美国IPO<br>超额认购7倍</td><td>直接利好澜起（海力士是澜起的重要客户+存储周期锚），也验证全球资金对AI存储的追捧不减。</td></tr>
+        <tr><td>3</td><td>DeepSeek-V4<br>7月中旬发布</td><td>峰谷定价机制（高峰时段价格翻倍）暗示国产算力供给仍在收紧，算力租赁/芯片需求逻辑再强化。</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <strong>深层逻辑：</strong>三重催化的共同指向只有一个——<strong>AI/半导体这条线还远没到终点。</strong>踏空资金在反复确认后发现"坏消息没来"，下午一次性翻多。
+    </div>
+  </div>
+
+  <!-- 操作建议 -->
+  <div class="card">
+    <h2>操作建议</h2>
+    <table>
+      <thead><tr><th style="width:150px;">标的</th><th>建议</th></tr></thead>
+      <tbody>
+        <tr><td><span class="grade-S">澜起（S）</span></td><td>按纪律持有。今日+15.64%后，离7/29海力士财报还有三周，有催化空间但不急于行动。</td></tr>
+        <tr><td><span class="grade-S">三祥（S）</span></td><td>79.63距离500亿门槛（118元）还有48%空间。逻辑未破，等中报业绩验证。</td></tr>
+        <tr><td><span class="grade-S">汇绿（S）</span></td><td>今日反弹5.5%修复部分前几周跌幅，但20日仍-14%，波段中有空间。8月COHR/LITE财报前有催化窗口。</td></tr>
+        <tr><td><span class="grade-A">罗博（A）</span></td><td>今日+9.7%但PE为负（持续亏损），半年报仍不期待。持有的耐心等待硅光设备交付信号。</td></tr>
+        <tr><td><span class="grade-def">太钢/德展/欧林</span></td><td>今日这类防御/非主线仓位基本无表现。仍是"工具"，中期可考虑换仓至材料TOP3。</td></tr>
+        <tr><td><strong>材料TOP3候选</strong></td><td>今日南大+3.87%、雅克+8.74%、安集+2.78%，今日涨幅已高，仍建议等回调后再介入。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 下周前瞻 -->
+  <div class="card">
+    <h2>下周前瞻</h2>
+    <div style="font-size:12px;">
+      <p><strong>7/13 前后</strong>——长鑫IPO询价，市场情绪大概率维持高位，但个股分化会加剧</p>
+      <p><strong>7/16</strong>——长鑫申购，当天可能有资金分流压力，但整体方向不改</p>
+      <p><strong>7/29</strong>——SK海力士财报（澜起最强映射），是下一个重大验证点</p>
+      <p style="color:var(--warn);margin-top:6px;"><strong>⚠️ 警惕：</strong>今日科创50单日8.4%的涨幅不可持续，短期可能有技术性回踩。S级仓位可以持有不动，但不要追高加仓。</p>
+    </div>
+  </div>
+
+  <!-- LAST WORD -->
+  <div class="last-word">
+    <h2>Last Word</h2>
+    <p><strong>今天这个走势，本质上是在回答一个多月来的核心问题——"AI/半导体的逻辑还能不能继续？"市场用科创50+8.4%、中芯国际创历史新高的方式给出了回答。</strong></p>
+    <p>我们的5盏灯今日全部大涨，说明持仓方向没有错。但今天不是加仓日——单日涨幅太大，等技术回踩再动手。</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;">数据来源：NeoData实时行情 2026-07-09 收盘</p>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:16px;padding-bottom:8px;">
+    巴蒂出品 · 2026-07-09 盘后 · 仅供老潘投资决策参考
+  </div>
+</div>
+</body>
+</html>
