@@ -16,34 +16,34 @@
   --crowd-cold: #5b9bff; --crowd-mild: #a78bfa; --crowd-warm: #f4c75b; --crowd-hot: #fb923c; --crowd-extreme: #ff7066;
 }
 * { box-sizing: border-box; }
-body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height: 1.7; font-size: 14px; }
-.container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
-h1 { font-size: 22px; font-weight: 700; text-align: center; margin: 0 0 6px; color: #fff8e7; letter-spacing: 1px; }
-.subtitle { text-align: center; color: var(--text-secondary); font-size: 13px; margin-bottom: 24px; }
+body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height: 1.7; font-size: 16px; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
+h1 { font-size: 24px; font-weight: 700; text-align: center; margin: 0 0 6px; color: #fff8e7; letter-spacing: 1px; }
+.subtitle { text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
 .module { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
-.module-title { font-size: 16px; font-weight: 700; color: #fff8e7; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-.module-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #1a1814; border-radius: 6px; font-size: 12px; font-weight: 700; }
+.module-title { font-size: 18px; font-weight: 700; color: #fff8e7; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.module-title .num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent); color: #1a1814; border-radius: 6px; font-weight: 700; }
 .execute-module { border-color: var(--execute-border) !important; background: var(--execute-bg) !important; }
-.execute-module .module-title .num { background: var(--star); }
+.execute-module .module-title .num { font-size: 13px; background: var(--star); }
 .green-card { background: var(--green-card-bg) !important; border-color: var(--green-card-border) !important; }
-.green-card .module-title .num { background: var(--star); }
-.highlight-box { background: var(--highlight-blue); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 13px; }
-.highlight-box-red { background: var(--highlight-red); border-left: 3px solid var(--up); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 13px; }
+.green-card .module-title .num { font-size: 13px; background: var(--star); }
+.highlight-box { background: var(--highlight-blue); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+.highlight-box-red { background: var(--highlight-red); border-left: 3px solid var(--up); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
 .scenario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .scenario-up { background: var(--scenario-up); border: 1px solid var(--down); border-radius: 10px; padding: 14px; text-align: center; }
 .scenario-neutral { background: var(--scenario-neutral); border: 1px solid var(--text-secondary); border-radius: 10px; padding: 14px; text-align: center; }
 .scenario-down { background: var(--scenario-down); border: 1px solid var(--up); border-radius: 10px; padding: 14px; text-align: center; }
 .dashboard-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
 .redline { background: var(--highlight-red); border-left: 3px solid var(--up); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; table-layout: fixed; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; table-layout: fixed; }
 th, td { padding: 9px 10px; text-align: center; border-bottom: 1px solid var(--border); vertical-align: middle; }
-th { color: var(--text-secondary); font-weight: 500; font-size: 11px; white-space: nowrap; }
+th { color: var(--text-secondary); font-weight: 500; font-size: 12px; white-space: nowrap; }
 td.num { text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
 td.nowrap { white-space: nowrap; }
 td.text-left { text-align: left; }
 .up { color: var(--up) }
 .down { color: var(--down) }
-.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; margin: 2px 4px 2px 0; }
+.tag { font-size: 11px; display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 500; margin: 2px 4px 2px 0; }
 .tag-up { background: #ff706620; color: var(--up) }
 .tag-down { background: #5fce7020; color: var(--down) }
 .tag-warn { background: #d2992220; color: var(--warn) }
@@ -104,28 +104,28 @@ td.text-left { text-align: left; }
   <div class="module-title"><span class="num">4</span> 大盘全景仪表盘</div>
   <div class="dashboard-row">
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
-      <div style="font-size:10px;color:var(--text-secondary)">上证指数</div>
-      <div style="font-size:20px;font-weight:700;color:var(--up)">3,996</div>
+      <div style="font-size:12px;color:var(--text-secondary)">上证指数</div>
+      <div style="font-size:22px;font-weight:700;color:var(--up)">3,996</div>
       <div style="font-size:11px;color:var(--up)">-1.00%</div>
     </div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
       <div style="font-size:10px;color:var(--text-secondary)">深证成指</div>
-      <div style="font-size:20px;font-weight:700;color:var(--up)">15,047</div>
+      <div style="font-size:22px;font-weight:700;color:var(--up)">15,047</div>
       <div style="font-size:11px;color:var(--up)">-2.29%</div>
     </div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
       <div style="font-size:10px;color:var(--text-secondary)">创业板指</div>
-      <div style="font-size:20px;font-weight:700;color:var(--up)">3,843</div>
+      <div style="font-size:22px;font-weight:700;color:var(--up)">3,843</div>
       <div style="font-size:11px;color:var(--up)">-4.37%</div>
     </div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
       <div style="font-size:10px;color:var(--text-secondary)">科创50</div>
-      <div style="font-size:20px;font-weight:700;color:var(--up)">2,065</div>
+      <div style="font-size:22px;font-weight:700;color:var(--up)">2,065</div>
       <div style="font-size:11px;color:var(--up)">-5.53%</div>
     </div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
       <div style="font-size:10px;color:var(--text-secondary)">恒生科技</div>
-      <div style="font-size:20px;font-weight:700;color:var(--up)">▲</div>
+      <div style="font-size:22px;font-weight:700;color:var(--up)">▲</div>
       <div style="font-size:11px;color:var(--up)">-0.21%</div>
     </div>
   </div>
@@ -136,37 +136,6 @@ td.text-left { text-align: left; }
     <tr><td class="text-left">北向资金</td><td class="num" colspan="3" style="color:var(--text-secondary)">待核实（wind终端）</td></tr>
     <tr><td class="text-left">美元兑人民币</td><td class="num" colspan="3" style="color:var(--text-secondary)">待核实</td></tr>
   </table>
-</div>
-
-<!-- 模块5：情绪温度计 -->
-<div class="module">
-  <div class="module-title"><span class="num">5</span> 情绪温度计</div>
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-    <div>
-      <table>
-        <tr><th>指标</th><th>数值</th><th>分位</th></tr>
-        <tr><td class="text-left">涨停家数</td><td class="num">94</td><td style="color:var(--crowd-warm)">偏热</td></tr>
-        <tr><td class="text-left">跌停家数</td><td class="num">2</td><td style="color:var(--crowd-cold)">低</td></tr>
-        <tr><td class="text-left">连板数量</td><td class="num">9</td><td style="color:var(--crowd-mild)">温和</td></tr>
-        <tr><td class="text-left">封板率</td><td class="num">49%</td><td style="color:var(--crowd-cold)">低</td></tr>
-        <tr><td class="text-left">红盘比例</td><td class="num">69%</td><td style="color:var(--crowd-warm)">偏热</td></tr>
-      </table>
-    </div>
-    <div>
-      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px">情绪四阶段定位</div>
-      <div style="display:flex;gap:4px;margin-bottom:12px">
-        <div style="flex:1;background:var(--crowd-cold);height:8px;border-radius:4px;opacity:0.3"></div>
-        <div style="flex:1;background:var(--crowd-mild);height:8px;border-radius:4px;opacity:0.3"></div>
-        <div style="flex:1;background:var(--crowd-warm);height:8px;border-radius:4px"></div>
-        <div style="flex:1;background:var(--crowd-hot);height:8px;border-radius:4px;opacity:0.3"></div>
-      </div>
-      <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
-        当前：<b style="color:var(--crowd-warm)">偏热</b> → 昨日暴涨后今日降温<br>
-        特征：指数大跌但个股活跃，板块快速轮动<br>
-        风险：封板率仅49%，炸板率高说明追高风险大
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- 模块6：主线板块扫描 -->
@@ -255,27 +224,27 @@ td.text-left { text-align: left; }
   <div class="module-title"><span class="num">12</span> 三情景推演（下周一）</div>
   <div class="scenario-grid">
     <div class="scenario-up">
-      <div style="font-size:14px;font-weight:700;color:var(--down);margin-bottom:6px">乐观 30%</div>
-      <div style="font-size:11px;color:var(--text-secondary);margin-bottom:8px">美股AI链企稳+低开反弹</div>
-      <div style="font-size:10px;color:var(--text-secondary);text-align:left">
+      <div style="font-size:15px;font-weight:700;color:var(--down);margin-bottom:6px">乐观 30%</div>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px">美股AI链企稳+低开反弹</div>
+      <div style="font-size:12px;color:var(--text-secondary);text-align:left">
         触发：今晚LITE/COHR继续上涨<br>
         科创50修复至2150+，半导体反弹3%+<br>
         <b>策略：</b>早盘低开可小幅加仓光通信
       </div>
     </div>
     <div class="scenario-neutral">
-      <div style="font-size:14px;font-weight:700;color:var(--text-secondary);margin-bottom:6px">中性 50%</div>
-      <div style="font-size:11px;color:var(--text-secondary);margin-bottom:8px">区间震荡整固</div>
-      <div style="font-size:10px;color:var(--text-secondary);text-align:left">
+      <div style="font-size:15px;font-weight:700;color:var(--text-secondary);margin-bottom:6px">中性 50%</div>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px">区间震荡整固</div>
+      <div style="font-size:12px;color:var(--text-secondary);text-align:left">
         触发：美股横盘+周末效应<br>
         科创50围绕2000-2150震荡，缩量整固<br>
         <b>策略：</b>持有不动，不加仓不割肉
       </div>
     </div>
     <div class="scenario-down">
-      <div style="font-size:14px;font-weight:700;color:var(--up);margin-bottom:6px">悲观 20%</div>
-      <div style="font-size:11px;color:var(--text-secondary);margin-bottom:8px">放量跌破55日线</div>
-      <div style="font-size:10px;color:var(--text-secondary);text-align:left">
+      <div style="font-size:15px;font-weight:700;color:var(--up);margin-bottom:6px">悲观 20%</div>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px">放量跌破55日线</div>
+      <div style="font-size:12px;color:var(--text-secondary);text-align:left">
         触发：美股AI大跌+北向持续流出<br>
         科创50跌破1950，澜起/三祥破55日线<br>
         <b>策略：</b>不减仓但停止加仓，等待企稳信号
