@@ -330,6 +330,93 @@ td.text-left { text-align: left; }
   </table>
 </div>
 
+
+<!-- 模块16：交易铁律红线 -->
+<div class="module">
+  <div class="module-title"><span class="num">16</span> 交易铁律红线检查</div>
+  <table>
+    <tr><th>铁律</th><th>状态</th><th>说明</th></tr>
+    <tr><td>S级持仓逻辑破才减仓</td><td class="signal-up">✅ 通过</td><td>汇绿/澜起/三祥产业逻辑未破</td></tr>
+    <tr><td>三祥市值500亿前不减仓</td><td class="signal-up">✅ 通过</td><td>当前约314亿（73.98×4.24亿股），离门槛远</td></tr>
+    <tr><td>新增仓位优先阶段3→4</td><td class="signal-up">✅ 通过</td><td>今日无新增仓位</td></tr>
+    <tr><td>阶段2严格控仓</td><td class="signal-up">✅ 通过</td><td>三祥/星环未加仓</td></tr>
+    <tr><td>不做技术止损</td><td class="signal-up">✅ 通过</td><td>未因大跌触发情绪化减仓</td></tr>
+    <tr><td>负债成本管控</td><td style="color:var(--warn)">⚠ 需关注</td><td>若持续下跌需评估融资压力</td></tr>
+  </table>
+</div>
+
+<!-- 模块17：买卖点量化 -->
+<div class="module">
+  <div class="module-title"><span class="num">17</span> 买卖点精确量化</div>
+  <table>
+    <tr><th>标的</th><th>当前价</th><th>加仓观察</th><th>止损参考</th><th>目标</th><th>盈亏比</th></tr>
+    <tr><td>汇绿生态</td><td class="num">43.39</td><td class="num">38-40（55日线）</td><td class="num down">35（放量破平台）</td><td class="num up">50-55</td><td class="num">~3:1</td></tr>
+    <tr><td>澜起科技</td><td class="num">268.06</td><td class="num">240-255（55日线）</td><td>不减（S级底仓）</td><td class="num up">300-330</td><td>—</td></tr>
+    <tr><td>三祥新材</td><td class="num">73.98</td><td class="num">65-70（平台底）</td><td>不减（S级）</td><td class="num up">118</td><td>—</td></tr>
+  </table>
+</div>
+
+<!-- 模块19：次日开盘竞价 -->
+<div class="module">
+  <div class="module-title"><span class="num">19</span> 次日开盘竞价观察</div>
+  <table>
+    <tr><th>情景</th><th>标志</th><th>对策</th></tr>
+    <tr><td>高开</td><td>科创50高开1%+，隔夜美股AI链继续涨</td><td>观察15分钟不追，等冲高回落确认</td></tr>
+    <tr><td>平开</td><td>窄幅±0.5%，量能持平</td><td>持有不动，持仓股不加不减</td></tr>
+    <tr><td>低开</td><td>科创50低开1.5%+，恐慌延续</td><td>美股AI企稳→短线加仓窗口（汇绿/澜起）</td></tr>
+  </table>
+</div>
+
+<!-- 模块20：仓位配置计算器 -->
+<div class="module">
+  <div class="module-title"><span class="num">20</span> 仓位配置计算器</div>
+  <table>
+    <tr><th>板块</th><th>建议占比</th><th>代表标的</th><th>相关性提醒</th></tr>
+    <tr><td>AI光通信</td><td class="num">25-30%</td><td>汇绿/罗博</td><td>与半导体高相关（0.75+）</td></tr>
+    <tr><td>半导体/存储</td><td class="num">20-25%</td><td>澜起/兴森</td><td>与光通信高相关，合计>50%需警惕</td></tr>
+    <tr><td>新材料/周期</td><td class="num">15-20%</td><td>三祥/华峰/泰和</td><td>与科技低相关（0.2-0.3）</td></tr>
+    <tr><td>AI应用/软件</td><td class="num">10-15%</td><td>软通/星环</td><td>与硬件中相关（0.4-0.5）</td></tr>
+    <tr><td>防御/其他</td><td class="num">10-15%</td><td>太钢/德展</td><td>与科技负相关</td></tr>
+  </table>
+  <div class="highlight-box-red">风险提示：光通信+半导体合计占比超50%，行业集中度偏高。虽然都处于阶段3→4，但需警惕同向下跌风险。</div>
+</div>
+
+<!-- 模块21：准确率追踪 -->
+<div class="module">
+  <div class="module-title"><span class="num">21</span> 模型准确率追踪</div>
+  <table>
+    <tr><th>统计项</th><th>数值</th></tr>
+    <tr><td>本期验证判断（模块3）</td><td>3条中2条命中、1条部分命中，命中率67%</td></tr>
+    <tr><td>本期待验证</td><td>三情景推演（模块12）、次日策略（模块14）、买卖点（模块17）</td></tr>
+    <tr><td>累计命中率（V4.0起计）</td><td class="num" style="color:var(--star)">首次运行，下周验证</td></tr>
+  </table>
+</div>
+
+<!-- 模块22：可跟踪清单 -->
+<div class="module">
+  <div class="module-title"><span class="num">22</span> 可跟踪清单</div>
+  <table>
+    <tr><th>标的/事件</th><th>逻辑</th><th>关键价位/时点</th><th>周期</th></tr>
+    <tr><td>汇绿生态</td><td>光模块/CPO代工，EML紧缺受益</td><td>55日线≈38元，COHR财报8/13</td><td>持有跟踪</td></tr>
+    <tr><td>澜起科技</td><td>内存接口龙头，HBM链核心</td><td>SK海力士财报7/29，长鑫IPO 7/16</td><td>持有跟踪</td></tr>
+    <tr><td>罗博特科</td><td>硅光设备，华为NPO受益</td><td>ficonTEC订单，CPO量产进度</td><td>持有跟踪</td></tr>
+    <tr><td>商业航天</td><td>回收火箭突破+政策催化</td><td>次日分化后核心标的走势</td><td>观察1-2日</td></tr>
+    <tr><td>兆易创新</td><td>存储情绪指标，全板块风向标</td><td>能否在-21%港股暴跌后企稳</td><td>观察3日</td></tr>
+  </table>
+</div>
+
+<!-- 模块23：要回避清单 -->
+<div class="module">
+  <div class="module-title"><span class="num">23</span> 要回避清单</div>
+  <table>
+    <tr><th>标的/板块</th><th>回避理由</th><th>何时可再看</th></tr>
+    <tr><td>锂矿/储能</td><td>融捷股份3连跌停，板块趋势下行</td><td>价格企稳+龙头止跌</td></tr>
+    <tr><td>商业航天高位追涨</td><td>封板率49%，阶段2纯博弈</td><td>等分化后择回调低吸</td></tr>
+    <tr><td>兆易创新</td><td>A股-7.76%+港股-21%双杀，未企稳</td><td>等缩量止跌信号</td></tr>
+    <tr><td>恒尚节能</td><td>9连板终结，情绪退潮信号</td><td>等新周期启动</td></tr>
+  </table>
+</div>
+
 <div style="background:var(--execute-bg);border:1px solid var(--execute-border);border-radius:10px;padding:16px 20px;margin-top:8px;font-size:12px;color:var(--text-secondary);text-align:center">
   <strong style="color:var(--star)">⚠️ 验证中：</strong> 以上分析基于公开数据和产业逻辑推演，不构成投资建议。股市有风险，投资需谨慎。V4.0模板首次运行，部分模块待下次完整。
 </div>
