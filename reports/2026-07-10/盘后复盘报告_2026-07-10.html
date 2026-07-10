@@ -130,11 +130,6 @@ td.nowrap{white-space:nowrap;min-width:100px}
 </div>
 
 <div class="card">
-  <h3>图表：持仓今日涨跌幅</h3>
-  <div class="chart" id="chart1"></div>
-</div>
-
-<div class="card">
   <h3>H2融合框架审视</h3>
   <table>
     <tr><th>步骤</th><th>判断</th></tr>
@@ -153,23 +148,6 @@ td.nowrap{white-space:nowrap;min-width:100px}
   科创50从昨日+8.4%到今日-5.53%，两天振幅14%，短期极度情绪化。核心持仓（汇绿/澜起/三祥/罗博）逻辑未破，不建议低位割肉。但今日放量杀跌的信号需要严肃对待——如果明日继续放量下跌，短期可能还有低点。操作建议：①持有不动，②关注汇绿55日线（约38元）和澜起55日线作为中期趋势分水岭，③若明日A股开盘恐慌低开且美股今晚企稳，反而是短线加仓观察的窗口——但需控制仓位不超S级纪律上限。<br><br>
   <span class="source-inline">风险提示：以上分析基于公开数据和产业逻辑推演，不构成投资建议。股市有风险，投资需谨慎。</span>
 </div>
-
-<script>
-(function(){
-var c1=echarts.init(document.getElementById('chart1'));
-c1.setOption({
-  tooltip:{trigger:'axis'},
-  grid:{left:120,right:40,top:26,bottom:40},
-  xAxis:{type:'value',axisLabel:{fontSize:11}},
-  yAxis:{type:'category',data:['兴森科技','三祥新材','澜起科技','罗博特科','华峰化学','汇绿生态','泰和新材','太钢不锈','德展健康','软通动力','星环科技'],inverse:true,axisLabel:{fontSize:11}},
-  series:[{
-    type:'bar',
-    data:[-7.47,-7.10,-6.21,-6.19,-0.88,-0.37,0.92,2.40,2.54,3.46,4.05].map(function(v){return{value:v,itemStyle:{color:v>=0?'#f85149':'#3fb950'}}}),
-    label:{show:true,position:'right',formatter:'{c}%',fontSize:11}
-  }]
-});
-})();
-</script>
 
 </body>
 </html>
