@@ -6,23 +6,23 @@
 <title>A股每日复盘 — 2026年7月10日（周五）</title>
 <style>
 :root {
-  --bg: #12100f; --card: #1a1714; --border: #2a2520;
-  --text: #e0d6c8; --text-secondary: #8a8075; --header-bg: #1a1815;
-  --up: #f85149; --down: #3fb950; --star: #e8b84b; --accent: #e8b84b;
-  --green-card-bg: #2a2218; --green-card-border: #e8b84b60;
-  --highlight-blue: #1a2838; --highlight-red: #2a1a1a;
-  --execute-bg: #221d14; --execute-border: #e8b84b40;
-  --scenario-up: #1a2a18; --scenario-neutral: #1a1a1a; --scenario-down: #2a1a1a;
-  --crowd-cold: #3b82f6; --crowd-mild: #8b5cf6; --crowd-warm: #e8b84b; --crowd-hot: #f97316; --crowd-extreme: #f85149;
+  --bg: #1a1814; --card: #221e18; --border: #3a3328;
+  --text: #f0e6d2; --text-secondary: #a89882; --header-bg: #221e18;
+  --up: #ff7066; --down: #5fce70; --star: #f4c75b; --accent: #f4c75b;
+  --green-card-bg: #2e261a; --green-card-border: #f4c75b80;
+  --highlight-blue: #1f2e44; --highlight-red: #321e1e;
+  --execute-bg: #2a2317; --execute-border: #f4c75b50;
+  --scenario-up: #1f2e1c; --scenario-neutral: #252220; --scenario-down: #321e1e;
+  --crowd-cold: #5b9bff; --crowd-mild: #a78bfa; --crowd-warm: #f4c75b; --crowd-hot: #fb923c; --crowd-extreme: #ff7066;
 }
 * { box-sizing: border-box; }
 body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height: 1.7; font-size: 14px; }
 .container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
-h1 { font-size: 22px; font-weight: 700; text-align: center; margin: 0 0 6px; color: #f0f6fc; letter-spacing: 1px; }
+h1 { font-size: 22px; font-weight: 700; text-align: center; margin: 0 0 6px; color: #fff8e7; letter-spacing: 1px; }
 .subtitle { text-align: center; color: var(--text-secondary); font-size: 13px; margin-bottom: 24px; }
 .module { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
-.module-title { font-size: 16px; font-weight: 700; color: #f0f6fc; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-.module-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #12100f; border-radius: 6px; font-size: 12px; font-weight: 700; }
+.module-title { font-size: 16px; font-weight: 700; color: #fff8e7; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.module-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #1a1814; border-radius: 6px; font-size: 12px; font-weight: 700; }
 .execute-module { border-color: var(--execute-border) !important; background: var(--execute-bg) !important; }
 .execute-module .module-title .num { background: var(--star); }
 .green-card { background: var(--green-card-bg) !important; border-color: var(--green-card-border) !important; }
@@ -35,24 +35,25 @@ h1 { font-size: 22px; font-weight: 700; text-align: center; margin: 0 0 6px; col
 .scenario-down { background: var(--scenario-down); border: 1px solid var(--up); border-radius: 10px; padding: 14px; text-align: center; }
 .dashboard-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
 .redline { background: var(--highlight-red); border-left: 3px solid var(--up); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
-th, td { padding: 7px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; table-layout: fixed; }
+th, td { padding: 9px 10px; text-align: center; border-bottom: 1px solid var(--border); vertical-align: middle; }
 th { color: var(--text-secondary); font-weight: 500; font-size: 11px; white-space: nowrap; }
-td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.num { text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
 td.nowrap { white-space: nowrap; }
+td.text-left { text-align: left; }
 .up { color: var(--up) }
 .down { color: var(--down) }
 .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; margin: 2px 4px 2px 0; }
-.tag-up { background: #f8514920; color: var(--up) }
-.tag-down { background: #3fb95020; color: var(--down) }
+.tag-up { background: #ff706620; color: var(--up) }
+.tag-down { background: #5fce7020; color: var(--down) }
 .tag-warn { background: #d2992220; color: var(--warn) }
-.tag-info { background: #e8b84b20; color: var(--accent) }
-.signal-up { color: #3fb950; font-weight: 600 }
-.signal-down { color: #f85149; font-weight: 600 }
+.tag-info { background: #f4c75b20; color: var(--accent) }
+.signal-up { color: #5fce70; font-weight: 600 }
+.signal-down { color: #ff7066; font-weight: 600 }
 .accuracy-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; }
-.accuracy-hit { background: #3fb95020; color: #3fb950 }
-.accuracy-miss { background: #f8514920; color: #f85149 }
-@media(max-width:600px){ .dashboard-row{ grid-template-columns: repeat(2,1fr) } .scenario-grid{ grid-template-columns: 1fr } }
+.accuracy-hit { background: #5fce7020; color: #5fce70 }
+.accuracy-miss { background: #ff706620; color: #ff7066 }
+@media(max-width:600px){ .dashboard-row{ grid-template-columns: repeat(2,1fr) } .scenario-grid{ grid-template-columns: 1fr } table{ font-size: 11px } th, td{ padding: 6px 4px } }
 </style>
 </head>
 <body>
@@ -79,10 +80,10 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">2</span> 极端信号</div>
   <table>
     <tr><th>信号</th><th>级别</th><th>分析</th></tr>
-    <tr><td>科创50两天振幅14%，放量4800亿</td><td class="signal-down">🔴 危险</td><td>高波动说明筹码不稳。解套盘+获利盘双重抛压，短期仍有下探风险</td></tr>
-    <tr><td>3700+个股红盘 vs 四大指数全绿</td><td class="signal-up">🟢 积极</td><td>权重杀跌、中小盘抗跌。不是全面撤退，是板块切换</td></tr>
-    <tr><td>商业航天批量涨停，半导体批量跌10%+</td><td class="signal-down">🟡 警示</td><td>存量资金从一个赛道跳到另一个，说明市场缺增量。AI主线短期承压</td></tr>
-    <tr><td>恒尚节能9连板终结</td><td class="signal-down">🟡 警示</td><td>连板龙头退潮，情绪周期可能进入退潮期</td></tr>
+    <tr><td class="text-left">科创50两天振幅14%，放量4800亿</td><td class="signal-down">🔴 危险</td><td>高波动说明筹码不稳。解套盘+获利盘双重抛压，短期仍有下探风险</td></tr>
+    <tr><td class="text-left">3700+个股红盘 vs 四大指数全绿</td><td class="signal-up">🟢 积极</td><td>权重杀跌、中小盘抗跌。不是全面撤退，是板块切换</td></tr>
+    <tr><td class="text-left">商业航天批量涨停，半导体批量跌10%+</td><td class="signal-down">🟡 警示</td><td>存量资金从一个赛道跳到另一个，说明市场缺增量。AI主线短期承压</td></tr>
+    <tr><td class="text-left">恒尚节能9连板终结</td><td class="signal-down">🟡 警示</td><td>连板龙头退潮，情绪周期可能进入退潮期</td></tr>
   </table>
 </div>
 
@@ -91,9 +92,9 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">3</span> 上期研判回顾</div>
   <table>
     <tr><th>上期判断（7/9复盘）</th><th>实际走势</th><th>准确度</th></tr>
-    <tr><td>科创50暴涨8.4%后需整固，不追高</td><td>当日暴跌5.53%</td><td><span class="accuracy-tag accuracy-hit">✅ 命中</span></td></tr>
-    <tr><td>S级持仓逻辑未破，持有不动</td><td>汇绿-0.37%抗跌，澜起-6.21%承压</td><td><span class="accuracy-tag accuracy-hit">✅ 命中</span></td></tr>
-    <tr><td>关注华为OPEN NPO对光通信的催化</td><td>港股光通信走强（剑桥+9%），A股光通信冲高回落</td><td><span class="accuracy-tag accuracy-miss">🟡 部分命中</span></td></tr>
+    <tr><td class="text-left">科创50暴涨8.4%后需整固，不追高</td><td>当日暴跌5.53%</td><td><span class="accuracy-tag accuracy-hit">✅ 命中</span></td></tr>
+    <tr><td class="text-left">S级持仓逻辑未破，持有不动</td><td>汇绿-0.37%抗跌，澜起-6.21%承压</td><td><span class="accuracy-tag accuracy-hit">✅ 命中</span></td></tr>
+    <tr><td class="text-left">关注华为OPEN NPO对光通信的催化</td><td>港股光通信走强（剑桥+9%），A股光通信冲高回落</td><td><span class="accuracy-tag accuracy-miss">🟡 部分命中</span></td></tr>
   </table>
   <div class="highlight-box">复盘反思：低估了商业航天对资金的虹吸效应。一个足够大的新题材启动时，存量资金不足以支撑多个主线同时上涨。后续需要更关注题材轮动节奏。</div>
 </div>
@@ -130,10 +131,10 @@ td.nowrap { white-space: nowrap; }
   </div>
   <table style="margin-top:12px">
     <tr><th>指标</th><th>今日</th><th>昨日</th><th>变化</th></tr>
-    <tr><td>沪深北成交额</td><td class="num">3.41万亿</td><td class="num">2.91万亿</td><td class="num down">+4,800亿放量</td></tr>
-    <tr><td>红盘/下跌家数</td><td class="num">3,772↑ / 1,678↓</td><td class="num">—</td><td>指数跌但七成个股红盘</td></tr>
-    <tr><td>北向资金</td><td class="num" colspan="3" style="color:var(--text-secondary)">待核实（wind终端）</td></tr>
-    <tr><td>美元兑人民币</td><td class="num" colspan="3" style="color:var(--text-secondary)">待核实</td></tr>
+    <tr><td class="text-left">沪深北成交额</td><td class="num">3.41万亿</td><td class="num">2.91万亿</td><td class="num down">+4,800亿放量</td></tr>
+    <tr><td class="text-left">红盘/下跌家数</td><td class="num">3,772↑ / 1,678↓</td><td class="num">—</td><td>指数跌但七成个股红盘</td></tr>
+    <tr><td class="text-left">北向资金</td><td class="num" colspan="3" style="color:var(--text-secondary)">待核实（wind终端）</td></tr>
+    <tr><td class="text-left">美元兑人民币</td><td class="num" colspan="3" style="color:var(--text-secondary)">待核实</td></tr>
   </table>
 </div>
 
@@ -144,11 +145,11 @@ td.nowrap { white-space: nowrap; }
     <div>
       <table>
         <tr><th>指标</th><th>数值</th><th>分位</th></tr>
-        <tr><td>涨停家数</td><td class="num">94</td><td style="color:var(--crowd-warm)">偏热</td></tr>
-        <tr><td>跌停家数</td><td class="num">2</td><td style="color:var(--crowd-cold)">低</td></tr>
-        <tr><td>连板数量</td><td class="num">9</td><td style="color:var(--crowd-mild)">温和</td></tr>
-        <tr><td>封板率</td><td class="num">49%</td><td style="color:var(--crowd-cold)">低</td></tr>
-        <tr><td>红盘比例</td><td class="num">69%</td><td style="color:var(--crowd-warm)">偏热</td></tr>
+        <tr><td class="text-left">涨停家数</td><td class="num">94</td><td style="color:var(--crowd-warm)">偏热</td></tr>
+        <tr><td class="text-left">跌停家数</td><td class="num">2</td><td style="color:var(--crowd-cold)">低</td></tr>
+        <tr><td class="text-left">连板数量</td><td class="num">9</td><td style="color:var(--crowd-mild)">温和</td></tr>
+        <tr><td class="text-left">封板率</td><td class="num">49%</td><td style="color:var(--crowd-cold)">低</td></tr>
+        <tr><td class="text-left">红盘比例</td><td class="num">69%</td><td style="color:var(--crowd-warm)">偏热</td></tr>
       </table>
     </div>
     <div>
@@ -173,11 +174,11 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">6</span> 主线板块扫描</div>
   <table>
     <tr><th>板块</th><th>涨跌幅</th><th>逻辑</th><th>拥挤度</th></tr>
-    <tr><td>航天系</td><td class="num up">+6.60%</td><td>回收火箭突破+政策催化，批量涨停</td><td style="color:var(--crowd-hot)">高热</td></tr>
-    <tr><td>CRO/医药</td><td class="num up">+5.52%</td><td>中医药十五五规划获批+防御切换</td><td style="color:var(--crowd-warm)">偏热</td></tr>
-    <tr><td>太空算力</td><td class="num up">+5.45%</td><td>商业航天卫星互联网概念扩散</td><td style="color:var(--crowd-hot)">高热</td></tr>
-    <tr><td>半导体</td><td class="num down">-4%至-10%</td><td>兆易创新-7.8%拖累，获利盘涌出</td><td style="color:var(--crowd-warm)">偏热→降温</td></tr>
-    <tr><td>储能/锂矿</td><td class="num down">-5%至-12%</td><td>前期涨幅过高，解套盘砸盘</td><td style="color:var(--crowd-mild)">温和</td></tr>
+    <tr><td class="text-left">航天系</td><td class="num up">+6.60%</td><td>回收火箭突破+政策催化，批量涨停</td><td style="color:var(--crowd-hot)">高热</td></tr>
+    <tr><td class="text-left">CRO/医药</td><td class="num up">+5.52%</td><td>中医药十五五规划获批+防御切换</td><td style="color:var(--crowd-warm)">偏热</td></tr>
+    <tr><td class="text-left">太空算力</td><td class="num up">+5.45%</td><td>商业航天卫星互联网概念扩散</td><td style="color:var(--crowd-hot)">高热</td></tr>
+    <tr><td class="text-left">半导体</td><td class="num down">-4%至-10%</td><td>兆易创新-7.8%拖累，获利盘涌出</td><td style="color:var(--crowd-warm)">偏热→降温</td></tr>
+    <tr><td class="text-left">储能/锂矿</td><td class="num down">-5%至-12%</td><td>前期涨幅过高，解套盘砸盘</td><td style="color:var(--crowd-mild)">温和</td></tr>
   </table>
   <div class="highlight-box">关键洞察：商业航天吸走市场增量资金，半导体因拥挤度偏高被抽血。但半导体中长期逻辑（AI算力/光通信/先进封装）未破，短期调整后仍有修复动能。</div>
 </div>
@@ -187,12 +188,12 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">7</span> 龙头股雷达</div>
   <table>
     <tr><th>板块</th><th>龙头</th><th>表现</th><th>信号</th></tr>
-    <tr><td>商业航天</td><td>中国卫星/中国卫通/航天科技</td><td class="num up">涨停</td><td>批量涨停启动，持续性待观察</td></tr>
-    <tr><td>医药</td><td>立方制药（2连板）/常山药业</td><td class="num up">涨停</td><td>防御属性+政策催化，持续性中等</td></tr>
-    <tr><td>AI应用</td><td>欢瑞世纪（7天4板）</td><td class="num up">涨停</td><td>市场最高标，但封板率走低</td></tr>
-    <tr><td>机器人</td><td>晋拓股份（6天3板）</td><td class="num up">涨停</td><td>连板情绪尚可</td></tr>
-    <tr><td>半导体</td><td>兆易创新</td><td class="num down">-7.76%</td><td>存储龙头暴跌，板块情绪负反馈</td></tr>
-    <tr><td>光通信</td><td>汇绿生态</td><td class="num down">-0.37%</td><td>冲高47后回落，相对抗跌</td></tr>
+    <tr><td class="text-left">商业航天</td><td>中国卫星/中国卫通/航天科技</td><td class="num up">涨停</td><td>批量涨停启动，持续性待观察</td></tr>
+    <tr><td class="text-left">医药</td><td>立方制药（2连板）/常山药业</td><td class="num up">涨停</td><td>防御属性+政策催化，持续性中等</td></tr>
+    <tr><td class="text-left">AI应用</td><td>欢瑞世纪（7天4板）</td><td class="num up">涨停</td><td>市场最高标，但封板率走低</td></tr>
+    <tr><td class="text-left">机器人</td><td>晋拓股份（6天3板）</td><td class="num up">涨停</td><td>连板情绪尚可</td></tr>
+    <tr><td class="text-left">半导体</td><td>兆易创新</td><td class="num down">-7.76%</td><td>存储龙头暴跌，板块情绪负反馈</td></tr>
+    <tr><td class="text-left">光通信</td><td>汇绿生态</td><td class="num down">-0.37%</td><td>冲高47后回落，相对抗跌</td></tr>
   </table>
 </div>
 
@@ -201,9 +202,9 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">8</span> 板块详细分析：商业航天（今日最强主线）</div>
   <table>
     <tr><th>子方向</th><th>代表标的</th><th>催化强度</th></tr>
-    <tr><td>火箭/卫星制造</td><td>中国卫星、航天科技</td><td class="signal-up">★★★★★</td></tr>
-    <tr><td>卫星互联网</td><td>中国卫通、乾照光电</td><td class="signal-up">★★★★</td></tr>
-    <tr><td>火箭回收概念</td><td>超捷股份、日盈电子</td><td class="signal-up">★★★★★</td></tr>
+    <tr><td class="text-left">火箭/卫星制造</td><td>中国卫星、航天科技</td><td class="signal-up">★★★★★</td></tr>
+    <tr><td class="text-left">卫星互联网</td><td>中国卫通、乾照光电</td><td class="signal-up">★★★★</td></tr>
+    <tr><td class="text-left">火箭回收概念</td><td>超捷股份、日盈电子</td><td class="signal-up">★★★★★</td></tr>
   </table>
   <div class="highlight-box-red">风险提示：商业航天属于阶段2（高度重视期），有政策/事件催化但无明确业绩。参考五阶段框架，仅适合小仓位博弈，不宜重仓。今日批量涨停后封板率仅49%，追高风险大。</div>
 </div>
@@ -213,12 +214,12 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">9</span> 当日热点消息</div>
   <table>
     <tr><th>事件</th><th>影响板块</th><th>级别</th></tr>
-    <tr><td>华为联合中移动启动OPEN NPO项目，发起国内首个NPO光互连MSA</td><td>光通信/CPO</td><td class="signal-up">★★★★</td></tr>
-    <tr><td>"AI大模型双雄"智谱与MiniMax限售股解禁→恒科指由涨转跌</td><td>港股AI/A股半导体</td><td class="signal-down">负面传导</td></tr>
-    <tr><td>兆易创新A股暴跌7.76%，港股暴跌21%</td><td>存储/半导体</td><td class="signal-down">★★★★★</td></tr>
-    <tr><td>ADI完成15亿美元收购Empower Semiconductor</td><td>AI供电/模拟芯片</td><td class="signal-up">★★★</td></tr>
-    <tr><td>国务院批复中医药振兴"十五五"规划</td><td>医药/中药</td><td class="signal-up">★★★</td></tr>
-    <tr><td>超长期特别国债续发行800亿元（7/15招标）</td><td>宏观流动性</td><td>中性</td></tr>
+    <tr><td class="text-left">华为联合中移动启动OPEN NPO项目，发起国内首个NPO光互连MSA</td><td>光通信/CPO</td><td class="signal-up">★★★★</td></tr>
+    <tr><td class="text-left">"AI大模型双雄"智谱与MiniMax限售股解禁→恒科指由涨转跌</td><td>港股AI/A股半导体</td><td class="signal-down">负面传导</td></tr>
+    <tr><td class="text-left">兆易创新A股暴跌7.76%，港股暴跌21%</td><td>存储/半导体</td><td class="signal-down">★★★★★</td></tr>
+    <tr><td class="text-left">ADI完成15亿美元收购Empower Semiconductor</td><td>AI供电/模拟芯片</td><td class="signal-up">★★★</td></tr>
+    <tr><td class="text-left">国务院批复中医药振兴"十五五"规划</td><td>医药/中药</td><td class="signal-up">★★★</td></tr>
+    <tr><td class="text-left">超长期特别国债续发行800亿元（7/15招标）</td><td>宏观流动性</td><td>中性</td></tr>
   </table>
 </div>
 
@@ -242,10 +243,10 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">11</span> 市场热点事件动态分析</div>
   <table>
     <tr><th>事件</th><th>持续力度</th><th>操作建议</th></tr>
-    <tr><td>华为OPEN NPO项目</td><td style="color:var(--star)">★★★ 中期催化</td><td>光通信链（汇绿/罗博）中期利好，但短期已部分定价</td></tr>
-    <tr><td>兆易创新暴跌</td><td style="color:var(--up)">单日冲击，非趋势</td><td>存储板块短期承压，但解禁情绪消化后有望修复</td></tr>
-    <tr><td>商业航天爆发</td><td style="color:var(--crowd-warm)">★★ 短期博弈</td><td>阶段2题材，可轻仓但不宜重仓。次日分化后择优</td></tr>
-    <tr><td>美伊局势+油价波动</td><td style="color:var(--warn)">★★★★ 持续变量</td><td>油价上涨利好化工/防御标的（华峰/泰和），但需警惕通胀预期</td></tr>
+    <tr><td class="text-left">华为OPEN NPO项目</td><td style="color:var(--star)">★★★ 中期催化</td><td>光通信链（汇绿/罗博）中期利好，但短期已部分定价</td></tr>
+    <tr><td class="text-left">兆易创新暴跌</td><td style="color:var(--up)">单日冲击，非趋势</td><td>存储板块短期承压，但解禁情绪消化后有望修复</td></tr>
+    <tr><td class="text-left">商业航天爆发</td><td style="color:var(--crowd-warm)">★★ 短期博弈</td><td>阶段2题材，可轻仓但不宜重仓。次日分化后择优</td></tr>
+    <tr><td class="text-left">美伊局势+油价波动</td><td style="color:var(--warn)">★★★★ 持续变量</td><td>油价上涨利好化工/防御标的（华峰/泰和），但需警惕通胀预期</td></tr>
   </table>
 </div>
 
@@ -288,12 +289,12 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">13</span> 板块持续性排序</div>
   <table>
     <tr><th>板块</th><th>★星级</th><th>关键验证信号</th></tr>
-    <tr><td>光通信/CPO</td><td style="color:var(--star)">★★★★★</td><td>华为NPO项目进展、LITE/COHR继续走强、汇绿订单公告</td></tr>
-    <tr><td>先进封装</td><td style="color:var(--star)">★★★★</td><td>日月光第四次涨价确认、长电/通富中报预告</td></tr>
-    <tr><td>AI算力</td><td style="color:var(--star)">★★★★</td><td>SK海力士7/29财报、英伟达8/26财报</td></tr>
-    <tr><td>存储/HBM</td><td style="color:var(--star)">★★★</td><td>长鑫IPO（7/16申购）、兆易创新能否企稳</td></tr>
-    <tr><td>商业航天</td><td style="color:var(--crowd-warm)">★★</td><td>次日分化后能否有标的继续连板</td></tr>
-    <tr><td>医药/CRO</td><td style="color:var(--crowd-mild)">★★</td><td>中医药规划后续细则落地</td></tr>
+    <tr><td class="text-left">光通信/CPO</td><td style="color:var(--star)">★★★★★</td><td>华为NPO项目进展、LITE/COHR继续走强、汇绿订单公告</td></tr>
+    <tr><td class="text-left">先进封装</td><td style="color:var(--star)">★★★★</td><td>日月光第四次涨价确认、长电/通富中报预告</td></tr>
+    <tr><td class="text-left">AI算力</td><td style="color:var(--star)">★★★★</td><td>SK海力士7/29财报、英伟达8/26财报</td></tr>
+    <tr><td class="text-left">存储/HBM</td><td style="color:var(--star)">★★★</td><td>长鑫IPO（7/16申购）、兆易创新能否企稳</td></tr>
+    <tr><td class="text-left">商业航天</td><td style="color:var(--crowd-warm)">★★</td><td>次日分化后能否有标的继续连板</td></tr>
+    <tr><td class="text-left">医药/CRO</td><td style="color:var(--crowd-mild)">★★</td><td>中医药规划后续细则落地</td></tr>
   </table>
 </div>
 
@@ -302,10 +303,10 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">14</span> 次日交易建议</div>
   <table>
     <tr><th>操作</th><th>标的/板块</th><th>条件</th><th>仓位上限</th></tr>
-    <tr><td style="color:var(--down)">持有</td><td>汇绿/澜起/三祥/罗博/兴森</td><td>当前逻辑未破，不减仓</td><td>S级纪律不变</td></tr>
-    <tr><td style="color:var(--down)">持有</td><td>软通/星环/泰和/华峰/太钢/德展</td><td>防御组合正常工作</td><td>现有仓位</td></tr>
-    <tr><td style="color:var(--star)">加仓观察</td><td>汇绿/澜起</td><td>若周一早盘恐慌低开3%+且美股AI链今晚企稳</td><td>组合5%以内</td></tr>
-    <tr><td style="color:var(--up)">观望/不追</td><td>商业航天</td><td>阶段2题材，封板率仅49%</td><td>0</td></tr>
+    <tr><td class="text-left" style="color:var(--down)">持有</td><td>汇绿/澜起/三祥/罗博/兴森</td><td>当前逻辑未破，不减仓</td><td>S级纪律不变</td></tr>
+    <tr><td class="text-left" style="color:var(--down)">持有</td><td>软通/星环/泰和/华峰/太钢/德展</td><td>防御组合正常工作</td><td>现有仓位</td></tr>
+    <tr><td class="text-left" style="color:var(--star)">加仓观察</td><td>汇绿/澜起</td><td>若周一早盘恐慌低开3%+且美股AI链今晚企稳</td><td>组合5%以内</td></tr>
+    <tr><td class="text-left" style="color:var(--up)">观望/不追</td><td>商业航天</td><td>阶段2题材，封板率仅49%</td><td>0</td></tr>
   </table>
   <div class="redline">止损纪律：若汇绿跌穿55日线（约38元）且持续3日无法收复，启动减仓评估。三祥/澜起按S级纪律不减仓。兴森/罗博为利润仓，无硬止损。</div>
 </div>
@@ -315,17 +316,17 @@ td.nowrap { white-space: nowrap; }
   <div class="module-title"><span class="num">15</span> 个人持仓复盘</div>
   <table>
     <tr><th>名称</th><th>代码</th><th>收盘</th><th>涨跌</th><th>换手</th><th>五阶段</th><th>今日评估</th><th>操作</th></tr>
-    <tr><td>汇绿生态</td><td>001267</td><td class="num">43.39</td><td class="num down">-0.37%</td><td class="num">6.06%</td><td>3→4</td><td>冲高47后回落，振幅8.6%分歧大但抗跌</td><td>持有</td></tr>
-    <tr><td>软通动力</td><td>301236</td><td class="num">41.83</td><td class="num up">+3.46%</td><td class="num">6.81%</td><td>阶段4</td><td>逆势走强</td><td>持有</td></tr>
-    <tr><td>星环科技</td><td>688031</td><td class="num">108.06</td><td class="num up">+4.05%</td><td class="num">5.97%</td><td>2→3</td><td>利润仓浮盈扩大</td><td>持有</td></tr>
-    <tr><td>泰和新材</td><td>002254</td><td class="num">14.20</td><td class="num up">+0.92%</td><td class="num">6.45%</td><td>阶段5</td><td>防御生效</td><td>持有</td></tr>
-    <tr><td>太钢不锈</td><td>000825</td><td class="num">3.41</td><td class="num up">+2.40%</td><td class="num">0.77%</td><td>阶段5</td><td>周期防御</td><td>持有</td></tr>
-    <tr><td>德展健康</td><td>000813</td><td class="num">3.23</td><td class="num up">+2.54%</td><td class="num">2.37%</td><td>阶段5</td><td>医药防御</td><td>持有</td></tr>
-    <tr><td>华峰化学</td><td>002064</td><td class="num">10.11</td><td class="num down">-0.88%</td><td class="num">0.73%</td><td>阶段5</td><td>周期对冲</td><td>持有</td></tr>
-    <tr><td>澜起科技</td><td>688008</td><td class="num">268.06</td><td class="num down">-6.21%</td><td class="num">7.26%</td><td>3→4</td><td>放量杀跌，关注55日线</td><td>持有不减</td></tr>
-    <tr><td>罗博特科</td><td>300757</td><td class="num">489.00</td><td class="num down">-6.19%</td><td class="num">3.65%</td><td>阶段3</td><td>跟随回调</td><td>持有</td></tr>
-    <tr><td>三祥新材</td><td>603663</td><td class="num">73.98</td><td class="num down">-7.10%</td><td class="num">3.71%</td><td>2→3</td><td>S级不减</td><td>持有不减</td></tr>
-    <tr><td>兴森科技</td><td>002436</td><td class="num">41.13</td><td class="num down">-7.47%</td><td class="num">9.06%</td><td>阶段3</td><td>利润仓不慌</td><td>持有</td></tr>
+    <tr><td class="text-left">汇绿生态</td><td>001267</td><td class="num">43.39</td><td class="num down">-0.37%</td><td class="num">6.06%</td><td>3→4</td><td>冲高47后回落，振幅8.6%分歧大但抗跌</td><td>持有</td></tr>
+    <tr><td class="text-left">软通动力</td><td>301236</td><td class="num">41.83</td><td class="num up">+3.46%</td><td class="num">6.81%</td><td>阶段4</td><td>逆势走强</td><td>持有</td></tr>
+    <tr><td class="text-left">星环科技</td><td>688031</td><td class="num">108.06</td><td class="num up">+4.05%</td><td class="num">5.97%</td><td>2→3</td><td>利润仓浮盈扩大</td><td>持有</td></tr>
+    <tr><td class="text-left">泰和新材</td><td>002254</td><td class="num">14.20</td><td class="num up">+0.92%</td><td class="num">6.45%</td><td>阶段5</td><td>防御生效</td><td>持有</td></tr>
+    <tr><td class="text-left">太钢不锈</td><td>000825</td><td class="num">3.41</td><td class="num up">+2.40%</td><td class="num">0.77%</td><td>阶段5</td><td>周期防御</td><td>持有</td></tr>
+    <tr><td class="text-left">德展健康</td><td>000813</td><td class="num">3.23</td><td class="num up">+2.54%</td><td class="num">2.37%</td><td>阶段5</td><td>医药防御</td><td>持有</td></tr>
+    <tr><td class="text-left">华峰化学</td><td>002064</td><td class="num">10.11</td><td class="num down">-0.88%</td><td class="num">0.73%</td><td>阶段5</td><td>周期对冲</td><td>持有</td></tr>
+    <tr><td class="text-left">澜起科技</td><td>688008</td><td class="num">268.06</td><td class="num down">-6.21%</td><td class="num">7.26%</td><td>3→4</td><td>放量杀跌，关注55日线</td><td>持有不减</td></tr>
+    <tr><td class="text-left">罗博特科</td><td>300757</td><td class="num">489.00</td><td class="num down">-6.19%</td><td class="num">3.65%</td><td>阶段3</td><td>跟随回调</td><td>持有</td></tr>
+    <tr><td class="text-left">三祥新材</td><td>603663</td><td class="num">73.98</td><td class="num down">-7.10%</td><td class="num">3.71%</td><td>2→3</td><td>S级不减</td><td>持有不减</td></tr>
+    <tr><td class="text-left">兴森科技</td><td>002436</td><td class="num">41.13</td><td class="num down">-7.47%</td><td class="num">9.06%</td><td>阶段3</td><td>利润仓不慌</td><td>持有</td></tr>
   </table>
 </div>
 
