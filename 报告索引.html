@@ -1,20 +1,157 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>报告导航 | 老潘投研</title>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>报告导航 | 老潘投研</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;padding:24px;max-width:1100px;margin:0 auto}
-h1{font-size:24px;margin-bottom:4px}
-.subtitle{color:#8b949e;font-size:13px;margin-bottom:20px}
-.section-label{font-size:13px;color:#58a6ff;margin:18px 0 6px;padding-left:8px;border-left:3px solid #58a6ff;font-weight:600}
-.date-title{font-size:14px;color:#f0a040;margin:14px 0 8px;padding-bottom:5px;border-bottom:1px solid #21262d}
-.report-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:6px}
-.report-item{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s}
-.report-item:hover{border-color:#58a6ff}
-.report-name{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:75%}
-.report-link{color:#58a6ff;font-size:12px;text-decoration:none;font-weight:600;white-space:nowrap;padding:2px 6px}
-.report-link:hover{text-decoration:underline}
-.footer{margin-top:24px;padding-top:12px;border-top:1px solid #21262d;font-size:11px;color:#8b949e;text-align:center}
-@media(max-width:600px){.report-list{grid-template-columns:1fr}}
-</style></head><body>
+:root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --sub:#8b949e; --accent:#58a6ff; --gold:#f0a040; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,"Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding:24px; max-width:1100px; margin:0 auto; }
+h1 { font-size:24px; margin-bottom:4px; }
+.subtitle { color:var(--sub); font-size:13px; margin-bottom:8px; }
+.loading { color:var(--accent); font-size:14px; padding: 40px 0; text-align:center; display:none; }
+.error { color:#f85149; font-size:14px; padding:40px 0; text-align:center; display:none; }
+.section-label { font-size:13px; color:var(--accent); margin:18px 0 6px; padding-left:8px; border-left:3px solid var(--accent); font-weight:600; }
+.date-title { font-size:14px; color:var(--gold); margin:14px 0 8px; padding-bottom:5px; border-bottom:1px solid var(--border); }
+.report-list { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:6px; }
+.report-item { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:10px 12px; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s; }
+.report-item:hover { border-color:var(--accent); }
+.report-name { font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:75%; }
+.report-link { color:var(--accent); font-size:12px; text-decoration:none; font-weight:600; white-space:nowrap; padding:2px 6px; }
+.report-link:hover { text-decoration:underline; }
+.footer { margin-top:24px; padding-top:12px; border-top:1px solid var(--border); font-size:11px; color:var(--sub); text-align:center; }
+.stats-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:4px; }
+.stat-chip { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:12px; color:var(--sub); }
+.stat-chip strong { color:var(--accent); }
+.refresh-hint { color:var(--sub); font-size:11px; cursor:pointer; user-select:none; text-align:right; }
+.refresh-hint:hover { color:var(--accent); }
+@media(max-width:600px){ .report-list{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
 <h1>老潘投研 · 报告导航</h1>
-<div class="subtitle">数据专题 · 景气成长投资研究体系 | 共 75 份报告 · 最后更新：2026-07-11</div>
-<div class="section-label">每日盘前简报</div><div class="report-list"><div class="report-item"><span class="report-name">盘前简报 2026-07-02</span><a class="report-link" href="daily-briefing/盘前简报_2026-07-02.html">查看</a></div><div class="report-item"><span class="report-name">盘前简报 2026-07-03</span><a class="report-link" href="daily-briefing/盘前简报_2026-07-03.html">查看</a></div><div class="report-item"><span class="report-name">盘前简报 2026-07-07</span><a class="report-link" href="daily-briefing/盘前简报_2026-07-07.html">查看</a></div><div class="report-item"><span class="report-name">盘前简报 2026-07-08</span><a class="report-link" href="daily-briefing/盘前简报_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">盘前简报 2026-07-09</span><a class="report-link" href="daily-briefing/盘前简报_2026-07-09.html">查看</a></div><div class="report-item"><span class="report-name">盘前简报 2026-07-10</span><a class="report-link" href="daily-briefing/盘前简报_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">午盘简报 2026-07-07</span><a class="report-link" href="daily-briefing/午盘简报_2026-07-07.html">查看</a></div></div><div class="section-label">每日盘后复盘</div><div class="report-list"><div class="report-item"><span class="report-name">复盘 2026-07-01</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-01.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-02</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-02.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-03</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-03.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-06</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-06.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-07</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-07.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-08</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-10</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">复盘 2026-07-10 V4</span><a class="report-link" href="daily-review/盘后复盘报告_2026-07-10_V4.html">查看</a></div></div><div class="section-label">每周复盘</div><div class="report-list"><div class="report-item"><span class="report-name">周报 2026-07-05</span><a class="report-link" href="weekly-review/weekly_review_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">周报 2026-07-10</span><a class="report-link" href="weekly-review/weekly_review_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">周报 2026-07-05</span><a class="report-link" href="weekly-review/周度复盘报告_2026-07-05.html">查看</a></div></div><div class="date-title">📅 2026-07-11 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">cosco-tin-deep-dive · 07-11</span><a class="report-link" href="reports/2026-07-11/cosco-tin-deep-dive_2026-07-11.html">查看</a></div><div class="report-item"><span class="report-name">methodology-guide · 07-11</span><a class="report-link" href="reports/2026-07-11/methodology-guide_2026-07-11.html">查看</a></div><div class="report-item"><span class="report-name">shenghe-case · 07-11</span><a class="report-link" href="reports/2026-07-11/shenghe-case_2026-07-11.html">查看</a></div><div class="report-item"><span class="report-name">shenghong-forward-look · 07-11</span><a class="report-link" href="reports/2026-07-11/shenghong-forward-look_2026-07-11.html">查看</a></div><div class="report-item"><span class="report-name">shenghong-standalone · 07-11</span><a class="report-link" href="reports/2026-07-11/shenghong-standalone_2026-07-11.html">查看</a></div><div class="report-item"><span class="report-name">star-ring-deep-dive · 07-11</span><a class="report-link" href="reports/2026-07-11/star-ring-deep-dive_2026-07-11.html">查看</a></div></div><div class="date-title">📅 2026-07-10 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">framework-deposit · 07-10</span><a class="report-link" href="reports/2026-07-10/framework-deposit_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">portfolio-eval · 07-10</span><a class="report-link" href="reports/2026-07-10/portfolio-eval_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">weekly review · 07-10</span><a class="report-link" href="reports/2026-07-10/weekly_review_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">盘前简报 · 07-10</span><a class="report-link" href="reports/2026-07-10/盘前简报_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">盘后复盘报告 · 07-10</span><a class="report-link" href="reports/2026-07-10/盘后复盘报告_2026-07-10.html">查看</a></div><div class="report-item"><span class="report-name">盘后复盘报告 · 07-10 V4</span><a class="report-link" href="reports/2026-07-10/盘后复盘报告_2026-07-10_V4.html">查看</a></div></div><div class="date-title">📅 2026-07-09 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">daily-review · 07-09</span><a class="report-link" href="reports/2026-07-09/daily-review_2026-07-09.html">查看</a></div><div class="report-item"><span class="report-name">gs-tracking-trillions-framework-merge · 07-09</span><a class="report-link" href="reports/2026-07-09/gs-tracking-trillions-framework-merge_2026-07-09.html">查看</a></div><div class="report-item"><span class="report-name">portfolio-one-pager · 07-09</span><a class="report-link" href="reports/2026-07-09/portfolio-one-pager_2026-07-09.html">查看</a></div><div class="report-item"><span class="report-name">portfolio-rotation-fusion · 07-09</span><a class="report-link" href="reports/2026-07-09/portfolio-rotation-fusion_2026-07-09.html">查看</a></div><div class="report-item"><span class="report-name">portfolio-rotation-top3 · 07-09</span><a class="report-link" href="reports/2026-07-09/portfolio-rotation-top3_2026-07-09.html">查看</a></div></div><div class="date-title">📅 2026-07-08 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">ai-cycle-top-signal-review · 07-08</span><a class="report-link" href="reports/2026-07-08/ai-cycle-top-signal-review_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">ai-top-debate-storage-review · 07-08</span><a class="report-link" href="reports/2026-07-08/ai-top-debate-storage-review_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">global-storage-2026-takeaways · 07-08</span><a class="report-link" href="reports/2026-07-08/global-storage-2026-takeaways_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">h2-framework-fusion · 07-08</span><a class="report-link" href="reports/2026-07-08/h2-framework-fusion_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">huilv-ecology-deep-dive · 07-08</span><a class="report-link" href="reports/2026-07-08/huilv-ecology-deep-dive_2026-07-08.html">查看</a></div><div class="report-item"><span class="report-name">sanxiang-deep-dive · 07-08</span><a class="report-link" href="reports/2026-07-08/sanxiang-deep-dive_2026-07-08.html">查看</a></div></div><div class="date-title">📅 2026-07-06 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">互动公告汇总与解读 · 07-06</span><a class="report-link" href="reports/2026-07-06/互动公告汇总与解读_2026-07-06.html">查看</a></div><div class="report-item"><span class="report-name">澜起科技 H2操作指引 · 07-06</span><a class="report-link" href="reports/2026-07-06/澜起科技_H2操作指引_2026-07-06.html">查看</a></div><div class="report-item"><span class="report-name">锡业股份 深度分析 · 07-06</span><a class="report-link" href="reports/2026-07-06/锡业股份_深度分析_2026-07-06.html">查看</a></div><div class="report-item"><span class="report-name">ai-hardware-value-capture-portfolio-map · 07-06</span><a class="report-link" href="reports/2026-07-06/ai-hardware-value-capture-portfolio-map_2026-07-06.html">查看</a></div><div class="report-item"><span class="report-name">tayho-para-aramid-fiber-optic-deep-dive · 07-06</span><a class="report-link" href="reports/2026-07-06/tayho-para-aramid-fiber-optic-deep-dive_2026-07-06.html">查看</a></div></div><div class="date-title">📅 2026-07-05 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">ZX电子周报 独立评估 · 07-05</span><a class="report-link" href="reports/2026-07-05/ZX电子周报_独立评估_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">ZX光通信 独立评估 · 07-05</span><a class="report-link" href="reports/2026-07-05/ZX光通信_独立评估_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">北美大模型调研 持仓映射 · 07-05</span><a class="report-link" href="reports/2026-07-05/北美大模型调研_持仓映射_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">星环科技 深度分析 H2操作指引 · 07-05</span><a class="report-link" href="reports/2026-07-05/星环科技_深度分析_H2操作指引_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">纳瓦尔圆桌 软件被AI吃硬件中国拿下 · 07-05</span><a class="report-link" href="reports/2026-07-05/纳瓦尔圆桌_软件被AI吃硬件中国拿下_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">组合风控仪表盘 · 07-05</span><a class="report-link" href="reports/2026-07-05/组合风控仪表盘_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">黑石退出数据中心 持仓影响 · 07-05</span><a class="report-link" href="reports/2026-07-05/黑石退出数据中心_持仓影响_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">巨化股份 深度分析 · 07-05</span><a class="report-link" href="reports/2026-07-05/巨化股份_深度分析_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">华为ScalingLaw 个股映射 · 07-05</span><a class="report-link" href="reports/2026-07-05/华为ScalingLaw_个股映射_2026-07-05.html">查看</a></div></div><div class="date-title">📅 2026-07-04 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">三祥新材 H2操作指引 · 07-04</span><a class="report-link" href="reports/2026-07-04/三祥新材_H2操作指引_2026-07-04.html">查看</a></div><div class="report-item"><span class="report-name">中际旭创 中报重要性复核 · 07-04</span><a class="report-link" href="reports/2026-07-04/中际旭创_中报重要性复核_2026-07-04.html">查看</a></div><div class="report-item"><span class="report-name">华为韬定律 拆解与持仓映射 · 07-05</span><a class="report-link" href="reports/2026-07-04/华为韬定律_拆解与持仓映射_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">持仓战略评估 是否撤退 · 07-04</span><a class="report-link" href="reports/2026-07-04/持仓战略评估_是否撤退_2026-07-04.html">查看</a></div><div class="report-item"><span class="report-name">欧林生物调研评估 · 07-04</span><a class="report-link" href="reports/2026-07-04/欧林生物调研评估_2026-07-04.html">查看</a></div><div class="report-item"><span class="report-name">江波龙百亿预告 科技行情分水岭 · 07-05</span><a class="report-link" href="reports/2026-07-04/江波龙百亿预告_科技行情分水岭_2026-07-05.html">查看</a></div><div class="report-item"><span class="report-name">硅谷AI观察笔记 持仓映射 · 07-04</span><a class="report-link" href="reports/2026-07-04/硅谷AI观察笔记_持仓映射_2026-07-04.html">查看</a></div><div class="report-item"><span class="report-name">软通动力 AIPC卖点分析 · 07-04</span><a class="report-link" href="reports/2026-07-04/软通动力_AIPC卖点分析_2026-07-04.html">查看</a></div></div><div class="date-title">📅 2026-07-03 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">2026H1行业业绩预增TOP5</span><a class="report-link" href="reports/2026-07-03/2026H1行业业绩预增TOP5.html">查看</a></div><div class="report-item"><span class="report-name">PCB三杰 独立评价</span><a class="report-link" href="reports/2026-07-03/PCB三杰_独立评价.html">查看</a></div><div class="report-item"><span class="report-name">ZX评估 调整即机遇 · 07-03</span><a class="report-link" href="reports/2026-07-03/ZX评估_调整即机遇_2026-07-03.html">查看</a></div><div class="report-item"><span class="report-name">泰和新材 深度研报 · 07-03</span><a class="report-link" href="reports/2026-07-03/泰和新材_深度研报_2026-07-03.html">查看</a></div><div class="report-item"><span class="report-name">深度拆解 思特威vs炬芯 · 07-03</span><a class="report-link" href="reports/2026-07-03/深度拆解_思特威vs炬芯_2026-07-03.html">查看</a></div><div class="report-item"><span class="report-name">研报拆解 9份 · 07-03</span><a class="report-link" href="reports/2026-07-03/研报拆解_9份_2026-07-03.html">查看</a></div></div><div class="date-title">📅 2026-07-02 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">半导体黑马挖掘 · 07-02</span><a class="report-link" href="reports/2026-07-02/半导体黑马挖掘_2026-07-02.html">查看</a></div></div><div class="date-title">📅 2026-07-01 专题研报</div><div class="report-list"><div class="report-item"><span class="report-name">持仓体检报告 · 07-01</span><a class="report-link" href="reports/2026-07-01/持仓体检报告_2026-07-01.html">查看</a></div><div class="report-item"><span class="report-name">持仓质量评估 · 07-01</span><a class="report-link" href="reports/2026-07-01/持仓质量评估_2026-07-01.html">查看</a></div><div class="report-item"><span class="report-name">捷捷微电深度研报 · 07-01</span><a class="report-link" href="reports/2026-07-01/捷捷微电深度研报_2026-07-01.html">查看</a></div><div class="report-item"><span class="report-name">汇绿生态深度研报 · 07-01</span><a class="report-link" href="reports/2026-07-01/汇绿生态深度研报_2026-07-01.html">查看</a></div><div class="report-item"><span class="report-name">细分行业扫描 · 07-01</span><a class="report-link" href="reports/2026-07-01/细分行业扫描_2026-07-01.html">查看</a></div></div><div class="footer">© 2026 老潘投研 · Wind/NeoData/财联社/广发策略 联合驱动 · 索引更新：2026-07-11 14:00</div></body></html>
+<div class="subtitle" id="subtitle">加载中…</div>
+
+<div class="loading" id="loading">🔄 正在从 GitHub 拉取最新文件列表…</div>
+<div class="error" id="error" onclick="this.style.display='none';loadIndex();" style="cursor:pointer"></div>
+
+<div id="content"></div>
+
+<div class="footer">
+  © 2026 老潘投研 · 索引自动生成 · GitHub API 实时同步<br>
+  <span class="refresh-hint" onclick="loadIndex()">🔄 点击刷新</span>
+</div>
+
+<script>
+const API = 'https://api.github.com/repos/LaoPan2026/laopan-reports/git/trees/main?recursive=1';
+
+async function loadIndex() {
+  const loading = document.getElementById('loading');
+  const error = document.getElementById('error');
+  const subtitle = document.getElementById('subtitle');
+  const content = document.getElementById('content');
+
+  loading.style.display = 'block';
+  error.style.display = 'none';
+  content.innerHTML = '';
+
+  try {
+    const resp = await fetch(API, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+    const data = await resp.json();
+    const files = data.tree.filter(t => t.type === 'blob');
+
+    if (files.length === 0) throw new Error('空文件列表');
+
+    // Categorize
+    const briefing = [], review = [], weekly = [], reports = {};
+
+    files.forEach(f => {
+      const p = f.path;
+      if (p.startsWith('daily-briefing/') && p.endsWith('.html')) {
+        briefing.push(p.replace('daily-briefing/',''));
+      } else if (p.startsWith('daily-review/') && p.endsWith('.html')) {
+        review.push(p.replace('daily-review/',''));
+      } else if (p.startsWith('weekly-review/') && p.endsWith('.html')) {
+        weekly.push(p.replace('weekly-review/',''));
+      } else if (p.startsWith('reports/')) {
+        const parts = p.split('/');
+        if (parts.length === 3) {
+          const date = parts[1], name = parts[2];
+          if (name.endsWith('.html') || name.endsWith('.pptx')) {
+            if (!reports[date]) reports[date] = [];
+            reports[date].push(name);
+          }
+        }
+      }
+    });
+
+    // Sort
+    briefing.sort((a,b) => b.localeCompare(a));
+    review.sort((a,b) => b.localeCompare(a));
+    weekly.sort((a,b) => b.localeCompare(a));
+
+    const total = briefing.length + review.length + weekly.length +
+      Object.values(reports).reduce((s,arr) => s + arr.length, 0);
+
+    subtitle.innerHTML = `数据专题 · 景气成长投资研究体系 | 共 <strong style="color:var(--accent)">${total}</strong> 份报告 · 实时同步`;
+
+    let html = '';
+
+    function makeName(f) {
+      return f.replace('.html','').replace('.pptx',' (PPT)').replace(/_/g,' ').replace(/2026-/g,'');
+    }
+
+    function makeLink(path) {
+      return `<a class="report-link" href="${encodeURI(path)}" target="_blank">查看</a>`;
+    }
+
+    if (briefing.length) {
+      html += '<div class="section-label">每日盘前简报</div><div class="report-list">';
+      briefing.forEach(f => {
+        html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('daily-briefing/'+f)}</div>`;
+      });
+      html += '</div>';
+    }
+
+    if (review.length) {
+      html += '<div class="section-label">每日盘后复盘</div><div class="report-list">';
+      review.forEach(f => {
+        html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('daily-review/'+f)}</div>`;
+      });
+      html += '</div>';
+    }
+
+    if (weekly.length) {
+      html += '<div class="section-label">每周复盘</div><div class="report-list">';
+      weekly.forEach(f => {
+        html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('weekly-review/'+f)}</div>`;
+      });
+      html += '</div>';
+    }
+
+    const sortedDates = Object.keys(reports).sort((a,b) => b.localeCompare(a));
+    sortedDates.forEach(date => {
+       html += `<div class="date-title">📅 ${date} 专题研报 <span style="color:var(--sub);font-size:11px;font-weight:400">(${reports[date].length}份)</span></div><div class="report-list">`;
+       reports[date].sort((a,b) => b.localeCompare(a)).forEach(f => {
+         html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('reports/'+date+'/'+f)}</div>`;
+       });
+       html += '</div>';
+    });
+
+    content.innerHTML = html;
+    loading.style.display = 'none';
+
+  } catch(e) {
+    loading.style.display = 'none';
+    error.style.display = 'block';
+    error.textContent = '⚠️ 加载失败（' + e.message + '）。点击此处重试，或稍后刷新页面。';
+  }
+}
+
+loadIndex();
+</script>
+</body>
+</html>
