@@ -2,756 +2,156 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>巴蒂投研 · 报告导航</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>报告导航 | 老潘投研</title>
 <style>
-:root {
-  --bg: #0d1117;
-  --card: #161b22;
-  --text: #c9d1d9;
-  --sub: #8b949e;
-  --accent: #58a6ff;
-  --green: #3fb950;
-  --orange: #d2991d;
-  --red: #f85149;
-  --border: #30363d;
-}
+:root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --sub:#8b949e; --accent:#58a6ff; --gold:#f0a040; }
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  padding: 12px 14px 40px;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-/* Header */
-.header {
-  text-align: center;
-  padding: 20px 0 8px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 16px;
-}
-.header h1 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #f0f6fc;
-  letter-spacing: 0.5px;
-}
-.header .sub {
-  font-size: 12px;
-  color: var(--sub);
-  margin-top: 4px;
-}
-.header .update {
-  font-size: 11px;
-  color: #6e7681;
-  margin-top: 6px;
-  background: rgba(88,166,255,0.08);
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 10px;
-}
-
-/* Date group */
-.date-group { margin-bottom: 10px; }
-.date-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-  padding: 7px 0 5px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  z-index: 1;
-}
-.date-label::before {
-  content: '';
-  width: 4px;
-  height: 16px;
-  background: var(--accent);
-  border-radius: 2px;
-}
-.date-label .count {
-  font-size: 11px;
-  color: var(--sub);
-  font-weight: 400;
-}
-
-/* Report card */
-.report-link {
-  display: flex;
-  align-items: center;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 13px 14px;
-  margin-bottom: 6px;
-  text-decoration: none;
-  color: var(--text);
-  transition: border-color 0.15s, background 0.15s;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-}
-.report-link:active {
-  background: #1c2333;
-  border-color: var(--accent);
-}
-.report-link .icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-  margin-right: 12px;
-  font-weight: 700;
-}
-.icon-research { background: rgba(88,166,255,0.15); color: var(--accent); }
-.icon-briefing { background: rgba(63,185,80,0.15); color: var(--green); }
-.icon-review { background: rgba(210,153,29,0.15); color: var(--orange); }
-.icon-framework { background: rgba(188,140,255,0.15); color: #bc8cff; }
-.icon-alert { background: rgba(248,81,73,0.15); color: var(--red); }
-.icon-mapping { background: rgba(86,211,173,0.15); color: #56d3ad; }
-
-.report-link .info { flex:1; min-width:0; }
-.report-link .title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #f0f6fc;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 2px;
-}
-.report-link .desc {
-  font-size: 11px;
-  color: var(--sub);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.report-link .arrow {
-  color: var(--sub);
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-left: 8px;
-}
-
-/* Tag */
-.tag {
-  display: inline-block;
-  font-size: 10px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  margin-right: 4px;
-  font-weight: 500;
-}
-.tag-new { background: rgba(63,185,80,0.2); color: #7ee787; }
-.tag-hot { background: rgba(248,81,73,0.2); color: #ff7b72; }
-.tag-deep { background: rgba(88,166,255,0.2); color: #79c0ff; }
-
-/* Empty */
-.empty { text-align:center; color:var(--sub); padding:30px 0; font-size:13px; }
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 18px 0;
-  color: #6e7681;
-  font-size: 11px;
-  border-top: 1px solid var(--border);
-  margin-top: 14px;
-  line-height: 1.6;
-}
-
-/* Stats row */
-.stats {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
-.stat-card {
-  flex:1;
-  min-width: 80px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-}
-.stat-card .num { font-size: 20px; font-weight: 700; color: #f0f6fc; }
-.stat-card .label { font-size: 10px; color: var(--sub); margin-top: 2px; }
+body { font-family:-apple-system,"Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding:24px; max-width:1100px; margin:0 auto; }
+h1 { font-size:24px; margin-bottom:4px; }
+.subtitle { color:var(--sub); font-size:13px; margin-bottom:8px; }
+.loading { color:var(--accent); font-size:14px; padding: 40px 0; text-align:center; display:none; }
+.error { color:#f85149; font-size:14px; padding:40px 0; text-align:center; display:none; }
+.section-label { font-size:13px; color:var(--accent); margin:18px 0 6px; padding-left:8px; border-left:3px solid var(--accent); font-weight:600; }
+.date-title { font-size:14px; color:var(--gold); margin:14px 0 8px; padding-bottom:5px; border-bottom:1px solid var(--border); }
+.report-list { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:6px; }
+.report-item { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:10px 12px; display:flex; align-items:center; justify-content:space-between; transition:border-color 0.2s; }
+.report-item:hover { border-color:var(--accent); }
+.report-name { font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:75%; }
+.report-link { color:var(--accent); font-size:12px; text-decoration:none; font-weight:600; white-space:nowrap; padding:2px 6px; }
+.report-link:hover { text-decoration:underline; }
+.footer { margin-top:24px; padding-top:12px; border-top:1px solid var(--border); font-size:11px; color:var(--sub); text-align:center; }
+.stats-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:4px; }
+.stat-chip { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:12px; color:var(--sub); }
+.stat-chip strong { color:var(--accent); }
+.refresh-hint { color:var(--sub); font-size:11px; cursor:pointer; user-select:none; text-align:right; }
+.refresh-hint:hover { color:var(--accent); }
+@media(max-width:600px){ .report-list{ grid-template-columns:1fr } }
 </style>
 </head>
 <body>
+<h1>老潘投研 · 报告导航</h1>
+<div class="subtitle" id="subtitle">加载中…</div>
 
-<div class="header">
-  <h1>巴蒂投研 · 报告导航</h1>
-  <div class="sub">老潘专属 · 景气成长投资研究体系</div>
-  <div class="update">最后更新：2026-07-09 13:15</div>
-</div>
+<div class="loading" id="loading">🔄 正在从 GitHub 拉取最新文件列表…</div>
+<div class="error" id="error" onclick="this.style.display='none';loadIndex();" style="cursor:pointer"></div>
 
-<div class="stats">
-  <div class="stat-card">
-    <div class="num">51</div>
-    <div class="label">报告总数</div>
-  </div>
-  <div class="stat-card">
-    <div class="num">7</div>
-    <div class="label">交易日</div>
-  </div>
-  <div class="stat-card">
-    <div class="num">12</div>
-    <div class="label">覆盖持仓</div>
-  </div>
-</div>
-
-<!-- 定时报告 -->
-<div class="date-group">
-  <div class="date-label">定时报告 <span class="count">(10 篇)</span></div>
-  <a class="report-link" href="daily-briefing/盘前简报_2026-07-08.html">
-    <div class="icon icon-briefing">🌅</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>盘前简报 07-08</div>
-      <div class="desc">SOX-4.65% MRVL-7.45% · NVDA逆势+0.71% · 冲击全面测算</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-review/盘后复盘报告_2026-07-07.html">
-    <div class="icon icon-review">🌙</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>盘后复盘 07-07</div>
-      <div class="desc">上证破4000+科创深V · 今夜SOX-5.65% MRVL-7.72%冲击测算</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-briefing/盘前简报_2026-07-07.html">
-    <div class="icon icon-briefing">🌅</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>盘前简报 07-07</div>
-      <div class="desc">美股全线反弹+三星Q2暴增18倍 · 修复窗口逢低看多</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-review/盘后复盘报告_2026-07-06.html">
-    <div class="icon icon-review">🌙</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>盘后复盘 07-06</div>
-      <div class="desc">科技三周回撤 · Kyber延迟冲击 · 风格切换</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="weekly-review/周度复盘报告_2026-07-05.html">
-    <div class="icon icon-review">📅</div>
-    <div class="info">
-      <div class="title">周度复盘 06-30 ~ 07-03</div>
-      <div class="desc">科技集体回调 · 防御逆势走强 · 风格切换信号</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-review/盘后复盘报告_2026-07-03.html">
-    <div class="icon icon-review">🌙</div>
-    <div class="info">
-      <div class="title">盘后复盘 07-03</div>
-      <div class="desc">持仓复盘 · 次日预判</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-briefing/盘前简报_2026-07-03.html">
-    <div class="icon icon-briefing">🌅</div>
-    <div class="info">
-      <div class="title">盘前简报 07-03</div>
-      <div class="desc">美股映射冲击测算 · 操作建议</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-review/盘后复盘报告_2026-07-02.html">
-    <div class="icon icon-review">🌙</div>
-    <div class="info">
-      <div class="title">盘后复盘 07-02</div>
-      <div class="desc">持仓复盘 · 次日预判</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-briefing/盘前简报_2026-07-02.html">
-    <div class="icon icon-briefing">🌅</div>
-    <div class="info">
-      <div class="title">盘前简报 07-02</div>
-      <div class="desc">全球市场 · 持仓复盘 · 操作建议</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-review/盘后复盘报告_2026-07-01.html">
-    <div class="icon icon-review">🌙</div>
-    <div class="info">
-      <div class="title">盘后复盘 07-01</div>
-      <div class="desc">首次复盘 · 持仓全面梳理</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-06 -->
-<div class="date-group">
-  <div class="date-label">2026-07-06 <span class="count">(8 篇)</span></div>
-  <a class="report-link" href="2026-07-06/WorkBuddy腾讯算力租赁受益链_2026-07-06.html">
-    <div class="icon icon-framework">🦞</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">主题</span>WorkBuddy 爆火 → 腾讯算力租赁受益链</div>
-      <div class="desc">数据港/奥飞数据/利通电子 · 3家核心标的对比 · 跟踪池建议</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/科技股大跌后简评_持仓映射_2026-07-06.html">
-    <div class="icon icon-framework">📰</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>公众号拆解：科技股大跌后简评 · 持仓映射</div>
-      <div class="desc">碳基→硅基 · 长鑫/宇树IPO · 9只持仓逐标影响</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/earnings-calendar-portfolio-map_2026-07-06.html">
-    <div class="icon icon-mapping">📅</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">新模块</span>持仓映射股 Q2 财报前瞻表</div>
-      <div class="desc">7-9月重点科技财报日历 · Marvell/Coherent/Lite/NVIDIA映射链</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/澜起科技_H2操作指引_2026-07-06.html">
-    <div class="icon icon-research">🧠</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">核心</span>澜起科技 · H2操作指引（估值修正）</div>
-      <div class="desc">CXL/DDR5超级周期 · 目标价266元 · Q3-Q4分阶段指引</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/锡业股份_深度分析_2026-07-06.html">
-    <div class="icon icon-research">🔩</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-warn">跟踪池</span>锡业股份 · 深度分析</div>
-      <div class="desc">毛利率断崖 · 资金面主力派发 · 暂不纳入</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/互动公告汇总与解读_2026-07-06.html">
-    <div class="icon icon-mapping">📋</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>持仓&跟踪池 · 互动公告汇总解读</div>
-      <div class="desc">华峰H1 20亿超预期 · 兴森39亿定增 · 罗博硅光8倍</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/tayho-para-aramid-fiber-optic-deep-dive_2026-07-06.html">
-    <div class="icon icon-research">🧪</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-deep">深度评估</span>泰和新材 · 泰普龙光纤应用与前景</div>
-      <div class="desc">光缆收入<10% · PE 286x · 概率加权下行31%</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-06/ai-hardware-value-capture-portfolio-map_2026-07-06.html">
-    <div class="icon icon-framework">🔗</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">核心框架</span>AI硬件链价值捕获研究 · 持仓映射</div>
-      <div class="desc">中国5%→25% · 光模块·先进封装最强β · 11环节排名</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-08 -->
-<div class="date-group">
-  <div class="date-label">2026-07-08 <span class="count">(7 篇)</span></div>
-  <a class="report-link" href="2026-07-08/ai-cycle-top-signal-review_2026-07-08.html">
-    <div class="icon icon-review">🔥</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>AI周期到头了？见顶信号一个都没来 · 巴蒂拆解</div>
-      <div class="desc">高盛又大又长 · 见顶双信号未现 · 紧缺扩散涨幅表 · 四维归位 · H2框架共振 · 无减仓信号</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-08/global-storage-2026-takeaways_2026-07-08.html">
-    <div class="icon icon-review">📑</div>
-    <div class="info">
-      <div class="title">全球存储2026 · 巴蒂提炼可适用观点</div>
-      <div class="desc">三种尺(分层/PE陷阱/盯供给) · 澜起接口α再确认 · 两存扩产=唯一硬风险 · H2框架校准</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-08/ai-top-debate-storage-review_2026-07-08.html">
-    <div class="icon icon-review">📊</div>
-    <div class="info">
-      <div class="title">AI见顶之争×存储拐点 · 巴蒂独立复核</div>
-      <div class="desc">源文件硬伤修正 · 遗漏三祥+泰和证伪 · 今日盘面交叉验证 · 持仓纪律不变</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-08/h2-framework-fusion_2026-07-08.html">
-    <div class="icon icon-frame">🧭</div>
-    <div class="info">
-      <div class="title">投研框架三件套·融合升级版</div>
-      <div class="desc">硅谷AI观察 × 四因子推演 × 持仓映射 · 三件套咬合sankey · 核心观点重梳</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-08/sanxiang-deep-dive_2026-07-08.html">
-    <div class="icon icon-research">🔬</div>
-    <div class="info">
-      <div class="title">三祥新材(603663) 深度分析 <span class="tag tag-upd">V1.2</span></div>
-      <div class="desc">全球电熔锆产能第一校准 · 全流程垂直整合壁垒 · 营收规模偏小风险评估</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-08/huilv-ecology-deep-dive_2026-07-08.html">
-    <div class="icon icon-research">🔬</div>
-    <div class="info">
-      <div class="title">汇绿生态(001267) 深度分析 <span class="tag tag-upd">V1.1</span></div>
-      <div class="desc">全资控股冲刺 · Lumentum实锤+索尔思合作 · RSI16超卖 · Hy3首跑</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-review/盘后复盘报告_2026-07-08.html">
-    <div class="icon icon-review">📋</div>
-    <div class="info">
-      <div class="title">盘后复盘 2026-07-08 <span class="tag tag-new">V3.0</span></div>
-      <div class="desc">今日关键词 · 三段式全球市场 · 来源固化 · 软件领涨+3.94% · 汇绿洗盘8.65%振幅</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-09 -->
-<div class="date-group">
-  <div class="date-label">2026-07-09 <span class="count">(5 篇)</span></div>
-  <a class="report-link" href="2026-07-09/portfolio-one-pager_2026-07-09.html">
-    <div class="icon icon-framework">📋</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>老潘持仓一页通 · 8模块全景</div>
-      <div class="desc">5盏灯+7把工具 · 产业链定位·景气三段式·预期差·催化剂·行动建议</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-09/gs-tracking-trillions-framework-merge_2026-07-09.html">
-    <div class="icon icon-framework">📊</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>高盛Tracking Trillions × H2框架整合</div>
-      <div class="desc">7.6万亿三大拆分 · 物理世界模型 · 电力瓶颈 · 三重框架对接</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-09/portfolio-rotation-top3_2026-07-09.html">
-    <div class="icon icon-framework">🔄</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">最新</span>换仓方案 · TOP3 国产替代材料</div>
-      <div class="desc">南大光电 > 雅克科技 > 安集科技 · 实时数据 · 保守/积极两档</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-09/portfolio-rotation-fusion_2026-07-09.html">
-    <div class="icon icon-mapping">🧩</div>
-    <div class="info">
-      <div class="title">换仓方向融合考量（框架版）</div>
-      <div class="desc">H2框架对齐 · 候选池 · 框架分析</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-briefing/盘前简报_2026-07-09.html">
-    <div class="icon icon-briefing">🌅</div>
-    <div class="info">
-      <div class="title">盘前简报 2026-07-09</div>
-      <div class="desc">光通信反弹COHR+4%MRVL+2% · 汇绿映射驱动 · 存储WDC+5% · 中概阿里+10% · 美伊油价扰动化工</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-07 -->
-<div class="date-group">
-  <div class="date-label">2026-07-07 <span class="count">(2 篇)</span></div>
-  <a class="report-link" href="2026-07-07/老潘投资资料合集V2_2026-07-07.html">
-    <div class="icon icon-framework">📊</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">V2更新</span>老潘投资资料合集 V2</div>
-      <div class="desc">泰和降级校准 · 大摩报告 · WorkBuddy算力链 · 财报前瞻日历</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="daily-briefing/午盘简报_2026-07-07.html">
-    <div class="icon icon-briefing">🌅</div>
-    <div class="info">
-      <div class="title">午盘简报 07-07</div>
-      <div class="desc">上证破4000 · 科创深V · 澜起255精准到位</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-05 -->
-<div class="date-group">
-  <div class="date-label">2026-07-05 <span class="count">(8 篇)</span></div>
-  <a class="report-link" href="2026-07-05/ZX电子周报_独立评估_2026-07-05.html">
-    <div class="icon icon-mapping">🔬</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-deep">独立评估</span>ZX电子周报 · 卖方偏误审查</div>
-      <div class="desc">存储=最干净逻辑 · 被动元件-10.7%被低估 · 国产GPU推荐存硬伤</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/北美大模型调研_持仓映射_2026-07-05.html">
-    <div class="icon icon-framework">🌐</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">基准更新</span>北美大模型调研 · 持仓映射</div>
-      <div class="desc">存储=1号瓶颈 · TPU万亿缺口 · 澜起最强验证</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/巨化股份_深度分析_2026-07-05.html">
-    <div class="icon icon-research">🧪</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-warn">跟踪池</span>巨化股份 · 深度分析</div>
-      <div class="desc">制冷剂配额龙头 · AI液冷 · 含氟半导体材料</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/ZX光通信_独立评估_2026-07-05.html">
-    <div class="icon icon-mapping">📡</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-deep">独立评估</span>ZX通信光通信点评 · 卖方背书验证</div>
-      <div class="desc">Meta不砍反加 · 汇绿获ZX点名 · 聚焦持仓交集</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/黑石退出数据中心_持仓影响_2026-07-05.html">
-    <div class="icon icon-alert">🏢</div>
-    <div class="info">
-      <div class="title">黑石退出数据中心 · 持仓影响评估</div>
-      <div class="desc">地产基金交易行为≠科技Capex见顶</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/组合风控仪表盘_2026-07-05.html">
-    <div class="icon icon-alert">🛡️</div>
-    <div class="info">
-      <div class="title">组合风控仪表盘</div>
-      <div class="desc">VaR·CVaR·相关性矩阵·压力测试</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/星环科技_深度分析_H2操作指引_2026-07-05.html">
-    <div class="icon icon-research">⭐</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">核心</span>星环科技 深度分析 · H2操作指引</div>
-      <div class="desc">利润仓策略 · 新高止盈目标≥265元</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-05/纳瓦尔圆桌_软件被AI吃硬件中国拿下_2026-07-05.html">
-    <div class="icon icon-framework">🧠</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">新框架</span>纳瓦尔圆桌 · 软件被AI吃掉 硬件被中国拿下</div>
-      <div class="desc">7大爆炸判断 · 12持仓全面映射</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-04 -->
-<div class="date-group">
-  <div class="date-label">2026-07-04 <span class="count">(7 篇)</span></div>
-  <a class="report-link" href="2026-07-04/华为韬定律_拆解与持仓映射_2026-07-05.html">
-    <div class="icon icon-framework">📐</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-new">新框架</span>华为韬定律 · 拆解与持仓映射</div>
-      <div class="desc">四层结构 · TOP3受益行业</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/江波龙百亿预告_科技行情分水岭_2026-07-05.html">
-    <div class="icon icon-mapping">🔀</div>
-    <div class="info">
-      <div class="title">江波龙百亿预告 · 科技行情分水岭</div>
-      <div class="desc">价格周期→技术周期 · 12持仓分水岭定位</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/硅谷AI观察笔记_持仓映射_2026-07-04.html">
-    <div class="icon icon-framework">🌉</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">基准文献</span>硅谷AI观察笔记 · 持仓映射</div>
-      <div class="desc">H2投研框架基准 · YZ Q2硅谷AI观察</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/三祥新材_H2操作指引_2026-07-04.html">
-    <div class="icon icon-research">🔬</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">S级</span>三祥新材 · H2操作指引</div>
-      <div class="desc">铪产线7月底投料 · 锆材料/固态电池</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/中际旭创_中报重要性复核_2026-07-04.html">
-    <div class="icon icon-alert">📊</div>
-    <div class="info">
-      <div class="title">中际旭创 · 中报重要性复核</div>
-      <div class="desc">H1预计400-445亿营收 · 跟踪池重点</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/欧林生物调研评估_2026-07-04.html">
-    <div class="icon icon-alert">💊</div>
-    <div class="info">
-      <div class="title">欧林生物 · 临床揭盲延迟调研评估</div>
-      <div class="desc">跟踪池 · Q3揭盲二元事件</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/持仓战略评估_是否撤退_2026-07-04.html">
-    <div class="icon icon-alert">🛡️</div>
-    <div class="info">
-      <div class="title">持仓战略评估 · 是否撤退</div>
-      <div class="desc">12持仓全面体检与战略判断</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-04/软通动力_AIPC卖点分析_2026-07-04.html">
-    <div class="icon icon-research">💻</div>
-    <div class="info">
-      <div class="title">软通动力 · AIPC卖点分析</div>
-      <div class="desc">核心浮盈标杆 · 历史+418%</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-03 -->
-<div class="date-group">
-  <div class="date-label">2026-07-03 <span class="count">(7 篇)</span></div>
-  <a class="report-link" href="2026-07-03/深度拆解_思特威vs炬芯_2026-07-03.html">
-    <div class="icon icon-research">⚔️</div>
-    <div class="info">
-      <div class="title">深度拆解 · 思特威 vs 炬芯科技</div>
-      <div class="desc">端侧AI SoC双雄对比</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-03/ZX评估_调整即机遇_2026-07-03.html">
-    <div class="icon icon-mapping">📈</div>
-    <div class="info">
-      <div class="title">ZX评估 · 调整即机遇</div>
-      <div class="desc">科技股回调框架判断</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-03/研报拆解_9份_2026-07-03.html">
-    <div class="icon icon-research">📚</div>
-    <div class="info">
-      <div class="title">研报拆解 · 9份合集</div>
-      <div class="desc">批量研报核心逻辑提炼</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-03/泰和新材_深度研报_2026-07-03.html">
-    <div class="icon icon-research">🧪</div>
-    <div class="info">
-      <div class="title">泰和新材 · 深度研报</div>
-      <div class="desc">B+级持仓 · 芳纶/氨纶双主线</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-03/PCB三杰_独立评价_2026-07-03.html">
-    <div class="icon icon-research">🔌</div>
-    <div class="info">
-      <div class="title">PCB三杰 · 独立评价</div>
-      <div class="desc">AI PCB赛道 · 跟踪池胜宏科技</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-03/2026H1行业业绩预增TOP5.html">
-    <div class="icon icon-briefing">🏆</div>
-    <div class="info">
-      <div class="title">2026H1 行业业绩预增 TOP5</div>
-      <div class="desc">半年度业绩预告扫雷</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-02 -->
-<div class="date-group">
-  <div class="date-label">2026-07-02 <span class="count">(1 篇)</span></div>
-  <a class="report-link" href="2026-07-02/半导体黑马挖掘_2026-07-02.html">
-    <div class="icon icon-research">💎</div>
-    <div class="info">
-      <div class="title">半导体黑马挖掘</div>
-      <div class="desc">AI半导体赛道深挖</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
-
-<!-- 2026-07-01 -->
-<div class="date-group">
-  <div class="date-label">2026-07-01 <span class="count">(5 篇)</span></div>
-  <a class="report-link" href="2026-07-01/持仓体检报告_2026-07-01.html">
-    <div class="icon icon-alert">🩺</div>
-    <div class="info">
-      <div class="title">持仓体检报告</div>
-      <div class="desc">12持仓全面体检</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-01/持仓质量评估_2026-07-01.html">
-    <div class="icon icon-research">📋</div>
-    <div class="info">
-      <div class="title">持仓质量评估</div>
-      <div class="desc">S/A/B+分级体系建立</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-01/汇绿生态深度研报_2026-07-01.html">
-    <div class="icon icon-research">🌿</div>
-    <div class="info">
-      <div class="title"><span class="tag tag-hot">S级</span>汇绿生态 · 深度研报</div>
-      <div class="desc">光模块黑马 · COHR/LITE映射</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-01/细分行业扫描_2026-07-01.html">
-    <div class="icon icon-mapping">🔍</div>
-    <div class="info">
-      <div class="title">细分行业扫描</div>
-      <div class="desc">半导体 · 光通信 · AI硬件 · 化工新材料</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-  <a class="report-link" href="2026-07-01/捷捷微电深度研报_2026-07-01.html">
-    <div class="icon icon-research">⚡</div>
-    <div class="info">
-      <div class="title">捷捷微电 · 深度研报</div>
-      <div class="desc">功率半导体 · 晶闸管龙头</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-</div>
+<div id="content"></div>
 
 <div class="footer">
-  巴蒂投研体系 · 老潘专属<br>
-  数据来源：NeoData / WeStock / 通达信 / 公开信息<br>
-  <span style="color:#f85149">⚠️ 以上内容为投研分析记录，不构成投资建议</span>
+  © 2026 老潘投研 · 索引自动生成 · GitHub API 实时同步<br>
+  <span class="refresh-hint" onclick="loadIndex()">🔄 点击刷新</span>
 </div>
 
+<script>
+const API = 'https://api.github.com/repos/LaoPan2026/laopan-reports/git/trees/main?recursive=1';
+
+async function loadIndex() {
+  const loading = document.getElementById('loading');
+  const error = document.getElementById('error');
+  const subtitle = document.getElementById('subtitle');
+  const content = document.getElementById('content');
+
+  loading.style.display = 'block';
+  error.style.display = 'none';
+  content.innerHTML = '';
+
+  try {
+    const resp = await fetch(API, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+    const data = await resp.json();
+    const files = data.tree.filter(t => t.type === 'blob');
+
+    if (files.length === 0) throw new Error('空文件列表');
+
+    // Categorize
+    const briefing = [], review = [], weekly = [], reports = {};
+
+    files.forEach(f => {
+      const p = f.path;
+      if (p.startsWith('daily-briefing/') && p.endsWith('.html')) {
+        briefing.push(p.replace('daily-briefing/',''));
+      } else if (p.startsWith('daily-review/') && p.endsWith('.html')) {
+        review.push(p.replace('daily-review/',''));
+      } else if (p.startsWith('weekly-review/') && p.endsWith('.html')) {
+        weekly.push(p.replace('weekly-review/',''));
+      } else if (p.startsWith('reports/')) {
+        const parts = p.split('/');
+        if (parts.length === 3) {
+          const date = parts[1], name = parts[2];
+          if (name.endsWith('.html') || name.endsWith('.pptx')) {
+            if (!reports[date]) reports[date] = [];
+            reports[date].push(name);
+          }
+        }
+      }
+    });
+
+    // Sort
+    briefing.sort((a,b) => b.localeCompare(a));
+    review.sort((a,b) => b.localeCompare(a));
+    weekly.sort((a,b) => b.localeCompare(a));
+
+    const total = briefing.length + review.length + weekly.length +
+      Object.values(reports).reduce((s,arr) => s + arr.length, 0);
+
+    subtitle.innerHTML = `数据专题 · 景气成长投资研究体系 | 共 <strong style="color:var(--accent)">${total}</strong> 份报告 · 实时同步`;
+
+    let html = '';
+
+    function makeName(f) {
+      return f.replace('.html','').replace('.pptx',' (PPT)').replace(/_/g,' ').replace(/2026-/g,'');
+    }
+
+    function makeLink(path) {
+      return `<a class="report-link" href="${encodeURI(path)}" target="_blank">查看</a>`;
+    }
+
+    if (briefing.length) {
+      html += '<div class="section-label">每日盘前简报</div><div class="report-list">';
+      briefing.forEach(f => {
+        html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('daily-briefing/'+f)}</div>`;
+      });
+      html += '</div>';
+    }
+
+    if (review.length) {
+      html += '<div class="section-label">每日盘后复盘</div><div class="report-list">';
+      review.forEach(f => {
+        html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('daily-review/'+f)}</div>`;
+      });
+      html += '</div>';
+    }
+
+    if (weekly.length) {
+      html += '<div class="section-label">每周复盘</div><div class="report-list">';
+      weekly.forEach(f => {
+        html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('weekly-review/'+f)}</div>`;
+      });
+      html += '</div>';
+    }
+
+    const sortedDates = Object.keys(reports).sort((a,b) => b.localeCompare(a));
+    sortedDates.forEach(date => {
+       html += `<div class="date-title">📅 ${date} 专题研报 <span style="color:var(--sub);font-size:11px;font-weight:400">(${reports[date].length}份)</span></div><div class="report-list">`;
+       reports[date].sort((a,b) => b.localeCompare(a)).forEach(f => {
+         html += `<div class="report-item"><span class="report-name">${makeName(f)}</span>${makeLink('reports/'+date+'/'+f)}</div>`;
+       });
+       html += '</div>';
+    });
+
+    content.innerHTML = html;
+    loading.style.display = 'none';
+
+  } catch(e) {
+    loading.style.display = 'none';
+    error.style.display = 'block';
+    error.textContent = '⚠️ 加载失败（' + e.message + '）。点击此处重试，或稍后刷新页面。';
+  }
+}
+
+loadIndex();
+</script>
 </body>
 </html>
