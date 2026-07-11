@@ -3,20 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>自选清单全扫描 · V4.0投研体系</title>
+<title>自选清单全扫描·V4.0投研体系 | 19只标的</title>
 <style>
-:root {
-  --bg: #1a1a2e; --card: #16213e; --border: #2a2a4a; --header-bg: #0f3460;
-  --text: #e4e4e8; --text-secondary: #8e8ea0;
-  --accent: #4da6ff; --up: #ff5656; --down: #3dd68c; --warn: #f0a040; --star: #f0a040;
-  --green-card-bg: #16213e; --green-card-border: #e74c3c60;
-  --highlight-blue: rgba(77,166,255,0.08); --highlight-red: rgba(231,76,60,0.05);
-  --execute-bg: rgba(240,160,64,0.06);
-}
+:root{--bg:#1a1a2e;--card:#16213e;--border:#2a2a4a;--header-bg:#0f3460;--text:#e4e4e8;--sub:#8e8ea0;--accent:#4da6ff;--up:#ff5656;--down:#3dd68c;--warn:#f0a040;--star:#f0a040;--green-card-bg:#16213e;--green-card-border:#e74c3c60;--highlight-blue:rgba(77,166,255,0.08);--execute-bg:rgba(240,160,64,0.06)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;font-size:16px;padding:20px 16px;max-width:1300px;margin:0 auto}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;font-size:15px;padding:20px 16px;max-width:1300px;margin:0 auto}
 h1{font-size:22px;text-align:center;color:#f0f6fc;margin-bottom:4px}
-.subtitle{text-align:center;color:var(--text-secondary);font-size:13px;margin-bottom:20px}
+.subtitle{text-align:center;color:var(--sub);font-size:13px;margin-bottom:20px}
 .module{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px}
 .module-title{font-size:16px;font-weight:700;color:#f0f6fc;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .module-title .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--accent);color:#1a1a2e;border-radius:5px;font-size:11px;font-weight:700}
@@ -24,131 +17,120 @@ h1{font-size:22px;text-align:center;color:#f0f6fc;margin-bottom:4px}
 .highlight-box{background:var(--highlight-blue);border-left:3px solid var(--accent);padding:10px 14px;margin:10px 0;border-radius:0 6px 6px 0;font-size:13px}
 table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;table-layout:fixed}
 th,td{padding:6px 7px;text-align:center;border-bottom:1px solid var(--border)}
-th{color:var(--text-secondary);font-weight:500;font-size:11px;background:var(--header-bg);white-space:nowrap}
+th{color:var(--sub);font-weight:500;font-size:11px;background:var(--header-bg);white-space:nowrap}
 td.text-left{text-align:left}
 .up{color:var(--up)}.down{color:var(--down)}
 .tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;margin:1px 2px}
-.tag-up{background:#ff565620;color:var(--up)}.tag-down{background:#3dd68c20;color:var(--down)}
-.tag-warn{background:#f0a04020;color:var(--warn)}.tag-info{background:#4da6ff20;color:var(--accent)}
-.grade-s{color:var(--star);font-weight:700}.grade-a{color:var(--accent)}.grade-b{color:var(--down)}
-.stage-bar{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+.tag-up{background:#ff565620;color:var(--up)}.tag-down{background:#3dd68c20;color:var(--down)}.tag-warn{background:#f0a04020;color:var(--warn)}.tag-info{background:#4da6ff20;color:var(--accent)}
+.grade-s{color:var(--star);font-weight:700}.grade-a{color:var(--accent);font-weight:700}.grade-b{color:var(--down);font-weight:700}
+.stage-bar{display:inline-block;padding:1px 6px;border-radius:8px;font-size:11px;font-weight:700}
 .stage-34{background:#1a2e18;color:var(--down);border:1px solid var(--down)}
 .stage-23{background:#1a1a18;color:var(--warn);border:1px solid var(--warn)}
 .stage-45{background:#1a1818;color:var(--up);border:1px solid var(--up)}
 .stage-5{background:#181a1a;color:var(--accent);border:1px solid var(--accent)}
+.stage-4{background:#1a1818;color:var(--up);border:1px solid var(--up)}
 .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
 .summary-card{background:var(--header-bg);border:1px solid var(--border);border-radius:6px;padding:12px;text-align:center}
 .summary-card .val{font-size:20px;font-weight:700;color:var(--accent)}
-.summary-card .lbl{font-size:11px;color:var(--text-secondary);margin-top:2px}
-@media(max-width:600px){.summary-grid{grid-template-columns:repeat(2,1fr)}}
+.summary-card .lbl{font-size:11px;color:var(--sub);margin-top:2px}
+.section-tag{display:inline-block;padding:3px 10px;border-radius:3px;font-size:12px;font-weight:700;margin-right:8px}
+.section-hold{background:var(--down);color:#0d1117}
+.section-watch{background:var(--warn);color:#0d1117}
 </style>
 </head>
 <body>
 <h1>自选清单全扫描 · V4.0投研体系</h1>
-<div class="subtitle">27只标的 · 五阶段定位+六大卡点+驱动力判断+仓位建议 | 2026-07-11 | Wind数据</div>
+<div class="subtitle">19只标的·持仓12只+观察跟踪7只 | 五阶段+六大卡点+驱动力判断+仓位建议 | 2026-07-11</div>
 
-<!-- Overview -->
 <div class="module green-card">
   <div class="module-title"><span class="num">★</span> 全景概览</div>
   <div class="summary-grid">
     <div class="summary-card"><div class="val">12</div><div class="lbl">核心持仓</div></div>
-    <div class="summary-card"><div class="val">15</div><div class="lbl">跟踪池候选</div></div>
-    <div class="summary-card"><div class="val">6/6</div><div class="lbl">卡点覆盖率</div></div>
-    <div class="summary-card"><div class="val">3→4</div><div class="lbl">核心阶段定位</div></div>
+    <div class="summary-card"><div class="val">7</div><div class="lbl">观察跟踪</div></div>
+    <div class="summary-card"><div class="val">5/6</div><div class="lbl">卡点覆盖率</div></div>
+    <div class="summary-card"><div class="val">3→4</div><div class="lbl">主阶段定位</div></div>
   </div>
 </div>
 
-<!-- Core Holdings -->
 <div class="module">
-  <div class="module-title"><span class="num">1</span> 核心持仓·V4.0全景扫描（12只）</div>
+  <div class="module-title"><span class="num">1</span> <span class="section-tag section-hold">持仓</span> 12只核心持仓·V4.0全景扫描</div>
   <table>
-    <tr><th style="width:8%">标的</th><th style="width:7%">现价</th><th style="width:5%">涨跌</th><th style="width:8%">市值(亿)</th><th style="width:6%">PE</th><th style="width:7%">阶段</th><th style="width:7%">驱动力</th><th style="width:8%">卡点</th><th>仓位建议</th></tr>
-    <tr><td class="text-left grade-s">汇绿生态</td><td>43.39</td><td class="down">-0.37%</td><td>341</td><td>409.8</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>⑤CPO</td><td class="text-left"><span class="tag tag-down">S级·持有</span> EML紧缺到2028年/CSP四连击验证</td></tr>
-    <tr><td class="text-left grade-s">澜起科技</td><td>268.06</td><td class="up">-6.21%</td><td>3300</td><td>127.9</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>②③双卡</td><td class="text-left"><span class="tag tag-down">S级·底仓不动</span> 内存接口断层第一/7/29海力士财报</td></tr>
-    <tr><td class="text-left grade-a">罗博特科</td><td>489.00</td><td class="up">-6.19%</td><td>820</td><td>亏损</td><td><span class="stage-23">3</span></td><td>业绩驱动</td><td>①⑤双卡</td><td class="text-left"><span class="tag tag-info">A级·持有</span> ficonTEC在手23亿/台积电CoWoS设备</td></tr>
-    <tr><td class="text-left grade-s">三祥新材</td><td>73.98</td><td class="up">-7.10%</td><td>314</td><td>222.6</td><td><span class="stage-23">2→3</span></td><td>题材+业绩</td><td>①间接</td><td class="text-left"><span class="tag tag-down">S级·500亿前不减</span> 固态电池+锆铪封装材料</td></tr>
-    <tr><td class="text-left">兴森科技</td><td>41.13</td><td class="up">-7.47%</td><td>—</td><td>—</td><td><span class="stage-23">3</span></td><td>业绩驱动</td><td>④载板</td><td class="text-left"><span class="tag tag-down">利润仓·持有</span> ABF国产替代唯一/负成本</td></tr>
-    <tr><td class="text-left">软通动力</td><td>41.83</td><td class="down">+3.46%</td><td>—</td><td>—</td><td><span class="stage-34">4</span></td><td>业绩驱动</td><td>无直接</td><td class="text-left"><span class="tag tag-info">A级·持有</span> 浮盈+418%标杆/AI应用</td></tr>
-    <tr><td class="text-left">星环科技</td><td>108.06</td><td class="down">+4.05%</td><td>131</td><td>亏损</td><td><span class="stage-23">2→3</span></td><td>题材+业绩</td><td>无直接</td><td class="text-left"><span class="tag tag-down">利润仓·观察</span> 英伟达ISV认证/中信ArgoDB</td></tr>
-    <tr><td class="text-left grade-b">泰和新材</td><td>14.20</td><td class="down">+0.92%</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>⑥间接</td><td class="text-left"><span class="tag tag-warn">B+·防御仓</span> 芳纶+光纤/极度超卖等信号</td></tr>
-    <tr><td class="text-left">华峰化学</td><td>10.11</td><td class="up">-0.88%</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left"><span class="tag tag-warn">防御·持有</span> 化工周期对冲</td></tr>
-    <tr><td class="text-left">太钢不锈</td><td>3.41</td><td class="down">+2.40%</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left"><span class="tag tag-warn">防御·持有</span> 钢铁周期/组合减震</td></tr>
-    <tr><td class="text-left">德展健康</td><td>3.23</td><td class="down">+2.54%</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left"><span class="tag tag-warn">防御·持有</span> 医药防御</td></tr>
-    <tr><td class="text-left">欧林生物</td><td>—</td><td class="down">+11.5%</td><td>—</td><td>—</td><td><span class="stage-23">1→2</span></td><td>题材驱动</td><td>无直接</td><td class="text-left"><span class="tag tag-info">迷你仓·观察</span> 金葡菌疫苗73%效力揭盲</td></tr>
+    <tr><th style="width:8%">标的</th><th style="width:6%">现价</th><th style="width:5%">涨跌</th><th style="width:6%">市值(亿)</th><th style="width:5%">PE</th><th style="width:5%">PB</th><th style="width:6%">阶段</th><th style="width:7%">驱动力</th><th style="width:8%">卡点</th><th>仓位建议</th></tr>
+    <tr><td class="text-left grade-s">澜起科技</td><td>268.06</td><td class="up">-6.21%</td><td>3299</td><td>127.9</td><td>15.9</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>②③双卡</td><td class="text-left"><span class="tag tag-down">S级·底仓不动</span> 内存接口断层第一/7/29海力士</td></tr>
+    <tr><td class="text-left grade-s">汇绿生态</td><td>43.39</td><td class="down">-0.37%</td><td>341</td><td>409.8</td><td>21.4</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>⑤CPO</td><td class="text-left"><span class="tag tag-down">S级·持有</span> EML紧缺到2028/客户结构清晰</td></tr>
+    <tr><td class="text-left grade-a">罗博特科</td><td>489.00</td><td class="up">-6.19%</td><td>820</td><td>亏损</td><td>50.4</td><td><span class="stage-23">3</span></td><td>业绩驱动</td><td>①⑤双卡</td><td class="text-left"><span class="tag tag-info">A级·持有</span> ficonTEC在手23亿/台积电CoWoS</td></tr>
+    <tr><td class="text-left">泰和新材</td><td>14.20</td><td class="down">+0.92%</td><td>122</td><td>266.3</td><td>1.7</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>⑥间接</td><td class="text-left"><span class="tag tag-warn">防御·观察</span> 极度超卖等主力转正/缩量止跌</td></tr>
+    <tr><td class="text-left grade-s">三祥新材</td><td>73.98</td><td class="up">-7.10%</td><td>314</td><td>222.6</td><td>22.3</td><td><span class="stage-23">2→3</span></td><td>题材+业绩</td><td>①间接</td><td class="text-left"><span class="tag tag-down">S级·500亿前不减</span> 固态电池+锆铪封装</td></tr>
+    <tr><td class="text-left">兴森科技</td><td>41.13</td><td class="up">-7.47%</td><td>699</td><td>—</td><td>—</td><td><span class="stage-23">3</span></td><td>业绩驱动</td><td>④载板</td><td class="text-left"><span class="tag tag-down">利润仓·持有</span> ABF国产替代/负成本</td></tr>
+    <tr><td class="text-left">星环科技-U</td><td>108.06</td><td class="down">+4.05%</td><td>131</td><td>亏损</td><td>—</td><td><span class="stage-23">2→3</span></td><td>题材+业绩</td><td>无直接</td><td class="text-left"><span class="tag tag-down">利润仓·观察</span> 英伟达ISV/中信ArgoDB</td></tr>
+    <tr><td class="text-left">软通动力</td><td>41.83</td><td class="down">+3.46%</td><td>433</td><td>—</td><td>—</td><td><span class="stage-4">4</span></td><td>业绩驱动</td><td>无直接</td><td class="text-left"><span class="tag tag-info">A级·持有</span> 浮盈+418%标杆/AI应用</td></tr>
+    <tr><td class="text-left">华峰化学</td><td>10.11</td><td class="up">-0.88%</td><td>502</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left"><span class="tag tag-warn">防御·持有</span> 化工周期对冲</td></tr>
+    <tr><td class="text-left">太钢不锈</td><td>3.41</td><td class="down">+2.40%</td><td>194</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left"><span class="tag tag-warn">防御·持有</span> 钢铁周期/组合减震</td></tr>
+    <tr><td class="text-left">德展健康</td><td>3.23</td><td class="down">+2.54%</td><td>68</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left"><span class="tag tag-warn">防御·持有</span> 医药防御</td></tr>
+    <tr><td class="text-left">欧林生物</td><td>44.38</td><td class="down">+11.5%</td><td>180</td><td>—</td><td>—</td><td><span class="stage-23">1→2</span></td><td>题材驱动</td><td>无直接</td><td class="text-left"><span class="tag tag-info">迷你仓·观察</span> 金葡菌疫苗73%效力揭盲</td></tr>
   </table>
 </div>
 
-<!-- Tracking Pool -->
 <div class="module">
-  <div class="module-title"><span class="num">2</span> 跟踪池·V4.0全景扫描（15只）</div>
+  <div class="module-title"><span class="num">2</span> <span class="section-tag section-watch">观察</span> 7只观察跟踪·V4.0全景扫描</div>
   <table>
-    <tr><th style="width:8%">标的</th><th style="width:7%">现价</th><th style="width:5%">涨跌</th><th style="width:8%">市值(亿)</th><th style="width:6%">PE</th><th style="width:7%">阶段</th><th style="width:7%">驱动力</th><th style="width:8%">卡点</th><th>跟踪逻辑</th></tr>
-    <tr><td class="text-left">中际旭创</td><td>1093.98</td><td class="up">-8.45%</td><td>12200</td><td>81.6</td><td><span class="stage-34">4</span></td><td>业绩驱动</td><td>⑤光模块</td><td class="text-left">光模块全球龙头/2027E千亿净利预期/PE 81x已PRICE IN</td></tr>
-    <tr><td class="text-left">胜宏科技</td><td>272.00</td><td class="up">-8.32%</td><td>2594</td><td>57.1</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>④⑤间接</td><td class="text-left">AI PCB全球#1/泰国越南2027放量/等回调200-220</td></tr>
-    <tr><td class="text-left">工业富联</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-34">4</span></td><td>业绩驱动</td><td>间接</td><td class="text-left">AI服务器ODM龙头/确定性高但空间收窄</td></tr>
-    <tr><td class="text-left">立讯精密</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>间接</td><td class="text-left">消费电子+AI硬件/Apple Vision+AI服务器</td></tr>
-    <tr><td class="text-left">华丰科技</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-23">3</span></td><td>题材+业绩</td><td>①间接</td><td class="text-left">电连接器+卫星通信/卡位独特</td></tr>
-    <tr><td class="text-left">炬芯科技</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-23">2→3</span></td><td>题材驱动</td><td>无直接</td><td class="text-left">端侧AI SoC/目标38-42元</td></tr>
-    <tr><td class="text-left">锡业股份</td><td>36.45</td><td class="up">-2.20%</td><td>~600</td><td>25.7</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>②间接</td><td class="text-left">锡全球27%断层第一/PB 2.95偏贵/等回调</td></tr>
-    <tr><td class="text-left">巨化股份</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>⑥间接</td><td class="text-left">氟化工龙头/液冷制冷剂/AI基建受益</td></tr>
-    <tr><td class="text-left">中远海能</td><td>13.08</td><td class="up">-1.21%</td><td>~700</td><td>~10</td><td><span class="stage-45">4→5</span></td><td>均值回归</td><td>无直接</td><td class="text-left">VLCC全球老大/霍尔木兹地缘溢价/不加仓</td></tr>
-    <tr><td class="text-left">数据港</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>间接</td><td class="text-left">腾讯算力枢纽IDC</td></tr>
-    <tr><td class="text-left">奥飞数据</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-23">2→3</span></td><td>题材驱动</td><td>间接</td><td class="text-left">华南智算中心EPC/IDC</td></tr>
-    <tr><td class="text-left">利通电子</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-23">2→3</span></td><td>题材驱动</td><td>间接</td><td class="text-left">算力租赁/高弹性高风险</td></tr>
-    <tr><td class="text-left">恒逸石化</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left">炼化景气/周期观察</td></tr>
-    <tr><td class="text-left">滨化股份</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left">化工新材料/周期观察</td></tr>
-    <tr><td class="text-left">中工国际</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="stage-5">5</span></td><td>均值回归</td><td>无直接</td><td class="text-left">工程承包/非主线</td></tr>
+    <tr><th style="width:8%">标的</th><th style="width:6%">现价</th><th style="width:5%">涨跌</th><th style="width:6%">市值(亿)</th><th style="width:5%">PE</th><th style="width:5%">PB</th><th style="width:6%">阶段</th><th style="width:7%">驱动力</th><th style="width:8%">卡点</th><th>跟踪逻辑</th></tr>
+    <tr><td class="text-left">中远海能</td><td>15.77</td><td class="up">+0.06%</td><td>805</td><td>~10</td><td>—</td><td><span class="stage-45">4→5</span></td><td>均值回归</td><td>无直接</td><td class="text-left">VLCC全球老大/霍尔木兹地缘溢价/不加仓</td></tr>
+    <tr><td class="text-left">锡业股份</td><td>36.45</td><td class="up">-2.20%</td><td>600</td><td>25.7</td><td>2.95</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>②间接</td><td class="text-left">锡全球27%断层第一/PB 92.8%分位/等回调</td></tr>
+    <tr><td class="text-left">中际旭创</td><td>1093.98</td><td class="up">-8.45%</td><td>12200</td><td>81.6</td><td>35.2</td><td><span class="stage-4">4</span></td><td>业绩驱动</td><td>⑤光模块</td><td class="text-left">光模块全球龙头/2027E千亿净利/PE 81x已PRICE IN</td></tr>
+    <tr><td class="text-left">工业富联</td><td>66.27</td><td class="up">-4.69%</td><td>13151</td><td>32.4</td><td>7.5</td><td><span class="stage-34">4</span></td><td>业绩驱动</td><td>间接</td><td class="text-left">AI服务器ODM龙头/确定性高但空间收窄</td></tr>
+    <tr><td class="text-left">胜宏科技</td><td>272.00</td><td class="up">-8.32%</td><td>2594</td><td>57.1</td><td>7.5</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>④⑤间接</td><td class="text-left">AI PCB全球#1/泰国2027放量/等回调200-220</td></tr>
+    <tr><td class="text-left">立讯精密</td><td>62.14</td><td class="up">-3.60%</td><td>4760</td><td>27.9</td><td>4.3</td><td><span class="stage-34">3→4</span></td><td>业绩驱动</td><td>间接</td><td class="text-left">消费电子+AI硬件/Apple Vision+AI服务器</td></tr>
+    <tr><td class="text-left">华丰科技</td><td>202.00</td><td class="up">-3.66%</td><td>946</td><td>219.0</td><td>32.7</td><td><span class="stage-23">3</span></td><td>题材+业绩</td><td>①间接</td><td class="text-left">电连接器+卫星通信/卡位独特</td></tr>
   </table>
 </div>
 
-<!-- Stage Distribution -->
 <div class="module">
   <div class="module-title"><span class="num">3</span> 阶段分布·驱动力结构</div>
   <table>
-    <tr><th>阶段</th><th>数量</th><th>核心持仓</th><th>跟踪池</th><th>策略</th></tr>
-    <tr><td class="text-left"><strong class="stage-34">3→4 业绩兑现</strong></td><td><strong>13</strong></td><td class="text-left">汇绿/澜起/罗博/兴森/软通</td><td class="text-left">中际/胜宏/工业富联/立讯/锡业/巨化/数据港</td><td class="text-left"><strong style="color:var(--down)">主仓位集中于此</strong></td></tr>
-    <tr><td class="text-left"><strong class="stage-23">2→3 供应链形成</strong></td><td>5</td><td class="text-left">三祥/星环</td><td class="text-left">华丰/炬芯/奥飞/利通</td><td class="text-left">轻仓试探/等拐点信号</td></tr>
-    <tr><td class="text-left"><strong class="stage-45">4→5 成熟/周期</strong></td><td>2</td><td class="text-left">—</td><td class="text-left">中远海能/恒逸</td><td class="text-left">持有不追/警惕估值陷阱</td></tr>
-    <tr><td class="text-left"><strong class="stage-5">阶段5 防御</strong></td><td>6</td><td class="text-left">泰和/华峰/太钢/德展</td><td class="text-left">滨化/中工</td><td class="text-left">组合减震器/逢反弹减仓</td></tr>
-    <tr><td class="text-left"><strong class="stage-23">1→2 概念/观测</strong></td><td>1</td><td class="text-left">欧林</td><td class="text-left">—</td><td class="text-left">迷你仓·纯观察</td></tr>
+    <tr><th>阶段</th><th>数量</th><th>持仓</th><th>观察</th><th>策略</th></tr>
+    <tr><td class="text-left"><span class="stage-34">3→4 业绩兑现</span></td><td><strong>5</strong></td><td class="text-left">澜起/汇绿/兴森</td><td class="text-left">锡业/胜宏/立讯/工业富联</td><td class="text-left"><strong style="color:var(--down)">主仓位集中于此</strong></td></tr>
+    <tr><td class="text-left"><span class="stage-23">2→3 供应链形成</span></td><td>4</td><td class="text-left">罗博/三祥/星环</td><td class="text-left">华丰</td><td class="text-left">轻仓试探/等拐点信号</td></tr>
+    <tr><td class="text-left"><span class="stage-4">4 业绩兑现</span></td><td>2</td><td class="text-left">软通</td><td class="text-left">中际旭创</td><td class="text-left">持有/警惕估值透支</td></tr>
+    <tr><td class="text-left"><span class="stage-45">4→5 成熟/周期</span></td><td>1</td><td class="text-left">—</td><td class="text-left">中远海能</td><td class="text-left">警惕估值陷阱</td></tr>
+    <tr><td class="text-left"><span class="stage-5">阶段5 防御</span></td><td>4</td><td class="text-left">泰和/华峰/太钢/德展</td><td class="text-left">—</td><td class="text-left">组合减震/逢反弹减仓</td></tr>
+    <tr><td class="text-left"><span class="stage-23">1→2 概念</span></td><td>1</td><td class="text-left">欧林</td><td class="text-left">—</td><td class="text-left">迷你仓·纯观察</td></tr>
   </table>
 </div>
 
-<!-- Six Chokepoints Mapping -->
 <div class="module">
-  <div class="module-title"><span class="num">4</span> 六大卡点·标的覆盖全图</div>
+  <div class="module-title"><span class="num">4</span> 六大卡点·覆盖全图</div>
   <table>
-    <tr><th>卡点</th><th>时间窗口</th><th>直接覆盖</th><th>间接受益</th><th>覆盖度</th></tr>
-    <tr><td class="text-left">①先进封装</td><td>2026-2028</td><td class="text-left" style="color:var(--accent)"><strong>罗博特科</strong>(设备)/兴森(材料)</td><td class="text-left">三祥/华丰</td><td>★★★★</td></tr>
-    <tr><td class="text-left">②HBM·HBF</td><td>2026-2028</td><td class="text-left" style="color:var(--accent)"><strong>澜起科技</strong>(接口配套)</td><td class="text-left">锡业(封装材料)</td><td>★★★★</td></tr>
-    <tr><td class="text-left">③接口与互连</td><td>贯穿</td><td class="text-left" style="color:var(--star)"><strong>澜起科技</strong>(62%毛利断层)</td><td class="text-left">—</td><td>★★★★★</td></tr>
-    <tr><td class="text-left">④存储原厂产业链</td><td>2026-2027</td><td class="text-left" style="color:var(--accent)"><strong>兴森科技</strong>(ABF载板)</td><td class="text-left">胜宏(PCB)</td><td>★★★</td></tr>
-    <tr><td class="text-left">⑤CPO/光通信</td><td>2027-2028</td><td class="text-left" style="color:var(--accent)"><strong>汇绿生态</strong>(代工)/罗博(设备)/中际(模块)</td><td class="text-left">胜宏/锡业</td><td>★★★★★</td></tr>
-    <tr><td class="text-left">⑥800V+高频材料</td><td>2027</td><td class="text-left">—</td><td class="text-left">三祥/泰和/巨化</td><td>★★</td></tr>
+    <tr><th style="width:18%">卡点</th><th>持仓直接覆盖</th><th>观察直接覆盖</th><th>总覆盖度</th></tr>
+    <tr><td class="text-left">①先进封装</td><td class="text-left">罗博(设备)/兴森(材料)</td><td class="text-left">华丰(连接器)</td><td>★★★★</td></tr>
+    <tr><td class="text-left">②HBM·HBF</td><td class="text-left">澜起(接口配套)</td><td class="text-left">锡业(封装材料)</td><td>★★★★</td></tr>
+    <tr><td class="text-left">③接口与互连</td><td class="text-left" style="color:var(--star)"><strong>澜起(62%毛利断层)</strong></td><td class="text-left">—</td><td>★★★★★</td></tr>
+    <tr><td class="text-left">④存储原厂产业链</td><td class="text-left">兴森(ABF载板)</td><td class="text-left">胜宏(PCB)</td><td>★★★</td></tr>
+    <tr><td class="text-left">⑤CPO/光通信</td><td class="text-left" style="color:var(--accent)"><strong>汇绿(代工)/罗博(设备)</strong></td><td class="text-left">中际旭创/胜宏</td><td>★★★★★</td></tr>
+    <tr><td class="text-left">⑥800V+高频材料</td><td class="text-left">三祥(间接)/泰和(间接)</td><td class="text-left">—</td><td>★</td></tr>
   </table>
   <div class="highlight-box">
-    <strong style="color:var(--accent)">卡点覆盖判断：</strong>①②③④⑤五个卡点已有核心标的直接对座。⑥800V供电+高频材料是唯一覆盖最弱的卡点——三祥/泰和/巨化均是间接对座，缺乏直接卡位的核心标的。<strong style="color:var(--warn)">这是未来跟踪池扩容最值得关注的方向。</strong>
+    <strong style="color:var(--accent)">卡点覆盖判断：</strong>5/6 卡点有持仓或观察直接对座。⑥800V供电+高频材料是<strong>唯一无直接标的</strong>的卡点——三祥/泰和只是间接对座，缺乏直接卡位的核心标的。<strong style="color:var(--warn)">这是未来跟踪池扩容最值得关注的方向。</strong>
   </div>
 </div>
 
-<!-- Action Summary -->
 <div class="module green-card">
   <div class="module-title"><span class="num">★</span> 操作总结</div>
   <table>
     <tr><th>动作</th><th>标的</th><th>条件/时点</th></tr>
-    <tr><td class="text-left"><span class="tag tag-down">持有不动</span></td><td class="text-left">汇绿/澜起/三祥/罗博/兴森/软通/星环/泰和/华峰/太钢/德展/欧林</td><td class="text-left">逻辑未破不减仓=S级纪律</td></tr>
-    <tr><td class="text-left"><span class="tag tag-warn">加仓观察</span></td><td class="text-left">汇绿/澜起</td><td class="text-left">若周一恐慌低开3%+且美股AI链企稳，组合5%以内</td></tr>
-    <tr><td class="text-left"><span class="tag tag-info">回调建仓</span></td><td class="text-left">胜宏科技(200-220元)/锡业股份(30-32元)</td><td class="text-left">等PB回调+CSP四连击验证通过</td></tr>
-    <tr><td class="text-left"><span class="tag tag-warn">不追/观望</span></td><td class="text-left">中际旭创/工业富联/商业航天/炬芯/奥飞/利通</td><td class="text-left">阶段偏早/PE偏高/或β已覆盖</td></tr>
+    <tr><td class="text-left"><span class="tag tag-down">持有不动</span></td><td class="text-left">12只核心持仓</td><td class="text-left">逻辑未破不减仓=S级纪律</td></tr>
+    <tr><td class="text-left"><span class="tag tag-warn">加仓观察</span></td><td class="text-left">汇绿/澜起</td><td class="text-left">周一恐慌低开3%+且美股AI链企稳，组合5%以内</td></tr>
+    <tr><td class="text-left"><span class="tag tag-info">回调建仓</span></td><td class="text-left">胜宏(200-220元)/锡业(30-32元)</td><td class="text-left">等PB回调+CSP四连击验证通过</td></tr>
+    <tr><td class="text-left"><span class="tag tag-warn">不追/观望</span></td><td class="text-left">中际旭创/工业富联/立讯/华丰</td><td class="text-left">PE偏高或β已覆盖</td></tr>
     <tr><td class="text-left"><span class="tag tag-up">警惕/减仓</span></td><td class="text-left">中远海能</td><td class="text-left">海峡恢复通航1-2月内减仓</td></tr>
   </table>
   <div class="highlight-box" style="margin-top:10px">
-    <strong style="color:var(--star)">核心纪律重申：</strong>持仓不增不减，等7/16台积电+7/23起CSP四连击双线确认后再调整。S级标的（汇绿/澜起/三祥）逻辑未破不减仓。阶段5防御仓（泰和/华峰/太钢/德展）仅作组合减震，不期待高成长。
+    <strong style="color:var(--star)">核心纪律重申：</strong>持仓不增不减，等7/16台积电+7/23起CSP四连击双线确认后再调整。S级标的（澜起/汇绿/三祥）逻辑未破不减仓。阶段5防御仓（泰和/华峰/太钢/德展）仅作组合减震，不期待高成长。
   </div>
 </div>
 
-<div style="text-align:center;padding:16px;color:var(--text-secondary);font-size:12px;border-top:1px solid var(--border);margin-top:8px">
-  数据来源：Wind万得（精确数据）· 2025年报 · 2026Q1季报 | 分析框架：V4.0融合版（五阶段+六大卡点+驱动力三分类+七步闭环）| 2026-07-11
+<div style="text-align:center;padding:16px;color:var(--sub);font-size:12px;border-top:1px solid var(--border);margin-top:8px">
+  数据来源：Wind万得（精确数据）· 2025年报 · 2026Q1季报 | 分析框架：V4.0融合版 | 2026-07-11
 </div>
 </body>
 </html>
