@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>产业趋势投资方法论</title>
+<style>
+:root{--bg:#1a1a2e;--card:#16213e;--border:#2a2a4a;--text:#e4e4e8;--text-secondary:#8e8ea0;--accent:#4da6ff;--up:#ff5656;--down:#3dd68c;--warn:#f0a040;--table-header:#0f3460;--stage1:#D4537E;--stage2:#D85A30;--stage3:#BA7517;--stage4:#1D9E75;--stage5:#378ADD}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.8;font-size:16px}
+.container{max-width:960px;margin:0 auto;padding:24px 16px}
+.hero{text-align:center;padding:40px 0 20px}
+.hero h1{font-size:28px;font-weight:700;color:#fff;margin-bottom:8px}
+.hero .sub{font-size:15px;color:var(--text-secondary)}
+.onen{font-size:48px;font-weight:800;color:var(--accent);line-height:1.2}
+.module{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:20px}
+.module-title{font-size:18px;font-weight:700;color:#fff;margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.module-title .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--accent);color:#1a1a2e;border-radius:6px;font-size:13px;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0;table-layout:fixed}
+th,td{padding:10px;text-align:center;border-bottom:1px solid var(--border);vertical-align:middle}
+th{background:var(--table-header);color:#ccc;font-weight:500;font-size:12px;white-space:nowrap}
+td.text-left{text-align:left}
+td.num{text-align:center;font-variant-numeric:tabular-nums;font-weight:500}
+.highlight{background:rgba(77,166,255,0.08);border-left:3px solid var(--accent);padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0;font-size:15px}
+.flow-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.flow-step{flex:1;min-width:100px;background:var(--table-header);border-radius:8px;padding:16px 12px;text-align:center}
+.flow-step .label{font-size:12px;color:var(--text-secondary);margin-bottom:4px}
+.flow-step .content{font-size:13px;font-weight:600;color:#fff}
+.flow-arrow{color:var(--accent);font-size:18px;font-weight:700}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.kapoint-card{background:var(--table-header);border-radius:10px;padding:16px;text-align:center;border-top:3px solid var(--accent)}
+.kapoint-card .num{font-size:13px;color:var(--text-secondary);margin-bottom:4px}
+.kapoint-card .title{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.kapoint-card .detail{font-size:12px;color:var(--text-secondary)}
+.case-box{background:rgba(61,214,140,0.06);border:1px solid var(--down);border-radius:10px;padding:18px;margin:14px 0}
+.case-box .case-title{font-size:15px;font-weight:600;color:var(--down);margin-bottom:8px}
+.footer{text-align:center;color:#666;font-size:12px;padding:24px 0;margin-top:20px;border-top:1px solid var(--border)}
+@media(max-width:600px){.flow-row{flex-direction:column}.flow-arrow{transform:rotate(90deg)}table{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <div class="onen">3→4</div>
+  <h1>产业趋势投资方法论</h1>
+  <div class="sub">在正确的阶段，卡在正确的路口</div>
+</div>
+
+<div class="module">
+  <p style="font-size:16px;line-height:1.9;color:var(--text)">
+    任何产业趋势在A股都有固定的生命周期。大多数人在"故事期"和"业绩期"之间反复横跳——前者进去太早被洗出局，后者进去太晚当了接盘侠。<strong style="color:var(--accent)">超额收益的密码不在判断"方向对不对"，而在判断"阶段对不对"。</strong>
+  </p>
+  <p style="font-size:16px;line-height:1.9;color:var(--text);margin-top:10px">
+    这套方法论回答三个问题：<strong>买什么（找卡位）、什么时候买（定阶段）、怎么买（配仓位）</strong>。
+  </p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">1</span> 产业趋势五阶段模型</div>
+  <table>
+    <tr><th>阶段</th><th>名称</th><th>核心驱动</th><th>业绩状态</th><th>投资策略</th><th>风险</th></tr>
+    <tr><td style="color:var(--stage1);font-weight:700">阶段1</td><td style="color:var(--stage1)">概念期</td><td>故事 / 预期 / 情绪</td><td>无</td><td>小仓位主题博弈</td><td>泡沫破裂</td></tr>
+    <tr><td style="color:var(--stage2);font-weight:700">阶段2</td><td style="color:var(--stage2)">高度重视期</td><td>政策 / 事件催化</td><td>弱</td><td>选赛道龙头，轻仓试探</td><td>催化空窗</td></tr>
+    <tr style="background:rgba(61,214,140,0.08)"><td style="color:var(--stage3);font-weight:700">阶段3</td><td style="color:var(--stage3)">供应链形成期</td><td>订单 / 产能 / 渗透率</td><td>起步</td><td>选链主、卡位稀缺标的</td><td>竞争加剧</td></tr>
+    <tr style="background:rgba(61,214,140,0.08)"><td style="color:var(--stage4);font-weight:700">阶段4</td><td style="color:var(--stage4)">业绩兑现期</td><td>营收 / 净利高增</td><td>高增</td><td>选确定性、毛利率龙头</td><td>估值过高</td></tr>
+    <tr><td style="color:var(--stage5);font-weight:700">阶段5</td><td style="color:var(--stage5)">成熟/周期期</td><td>盈利稳定 / 周期复苏</td><td>稳定</td><td>低估值、高股息</td><td>增长见顶</td></tr>
+  </table>
+  <div class="highlight">
+    <strong>核心法则：</strong>重仓阶段3→4（供应链形成→业绩兑现），这是胜率最高、赔率最优的阶段。阶段1→2小仓位博弈，阶段4→5逐步降预期转价值。
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">2</span> 拐点信号：如何判断阶段跃迁</div>
+  <table>
+    <tr><th>跃迁方向</th><th>关键信号</th><th>操作</th></tr>
+    <tr><td>进入阶段3</td><td class="text-left">订单连续放量、供应链关键节点落地、渗透率突破10%</td><td>开始建仓</td></tr>
+    <tr><td>进入阶段4</td><td class="text-left">单季营收/净利连续高增、毛利率企稳回升、同业交叉验证</td><td>重仓加码</td></tr>
+    <tr><td>进入阶段5</td><td class="text-left">行业增速&lt;15%、格局固化、价格战趋稳、CSP Capex下修</td><td>降仓位转防守</td></tr>
+  </table>
+  <div class="highlight" style="border-left-color:var(--warn)">
+    <strong>防错机制：</strong>阶段判断不是一次性的——每个财报季、重大事件后必须重新审视。阶段性跃迁容易被情绪误判，一定要有硬数据（订单/营收/毛利率）做锚点。
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">3</span> 六大技术卡点——卡在正确的路口</div>
+  <p style="color:var(--text-secondary);margin-bottom:14px">阶段找对了还不够，要在对的路口卡位。"要么手握定价权，要么卡在未来技术通道的必经之路上。"</p>
+  <div class="card-grid">
+    <div class="kapoint-card"><div class="num">卡点①</div><div class="title">先进封装</div><div class="detail">HBM堆叠 / Chiplet拼装 / CPO合封的公共卡口</div></div>
+    <div class="kapoint-card"><div class="num">卡点②</div><div class="title">HBM·HBF</div><div class="detail">内存墙唯一解法，存储+封装的结合体</div></div>
+    <div class="kapoint-card"><div class="num">卡点③</div><div class="title">接口与互连芯片</div><div class="detail">全球寡头格局，结构性高毛利</div></div>
+    <div class="kapoint-card"><div class="num">卡点④</div><div class="title">存储原厂产业链</div><div class="detail">国产替代确定性最高的通道</div></div>
+    <div class="kapoint-card"><div class="num">卡点⑤</div><div class="title">CPO/硅光</div><div class="detail">2028年之后的光互连终极形态</div></div>
+    <div class="kapoint-card"><div class="num">卡点⑥</div><div class="title">800V供电+高频材料</div><div class="detail">兆瓦机柜的供电革命</div></div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">4</span> 七步决策闭环</div>
+  <div class="flow-row">
+    <div class="flow-step"><div class="label">第1步</div><div class="content">大方向判断</div></div><div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="label">第2步</div><div class="content">主线筛选</div></div><div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="label">第3步</div><div class="content">阶段定位</div></div><div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="label">第4步</div><div class="content">标的选择</div></div><div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="label">第5步</div><div class="content">仓位配置</div></div><div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="label">第6步</div><div class="content">持有跟踪</div></div><div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="label">第7步</div><div class="content">退出判断</div></div>
+  </div>
+  <table>
+    <tr><th>步骤</th><th>做什么</th><th>工具</th></tr>
+    <tr><td>①大方向</td><td class="text-left">判断是否在AI大周期——Capex、技术创新、产能扩张</td><td>CSP财报 + 台积电产能图 + 产业调研</td></tr>
+    <tr><td>②主线筛选</td><td class="text-left">四因子同命：外部约束+内部政策+需求爆发+业绩验证</td><td>政策文件 + 订单数据 + 交叉验证</td></tr>
+    <tr><td>③阶段定位</td><td class="text-left">把赛道定位到五阶段的哪个位置</td><td>五阶段模型 + 拐点信号检查</td></tr>
+    <tr><td>④标的选择</td><td class="text-left">在阶段3→4的赛道里找卡位标的</td><td>六大卡点 + 定价权+毛利率验证</td></tr>
+    <tr><td>⑤仓位配置</td><td class="text-left">阶段3→4重仓、阶段2控仓、阶段5防御</td><td>五阶段仓位规则</td></tr>
+    <tr><td>⑥持有跟踪</td><td class="text-left">景气尺+同业交叉+渗透率与三次大辩论</td><td>订单/毛利率/利润增速 + 同业验证</td></tr>
+    <tr><td>⑦退出判断</td><td class="text-left">反转开关触发或进入阶段5</td><td>CSP Capex下修 + 行业增速&lt;15%</td></tr>
+  </table>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">5</span> 案例一：汇绿生态——光通信黑马的五阶段跃迁</div>
+  <div class="case-box">
+    <div class="case-title">背景：光模块产业从2024年底进入阶段3</div>
+    <p style="font-size:14px;line-height:1.8">
+      全球AI算力需求爆发，光模块是数据传输的核心瓶颈。800G/1.6T光模块渗透率从2024年不到5%快速攀升。汇绿作为Coherent/Lumentum等海外龙头在中国的代工合作伙伴，正在经历"从代工厂到CPO核心环节"的跃迁。
+    </p>
+  </div>
+  <table>
+    <tr><th>评估维度</th><th>判断</th></tr>
+    <tr><td>阶段定位</td><td class="text-left">阶段3→4：订单已开始放量，客户结构（Coherent/Lumentum/索尔斯）清晰，等待中报业绩兑现</td></tr>
+    <tr><td>技术卡点</td><td class="text-left">对座⑤CPO/光通信。EML紧缺到2028年（Lumentum专家纪要确认），光通信全链景气度持续上修</td></tr>
+    <tr><td>拐点信号</td><td class="text-left">Lumentum OCS产能从4000→6000→15000台上修；LITE隔夜+11%走势确认；华为OPEN NPO项目启动</td></tr>
+    <tr><td>仓位策略</td><td class="text-left">阶段3→4重仓，持有不减。等COHR财报(8/13)和LITE财报(8/18)做下一轮验证</td></tr>
+  </table>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">6</span> 案例二：罗博特科——卖铲人的双卡点</div>
+  <div class="case-box">
+    <div class="case-title">背景：AI算力设备从2025年开始进入供不应求</div>
+    <p style="font-size:14px;line-height:1.8">
+      罗博特科旗下ficonTEC是全球硅光设备领域市占率25.5%的龙头，设备直接供应台积电CoWoS产线和英伟达/博通等客户。苏州400台/月产能2026年5月刚满产，台湾OEM基地刚启动。
+    </p>
+  </div>
+  <table>
+    <tr><th>评估维度</th><th>判断</th></tr>
+    <tr><td>阶段定位</td><td class="text-left">阶段3：设备供应链形成期。在手订单23亿(硅光/CPO占80%)，等待Q2单季扭亏确认进入阶段4</td></tr>
+    <tr><td>技术卡点</td><td class="text-left"><strong>双卡点：</strong>①先进封装设备（台积电CoWoS唯一指定光电测试设备）+ ⑤CPO设备（硅光耦合全球断层第一）</td></tr>
+    <tr><td>拐点信号</td><td class="text-left">台积电CoWoS产能三年6倍扩产(2024→2027:3万→20万+/月)；台湾OEM基地投产进度；Q2单季扭亏确认</td></tr>
+    <tr><td>仓位策略</td><td class="text-left">阶段3持有，等单季扭亏+台湾基地投产进度作为加仓信号</td></tr>
+  </table>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="num">7</span> 操作纪律</div>
+  <table>
+    <tr><th>纪律</th><th>说明</th></tr>
+    <tr><td>不追杀跌</td><td class="text-left">逻辑未破不减仓。暴跌不是卖出理由，逻辑破坏才是</td></tr>
+    <tr><td>不基于情绪追高</td><td class="text-left">封板率低于50%时不追；商业航天这种阶段2题材仅小仓位博弈</td></tr>
+    <tr><td>持仓分散化</td><td class="text-left">核心板块不超60%，保留阶段5防御仓做对冲</td></tr>
+    <tr><td>财报季不增不减</td><td class="text-left">CSP四连击等关键节点前管住手，等落地点确认再做决策</td></tr>
+    <tr><td>每次决策套7步闭环</td><td class="text-left">不跳过任何一步——大方向→主线→阶段→标的→仓位→跟踪→退出</td></tr>
+  </table>
+</div>
+
+<div class="module">
+  <div style="text-align:center;padding:20px">
+    <div style="font-size:16px;color:var(--text-secondary);margin-bottom:12px">超额收益 =</div>
+    <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">在正确的阶段 × 卡在正确的路口 × 严格执行纪律</div>
+    <div style="font-size:14px;color:var(--text-secondary);margin-top:12px">产业趋势投资不是预测涨跌，是分配胜率和赔率。</div>
+  </div>
+</div>
+
+<div class="footer">
+  本方法论基于公开产业数据和研究框架构建，仅供学习交流，不构成投资建议。股市有风险，投资需谨慎。
+</div>
+
+</div>
+</body>
+</html>
