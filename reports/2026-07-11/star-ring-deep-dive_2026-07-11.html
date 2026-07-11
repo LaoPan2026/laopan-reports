@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>星环科技(688031)深度研究报告 | 2026-07-11</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --border: #2a2a4a;
+  --text: #e4e4e8; --text-secondary: #8e8ea0; --header-bg: #0f3460;
+  --accent: #4da6ff; --up: #ff5656; --down: #3dd68c; --warn: #f0a040; --star: #f0a040;
+  --green-card-bg: #16213e; --green-card-border: #e74c3c60;
+  --highlight-blue: rgba(77,166,255,0.08); --highlight-red: rgba(231,76,60,0.05);
+  --execute-bg: rgba(240,160,64,0.06); --execute-border: #f0a04050;
+  --scenario-up: rgba(61,214,140,0.08); --scenario-down: rgba(255,86,86,0.08);
+  --scenario-neutral: rgba(142,142,160,0.08);
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height: 1.7; font-size: 16px; }
+.container { max-width: 980px; margin: 0 auto; padding: 20px 16px; }
+h1 { font-size: 24px; font-weight: 700; text-align: center; margin: 0 0 6px; color: #f0f6fc; letter-spacing: 1px; }
+.subtitle { text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
+.module { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+.module-title { font-size: 18px; font-weight: 700; color: #f0f6fc; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.module-title .num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent); color: #1a1a2e; border-radius: 6px; font-weight: 700; font-size: 13px; }
+.green-card { background: var(--green-card-bg) !important; border-color: var(--green-card-border) !important; }
+.highlight-box { background: var(--highlight-blue); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+.highlight-box-red { background: var(--highlight-red); border-left: 3px solid var(--up); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+.scenario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.scenario-up { background: var(--scenario-up); border: 1px solid var(--down); border-radius: 10px; padding: 14px; text-align: center; }
+.scenario-neutral { background: var(--scenario-neutral); border: 1px solid var(--text-secondary); border-radius: 10px; padding: 14px; text-align: center; }
+.scenario-down { background: var(--scenario-down); border: 1px solid var(--up); border-radius: 10px; padding: 14px; text-align: center; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; table-layout: fixed; }
+th, td { padding: 7px 8px; text-align: center; border-bottom: 1px solid var(--border); }
+th { color: var(--text-secondary); font-weight: 500; font-size: 12px; white-space: nowrap; background: var(--header-bg); }
+td.text-left { text-align: left; }
+.up { color: var(--up) }
+.down { color: var(--down) }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; margin: 2px 4px 2px 0; }
+.tag-up { background: #ff565620; color: var(--up) }
+.tag-down { background: #3dd68c20; color: var(--down) }
+.tag-warn { background: #f0a04020; color: var(--warn) }
+.tag-info { background: #4da6ff20; color: var(--accent) }
+.score-bar { height: 8px; border-radius: 4px; background: var(--border); margin: 4px 0; }
+.score-fill { height: 100%; border-radius: 4px; }
+.catalyst-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.catalyst-card { flex: 1; min-width: 180px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.catalyst-card .stars { font-size: 16px; margin-bottom: 4px; }
+@media(max-width:600px){ .scenario-grid{ grid-template-columns: 1fr } .catalyst-card{ min-width: 100% } }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>星环科技（688031）深度研究报告</h1>
+<div class="subtitle">基于15条基本面框架 · 结合2026年7月最新催化 · 深蓝冷调研报规范 | 2026-07-11</div>
+
+<!-- MODULE 0: 结论前置 -->
+<div class="module green-card">
+  <div class="module-title"><span class="num">★</span> 核心结论前置</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+    <span class="tag tag-up">综合评分 7.20/10</span>
+    <span class="tag tag-info">持仓定位：利润仓</span>
+    <span class="tag tag-warn">五阶段：2→3</span>
+    <span class="tag tag-info">AI Infra核心标的</span>
+  </div>
+  <p style="font-size:15px;margin:0 0 10px"><strong style="color:var(--accent)">一句话定调：</strong>星环科技是A股AI Infra赛道最纯、最具个股辨识度的标的——同时卡位<strong style="color:var(--accent)">英伟达生态认证</strong>（国内数据库厂商唯一）+ <strong style="color:var(--accent)">金融核心系统国产替代</strong>（中信证券ArgoDB单一来源）+ <strong style="color:var(--accent)">GPU-Native数据库</strong>（国内空白赛道独跑）三条交叉赛道。当前130亿市值仅反映国产数据库现有业务，市场对GPU数据库和Rubin催化的定价几乎为零，存在较大赔率空间。核心风险不是技术或市场，而是持续的亏损消耗市场耐心。</p>
+  <div class="highlight-box" style="margin:0">
+    <strong style="color:var(--accent)">持仓建议：</strong>利润仓持有不动（成本-44.48元，已做T收回本金）。当前价位（108元）不宜追高，理想加仓区间85-95元（PS约20x）。等待三个信号之一出现：①中信证券灾备→主库切换公告 ②GPU数据库多卡版/云版发布+首笔规模订单 ③季报显示单季亏损收窄到3000万以内。
+  </div>
+</div>
+
+<!-- MODULE 1: 最新动态与催化 -->
+<div class="module">
+  <div class="module-title"><span class="num">1</span> 最新催化事件（截至2026-07-11）</div>
+  <div class="catalyst-row">
+    <div class="catalyst-card">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <strong style="color:var(--accent)">英伟达Rubin生态认证</strong>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0">全球仅5家核心战略ISV，国内数据库厂商唯一。Rubin平台已确认100%全液冷+CPO交换机H2批量交付，每台Rubin服务器=星环GPU数据库潜在预装节点</p>
+    </div>
+    <div class="catalyst-card">
+      <div class="stars">⭐⭐⭐⭐</div>
+      <strong style="color:var(--up)">中信证券ArgoDB单一来源</strong>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0">7/2公告，财务核算系统灾备环境单一来源采购。金融核心客户粘性的最强背书，灾备→主库是可预期的下一步</p>
+    </div>
+    <div class="catalyst-card">
+      <div class="stars">⭐⭐⭐</div>
+      <strong style="color:var(--down)">林芝利创减持完毕</strong>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0">7/9公告，腾讯系减持1.00%执行完毕。确定性利空出尽，短期无减持压力</p>
+    </div>
+    <div class="catalyst-card">
+      <div class="stars">⭐⭐⭐</div>
+      <strong style="color:var(--warn)">H股发行获备案</strong>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0">6/12公告，港股上市推进中。双币融资通道打开，缓解研发烧钱压力</p>
+    </div>
+    <div class="catalyst-card">
+      <div class="stars">⭐⭐⭐</div>
+      <strong style="color:var(--accent)">AI数据库攻坚计划</strong>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0">7/9可信数据库大会，OceanBase牵头。行业β加速但竞争加剧——对星环既是利好也是压力</p>
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:12px">
+    <strong style="color:var(--accent)">7/10行情：</strong>收盘108.06元（+4.05%），成交7.93亿，换手5.97%，盘中最高触113.99。总市值130.9亿。逆势走强（科创50当日-5.53%），资金在AI软件方向做防御切换。
+  </div>
+</div>
+
+<!-- MODULE 2: 业务与竞争 -->
+<div class="module">
+  <div class="module-title"><span class="num">2</span> 业务与竞争格局</div>
+
+  <h4 style="color:var(--accent);margin:0 0 10px">2.1 五大产品矩阵</h4>
+  <table>
+    <tr><th style="width:18%">产品</th><th style="width:35%">定位</th><th>核心竞争力</th></tr>
+    <tr><td class="text-left">TDH（大数据平台）</td><td class="text-left">一站式大数据平台，11种数据模型</td><td>IDC 2024中国大数据平台独立软件厂商<strong style="color:var(--up)">市占率第1</strong></td></tr>
+    <tr><td class="text-left">ArgoDB（OLAP数据库）</td><td class="text-left">分布式闪存数据库，替代Teradata/Oracle数仓</td><td>代码自主率90%+；中信证券单一来源采购</td></tr>
+    <tr><td class="text-left">KunDB（OLTP数据库）</td><td class="text-left">交易型数据库，兼容Oracle/MySQL</td><td>与ArgoDB融合HTAP一体化</td></tr>
+    <tr><td class="text-left">Sophon（AI平台）</td><td class="text-left">LLMOps/MLOps全流程平台</td><td>AI Agent时代的操作系统级定位</td></tr>
+    <tr><td class="text-left">TKH（知识平台）</td><td class="text-left">企业私域知识库+知识图谱+RAG</td><td>大模型落地的关键基础设施</td></tr>
+  </table>
+
+  <h4 style="color:var(--accent);margin:16px 0 10px">2.2 营收结构（2025年报）</h4>
+  <table>
+    <tr><th>业务</th><th>营收(亿)</th><th>占比</th><th>毛利率</th><th>趋势</th></tr>
+    <tr><td class="text-left">软件产品与技术服务</td><td>3.62</td><td>80.89%</td><td>63.32%</td><td style="color:var(--up)">↑ 核心护城河</td></tr>
+    <tr><td class="text-left">└ 软件产品授权</td><td>2.12</td><td>47.32%</td><td>56.42%</td><td style="color:var(--up)">↑ 同比+45.67%</td></tr>
+    <tr><td class="text-left">解决方案</td><td>0.70</td><td>15.54%</td><td>13.75%</td><td style="color:var(--down)">↓ 拖累整体毛利</td></tr>
+    <tr><td class="text-left"><strong>合计</strong></td><td><strong>4.48</strong></td><td><strong>100%</strong></td><td><strong>~52%</strong></td><td style="color:var(--up)">↑ +20.47%</td></tr>
+  </table>
+
+  <h4 style="color:var(--accent);margin:16px 0 10px">2.3 护城河评估（六维度）</h4>
+  <table>
+    <tr><th>护城河</th><th>评级</th><th>核心证据</th></tr>
+    <tr><td class="text-left">英伟达生态卡位</td><td>⭐⭐⭐⭐⭐</td><td class="text-left">全球5家核心ISV，国内数据库厂商<strong style="color:var(--up)">唯一</strong>获英伟达官网正式收录。每次Rubin出货=星环免费获客</td></tr>
+    <tr><td class="text-left">金融核心系统国产替代</td><td>⭐⭐⭐⭐</td><td class="text-left">ArgoDB进入中信证券单一来源，金融客户占40%。数据库切换涉及业务连续性，<strong style="color:var(--accent)">一旦部署几乎不换</strong></td></tr>
+    <tr><td class="text-left">GPU-Native数据库技术</td><td>⭐⭐⭐</td><td class="text-left">TPC-DS较传统CPU提升26倍，国内空白赛道独跑。但商业化早期，领先身位取决于落地速度</td></tr>
+    <tr><td class="text-left">客户粘性</td><td>⭐⭐⭐⭐</td><td class="text-left">老客户复购率89.23%，1800+客户。政企迁移成本极高</td></tr>
+    <tr><td class="text-left">大数据平台市占率</td><td>⭐⭐⭐⭐</td><td class="text-left">IDC独立软件厂商第1。国内大数据市场约50亿，面临华为/阿里云竞争</td></tr>
+    <tr><td class="text-left">自研代码率</td><td>⭐⭐⭐</td><td class="text-left">TDH自研70%+，ArgoDB自研90%+。信创资质硬通货</td></tr>
+  </table>
+</div>
+
+<!-- MODULE 3: 财务与估值 -->
+<div class="module">
+  <div class="module-title"><span class="num">3</span> 财务健康度与估值分析</div>
+
+  <h4 style="color:var(--accent);margin:0 0 10px">3.1 关键财务指标</h4>
+  <table>
+    <tr><th>指标</th><th>2025A</th><th>2026Q1</th><th>2026E</th><th>判断</th></tr>
+    <tr><td class="text-left">营收（亿）</td><td>4.48</td><td>0.81</td><td>5.5-5.8</td><td style="color:var(--up)">全年增速~25%</td></tr>
+    <tr><td class="text-left">营收增速</td><td>+20.47%</td><td>+26.24%</td><td>~25%</td><td style="color:var(--up)">增速在加速</td></tr>
+    <tr><td class="text-left">归母净利（亿）</td><td>-2.45</td><td>-0.56</td><td>-1.29</td><td style="color:var(--down)">亏损同比收窄47%</td></tr>
+    <tr><td class="text-left">毛利率</td><td>~52%</td><td>40.45%</td><td>~55%</td><td>Q1季节性偏低</td></tr>
+    <tr><td class="text-left">软件业务毛利率</td><td>63.32%</td><td>—</td><td>维持</td><td>核心业务真实盈利水平</td></tr>
+    <tr><td class="text-left">PS（倍）</td><td>27.7x</td><td>—</td><td>~22x</td><td style="color:var(--warn)">亏损公司PS偏高</td></tr>
+    <tr><td class="text-left">经营现金流/营收</td><td>-24.6%</td><td>-73.0%</td><td>改善中</td><td>Q1差是季节性（收款在Q4）</td></tr>
+    <tr><td class="text-left">现金储备（亿）</td><td>—</td><td>10.84总资产</td><td>可支撑3-4年</td><td style="color:var(--down)">无有息负债</td></tr>
+  </table>
+
+  <div class="highlight-box">
+    <strong style="color:var(--accent)">财务综合判断：🟡 不健康但能熬。</strong>亏损收窄趋势明确，按当前烧钱速度（Q1亏5600万）账上可支撑3-4年。最大财务风险不是现金流枯竭，而是应收账款在宏观经济下行期的回收风险（2-3年账龄同比+174%）。
+  </div>
+
+  <h4 style="color:var(--accent);margin:16px 0 10px">3.2 估值对标</h4>
+  <table>
+    <tr><th>公司</th><th>市值(亿)</th><th>营收(亿)</th><th>PS</th><th>盈利</th><th>特点</th></tr>
+    <tr><td class="text-left">达梦数据 688256</td><td>~350</td><td>~10</td><td>~35x</td><td style="color:var(--down)">✅盈利</td><td class="text-left">最直接A股对标</td></tr>
+    <tr><td class="text-left" style="color:var(--accent)"><strong>星环科技 688031</strong></td><td><strong>~131</strong></td><td><strong>4.48</strong></td><td><strong>~28x</strong></td><td style="color:var(--up)">❌亏损</td><td class="text-left">AI弹性更大</td></tr>
+    <tr><td class="text-left">Snowflake (美股)</td><td>—</td><td>~30亿美元</td><td>~12x</td><td style="color:var(--down)">✅盈利</td><td class="text-left">体量远超星环</td></tr>
+    <tr><td class="text-left">MongoDB (美股)</td><td>—</td><td>—</td><td>~12x</td><td style="color:var(--down)">✅盈利</td><td class="text-left">数据库SaaS标杆</td></tr>
+  </table>
+
+  <h4 style="color:var(--accent);margin:16px 0 10px">3.3 三级情景估值</h4>
+  <div class="scenario-grid">
+    <div class="scenario-up">
+      <div style="font-size:15px;font-weight:700;color:var(--down);margin-bottom:6px">乐观（英伟达生态放量）</div>
+      <div style="font-size:12px;color:var(--text-secondary)">2028E营收12亿+净利1.5亿</div>
+      <div style="font-size:18px;font-weight:700;color:var(--down);margin:6px 0">PS 50x → 750亿</div>
+      <div style="font-size:12px;color:var(--text-secondary)">股价约620元 (+474%)</div>
+    </div>
+    <div class="scenario-neutral">
+      <div style="font-size:15px;font-weight:700;color:var(--warn);margin-bottom:6px">中性（GPU数据库起步）</div>
+      <div style="font-size:12px;color:var(--text-secondary)">2028E营收9.5亿+净利0.6亿</div>
+      <div style="font-size:18px;font-weight:700;color:var(--warn);margin:6px 0">PS 40x → 380亿</div>
+      <div style="font-size:12px;color:var(--text-secondary)">股价约314元 (+190%)</div>
+    </div>
+    <div class="scenario-down">
+      <div style="font-size:15px;font-weight:700;color:var(--up);margin-bottom:6px">保守（纯国产数据库）</div>
+      <div style="font-size:12px;color:var(--text-secondary)">2028E营收8亿+净利0.3亿</div>
+      <div style="font-size:18px;font-weight:700;color:var(--up);margin:6px 0">PS 30x → 240亿</div>
+      <div style="font-size:12px;color:var(--text-secondary)">股价约198元 (+83%)</div>
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:10px">
+    <strong style="color:var(--accent)">当前130亿市值对应PS约22-27x，处于保守估值以下。</strong>意味着市场对GPU数据库和Rubin催化的定价几乎为零。在当前可预见的范围内，合理市值天花板在<strong style="color:var(--star)">360-500亿</strong>（股价约300-413元），超过500亿需要GPU数据库在海外形成规模收入。
+  </div>
+</div>
+
+<!-- MODULE 4: 成长逻辑 -->
+<div class="module">
+  <div class="module-title"><span class="num">4</span> 三层成长逻辑与关键催化剂</div>
+
+  <table>
+    <tr><th>层次</th><th>时间窗口</th><th>驱动力</th><th>增量市场</th><th>兑现概率</th></tr>
+    <tr><td class="text-left"><strong style="color:var(--accent)">第一层</strong></td><td>2026-2027</td><td class="text-left">国产替代加速：ArgoDB/KunDB替代Oracle/Teradata</td><td>国产数据库2027E ~200亿</td><td style="color:var(--down)">较高</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--warn)">第二层</strong></td><td>2027-2028</td><td class="text-left">AI Infra平台：Sophon+TKH成为企业AI操作系统组件</td><td>中国AI Infra 2030E ~500亿</td><td>中等</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--up)">第三层</strong></td><td>2028-2030</td><td class="text-left">GPU-Native数据库：每台Rubin预装星环认知数据库</td><td>全球GPU数据库2030E ~50亿美元</td><td>低（但赔率极高）</td></tr>
+  </table>
+
+  <div class="highlight-box" style="margin-top:12px">
+    <strong style="color:var(--accent)">Rubin催化剂时间线：</strong></div>
+  <table style="margin-top:0">
+    <tr><th>时间</th><th>事件</th><th>对星环影响</th></tr>
+    <tr><td class="text-left">2026Q3-Q4</td><td class="text-left">Rubin平台试产，CPO交换机批量交付</td><td>GPU数据库试点订单可能落地</td></tr>
+    <tr><td class="text-left">2026年11月-2027年3月</td><td class="text-left">英伟达GTC 2027（Rubin量产细节发布）</td><td>星环若再被点名=强催化</td></tr>
+    <tr><td class="text-left">2027H1</td><td class="text-left">GPU认知数据库多卡版+云版发布</td><td>对标订阅制=ARR开始积累</td></tr>
+    <tr><td class="text-left">2027全年</td><td class="text-left">金融核心系统主库替换突破</td><td>从中信灾备→主库→扩散</td></tr>
+  </table>
+</div>
+
+<!-- MODULE 5: 风险 -->
+<div class="module">
+  <div class="module-title"><span class="num">5</span> 核心风险矩阵</div>
+  <table>
+    <tr><th>风险</th><th>概率</th><th>影响</th><th>监测指标</th></tr>
+    <tr><td class="text-left"><strong style="color:var(--up)">亏损持续无法扭转</strong></td><td style="color:var(--warn)">中</td><td style="color:var(--up)">大</td><td class="text-left">单季亏损持续>6000万</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--up)">商业化节奏慢于预期</strong></td><td style="color:var(--warn)">中高</td><td style="color:var(--up)">大</td><td class="text-left">2027H1 GPU数据库收入<1000万</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--warn)">云计算厂商竞争压制</strong></td><td style="color:var(--up)">高</td><td style="color:var(--warn)">中</td><td class="text-left">华为GaussDB/阿里PolarDB份额变化</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--warn)">应收恶化→减值</strong></td><td style="color:var(--warn)">中</td><td style="color:var(--warn)">中</td><td class="text-left">2-3年账龄继续攀升+坏账计提提升</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--down)">技术路线误判</strong></td><td style="color:var(--down)">低</td><td style="color:var(--up)">大</td><td class="text-left">开源数据库/大模型替代传统数据库</td></tr>
+    <tr><td class="text-left"><strong style="color:var(--down)">英伟达合作关系变化</strong></td><td style="color:var(--down)">低</td><td style="color:var(--up)">极大</td><td class="text-left">认证状态变更/合作终止公告</td></tr>
+  </table>
+  <div class="highlight-box-red">
+    <strong style="color:var(--up)">最大风险不是技术替代，而是商业化节奏。</strong>GPU数据库如果在2027年底前没有形成规模收入（年化ARR≥5000万），市场会失去耐心，估值可能从PS 30x+杀至15-20x。
+  </div>
+</div>
+
+<!-- MODULE 6: 综合评分 -->
+<div class="module">
+  <div class="module-title"><span class="num">6</span> 综合评分卡（15条框架加权）</div>
+  <table>
+    <tr><th>维度</th><th>评分</th><th>权重</th><th>加权</th><th>可视化</th></tr>
+    <tr><td class="text-left">行业空间</td><td>9/10</td><td>20%</td><td>1.80</td><td><div class="score-bar"><div class="score-fill" style="width:90%;background:var(--accent)"></div></div></td></tr>
+    <tr><td class="text-left">竞争壁垒</td><td>8/10</td><td>25%</td><td>2.00</td><td><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--accent)"></div></div></td></tr>
+    <tr><td class="text-left">成长性</td><td>7/10</td><td>20%</td><td>1.40</td><td><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--warn)"></div></div></td></tr>
+    <tr><td class="text-left">财务健康度</td><td>4/10</td><td>15%</td><td>0.60</td><td><div class="score-bar"><div class="score-fill" style="width:40%;background:var(--up)"></div></div></td></tr>
+    <tr><td class="text-left">估值合理性</td><td>6/10</td><td>10%</td><td>0.60</td><td><div class="score-bar"><div class="score-fill" style="width:60%;background:var(--warn)"></div></div></td></tr>
+    <tr><td class="text-left">催化剂密度</td><td>8/10</td><td>10%</td><td>0.80</td><td><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--down)"></div></div></td></tr>
+    <tr style="font-weight:700;border-top:2px solid var(--border)"><td class="text-left">综合得分</td><td colspan="2">7.20 / 10</td><td style="color:var(--accent)">中等偏上·有赔率</td><td></td></tr>
+  </table>
+</div>
+
+<!-- MODULE 7: 行业位置 -->
+<div class="module">
+  <div class="module-title"><span class="num">7</span> 行业阶段与题材归属</div>
+  <table>
+    <tr><th>题材</th><th>热度</th><th>说明</th></tr>
+    <tr><td class="text-left">AI Infra / 算力底座</td><td>⭐⭐⭐⭐⭐</td><td class="text-left">英伟达认证+GPU数据库+AI Agent平台，最核心标签</td></tr>
+    <tr><td class="text-left">国产替代 / 信创</td><td>⭐⭐⭐⭐⭐</td><td class="text-left">数据库国产化核心受益标的</td></tr>
+    <tr><td class="text-left">英伟达概念</td><td>⭐⭐⭐⭐⭐</td><td class="text-left">全球5家核心ISV，国内唯一，Rubin直接关联</td></tr>
+    <tr><td class="text-left">大数据 / 数据要素</td><td>⭐⭐⭐⭐</td><td class="text-left">IDC大数据平台厂商市占率第1</td></tr>
+    <tr><td class="text-left">金融科技</td><td>⭐⭐⭐⭐</td><td class="text-left">中信证券单一来源+金融客户占40%</td></tr>
+    <tr><td class="text-left">AI Agent / 多模态</td><td>⭐⭐⭐⭐</td><td class="text-left">Sophon LLMOps全流程平台</td></tr>
+  </table>
+
+  <div class="highlight-box" style="margin-top:12px">
+    <strong style="color:var(--accent)">行业阶段判断：</strong>国产数据库处于<strong style="color:var(--warn)">加速替代期→格局分化期</strong>的过渡阶段。2024-2027是加速替代期（金融核心系统开始替换，头部集中），2028-2030是格局分化期。星环走的是"大数据+AI+GPU"差异化路线，不与达梦在传统关系型数据库硬拼，不与云厂商争全栈平台。
+  </div>
+
+  <h4 style="color:var(--accent);margin:16px 0 10px">竞争格局速览</h4>
+  <table>
+    <tr><th>梯队</th><th>代表</th><th>特点</th></tr>
+    <tr><td class="text-left">第一梯队</td><td class="text-left">达梦数据、OceanBase</td><td class="text-left">已盈利/大规模部署</td></tr>
+    <tr><td class="text-left">第二梯队</td><td class="text-left"><strong style="color:var(--accent)">星环科技</strong>、人大金仓、TiDB</td><td class="text-left">有特色产品线但尚未稳定盈利，星环在AI+大数据维度最强</td></tr>
+    <tr><td class="text-left">云厂商</td><td class="text-left">华为GaussDB、阿里PolarDB</td><td class="text-left">最大的结构性威胁</td></tr>
+  </table>
+</div>
+
+<!-- MODULE 8: 投资建议 -->
+<div class="module execute-module" style="border-color:var(--execute-border)!important;background:var(--execute-bg)!important">
+  <div class="module-title"><span class="num" style="background:var(--star)">8</span> 持仓操作建议</div>
+  <div class="scenario-grid" style="margin-bottom:14px">
+    <div class="scenario-up">
+      <div style="font-size:14px;font-weight:700;color:var(--down);margin-bottom:4px">理想买点</div>
+      <div style="font-size:13px"><strong>85-95元</strong></div>
+      <div style="font-size:12px;color:var(--text-secondary)">PS约20x · 仅反映国产数据库价值</div>
+    </div>
+    <div class="scenario-neutral">
+      <div style="font-size:14px;font-weight:700;color:var(--warn);margin-bottom:4px">当前价位</div>
+      <div style="font-size:13px"><strong>108元</strong></div>
+      <div style="font-size:12px;color:var(--text-secondary)">PS约27x · 不宜追高 · 持有观望</div>
+    </div>
+    <div class="scenario-down">
+      <div style="font-size:14px;font-weight:700;color:var(--up);margin-bottom:4px">止损参考</div>
+      <div style="font-size:13px"><strong>跌破80元</strong></div>
+      <div style="font-size:12px;color:var(--text-secondary)">PS<18x · 英伟达合作变故</div>
+    </div>
+  </div>
+  <table>
+    <tr><th>持仓定位</th><th>当前动作</th><th>加仓条件</th><th>仓位上限</th></tr>
+    <tr><td class="text-left">利润仓（成本-44.48元）</td><td style="color:var(--down)">持有不动</td><td class="text-left">①中信主库切换 ②GPU数据库规模化订单 ③单季亏损<3000万</td><td>组合5-8%</td></tr>
+  </table>
+  <div class="highlight-box" style="margin:10px 0">
+    <strong style="color:var(--accent)">核心策略：</strong>星环在五阶段中处于阶段2→3（高度重视期→供应链形成期），是我们的七步闭环里需要"轻仓试探+等拐点信号"的位置。当前108元不具备加仓性价比，但利润仓（负成本）无止损压力，可以安心等催化兑现。
+  </div>
+  <div class="highlight-box-red">
+    <strong style="color:var(--up)">风险提示：</strong>本报告基于公开数据和产业逻辑推演，不构成投资建议。星环科技尚未盈利，投资需评估自身风险承受能力。股市有风险，投资需谨慎。
+  </div>
+</div>
+
+<div style="text-align:center;padding:20px;color:var(--text-secondary);font-size:13px;border-top:1px solid var(--border);margin-top:8px">
+  数据来源：2025年报 · 2026Q1季报 · 英伟达官方技术博客 · NeoData · 广发策略 · 公开市场信息 | 分析框架：15条基本面 + H2 V2.0融合版 + 五阶段模型 | 2026-07-11
+</div>
+</div>
+</body>
+</html>
