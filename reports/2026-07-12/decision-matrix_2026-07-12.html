@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI算力五维度决策矩阵 | 投研实战框架</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--text:#e6edf3;--sub:#8b949e;--accent:#4da6ff;--up:#ff5656;--down:#3dd68c;--warn:#f0a040}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.8;font-size:15px;padding:24px 20px;max-width:880px;margin:0 auto}
+h1{font-size:22px;text-align:center;color:#f0f6fc;margin-bottom:4px}
+.subtitle{text-align:center;color:var(--sub);font-size:13px;margin-bottom:28px}
+.divider{width:50px;height:2px;background:var(--accent);margin:8px auto 16px}
+.section{margin:24px 0}
+.section h2{font-size:17px;color:var(--accent);margin-bottom:8px;font-weight:700}
+.section p{font-size:14px;color:var(--sub);margin-bottom:10px;line-height:1.8}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--card)}
+th{color:var(--sub);font-weight:600;font-size:12px;background:var(--card)}
+.g{color:var(--down)}.y{color:var(--warn)}.r{color:var(--up)}
+.card{background:var(--card);border-radius:8px;padding:16px 18px;margin:12px 0}
+.card .label{font-size:12px;color:var(--accent);font-weight:700;margin-bottom:4px}
+.card .signal{font-size:14px;color:#f0f6fc;margin-bottom:6px}
+.card .action{font-size:13px;color:var(--sub)}
+.rule-box{background:var(--card);border-left:3px solid var(--accent);padding:14px 16px;margin:12px 0;border-radius:0 6px 6px 0}
+.rule-box .r-title{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.rule-box .r-desc{font-size:13px;color:var(--sub);line-height:1.7}
+.alert-green{background:rgba(61,214,140,0.06);border-left-color:var(--down)}
+.alert-yellow{background:rgba(240,160,64,0.06);border-left-color:var(--warn)}
+.alert-red{background:rgba(255,86,86,0.06);border-left-color:var(--up)}
+.footer{text-align:center;color:var(--sub);font-size:11px;padding:20px 0;border-top:1px solid var(--card);margin-top:16px}
+</style>
+</head>
+<body>
+
+<h1>AI算力五维度决策矩阵</h1>
+<div class="subtitle">投研实战框架 · 独立版</div>
+<div class="divider"></div>
+
+<div class="section">
+  <h2>框架起源</h2>
+  <p>2026年7月12日，五个独立维度的信号在同一晚发布，方向完全一致。这五条信号分别来自：英伟达CEO黄仁勋在摩根士丹利沟通会上的公开表态、央视财经对国内AI算力采购总额的报道、智谱AI创始人唐杰的公开宣言、三份券商/行业研报的产业判断，以及华为发布的OPEN NPO技术标准。将这五个维度的信号整合为"决策矩阵"后，可以实现对AI算力产业链的日常操作管理。</p>
+</div>
+
+<div class="section">
+  <h2>五维度详解</h2>
+
+  <div class="card">
+    <div class="label">维度一 · 英伟达路线图</div>
+    <div class="signal">每季度一次大摩沟通会或投资者会议，英伟达CEO直接透露哪些产品线在推进、哪些在推迟。这是整个AI硬件链的"总锚点"。</div>
+    <div class="action">观测指标：Vera Rubin 出货量预期 / Rubin Ultra 时间表 / 800V供电+纵向光学互联是否如期推进 / Kyber机架是否被新方案取代。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">维度二 · 国家战略定调</div>
+    <div class="signal">中央级媒体（央视财经等）直接报道AI算力产业的规模预期和战略定位。这是"政策面"最权威的信源。</div>
+    <div class="action">观测指标：算力采购总额预期（如1.44万亿元到2029年）/ 是否有"培育万亿市值企业"的明确表述 / AI监管新规是否显著收紧。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">维度三 · 大模型商业化</div>
+    <div class="signal">中国头部大模型公司的ARR（年化经常性收入）达标、毛利率变化、CEO公开宣言，这些都是"需求面"最直接的验证。</div>
+    <div class="action">观测指标：智谱ARR增长趋势 / 单客户API消费量 / CEO是否发布战略级宣言。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">维度四 · 产业研报验证</div>
+    <div class="signal">券商卖方团队（东吴机械、天风通信等）用一线调研数据测算市场规模和设备出货量。这是"产业链微观信号"。</div>
+    <div class="action">观测指标：光模块出货预测是否上调 / 设备商的在手订单和盈利预测是否同步上调 / 光纤/光芯片/PCB等细分领域的供需缺口。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">维度五 · 技术标准发布</div>
+    <div class="signal">华为发布OPEN NPO、超节点架构推进、800V供电标准统一——这是"技术路线确定性"的信号。</div>
+    <div class="action">观测指标：新标准发布是否被行业接受 / 国产超节点产品是否在重大展会上亮相 / 关键客户是否开始采用新架构。</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>信号灯决策表</h2>
+  <p>每周日更新一次。每个维度三个状态：🟢 正常（绿灯） / 🟡 关注（黄灯） / 🔴 预警（红灯）。</p>
+  <table>
+    <tr><th>维度</th><th>🟢 正常</th><th>🟡 关注</th><th>🔴 预警</th></tr>
+    <tr><td>①英伟达路线图</td><td>Rubin 12个月驱动·Ultra明年出货·800V/光学如期</td><td>某产品线小幅推迟1-2个月</td><td class="r">Rubin推迟/砍单/核心指标miss</td></tr>
+    <tr><td>②国家战略</td><td>央视/官媒定调·政策扶持</td><td>政策信号模糊·无新进展</td><td class="r">监管大幅收紧/芯片管制升级</td></tr>
+    <tr><td>③大模型商业化</td><td>ARR持续增长·毛利率提升</td><td>ARR增速放缓</td><td class="r">ARR持续下滑/大客户流失</td></tr>
+    <tr><td>④产业研报</td><td>卖方集体上调盈利预测</td><td>部分机构下调个别品类</td><td class="r">集体下调出货量预期</td></tr>
+    <tr><td>⑤技术标准</td><td>新标准发布·超节点推进</td><td>标准争议·推进放慢</td><td class="r">标准被推翻/关键路线退坡</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>仓位联动规则</h2>
+
+  <div class="rule-box alert-green">
+    <div class="r-title">🟢 5/5 全绿 — 满仓持有</div>
+    <div class="r-desc">所有维度信号向好。AI算力产业链处于"不可逆推进"状态。持仓不动，任何盘中波动都是短期噪音。</div>
+  </div>
+
+  <div class="rule-box alert-yellow">
+    <div class="r-title">🟡 任一维度变黄 — 一级戒备</div>
+    <div class="r-desc">不立刻操作，但提高关注频率到每日一次。若该维度在一周内未恢复绿色，准备减仓方案。</div>
+  </div>
+
+  <div class="rule-box alert-yellow">
+    <div class="r-title">🟠 两个维度同时变黄 — 开始减仓</div>
+    <div class="r-desc">减仓20-30%的AI仓位。优先减估值最贵的标的。保留基本面最硬的核心仓位。</div>
+  </div>
+
+  <div class="rule-box alert-red">
+    <div class="r-title">🔴 两个维度变红 — 大幅减仓</div>
+    <div class="r-desc">无条件减仓50%+。仅保留逻辑最独立、与AI关联度最低的仓位。两个红灯意味着产业链正在发生结构性逆转。</div>
+  </div>
+
+  <div class="rule-box alert-red">
+    <div class="r-title">🚨 三个+维度变红 — 清仓</div>
+    <div class="r-desc">全数AI相关仓位无条件清仓。产业趋势已发生系统性崩坏，需等至少一个维度恢复绿色后再重新评估。</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>执行节奏</h2>
+
+  <div class="card">
+    <div class="label">每周日 · 信号更新日</div>
+    <div class="action">收集五个维度的最新信息（英伟达动态、政策变化、大模型公司财报/宣言、券商研报、技术标准更新），更新信号灯。如果全部绿灯→下一周操作纪律=持仓不动。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">盘中异常波动 · 不操作</div>
+    <div class="action">单日暴跌超5%或大涨超5%——在五个维度信号未变的情况下，不触发仓位调整。盘中波动不等于信号灯变化。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">每季度末 · 深度复核</div>
+    <div class="action">做一次五维度的全面复查。重点看"黄色"维度——是需要更多信息（如等财报出数），还是信号在减弱？如果是后者，纳入下一季度的操作方案。</div>
+  </div>
+
+  <div class="card">
+    <div class="label">关键事件前 · 预判变化</div>
+    <div class="action">如台积电财报前（7/16）、CSP财报密集期（7/23-31）、WAIC大会（7/17）等——提前列出"可能触发哪个维度变色"的场景，准备2-3套应对预案。事件发生后2小时内执行。</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>决策示例（7月12日）</h2>
+  <table>
+    <tr><th>维度</th><th>当前状态</th><th>关键信号</th></tr>
+    <tr><td>①英伟达路线图</td><td class="g">🟢 正常</td><td>黄仁勋确认Vera Rubin 12个月驱动·Ultra明年出货·800V/光学如期</td></tr>
+    <tr><td>②国家战略</td><td class="g">🟢 正常</td><td>央视定调1.44万亿AI算力采购·培育万亿市值企业</td></tr>
+    <tr><td>③大模型商业化</td><td class="g">🟢 正常</td><td>智谱10亿ARR达标·毛利率提升·唐杰宣言全球第一梯队</td></tr>
+    <tr><td>④产业研报</td><td class="g">🟢 正常</td><td>东吴/天风/电话会全部上调需求·长川两年十倍·光模块上修</td></tr>
+    <tr><td>⑤技术标准</td><td class="g">🟢 正常</td><td>华为发布OPEN NPO·超节点架构正式开启·800V+光学推进</td></tr>
+    <tr style="font-weight:700;background:rgba(61,214,140,0.06)"><td>综合判断</td><td class="g" colspan="2">5/5全绿 · 持仓不动 · 等7/16台积电出牌 · 盘中波动不触发操作</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>使用原则</h2>
+  <p><b>信号在操作之前。</b>不看K线、不看情绪、不看小作文——五个维度的信号灯是唯一操作依据。灯不变就不动。</p>
+  <p><b>黄色是"等一等"，红色是"立刻走"。</b>不提前行动，不给小作文骗出仓位。信号没变，故事再悬疑也不被甩下车。</p>
+  <p><b>五维度框架不是一天建成的，是迭代出来的。</b>每个季度末复盘时，看看是否有新维度值得增加，或者是否某两个维度重叠度太高需要合并。</p>
+  <p><b>框架是工具，不是信仰。</b>如果未来某个重大事件彻底改变了AI产业链的底层逻辑（比如新计算范式出现全面取代GPU），框架可以全面重设。但在此之前，严格遵守五维度的信号灯。</p>
+</div>
+
+<div class="footer">
+  AI算力五维度决策矩阵 · 投研实战框架 | 仅用于内部研究·不构成投资建议 | 2026-07-12
+</div>
+
+</body>
+</html>
