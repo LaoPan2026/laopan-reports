@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>盘后复盘 2026-07-17</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+
+/* === 表格 === */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;
+}
+th{color:#bcc5d4;font-weight:600;font-size:11px;background:rgba(155,165,185,0.04);white-space:nowrap;letter-spacing:0.5px;text-align:center}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+
+/* 列宽 */
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:18%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:22%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%}
+
+/* 对齐 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}
+table.f3 th,table.f3 td{text-align:left}
+table.f2 th,table.f2 td{text-align:left}
+
+/* 首列加亮 */
+table td:first-child,table th:first-child{font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+
+/* 特殊表 */
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1){width:10%}
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2){width:24%}
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3){width:30%}
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4){width:36%}
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%}
+
+/* 颜色 */
+.up{color:var(--up);font-weight:700}.down{color:var(--down);font-weight:700}
+.pos{color:var(--up);font-weight:700}.neg{color:var(--down);font-weight:700}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.caption{font-size:12px;color:var(--sub);margin:6px 0 0;line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+#indexChart{width:100%;height:220px;margin:14px 0 4px}
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+
+/* === 移动端响应式 === */
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .hero .sub{font-size:12px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px;border-radius:5px}
+  .caption{font-size:11px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px;overflow-wrap:anywhere;word-break:break-word}
+  th{font-size:10px;letter-spacing:0.2px}
+  table td:first-child,table th:first-child{min-width:50px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}
+  .stat-card .val{font-size:18px}
+  .stat-card .lbl{font-size:10px}
+  #indexChart{height:180px}
+  footer{padding:14px;font-size:10px}
+  /* 表格水平滚动兜底 */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>盘后复盘 · 2026年7月17日（周五）</h1>
+  <div class="sub">景气成长框架 · 结论前置 · 数据来源：Wind / 公开行情（置信度 ★★★）</div>
+</header>
+
+<!-- 01 盘面总览 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>盘面总览：放量大跌，科技去杠杆</div>
+  <p class="caption">结论：今日四大指数全线重挫，创业板指 <span class="neg">-7.15%</span>、科创综指 <span class="neg">-8.13%</span> 领跌；两市成交 2.65 万亿（放量 2514 亿），全市场近 5000 股下跌、超 200 股跌停。跌因是科技去杠杆（两融大降）+ 量化杀恐慌盘，<b>非持仓个股逻辑破</b>。短期跳空缺口有回补要求，但三大指数空头排列，下周大概率震荡整理。</p>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>备注</th></tr>
+    <tr><td>上证指数</td><td>3764.15</td><td class="neg">-3.05%</td><td>失守 3800 点</td></tr>
+    <tr><td>深证成指</td><td>13706.88</td><td class="neg">-5.40%</td><td>—</td></tr>
+    <tr><td>创业板指</td><td>3428.63</td><td class="neg">-7.15%</td><td>周线四连阴</td></tr>
+    <tr><td>科创综指</td><td>1938.77</td><td class="neg">-8.13%</td><td>科创50 跌超 7%</td></tr>
+  </table>
+  </div>
+  <div id="indexChart"></div>
+</section>
+
+<!-- 02 板块轮动与资金 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>板块轮动与资金：仅防御逆势</div>
+  <p class="caption">全市场成交 2.65–2.67 万亿，放量约 2500 亿。上涨仅 482 只、下跌 5001 只，涨停约 33–35 只、跌停约 198–200 只。资金从科技成长集中出逃，涌入防御与公用事业。</p>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>方向</th><th>板块</th><th>逻辑</th></tr>
+    <tr><td class="pos">逆势涨</td><td>电力 / 银行 / 油气 / 高速公路 / 公用事业</td><td>高温用电负荷创新高 + 算电协同；银行受益跨境投融资便利化政策</td></tr>
+    <tr><td class="neg">领跌</td><td>半导体 / CPO / PCB / 存储芯片 / 通信 / 创新药 / 消费电子</td><td>科技去杠杆，获利盘集中释放；德明利三连一字跌停，兆易/通富微电等多股跌停</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 03 持仓表现 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>持仓表现：华峰独红，科技仓普跌</div>
+  <p class="caption">10 只持仓中仅华峰化学 <span class="pos">+1.10%</span> 逆势收红，验证防御/周期对冲属性；罗博特科 <span class="neg">-12.61%</span>、汇绿生态 <span class="neg">-10.00%</span>（跌停）跌幅居前，但均为情绪杀跌，客户结构与中期逻辑未破。</p>
+  <div class="table-wrap">
+  <table class="f4 nowrap-first">
+    <tr><th>名称(代码)</th><th>收盘</th><th>涨跌幅</th><th>分级 / 备注</th></tr>
+    <tr><td>华峰化学(002064)</td><td>10.07</td><td class="pos">+1.10%</td><td>防御/周期对冲·逆势红</td></tr>
+    <tr><td>太钢不锈(000825)</td><td>3.46</td><td class="neg">-1.14%</td><td>防御·跌幅最小</td></tr>
+    <tr><td>泰和新材(002254)</td><td>11.75</td><td class="neg">-5.55%</td><td>A-级·芳纶AI光缆</td></tr>
+    <tr><td>德展健康(000813)</td><td>3.27</td><td class="neg">-6.84%</td><td>防御·医药补跌</td></tr>
+    <tr><td>软通动力(301236)</td><td>37.42</td><td class="neg">-7.76%</td><td>A级·利润标杆回撤</td></tr>
+    <tr><td>三祥新材(603663)</td><td>41.81</td><td class="neg">-7.68%</td><td>S级·5日-20.77%</td></tr>
+    <tr><td>兴森科技(002436)</td><td>34.06</td><td class="neg">-9.99%</td><td>利润仓(负成本)</td></tr>
+    <tr><td>星环科技(688031)</td><td>88.23</td><td class="neg">-10.21%</td><td>利润仓(负成本)</td></tr>
+    <tr><td>汇绿生态(001267)</td><td>34.92</td><td class="neg">-10.00%</td><td>S级·光模块·跌停</td></tr>
+    <tr><td>罗博特科(300757)</td><td>413.00</td><td class="neg">-12.61%</td><td>A级·AI硬件映射</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 04 大跌归因 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>大跌归因：杠杆出清，非基本面</div>
+  <p class="caption">三家观点交叉验证：① 前 5% 个股成交量占比逼近 50% 历史高位，历史上超 45% 曾触发风格切换/牛熊转换（杨德龙）；② 两融余额上月破 3 万亿，超 10 年前 2.27 万亿峰值，杠杆资金正"大逃亡"；③ 量化借跌杀出恐慌盘。机构共识：1–2 年科技行情未结束，但前期涨幅过大板块需完成调整与业绩兑现。东方财富陈果称"2026 黄金买点"，华创指 AI 通胀叙事走弱、转向技术路线交易。</p>
+</section>
+
+<!-- 05 美股映射与财报前瞻 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>美股映射与下周财报前瞻</div>
+  <p class="caption">今日大跌是 A 股自身去杠杆，美股链未变。下周密集财报是持仓逻辑的关键验证窗口，<b>7/23 GOOGLE capex 指引</b>为第一道闸门。</p>
+  <div class="table-wrap">
+  <table class="f4 cal">
+    <tr><th>日期</th><th>公司</th><th>映射持仓</th><th>关键性</th></tr>
+    <tr><td>7/23</td><td>GOOGLE（CSP capex）</td><td>汇绿 / 罗博 / 澜起</td><td>★★★★★</td></tr>
+    <tr><td>7/28</td><td>CELESTICA / 康宁GLW</td><td>汇绿 / 罗博（服务器·光互联）</td><td>★★★★</td></tr>
+    <tr><td>7/29</td><td>VERTIV / 安费诺 / 希捷</td><td>巨化 / 罗博 / 澜起（存储）</td><td>★★★~★★★★</td></tr>
+    <tr><td>7/30</td><td>META / 微软 / 西部数据</td><td>汇绿 / 罗博 / 澜起</td><td>★★★★★</td></tr>
+    <tr><td>7/31</td><td>亚马逊 AMZN</td><td>汇绿 / 罗博 / 澜起</td><td>★★★★★</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 06 技术面与趋势 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>技术面：中期分水岭已破</div>
+  <p class="caption">三大指数呈空头排列，55 日线（中期趋势分水岭）已有效跌破。今日跳空向下留缺口，短期有回补要求；但在空头排列下难现大涨，下周大概率震荡整理待条件成熟。持仓中<b>华峰逆势站上、太钢微跌</b>，防御底仓稳健；科技仓集体跌破短期均线，需观察量能何时企稳。</p>
+</section>
+
+<!-- 07 操作建议与纪律 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>操作建议：逻辑未破，持仓不动</div>
+  <p class="caption">核心纪律：<b>卖出唯一理由＝逻辑破/基本面恶化</b>。今日为系统性去杠杆，非个股逻辑破，<b>持仓不增不减</b>。等待三类拐点信号：① 德明利等连续跌停科技人气股出现资金翘板；② 两融余额企稳；③ 7/23 GOOGLE capex 指引未下修。</p>
+  <div class="table-wrap">
+  <table class="f3 op">
+    <tr><th>标的</th><th>动作</th><th>理由</th></tr>
+    <tr><td>三祥 / 汇绿（S级）</td><td>持有不动</td><td>客户结构与中期逻辑未破；汇绿跌停但 Coherent/Lumentum 订单未见取消信号</td></tr>
+    <tr><td>华峰（防御对冲）</td><td>保留底仓</td><td>今日逆势 +1.10%，对冲属性确认，平滑回撤</td></tr>
+    <tr><td>罗博 / 软通 / 星环 / 兴森</td><td>持有等拐点</td><td>利润仓或已回撤，接受 20%+ 回撤纪律；罗博看 7/23 GOOGLE 验证</td></tr>
+    <tr><td>太钢 / 德展（防御）</td><td>持有</td><td>跌幅远小于指数，底仓功能正常</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 08 数据溯源与风险提示 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">08</span>数据溯源与风险提示</div>
+  <p class="caption">指数与个股收盘数据：Wind / 公开行情接口（2026-07-17 16:14–16:15 更新，置信度 ★★★）。盘面涨跌家数、成交额、板块涨跌引自财联社、第一财经、南都湾财社等公开报道。美股财报日历引自既定映射跟踪表。本报告为盘后复盘，所有结论基于公开数据，仅供研究参考。</p>
+</section>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。投资者据此操作风险自担。数据可能存在延迟或误差，请以交易所及公司公告为准。
+</footer>
+
+<script>
+var chart = echarts.init(document.getElementById('indexChart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  grid:{left:75,right:35,top:10,bottom:25},
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  xAxis:{
+    type:'value',
+    axisLabel:{color:'#9aa5b9',formatter:'{value}%'},
+    axisLine:{lineStyle:{color:'#2a3556'}},
+    splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)'}}
+  },
+  yAxis:{
+    type:'category',
+    data:['上证指数','深证成指','创业板指','科创综指'],
+    axisLabel:{color:'#eef2f8',fontSize:12},
+    axisLine:{lineStyle:{color:'#2a3556'}}
+  },
+  series:[{
+    type:'bar',
+    data:[
+      {value:-3.05,itemStyle:{color:'#1ed890'}},
+      {value:-5.40,itemStyle:{color:'#1ed890'}},
+      {value:-7.15,itemStyle:{color:'#1ed890'}},
+      {value:-8.13,itemStyle:{color:'#1ed890'}}
+    ],
+    label:{show:true,position:'insideRight',color:'#eef2f8',formatter:'{c}%',fontSize:11,fontWeight:600},
+    barWidth:'52%'
+  }]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
