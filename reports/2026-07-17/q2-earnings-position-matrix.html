@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q2 财报季持仓应对矩阵</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;font-size:14px;line-height:1.7
+}
+.hero-bar{height:8px;background:linear-gradient(90deg,var(--accent) 0%,var(--purple) 50%,var(--up) 100%)}
+.hero{padding:32px 24px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:24px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub);letter-spacing:0.3px}
+.module{margin:16px 16px;display:flex;gap:0;border-radius:0 14px 14px 0;background:var(--card);border:1px solid rgba(255,255,255,0.04)}
+.module-side{width:6px;border-radius:14px 0 0 14px;flex-shrink:0}
+.module-body{padding:22px 24px;flex:1;min-width:0}
+.module-title{font-size:16px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px;color:#fff}
+.module-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:13px;font-weight:900;border-radius:8px;flex-shrink:0;background:var(--num);color:#0d1424}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin:6px 0;table-layout:fixed;word-break:break-word}
+th,td{padding:10px 12px;border-bottom:1px solid rgba(155,165,185,0.06)}
+th{color:#bcc5d4;font-weight:600;font-size:11px;background:rgba(155,165,185,0.04);white-space:nowrap;letter-spacing:0.8px;text-transform:uppercase;text-align:center}
+td{vertical-align:middle;text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:16%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:22%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:62%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:14%}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:54%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}
+table.f3 th,table.f3 td{text-align:left}
+table.f2 th,table.f2 td{text-align:left}
+table td:first-child,table th:first-child{min-width:80px;font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+/* f5: 五列表格 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:12%}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:16%}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:16%}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:44%}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:12%}
+table.f5 th,table.f5 td{text-align:left}
+/* f5.cal: 财报日历(10/18/16/46/10) */
+table.f5.cal th:nth-child(1),table.f5.cal td:nth-child(1){width:10%}
+table.f5.cal th:nth-child(2),table.f5.cal td:nth-child(2){width:18%}
+table.f5.cal th:nth-child(3),table.f5.cal td:nth-child(3){width:16%}
+table.f5.cal th:nth-child(4),table.f5.cal td:nth-child(4){width:46%}
+table.f5.cal th:nth-child(5),table.f5.cal td:nth-child(5){width:10%;text-align:center}
+table.f5.cal th:nth-child(5),table.f5.cal td:nth-child(5){text-align:center}
+/* f5.csp: CSP capex(14/16/16/12/42) */
+table.f5.csp th:nth-child(1),table.f5.csp td:nth-child(1){width:14%}
+table.f5.csp th:nth-child(2),table.f5.csp td:nth-child(2){width:16%;text-align:right;font-variant-numeric:tabular-nums}
+table.f5.csp th:nth-child(3),table.f5.csp td:nth-child(3){width:16%;text-align:right;font-variant-numeric:tabular-nums}
+table.f5.csp th:nth-child(4),table.f5.csp td:nth-child(4){width:12%;text-align:right;font-variant-numeric:tabular-nums}
+table.f5.csp th:nth-child(5),table.f5.csp td:nth-child(5){width:42%}
+table.f5.csp th:nth-child(2),table.f5.csp th:nth-child(3),table.f5.csp th:nth-child(4){text-align:right}
+/* f5.map: 持仓映射(12/14/34/12/28) */
+table.f5.map th:nth-child(1),table.f5.map td:nth-child(1){width:12%;white-space:nowrap}
+table.f5.map th:nth-child(2),table.f5.map td:nth-child(2){width:14%}
+table.f5.map th:nth-child(3),table.f5.map td:nth-child(3){width:34%}
+table.f5.map th:nth-child(4),table.f5.map td:nth-child(4){width:12%;text-align:center}
+table.f5.map th:nth-child(5),table.f5.map td:nth-child(5){width:28%}
+table.f5.map th:nth-child(4){text-align:center}
+/* f4.scn: 情景应对(16/28/28/28) */
+table.f4.scn th:nth-child(1),table.f4.scn td:nth-child(1){width:16%}
+table.f4.scn th:nth-child(2),table.f4.scn td:nth-child(2){width:28%}
+table.f4.scn th:nth-child(3),table.f4.scn td:nth-child(3){width:28%}
+table.f4.scn th:nth-child(4),table.f4.scn td:nth-child(4){width:28%}
+table.f4.scn th,table.f4.scn td{text-align:left}
+/* f4.pos: 仓位策略(12/20/32/36) */
+table.f4.pos th:nth-child(1),table.f4.pos td:nth-child(1){width:12%}
+table.f4.pos th:nth-child(2),table.f4.pos td:nth-child(2){width:20%;white-space:nowrap}
+table.f4.pos th:nth-child(3),table.f4.pos td:nth-child(3){width:32%}
+table.f4.pos th:nth-child(4),table.f4.pos td:nth-child(4){width:36%}
+table.f4.pos th,table.f4.pos td{text-align:left}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.up{color:var(--up);white-space:nowrap}.down{color:var(--down);white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.tag-purple{background:rgba(155,109,255,0.12);color:var(--purple)}
+.tag-gray{background:rgba(155,165,185,0.08);color:var(--sub)}
+.caption{font-size:12px;color:var(--sub);margin:6px 0 0;line-height:1.5}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.kv-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.kv-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.kv-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+.chart-wrap{margin:12px 0;border-radius:10px;overflow:hidden}
+.note-box{background:rgba(61,220,200,0.06);border:1px solid rgba(61,220,200,0.15);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;color:#c8e8e0;line-height:1.7}
+.warn-box{background:rgba(255,59,59,0.06);border:1px solid rgba(255,59,59,0.15);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;color:#e8c8c8;line-height:1.7}
+.footer-box{background:rgba(155,109,255,0.06);border:1px solid rgba(155,109,255,0.15);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;color:#d0c8e8;line-height:1.7}
+footer{padding:20px 24px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:640px){
+  body{padding:0 0 16px;font-size:13px}
+  .hero{padding:24px 16px}
+  .hero h1{font-size:20px}
+  .module{margin:12px 8px}
+  .module-body{padding:16px}
+  .kv{grid-template-columns:repeat(2,1fr)}
+  .module-title{font-size:14px}
+  table{font-size:12px}
+  th,td{padding:6px 6px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+<div class="hero-bar"></div>
+<header class="hero">
+  <h1>Q2 财报季持仓应对矩阵</h1>
+  <div class="sub">五大对账节点 × 持仓映射 × 三级情景应对 · 2026-07-17 · 置信度 ★★★</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-side" style="background:var(--num)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">01</span>核心结论：前两站绿灯，真正的胜负手在 7/23-7/31</div>
+    <p class="caption">ASML 7/15 + 台积电 7/16 双超预期，AI 景气向上已在<b>"供给端"</b>确认。但供给端赚钱不等于需求端持续——真正的考验是四大 CSP（谷歌/Meta/微软/亚马逊）的 capex 指引能否维持 <span class="highlight-data">~$7000 亿</span>基准线。<b>五节点确认前，持仓不增不减。</b></p>
+    <div class="kv">
+      <div class="kv-card"><div class="val" style="color:var(--up)">2/5</div><div class="lbl">已过节点（全绿）</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--data)">$7000亿</div><div class="lbl">CSP 2026 capex 基准线</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--accent)">7/23</div><div class="lbl">下一关键节点 GOOGLE</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--up)">+70%</div><div class="lbl">CSP capex 同比增速</div></div>
+    </div>
+    <div class="note-box">
+      <b>唯一核心指标</b>：CSP capex 指引首次下修时刻 = 减仓信号。在五节点（台积电→GOOGLE→META/MSFT→AMZN）全部确认前，持仓不增不减，等节点验证后再决策。
+    </div>
+  </div>
+</section>
+
+<!-- 02 已过节点复盘 -->
+<section class="module">
+  <div class="module-side" style="background:var(--accent)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">02</span>已过节点复盘：ASML + 台积电（双绿灯）</div>
+    <table class="f4">
+      <tr><th>指标</th><th>ASML Q2</th><th>台积电 Q2</th><th>信号解读</th></tr>
+      <tr><td>营收</td><td>93 亿欧元</td><td>402 亿美元</td><td>双双超指引上限，AI 驱动明确</td></tr>
+      <tr><td>毛利率</td><td>54.0%</td><td>67.7%</td><td>台积电创历史新高，定价权极强</td></tr>
+      <tr><td>净利润</td><td>29 亿欧元</td><td>220 亿美元</td><td>台积电同比 +77%，远超预期</td></tr>
+      <tr><td>全年指引</td><td>430-450 亿€</td><td>增速 ~40%</td><td>ASML 上修 70 亿€，台积电增速翻倍</td></tr>
+      <tr><td>capex</td><td>—</td><td>600-640 亿$</td><td>从 520-560 亿上调，历史新高</td></tr>
+      <tr><td>先进制程</td><td>EUV 占 57%</td><td>7nm 以下占 77%</td><td>2nm 首贡献 3%，爬坡顺利</td></tr>
+      <tr><td>关键增量</td><td>Memory +75%</td><td>HPC 占 60%+</td><td>HBM/DDR + AI 加速器共振</td></tr>
+    </table>
+    <p class="caption">数据来源：ASML 7/15 财报电话会、台积电 7/16 法说会 · 台积电盘前跌 5%（业绩杀），收盘 -2.32% 报 $409.74</p>
+    <div class="note-box">
+      <b>传导影响</b>：台积电 capex 上调至 600-640 亿美元，其中 70-80% 投先进制程 → <b>直接利好澜起</b>（存储接口芯片 HBM 需求）、<b>间接利好罗博</b>（AI 硬件映射链）。ASML Memory +75% → <b>强化澜起存储逻辑</b>。两者均未触发持仓变动（逻辑未破，景气向上）。
+    </div>
+  </div>
+</section>
+
+<!-- 03 财报季完整日历 -->
+<section class="module">
+  <div class="module-side" style="background:var(--purple)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">03</span>财报季完整日历：18 个节点，7/23-7/31 是密集区</div>
+    <div class="table-wrap">
+    <table class="f5 cal">
+      <tr><th>日期</th><th>公司</th><th>映射持仓</th><th>关键看点</th><th>状态</th></tr>
+      <tr><td>7/15</td><td>ASML</td><td>罗博 / 澜起</td><td>EUV 65 台目标，全年上调至 430-450 亿欧元</td><td><span class="tag tag-cyan">已过</span></td></tr>
+      <tr><td>7/16</td><td>台积电</td><td>澜起 / 全链</td><td>capex 上调至 600-640 亿美元，AI 极度强劲</td><td><span class="tag tag-cyan">已过</span></td></tr>
+      <tr><td>7/23</td><td>德州仪器</td><td>板块情绪</td><td>模拟芯片需求信号，影响有限</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/23</td><td>谷歌</td><td>汇绿/罗博/澜起</td><td>CSP capex 第一信号，云增速 63%</td><td><span class="tag tag-up">关键</span></td></tr>
+      <tr><td>7/24</td><td>英特尔</td><td>澜起</td><td>18A 制程进展，High NA EUV 验证</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/28</td><td>CELESTICA</td><td>汇绿 / 罗博</td><td>AI 服务器 ODM 订单执行</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/28</td><td>康宁 GLW</td><td>汇绿</td><td>光纤光缆需求信号，光通信验证</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/28</td><td>RAMBUS</td><td>澜起</td><td>内存接口芯片需求，存储验证</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/29</td><td>VERTIV</td><td>AI 基建链</td><td>液冷/电源需求，数据中心景气</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/29</td><td>安费诺 APH</td><td>罗博</td><td>高速铜连接器需求信号</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/29</td><td>希捷 STX</td><td>澜起</td><td>存储/HBM 需求信号</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/29</td><td>KLAC</td><td>罗博</td><td>半导体设备需求验证</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/30</td><td>泛林 LRCX</td><td>罗博</td><td>半导体设备需求验证</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/30</td><td>META</td><td>汇绿/罗博/澜起</td><td>CSP capex 第二信号</td><td><span class="tag tag-up">关键</span></td></tr>
+      <tr><td>7/30</td><td>微软 MSFT</td><td>汇绿/罗博/澜起</td><td>CSP capex 第三信号，AI 年收 370 亿</td><td><span class="tag tag-up">关键</span></td></tr>
+      <tr><td>7/30</td><td>西部数据</td><td>澜起</td><td>存储价格趋势</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/30</td><td>迅达科技</td><td>兴森</td><td>AI PCB 需求信号</td><td><span class="tag tag-gold">待</span></td></tr>
+      <tr><td>7/31</td><td>亚马逊</td><td>汇绿/罗博/澜起</td><td>CSP capex 终验，FCF 转负预警</td><td><span class="tag tag-up">关键</span></td></tr>
+    </table>
+    </div>
+    <p class="caption">★ 五大硬核对账节点：7/16 台积电(已) → 7/23 谷歌 → 7/30 META+MSFT → 7/31 AMZN。四节点确认前持仓不增不减。</p>
+  </div>
+</section>
+
+<!-- 04 CSP capex 基准线 -->
+<section class="module">
+  <div class="module-side" style="background:var(--data)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">04</span>CSP capex 基准线：2026 年约 $7000 亿，较 2025 年 +70%</div>
+    <p class="caption">四大 CSP 2026 年 capex 合计约 $7000-7100 亿美元（2025 年约 $4100 亿）。这是持仓逻辑的"生命线"——只要 capex 不下修，AI 硬件链就继续受益。</p>
+    <div class="table-wrap">
+    <table class="f5 csp">
+      <tr><th>公司</th><th>2026 指引</th><th>Q1 实际</th><th>同比</th><th>关注点</th></tr>
+      <tr><td>微软</td><td>~$1200 亿</td><td>$319 亿</td><td class="pos">+49%</td><td>AI 年化收入 370 亿，RPO +97%</td></tr>
+      <tr><td>谷歌</td><td>~$1850 亿</td><td>$357 亿</td><td class="pos">+107%</td><td>云增速 63%，RPO +406% 最快</td></tr>
+      <tr><td>亚马逊</td><td>~$2000 亿</td><td>$442 亿</td><td class="pos">+77%</td><td>AWS 增速 28%，FCF -181 亿</td></tr>
+      <tr><td>Meta</td><td>~$1350 亿</td><td>$198 亿</td><td class="pos">+45%</td><td>AI 变现尚未清晰，广告驱动</td></tr>
+      <tr><td>合计</td><td>~$7000 亿</td><td>$1316 亿</td><td class="pos">+70%</td><td>较 2025 年 $4100 亿大幅加速</td></tr>
+    </table>
+    </div>
+    <div id="capexChart" style="width:100%;height:280px;margin:12px 0"></div>
+    <div class="warn-box">
+      <b>早期预警</b>：亚马逊 Q1 自由现金流转负（-181 亿美元），预计至少持续 2 年。虽然 capex 仍在加速，但<b>"花钱速度 > 变现速度"</b>的信号已出现。7/31 AMZN 财报需重点看 capex 指引是否因此下修——这是五节点中风险最大的一个。
+    </div>
+    <p class="caption">数据来源：四大 CSP 26Q1 财报（2026 年 4-5 月发布）· 2026 全年指引为管理层 guidance · 置信度 ★★★</p>
+  </div>
+</section>
+
+<!-- 05 持仓映射矩阵 -->
+<section class="module">
+  <div class="module-side" style="background:var(--blue)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">05</span>持仓映射矩阵：谁的命运系于 CSP capex</div>
+    <div class="table-wrap">
+    <table class="f5 map">
+      <tr><th>持仓</th><th>映射美股</th><th>传导逻辑</th><th>影响</th><th>应对策略</th></tr>
+      <tr><td>澜起 688008</td><td>MRVL / RAMBUS</td><td>存储接口芯片，HBM 需求传导</td><td>★★★★★</td><td>底仓不动，7/28 RAMBUS 验证</td></tr>
+      <tr><td>汇绿 001267</td><td>COHR / LITE / GLW</td><td>光模块需求，CSP capex 传导</td><td>★★★★★</td><td>7/28 GLW + 7/30 META 验证</td></tr>
+      <tr><td>罗博 300757</td><td>NVDA / KLAC / LRCX</td><td>AI 硬件映射，设备需求传导</td><td>★★★★</td><td>7/29 KLAC + 7/30 META 验证</td></tr>
+      <tr><td>兴森 002436</td><td>迅达科技 TTMI</td><td>AI PCB 需求传导</td><td>★★★</td><td>7/30 TTMI 验证</td></tr>
+      <tr><td>星环 688031</td><td>SNOW / MDB</td><td>数据库/云，AI 应用侧</td><td>★★</td><td>间接映射，节点影响有限</td></tr>
+      <tr><td>泰和 002254</td><td>康宁 GLW(间接)</td><td>芳纶光缆，间接映射</td><td>★★</td><td>7/28 GLW 间接参考</td></tr>
+      <tr><td>软通 301236</td><td>—</td><td>华为生态，非直接映射</td><td>★</td><td>不受美股财报季直接影响</td></tr>
+      <tr><td>三祥 603663</td><td>—</td><td>锆/固态电池，独立逻辑</td><td>★</td><td>不受美股财报季影响</td></tr>
+      <tr><td>华峰 002064</td><td>—</td><td>化工防御，不相关</td><td>—</td><td>独立逻辑</td></tr>
+      <tr><td>德展 000813</td><td>—</td><td>医药防御，不相关</td><td>—</td><td>独立逻辑</td></tr>
+      <tr><td>太钢 000825</td><td>—</td><td>钢铁防御，不相关</td><td>—</td><td>独立逻辑</td></tr>
+    </table>
+    </div>
+    <p class="caption">影响等级：★★★★★ = 直接映射，财报结果直接决定持仓逻辑 · ★ = 间接/无映射 · 防御仓不受影响</p>
+  </div>
+</section>
+
+<!-- 06 三级情景应对 -->
+<section class="module">
+  <div class="module-side" style="background:var(--up)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">06</span>三级情景应对：每个节点的"如果...则..."</div>
+    <p class="caption">对四大关键节点，预设超预期/符合/不及三级情景及对应操作。核心纪律：<b>不动 S 级底仓，只调 A 级和利润仓。</b></p>
+    <div class="table-wrap">
+    <table class="f4 scn">
+      <tr><th>节点</th><th>超预期 → 操作</th><th>符合预期 → 操作</th><th>不及预期 → 操作</th></tr>
+      <tr>
+        <td>谷歌 7/23<br><span class="caption">capex 第一信号</span></td>
+        <td>capex 指引上调或维持 $1850 亿+<br><span class="tag tag-cyan">持仓不动</span><br>不追高，等下一节点</td>
+        <td>capex 维持不变<br><span class="tag tag-gray">持仓不动</span><br>确认基准线，继续等</td>
+        <td>capex 增速放缓或下修<br><span class="tag tag-down">汇绿/罗博减半仓</span><br>S 级底仓不动</td>
+      </tr>
+      <tr>
+        <td>CELESTICA<br>+ GLW 7/28<br><span class="caption">光通信验证</span></td>
+        <td>光通信订单超预期<br><span class="tag tag-cyan">汇绿持有</span><br>需求端确认</td>
+        <td>订单符合预期<br><span class="tag tag-gray">持仓不动</span></td>
+        <td>需求减弱信号<br><span class="tag tag-down">汇绿评估减仓</span><br>看 GLW 指引方向</td>
+      </tr>
+      <tr>
+        <td>META + MSFT<br>7/30<br><span class="caption">capex 第二/三信号</span></td>
+        <td>capex 加速或上调<br><span class="tag tag-up">可加仓阶段 3</span><br>汇绿/罗博可小幅加</td>
+        <td>capex 维持基准线<br><span class="tag tag-gray">持仓不动</span><br>五节点已过四</td>
+        <td>capex 下修<br><span class="tag tag-down">A级减仓</span><br>利润仓清半</td>
+      </tr>
+      <tr>
+        <td>亚马逊 7/31<br><span class="caption">capex 终验</span></td>
+        <td>capex 维持 + FCF 改善<br><span class="tag tag-up">五节点全绿</span><br>阶段 3→4 过渡</td>
+        <td>capex 维持但 FCF 仍负<br><span class="tag tag-gray">持仓不动</span><br>观望</td>
+        <td>capex 下修<br><span class="tag tag-down">全面防御</span><br>A 级清至底仓</td>
+      </tr>
+    </table>
+    </div>
+    <div class="note-box">
+      <b>判断标准</b>：capex "超预期" = 全年指引上调或同比增速 > 当前增速；"符合" = 指引维持不变；"不及" = 指引下修或增速明显放缓。重点听管理层对 2027 年 capex 的措辞——"增速放缓" ≠ "见顶"，但"重新评估"或"优化" = 红灯。
+    </div>
+  </div>
+</section>
+
+<!-- 07 仓位策略与操作纪律 -->
+<section class="module">
+  <div class="module-side" style="background:var(--num)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">07</span>仓位策略与操作纪律</div>
+    <div class="table-wrap">
+    <table class="f4 pos">
+      <tr><th>分级</th><th>持仓</th><th>当前策略</th><th>触发条件</th></tr>
+      <tr><td>S 级</td><td>澜起 / 三祥</td><td>底仓绝对不动</td><td>逻辑破 / 基本面恶化才减</td></tr>
+      <tr><td>A 级</td><td>汇绿 / 罗博 / 软通</td><td>不增不减，等节点验证</td><td>CSP capex 下修 → 减半仓</td></tr>
+      <tr><td>A- 级</td><td>泰和</td><td>持有不动等三信号</td><td>GLW 信号 + 芳纶订单验证</td></tr>
+      <tr><td>利润仓</td><td>星环 / 兴森</td><td>持有，择机</td><td>映射美股不及预期 → 清半</td></tr>
+      <tr><td>防御</td><td>华峰 / 德展 / 太钢</td><td>不动</td><td>独立逻辑，不受影响</td></tr>
+    </table>
+    </div>
+    <div class="note-box">
+      <b>操作纪律三条红线</b>：<br>
+      1. 五节点确认前，A 级仓位不增不减；<br>
+      2. 不做技术止损，核心看逻辑变化和基本面；<br>
+      3. 接受 20%+ 回撤作为中长线投资的正常门票。
+    </div>
+    <div class="footer-box">
+      <b>这个数意味着什么</b>：CSP capex $7000 亿基准线，相当于每天花 $19 亿建 AI 基础设施。只要这个数字不下修，澜起/汇绿/罗博的景气逻辑就没有被打破。老潘该做的是：7/23 前什么都不做，7/23 后看谷歌 capex 指引方向再决策。
+    </div>
+  </div>
+</section>
+
+<!-- 08 风险监控 -->
+<section class="module">
+  <div class="module-side" style="background:var(--down)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">08</span>风险监控仪表盘</div>
+    <table class="f3">
+      <tr><th>风险点</th><th>监控指标</th><th>当前状态</th></tr>
+      <tr><td>CSP capex 下修</td><td>四大 CSP 全年指引</td><td><span class="tag tag-up">绿灯</span> 26Q1 全部加速</td></tr>
+      <tr><td>亚马逊 FCF 持续为负</td><td>季度自由现金流</td><td><span class="tag tag-down">黄灯</span> Q1 -181 亿，预计持续 2 年</td></tr>
+      <tr><td>半导体库存堆积</td><td>台积电库存周转天数</td><td><span class="tag tag-up">绿灯</span> 2nm 爬坡初期，库存健康</td></tr>
+      <tr><td>存储价格拐点</td><td>HBM/DDR 合约价方向</td><td><span class="tag tag-up">绿灯</span> ASML 称"供不应求"</td></tr>
+      <tr><td>光模块订单执行</td><td>COHR/LITE 季度收入</td><td><span class="tag tag-gold">待验</span> 7/28 GLW 财报验证</td></tr>
+      <tr><td>2027 capex 增速放缓</td><td>管理层 2027 措辞</td><td><span class="tag tag-gold">待验</span> 7/23-7/31 四场电话会</td></tr>
+    </table>
+    <p class="caption">监控频率：每个财报节点后更新 · 下次更新：7/23 谷歌财报后</p>
+  </div>
+</section>
+
+<footer>
+  <b>数据溯源</b>：ASML Q2 财报（7/15）、台积电 Q2 法说会（7/16）、四大 CSP 26Q1 财报（4-5 月）、券商研报汇总 · 置信度 ★★★ · 仅供参考，不构成投资建议<br>
+  <b>本报告意思</b>：把 18 个财报节点压缩成 5 个对账站，每站预设三级情景和对应操作。核心不是预测财报结果，而是<b>提前想清楚"如果...则..."</b>，避免临时拍脑袋。
+</footer>
+
+<script>
+var chart = echarts.init(document.getElementById('capexChart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  title:{text:'四大 CSP capex：2025 vs 2026（十亿美元）',textStyle:{color:'#9aa5b9',fontSize:13},left:'center',top:6},
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},backgroundColor:'#1a2540',borderColor:'#2a3556',textStyle:{color:'#eef2f8'}},
+  legend:{data:['2025 实际','2026 指引'],textStyle:{color:'#9aa5b9'},top:30,right:0},
+  grid:{left:60,right:20,top:60,bottom:30},
+  xAxis:{type:'value',axisLabel:{color:'#9aa5b9',formatter:'{value}'},splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)'}}},
+  yAxis:{type:'category',data:['微软','谷歌','亚马逊','Meta'],axisLabel:{color:'#c8d0dc'},axisLine:{lineStyle:{color:'#2a3556'}}},
+  series:[
+    {name:'2025 实际',type:'bar',data:[80,75,105,65],itemStyle:{color:'rgba(155,109,255,0.6)',borderRadius:[0,4,4,0]},barWidth:14},
+    {name:'2026 指引',type:'bar',data:[120,185,200,135],itemStyle:{color:'#f5a623',borderRadius:[0,4,4,0]},barWidth:14,label:{show:true,position:'right',color:'#ffd83d',fontSize:11,formatter:'${c}B'}}
+  ]
+});
+window.addEventListener('resize',function(){chart.resize()});
+</script>
+</body>
+</html>
