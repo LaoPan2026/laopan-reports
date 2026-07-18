@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7·17 持仓大震荡·逻辑再梳+估值评分+下半年操作</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;font-size:14px;line-height:1.7
+}
+.hero-bar{height:8px;background:linear-gradient(90deg,var(--up) 0%,var(--num) 50%,var(--accent) 100%)}
+.hero{padding:32px 24px;border-bottom:3px solid var(--num)}
+.hero h1{font-size:24px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub);letter-spacing:0.3px}
+.module{margin:16px 16px;display:flex;gap:0;border-radius:0 14px 14px 0;background:var(--card);border:1px solid rgba(255,255,255,0.04)}
+.module-side{width:6px;border-radius:14px 0 0 14px;flex-shrink:0}
+.module-body{padding:22px 24px;flex:1;min-width:0}
+.module-title{font-size:16px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px;color:#fff}
+.module-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:13px;font-weight:900;border-radius:8px;flex-shrink:0;background:var(--num);color:#0d1424}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin:6px 0;table-layout:fixed;word-break:break-word}
+th,td{padding:10px 12px;border-bottom:1px solid rgba(155,165,185,0.06)}
+th{color:#bcc5d4;font-weight:600;font-size:11px;background:rgba(155,165,185,0.04);white-space:nowrap;letter-spacing:0.8px;text-transform:uppercase;text-align:center}
+td{vertical-align:middle;text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:18%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:20%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:62%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:14%}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:54%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}
+table.f3 th,table.f3 td{text-align:left}
+table.f2 th,table.f2 td{text-align:left}
+table td:first-child,table th:first-child{min-width:80px;font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+/* f5: 五列表格 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:12%}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:14%}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:28%}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:18%;text-align:center}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:28%}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){text-align:center}
+/* f4.hold: 持仓全景(代码/价格/估值/评级) */
+table.f4.hold th:nth-child(1),table.f4.hold td:nth-child(1){width:18%;white-space:nowrap}
+table.f4.hold th:nth-child(2),table.f4.hold td:nth-child(2){width:30%}
+table.f4.hold th:nth-child(3),table.f4.hold td:nth-child(3){width:12%;text-align:center}
+table.f4.hold th:nth-child(4),table.f4.hold td:nth-child(4){width:40%}
+table.f4.hold th:nth-child(3),table.f4.hold td:nth-child(3){text-align:center}
+table.f4.hold th:nth-child(1),table.f4.hold td:nth-child(1){text-align:left}
+table.f4.hold th:nth-child(2),table.f4.hold td:nth-child(2){text-align:left}
+table.f4.hold th:nth-child(4),table.f4.hold td:nth-child(4){text-align:left}
+/* f4.log: 逻辑变化 */
+table.f4.log th:nth-child(1),table.f4.log td:nth-child(1){width:22%}
+table.f4.log th:nth-child(2),table.f4.log td:nth-child(2){width:30%}
+table.f4.log th:nth-child(3),table.f4.log td:nth-child(3){width:48%}
+table.f4.log th,table.f4.log td{text-align:left}
+/* f3.rate: 评分(标的/分/说明) */
+table.f3.rate th:nth-child(1),table.f3.rate td:nth-child(1){width:22%;white-space:nowrap}
+table.f3.rate th:nth-child(2),table.f3.rate td:nth-child(2){width:18%;text-align:center}
+table.f3.rate th:nth-child(3),table.f3.rate td:nth-child(3){width:60%}
+table.f3.rate th:nth-child(2),table.f3.rate td:nth-child(2){text-align:center}
+table.f3.rate th:nth-child(1),table.f3.rate td:nth-child(1){text-align:left}
+table.f3.rate th:nth-child(3),table.f3.rate td:nth-child(3){text-align:left}
+/* f4.sce: 情景操作(节点/超预期/符合/不及) */
+table.f4.sce th:nth-child(1),table.f4.sce td:nth-child(1){width:18%;white-space:nowrap}
+table.f4.sce th:nth-child(2),table.f4.sce td:nth-child(2){width:28%}
+table.f4.sce th:nth-child(3),table.f4.sce td:nth-child(3){width:27%}
+table.f4.sce th:nth-child(4),table.f4.sce td:nth-child(4){width:27%}
+table.f4.sce th,table.f4.sce td{text-align:left}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.up{color:var(--up);white-space:nowrap}.down{color:var(--down);white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.tag-purple{background:rgba(155,109,255,0.12);color:var(--purple)}
+.tag-gray{background:rgba(155,165,185,0.08);color:var(--sub)}
+.caption{font-size:12px;color:var(--sub);margin:6px 0 0;line-height:1.5}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.kv-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.kv-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.kv-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+.chart-wrap{margin:12px 0;border-radius:10px;overflow:hidden}
+.note-box{background:rgba(61,220,200,0.06);border:1px solid rgba(61,220,200,0.15);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;color:#c8e8e0;line-height:1.7}
+.warn-box{background:rgba(255,59,59,0.06);border:1px solid rgba(255,59,59,0.15);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;color:#e8c8c8;line-height:1.7}
+.footer-box{background:rgba(155,109,255,0.06);border:1px solid rgba(155,109,255,0.15);border-radius:10px;padding:14px 18px;margin:10px 0;font-size:13px;color:#d0c8e8;line-height:1.7}
+.star{color:var(--data);letter-spacing:1px}
+.gray-st{color:#5a6478}
+footer{padding:20px 24px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:640px){
+  body{padding:0 0 16px;font-size:13px}
+  .hero{padding:24px 16px}
+  .hero h1{font-size:20px}
+  .module{margin:12px 8px}
+  .module-body{padding:16px}
+  .kv{grid-template-columns:repeat(2,1fr)}
+  .module-title{font-size:14px}
+  table{font-size:12px}
+  th,td{padding:6px 6px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+<div class="hero-bar"></div>
+<header class="hero">
+  <h1>7·17 持仓大震荡 · 逻辑再梳 + 估值评分 + 下半年操作</h1>
+  <div class="sub">11 只持仓全景梳理 · 5 星制估值评分 · 三情景操作策略 · 2026-07-18 · 置信度 ★★★</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-side" style="background:var(--num)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">01</span>核心结论：杀的是估值不是逻辑，5 节点验证前不增不减</div>
+    <p class="caption">周五持仓被血洗（澜起 -13%、汇绿/星环/兴森 -10% 跌停、罗博 -12.6%），但同期 <b>台积电 7/16 法说会超预期</b>（Q2 营收 $402 亿、capex 上修至 <span class="highlight-data">$600-640 亿</span>、AI 需求强劲）、<b>ASML 7/15 上调全年</b>至 €430-450 亿。杀跌主因是<b>前期涨幅过大的估值修正 + 板块性获利了结</b>，不是逻辑破坏。<b>唯一核心指标</b>：CSP capex 指引首次下修时刻 = 减仓信号。在五节点（台积电→GOOGLE 7/23→META/MSFT 7/30→AMZN 7/31）全部确认前，<span class="highlight-data">持仓结构调一次</span>（减高估加错杀），不增减总仓位。</p>
+    <div class="kv">
+      <div class="kv-card"><div class="val" style="color:var(--up)">2/5</div><div class="lbl">已过节点（绿灯）</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--down)">-13%</div><div class="lbl">澜起最大跌幅</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--accent)">5/11</div><div class="lbl">持仓估评分≥3.5</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--data)">7/23</div><div class="lbl">下一关键 GOOGLE</div></div>
+    </div>
+    <div class="note-box">
+      <b>结构调仓方向（一次性）</b>：减 1 只高估软通（PE 极高+浮盈 418% 兑现压力）→ 加 1 只光通信映射（汇绿 7/17 跌停但 LITE/COHR 逆势走强，逻辑独立验证）。其余 9 只不动，等节点验证。
+    </div>
+  </div>
+</section>
+
+<!-- 02 美股映射信号 -->
+<section class="module">
+  <div class="module-side" style="background:var(--accent)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">02</span>7/17 美股映射信号：光通信逆势是亮点</div>
+    <p class="caption">7/17 美股三大指数 <span class="neg">-0.77% / -1.01% / -1.40%</span>，连续第二天杀跌。半导体设备链是重灾区（AMAT-5.57% / KLAC-3.02% / LRCX-2.39%），但<b>光通信独立走强</b>（COHR +0.23% / LITE +3.77%）。<b>关键判断：杀的是估值不是逻辑——台积电 capex 上修 20% 是硬数据</b>，摩根士丹利和高盛双双上调目标价。</p>
+    <div class="table-wrap">
+    <table class="f5">
+      <thead><tr><th>美股</th><th>收盘</th><th>涨跌幅</th><th>影响</th><th>映射持仓</th></tr></thead>
+      <tbody>
+        <tr><td>MRVL 迈威尔</td><td>188.68</td><td class="neg">-7.27%</td><td><span class="tag tag-down">大</span></td><td>澜起</td></tr>
+        <tr><td>AMAT 应用材料</td><td>529.66</td><td class="neg">-5.57%</td><td><span class="tag tag-down">大</span></td><td>罗博</td></tr>
+        <tr><td>TSM 台积电</td><td>398.37</td><td class="neg">-2.77%</td><td><span class="tag tag-gold">良</span></td><td>全链</td></tr>
+        <tr><td>KLAC 科磊</td><td>212.75</td><td class="neg">-3.02%</td><td><span class="tag tag-down">中</span></td><td>罗博</td></tr>
+        <tr><td>NVDA 英伟达</td><td>202.81</td><td class="neg">-2.21%</td><td><span class="tag tag-gold">中</span></td><td>罗博</td></tr>
+        <tr><td>LITE 鲁门</td><td>732.82</td><td class="up">+3.77%</td><td><span class="tag tag-cyan">利好</span></td><td>汇绿</td></tr>
+        <tr><td>COHR 相干</td><td>277.60</td><td class="up">+0.23%</td><td><span class="tag tag-cyan">利好</span></td><td>汇绿</td></tr>
+        <tr><td>GLW 康宁</td><td>154.61</td><td class="neg">-2.39%</td><td><span class="tag tag-down">中</span></td><td>汇绿</td></tr>
+        <tr><td>WDC 西部数据</td><td>477.22</td><td class="up">+2.23%</td><td><span class="tag tag-cyan">利好</span></td><td>澜起</td></tr>
+        <tr><td>RMBS Rambus</td><td>101.44</td><td>0.00</td><td><span class="tag tag-gray">平</span></td><td>澜起</td></tr>
+        <tr><td>SNOW Snowflake</td><td>268.90</td><td class="neg">-0.41%</td><td><span class="tag tag-gray">弱</span></td><td>星环</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caption">三句话解读：① 设备链杀跌是估值修正（台积电 capex +20% 是反证）；② <b>光通信独立于半导体周期</b>，COHR/LITE 逆势走强 = 汇绿逻辑强化；③ MRVL-7.27% 拖澜起下水，但 WDC+2.23% 暗示存储基本面没破，澜起的 -13% 是情绪放大的错杀。</p>
+  </div>
+</section>
+
+<!-- 03 持仓全景 -->
+<section class="module">
+  <div class="module-side" style="background:var(--data)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">03</span>11 只持仓全景（7/17 收盘 · 估值评分）</div>
+    <p class="caption">5 星制评分：<span class="star">★★★★★</span> 明显低估 / <span class="star">★★★★</span> 合理偏低 / <span class="star">★★★</span> 合理 / <span class="star">★★</span> 偏高 / <span class="star">★</span> 严重高估。PE 优先取 2026E 一致预期，缺则取 TTM。</p>
+    <div class="table-wrap">
+    <table class="f4 hold">
+      <thead><tr><th>代码 · 名称</th><th>收盘 / 涨跌</th><th>估值评分</th><th>核心论据</th></tr></thead>
+      <tbody>
+        <tr><td>688008 澜起科技</td><td>183.60 <span class="neg neg-bg">-13.04%</span></td><td><span class="star">★★★</span><span class="gray-st">☆☆</span></td><td>2026E PE 50-60x（业绩预告 +64~81%），PB 10x+。AI 逻辑硬但绝对估值贵，MRVL 暴跌拖累。周一情绪企稳是买点。</td></tr>
+        <tr><td>001267 汇绿生态</td><td>34.92 <span class="neg">-10.00%</span></td><td><span class="star">★★★★</span><span class="gray-st">☆</span></td><td>2026E PE 148x（光大）但增速匹配；LITE/COHR 7/17 逆势走强 = 逻辑强化。跌停是错杀，加仓机会。</td></tr>
+        <tr><td>300757 罗博特科</td><td>413.00 <span class="neg">-12.61%</span></td><td><span class="star">★★★</span><span class="gray-st">☆☆</span></td><td>Q1 仍亏（EPS -0.23），Q2 必须扭亏才有底气；NVDA-2.21% 跌幅可控。等 7/30 META/MSFT 验证设备链。</td></tr>
+        <tr><td>603663 DR 三祥</td><td>41.81 <span class="neg">-7.68%</span></td><td><span class="star">★★</span><span class="gray-st">☆☆☆</span></td><td>PE TTM 176x、PB 18x（5 年 97% 分位）——绝对高估。锆铪分离 8 月小线投产是唯一催化，等兑现。</td></tr>
+        <tr><td>002436 兴森科技</td><td>34.06 <span class="neg">-9.99%</span></td><td><span class="star">★★★</span><span class="gray-st">☆☆</span></td><td>利润仓（负成本）。跌停是 PCB 板块跟跌，TTMI 7/30 财报前不追加不减仓。</td></tr>
+        <tr><td>688031 星环科技-U</td><td>88.23 <span class="neg">-10.21%</span></td><td><span class="star">★★★</span><span class="gray-st">☆☆</span></td><td>利润仓（负成本）。SNOW-0.41% 抗跌验证逻辑未破。数据库国产替代主线还在。</td></tr>
+        <tr><td>002254 泰和新材</td><td>11.75 <span class="neg">-5.55%</span></td><td><span class="star">★★★★</span><span class="gray-st">☆</span></td><td>PE TTM 215x 但 <b>PB 仅 1.43x（超卖）</b>，芳纶 40% 供光缆 + 帝人停产替代 = 赔率型标的。持有不动。</td></tr>
+        <tr><td>002064 华峰化学</td><td>10.07 <span class="up">+1.10%</span></td><td><span class="star">★★★</span><span class="gray-st">☆☆</span></td><td>周期股看 PB 分位。唯一红盘 = 防御对冲生效，组合波动缓冲器。底仓不动。</td></tr>
+        <tr><td>301236 软通动力</td><td>37.42 <span class="neg">-7.76%</span></td><td><span class="star">★</span><span class="gray-st">☆☆☆☆</span></td><td><b>浮盈 418% 兑现压力极大</b>，PE 已透支。估值严重高估，建议择机减仓兑现利润。</td></tr>
+        <tr><td>000825 太钢不锈</td><td>3.46 <span class="neg">-1.14%</span></td><td><span class="star">★★★</span><span class="gray-st">☆☆</span></td><td>不锈钢/特钢周期底部，防御仓。不锈钢价格企稳前不加不减。</td></tr>
+        <tr><td>000813 德展健康</td><td>3.27 <span class="neg">-6.84%</span></td><td><span class="star">★★</span><span class="gray-st">☆☆☆</span></td><td>医药防御，PE 偏高+成长性弱。<b>建议清仓</b>，资金回流核心持仓。</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caption">一句话：<b>5 只估分 ≥ 3.5</b>（澜起/汇绿/泰和/兴森/星环）+ <b>3 只高估需调仓</b>（三祥/软通/德展）+ <b>3 只防御/对冲不动</b>（华峰/罗博待验证/太钢）。</p>
+  </div>
+</section>
+
+<!-- 04 持仓逻辑再确认 -->
+<section class="module">
+  <div class="module-side" style="background:var(--purple)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">04</span>持仓逻辑再确认（11 只逐一）</div>
+    <p class="caption">结合 7/17 美股映射 + 7/16 台积电 capex 上修 + 7/15 ASML 全年上调，三组硬数据下逐一重梳逻辑：</p>
+    <div class="table-wrap">
+    <table class="f4 log">
+      <thead><tr><th>标的</th><th>原逻辑</th><th>当前判断</th></tr></thead>
+      <tbody>
+        <tr><td>澜起 688008</td><td>DDR5 接口芯片 + MRCD/MDB/PCIe Retimer 新品，AI 算力标配</td><td><span class="tag tag-cyan">逻辑未破</span> 台积电 AI 收入 Q2 +60% YoY 直接对应澜起 Q2 互连类 +28%；WDC+2.23% 验证存储基本面。MRVL-7.27% 是板块拖累非逻辑破坏。</td></tr>
+        <tr><td>汇绿 001267</td><td>光模块代工黑马，COHR/LITE/钧恒客户结构</td><td><span class="tag tag-cyan">逻辑强化</span> LITE+3.77% / COHR+0.23% 7/17 逆势走强 = 光通信独立于半导体周期。跌停是 A 股情绪放大，7/23 谷歌 capex 前是加仓窗口。</td></tr>
+        <tr><td>罗博 300757</td><td>ficonTEC/MPO 自动化设备，AI 硬件映射</td><td><span class="tag tag-gold">逻辑待验</span> Q1 仍亏（-3881 万），Q2 需扭亏。NVDA-2.21% 跌幅可控，设备链是估值修正不是逻辑破坏。等 7/30 财报。</td></tr>
+        <tr><td>三祥 603663</td><td>锆/锆铪分离/固态电池，S 级</td><td><span class="tag tag-up">逻辑未变</span> 锆铪分离 8 月小线投产 + 铪价年初至今 +31%。但绝对估值 PE 176x 太高，跌幅相对小说明抛压不重。</td></tr>
+        <tr><td>兴森 002436</td><td>AI PCB / ABF 载板，利润仓</td><td><span class="tag tag-cyan">逻辑未破</span> 利润仓不增不减。跌停是 PCB 板块跟跌，TTMI 7/30 财报前不动。</td></tr>
+        <tr><td>星环 688031</td><td>数据库 / 数据中台国产替代，利润仓</td><td><span class="tag tag-cyan">逻辑未破</span> SNOW-0.41% 抗跌验证基本面。10% 跌是 A 股科创板情绪放大。</td></tr>
+        <tr><td>泰和 002254</td><td>芳纶 40% 供光缆 + 帝人停产替代 + 卫星通信</td><td><span class="tag tag-cyan">逻辑强化</span> 光缆需求 = AI 数据中心内联；PB 1.43x 5 年 38% 分位 = 安全边际最厚的持仓之一。</td></tr>
+        <tr><td>华峰 002064</td><td>氨纶/化工新材料，周期对冲</td><td><span class="tag tag-gold">逻辑待验</span> 唯一红盘 +1.10% = 防御对冲生效。氨纶价格企稳是关键观察点。</td></tr>
+        <tr><td>软通 301236</td><td>软件外包/AI 服务，浮盈标杆 +418%</td><td><span class="tag tag-up">逻辑透支</span> 浮盈 418% 意味着估值已极致；PE TTM 极高。择机减仓兑现利润，回流核心。</td></tr>
+        <tr><td>太钢 000825</td><td>不锈钢/特钢，周期防御</td><td><span class="tag tag-cyan">逻辑未破</span> 跌幅 -1.14% = 防御属性生效。H2 不锈钢价格若反弹有弹性。</td></tr>
+        <tr><td>德展 000813</td><td>医药防御</td><td><span class="tag tag-down">逻辑弱化</span> 医药集采压制下成长性弱，-6.84% 跌幅比太钢大说明资金在撤。建议清仓。</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- 05 估值评分明细 -->
+<section class="module">
+  <div class="module-side" style="background:var(--num)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">05</span>估值评分明细（5 星制）</div>
+    <p class="caption">评分维度：① 相对估值水位（PE/PB 分位 vs 历史 5 年）② 美股映射同步性 ③ 行业景气拐点 ④ 资金/技术面共振。每项 1.25 星，总分 5 星。</p>
+    <div class="table-wrap">
+    <table class="f3 rate">
+      <thead><tr><th>标的</th><th>评分</th><th>4 维拆解</th></tr></thead>
+      <tbody>
+        <tr><td>688008 澜起</td><td><span class="star">★★★☆☆</span></td><td>相对 1（PE 80x+）+ 同步 0.5（MRVL-7% 拖累）+ 景气 1.25（台积电 capex 验证）+ 资金 0.5（杀跌放量）= <b>3.25</b></td></tr>
+        <tr><td>001267 汇绿</td><td><span class="star">★★★★☆</span></td><td>相对 0.75（PE 148x 贵）+ 同步 1.25（LITE/COHR 逆势）+ 景气 1.25（光通信独立）+ 资金 1（跌停但承接）= <b>4.25</b></td></tr>
+        <tr><td>300757 罗博</td><td><span class="star">★★★☆☆</span></td><td>相对 0.75（Q1 仍亏）+ 同步 1（NVDA 仅 -2.21%）+ 景气 1（设备链杀但 capex +20%）+ 资金 0.5（-12.61% 大跌）= <b>3.25</b></td></tr>
+        <tr><td>603663 三祥</td><td><span class="star">★★☆☆☆</span></td><td>相对 0（PB 5 年 97% 分位）+ 同步 0.5（无强映射）+ 景气 1（锆铪 8 月投产）+ 资金 0.75（跌幅相对小）= <b>2.25</b></td></tr>
+        <tr><td>002436 兴森</td><td><span class="star">★★★☆☆</span></td><td>相对 0.75（PE 中位）+ 同步 0.5（PCB 跟跌）+ 景气 1（TTMI 7/30 验证）+ 资金 0.75（利润仓）= <b>3.0</b></td></tr>
+        <tr><td>688031 星环</td><td><span class="star">★★★☆☆</span></td><td>相对 0.75（PE 中位）+ 同步 1（SNOW -0.41% 抗跌）+ 景气 0.75（数据库国产替代）+ 资金 0.75（利润仓）= <b>3.25</b></td></tr>
+        <tr><td>002254 泰和</td><td><span class="star">★★★★☆</span></td><td>相对 1.25（PB 1.43x 5 年 38% 分位 = 超卖）+ 同步 0.5（无强映射）+ 景气 1.25（光缆/帝人替代）+ 资金 0.75（防御性强）= <b>3.75</b></td></tr>
+        <tr><td>002064 华峰</td><td><span class="star">★★★☆☆</span></td><td>相对 0.75（PB 历史中位）+ 同步 0.5（周期独立）+ 景气 0.75（氨纶价格待稳）+ 资金 1.25（唯一红盘）= <b>3.25</b></td></tr>
+        <tr><td>301236 软通</td><td><span class="star">★☆☆☆☆</span></td><td>相对 0（PE 极高）+ 同步 0.5（无强映射）+ 景气 0.5（外包服务成长放缓）+ 资金 0.25（兑现压力）= <b>1.25</b></td></tr>
+        <tr><td>000825 太钢</td><td><span class="star">★★★☆☆</span></td><td>相对 0.75（PB 周期底部）+ 同步 0.5（独立）+ 景气 0.75（不锈钢待反弹）+ 资金 1（防御）= <b>3.0</b></td></tr>
+        <tr><td>000813 德展</td><td><span class="star">★★☆☆☆</span></td><td>相对 0.5（PE 中高）+ 同步 0.5（独立）+ 景气 0.25（医药集采压制）+ 资金 0.5（资金外流）= <b>1.75</b></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="note-box">
+      <b>评分分布</b>：≥ 3.5 的 5 只（汇绿/泰和/澜起/罗博/华峰）= 核心；3.0 的 3 只（兴森/星环/太钢）= 利润仓或防御；&lt; 2.5 的 3 只（三祥/软通/德展）= <b>建议减仓</b>。
+    </div>
+  </div>
+</section>
+
+<!-- 06 下半年情景操作 -->
+<section class="module">
+  <div class="module-side" style="background:var(--up)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">06</span>下半年情景操作（CSP 三大节点）</div>
+    <p class="caption">7/23 GOOGLE / 7/30 META+MSFT / 7/31 AMZN 三大节点验证 CSP capex 基准线 <span class="highlight-data">~$7000 亿</span>（同比 +70%）能否维持。预设三档情景对应不同操作：</p>
+    <div class="table-wrap">
+    <table class="f4 sce">
+      <thead><tr><th>节点</th><th>超预期（capex 上修）</th><th>符合预期（维持）</th><th>不及预期（下修）</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>7/23 GOOGLE</td>
+          <td>汇绿 +10% / 罗博 +8% / 澜起 +6%；择机加仓 5%</td>
+          <td>持仓不动，<b>等 7/30 联合验证</b></td>
+          <td>汇绿/罗博减仓 30%，回流 S 级（澜起/三祥）</td>
+        </tr>
+        <tr>
+          <td>7/30 META+MSFT</td>
+          <td>三祥 +8% / 兴森 +5% / 软通止盈 50%</td>
+          <td>持仓不动，等 AMZN 末站</td>
+          <td>全链减仓 20%，防御仓（华峰/太钢）权重升至 30%</td>
+        </tr>
+        <tr>
+          <td>7/31 AMZN</td>
+          <td>清仓软通 + 减仓德展，<b>加仓泰和/三祥</b></td>
+          <td>软通减 30% / 德展清仓；资金回流核心</td>
+          <td>全面防守，只保留澜起 S 级 + 华峰对冲</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="warn-box">
+      <b>减仓优先级（一次性结构调仓，本周内执行）</b>：① 软通 301236（浮盈 418% 兑现）减 50% ② 德展 000813 清仓 ③ 资金回流加仓汇绿 001267 跌停价（COHR/LITE 逆势验证逻辑）。三祥 PE 176x 太高但锆铪分离 8 月催化在即，<b>先不减</b>，等 8 月兑现再评估。
+    </div>
+  </div>
+</section>
+
+<!-- 07 操作策略矩阵 -->
+<section class="module">
+  <div class="module-side" style="background:var(--accent)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">07</span>11 只操作策略矩阵</div>
+    <p class="caption">H2 操作分四档：<span class="tag tag-cyan">加仓</span> / <span class="tag tag-gold">持有</span> / <span class="tag tag-up">减仓</span> / <span class="tag tag-down">清仓</span>。基于估值评分 + 逻辑强度 + 节点催化综合判断。</p>
+    <div class="table-wrap">
+    <table class="f5">
+      <thead><tr><th>标的</th><th>当前价</th><th>操作</th><th>触发条件</th><th>目标区间</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿 001267</td><td>34.92</td><td><span class="tag tag-cyan">加仓</span></td><td>再跌 5% 加 20%</td><td>45-55 元</td></tr>
+        <tr><td>泰和 002254</td><td>11.75</td><td><span class="tag tag-cyan">加仓</span></td><td>11 元下加 20%</td><td>14-16 元</td></tr>
+        <tr><td>澜起 688008</td><td>183.60</td><td><span class="tag tag-gold">持有</span></td><td>底仓不动</td><td>200-250 元</td></tr>
+        <tr><td>三祥 603663</td><td>41.81</td><td><span class="tag tag-gold">持有</span></td><td>8 月前不动</td><td>55-70 元</td></tr>
+        <tr><td>罗博 300757</td><td>413.00</td><td><span class="tag tag-gold">持有</span></td><td>等 7/30 验证</td><td>500-600 元</td></tr>
+        <tr><td>兴森 002436</td><td>34.06</td><td><span class="tag tag-gold">持有</span></td><td>不增不减</td><td>40-50 元</td></tr>
+        <tr><td>星环 688031</td><td>88.23</td><td><span class="tag tag-gold">持有</span></td><td>不增不减</td><td>100-120 元</td></tr>
+        <tr><td>华峰 002064</td><td>10.07</td><td><span class="tag tag-gold">持有</span></td><td>防御不动</td><td>11-13 元</td></tr>
+        <tr><td>太钢 000825</td><td>3.46</td><td><span class="tag tag-gold">持有</span></td><td>防御不动</td><td>3.8-4.5 元</td></tr>
+        <tr><td>软通 301236</td><td>37.42</td><td><span class="tag tag-up">减仓 50%</span></td><td>反弹 38+ 减</td><td>兑现一半</td></tr>
+        <tr><td>德展 000813</td><td>3.27</td><td><span class="tag tag-down">清仓</span></td><td>本周清仓</td><td>回流核心</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- 08 关键节点日历 -->
+<section class="module">
+  <div class="module-side" style="background:var(--data)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">08</span>H2 关键节点日历</div>
+    <p class="caption">从本周到 8 月底，按时间顺序排列影响持仓的关键事件：</p>
+    <div class="table-wrap">
+    <table class="f5">
+      <thead><tr><th>日期</th><th>事件</th><th>影响</th><th>关键性</th><th>对应操作</th></tr></thead>
+      <tbody>
+        <tr><td>7/18-7/22</td><td>A 股情绪修复期</td><td>持仓回血</td><td>★★★</td><td>结构调仓（软通减 + 汇绿加）</td></tr>
+        <tr><td>7/23</td><td>GOOGLE Q2 财报</td><td>CSP capex 第一站</td><td>★★★★★</td><td>超预期则加汇绿，不及则减罗博</td></tr>
+        <tr><td>7/23</td><td>TXN 德州仪器</td><td>模拟芯片情绪</td><td>★★</td><td>板块情绪信号</td></tr>
+        <tr><td>7/24</td><td>INTEL 财报</td><td>算力芯片</td><td>★★★</td><td>澜起情绪</td></tr>
+        <tr><td>7/28</td><td>CELESTICA + GLW + RMBS</td><td>服务器 / 光纤 / 连接芯片</td><td>★★★★</td><td>汇绿 + 澜起</td></tr>
+        <tr><td>7/29</td><td>VERTIV + APH + STX + KLAC</td><td>电源 / 连接器 / 存储 / 设备</td><td>★★★</td><td>罗博 + 澜起</td></tr>
+        <tr><td>7/30</td><td>LRCX + META + MSFT + WDC + TTMI</td><td>设备 / CSP / 存储 / PCB</td><td>★★★★★</td><td>罗博 + 三持仓 + 兴森</td></tr>
+        <tr><td>7/31</td><td>AMZN 亚马逊</td><td>CSP 末站</td><td>★★★★★</td><td>全链验证</td></tr>
+        <tr><td>8/14</td><td>SNDK 闪迪</td><td>存储</td><td>★★★</td><td>澜起映射</td></tr>
+        <tr><td>8 月底</td><td>锆铪小线投产</td><td>S 级催化</td><td>★★★★</td><td>兑现节点</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="footer-box">
+      <b>最终判断</b>：本周内完成一次性结构调仓（软通减 50% + 德展清仓 + 汇绿加仓），其余 9 只不动。五节点（GOOGLE 7/23 → META/MSFT 7/30 → AMZN 7/31）全部确认 CSP capex $7000 亿基准线后，<b>持仓结构上移</b>：减软通/德展，加泰和/三祥/罗博。H2 核心仓位：澜起（S）> 汇绿（S）> 泰和（A-）> 罗博（A）> 三祥（A-）> 兴森/星环（利润仓）+ 华峰/太钢（防御）。<b>风险信号</b>：CSP capex 首次下修 = 全面减仓。
+    </div>
+  </div>
+</section>
+
+<!-- 09 风险监控 -->
+<section class="module">
+  <div class="module-side" style="background:var(--up)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">09</span>风险监控仪表盘</div>
+    <p class="caption">H2 重点跟踪 6 个风险点，逐一标注当前状态：</p>
+    <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>风险点</th><th>监控指标</th><th>当前状态</th></tr></thead>
+      <tbody>
+        <tr><td>CSP capex 下修</td><td>GOOGLE/META/MSFT/AMZN capex 指引</td><td><span class="tag tag-cyan">绿灯</span> 台积电已上修 20% 验证需求</td></tr>
+        <tr><td>亚马逊 FCF</td><td>季度自由现金流</td><td><span class="tag tag-gold">黄灯</span> Q1 -181 亿，预计持续 2 年</td></tr>
+        <tr><td>2027 capex 放缓</td><td>管理层 2027 措辞</td><td><span class="tag tag-gold">待验</span> 7/23-7/31 四场电话会</td></tr>
+        <tr><td>光通信速率升级</td><td>1.6T 渗透率 + 客户结构</td><td><span class="tag tag-cyan">绿灯</span> LITE/COHR 7/17 逆势验证</td></tr>
+        <tr><td>锆铪分离投产</td><td>三祥 8 月小线</td><td><span class="tag tag-gold">待验</span> 8 月底</td></tr>
+        <tr><td>美联储 9 月议息</td><td>利率路径</td><td><span class="tag tag-gray">中性</span> 市场已充分定价</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- 10 数据溯源 -->
+<section class="module">
+  <div class="module-side" style="background:var(--sub)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">10</span>数据溯源 + 版本追踪</div>
+    <p class="caption">本报告数据均标注来源，置信度按"★★★ 机构数据 + 公开市场"标准：</p>
+    <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>数据</th><th>来源</th><th>置信度</th></tr></thead>
+      <tbody>
+        <tr><td>7/17 A 股持仓涨跌</td><td>老潘截图（同花顺自选股）</td><td>★★★ 实时</td></tr>
+        <tr><td>7/17 美股收盘</td><td>WebSearch 多源核对</td><td>★★★ 实时</td></tr>
+        <tr><td>台积电 7/16 capex 600-640 亿</td><td>台积电法说会公告</td><td>★★★ 公开</td></tr>
+        <tr><td>ASML 7/15 全年 430-450 亿欧元</td><td>ASML 业绩公告</td><td>★★★ 公开</td></tr>
+        <tr><td>澜起 2026E 业绩 +64~81%</td><td>公司业绩预告 7/16</td><td>★★★ 公告</td></tr>
+        <tr><td>三祥 PE 176x / PB 18x</td><td>A 股估值数据</td><td>★★★ 公开</td></tr>
+        <tr><td>汇绿 2026E PE 148x</td><td>光大证券研报</td><td>★★ 预测</td></tr>
+        <tr><td>泰和 PB 1.43x / 5 年 38% 分位</td><td>A 股估值数据</td><td>★★★ 公开</td></tr>
+        <tr><td>CSP 2026 capex $7000 亿</td><td>摩根士丹利 + 高盛</td><td>★★ 预测</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caption"><b>版本</b>：v1.0 / 2026-07-18 / 巴蒂生成 / 基于老潘 7/17 收盘后截图 + 7/16 台积电 + 7/15 ASML 三大硬数据。下次更新：7/23 GOOGLE 财报后。</p>
+  </div>
+</section>
+
+<footer>
+  <p><b>免责声明</b>：本报告仅供研究参考，不构成投资建议。投资者据此操作风险自担。</p>
+  <p>数据来源：台积电 7/16 法说会、ASML 7/15 业绩公告、老潘 7/17 持仓截图、WebSearch 美股实时数据、各券商研报。</p>
+  <p>© 2026 巴蒂投研 · 报告路径：https://laopan2026.github.io/laopan-reports/reports/2026-07-18/portfolio-2026-07-17-review.html</p>
+</footer>
+
+</body>
+</html>
