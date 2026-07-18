@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿斯麦 Q2 2026 电话会解读</title>
+<style>
+/* =====================================
+   V4.0 报告CSS基座 v2.2（对齐/列宽/nowrap三修）
+   ===================================== */
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;font-size:14px;line-height:1.7
+}
+.hero-bar{height:8px;background:linear-gradient(90deg,var(--accent) 0%,var(--purple) 50%,var(--up) 100%)}
+.hero{padding:32px 24px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:24px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub);letter-spacing:0.3px}
+.module{margin:16px 16px;display:flex;gap:0;border-radius:0 14px 14px 0;background:var(--card);border:1px solid rgba(255,255,255,0.04)}
+.module-side{width:6px;border-radius:14px 0 0 14px;flex-shrink:0}
+.module-body{padding:22px 24px;flex:1;min-width:0}
+.module-title{font-size:16px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px;color:#fff}
+.module-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:13px;font-weight:900;border-radius:8px;flex-shrink:0;background:var(--num);color:#0d1424}
+/* 表格基座 */
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;margin:6px 0;table-layout:fixed;word-break:break-word}
+th,td{padding:10px 12px;border-bottom:1px solid rgba(155,165,185,0.06)}
+th{color:#bcc5d4;font-weight:600;font-size:11px;background:rgba(155,165,185,0.04);white-space:nowrap;letter-spacing:0.8px;text-transform:uppercase;text-align:center}
+td{vertical-align:middle;text-align:left;text-wrap:pretty}
+tr:last-child td{border-bottom:none}
+/* 列宽 */
+table.f2 th:first-child,table.f2 td:first-child{width:28%}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%}
+table.f3 th:first-child,table.f3 td:first-child{width:16%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:22%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:62%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:14%}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:54%}
+/* 对齐：表头与数据同列同对齐 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}
+table.f3 th,table.f3 td{text-align:left}
+table.f2 th,table.f2 td{text-align:left}
+/* 首列加亮（默认不强制nowrap）*/
+table td:first-child,table th:first-child{min-width:80px;font-weight:600;color:#c8d0dc}
+/* nowrap opt-in */
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+/* 特殊列宽 */
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1){width:10%}
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2){width:24%}
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3){width:30%}
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4){width:36%}
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%}
+/* f4.hold：持仓映射（标的+代码+受益逻辑+强度+对应主线） */
+table.f4.hold th:nth-child(1),table.f4.hold td:nth-child(1){width:18%;white-space:nowrap}
+table.f4.hold th:nth-child(2),table.f4.hold td:nth-child(2){width:30%;text-align:left}
+table.f4.hold th:nth-child(3),table.f4.hold td:nth-child(3){width:12%}
+table.f4.hold th:nth-child(4),table.f4.hold td:nth-child(4){width:40%;text-align:left}
+/* f3.ind：行业信号/模式分析（主线+核心驱动+传导链） */
+table.f3.ind th:nth-child(1),table.f3.ind td:nth-child(1){width:14%}
+table.f3.ind th:nth-child(2),table.f3.ind td:nth-child(2){width:30%}
+table.f3.ind th:nth-child(3),table.f3.ind td:nth-child(3){width:56%}
+/* 颜色 */
+.pos{color:var(--up);font-weight:700}.neg{color:var(--down);font-weight:700}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.tag-purple{background:rgba(155,109,255,0.12);color:var(--purple)}
+.caption{font-size:12px;color:var(--sub);margin:6px 0 0;line-height:1.5}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.kv-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.kv-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.kv-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+footer{padding:20px 24px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+@media(max-width:640px){
+  body{padding:0 0 16px;font-size:13px}
+  .hero{padding:24px 16px}
+  .hero h1{font-size:20px}
+  .module{margin:12px 8px}
+  .module-body{padding:16px}
+  .kv{grid-template-columns:repeat(2,1fr)}
+  .module-title{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="hero-bar"></div>
+<header class="hero">
+  <h1>阿斯麦 Q2 2026 电话会解读 · 文章三步走</h1>
+  <div class="sub">来源：老潘转发研报要点 · 解析：拆逻辑→独立评价→落地操价值 · 2026-07-17 · 置信度 ★★★</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-side" style="background:var(--num)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">01</span>核心结论：四条线同时加速，DRAM 完美风暴</div>
+    <p class="caption">阿斯麦 Q2 营收 <span class="highlight-data">93 亿欧元</span>（超指引）、毛利率 <span class="highlight-data">54.0%</span>；全年指引 430–450 亿欧元，四大引擎——<span class="highlight-data">Memory +75%</span>、Logic +25%、EUV +45%、Installed Base +30%+。阿斯麦自述"DRAM 完美风暴"。<b>这是 7/15 已发布信号，文章属二次梳理</b>，非新催化，但对持仓逻辑是<b>强化</b>而非"破"。</p>
+    <div class="kv">
+      <div class="kv-card"><div class="val" style="color:var(--up)">93亿€</div><div class="lbl">Q2 营收（超指引）</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--up)">54.0%</div><div class="lbl">毛利率（超预期）</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--up)">+75%</div><div class="lbl">2026 Memory 指引</div></div>
+      <div class="kv-card"><div class="val" style="color:var(--up)">+45%</div><div class="lbl">2026 EUV 指引</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 业绩与2026指引 -->
+<section class="module">
+  <div class="module-side" style="background:var(--accent)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">02</span>Q2 业绩与 2026 指引硬数据</div>
+    <table class="f4">
+      <tr><th>项目</th><th>数值</th><th>对比/预期</th><th>评价</th></tr>
+      <tr><td>Q2 总营收</td><td>93 亿欧元</td><td>超指引上限</td><td>AI 驱动 + Installed Base 双重贡献</td></tr>
+      <tr><td>Q2 毛利率</td><td>54.0%</td><td>高于预期</td><td>产品结构改善，EUV/Installed Base 占比升</td></tr>
+      <tr><td>Q2 装机基础</td><td>28 亿欧元</td><td>比预期高 3 亿</td><td>存量设备升级 + 软件升级需求扩大</td></tr>
+      <tr><td>2026 全年</td><td>430–450 亿€</td><td>指引大幅上修</td><td>较 2025 高基数仍双位数增长</td></tr>
+      <tr><td>Logic 营收</td><td>增长 ~25%</td><td>5/3nm 扩产 + 2nm 爬坡</td><td>晶圆代工 CAPEX 提速</td></tr>
+      <tr><td>Memory 营收</td><td>增长 ~75%</td><td>完美风暴</td><td>HBM/DDR + 10Å/1c 制程转换共振</td></tr>
+      <tr><td>EUV 营收</td><td>增长 ~45%</td><td>先进制程渗透</td><td>2nm/HBM 堆叠均需 EUV</td></tr>
+      <tr><td>装机基础</td><td>增长 30%+</td><td>成熟节点升级</td><td>软件升级 + 产能提升是新增量</td></tr>
+      <tr><td>中国营收占比</td><td>~20%</td><td>境内 Logic</td><td>出口管制下仍贡献 1/5</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 03 行业信号 -->
+<section class="module">
+  <div class="module-side" style="background:var(--data)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">03</span>行业信号：四条线同时加速</div>
+    <p class="caption">阿斯麦确认 Logic/DRAM/EUV/Installed Base 四条线同步加速——<b>产业链最稀缺的"全面景气"信号</b>，映射强度远超单点事件。</p>
+    <table class="f3 ind">
+      <tr><th>主线</th><th>核心驱动</th><th>产业链传导链</th></tr>
+      <tr><td class="pos">Logic 扩产</td><td>5/3nm 扩产 + 2nm 产能爬坡同步</td><td>晶圆代工 CAPEX↑ → 设备↑ → 零部件/材料↑ → 先进封装/PCB↑</td></tr>
+      <tr><td class="pos">完美风暴</td><td>HBM/DDR 涨价+10Å/1c 转换</td><td>海力士/三星 CAPEX↑ → 设备↑ → HBM 堆叠/ABF 载板↑ → 接口芯片↑</td></tr>
+      <tr><td class="pos">EUV 渗透</td><td>2nm + HBM 堆叠均需 EUV 支撑</td><td>EUV 光罩/光刻胶/CMP 耗材↑ → 国产替代窗口</td></tr>
+      <tr><td class="pos">装机基础</td><td>成熟节点软件升级 + 产能提升</td><td>中国 28nm+ 设备需求↑ → 国产设备份额↑</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 04 独立评价 -->
+<section class="module">
+  <div class="module-side" style="background:var(--purple)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">04</span>独立评价：硬伤与盲点</div>
+    <p class="caption"><b>① 时间错位——非新催化</b>：7/15 已发布 Q2 业绩 + 全年指引，市场在 7/15–7/16 已部分 price-in。7/16 台积电 CAPEX 上修到 600–640 亿美元已先一步确认 Logic 端逻辑。本文属<b>二次梳理</b>。</p>
+    <p class="caption"><b>② "完美风暴"是高位继续乐观</b>：DRAM 强复苏已有共识，但阿斯麦用"完美风暴"措辞、海力士 Q2 净利 92–110 亿——按周期股铁律（静态 PE 越低越警惕顶部），<b>周期顶部概率在上升</b>。</p>
+    <p class="caption"><b>③ 中国 20% 不可持续</b>：出口管制下新增订单以 28nm+ 境内 Logic 为主，是国产替代窗口，也是 ASML 在华天花板。</p>
+    <p class="caption"><b>④ 韩国供应链传导被低估</b>：文章末点出"前道设备→零部件→材料"传导链，韩国最受益。A 股主要看澜起（接口）+ 兴森（ABF 载板）+ 江丰电子（靶材），需单独梳理。</p>
+  </div>
+</section>
+
+<!-- 05 持仓影响映射 -->
+<section class="module">
+  <div class="module-side" style="background:var(--blue)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">05</span>持仓影响映射（按受益强度排序）</div>
+    <p class="caption">按"主线契合度 × 业务直接度"排序。澜起独立账户不计入主仓，但仍是核心底仓。</p>
+    <table class="f4 hold">
+      <tr><th>标的(代码)</th><th>受益逻辑</th><th>强度</th><th>对应 ASML 主线</th></tr>
+      <tr><td>澜起科技(688008)</td><td>DRAM 扩产→接口芯片量价</td><td class="tag tag-up">★★★★★</td><td>Memory +75%</td></tr>
+      <tr><td>兴森科技(002436)</td><td>HBM 扩产 + ABF 载板国产替代</td><td class="tag tag-up">★★★★</td><td>Memory +75% / EUV +45%</td></tr>
+      <tr><td>罗博特科(300757)</td><td>光通信设备情绪利好</td><td class="tag tag-gold">★★★</td><td>全面景气情绪</td></tr>
+      <tr><td>星环科技(688031)</td><td>AI 算力扩张→数据库需求</td><td class="tag tag-gold">★★★</td><td>Installed Base +30%</td></tr>
+      <tr><td>汇绿生态(001267)</td><td>AI 资本开支→光模块/CPO</td><td class="tag tag-gold">★★★</td><td>全面景气情绪</td></tr>
+      <tr><td>软通动力(301236)</td><td>AI 算力→IT 服务订单</td><td class="tag tag-cyan">★★</td><td>Installed Base +30%</td></tr>
+      <tr><td>泰和新材(002254)</td><td>光缆护套芳纶（弱相关）</td><td class="tag tag-cyan">★★</td><td>行业情绪</td></tr>
+      <tr><td>三祥新材(603663)</td><td>封装锆铪（先进封装弱相关）</td><td class="tag tag-cyan">★★</td><td>Logic +25%</td></tr>
+      <tr><td>华峰化学(002064)</td><td>不相关（化工对冲底仓）</td><td class="sub">—</td><td>无</td></tr>
+      <tr><td>太钢不锈(000825)</td><td>不相关（防御底仓）</td><td class="sub">—</td><td>无</td></tr>
+      <tr><td>德展健康(000813)</td><td>不相关（防御底仓）</td><td class="sub">—</td><td>无</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 06 操作建议 -->
+<section class="module">
+  <div class="module-side" style="background:var(--up)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">06</span>操作建议：核心持仓不动，验证看 7/23 GOOGLE capex</div>
+    <p class="caption">ASML 指引是<b>强化</b>而非"破"，持仓不增不减。<b>真验证窗口在 7/23 GOOGLE capex</b>——不下修甚至上修则 AI 算力链二次确认；若下修才是真正的重评估时刻。</p>
+    <table class="f3 op">
+      <tr><th>标的</th><th>动作</th><th>理由</th></tr>
+      <tr><td>澜起（长期底仓）</td><td>坚定持有</td><td>DRAM 完美风暴最直接映射；7/16 已确认催化</td></tr>
+      <tr><td>三祥 / 汇绿（S级）</td><td>持有不动</td><td>板块情绪利好非核心驱动；等 7/23 GOOGLE 验证</td></tr>
+      <tr><td>兴森（利润仓）</td><td>持有等拐点</td><td>HBM/ABF 载板逻辑强化，负成本心态好</td></tr>
+      <tr><td>罗博 / 软通 / 星环</td><td>持有</td><td>板块情绪利好；接受 20%+ 回撤纪律</td></tr>
+      <tr><td>泰和（A-级）</td><td>持有不动</td><td>等三信号（芳纶涨价/帝人替代/光缆订单）</td></tr>
+      <tr><td>华峰 / 太钢 / 德展</td><td>防御底仓</td><td>不相关，对冲功能保留</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 07 数据溯源 -->
+<section class="module">
+  <div class="module-side" style="background:var(--sub)"></div>
+  <div class="module-body">
+    <div class="module-title"><span class="module-num">07</span>数据溯源与风险提示</div>
+    <p class="caption">原文：老潘转发中文整理稿，源数据 ASML 2026 Q2 财报电话会（2026-07-15 发布）。Q2 数字与 2026 指引均以 ASML 官方披露为准，置信度 ★★★。持仓映射按定性打分，不构成定量预测。</p>
+    <p class="caption"><b>四大风险</b>：① 周期顶部——海力士 Q2 净利 92–110 亿 + ASML"完美风暴"措辞需警惕；② 中国 20% 营收天花板——出口管制可能压缩；③ 7/23 GOOGLE capex 若下修是真正的逆转信号；④ 文章属二次梳理，7/15–7/16 已部分 price-in。</p>
+  </div>
+</section>
+
+<footer>
+  ⚠️ 本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。投资者据此操作风险自担。
+</footer>
+</body>
+</html>
