@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章解析：光芯片秘密 | 2026-07-18</title>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--bg-2:#121b32;--line:#2a3556;
+  --text:#c8d0dc;--text-2:#9aa5b9;--accent:#4da6ff;--up:#ff3b3b;--down:#1ed890;
+  --warn:#f5a623;--ok:#3ddcc8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.7;padding:16px 24px;max-width:940px;margin:0 auto;font-size:14px
+}
+h1{font-size:22px;color:#fff;margin-bottom:6px;font-weight:700}
+h2{font-size:17px;color:#fff;margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);font-weight:700}
+.header{margin-bottom:20px}
+.meta{color:var(--text-2);font-size:12px;margin-top:4px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12)
+}
+.section-label{
+  display:inline-block;background:var(--warn);color:#0d1424;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:8px
+}
+.module{margin-bottom:26px}
+.module-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.module-title::before{content:"";width:6px;height:20px;background:var(--accent);border-radius:3px}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.tag{
+  display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap
+}
+.tag-up{background:rgba(255,59,59,.15);color:var(--up)}
+.tag-down{background:rgba(30,216,144,.15);color:var(--down)}
+.tag-gold{background:rgba(245,166,35,.15);color:var(--warn)}
+.tag-cyan{background:rgba(61,220,200,.15);color:var(--ok)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;text-wrap:pretty;word-break:break-word}
+th{font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06);font-size:12px;white-space:nowrap}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.caption{color:var(--text-2);font-size:12px;margin-top:6px}
+.quote{
+  border-left:4px solid var(--accent);padding:12px 16px;background:var(--bg-2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text-2);font-size:13px
+}
+.u{color:var(--text-2);font-size:12px;margin-top:3px}
+/* f3 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;white-space:nowrap}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:22%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:56%}
+/* f4 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;white-space:nowrap}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%;text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:18%;text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:46%}
+/* f3.qa */
+table.f3.qa th:nth-child(1),table.f3.qa td:nth-child(1){width:18%;white-space:nowrap}
+table.f3.qa th:nth-child(2),table.f3.qa td:nth-child(2){width:82%}
+/* f3.src */
+table.f3.src th:nth-child(1),table.f3.src td:nth-child(1){width:24%;white-space:nowrap}
+table.f3.src th:nth-child(2),table.f3.src td:nth-child(2){width:20%;white-space:nowrap}
+table.f3.src th:nth-child(3),table.f3.src td:nth-child(3){width:56%}
+@media (max-width:640px){
+  body{font-size:13px;padding:12px 14px}
+  h1{font-size:19px}
+  h2{font-size:15px}
+  th,td{padding:8px 10px;font-size:12px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>光芯片秘密：400G EML 量产与供应链博弈</h1>
+  <div class="meta">文章来源：微信公众号「数之涌现」2026-07-18 14:00 | 解析时间：2026-07-18</div>
+</div>
+
+<div class="card">
+  <div class="module-title"><span class="section-label">01</span>核心结论</div>
+  <p>这是一篇<strong>光芯片技术深度文章</strong>，以一线大厂专家视角拆解 CW 激光器和 EML 芯片的量产难度、价格、竞争格局。核心不是荐股，而是揭示<strong>国产光芯片替代的真实进度——"踩在技术刀尖上的舞蹈"</strong>。</p>
+  <ul style="margin:10px 0 0 18px;color:var(--text-2);font-size:13px">
+    <li>400G EML 是光芯片"皇冠明珠"，量产难度远超 CW 激光器，公差控制 ±0.8%</li>
+    <li>中际旭创获英伟达 NPO 大单，Y 公司（西安某光芯片厂）只是部分供应商，非主供方</li>
+    <li>索尔思 10 亿颗 CW 扩产计划，实际产能增量最多 60%-70%</li>
+  </ul>
+  <p style="margin-top:12px"><strong style="color:var(--ok)">对老潘持仓影响</strong>：中际旭创（跟踪池）正面信号，汇绿生态间接关联微弱。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">02</span>文章拆解：8 个核心论点</div>
+  <div class="table-wrap">
+    <table class="f3.qa">
+      <thead><tr><th>论点</th><th>核心内容</th></tr></thead>
+      <tbody>
+        <tr><td>量产难度排序</td><td>400G EML > 800mW CW > 400mW CW。EML 需要三区精密外延，公差 ±0.8%，普通 CW 只须单区外延</td></tr>
+        <tr><td>Y 公司产品进度</td><td>300mW CW 已通过旭创功能+小批量验证；200mW 已送样；400mW 在实验室；75mW 良率爬坡 3-4 个月</td></tr>
+        <tr><td>价格体系</td><td>75mW ~$13，100mW ~$15，300mW ~$60；100G EML ~$7-8，200G EML ~$15</td></tr>
+        <tr><td>索尔思扩产</td><td>宣布 10 亿颗 CW 激光器扩产，实际产能增量 60%-70%，受限于衬底供应+设备+工艺放大</td></tr>
+        <tr><td>英伟达 NPO 大单</td><td>中际旭创获得订单，Y 公司是"背书+部分供应商"而非主供方</td></tr>
+        <tr><td>英伟达选国产原因</td><td>提前进行供应链安全战略布局，验证测试早于方案推出</td></tr>
+        <tr><td>人才储备</td><td>Y 公司位于西安对人才储备影响不大</td></tr>
+        <tr><td>EML 战略</td><td>Y 公司计划 2027 年加大对 EML 产品线投入和战略布局</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">注：文章未点名 Y 公司具体名称，以"Y 公司"代称。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">03</span>技术金字塔</div>
+  <div class="table-wrap">
+    <table class="f4">
+      <thead><tr><th>产品</th><th>难度等级</th><th>关键门槛</th><th>量产状态</th></tr></thead>
+      <tbody>
+        <tr><td>400G EML</td><td>★★★★★</td><td>三区外延、±0.8% 公差</td><td>国内尚在研发</td></tr>
+        <tr><td>800mW CW</td><td>★★★★</td><td>高功率散热+外延</td><td>国内调试中</td></tr>
+        <tr><td>400mW CW</td><td>★★★</td><td>功率爬坡</td><td>Y 公司实验室阶段</td></tr>
+        <tr><td>300mW CW</td><td>★★★</td><td>验证周期 3-4.5 月</td><td>已通过旭创小批量验证</td></tr>
+        <tr><td>200mW CW</td><td>★★</td><td>送样验证</td><td>Y 公司已送样</td></tr>
+        <tr><td>100mW CW</td><td>★</td><td>规模量产</td><td>Y 公司已规模量产</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">04</span>价格与竞争格局</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>产品</th><th>参考售价</th><th>竞争格局</th></tr></thead>
+      <tbody>
+        <tr><td>75mW CW</td><td>~$13</td><td>国内多家量产，价格透明</td></tr>
+        <tr><td>100mW CW</td><td>~$15</td><td>Y 公司国内领先，已规模量产</td></tr>
+        <tr><td>200mW CW</td><td>~$30-40（估）</td><td>Y 公司已送样，Lumentum 海外成熟</td></tr>
+        <tr><td>300mW CW</td><td>~$60</td><td>Y 公司验证中，高端产品溢价</td></tr>
+        <tr><td>100G EML</td><td>~$7-8</td><td>Lumentum/三菱等海外主导</td></tr>
+        <tr><td>200G EML</td><td>~$15</td><td>与 100mW CW 价格相当</td></tr>
+        <tr><td>400G EML</td><td>未公开</td><td>海外垄断，国内空白</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">数据来源：文章专家透露价格。200mW CW 价格文中未给出，为合理估算。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">05</span>供应链博弈：英伟达的中国备胎</div>
+  <div class="card">
+    <p>英伟达选择 Y 公司作为 CW 激光器（200mW）的<strong>"背书+部分供应商"</strong>而非主供方——订单量级"对公司而言不算大"。真正的主供方是第一梯队厂商（长光所等）+国外供应商（Lumentum 等）。</p>
+    <p>专家定性：</p>
+    <div class="quote">
+      "这是提前进行的战略布局。尽管相关方案是近期才推出，但验证和测试工作早已在进行中。"
+    </div>
+    <p>这说明英伟达在<strong>主动培育中国 CW 激光器第二供应链</strong>，目的是降低对海外供应商的依赖。但 Y 公司目前只是"备胎"角色，离主力供应还有很长的路。</p>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">06</span>对老潘持仓的影响映射</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>标的</th><th>影响方向</th><th>判断</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿 001267</td><td><span class="tag tag-gold">中性偏正面</span></td><td>汇绿代工光模块（Coherent/Lumentum 客户），光芯片国产替代趋势间接利好光模块需求。Lumentum 被部分替代影响极小</td></tr>
+        <tr><td>中际旭创 300308</td><td><span class="tag tag-up">正面</span></td><td>跟踪池标的。获英伟达 NPO 大单 + Y 公司通过旭创小批量验证，光模块龙头地位进一步巩固</td></tr>
+        <tr><td>东山精密 002384</td><td><span class="tag tag-gold">中性</span></td><td>旗下索尔思扩产 CW 激光器 10 亿颗，实际增量 60%-70%。不在老潘持仓/跟踪池，仅供参考</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">07</span>独立评价</div>
+  <div class="card">
+    <p><strong style="color:var(--ok)">文章价值</strong>：</p>
+    <ul style="margin:8px 0 12px 18px;color:var(--text-2);font-size:13px">
+      <li>一线专家视角，价格数据和技术参数具体，可信度较高</li>
+      <li>"英伟达选国产不是因为技术更好，而是供应链安全"这个判断客观</li>
+      <li>对光芯片技术梯度的拆解清楚（CW → EML）</li>
+    </ul>
+    <p><strong style="color:var(--warn)">硬伤</strong>：</p>
+    <ul style="margin:8px 0 12px 18px;color:var(--text-2);font-size:13px">
+      <li>Y 公司始终未点名，信息溯源困难</li>
+      <li>"英伟达大单"真假无法验证，文章只说"市场有声音"</li>
+      <li>200mW CW 价格未给出，需要自行估算</li>
+      <li>对索尔思 10 亿颗的判断仅一家之言</li>
+    </ul>
+    <p><strong style="color:var(--accent)">综合评分</strong>：<span style="font-size:18px;font-weight:700">3 / 5</span>（技术干货足，但溯源和验证不足）</p>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">08</span>操作建议</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>持仓</th><th>策略</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿 001267</td><td><span class="tag tag-cyan">持有不动</span></td><td>光芯片国产化利好光模块需求，但间接传导链长，不因此文调仓</td></tr>
+        <tr><td>中际旭创 300308</td><td><span class="tag tag-gold">观察</span></td><td>跟踪池标的，NPO 大单正面信号。关注 Q2 业绩和光芯片自供进展</td></tr>
+        <tr><td>罗博 300757</td><td><span class="tag tag-cyan">持有不动</span></td><td>光芯片与光模块设备不同环节，不直接关联</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">核心纪律：不因单篇自媒体文章调仓，等待上市公司公告验证。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">09</span>数据溯源</div>
+  <div class="table-wrap">
+    <table class="f3 src">
+      <thead><tr><th>数据点</th><th>来源</th><th>置信度</th></tr></thead>
+      <tbody>
+        <tr><td>光芯片技术等级+价格</td><td>公众号「数之涌现」</td><td>★★☆ 中</td></tr>
+        <tr><td>Y 公司产品进度</td><td>文章引用内部专家</td><td>★★☆ 中</td></tr>
+        <tr><td>中际旭创 NPO 订单</td><td>文章引用市场传闻</td><td>★☆☆ 低</td></tr>
+        <tr><td>持仓映射+操作建议</td><td>独立分析</td><td>★★★ 主观</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p style="color:var(--text-2);font-size:12px;margin-top:24px;border-top:1px solid var(--line);padding-top:12px">
+  免责声明：本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
+</p>
+
+</body>
+</html>
