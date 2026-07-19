@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汇绿生态 001267：1.6T 光模块投资逻辑验证清单 | 2026-07-19</title>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--bg-2:#121b32;--line:#2a3556;
+  --text:#c8d0dc;--text-2:#9aa5b9;--accent:#4da6ff;--up:#ff3b3b;--down:#1ed890;
+  --warn:#f5a623;--ok:#3ddcc8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.7;padding:16px 24px;max-width:940px;margin:0 auto;font-size:14px
+}
+h1{font-size:22px;color:#fff;margin-bottom:6px;font-weight:700}
+.header{margin-bottom:20px}
+.meta{color:var(--text-2);font-size:12px;margin-top:4px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12)
+}
+.section-label{
+  display:inline-block;background:var(--warn);color:#0d1424;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:8px
+}
+.module{margin-bottom:26px}
+.module-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.module-title::before{content:"";width:6px;height:20px;background:var(--accent);border-radius:3px}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.tag{
+  display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap
+}
+.tag-up{background:rgba(255,59,59,.15);color:var(--up)}
+.tag-down{background:rgba(30,216,144,.15);color:var(--down)}
+.tag-gold{background:rgba(245,166,35,.15);color:var(--warn)}
+.tag-cyan{background:rgba(61,220,200,.15);color:var(--ok)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;text-wrap:pretty;word-break:break-word}
+th{font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06);font-size:12px;white-space:nowrap}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.caption{color:var(--text-2);font-size:12px;margin-top:6px}
+.quote{
+  border-left:4px solid var(--accent);padding:12px 16px;background:var(--bg-2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text-2);font-size:13px
+}
+/* f3 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:16%;white-space:nowrap}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:32%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:52%}
+/* f3.ind */
+table.f3.ind th:nth-child(1),table.f3.ind td:nth-child(1){width:14%;white-space:nowrap}
+table.f3.ind th:nth-child(2),table.f3.ind td:nth-child(2){width:30%;white-space:nowrap}
+table.f3.ind th:nth-child(3),table.f3.ind td:nth-child(3){width:56%}
+/* f4 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;white-space:nowrap}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:34%;text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:34%}
+/* f5 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:18%;white-space:nowrap}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:22%;white-space:nowrap}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:16%;text-align:center}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:44%}
+@media (max-width:640px){
+  body{font-size:13px;padding:12px 14px}
+  h1{font-size:19px}
+  th,td{padding:8px 10px;font-size:12px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>汇绿生态 001267：1.6T 光模块投资逻辑验证清单</h1>
+  <div class="meta">数据来源：腾讯自选股·东方财富·天孚通信业绩预告·长飞光纤 WAIC 发言 | 整理时间：2026-07-19</div>
+</div>
+
+<div class="card">
+  <div class="module-title"><span class="section-label">01</span>核心结论</div>
+  <p>老潘对汇绿（武汉钧恒）的三点认知——<strong>1.6T 周期向上、钧恒技术支撑足够、客户结构从 Coherent 向外扩散</strong>——形成“产业+能力+订单”的完整闭环。当前股价 <span class="neg">34.92 元（-10.00%）</span>，市值 <span class="neg">274.12 亿</span>，较 52 周高点回落约 50%，已计入部分悲观预期。</p>
+  <ul style="margin:10px 0 0 18px;color:var(--text-2);font-size:13px">
+    <li><strong>短期节奏</strong>：7 月下旬海外 CSP 财报季（GOOGLE/META/MSFT/AMZN）是 1.6T 需求能否继续上修的关键验证窗口</li>
+    <li><strong>中期逻辑</strong>：若 1.6T 放量、钧恒良率维持高位、Lumentum/索尔思订单落地，则当前估值具备修复弹性</li>
+    <li><strong>纪律要求</strong>：五节点财报对赌完成前，汇绿持仓不增不减；跌破成本价 30% 且逻辑未破不割肉，但需逐条核对本清单反向信号</li>
+  </ul>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">02</span>老潘三点认知</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>认知</th><th>核心判断</th><th>当前状态 / 置信度</th></tr></thead>
+      <tbody>
+        <tr><td>需求周期</td><td>1.6T 周期向上</td><td><span class="tag tag-cyan">★★★★☆</span> 天孚 Q2 环比 +44%、1.6T 批量交付；长飞智算中心 CAGR 20.74% 至 2030</td></tr>
+        <tr><td>公司能力</td><td>钧恒技术支撑足够</td><td><span class="tag tag-cyan">★★★☆☆</span> COB 封装成熟，硅光/CPO 送样中；产能 2026 年 450 万只/年、2027 年 750 万只</td></tr>
+        <tr><td>客户扩散</td><td>向 Lumentum/索尔思扩散</td><td><span class="tag tag-gold">★★★☆☆</span> Coherent 占营收 51.91%，Lumentum/索尔思为预期客户，待订单实锤</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">03</span>验证指标体系</div>
+  <div class="table-wrap">
+    <table class="f5">
+      <thead><tr><th>认知点</th><th>验证指标</th><th>当前状态</th><th>跟踪来源/频率</th></tr></thead>
+      <tbody>
+        <tr><td>1.6T 需求周期</td><td>北美 CSP capex 指引</td><td><span class="tag tag-cyan">偏多</span></td><td>海外 CSP 财报季（7.23-7.31）；台积电 7.16 法说会</td></tr>
+        <tr><td>1.6T 需求周期</td><td>1.6T 光模块出货量</td><td><span class="tag tag-cyan">上量中</span></td><td>LightCounting；天孚/中际出货节奏</td></tr>
+        <tr><td>1.6T 需求周期</td><td>硅光方案渗透率</td><td><span class="tag tag-gold">早期</span></td><td>长飞保偏光纤需求；CPO 交换机进展</td></tr>
+        <tr><td>钧恒技术能力</td><td>1.6T 良率</td><td><span class="tag tag-gold">待验证</span></td><td>汇绿调研纪要；产线良率；退货/索赔公告</td></tr>
+        <tr><td>钧恒技术能力</td><td>自研/国产设备比例</td><td><span class="tag tag-cyan">部分自研</span></td><td>耦合设备自研率 40%；关键设备替代进度</td></tr>
+        <tr><td>钧恒技术能力</td><td>产能爬坡节奏</td><td><span class="tag tag-cyan">符合预期</span></td><td>鄂州一期/马来西亚/鄂州二期进展</td></tr>
+        <tr><td>客户结构扩散</td><td>Coherent 订单占比</td><td><span class="tag tag-cyan">51.91%</span></td><td>汇绿定期报告前五大客户披露</td></tr>
+        <tr><td>客户结构扩散</td><td>Lumentum 订单</td><td><span class="tag tag-gold">预期</span></td><td>Lumentum 财报（LITE）指引；汇绿公告</td></tr>
+        <tr><td>客户结构扩散</td><td>索尔思光电订单</td><td><span class="tag tag-gold">预期</span></td><td>索尔思采购公开信息；光通信媒体报道</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">注：★ 越多代表可验证证据越充分，而非投资价值高低。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">04</span>客户结构跟踪</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>客户</th><th>地位/占比</th><th>跟踪要点</th></tr></thead>
+      <tbody>
+        <tr><td>Coherent</td><td>占营收 51.91%</td><td>800G/1.6T 订单量是否继续上修；物料优先供给是否维持；Coherent 股价与指引是先行指标</td></tr>
+        <tr><td>Google</td><td>间接客户</td><td>谷歌 capex 指引、TPU 集群建设节奏；并非汇绿直供，小作文需警惕</td></tr>
+        <tr><td>Oracle</td><td>潜在客户</td><td>甲骨文 400 亿美元 AI 基础设施框架是否落地订单</td></tr>
+        <tr><td>Lumentum</td><td>潜在客户</td><td>LITE 财报对 1.6T 的需求描述；是否披露新的代工伙伴</td></tr>
+        <tr><td>索尔思光电</td><td>潜在客户</td><td>国内光模块厂商外发代工比例；索尔思扩产与采购节奏</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">05</span>反向风险与观察信号</div>
+  <div class="table-wrap">
+    <table class="f3.ind">
+      <thead><tr><th>风险类型</th><th>观察信号</th><th>触发后动作</th></tr></thead>
+      <tbody>
+        <tr><td>需求证伪</td><td>GOOGLE/META/MSFT/AMZN 任一 capex 指引下修</td><td>减仓或置换至泰和/三祥/罗博</td></tr>
+        <tr><td>产能过剩</td><td>1.6T 价格快速下滑、龙头毛利率连续两季下降</td><td>重新评估代工价值，不加仓</td></tr>
+        <tr><td>客户集中</td><td>Coherent 占比继续上升至 60% 以上且无新客户</td><td>客户扩散逻辑被削弱，减仓</td></tr>
+        <tr><td>技术落后</td><td>良率长期低于同行、硅光/CPO 进度落后 1 年以上</td><td>逻辑破，退出</td></tr>
+        <tr><td>订单不实</td><td>出现“直供谷歌/百万只订单”等无法验证的小作文</td><td>忽略传闻，等公告/纪要再定价</td></tr>
+        <tr><td>资金撤出</td><td>光通信 ETF 连续大幅净流出、板块成交额萎缩</td><td>短期情绪降温，中期逻辑未破则持有</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">06</span>操作纪律与仓位管理</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:12px">
+      <div><div style="font-size:12px;color:var(--text-2)">当前价</div><div class="neg">34.92 元</div></div>
+      <div><div style="font-size:12px;color:var(--text-2)">成本价</div><div>48.09 元</div></div>
+      <div><div style="font-size:12px;color:var(--text-2)">浮亏</div><div class="neg">-27.4%</div></div>
+      <div><div style="font-size:12px;color:var(--text-2)">总市值</div><div>274.12 亿</div></div>
+      <div><div style="font-size:12px;color:var(--text-2)">52 周区间</div><div>11.29 - 69.72</div></div>
+      <div><div style="font-size:12px;color:var(--text-2)">20 日跌幅</div><div class="neg">-39.9%</div></div>
+    </div>
+    <ul style="margin-left:18px;color:var(--text-2);font-size:13px">
+      <li><strong>五节点对赌</strong>：7/16 台积电 → 7/23 GOOGLE → 7/30 META/MSFT → 7/31 AMZN，节点确认前<strong>不增不减</strong></li>
+      <li><strong>中期分水岭</strong>：以 55 日线作为中期趋势判断，汇绿当前跌破 55 日线，趋势偏空但逻辑未破，不割肉</li>
+      <li><strong>加仓条件</strong>：五节点验证通过 + 股价站稳 55 日线 + 成交量回升，资金优先回流长线核心持仓</li>
+      <li><strong>减仓条件</strong>：反向风险任一信号触发，或 1.6T 需求逻辑被证伪</li>
+      <li><strong>最终纪律</strong>：卖出唯一理由 = 逻辑破 / 基本面恶化 / 竞争格局变化，不接受单纯技术止损</li>
+    </ul>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">07</span>数据溯源</div>
+  <div class="table-wrap">
+    <table class="f3.src">
+      <thead><tr><th>数据项</th><th>来源</th><th>时间</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿生态行情</td><td>腾讯自选股 / westock-data</td><td>2026-07-17 收盘</td></tr>
+        <tr><td>Coherent 占比 51.91%</td><td>汇绿生态 2025 年半年报/年报</td><td>2025H1</td></tr>
+        <tr><td>天孚 Q2 环比 +44%</td><td>天孚通信 2026H1 业绩预告</td><td>2026-07-18</td></tr>
+        <tr><td>长飞智算中心 CAGR 20.74%</td><td>长飞光纤 WAIC 2026 发言</td><td>2026-07-18</td></tr>
+        <tr><td>产能规划</td><td>证券时报机构调研 / 国盛证券研报</td><td>2026-05-20 / 2026-04-24</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" style="border-color:var(--ok)">
+  <div style="font-weight:700;color:var(--ok);margin-bottom:8px">最终判断</div>
+  <p>汇绿当前处于<strong>逻辑未破、情绪超跌</strong>的状态。老潘的三点认知在产业周期和代工能力上有较扎实支撑，客户扩散仍是预期阶段。操作上严守五节点对赌纪律，不追涨、不割肉，等 7 月底 CSP 财报和后续订单公告验证。</p>
+  <p style="margin-top:10px;color:var(--text-2);font-size:13px"><strong>这个数意味着什么，咱们该怎么做：</strong>274 亿市值、-27% 浮亏，已经把短期悲观情绪打得很足；如果 1.6T 需求继续上修且钧恒客户拓展落地，这里具备估值修复空间。但前提是不能提前加仓——等五节点过完、数据确认后再动。</p>
+</div>
+
+<div style="margin-top:24px;color:var(--text-2);font-size:12px;text-align:center">
+  免责声明：本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
+</div>
+
+</body>
+</html>
