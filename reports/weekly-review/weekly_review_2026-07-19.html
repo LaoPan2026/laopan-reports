@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周度复盘 2026-07-13 ~ 07-18</title>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--bg-2:#121b32;--line:#2a3556;
+  --text:#c8d0dc;--text-2:#9aa5b9;--accent:#4da6ff;--up:#ff3b3b;--down:#1ed890;
+  --warn:#f5a623;--ok:#3ddcc8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.7;padding:16px 24px;max-width:940px;margin:0 auto;font-size:14px
+}
+h1{font-size:22px;color:#fff;margin-bottom:6px;font-weight:700}
+.header{margin-bottom:20px}
+.meta{color:var(--text-2);font-size:12px;margin-top:4px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12)
+}
+.section-label{
+  display:inline-block;background:var(--warn);color:#0d1424;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:8px
+}
+.module{margin-bottom:26px}
+.module-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.module-title::before{content:"";width:6px;height:20px;background:var(--accent);border-radius:3px}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.tag{
+  display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap
+}
+.tag-up{background:rgba(255,59,59,.15);color:var(--up)}
+.tag-down{background:rgba(30,216,144,.15);color:var(--down)}
+.tag-gold{background:rgba(245,166,35,.15);color:var(--warn)}
+.tag-cyan{background:rgba(61,220,200,.15);color:var(--ok)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;text-wrap:pretty;word-break:break-word}
+th{font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06);font-size:12px;white-space:nowrap}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.caption{color:var(--text-2);font-size:12px;margin-top:6px}
+.quote{
+  border-left:4px solid var(--accent);padding:12px 16px;background:var(--bg-2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text-2);font-size:13px
+}
+/* f3: 名称/数据/说明 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:18%;white-space:nowrap}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:22%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%}
+/* f4 hold: 持仓复盘 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%;white-space:nowrap}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:13%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:13%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:13%}
+table.f4 th:nth-child(5),table.f4 td:nth-child(5){width:13%}
+table.f4 th:nth-child(6),table.f4 td:nth-child(6){width:32%}
+/* f5 event: 事件表 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;white-space:nowrap}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:16%;white-space:nowrap}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:12%;text-align:center}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:56%}
+/* f3.op */
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%;white-space:nowrap}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%;white-space:nowrap}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%}
+@media (max-width:640px){
+  body{font-size:13px;padding:12px 14px}
+  h1{font-size:19px}
+  th,td{padding:8px 10px;font-size:12px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>周度复盘 2026-07-14 ~ 07-18</h1>
+  <div class="meta">数据来源：腾讯自选股 / westock-data | 整理时间：2026-07-19（周日）</div>
+</div>
+
+<div class="card">
+  <div class="module-title"><span class="section-label">01</span>核心结论</div>
+  <p>本周是 2026 年迄今<strong>跌幅最深、波动最大</strong>的一周。科创50 周跌 <span class="neg">-16.93%</span>、创业板 <span class="neg">-10.78%</span>，11 只持仓中仅华峰化学小幅收红。但 ETF 单周净流入 2036 亿（历史第一）、天孚通信 Q2 超预期、广发路演坚定看多光模块——<strong>三个底部信号正在叠加</strong>。当前浮亏是情绪超跌，不是逻辑破。</p>
+  <ul style="margin:10px 0 0 18px;color:var(--text-2);font-size:13px">
+    <li><strong>短期胜负手</strong>：7/23-7/31 四家 CSP 财报，capex 不下调 = 触底信号确认</li>
+    <li><strong>操作纪律</strong>：五节点确认前不增不减，但本周无触发减仓条件</li>
+    <li><strong>局部对冲</strong>：华峰逆势收红，防御组（太钢/德展）回撤可控</li>
+  </ul>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">02</span>市场概览</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>指数</th><th>周涨跌</th><th>收盘 / 逻辑</th></tr></thead>
+      <tbody>
+        <tr><td>科创50</td><td class="neg">-16.93%</td><td>1715.40 · 科技全线踩踏，半导体/光模块/软件领跌</td></tr>
+        <tr><td>创业板指</td><td class="neg">-10.78%</td><td>3428.63 · 大票分化，龙头抗跌，中小创跟跌</td></tr>
+        <tr><td>深证成指</td><td class="neg">-5.40%</td><td>13706.88 · 防御板块弱对冲</td></tr>
+        <tr><td>上证指数</td><td class="neg">-3.05%</td><td>3764.15 · 周内一度跌破 3700，尾盘勉强收回</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <p><strong style="color:var(--warn)">ETF 抄底盘</strong>：7/13-7/17 股票 ETF 净流入 <strong>2036 亿</strong>（单周历史第一），7/17 单日 760 亿（历史第三）。大跌后 ETF 放量 = 流动性底信号，历史上 4 次类似信号 3 次在 1-2 周内触底反弹。</p>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">03</span>持仓表现</div>
+  <div class="table-wrap">
+    <table class="f4">
+      <thead><tr><th>名称</th><th class="num">周涨跌</th><th class="num">20日</th><th class="num">成本损益</th><th class="num">收盘价</th><th>关键判断</th></tr></thead>
+      <tbody>
+        <tr><td>华峰化学</td><td class="pos">+1.10%</td><td class="pos">+6.00%</td><td class="neg">-19.1%</td><td class="num">10.07</td><td>防御标杆，化工景气独立于科技杀跌</td></tr>
+        <tr><td>太钢不锈</td><td class="neg">-1.14%</td><td class="neg">-8.22%</td><td class="neg">-39.8%</td><td class="num">3.46</td><td>PB 0.60，仅剩 1/4 净资产支撑</td></tr>
+        <tr><td>泰和新材</td><td class="neg">-5.55%</td><td class="neg">-37.17%</td><td class="neg">-12.1%</td><td class="num">11.75</td><td>光通信需求侧受损，但逻辑未破</td></tr>
+        <tr><td>德展健康</td><td class="neg">-6.84%</td><td class="pos">+10.10%</td><td class="neg">-15.0%</td><td class="num">3.27</td><td>医药防御属性尚可</td></tr>
+        <tr><td>三祥新材</td><td class="neg">-7.68%</td><td class="neg">-33.02%</td><td class="pos">+130%</td><td class="num">41.81</td><td>S级仓，浮盈厚，60日仍+20%</td></tr>
+        <tr><td>软通动力</td><td class="neg">-7.76%</td><td class="neg">-2.96%</td><td class="pos">+408%</td><td class="num">37.42</td><td>A级浮盈标杆，20日跌幅可控</td></tr>
+        <tr><td>汇绿生态</td><td class="neg">-10.00%</td><td class="neg">-39.90%</td><td class="neg">-27.4%</td><td class="num">34.92</td><td>S级代工逻辑，跌停为流动性压力</td></tr>
+        <tr><td>兴森科技</td><td class="neg">-9.99%</td><td class="neg">-34.58%</td><td class="pos">利润仓</td><td class="num">34.06</td><td>负成本，但FCBGA仍需爬坡</td></tr>
+        <tr><td>星环科技</td><td class="neg">-10.21%</td><td class="neg">-30.72%</td><td class="pos">利润仓</td><td class="num">88.23</td><td>AI软件方向受益但估值重压</td></tr>
+        <tr><td>罗博特科</td><td class="neg">-12.61%</td><td class="neg">-37.99%</td><td class="neg">-21.1%</td><td class="num">413.00</td><td>光通信设备映射，高弹性双刃剑</td></tr>
+        <tr><td>澜起科技</td><td class="neg">-13.04%</td><td class="neg">-31.97%</td><td class="pos">+89.6%</td><td class="num">183.60</td><td>长期底仓，存储周期依然向上</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">按周涨跌幅从大到小排序。成本损益 = 相对持仓成本价的变动（利润仓标记为"利润仓"）。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">04</span>本周关键事件</div>
+  <div class="table-wrap">
+    <table class="f5">
+      <thead><tr><th>日期</th><th>事件</th><th>方向</th><th>持仓映射 / 后续关注</th></tr></thead>
+      <tbody>
+        <tr><td>7/16</td><td>台积电法说会</td><td><span class="tag tag-cyan">偏多</span></td><td>AI 营收+45%指引，先进制程资本支出维持高位 → 澜起/罗博</td></tr>
+        <tr><td>7/17</td><td>大盘暴跌</td><td><span class="tag tag-down">超跌</span></td><td>科技全线踩踏，多只持仓跌停；ETF 净流入 760 亿单日</td></tr>
+        <tr><td>7/18</td><td>天孚通信 Q2 预告</td><td><span class="tag tag-up">利好</span></td><td>Q2 环比 +44%，1.6T 交付上量 → 汇绿/中际/罗博</td></tr>
+        <tr><td>7/18</td><td>长飞 WAIC 发言</td><td><span class="tag tag-cyan">偏多</span></td><td>智算中心 CAGR 20.74% → 泰和/汇绿代工需求</td></tr>
+        <tr><td>7/19</td><td>野村看空研报</td><td><span class="tag tag-down">偏空</span></td><td>硬件估值收缩叙事，但股价已提前释放 → 等五节点验证</td></tr>
+        <tr><td>7/19</td><td>广发看多路演</td><td><span class="tag tag-up">利好</span></td><td>旭创 Q3 利润 +40-50%，港股 IPO 过聆讯 → 汇绿/罗博</td></tr>
+        <tr><td>7/19</td><td>台积电 CoPoS 路线</td><td><span class="tag tag-gold">远期</span></td><td>2028 H2 量产，玻璃芯基板 → 兴森（远期期权）</td></tr>
+        <tr><td>7/19</td><td>星枢计划发布</td><td><span class="tag tag-gold">中性</span></td><td>太空算力星座，软通被纳入概念板块 → 无关持仓业绩</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">05</span>操作建议</div>
+  <div class="table-wrap">
+    <table class="f3.op">
+      <thead><tr><th>持仓 / 分级</th><th>建议</th><th>逻辑</th></tr></thead>
+      <tbody>
+        <tr><td>澜起 688008 · S</td><td>坚定持有</td><td>存储接口龙头，DDR5 换代确定性。7/24 INTEL 法说会为短期验证</td></tr>
+        <tr><td>汇绿 001267 · S</td><td>不增不减</td><td>五节点对赌纪律，7/23-7/31 财报验证 1.6T 需求。逻辑未破</td></tr>
+        <tr><td>三祥 603663 · S</td><td>持有观察</td><td>铪产线 7 月底投料。浮盈 130%，55 日线附近加仓可观察</td></tr>
+        <tr><td>软通 301236 · A</td><td>持有不动</td><td>浮盈 408%，20 日仅 -2.96% 相对抗跌。星枢计划无实质受益</td></tr>
+        <tr><td>罗博 300757 · A</td><td>不增不减</td><td>随汇绿节奏。光通信设备映射，弹性大但纪律优先</td></tr>
+        <tr><td>泰和 002254 · A−</td><td>持有不动</td><td>芳纶光缆逻辑在长飞 WAIC 后被强化，三信号未破</td></tr>
+        <tr><td>星环 688031 · 利润仓</td><td>持有观察</td><td>负成本，AI 软件方向受益但估值重压。等新高信号</td></tr>
+        <tr><td>兴森 002436 · 利润仓</td><td>持有观察</td><td>负成本。FCBGA 爬坡 + CoPoS 远期期权</td></tr>
+        <tr><td>华峰 002064 · 防御</td><td>持有不动</td><td>逆势收红，防御配置有效。Q2 业绩超预期</td></tr>
+        <tr><td>德展 000813 · 防御</td><td>持有不动</td><td>医药板块独立于科技回调</td></tr>
+        <tr><td>太钢 000825 · 防御</td><td>持有不动</td><td>PB 0.60 已至极低估值区，等待行业回暖信号</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">06</span>下周关键跟踪</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>日期</th><th>事件</th><th>盯什么</th></tr></thead>
+      <tbody>
+        <tr><td>7/23</td><td>GOOGLE Q2</td><td>CSP capex 第一枪，决定 1.6T 需求是否继续上修</td></tr>
+        <tr><td>7/24</td><td>INTEL Q2</td><td>PC/服务器需求，对澜起 DDR5 渗透有前瞻意义</td></tr>
+        <tr><td>7/28</td><td>LITE Q2</td><td>Lumentum 指引 = 汇绿新客户验证窗口</td></tr>
+        <tr><td>7/30</td><td>META/MSFT Q2</td><td>capex 双弹连发，最大权重节点</td></tr>
+        <tr><td>7/31</td><td>AMZN Q2</td><td>四家定调收官。一票否决 = 任一指引下修</td></tr>
+        <tr><td>随时</td><td>新易盛 Q2 业绩</td><td>1.6T 物料修复确认 → 提前验证光链景气</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" style="border-color:var(--ok)">
+  <div style="font-weight:700;color:var(--ok);margin-bottom:8px">最终判断</div>
+  <p>本周是年度级别深度回调，但 ETF 2036 亿抄底 + 天孚超预期 + 广发路演三重信号指向<strong>情绪超跌而非基本面恶化</strong>。11 只持仓中 5 只仍在盈利区间（软通 +408%、三祥 +130%、澜起 +89%、星环/兴森利润仓）。浮亏最深的是汇绿（-27%），但其 1.6T 代工逻辑未被证伪。</p>
+  <p style="margin-top:10px;color:var(--text-2);font-size:13px"><strong>这个数意味着什么，咱们该怎么做：</strong>本周的回撤不是逻辑破，是流动性冲击。五节点对赌下周正式进入执行期——7/23 GOOGLE 第一枪，不在财报前恐慌，也不在财报前抢跑。纪律 = 不增不减。</p>
+</div>
+
+<div style="margin-top:24px;color:var(--text-2);font-size:12px;text-align:center">
+  免责声明：本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
+</div>
+
+</body>
+</html>
