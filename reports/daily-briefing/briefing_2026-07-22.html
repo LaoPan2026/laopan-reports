@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7/21复盘 + 7/22盘前简报（周三）</title>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--bg-2:#121b32;--line:#2a3556;
+  --text:#c8d0dc;--text-2:#9aa5b9;--accent:#4da6ff;--up:#ff3b3b;--down:#1ed890;
+  --warn:#f5a623;--ok:#3ddcc8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.7;padding:16px 24px;max-width:940px;margin:0 auto;font-size:14px
+}
+h1{font-size:22px;color:#fff;margin-bottom:6px;font-weight:700}
+.header{margin-bottom:20px}
+.meta{color:var(--text-2);font-size:12px;margin-top:4px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12)
+}
+.section-label{
+  display:inline-block;background:var(--warn);color:#0d1424;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:8px
+}
+.module{margin-bottom:26px}
+.module-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.module-title::before{content:"";width:6px;height:20px;background:var(--accent);border-radius:3px}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-cyan{background:rgba(61,220,200,.15);color:var(--ok)}
+.tag-gold{background:rgba(245,166,35,.15);color:var(--warn)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:left;text-wrap:pretty;word-break:break-word}
+th{font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06);font-size:12px;white-space:nowrap}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.caption{color:var(--text-2);font-size:12px;margin-top:6px}
+/* f4 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;white-space:nowrap}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:30%;white-space:nowrap}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:12%;text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:40%}
+/* f3 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;white-space:nowrap}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%}
+/* f3.op */
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%;white-space:nowrap}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%;white-space:nowrap}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%}
+/* f4.cal */
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1){width:10%;white-space:nowrap}
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2){width:24%;white-space:nowrap}
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3){width:30%;white-space:nowrap}
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4){width:36%}
+@media (max-width:640px){
+  body{font-size:13px;padding:12px 14px}
+  h1{font-size:19px}
+  th,td{padding:8px 10px;font-size:12px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>7/21复盘 + 7/22盘前简报（周三）</h1>
+  <div class="meta">数据截至：2026-07-22 09:30 开盘 | 数据来源：腾讯自选股、公开行情</div>
+</div>
+
+<div class="card">
+  <div class="module-title"><span class="section-label">01</span>核心结论</div>
+  <p>7/21 A股上演教科书级V型反转：科创50从<span class="neg">-3.3%</span>深跌至收盘<span class="pos">+10.73%</span>，单日振幅<span class="pos">14.39%</span>。融资盘强平后的抛压枯竭+抄底盘集中入场是主因。<strong>昨夜美股光通信链暴涨</strong>：COHR <span class="pos">+11.15%</span>、LITE <span class="pos">+9.41%</span>、MRVL <span class="pos">+6.68%</span>，为今日A股光通信/半导体映射提供情绪溢价。</p>
+  <p style="margin-top:10px"><strong>今日基调：高开震荡，不追高。五节点对赌进入关键期，7/23 GOOGLE财报前维持不增不减。</strong></p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">02</span>7/21复盘：四大指数V型反转</div>
+  <div class="table-wrap">
+    <table class="f4">
+      <thead><tr><th>指数</th><th>收盘</th><th>涨幅</th><th>关键信号</th></tr></thead>
+      <tbody>
+        <tr><td>科创50</td><td class="num">1903.16</td><td><span class="pos">+10.73%</span></td><td>低点1663.85，振幅14.39%，本轮去杠杆底部信号</td></tr>
+        <tr><td>创业板指</td><td class="num">3685.97</td><td><span class="pos">+7.05%</span></td><td>低点3373.04，收盘接近全日高点，科技股强势修复</td></tr>
+        <tr><td>深证成指</td><td class="num">14264.29</td><td><span class="pos">+4.80%</span></td><td>低点13364.41，成交额1.56万亿，放量反转</td></tr>
+        <tr><td>上证指数</td><td class="num">3864.37</td><td><span class="pos">+3.24%</span></td><td>低点3743一线，午后收于3860上方，三重底确认</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">上证指数涨幅按低点3743→收盘3864.37计算；三重底3745/3741/3743获确认。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">03</span>7/21持仓复盘：高弹性标的暴力反弹</div>
+  <div class="table-wrap">
+    <table class="f4">
+      <thead><tr><th>持仓</th><th>7/21收盘</th><th>涨幅</th><th>状态·触发·动作</th></tr></thead>
+      <tbody>
+        <tr><td>罗博特科</td><td class="num">440.00</td><td><span class="pos">+17.93%</span></td><td>反弹最强；跟设备/NPO逻辑；持有不动</td></tr>
+        <tr><td>澜起科技</td><td class="num">219.60</td><td><span class="pos">+15.62%</span></td><td>硬逻辑率先修复；MRVL映射大涨；底仓不动</td></tr>
+        <tr><td>三祥新材</td><td class="num">42.00</td><td><span class="pos">+10.01%</span></td><td>涨停；固态电池+锆；持有不动</td></tr>
+        <tr><td>兴森科技</td><td class="num">32.68</td><td><span class="pos">+6.62%</span></td><td>第四个跌停被打开；利润仓本金安全；持有</td></tr>
+        <tr><td>汇绿生态</td><td class="num">33.16</td><td><span class="pos">+5.50%</span></td><td>从跌停板翻红；COHR隔夜大涨映射；持有</td></tr>
+        <tr><td>星环科技</td><td class="num">90.12</td><td><span class="pos">+5.05%</span></td><td>跟随AI软件修复；利润仓；持有</td></tr>
+        <tr><td>泰和新材</td><td class="num">11.32</td><td><span class="pos">+2.91%</span></td><td>芳纶光缆需求侧弱修复；持有观察</td></tr>
+        <tr><td>华峰化学</td><td class="num">10.48</td><td><span class="pos">+2.44%</span></td><td>防御组继续稳守；周期对冲有效</td></tr>
+        <tr><td>太钢不锈</td><td class="num">3.52</td><td><span class="pos">0.00%</span></td><td>防御仓，波动极小；不动</td></tr>
+        <tr><td>软通动力</td><td class="num">38.48</td><td><span class="pos">+0.42%</span></td><td>相对滞涨；IT服务非反弹主线；持有</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">04</span>美股映射链隔夜暴涨</div>
+  <div class="table-wrap">
+    <table class="f4">
+      <thead><tr><th>美股</th><th>收盘(USD)</th><th>涨幅</th><th>A股映射</th></tr></thead>
+      <tbody>
+        <tr><td>Coherent(COHR)</td><td class="num">317.22</td><td><span class="pos">+11.15%</span></td><td>汇绿生态（第一大客户）</td></tr>
+        <tr><td>Lumentum(LITE)</td><td class="num">837.56</td><td><span class="pos">+9.41%</span></td><td>汇绿潜在新客户</td></tr>
+        <tr><td>Marvell(MRVL)</td><td class="num">207.96</td><td><span class="pos">+6.68%</span></td><td>澜起科技、罗博特科</td></tr>
+        <tr><td>NVIDIA(NVDA)</td><td class="num">207.29</td><td><span class="pos">+1.97%</span></td><td>罗博特科、AI硬件情绪</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">来源：公开行情；美股7/21收盘。光通信概念股普涨，AAOI、POET等同涨逾10%。</p>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">05</span>7/22盘前：今日开盘与关键节点</div>
+  <div class="table-wrap">
+    <table class="f4.cal">
+      <thead><tr><th>日期</th><th>事件</th><th>环节</th><th>映射/影响</th></tr></thead>
+      <tbody>
+        <tr><td>7/22 今日</td><td>A股开盘</td><td>情绪延续</td><td>光通信/半导体预计高开，不追高</td></tr>
+        <tr><td>7/23 明日</td><td>Google财报</td><td>CSP capex</td><td>汇绿/罗博/澜起 五节点第一枪</td></tr>
+        <tr><td>7/28</td><td>Lumentum(LITE)</td><td>光通信</td><td>汇绿潜在新客户订单信号</td></tr>
+        <tr><td>7/30</td><td>META/微软</td><td>CSP capex</td><td>光通信链需求验证</td></tr>
+        <tr><td>7/31</td><td>亚马逊</td><td>CSP capex</td><td>五节点收官</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">06</span>今日操作：不增不减</div>
+  <div class="table-wrap">
+    <table class="f3.op">
+      <thead><tr><th>持仓</th><th>动作</th><th>逻辑</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿生态</td><td>持有不动</td><td>COHR隔夜+11.15%映射，但五节点前不加仓</td></tr>
+        <tr><td>罗博特科</td><td>持有不动</td><td>昨日+17.93%已修复大部分跌幅；不追高</td></tr>
+        <tr><td>澜起科技</td><td>底仓不动</td><td>S级长期底仓，MRVL大涨强化逻辑</td></tr>
+        <tr><td>三祥新材</td><td>持有不动</td><td>S级，昨日涨停，逻辑未破</td></tr>
+        <tr><td>兴森科技</td><td>持有不动</td><td>利润仓本金安全，FCBGA逻辑未破</td></tr>
+        <tr><td>星环科技</td><td>持有不动</td><td>利润仓，AI应用方向受益</td></tr>
+        <tr><td>泰和新材</td><td>持有观察</td><td>A-级，等待芳纶光缆需求三信号</td></tr>
+        <tr><td>软通动力</td><td>持有观察</td><td>A级标杆仓，反弹相对滞涨</td></tr>
+        <tr><td>华峰/德展/太钢</td><td>持有不动</td><td>防御组继续发挥对冲作用</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-title"><span class="section-label">07</span>风险提示</div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th>风险</th><th>概率</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td>今日高开低走</td><td><span class="tag tag-gold">中</span></td><td>昨日抄底盘今日获利了结；不追涨，持仓不动</td></tr>
+        <tr><td>GOOGLE财报下修capex</td><td><span class="tag tag-gold">低-中</span></td><td>五节点核心风险；若发生需重新评估光通信链</td></tr>
+        <tr><td>融资盘二次去杠杆</td><td><span class="tag tag-gold">低</span></td><td>昨日V型反转显示抛压已大幅释放；再崩概率低</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" style="margin-top:20px">
+  <p style="font-size:13px;color:var(--text-2)"><strong>数据溯源：</strong>指数与A股行情来自腾讯自选股westock-data；美股行情来自公开行情数据。本简报仅供研究参考，不构成投资建议。</p>
+</div>
+
+</body>
+</html>
