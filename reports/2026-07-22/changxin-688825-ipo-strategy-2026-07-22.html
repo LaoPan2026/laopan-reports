@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长鑫科技 688825 上市首日操作方案</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1424;--card:#1a2540;--head:#0f3460;--text:#e4e4e8;--muted:#9aa5b9;--accent:#4da6ff;--up:#ff3b3b;--down:#1ed890;--warn:#f0a040;--line:#2a3556;--ok:#3ddcc8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",PingFang SC,"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;padding:16px}
+.container{max-width:940px;margin:0 auto}
+.header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:20px}
+.header h1{font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px}
+.header .meta{font-size:12px;color:var(--muted)}
+.module{background:var(--card);border-radius:8px;padding:16px;margin-bottom:16px;border:1px solid var(--line)}
+.module-title{font-size:17px;font-weight:700;margin-bottom:12px;padding-left:12px;border-left:4px solid var(--accent);display:flex;align-items:center;gap:8px}
+.module-title .num{background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px}
+.summary{font-size:15px;color:var(--text);line-height:1.8}
+.summary strong{color:var(--ok)}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.stat-box{background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:6px;padding:12px;text-align:center}
+.stat-box .value{font-size:18px;font-weight:700;color:var(--ok);white-space:nowrap}
+.stat-box .label{font-size:12px;color:var(--muted);margin-top:4px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{text-align:center;font-weight:700;color:#d0d8e6;background:rgba(155,165,185,0.06);font-size:12px;white-space:nowrap}
+td{text-align:left;text-wrap:pretty;word-break:break-word}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+.up,.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.down,.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.warn{color:var(--warn);font-weight:700;white-space:nowrap}
+.ok{color:var(--ok);font-weight:700;white-space:nowrap}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-cyan{background:rgba(77,166,255,0.15);color:var(--accent)}
+.tag-gold{background:rgba(240,160,64,0.15);color:var(--warn)}
+.tag-green{background:rgba(30,216,144,0.15);color:var(--down)}
+/* column widths */
+.f2 th:nth-child(1),.f2 td:nth-child(1){width:28%;white-space:nowrap}
+.f2 th:nth-child(2),.f2 td:nth-child(2){width:72%}
+.f3 th:nth-child(1),.f3 td:nth-child(1){width:22%;white-space:nowrap}
+.f3 th:nth-child(2),.f3 td:nth-child(2){width:18%;text-align:center}
+.f3 th:nth-child(3),.f3 td:nth-child(3){width:60%}
+.f3.op th:nth-child(1),.f3.op td:nth-child(1){width:28%;white-space:nowrap}
+.f3.op th:nth-child(2),.f3.op td:nth-child(2){width:16%;text-align:center}
+.f3.op th:nth-child(3),.f3.op td:nth-child(3){width:56%}
+.f4 th:nth-child(1),.f4 td:nth-child(1){width:18%;white-space:nowrap}
+.f4 th:nth-child(2),.f4 td:nth-child(2){width:28%;text-align:center}
+.f4 th:nth-child(3),.f4 td:nth-child(3){width:14%;text-align:center}
+.f4 th:nth-child(4),.f4 td:nth-child(4){width:40%}
+.note{font-size:13px;color:var(--muted);margin-top:12px;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;border-left:3px solid var(--warn)}
+.final{margin-top:20px;padding:14px;background:rgba(77,166,255,0.08);border:1px solid var(--accent);border-radius:8px;font-size:15px;font-weight:600;color:var(--text)}
+.source{font-size:12px;color:var(--muted);margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
+@media(max-width:640px){body{font-size:14px;padding:12px}.stat-grid{grid-template-columns:repeat(2,1fr)}.module{padding:12px}table{font-size:12px}th,td{padding:8px 6px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>长鑫科技 688825 上市首日操作方案</h1>
+    <div class="meta">2026-07-22 · 巴蒂独立策略 · 仅供参考</div>
+  </div>
+
+  <div class="module">
+    <div class="module-title"><span class="num">01</span>核心结论</div>
+    <div class="summary">
+      长鑫是<strong>没有成本感情的纯利润交易</strong>，不应套入"逻辑未破不卖"的长线框架。合理首日市值区间<strong>2.0-3.0 万亿</strong>，对应股价 <strong>30-45 元</strong>。超过 3.3 万亿视为情绪过热，建议兑现；低于 2.0 万亿可暂持博弈次日情绪。核心目标：把 8660 元本金变成 <strong>2.5-4 万元现金流</strong>，缓解当前账户浮亏压力。
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-title"><span class="num">02</span>中签账本</div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="value">1000 股</div><div class="label">中签数量</div></div>
+      <div class="stat-box"><div class="value">8.66 元</div><div class="label">发行价</div></div>
+      <div class="stat-box"><div class="value">8,660 元</div><div class="label">缴款本金</div></div>
+      <div class="stat-box"><div class="value">2.5 万亿</div><div class="label">老潘预判下限</div></div>
+      <div class="stat-box"><div class="value">3.0 万亿</div><div class="label">老潘预判上限</div></div>
+      <div class="stat-box"><div class="value">5.0 万亿</div><div class="label">华西目标价</div></div>
+    </div>
+    <div class="note">按发行后总股本 668.81 亿股计算。2.5 万亿对应股价 37.38 元（+331%），3 万亿对应 44.85 元（+418%），5 万亿对应 74.75 元（+763%）。</div>
+  </div>
+
+  <div class="module">
+    <div class="module-title"><span class="num">03</span>首日分情境操作</div>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>开盘情境</th><th>对应市值</th><th>信号</th><th>操作建议</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tag-green">≤30 元</span></td><td>&lt;2.0 万亿</td><td><span class="ok">低估</span></td><td>暂持 1000 股；盘中冲至 35 元卖 500 股；尾盘低于 32 元保留 200 股博弈次日</td></tr>
+          <tr><td><span class="tag tag-cyan">30-45 元</span></td><td>2.0-3.0 万亿</td><td><span class="ok">合理</span></td><td>开盘 ≥35 元卖 500 股；冲至 45 元再卖 300 股；尾盘 ≥40 元清仓</td></tr>
+          <tr><td><span class="tag tag-gold">≥50 元</span></td><td>&gt;3.3 万亿</td><td><span class="warn">过热</span></td><td>开盘即卖 700 股；冲至 55 元再卖 200 股；尾盘 ≥50 元清仓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-title"><span class="num">04</span>推荐执行路径</div>
+    <div class="table-wrap">
+      <table class="f3.op">
+        <thead><tr><th>触发条件</th><th>卖出股数</th><th>动作说明</th></tr></thead>
+        <tbody>
+          <tr><td>开盘 ≥35 元</td><td>500 股</td><td>收回本金 + 落袋约 1.3 万利润，降低心理账户压力</td></tr>
+          <tr><td>盘中 ≥45 元</td><td>300 股</td><td>再落袋约 1.35 万，保留 200 股博弈情绪延续</td></tr>
+          <tr><td>尾盘 ≥40 元</td><td>200 股</td><td>全部清仓，新股利润完整兑现</td></tr>
+          <tr><td>尾盘 &lt;35 元</td><td>0 股</td><td>保留 200 股，次日视开盘情绪再决定</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">按此路径，首日大概率变现 <strong>2.5-3.5 万元</strong>现金。长鑫为科创板新股，首日无涨跌幅限制，集合竞价阶段（9:15-9:25）即可观察情绪。</div>
+  </div>
+
+  <div class="module">
+    <div class="module-title"><span class="num">05</span>资金去向建议</div>
+    <div class="table-wrap">
+      <table class="f3">
+        <thead><tr><th>用途</th><th>比例</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>保留现金</td><td>50%</td><td>当前科技持仓浮亏较大，现金是最大主动权</td></tr>
+          <tr><td>加仓防御</td><td>30%</td><td>华峰化学 / 德展健康 / 太钢不锈等低估值方向</td></tr>
+          <tr><td>机动仓位</td><td>20%</td><td>放着不动，等五节点财报验证后再决策</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-title"><span class="num">06</span>风险提示</div>
+    <div class="summary">
+      1. <strong>长鑫是 DRAM 周期股</strong>，2026 年大概率是周期高点，不可用成长股估值长线持有。<br>
+      2. <strong>首日破发风险存在</strong>：若开盘即破发，直接止损离场，亏损仅约 800-1000 元，不伤元气。<br>
+      3. <strong>不要把新股利润加仓回科技股</strong>：汇绿、罗博仍在五节点对赌期内，纪律优先。<br>
+      4. <strong>华西 5 万亿目标价偏激进</strong>，按 40x PE 给周期股顶点，历史罕见，不宜作为持仓依据。
+    </div>
+  </div>
+
+  <div class="final">
+    最终判断：长鑫新股赚的是情绪溢价与稀缺性溢价，不是长期价值。首日核心任务不是"赌到最高"，而是"把利润变成现金流"。按 35/45/40 三档分批兑现，对你现在的账户状态最负责任。
+  </div>
+
+  <div class="source">
+    数据溯源：发行价/股本来自长鑫科技 IPO 公告；市值测算按发行后总股本 668.81 亿股；2026E 净利预测参考华西证券 1244.05 亿元。本方案仅为策略参考，不构成投资建议。
+  </div>
+</div>
+</body>
+</html>
