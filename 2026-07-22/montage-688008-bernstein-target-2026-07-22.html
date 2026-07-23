@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>澜起科技 · 伯恩斯坦400元目标价验证报告</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+.hero .update{font-size:11px;color:#6e7681;margin-top:6px}
+
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+
+/* === Tables === */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;text-wrap:pretty;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+
+/* f3 |22/18/60 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:center}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+
+/* f4 | 16/18/14/52 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%;text-align:left}
+
+/* f3.op | 28/16/56 */
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%;white-space:nowrap;text-align:left}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%;text-align:right}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%;text-align:left}
+
+/* f4.scn | 18/28/27/27 */
+table.f4.scn th:nth-child(1),table.f4.scn td:nth-child(1){width:18%;white-space:nowrap;text-align:left}
+table.f4.scn th:nth-child(2),table.f4.scn td:nth-child(2){width:28%;text-align:left}
+table.f4.scn th:nth-child(3),table.f4.scn td:nth-child(3){width:27%;text-align:left}
+table.f4.scn th:nth-child(4),table.f4.scn td:nth-child(4){width:27%;text-align:left}
+
+/* Colors */
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.tag-purple{background:rgba(155,109,255,0.12);color:var(--purple)}
+
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#chart{width:100%;height:280px;margin:14px 0 4px}
+
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}
+  .stat-card .val{font-size:18px}
+  #chart{height:220px}
+  footer{padding:14px;font-size:10px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>澜起科技 · 伯恩斯坦400元目标价验证</h1>
+  <div class="sub">688008 · S级长期底仓 · 成本 96.83 · 当前 226.18 · 浮盈 <span class="pos">+133%</span></div>
+  <div class="update">2026-07-22 19:30 · 数据来源：Wind / 伯恩斯坦研报 / 7/17交流会纪要</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>核心判断</div>
+  <p class="caption"><span class="tag tag-up">结论</span> <strong>伯恩斯坦400元（A股）/ 520港元（H股）目标价逻辑坚实但指向远期（2027-2028年滚动业绩）。当前226元距400元仍有+77%理论空间，但需要4项条件兑现：MRCD量产爬坡、PCIe Gen6/CXL客户导入、CSP capex不下修、汇率企稳。</strong></p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-cyan">逻辑强度</span> 伯恩斯坦的核心贡献是重新定义了澜起所在的赛道——将内存接口芯片市场从"周期性的成熟市场"重估为"AI驱动的成长市场"（CAGR 65%，2030年200亿美元）。这个赛道定价权重估，比单季度业绩数据重要得多。只要AI算力投资的主线不崩塌，澜起的估值框架从周期股切换到成长股就是不可逆的。</p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-gold">操作</span> <strong>底仓继续持有不动。五节点对赌期内（7/23-8/14）不增不减。400元不是短线目标，是中期估值锚。</strong></p>
+</section>
+
+<!-- 02 伯恩斯坦研报核心拆解 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>伯恩斯坦研报 · 关键假设拆解</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="val" style="color:var(--data)">400元</div>
+      <div class="lbl">A股目标价</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:var(--data)">520港元</div>
+      <div class="lbl">H股目标价</div>
+    </div>
+    <div class="stat-card">
+      <div class="val highlight-data">10.82元</div>
+      <div class="lbl">2028E EPS（+73%）</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:var(--num)">50x</div>
+      <div class="lbl">2028E滚动PE</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+  <table class="f4.scn nowrap-first">
+    <tr><th>假设前提</th><th>具体内容</th><th>置信度</th><th>风险</th></tr>
+    <tr>
+      <td>MRCD/MDB放量</td>
+      <td>2017年Q3至2028年Q2大规模量产，单品70-80美元</td>
+      <td><span class="tag tag-cyan">中高</span></td>
+      <td>需CPU平台升级（Venice/Diamond Rapids），若延迟则拖后</td>
+    </tr>
+    <tr>
+      <td>PCIe/CXL导入</td>
+      <td>Gen6 Retimer + CXL MXC 2027年客户导入完成</td>
+      <td><span class="tag tag-cyan">中</span></td>
+      <td>竞争格局变化，Broadcom/英伟达可能自研替代</td>
+    </tr>
+    <tr>
+      <td>AI Capex持续</td>
+      <td>CSP四巨头不变，DRAM厂商HBM扩产不降速</td>
+      <td><span class="tag tag-gold">低→中</span></td>
+      <td>只要一家CSP下修capex，全链估值会受冲击</td>
+    </tr>
+    <tr>
+      <td>份额稳定</td>
+      <td>DDR5 RCD全球>45%份额，三寡头格局不变</td>
+      <td><span class="tag tag-up">高</span></td>
+      <td>韩国调查若导致罚款，可能削弱部分竞争力</td>
+    </tr>
+    <tr>
+      <td>汇率企稳</td>
+      <td>人民币兑美元不再大幅升值</td>
+      <td><span class="tag tag-gold">不确定</span></td>
+      <td>人民币升值压报表数字，美元口径才是真实增速</td>
+    </tr>
+  </table>
+  </div>
+</section>
+
+<!-- 03 7/17交流会交叉验证 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>7/17交流会 · 伯恩斯坦逻辑的三重验证</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>验证维度</th><th>伯恩斯坦假设</th><th>交流会验证结果</th></tr>
+    <tr>
+      <td>MRCD/MDB进展</td>
+      <td>规模放量，价值量10倍</td>
+      <td class="pos">✅ 第2子代持续送样，CSP客户兴趣强烈，部分开始定制开发</td>
+    </tr>
+    <tr>
+      <td>新品收入爬坡</td>
+      <td>PCIe/CXL/MXC贡献增量</td>
+      <td class="pos">✅ Gen5量产→Gen6送样→MXC 3.1送样→Switch年内流片，8线并行</td>
+    </tr>
+    <tr>
+      <td>行业需求强度</td>
+      <td>CAGR 65%，200亿美元市场</td>
+      <td class="pos">✅ Q2环比+19.5%创历史新高，产能供不应求，下半年更紧张</td>
+    </tr>
+    <tr>
+      <td>韩国调查影响</td>
+      <td>影响有限，市场反应过度</td>
+      <td class="pos">✅ 三寡头同步调查，公司/员工未被指控，订单正常</td>
+    </tr>
+    <tr>
+      <td>汇率压制</td>
+      <td>汇率压报表增速</td>
+      <td class="pos">✅ 交流会上管理层明确：美元口径收入增速更高</td>
+    </tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:8px"><span class="tag tag-up">结论</span><strong> 伯恩斯坦的核心假设与7/17交流会管理层披露的信息高度吻合。5项关键假设中，4项得到直接验证，1项（汇率）得到正面解释。这增加了400元目标价的置信度。</strong></p>
+</section>
+
+<!-- 04 当前股价与目标价的距离 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>目标价兑现路径 · 三段式推演</div>
+  <div id="chart"></div>
+  <div class="table-wrap" style="margin-top:8px">
+  <table class="f4.scn nowrap-first">
+    <tr><th>阶段</th><th>价格区间</th><th>触发条件</th><th>时间预期</th></tr>
+    <tr>
+      <td>修复区</td>
+      <td>226→<span class="highlight-data">280</span></td>
+      <td>CSP正面指引（7/23-7/31）解除情绪压制</td>
+      <td>7月底~8月</td>
+    </tr>
+    <tr>
+      <td>新高区</td>
+      <td>280→<span class="highlight-data">333</span></td>
+      <td>半年报正式披露（8/29）+ Q3指引超预期</td>
+      <td>8-9月</td>
+    </tr>
+    <tr>
+      <td>目标区</td>
+      <td>333→<span class="highlight-data">400+</span></td>
+      <td>MRCD/MDB量产验证+PCIe Switch样片+2027年盈利上修</td>
+      <td>2027年</td>
+    </tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:8px;font-size:12px;color:var(--sub)">注：以上为情景推演，非涨跌承诺。400元是远期估值锚而非短期目标。</p>
+</section>
+
+<!-- 05 持仓价值核算 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>持仓价值核算 · 三种情境</div>
+  <div class="table-wrap">
+  <table class="f4.scn nowrap-first">
+    <tr><th>情境</th><th>目标价</th><th>较当前涨幅</th><th>成本96.83倍率</th></tr>
+    <tr>
+      <td>保守（外资中位）</td>
+      <td>280</td>
+      <td class="pos">+24%</td>
+      <td class="pos">2.9x</td>
+    </tr>
+    <tr>
+      <td>基准（高盛）</td>
+      <td>363</td>
+      <td class="pos">+60%</td>
+      <td class="pos">3.7x</td>
+    </tr>
+    <tr>
+      <td>乐观（伯恩斯坦）</td>
+      <td>400</td>
+      <td class="pos">+77%</td>
+      <td class="pos">4.1x</td>
+    </tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px"><strong>当前浮盈+133%（成本96.83→现价226），距离伯恩斯坦目标价仍有+77%理论空间。</strong> 以老潘成本价计，若触及400元大关，总回报约<span class="highlight-data">4.1倍</span>。这种空间在长期底仓中可遇不可求——且不需要澜起有任何"奇迹级"表现，只需要按部就班执行交流会上的产品路线图。</p>
+</section>
+
+<!-- 06 巴蒂独立判断 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>巴蒂独立判断 · 相信什么与不相信什么</div>
+
+  <p class="caption"><span class="tag tag-up">相信的</span></p>
+  <p class="caption" style="margin-top:4px;padding-left:14px">① <strong>赛道重估不可逆</strong>——内存接口芯片从"周期品"到"AI必需品"的认知转换正在发生，伯恩斯坦的行业空间3倍上调是这一趋势的结果而非原因。</p>
+  <p class="caption" style="padding-left:14px">② <strong>新品矩阵打开天花板</strong>——从单一RCD到8大产品线，澜起正在从配件供应商升级为平台型互连芯片公司。PCIe Switch和以太网交换芯片是百亿级增量。</p>
+  <p class="caption" style="padding-left:14px">③ <strong>执行层面验证充分</strong>——7/17交流会披露的Q2环比+19.5%创纪录、产能下半年进一步释放、第6代RCD送样等细节，全部指向"按计划推进"而非"画饼"。</p>
+
+  <p class="caption" style="margin-top:10px"><span class="tag tag-gold">不相信的</span></p>
+  <p class="caption" style="margin-top:4px;padding-left:14px">① <strong>韩国调查就是个"过场"</strong>——虽然当前未被指控，但三寡头行业性调查最终大概率以和解/罚款结案。罚款金额可能冲击短期利润，但不会动摇核心竞争力。</p>
+  <p class="caption" style="padding-left:14px">② <strong>400元是2026年就能到的目标</strong>——伯恩斯坦锚定的是2027Q3-2028Q2滚动业绩，对应50x PE。2026年内先看280-333元（修复前高+中报催化），400元需要MRCD放量验证。</p>
+  <p class="caption" style="padding-left:14px">③ <strong>CSP capex会无限扩张</strong>——五节点对赌纪律依然有效。AI投资有周期，任何一家CSP下修capex都将触发全链估值回调。</p>
+
+  <p class="caption" style="margin-top:10px"><span class="tag tag-down">底线认知</span></p>
+  <p class="caption" style="margin-top:4px;padding-left:14px">成本96.83元 + 当前226元 = 已拥有足够安全垫。400元目标的置信度足够高，让底仓持有至2027年验证逻辑成为理性选择。但300元以上不加仓——安全边际会随股价上行而收窄。</p>
+</section>
+
+<!-- 07 操作纪律 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>操作纪律 · 四象限应对矩阵</div>
+  <div class="table-wrap">
+  <table class="f4.scn nowrap-first">
+    <tr><th>场景</th><th>触发条件</th><th>操作</th><th>逻辑</th></tr>
+    <tr>
+      <td>底仓不动</td>
+      <td>基本面未变</td>
+      <td><span class="tag tag-up">持有</span></td>
+      <td>成本极低，逻辑未破</td>
+    </tr>
+    <tr>
+      <td>急跌至200以下</td>
+      <td>情绪杀/调查罚款/大盘恐慌</td>
+      <td><span class="tag tag-cyan">不动或小加</span></td>
+      <td>安全垫133%+逻辑未破=逆势窗口</td>
+    </tr>
+    <tr>
+      <td>CSP首次下修capex</td>
+      <td>7/23-7/31财报季中任何一家</td>
+      <td><span class="tag tag-gold">减仓评估</span></td>
+      <td>全链估值重构，减至半仓等待</td>
+    </tr>
+    <tr>
+      <td>触及前高330+</td>
+      <td>半年报或CSP催化下修复至332</td>
+      <td><span class="tag tag-cyan">持有观察</span></td>
+      <td>前高附近可能有技术压力，但不构成卖出理由</td>
+    </tr>
+  </table>
+  </div>
+</section>
+
+<!-- 08 数据溯源 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">08</span>数据溯源与版本</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>数据项</th><th>来源</th><th>置信度</th></tr>
+    <tr><td>伯恩斯坦目标价400/520</td><td>头条/网易财经转载</td><td>★★★☆ 权威投行研报</td></tr>
+    <tr><td>高盛目标价363/510</td><td>AASTOCKS</td><td>★★★★ 知名投行</td></tr>
+    <tr><td>交流会纪要</td><td>东方财富股吧整理</td><td>★★★☆ 可信</td></tr>
+    <tr><td>H1业绩预告</td><td>澜起科技公告</td><td>★★★★★ 正式披露</td></tr>
+    <tr><td>日K线行情</td><td>Wind</td><td>★★★★★ 标准</td></tr>
+    <tr><td>行业空间预测</td><td>伯恩斯坦研报</td><td>★★★ 第三方预测</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px;font-size:11px;color:var(--sub)">报告版本：2026-07-22 19:30 · 生成人：巴蒂 · QC状态：待校验</p>
+</section>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。目标价为投行预测，不代表实际可达价格。澜起科技韩国反垄断调查仍处调查阶段，结果存在不确定性。AI资本开支存在周期性波动风险。
+</footer>
+
+<script>
+var chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  grid:{left:70,right:45,top:15,bottom:30},
+  xAxis:{
+    type:'value',
+    axisLabel:{color:'#9aa5b9',formatter:'{value}元'},
+    axisLine:{lineStyle:{color:'#2a3556'}},
+    splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)',type:'dashed'}}
+  },
+  yAxis:{
+    type:'category',
+    data:['保守(280)','基准/高盛(363)','乐观/伯恩斯坦(400)'],
+    axisLabel:{color:'#eef2f8',fontSize:12},
+    axisLine:{lineStyle:{color:'#2a3556'}}
+  },
+  series:[{
+    type:'bar',
+    data:[
+      {value:280,itemStyle:{color:'#3ddcc8'}},
+      {value:363,itemStyle:{color:'#f5a623'}},
+      {value:400,itemStyle:{color:'#ffd83d'}}
+    ],
+    label:{show:true,position:'insideRight',color:'#0d1424',formatter:'{c}元',fontSize:12,fontWeight:700},
+    barWidth:'48%',
+    markLine:{
+      silent:true,
+      data:[
+        {xAxis:96.83,name:'成本96.83',label:{formatter:'成本 96.83',color:'#ffd83d',fontSize:11,position:'start'},lineStyle:{color:'#ffd83d',type:'dashed',width:1.5}},
+        {xAxis:226.18,name:'现价226',label:{formatter:'现价 226.18',color:'#1ed890',fontSize:11,position:'start'},lineStyle:{color:'#1ed890',type:'dashed',width:1.5}}
+      ]
+    }
+  }]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>

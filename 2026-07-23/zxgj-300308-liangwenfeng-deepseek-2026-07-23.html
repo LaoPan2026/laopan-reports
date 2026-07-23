@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>中际旭创×梁文锋 · 双份交叉验证</title>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+.hero .update{font-size:11px;color:#6e7681;margin-top:6px}
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.12);
+  vertical-align:top;word-break:break-word;overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;text-wrap:pretty;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%}
+table.f3.ind th:nth-child(1),table.f3.ind td:nth-child(1){width:14%;text-align:left}
+table.f3.ind th:nth-child(2),table.f3.ind td:nth-child(2){width:30%;text-align:left}
+table.f3.ind th:nth-child(3),table.f3.ind td:nth-child(3){width:56%;text-align:left}
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%;text-align:left;white-space:nowrap}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%;text-align:right}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%;text-align:left}
+table.f4.scn th:nth-child(1),table.f4.scn td:nth-child(1){width:18%;text-align:left}
+table.f4.scn th:nth-child(2),table.f4.scn td:nth-child(2){width:28%;text-align:left}
+table.f4.scn th:nth-child(3),table.f4.scn td:nth-child(3){width:27%;text-align:center}
+table.f4.scn th:nth-child(4),table.f4.scn td:nth-child(4){width:27%;text-align:center}
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.tag-purple{background:rgba(155,109,255,0.12);color:var(--purple)}
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .module{margin:10px 8px;padding:16px 14px}
+  .module-title{font-size:14px}
+  .module-num{width:24px;height:24px;font-size:11px}
+  table{font-size:11px}
+  th,td{padding:6px 6px}
+  th{font-size:10px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>中际旭创 × 梁文锋 · 双份AI产业逻辑验证</h1>
+  <div class="sub">光模块龙头路演 + DeepSeek创始人52条 · 2026年7月</div>
+  <div class="update">2026-07-23 10:20 · 数据来源：微信公众号 elsehwere / 中际旭创路演纪要</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>核心判断</div>
+  <p class="caption"><span class="tag tag-up">结论</span> <strong>两份独立来源的材料，在6个核心判断上高度一致。整个2026-28年的AI产业链逻辑没有出现任何结构性裂缝。</strong></p>
+  <p class="caption" style="margin-top:6px">中际旭创（光模块行业龙头）的路演给出的是"需求端"硬数据——订单>交付、供不应求延续到2028年、2.4T相干市场可能超100亿美元。梁文锋（DeepSeek创始人）给出的是"供给侧"底层判断——Scaling一定有效、算力紧缺、Agent是今年主线、国内人才不缺。</p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-gold">操作</span> <strong>持仓不动。两份材料共同验证投资方向正确，但不需要因任何一则新闻或观点而改变仓位。</strong></p>
+</section>
+
+<!-- 02 中际旭创路演核心 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>中际旭创 · 行业硬数据</div>
+  <div class="table-wrap">
+  <table class="f3.ind">
+    <tr><th>维度</th><th>核心观点</th><th>信号</th></tr>
+    <tr><td>需求持续性</td><td>2027/2028继续上行，部分客户给3年预测</td><td><span class="tag tag-up">强正面</span></td></tr>
+    <tr><td>供需缺口</td><td>订单>交付能力，未来2年供应链供不应求</td><td><span class="tag tag-up">强正面</span></td></tr>
+    <tr><td>技术路线</td><td>可插拔未来2-3年仍主导</td><td><span class="tag tag-cyan">中性</span></td></tr>
+    <tr><td>2.4T相干市场</td><td>潜在机会可能超100亿美元</td><td><span class="tag tag-up">新增长极</span></td></tr>
+    <tr><td>毛利率</td><td>~45%，硅光自研推动继续提升</td><td><span class="tag tag-cyan">正面</span></td></tr>
+    <tr><td>硅光自研</td><td>近100%内部自研+IP</td><td><span class="tag tag-cyan">竞争壁垒</span></td></tr>
+    <tr><td>客户联合研发</td><td>绑定后竞争强度下降，新型壁垒</td><td><span class="tag tag-gold">行业变化</span></td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px"><strong>行业级结论</strong>：AI光互联的资本开支增速快于整体AI Capex——即使CSP capex见顶，光互联链的相对增速还能维持2-3个季度。</p>
+</section>
+
+<!-- 03 梁文锋核心判断 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>梁文锋 · 6条底层判断</div>
+  <div class="table-wrap">
+  <table class="f3.ind">
+    <tr><th>序号</th><th>原话</th><th>产业含义</th></tr>
+    <tr><td>1</td><td>"Scaling一定有效，不是我觉得够了，是只有这么多资源"</td><td>算力需求没有天花板</td></tr>
+    <tr><td>2</td><td>"今年的阶梯是Agent，去年是CoT"</td><td>AI应用层正在从推理->执行跃迁</td></tr>
+    <tr><td>3</td><td>"中美差距不在人才，是资源"</td><td>国产替代的战略确定性增强</td></tr>
+    <tr><td>4</td><td>"模型公司太多，会收敛到2+2家"</td><td>收敛后基础设施需求更集中</td></tr>
+    <tr><td>5</td><td>"开源不影响商业模式，只想赚合理利润"</td><td>AI渗透率加速而非减速</td></tr>
+    <tr><td>6</td><td>"克制是一种战略，换取做成AGI的概率"</td><td>投资底层基础设施比押注模型公司更安全</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px"><strong>关键解读</strong>：梁文锋的52条里，"算力紧缺"说了多次，"成本越低越能训更大模型"——这是对"Scaling Law见顶"叙事的直接反驳。DeepSeek是当前全球AI效率赛道标杆，它的战略选择是AI产业"最极致效率路线"的注脚。</p>
+</section>
+
+<!-- 04 交叉验证 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>双份独立验证 · 六维度对照</div>
+  <div class="table-wrap">
+  <table class="f4.scn">
+    <tr><th>维度</th><th>梁文锋</th><th>中际旭创</th><th>验证</th></tr>
+    <tr><td>算力需求</td><td>"Scaling一定有效"</td><td>"订单>交付到2028"</td><td><span class="tag tag-up">一致</span></td></tr>
+    <tr><td>成本效率</td><td>"成本排在第一位"</td><td>"硅光自研降本"</td><td><span class="tag tag-up">一致</span></td></tr>
+    <tr><td>Agent主线</td><td>"今年阶梯是Agent"</td><td>AI推理驱动光互联</td><td><span class="tag tag-up">一致</span></td></tr>
+    <tr><td>行业格局</td><td>"收敛到2+2家"</td><td>"客户绑定型竞争"</td><td><span class="tag tag-up">一致</span></td></tr>
+    <tr><td>盈利节奏</td><td>"距商业化很远"</td><td>"高端占比提升"</td><td><span class="tag tag-up">互补</span></td></tr>
+    <tr><td>国产定位</td><td>"人才不缺，缺资源"</td><td>全球供应链关键环</td><td><span class="tag tag-up">一致</span></td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px"><strong>判断可靠度上升</strong>：两份隔空独立来源的材料，6个核心判断高度一致。供给侧（模型效率革命）和需求侧（光互联供不应求）同时指向同一个方向——AI算力需求没有结构性拐点。</p>
+</section>
+
+<!-- 05 持仓映射 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>持仓映射 · 逐只评估</div>
+  <div class="table-wrap">
+  <table class="f3.op">
+    <tr><th>标的</th><th>映射</th><th>评估</th></tr>
+    <tr><td>澜起</td><td><span class="tag tag-up">间接利好</span></td><td>光通信链Capex增→智算中心建设→DDR5/MRCD放量。底仓不动</td></tr>
+    <tr><td>汇绿</td><td><span class="tag tag-up">行业β</span></td><td>行业景气明确，但硅光自研/客户绑定竞争力待验证。五节点后评估α</td></tr>
+    <tr><td>罗博</td><td><span class="tag tag-up">设备受益</span></td><td>上游设备交期超1年，800G/1.6T扩产→设备订单可见</td></tr>
+    <tr><td>软通</td><td><span class="tag tag-up">Agent主线</span></td><td>梁文锋"今年Agent"指引，AI应用层受益</td></tr>
+    <tr><td>三祥</td><td><span class="tag tag-cyan">独立逻辑</span></td><td>锆/铪材料线独立，不受AI链影响</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 06 风险点 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>两份材料的隐藏风险（原文未提）</div>
+  <div class="table-wrap">
+  <table class="f3.ind">
+    <tr><th>风险</th><th>来源</th><th>潜在冲击</th></tr>
+    <tr><td>"未来2-3年可插拔主导"=CPO/NPO过渡期在2027-2028</td><td>中际旭创</td><td>汇绿如硅光跟不上，代工定位被拉开</td></tr>
+    <tr><td>"客户联合研发"将成新门槛</td><td>中际旭创</td><td>汇绿的"代工"模式是上一代竞争逻辑</td></tr>
+    <tr><td>"不挣不合理利润"=价格战</td><td>梁文锋</td><td>API降价向下游传导，压缩中间环节利润</td></tr>
+    <tr><td>"国内模型公司太多会收敛"=洗牌期</td><td>梁文锋</td><td>洗牌可能减少短期算力采购增速</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 07 数据溯源 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>数据溯源</div>
+  <div class="table-wrap">
+  <table class="f3.ind">
+    <tr><th>来源</th><th>类型</th><th>置信度</th></tr>
+    <tr><td>中际旭创路演纪要</td><td>机构路演整理</td><td>★★★★ 行业龙头官方口径</td></tr>
+    <tr><td>梁文锋投资人会议实录</td><td>微信公众号"elsewhere"</td><td>★★★★ 多方交叉验证</td></tr>
+    <tr><td>Google Q2财报</td><td>官方披露</td><td>★★★★★ 正式财报</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:4px;font-size:11px;color:var(--sub)">报告版本：2026-07-23 10:20 · 生成人：巴蒂</p>
+</section>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。路演纪要和投资者会议实录均为第三方整理版本，可能存在信息偏差。具体操作请基于个人独立判断。
+</footer>
+
+</body>
+</html>

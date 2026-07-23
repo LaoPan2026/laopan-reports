@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>盘后复盘 · 2026-07-22</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+.hero .update{font-size:11px;color:#6e7681;margin-top:6px}
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;text-wrap:pretty;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%}
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%;white-space:nowrap;text-align:left}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%;text-align:right}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%;text-align:left}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%}
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .module{margin:10px 8px;padding:16px 14px}
+  .module-title{font-size:14px}
+  .module-num{width:24px;height:24px;font-size:11px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}
+  .stat-card .val{font-size:18px}
+  footer{padding:14px;font-size:10px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>盘后复盘 · 2026-07-22</h1>
+  <div class="sub">科创50冲高回落 · 创业板-3.23% · 持仓分化：兴森+7%领涨</div>
+  <div class="update">数据来源：WeStock · 2026-07-22 15:00收盘</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>核心结论</div>
+  <p class="caption"><strong>市场呈现"V型反转后的正常消化"格局。</strong> 创业板-3.23%跌幅较大，但更多是对7/21单日+10%暴涨的技术性回吐。上证指数仅微跌0.07%几乎平盘，说明大盘权重股承接力强。科创50高开低走（早盘冲1934→收1860，-2.26%），在昨日+10.73%的极端振幅后属于良性休整。</p>
+  <p class="caption" style="margin-top:6px">持仓层面：<span class="pos">兴森+7.13%</span>（逼近涨停）、<span class="pos">华峰+5.34%</span>（周期反弹）、<span class="pos">软通+1.98%</span>、<span class="pos">澜起+1.55%</span>表现强势；<span class="neg">汇绿-3.47%</span>、<span class="neg">星环-2.35%</span>偏弱。整体呈现"科技分化、周期回暖"的特征。</p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-cyan">总结</span><strong> 7/21极端反弹后的正常洗盘，不是二次探底。五节点对赌进入第一关（7/23 GOOGLE前夜），保持耐心。</strong></p>
+</section>
+
+<!-- 02 指数复盘 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>指数复盘</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="val" style="color:#3ddcc8">3,867</div>
+      <div class="lbl">上证 <span class="pos">+0.07%</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#1ed890">14,061</div>
+      <div class="lbl">深证 <span class="neg">-1.42%</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#1ed890">3,567</div>
+      <div class="lbl">创业板 <span class="neg">-3.23%</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#1ed890">1,860</div>
+      <div class="lbl">科创50 <span class="neg">-2.26%</span></div>
+    </div>
+  </div>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>日内区间</th></tr>
+    <tr><td>上证指数</td><td>3,867.03</td><td class="pos">+0.07%</td><td>3839→3884（+1.16%）</td></tr>
+    <tr><td>深证成指</td><td>14,061.44</td><td class="neg">-1.42%</td><td>13988→14360（+2.61%）</td></tr>
+    <tr><td>创业板指</td><td>3,566.73</td><td class="neg">-3.23%</td><td>3553→3694（+3.84%）</td></tr>
+    <tr><td>科创50</td><td>1,860.08</td><td class="neg">-2.26%</td><td>1836→1934（+5.18%）</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px;font-size:12px;color:var(--sub)">科创50振幅5.18%，先冲+1.65%后回落至-2.26%，高开低走格局明显。</p>
+</section>
+
+<!-- 03 持仓表现 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>持仓表现 · 按涨跌幅排序</div>
+  <div class="table-wrap">
+  <table class="f3.op">
+    <tr><th>名称</th><th>涨跌幅</th><th>收评</th></tr>
+    <tr><td>兴森科技</td><td class="pos">+7.13%</td><td>逼近涨停！连续2跌停后V反修复，换手率15%说明多空激烈</td></tr>
+    <tr><td>华峰化学</td><td class="pos">+5.34%</td><td>周期强势反弹，量比1.46放量上行，pb 2.0x有修复空间</td></tr>
+    <tr><td>软通动力</td><td class="pos">+1.98%</td><td>温和反弹，距55日线尚有距离，量比1.2正常</td></tr>
+    <tr><td>澜起科技</td><td class="pos">+1.55%</td><td>盘中振幅10.9%（215→239），尾盘回落至223，正常消化</td></tr>
+    <tr><td>太钢不锈</td><td class="pos">+1.14%</td><td>防御仓位微涨，量比0.95缩量修复</td></tr>
+    <tr><td>德展健康</td><td class="pos">+0.61%</td><td>窄幅震荡，量比0.73缩量，防御属性</td></tr>
+    <tr><td>三祥新材</td><td class="pos">+0.14%</td><td>盘中振幅8.12%（41→44），量比1.59放量，站稳42平台</td></tr>
+    <tr><td>泰和新材</td><td class="neg">-1.77%</td><td>弱势震荡，量比0.76缩量，pb 1.35仍处历史低位</td></tr>
+    <tr><td>罗博特科</td><td class="neg">-1.59%</td><td>盘中冲459后回落至433，振幅6.62%，正常波动</td></tr>
+    <tr><td>星环科技</td><td class="neg">-2.35%</td><td>利润仓弱势，量比0.88缩量，昨日+20%后回吐部分</td></tr>
+    <tr><td>汇绿生态</td><td class="neg">-3.47%</td><td>跌幅最大，振幅6.21%，量比正常，光模块板块整体偏弱</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px;font-size:12px;color:var(--sub)">数据来源：WeStock行情快照 · 排序规则：涨跌幅从大到小</p>
+</section>
+
+<!-- 04 持仓风格与板块分布 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>板块风格分析</div>
+  <p class="caption"><strong>今日持仓呈现三大阵营分化：</strong></p>
+  <p class="caption" style="margin-top:6px;padding-left:14px"><span class="tag tag-up">进攻强（+3%以上）</span> 兴森科技 +7.13%、华峰化学 +5.34%——兴森经历4跌停后反弹修复，华峰受益于化工周期回暖。这两只代表了高弹性品种的修复力度。</p>
+  <p class="caption" style="padding-left:14px;margin-top:3px"><span class="tag tag-cyan">温和修复（0~+3%）</span> 软通 +1.98%、澜起 +1.55%、太钢 +1.14%、德展 +0.61%、三祥 +0.14%——核心持仓在V反次日进入正常消化节奏。</p>
+  <p class="caption" style="padding-left:14px;margin-top:3px"><span class="tag tag-down">弱势调整（下跌）</span> 汇绿 -3.47%、星环 -2.35%、泰和 -1.77%、罗博 -1.59%——光模块/利润仓/防御/设备端均有不同程度回吐。</p>
+  <p class="caption" style="margin-top:8px"><strong>关键信号</strong>：科技股（科创50 -2.26%、创业板 -3.23%）在昨日极致反弹后主动回调，周期股（华峰+5.34%）启动补涨，这是市场心态从"恐慌抄底"切换到"理性定价"的典型特征。对五节点对赌期的正面信号。</p>
+</section>
+
+<!-- 05 明日关注 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>明日关注 · 7/23</div>
+  <div class="table-wrap">
+  <table class="f3.op">
+    <tr><th>事件</th><th>关键性</th><th>操作预案</th></tr>
+    <tr><td>GOOGLE Q2财报</td><td><span class="tag tag-up">★★★★★</span></td><td>Capex指引是五节点第一关。增+持平=利好；下修=减仓评估</td></tr>
+    <tr><td>德州仪器 TXN</td><td><span class="tag tag-cyan">★★</span></td><td>模拟芯片风向标，板块情绪参考</td></tr>
+    <tr><td>A股情绪延续性</td><td><span class="tag tag-cyan">★★★</span></td><td>关注7/21反弹是否被7/22回调确认有效</td></tr>
+    <tr><td>融资盘数据</td><td><span class="tag tag-gold">★★★</span></td><td>若两融余额企稳=市场信心恢复信号</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-gold">核心原则</span><strong> 五节点对赌期不增不减。GOOGLE capex是第一个关键裁决点。</strong></p>
+</section>
+
+<!-- 06 数据溯源 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>数据溯源</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>数据项</th><th>来源</th><th>置信度</th></tr>
+    <tr><td>指数与持仓行情</td><td>WeStock行情快照</td><td>★★★★★ 实时交易所数据</td></tr>
+    <tr><td>美股映射</td><td>待隔夜收盘后更新</td><td>— 美东时间待开盘</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:4px;font-size:11px;color:var(--sub)">报告版本：2026-07-22 19:36 · 生成：巴蒂</p>
+</section>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。持仓数据基于公开行情快照，可能存在微小延迟。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>澜起科技7/17交流会纪要 · 独立解读</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+.hero .update{font-size:11px;color:#6e7681;margin-top:6px}
+
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+
+/* === Tables === */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;text-wrap:pretty;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+
+/* f2 |
+f3 |22/18/60 / 22/18/60 */
+table.f3 th,table.f3 td{padding:8px 10px}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:center}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+
+/* f4 | 16/18/14/52 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%;text-align:left}
+
+/* f4.cal | 10/24/30/36 */
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1){width:10%;text-align:center}
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2){width:24%;text-align:left}
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3){width:30%;text-align:left}
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4){width:36%;text-align:left}
+
+/* f5 | 16/14/26/16/28 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:center}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:14%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:26%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:16%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:28%;text-align:left}
+
+/* nowrap-first */
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+
+/* Colors */
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#chart{width:100%;height:260px;margin:14px 0 4px}
+
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+
+/* Mobile */
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px;border-radius:5px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}
+  .stat-card .val{font-size:18px}
+  #chart{height:200px}
+  footer{padding:14px;font-size:10px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>澜起科技 · 7/17 交流会纪要独立解读</h1>
+  <div class="sub">688008 · S级长期底仓 · 成本 96.83 · 当前浮盈 <span class="pos">+133%</span></div>
+  <div class="update">2026-07-22 19:30 更新 · 数据来源：Wind / 东方财富股吧纪要 / 公开信息</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>核心判断</div>
+  <p class="caption"><span class="tag tag-cyan">结论</span> <strong>澜起科技基本面未受韩国调查冲击，7/16-7/17的急跌是典型的"黑天鹅舆情-融资盘强平-抄底机遇"三部曲。</strong> 交流会披露的Q2互连类芯片收入创历史新高（16.94亿，环比+19.5%）、四款新品收入快速爬坡、下半年产能进一步释放——三大信号均指向基本面<strong>加速上行而非恶化</strong>。当前226元距前期高点332元仍有约<strong>32%修复空间</strong>，底仓继续持有不动。</p>
+  <p class="caption"><span class="tag tag-gold">操作</span> <strong>底仓坚定持有，不加不减</strong>。7/21的V型反转（181→220,+21.5%）已确认恐慌低点180-182为阶段性底部。五节点对赌（7/23 GOOGLE→7/28 RAMBUS→7/30 META/MSFT→7/31 AMZN→8/14 SNDK）验证期，持仓不增不减。</p>
+</section>
+
+<!-- 02 交流会核心摘要 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>交流会六大核心要点</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>要点</th><th>定性</th><th>详细内容</th></tr>
+    <tr><td>Q2营收创历史新高</td><td><span class="tag tag-up">超预期</span></td><td>Q2互连类芯片收入16.94亿，同比+28.2%，环比+19.5%，刷新单季纪录</td></tr>
+    <tr><td>韩国调查属行业性事件</td><td><span class="tag tag-cyan">中性</span></td><td>三寡头（澜起+Rambus+瑞萨）同步被查，公司/员工未被指控任何不当行为</td></tr>
+    <tr><td>DDR5迭代持续加速</td><td><span class="tag tag-up">超预期</span></td><td>第3/4子代出货占比超50%，第5子代规模出货，第6子代已送样</td></tr>
+    <tr><td>四款新品快速爬坡</td><td><span class="tag tag-up">超预期</span></td><td>MRCD/MDB持续送样、CKD量产出货、PCIe Gen6 Retimer送样、CXL MXC 3.1送样</td></tr>
+    <tr><td>产能下半年进一步释放</td><td><span class="tag tag-cyan">中性</span></td><td>管理层去年提前布局产能扩张，下半年供给环比增长，但可能仍不能100%满足需求</td></tr>
+    <tr><td>董事长提议3-6亿回购</td><td><span class="tag tag-up">超预期</span></td><td>体现管理层信心，估值底部信号，待董事会审议通过后实施</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:10px;font-size:12px;color:var(--sub)">数据来源：澜起科技7/17电话交流会纪要（东方财富股吧整理）</p>
+</section>
+
+<!-- 03 H1业绩速览 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>2026 H1 业绩速览</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="val highlight-data">33.35亿</div>
+      <div class="lbl">H1营收</div>
+    </div>
+    <div class="stat-card">
+      <div class="val highlight-data">19-21亿</div>
+      <div class="lbl">归母净利润</div>
+    </div>
+    <div class="stat-card">
+      <div class="val highlight-data">16.94亿</div>
+      <div class="lbl">Q2互连芯片（新高）</div>
+    </div>
+    <div class="stat-card">
+      <div class="val highlight-data">3-6亿</div>
+      <div class="lbl">回购方案</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+  <table class="f5">
+    <tr><th>指标</th><th>H1 2026</th><th>同比</th><th>Q2 2026</th><th>环比</th></tr>
+    <tr><td>营业收入</td><td>33.35亿</td><td class="pos">+26.6%</td><td>约18.74亿</td><td class="pos">+28.3%</td></tr>
+    <tr><td>互连类芯片收入</td><td>31.11亿</td><td class="pos">+26.4%</td><td>16.94亿</td><td class="pos">+19.5%</td></tr>
+    <tr><td>归母净利润</td><td>19~21亿</td><td class="pos">+63.9~81.2%</td><td>10.5~12.5亿</td><td class="pos">+24.0~47.6%</td></tr>
+    <tr><td>扣非净利润</td><td>12.5~14.5亿</td><td class="pos">+14.5~32.9%</td><td>6.5~8.5亿</td><td class="pos">+7.6~40.7%</td></tr>
+    <tr><td>剔除股份支付</td><td>20.8~22.8亿</td><td class="pos">+56.1~71.1%</td><td>—</td><td>—</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="font-size:12px;color:var(--sub)">数据来源：澜起科技2026半年业绩预告公告 · Q2为界面新闻测算值</p>
+</section>
+
+<!-- 04 股价走势图 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>股价走势 · 7月急跌与V型反弹</div>
+  <div id="chart"></div>
+  <p class="caption" style="font-size:12px;color:var(--sub);margin-top:2px">数据来源：Wind · 7/1-7/22日K线收盘价。成本价96.83为虚线参考线。</p>
+</section>
+
+<!-- 05 韩国调查事件独立判断 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>韩国反垄断调查 · 独立判断</div>
+  <p class="caption"><span class="tag tag-cyan">事实</span> 7/15韩国首尔中央地方检察厅公平贸易调查部针对潜在反垄断卡特尔嫌疑，对澜起韩国办事处展开现场搜查取证。同日Rambus和瑞萨电子韩国办公室也同步被查。</p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-up">正面信号</span> 三寡头同步被查说明这是<strong>行业性行动</strong>而非针对中国企业。公司/员工未被指控、经营正常、订单饱满——这些是硬事实，不是"安抚"。交流会明确回答UBS：业务订单不受影响。</p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-down">需跟踪</span> 调查方向是价格串通（卡特尔），内存接口芯片全球仅3家供应商，结构上天然有寡头定价特征。若最终认定违规，可能面临罚款。但行业调查通常以和解/整改结案，极端处罚概率低。参考全球半导体反垄断历史（三星DRAM 2018罚款、高通欧盟案），罚款金额相对企业体量可控。当前阶段无需过度担忧。</p>
+  <p class="caption" style="margin-top:6px"><span class="tag tag-gold">结论</span><strong> 韩国调查的影响权重远低于Q2业绩超预期和新品放量的正面影响。市场7/16-7/17的过度反应提供了黄金抄底机会（最低180元），7/21-7/22的反弹已开始修复定价错误。</strong></p>
+</section>
+
+<!-- 06 新品进展与第二曲线 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>新品矩阵 · 第二增长曲线</div>
+  <div class="table-wrap">
+  <table class="f4.cal nowrap-first">
+    <tr><th>产品</th><th>进展</th><th>量产预期</th><th>竞争壁垒</th></tr>
+    <tr><td>DDR5<br>RCD</td><td>第6子代已送样</td><td>量产中</td><td>JEDEC标准制定者，行业份额>45%</td></tr>
+    <tr><td>MRCD/MDB</td><td>第2子代持续送样</td><td>H2 2026~H1 2027</td><td>需CPU平台升级（Venice/Diamond Rapids）</td></tr>
+    <tr><td>CKD</td><td>量产出货，稳步爬升</td><td>量产中</td><td>PC端DDR5必备，渗透率提升中</td></tr>
+    <tr><td>PCIe Gen5<br>Retimer</td><td>量产出货</td><td>量产中</td><td>AI服务器必配，全球3家供应商</td></tr>
+    <tr><td>PCIe Gen6<br>Retimer</td><td>客户送样测试</td><td>2027</td><td>需CPU平台升级，先发优势</td></tr>
+    <tr><td>CXL MXC 3.1</td><td>客户送样测试</td><td>2027</td><td>内存池化核心芯片，CXL联盟成员</td></tr>
+    <tr><td>PCIe Switch</td><td>研发中</td><td>2026年内工程样片</td><td>与Broadcom竞争，市场空间大</td></tr>
+    <tr><td>以太网交换芯片</td><td>研发中</td><td>2026年内工程样片</td><td>光互连战略布局，长期方向</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:8px"><strong>关键判断：</strong> 从DDR5 RCD单一产品到8大产品线并行，澜起已从"内存接口芯片龙头"进化为"全互连芯片设计公司"。PCIe Switch和以太网交换芯片打开的是<strong>百亿级增量市场</strong>，这才是大摩上调目标价的真正逻辑。</p>
+</section>
+
+<!-- 07 持仓映射与操作 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>持仓映射 · 操作纪律</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>标的</th><th>映射关系</th><th>本场交流会映射信号</th></tr>
+    <tr><td>澜起 688008</td><td>主仓</td><td class="pos">✅ Q2历史新高+新品加速+产能释放=基本面安全</td></tr>
+    <tr><td>MRVL 美股</td><td>澜起映射</td><td>-> 澜起业绩超预期正面映射MRVL，关注7/28 RAMBUS指引</td></tr>
+    <tr><td>三祥 603663</td><td>锆铪封装</td><td>-> 无直接关联，独立逻辑</td></tr>
+  </table>
+  </div>
+
+  <p class="caption" style="margin-top:10px"><span class="tag tag-gold">操作纪律</span></p>
+  <p class="caption" style="margin-top:4px"><strong>底仓不动（S级纪律）→</strong> 198元（7/20最低）至226元（7/22收盘）区间属于<strong>韩国调查恐慌→修复</strong>过程中的正常波动，不触发任何减仓信号。</p>
+  <p class="caption"><strong>五节点对赌期→</strong> 7/23 GOOGLE、7/28 RAMBUS、7/30 META/MSFT、7/31 AMZN、8/14 SNDK。在五节点全部验证完毕前，持仓不增不减。</p>
+  <p class="caption"><strong>唯一退出条件→</strong> CSP四巨头Q2指引中任何一家<strong>首次下修capex</strong>，则启动减仓评估。其余所有波动（包括韩国调查最终罚款）均不应作为卖出理由。</p>
+</section>
+
+<!-- 08 数据溯源 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">08</span>数据溯源与版本</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>数据项</th><th>来源</th><th>置信度</th></tr>
+    <tr><td>交流会纪要全文</td><td>东方财富股吧整理</td><td>★★★☆ 投资者纪要准确性高</td></tr>
+    <tr><td>H1业绩预告数字</td><td>澜起科技公告</td><td>★★★★ 财务初步测算</td></tr>
+    <tr><td>日K线行情</td><td>Wind金融终端</td><td>★★★★★ 交易所标准数据</td></tr>
+    <tr><td>回购方案</td><td>澜起科技公告</td><td>★★★★★ 正式披露</td></tr>
+    <tr><td>韩国调查说明</td><td>澜起公告+交流会</td><td>★★★☆ 官方披露+管理层补充</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="margin-top:6px;font-size:11px;color:var(--sub)">报告版本：2026-07-22 19:30 | 生成人：巴蒂 | QC状态：待校验</p>
+</section>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。澜起科技韩国反垄断调查仍处调查阶段，结果存在不确定性。本报告中操作建议基于当前已知信息，过往业绩不代表未来表现。
+</footer>
+
+<script>
+var chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'cross'},formatter:function(p){var v=p[0];return v.axisValue+'<br/>收盘价: <b>'+v.value+'</b>元'}},
+  grid:{left:55,right:20,top:15,bottom:25},
+  xAxis:{
+    type:'category',
+    data:['7/1','7/2','7/3','7/6','7/7','7/8','7/9','7/10','7/13','7/14','7/15','7/16<br/>调查','7/17<br/>交流会','7/20','7/21','7/22'],
+    axisLabel:{color:'#9aa5b9',fontSize:11,interval:0},
+    axisLine:{lineStyle:{color:'#2a3556'}},
+    axisTick:{alignWithLabel:true}
+  },
+  yAxis:{
+    type:'value',
+    name:'元',
+    nameTextStyle:{color:'#9aa5b9',fontSize:11},
+    axisLabel:{color:'#9aa5b9',formatter:'{value}'},
+    axisLine:{lineStyle:{color:'#2a3556'}},
+    splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)',type:'dashed'}},
+    min:150,
+    max:350
+  },
+  series:[
+    {
+      type:'line',
+      data:[315.89,269.15,266.80,268.68,253.20,247.15,285.80,268.06,252.79,270.00,252.68,211.13,183.60,189.94,219.60,226.18],
+      smooth:true,
+      symbol:'circle',
+      symbolSize:6,
+      lineStyle:{width:2.5,color:'#3ddcc8'},
+      itemStyle:{color:'#3ddcc8'},
+      areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(61,220,200,0.25)'},{offset:1,color:'rgba(61,220,200,0.01)'}]}},
+      markLine:{
+        silent:true,
+        data:[
+          {yAxis:96.83,name:'成本96.83',label:{formatter:'成本 96.83',color:'#ffd83d',fontSize:11,position:'start'},lineStyle:{color:'#ffd83d',type:'dashed',width:1.5}},
+          {yAxis:332.90,name:'前高332.9',label:{formatter:'前高 332.90',color:'#9aa5b9',fontSize:11,position:'start'},lineStyle:{color:'#9aa5b9',type:'dashed',width:1}}
+        ]
+      },
+      markPoint:{
+        data:[
+          {type:'max',name:'前高',symbol:'pin',symbolSize:45,itemStyle:{color:'#ffd83d'},label:{formatter:'332.9',color:'#0d1424',fontSize:10,fontWeight:700}},
+          {coord:['7/16<br/>调查',211.13],name:'调查冲击',symbol:'pin',symbolSize:40,itemStyle:{color:'#ff3b3b'},label:{formatter:'-16%',color:'#fff',fontSize:10,fontWeight:700}},
+          {coord:['7/17<br/>交流会',183.60],name:'恐慌底部',symbol:'pin',symbolSize:40,itemStyle:{color:'#ff3b3b'},label:{formatter:'-27%',color:'#fff',fontSize:10,fontWeight:700}},
+          {coord:['7/21',219.60],name:'V反',symbol:'pin',symbolSize:40,itemStyle:{color:'#1ed890'},label:{formatter:'+20%',color:'#0d1424',fontSize:10,fontWeight:700}}
+        ]
+      }
+    }
+  ]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
