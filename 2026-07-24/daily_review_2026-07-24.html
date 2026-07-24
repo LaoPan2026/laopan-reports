@@ -164,19 +164,25 @@ tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
 <!-- 07 技术信号雷达 -->
 <div class="card">
   <div class="mod-h"><span class="num">07</span><span class="ttl">技术信号雷达（17只）</span></div>
-  <div class="note" style="margin-bottom:8px">覆盖11持仓+6跟踪。仅列有信号触发标的，中性不列。⚠️ 数据源说明：westock 技术接口当前断开，以下信号基于<span class="hl">价格行为定性</span>（涨跌幅+5日/20日动量），精确 RSI(14)/DMI 待数据源恢复后校准，仅供辅助参考。</div>
+  <div class="note" style="margin-bottom:8px">覆盖11持仓+6跟踪。仅列有信号触发标的，中性不列。📡 数据源：<span class="hl">腾讯自选股 WeStock</span>（Wind 技术接口本次返回 UNKNOWN/没找到数据，按 fallback 切换）★★★。RSI 取 RSI_12 近似 RSI(14)；DMI 含 PDI/MDI/ADX。信号定义：超买 RSI&gt;70 / 超卖 RSI&lt;30 / 趋势启动 ADX&gt;25（PDI&gt;MDI 上行、PDI&lt;MDI 下行）。</div>
   <table class="f4 radar">
     <thead><tr><th>标的</th><th>信号</th><th>关键指标</th><th>操作含义</th></tr></thead>
     <tbody>
-      <tr><td>澜起 688008</td><td><span class="tag-warn">🟡 趋势·上行</span></td><td class="pos">5日+27.27%</td><td>强上行趋势，但短期涨幅巨大接近超买，不宜追</td></tr>
-      <tr><td>华峰 002064</td><td><span class="tag-cy">⚪ 趋势衰竭</span></td><td class="neg">前两日+5.34%/+2.36%</td><td>短线过热后今日-6.02%回吐，防御仓持有</td></tr>
-      <tr><td>三祥 603663</td><td><span class="hl-grn">🟢 超卖</span></td><td class="neg">20日-42.62%</td><td>深跌超卖，下行中继无底背离，非买入信号</td></tr>
-      <tr><td>汇绿 001267</td><td><span class="hl-grn">🟢 超卖</span></td><td class="neg">20日-44.65%</td><td>强下行超卖，对赌期不动等LITE验证</td></tr>
-      <tr><td>软通 301236</td><td><span class="hl-grn">🟢 超卖</span></td><td class="neg">今日-7.04%</td><td>加速回撤超卖，趋势弱，观察不接</td></tr>
-      <tr><td>中科飞测（跟踪）</td><td><span class="tag-warn">🔄 反转信号</span></td><td class="pos">昨-6.35%→今+6.90%</td><td>长鑫催化疑似底背离/转折，待确认非买点</td></tr>
+      <tr><td>德展 000813</td><td><span class="tag-warn">🟡 趋势·上行</span></td><td>ADX 48.8 / PDI 24.2&gt;MDI 10.7</td><td>唯一强上行趋势，防御/补涨逻辑仍在，持有</td></tr>
+      <tr><td>太钢 000825</td><td><span class="tag-warn">🟡 趋势·上行</span></td><td>ADX 26.4 / PDI 23.6&gt;MDI 13.3</td><td>逆势上行，防御对冲有效，持有</td></tr>
+      <tr><td>汇绿 001267（S）</td><td><span class="hl-grn">🟢 超卖</span> + <span class="tag-warn">🟡 下行</span></td><td class="neg">RSI 25.1 / ADX 66.3</td><td>超卖+强下行，对赌期不动等 LITE 验证</td></tr>
+      <tr><td>泰和 002254（A-）</td><td><span class="hl-grn">🟢 超卖</span> + <span class="tag-warn">🟡 下行</span></td><td class="neg">RSI 28.9 / ADX 67.8</td><td>超卖+强下行，持有等三信号不追</td></tr>
+      <tr><td>三祥 603663（S）</td><td><span class="tag-warn">🟡 下行·强</span></td><td class="neg">ADX 78.9 / RSI 30.2临界</td><td>极强下行趋势，缩量回撤非逻辑破，市值未站500亿前不减</td></tr>
+      <tr><td>锡业 000960（跟踪）</td><td><span class="tag-warn">🟡 下行·强</span></td><td class="neg">ADX 71.8 / PDI 8.5&lt;MDI 45.6</td><td>强下行趋势，周期股观察</td></tr>
+      <tr><td>兴森 002436（利润）</td><td><span class="tag-warn">🟡 下行</span></td><td class="neg">ADX 58.1 / PDI 12.3&lt;MDI 30.7</td><td>下行趋势，利润仓持有</td></tr>
+      <tr><td>罗博 300757（S）</td><td><span class="tag-warn">🟡 下行</span></td><td class="neg">ADX 43.7 / PDI 17.3&lt;MDI 32.4</td><td>下行趋势，对赌期不动</td></tr>
+      <tr><td>胜宏 300476（跟踪）</td><td><span class="tag-warn">🟡 下行</span></td><td class="neg">ADX 43.9 / PDI 14.0&lt;MDI 30.1</td><td>下行趋势，AI PCB 观察</td></tr>
+      <tr><td>中际旭创 300308（跟踪）</td><td><span class="tag-warn">🟡 下行</span></td><td class="neg">ADX 29.4 / PDI 17.0&lt;MDI 22.8</td><td>下行趋势，光模块龙头待五节点</td></tr>
+      <tr><td>星环 688031（利润）</td><td><span class="tag-warn">🟡 下行</span></td><td class="neg">ADX 42.2 / PDI 12.7&lt;MDI 33.5</td><td>下行趋势，利润仓持有</td></tr>
+      <tr><td>澜起 688008（S）</td><td><span class="tag-warn">🟡 下行·偏空</span></td><td>ADX 25.1 / PDI 25.0&lt;MDI 29.1</td><td>价+3.62%但DMI滞后偏空，非追高信号，五节点不动</td></tr>
     </tbody>
   </table>
-  <div class="note">🟡上行1（澜起）+ ⚪衰竭1（华峰）+ 🟢超卖3（三祥/汇绿/软通）+ 🔄反转1（中科飞测）。<span class="hl">无顶背离/趋势启动新信号</span>——当前为缩量普跌中的结构性分化，技术性拐点尚未系统性出现。澜起趋势强但短期超买，三祥/汇绿深跌超卖但无反转确认。</div>
+  <div class="note">🟡上行2（德展/太钢）+ 🟢超卖2（汇绿 RSI25.1 / 泰和 RSI28.9）+ 🟡下行8（三祥/锡业/兴森/罗博/胜宏/中际旭创/星环/澜起）+ 三祥 RSI 30.2 临界。<span class="hl">无超买（最高 RSI 仅 52.6 华峰）、无趋势衰竭</span>。关键结论：<span class="hl-red">17只中 9 只处日线下降趋势（ADX&gt;25 且 PDI&lt;MDI），说明这轮回调是趋势性的、非单日波动</span>；仅德展/太钢逆势上行（防御/补涨），澜起价强但 DMI 滞后显偏空。技术面是"纪律持有"的辅助证据，不构成买卖触发。</div>
 </div>
 
 <!-- 08 操作纪律与风险 -->
@@ -190,7 +196,7 @@ tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
 </div>
 
 <div class="footer">
-  数据溯源：指数/个股行情 Wind/腾讯自选股（收盘 2026-07-24）★★★；英特尔财报 证券时报/每经/财联社（2026-07-24）★★★；技术信号为价格行为定性（westock 接口断开，精确 RSI/DMI 待校准）★★。<br>
+  数据溯源：指数/个股行情 Wind/腾讯自选股（收盘 2026-07-24）★★★；英特尔财报 证券时报/每经/财联社（2026-07-24）★★★；技术信号 RSI/DMI 取自<span class="hl">腾讯自选股 WeStock</span>（Wind 技术接口本次返回 UNKNOWN/没找到数据，按 fallback 切换）★★★，RSI_12 近似 RSI(14)。<br>
   生成：巴蒂 🎯 ｜ V4 规范 ｜ 本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
 </div>
 
