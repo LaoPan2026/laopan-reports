@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>长鑫科技 688825 上市操作指引</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:21px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:top;word-break:break-word;overflow-wrap:anywhere;
+  text-wrap:pretty;font-variant-numeric:tabular-nums;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+
+/* f3 三列通用（操作建议用 f3.op 28/16/56） */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:56%;text-align:left}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:22%;text-align:center}
+
+/* f4 关键参数表 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:22%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:22%;text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:26%;text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:30%;text-align:left}
+
+/* f2 场景表 */
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:22%;text-align:left}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:20%;text-align:center}
+table.f2 th:nth-child(3),table.f2 td:nth-child(3){width:28%;text-align:left}
+table.f2 th:nth-child(4),table.f2 td:nth-child(4){width:30%;text-align:left}
+
+table td:first-child,table th:first-child{font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:24px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .hero .sub{font-size:12px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px;border-radius:5px}
+  .caption{font-size:11px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px;letter-spacing:0.2px}
+  table td:first-child,table th:first-child{min-width:50px}
+  .stat-grid{grid-template-columns:1fr;gap:8px}
+  .stat-card .val{font-size:20px}
+  .table-wrap{overflow-x:auto}
+  .table-wrap table{min-width:340px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>长鑫科技 688825 上市操作指引</h1>
+  <div class="sub">老潘持有：1000 股（2签）· 成本 8,660 元（8.66/股）· 7/27 周一科创板上市</div>
+</header>
+
+<!-- 01 结论先行 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>结论先行</div>
+  <p class="caption">长鑫打新是<span class="tag tag-gold">收益型头寸</span>，非长期持仓——<b>首日冲高锁定利润是第一原则</b>。利差够厚（年内新股近八成首日翻倍），但路透负面消息（华为涨价冲突）周末可能发酵，流通盘仅 6.73% 的双刃剑不能轻看。</p>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="val" style="color:var(--num)">8.66 元</div><div class="lbl">发行价·成本</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--up)">+50~200%</div><div class="lbl">首日预期涨幅区间</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--data)">6.73%</div><div class="lbl">流通盘占总股本</div></div>
+    <div class="stat-card"><div class="val">0.4714%</div><div class="lbl">网上中签率</div></div>
+  </div>
+  <p class="caption"><span class="highlight-data">核心策略：首日分两批卖</span>——第一批集合竞价/开盘冲高卖 500 股（成本 ~4,330），第二批当日盘中或次日卖剩余 500 股。不做长持，落袋为安。详细方案见后。</p>
+</section>
+
+<!-- 02 关键参数 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>关键参数速览</div>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>参数</th><th>数据</th><th>对比/参考</th><th>含义</th></tr>
+    <tr><td>发行价</td><td>8.66 元</td><td>H1 EPS ≈ 1.87 元(年化)</td><td>年化 PE ≈ 4.6x，静态 PE 278x</td></tr>
+    <tr><td>总股本</td><td>668.81 亿股</td><td>5792 亿市值</td><td>A股科技股市值前十</td></tr>
+    <tr><td>流通股</td><td>45.03 亿股</td><td>占总股本 6.73%</td><td>筹码极稀缺，换手率会极高</td></tr>
+    <tr><td>交易规则</td><td>前5日无涨跌幅</td><td>已设临停机制</td><td>首日暴涨暴跌概率大</td></tr>
+    <tr><td>年内新股</td><td>77 只全线飘红</td><td>12 只首日超 >5 倍</td><td>打新情绪极好，无破发</td></tr>
+    <tr><td>机构预测</td><td>44.86~60 元</td><td>3万亿~4万亿市值</td><td>一签理论盈利 1.81~2.56 万</td></tr>
+    <tr><td>路透负面</td><td>7/24 爆料</td><td>华为涨价冲突</td><td>周末可能发酵压制情绪</td></tr>
+    <tr><td>梁文锋参与</td><td>2025 万股</td><td>1.75 亿配售</td><td>私募信心锚，对情绪正面</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 03 三情景操作方案 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>三情景操作方案</div>
+  <p class="caption">以下按 3 种情景规划具体操作，<b>每笔对应 500 股</b>（1签），合计 2签（1000 股）：</p>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>情景</th><th>概率</th><th>操作要点</th><th>盈亏估算</th></tr>
+    <tr><td>🔴 A·乐观<br>开盘 >20 元</td><td><span class="tag tag-up">~40%</span></td><td>集合竞价卖500股(~22元)；剩余盘中冲高再卖(~18元)</td><td>~+130%~+150%<br>≈+11,300~13,000元</td></tr>
+    <tr><td>🟡 B·中性<br>开盘 12-18 元</td><td><span class="tag tag-gold">~40%</span></td><td>开盘卖500股(~15元)；剩余等7/30财报卖</td><td>~+70%~+110%<br>≈+6,000~9,500元</td></tr>
+    <tr><td>🟢 C·悲观<br>开盘 <12 元</td><td><span class="tag tag-down">~20%</span></td><td>不卖，等下周消化后出，目标12~13元</td><td>+30%~+50%<br>≈+2,600~4,300元</td></tr>
+  </table>
+  </div>
+  <p class="caption">📌 <span class="highlight-data">极端情形</span>：若开盘涨幅 <20%（<10.4元）且路透消息发酵，等待 1-2 周观察，但底线是 <b>绝不加仓、绝不转成长持</b>。打新收益归打新收益，与 S 级持仓体系隔离。</p>
+</section>
+
+<!-- 04 周末待办 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>周末待办事项</div>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>事项</th><th>详情</th><th>优先级</th></tr>
+    <tr><td>确认账户</td><td>确认中签账户有足够资金扣款（8,660元）；若无扣款，今晚补齐</td><td><span class="tag tag-up">高</span></td></tr>
+    <tr><td>关注路透发酵</td><td>周末看长鑫/华为/新凯来是否有人出来澄清（如明早证券时报/上海证券报有无表态）</td><td><span class="tag tag-up">高</span></td></tr>
+    <tr><td>盯存储芯情绪</td><td>周五晚美股存储（美光/海力士/希捷/闪迪）涨跌→周一情绪锚</td><td><span class="tag tag-gold">中</span></td></tr>
+    <tr><td>梁文锋背书效应</td><td>若周末主流财经放大利好梁文锋 1.75 亿配售新闻，可能对冲路透负面</td><td><span class="tag">跟踪</span></td></tr>
+    <tr><td>挂单准备</td><td>设好早盘条件单（集合竞价+连续竞价委托，避免手忙脚乱）</td><td><span class="tag tag-gold">中</span></td></tr>
+    <tr><td>与五节点统筹</td><td>回笼资金（估算+6,000~13,000元）<b>不提前安排用途</b>，等五节点走完再定</td><td><span class="tag">备用</span></td></tr>
+  </table>
+  </div>
+  <p class="caption">📌 核心纪律一句话：<b>打新归打新，持仓归持仓。</b>长鑫上市不影响 S 级四标的（澜起/汇绿/三祥/罗博）的五节点对赌期操作。</p>
+</section>
+
+<!-- 05 风险提示 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>⚠️ 风险提示</div>
+  <p class="caption">
+  · 本文基于发行公告、路透社报道、Wind/公开行情等公开信息分析，仅供参考，不构成投资建议。<br>
+  · 科创板新股前5个交易日不设涨跌幅限制，但设有临时停牌机制，波动剧烈，请理性操作。<br>
+  · 老潘的 S 级持仓纪律（7/31 AMZN 前不增不减）不受本次打新影响，两者为独立账户体系。<br>
+  · 路透社"长鑫-华为冲突"消息底层方向已验证（涨价逻辑真实），但细节存疑，请注意周末发酵程度。<br>
+  · 版本：V4.0 操作指引 · 生成 2026-07-24 22:00 · 作者：巴蒂<br>
+  · 市场有风险，投资需谨慎。投资者据此操作风险自担。
+  </p>
+</section>
+
+</body>
+</html>
