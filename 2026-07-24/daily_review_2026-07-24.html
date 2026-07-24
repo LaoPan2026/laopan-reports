@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>盘后复盘 2026-07-24 · 巴蒂</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1424;color:#e4e4e8;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;font-size:15px;padding:20px}
+.wrap{max-width:940px;margin:0 auto}
+.header{border-left:6px solid #f5a623;padding:6px 0 6px 14px;margin-bottom:18px}
+.header h1{font-size:21px;color:#ffd83d;font-weight:700;letter-spacing:0.5px}
+.header .sub{color:#9aa5b9;font-size:13px;margin-top:4px}
+.card{background:#1a2540;border:1px solid #2a3556;border-radius:8px;padding:16px 18px;margin-bottom:16px}
+.mod-h{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.mod-h .num{background:#f5a623;color:#0d1424;font-weight:700;font-size:13px;padding:2px 8px;border-radius:4px}
+.mod-h .ttl{font-size:16px;color:#3ddcc8;font-weight:600}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:4px}
+th,td{padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.12);vertical-align:top;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;text-wrap:pretty}
+th{background:rgba(42,53,86,0.5);color:#9aa5b9;font-size:13px;font-weight:600}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+.pos{color:#ff3b3b;white-space:nowrap}
+.neg{color:#1ed890;white-space:nowrap}
+.up{color:#ff3b3b;white-space:nowrap}
+.down{color:#1ed890;white-space:nowrap}
+.tag-cy{color:#3ddcc8}
+.tag-warn{color:#f5a623}
+.f4 th:nth-child(1),.f4 td:nth-child(1){width:24%;text-align:left;white-space:nowrap}
+.f4 th:nth-child(2),.f4 td:nth-child(2){width:18%;text-align:right;white-space:nowrap}
+.f4 th:nth-child(3),.f4 td:nth-child(3){width:18%;text-align:right;white-space:nowrap}
+.f4 th:nth-child(4),.f4 td:nth-child(4){width:40%;text-align:left}
+.f4.radar th:nth-child(1),.f4.radar td:nth-child(1){width:18%;text-align:left;white-space:nowrap}
+.f4.radar th:nth-child(2),.f4.radar td:nth-child(2){width:18%;text-align:center}
+.f4.radar th:nth-child(3),.f4.radar td:nth-child(3){width:20%;text-align:right;white-space:nowrap}
+.f4.radar th:nth-child(4),.f4.radar td:nth-child(4){width:44%;text-align:left}
+.kv{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.kv .item{flex:1;min-width:140px;background:rgba(13,20,36,0.4);border:1px solid #2a3556;border-radius:6px;padding:10px 12px}
+.kv .lab{font-size:12px;color:#9aa5b9}
+.kv .val{font-size:18px;font-weight:700;margin-top:2px}
+.note{color:#9aa5b9;font-size:13px;margin-top:8px;line-height:1.7}
+.hl{color:#ffd83d;font-weight:600}
+.hl-red{color:#ff3b3b;font-weight:600}
+.hl-grn{color:#1ed890;font-weight:600}
+.divider{height:1px;background:#2a3556;margin:14px 0}
+#chart{width:100%;height:360px;margin-top:6px}
+.footer{color:#9aa5b9;font-size:12px;line-height:1.8;margin-top:20px;border-top:1px solid #2a3556;padding-top:14px}
+@media(max-width:640px){body{padding:12px;font-size:14px}.card{padding:12px}.kv .item{min-width:120px}table{font-size:12px}th,td{padding:7px 7px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>盘后复盘 · 2026-07-24（周五）</h1>
+  <div class="sub">巴蒂 🎯 ｜ 五节点进度 2/5（GOOGLE✅·英特尔✅）｜ 持仓纪律：不增不减</div>
+</div>
+
+<!-- 01 核心判断 -->
+<div class="card">
+  <div class="mod-h"><span class="num">01</span><span class="ttl">核心判断</span></div>
+  <div class="kv">
+    <div class="item"><div class="lab">上证指数</div><div class="val down">-1.61%</div></div>
+    <div class="item"><div class="lab">创业板指</div><div class="val down">-2.65%</div></div>
+    <div class="item"><div class="lab">半导体指数</div><div class="val up">+0.85%</div></div>
+    <div class="item"><div class="lab">两市成交</div><div class="val" style="color:#ffd83d">1.93万亿</div></div>
+  </div>
+  <div class="note">
+    <span class="hl-red">指数全线杀跌，但半导体逆势翻红 +0.85%</span>——全市场 554 涨 / 4937 跌，超 4900 只个股下跌，成交缩至 1.93 万亿（三个多月新低）。这是典型的<span class="hl">缩量普跌 + 结构分化</span>：指数在洗盘，真景气（存储/半导体设备/长鑫链）在逆势抱团。<br>
+    今日最重要变量：<span class="hl-red">英特尔北京时间今晨公布炸裂财报</span>（Q2 营收 +25% 创 15 年最强、数据中心 +59%、AI 相关 +70%），直接兑现了澜起单一映射节点的利好。澜起 A 股 <span class="hl-red">+3.62%</span>（连涨 4 天累计 +22.82%）、港股 <span class="hl-red">+6.67%</span>，是全场唯一逆势走强的持仓核心。<br>
+    <span class="hl">操作结论</span>：五节点已过 2 关（7/23 GOOGLE、7/24 英特尔），但 7/28-8/14 仍为空窗验证期。<span class="hl-red">S 级四标的（澜起/汇绿/三祥/罗博）7/31 AMZN 财报前纹丝不动</span>。澜起今日大涨是"节点验证"不是"追高信号"。
+  </div>
+</div>
+
+<!-- 02 指数复盘 -->
+<div class="card">
+  <div class="mod-h"><span class="num">02</span><span class="ttl">指数复盘</span></div>
+  <table class="f4">
+    <thead><tr><th>指数</th><th>收盘</th><th>涨跌</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>上证</td><td>3814.20</td><td class="neg">-1.61%</td><td>权重护盘弱，全天低开低走，量比缩</td></tr>
+      <tr><td>深证成指</td><td>13774.68</td><td class="neg">-2.47%</td><td>同步下挫，成交较昨日缩 2641 亿</td></tr>
+      <tr><td>创业板指</td><td>3480.87</td><td class="neg">-2.65%</td><td>跌幅最大，高位科技兑现盘涌出</td></tr>
+      <tr><td>科创50</td><td>1787.20</td><td class="neg">-0.14%</td><td>盘中冲高回落，缩量，长鑫链托底</td></tr>
+      <tr><td>半导体</td><td>14046.01</td><td class="pos">+0.85%</td><td>逆势翻红！设备/存储/长鑫概念领涨</td></tr>
+    </tbody>
+  </table>
+  <div class="note">半导体指数是今天唯一的红盘主线——<span class="hl-red">指数弱、结构强</span>。银行股逆势、半导体设备活跃（托伦斯 4 天 3 板、至纯科技涨停），长鑫存储概念（中科飞测 +6.90%、合肥城建/朗迪集团涨停）提前埋伏 7/27 上市。光大证券判断"短线或仍以缩量弱势震荡为主"。</div>
+</div>
+
+<!-- 03 持仓涨跌排序 -->
+<div class="card">
+  <div class="mod-h"><span class="num">03</span><span class="ttl">持仓涨跌排序（11只）</span></div>
+  <table class="f4">
+    <thead><tr><th>标的（分级）</th><th>涨跌幅</th><th>现价</th><th>收评</th></tr></thead>
+    <tbody>
+      <tr><td>澜起 688008（S）</td><td class="pos">+3.62%</td><td class="pos">233.66</td><td>逆势独秀，连涨4天+22.82%，英特尔财报催化</td></tr>
+      <tr><td>泰和 002254（A-）</td><td class="neg">-1.68%</td><td class="neg">11.15</td><td>芳纶防御，主力净流入212万，相对抗跌</td></tr>
+      <tr><td>罗博 300757（S）</td><td class="neg">-2.08%</td><td class="neg">411.96</td><td>自动化设备-2.95%，对赌期不动</td></tr>
+      <tr><td>汇绿 001267（S）</td><td class="neg">-2.15%</td><td class="neg">31.00</td><td>通信设备-3.08%，正常调整</td></tr>
+      <tr><td>兴森 002436（利润）</td><td class="neg">-2.57%</td><td class="neg">33.80</td><td>PCB跟跌，仍负成本利润仓</td></tr>
+      <tr><td>星环 688031（利润）</td><td class="neg">-2.87%</td><td class="neg">84.60</td><td>数据软件跟跌，筹码出逃</td></tr>
+      <tr><td>太钢 000825（防御）</td><td class="neg">-3.32%</td><td class="neg">3.49</td><td>钢铁微跌，PB 0.57 历史低位</td></tr>
+      <tr><td>德展 000813（防御）</td><td class="neg">-3.33%</td><td class="neg">3.19</td><td>医药跟跌，VGX真空期横盘偏弱</td></tr>
+      <tr><td>三祥 603663（S）</td><td class="neg">-5.70%</td><td class="neg">38.70</td><td>基础化工-3.06%，回调通道延续非逻辑破</td></tr>
+      <tr><td>华峰 002064（防御）</td><td class="neg">-6.02%</td><td class="neg">10.62</td><td>氨纶板块-5%，前两日过热后回吐</td></tr>
+      <tr><td>软通 301236（A）</td><td class="neg">-7.04%</td><td class="neg">35.00</td><td>计算机/软件领跌，高位回撤加速</td></tr>
+    </tbody>
+  </table>
+  <div class="note">涨跌幅从大到小排。<span class="hl-red">仅澜起一红</span>，其余 10 只全绿——但分化明显：泰和/罗博/汇绿跌幅 ≤2.15%（抗跌），三祥/华峰/软通跌超 5%（前期高位或过热回吐）。<span class="hl">S 级纪律"市值稳站 500 亿前不减仓"对三祥仍有效</span>（当前 230 亿）。</div>
+  <div id="chart"></div>
+</div>
+
+<!-- 04 跟踪池表现 -->
+<div class="card">
+  <div class="mod-h"><span class="num">04</span><span class="ttl">跟踪池表现（6只）</span></div>
+  <table class="f4">
+    <thead><tr><th>标的</th><th>涨跌幅</th><th>现价</th><th>收评</th></tr></thead>
+    <tbody>
+      <tr><td>中科飞测</td><td class="pos">+6.90%</td><td class="pos">357.42</td><td>长鑫概念催化反转，昨-6.35%今反包</td></tr>
+      <tr><td>中际旭创</td><td class="neg">-2.43%</td><td class="neg">1046.51</td><td>光模块龙头缩量，等LITE验证</td></tr>
+      <tr><td>中兴通讯</td><td class="neg">-2.56%</td><td class="neg">35.00</td><td>通信设备跟跌，空芯光纤题材</td></tr>
+      <tr><td>中远海能</td><td class="neg">-2.87%</td><td class="neg">15.55</td><td>油运周期微跌，港股-0.67%更稳</td></tr>
+      <tr><td>胜宏科技</td><td class="neg">-3.73%</td><td class="neg">230.01</td><td>AI PCB跟跌，ADX下行</td></tr>
+      <tr><td>锡业股份</td><td class="neg">-5.91%</td><td class="neg">30.89</td><td>有色领跌，贵金属/基本金属重挫</td></tr>
+    </tbody>
+  </table>
+  <div class="note">跟踪池仅中科飞测一红（长鑫 7/27 上市资金提前埋伏）。<span class="hl">中科飞测的"昨跌今涨"印证"等8月底半年报盈利拐点再入场"的判断正被催化</span>——但当前仍处深跌反弹，未到趋势确认买点。</div>
+</div>
+
+<!-- 05 板块风格分析 -->
+<div class="card">
+  <div class="mod-h"><span class="num">05</span><span class="ttl">板块风格分析</span></div>
+  <div class="note">
+    <span class="hl">今日主线 = 缩量普跌下的"存储/设备抱团 + 低位防御"。</span>涨幅榜：银行、半导体设备、长鑫存储概念、工业气体（中船特气+10%）、军工、电网设备；跌幅榜：贵金属（招金/四川黄金 -7%）、基本金属、软件、制药、电力、算力租赁（利通电子跌停）、AI应用。<br><br>
+    <span class="hl">两个信号</span>：<br>
+    ① <span class="hl-red">公募 Q2 科技 60% 仓位拥挤度反噬</span>——高位科技（软通-7.04%、算力租赁）率先被兑现，资金从"贵"切"便宜+有催化"；<br>
+    ② <span class="hl-grn">真景气核心被抱团</span>：澜起逆势 +3.62%、中科飞测 +6.90%、半导体设备涨停——钱没走，只是从伪科技切到存储/设备硬逻辑。<br><br>
+    <span class="hl">对持仓含义</span>：澜起独秀验证"AI硬件有业绩"逻辑；汇绿/罗博/三祥的回调是板块 beta，非逻辑破。五节点走完前这种"科技弱、存储/设备强"会反复。
+  </div>
+</div>
+
+<!-- 06 美股映射 + 五节点 -->
+<div class="card">
+  <div class="mod-h"><span class="num">06</span><span class="ttl">美股映射 · 五节点进度</span></div>
+  <table class="f4">
+    <thead><tr><th>节点</th><th>日期</th><th>状态</th><th>关键性</th></tr></thead>
+    <tbody>
+      <tr><td>GOOGLE</td><td>7/23</td><td class="pos">✅ 已过</td><td>Capex上修至$1950-2050B</td></tr>
+      <tr><td>英特尔 INTC</td><td>7/24凌晨</td><td class="pos">✅ 已出·炸裂</td><td>Q2营收+25%/数据中心+59%/AI+70%</td></tr>
+      <tr><td>LITE / CELESTICA</td><td>7/28</td><td class="neg">⏳ 待验</td><td>光通信链第二关（汇绿/罗博映射）</td></tr>
+      <tr><td>META / MSFT</td><td>7/30</td><td class="neg">⏳ 待验</td><td>CSP Capex核心指引</td></tr>
+      <tr><td>AMZN</td><td>7/31</td><td class="neg">⏳ 待验</td><td>最后一关·S级四标的此前不动</td></tr>
+      <tr><td>SNDK</td><td>8/14</td><td class="neg">⏳ 待验</td><td>存储收官验证</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <span class="hl-red">英特尔炸裂财报 = 澜起最直接利好</span>：CPU 供不应求、AI 相关收入 +70%、管理层称"供应短缺将持续"、上调 2026 Capex 至 200 亿美元以上。隔夜英特尔盘后一度 +13%，今日美股盘中回落 -2.33%（利好兑现），但映射逻辑已落地。<br>
+    隔夜美股：纳指 -2.15%，科技七巨头单日蒸发 8000 亿美元（特斯拉 -14%、谷歌 -7%）；但存储/光通信逆势（AAOI +1.36%、美光/希捷/西数涨）。盘前 7/24：MRVL -1.41%、MU -2.16%、SK海力士 -2.93%（存储普跌），英特尔逆势 +4.76%。<br>
+    <span class="hl">长鑫 7/27 上市倒计时</span>：今日长鑫概念逆势走强，资金提前埋伏。对持仓中性偏正（强化国产存储链叙事），非"吸血雷"。
+  </div>
+</div>
+
+<!-- 07 技术信号雷达 -->
+<div class="card">
+  <div class="mod-h"><span class="num">07</span><span class="ttl">技术信号雷达（17只）</span></div>
+  <div class="note" style="margin-bottom:8px">覆盖11持仓+6跟踪。仅列有信号触发标的，中性不列。⚠️ 数据源说明：westock 技术接口当前断开，以下信号基于<span class="hl">价格行为定性</span>（涨跌幅+5日/20日动量），精确 RSI(14)/DMI 待数据源恢复后校准，仅供辅助参考。</div>
+  <table class="f4 radar">
+    <thead><tr><th>标的</th><th>信号</th><th>关键指标</th><th>操作含义</th></tr></thead>
+    <tbody>
+      <tr><td>澜起 688008</td><td><span class="tag-warn">🟡 趋势·上行</span></td><td class="pos">5日+27.27%</td><td>强上行趋势，但短期涨幅巨大接近超买，不宜追</td></tr>
+      <tr><td>华峰 002064</td><td><span class="tag-cy">⚪ 趋势衰竭</span></td><td class="neg">前两日+5.34%/+2.36%</td><td>短线过热后今日-6.02%回吐，防御仓持有</td></tr>
+      <tr><td>三祥 603663</td><td><span class="hl-grn">🟢 超卖</span></td><td class="neg">20日-42.62%</td><td>深跌超卖，下行中继无底背离，非买入信号</td></tr>
+      <tr><td>汇绿 001267</td><td><span class="hl-grn">🟢 超卖</span></td><td class="neg">20日-44.65%</td><td>强下行超卖，对赌期不动等LITE验证</td></tr>
+      <tr><td>软通 301236</td><td><span class="hl-grn">🟢 超卖</span></td><td class="neg">今日-7.04%</td><td>加速回撤超卖，趋势弱，观察不接</td></tr>
+      <tr><td>中科飞测（跟踪）</td><td><span class="tag-warn">🔄 反转信号</span></td><td class="pos">昨-6.35%→今+6.90%</td><td>长鑫催化疑似底背离/转折，待确认非买点</td></tr>
+    </tbody>
+  </table>
+  <div class="note">🟡上行1（澜起）+ ⚪衰竭1（华峰）+ 🟢超卖3（三祥/汇绿/软通）+ 🔄反转1（中科飞测）。<span class="hl">无顶背离/趋势启动新信号</span>——当前为缩量普跌中的结构性分化，技术性拐点尚未系统性出现。澜起趋势强但短期超买，三祥/汇绿深跌超卖但无反转确认。</div>
+</div>
+
+<!-- 08 操作纪律与风险 -->
+<div class="card">
+  <div class="mod-h"><span class="num">08</span><span class="ttl">操作纪律与风险</span></div>
+  <div class="note">
+    <span class="hl-red">核心纪律（不变）</span>：S 级四标的（澜起/汇绿/三祥/罗博）在 <span class="hl">7/31 AMZN 财报前不增不减</span>。今日澜起大涨是节点验证，不是加仓理由；三祥 -5.70% 是缩量回调非逻辑破，市值未站 500 亿前不减仓。<br><br>
+    <span class="hl">下周关键窗口</span>：7/27 长鑫上市（观察"出道即巅峰"风险 vs 鲶鱼激活）、7/28 LITE/CELESTICA（光通信链第二关）、7/30 META/MSFT（CSP Capex）。任一节点下修 = 减仓评估触发；全部通过 = 五节点对赌期结束，再谈加减。<br><br>
+    <span class="hl-grn">风险提示</span>：① 两市成交 1.93 万亿创三个月新低，若连续缩量 + 指数有效破位（创业板破 3450）需重估系统性风险；② 公募科技仓位 60% 拥挤度仍高，高位股兑现压力未释放完毕；③ 英特尔财报利好已兑现，谨防"买预期卖事实"式回吐传导至澜起；④ 长鑫上市首日可能巨量换手扰动科技情绪。
+  </div>
+</div>
+
+<div class="footer">
+  数据溯源：指数/个股行情 Wind/腾讯自选股（收盘 2026-07-24）★★★；英特尔财报 证券时报/每经/财联社（2026-07-24）★★★；技术信号为价格行为定性（westock 接口断开，精确 RSI/DMI 待校准）★★。<br>
+  生成：巴蒂 🎯 ｜ V4 规范 ｜ 本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
+</div>
+
+</div>
+<script>
+var chart = echarts.init(document.getElementById('chart'), 'dark');
+chart.setOption({
+  backgroundColor: 'transparent',
+  title: { text: '持仓涨跌幅（7/24）', left: 0, top: 0, textStyle: { color: '#9aa5b9', fontSize: 13 } },
+  grid: { left: 90, right: 50, top: 36, bottom: 20 },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  xAxis: { type: 'value', axisLabel: { color: '#9aa5b9', formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(155,165,185,0.1)' } } },
+  yAxis: { type: 'category', data: ['软通','华峰','三祥','德展','太钢','星环','兴森','汇绿','罗博','泰和','澜起'], axisLabel: { color: '#e4e4e8', fontSize: 12 } },
+  series: [{
+    type: 'bar',
+    data: [
+      {value:-7.04, itemStyle:{color:'#1ed890'}},
+      {value:-6.02, itemStyle:{color:'#1ed890'}},
+      {value:-5.70, itemStyle:{color:'#1ed890'}},
+      {value:-3.33, itemStyle:{color:'#1ed890'}},
+      {value:-3.32, itemStyle:{color:'#1ed890'}},
+      {value:-2.87, itemStyle:{color:'#1ed890'}},
+      {value:-2.57, itemStyle:{color:'#1ed890'}},
+      {value:-2.15, itemStyle:{color:'#1ed890'}},
+      {value:-2.08, itemStyle:{color:'#1ed890'}},
+      {value:-1.68, itemStyle:{color:'#1ed890'}},
+      {value:3.62, itemStyle:{color:'#ff3b3b'}}
+    ],
+    label: { show: true, position: 'right', color: '#e4e4e8', formatter: '{c}%' }
+  }]
+});
+window.addEventListener('resize', function(){ chart.resize(); });
+</script>
+</body>
+</html>
