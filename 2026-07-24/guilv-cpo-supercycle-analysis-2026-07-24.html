@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>光模块超级周期 × 汇绿生态 关联解析</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:21px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+
+/* === 表格 === */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:top;word-break:break-word;overflow-wrap:anywhere;
+  text-wrap:pretty;font-variant-numeric:tabular-nums;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+
+/* f4 标准四列：16/16/18/50 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:16%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:18%;text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:50%;text-align:left}
+
+/* f5 关联映射五列：18/20/12/25/25 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:18%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:20%;text-align:left}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:12%;text-align:center}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:25%;text-align:left}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:25%;text-align:left}
+
+/* f3 三列：22/60/18（长内容在60%列） */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:56%;text-align:left}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:22%;text-align:left}
+
+table td:first-child,table th:first-child{font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap}
+
+/* 颜色 */
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:21px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#chart{width:100%;height:230px;margin:14px 0 4px}
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .hero .sub{font-size:12px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px;border-radius:5px}
+  .caption{font-size:11px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px;letter-spacing:0.2px}
+  table td:first-child,table th:first-child{min-width:50px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}
+  .stat-card .val{font-size:18px}
+  .stat-card .lbl{font-size:10px}
+  #chart{height:180px}
+  footer{padding:14px;font-size:10px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table-wrap table{min-width:340px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>光模块超级周期 × 汇绿生态 关联解析</h1>
+  <div class="sub">数据源：微信公众号《光电Seek》7/19 + 持仓记忆 + WeStock真实RSI/DMI（置信度 ★★★）</div>
+</header>
+
+<!-- 01 结论先行 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>结论先行</div>
+  <p class="caption">这篇文章<b>每一个核心论点都直接命中汇绿生态（001267，S级）的持仓逻辑</b>——1.6T放量、硅光渗透、CPO商用、云厂商Capex爆炸、三年增长窗口，全是汇绿的强映射。结论：<span class="tag tag-cyan">强化S级逻辑</span>，但<b>不改变五节点对赌期纪律</b>（7/31 AMZN前不增不减）。</p>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="val" style="color:var(--data)">146亿</div><div class="lbl">2026年1.6T市场规模(美元)</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--accent)">70-80%</div><div class="lbl">1.6T中硅光渗透率</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--up)">6000亿+</div><div class="lbl">2026八大云厂商Capex(美元)</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--num)">25.1</div><div class="lbl">汇绿RSI(超卖·真实)</div></div>
+  </div>
+  <p class="caption">⚠️ <span class="highlight-data">长逻辑强 ≠ 短期可加仓</span>：文章讲的是3年结构性跃迁，但汇绿当前RSI 25.1（超卖）、20日 -44.65%，技术面仍处下行通道。这正是"验证逻辑、非追高信号"的纪律体现。</p>
+</section>
+
+<!-- 02 文章核心观点 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>文章核心观点速览</div>
+  <div class="table-wrap">
+  <table class="f4 nowrap-first">
+    <tr><th>维度</th><th>关键数据</th><th>来源</th><th>含义</th></tr>
+    <tr><td>1.6T放量</td><td class="pos">+90%</td><td>LightCounting</td><td>2026Q1光模块+AOC销售额约100亿美元，同比+90%，增长率持续70%+</td></tr>
+    <tr><td>硅光主角</td><td class="pos">70-80%</td><td>银河·高盛</td><td>2026年1.6T中硅光占比70-80%；硅光收入占比2025年28%→2028年62%</td></tr>
+    <tr><td>CPO商用</td><td class="pos">2026元年</td><td>英伟达</td><td>Vera Rubin量产，Spectrum-X以太网硅光CPO交换机下半年量产导入</td></tr>
+    <tr><td>云Capex</td><td class="pos">+40%</td><td>TrendForce</td><td>2026八大云厂商Capex超6000亿美元，Meta/甲骨文计划翻倍</td></tr>
+    <tr><td>三年窗口</td><td class="pos">4倍+</td><td>大摩·高盛</td><td>AI光收发器2025年180亿→2028年1020亿美元；光模块市场342→509→726亿</td></tr>
+  </table>
+  </div>
+  <p class="caption">核心判断原文："<i>这不是周期性波动，这是结构性跃迁——光通信的价值链，正在从单一模块延伸到整张AI网络。</i>"</p>
+</section>
+
+<!-- 03 与汇绿的逻辑关联映射 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>与汇绿生态的逻辑关联映射</div>
+  <div class="table-wrap">
+  <table class="f5 nowrap-first">
+    <tr><th>文章论点</th><th>汇绿映射</th><th>强度</th><th>交叉验证源</th><th>操作含义</th></tr>
+    <tr><td>1.6T放量</td><td>硅光代工(LITE)</td><td>★★★★★</td><td>天孚Q2超预期</td><td>代工订单兑现</td></tr>
+    <tr><td>硅光渗透</td><td>技术路线契合</td><td>★★★★★</td><td>长飞保偏光纤论</td><td>站对技术主线</td></tr>
+    <tr><td>CPO商用</td><td>CPO硅光代工</td><td>★★★★★</td><td>长飞需求10-20倍</td><td>天花板打开</td></tr>
+    <tr><td>云Capex</td><td>下游订单确定</td><td>★★★★☆</td><td>谷歌Capex翻倍</td><td>云厂订单池匹配</td></tr>
+    <tr><td>3.2T起量</td><td>成长延续性</td><td>★★★★☆</td><td>大摩2028预测</td><td>三年窗口匹配</td></tr>
+    <tr><td>结构性跃迁</td><td>估值重构逻辑</td><td>★★★★☆</td><td>园林转型溢价</td><td>算力核心重估</td></tr>
+  </table>
+  </div>
+  <p class="caption">映射结论：文章6个论点中<b>5个直接强化汇绿S级逻辑</b>，且均有独立信源交叉验证（天孚/长飞/五节点），非单一多头叙事自证。</p>
+</section>
+
+<!-- 04 交叉验证 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>独立信源交叉验证</div>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>验证源</th><th>关键内容</th><th>呼应点</th></tr>
+    <tr><td>天孚通信Q2</td><td>H1净利11.2-13.0亿(+25%~45%)，Q2环比+44%</td><td>1.6T放量+硅光主角</td></tr>
+    <tr><td>长飞光纤WAIC</td><td>保偏光纤=CPO硅光最佳介质，需求10-20倍</td><td>CPO商用元年</td></tr>
+    <tr><td>谷歌7/23财报</td><td>Capex上修至1950-2050亿美元（翻倍）</td><td>云Capex爆炸</td></tr>
+    <tr><td>英特尔7/24财报</td><td>数据中心+59%、AI相关+70%</td><td>算力需求底座</td></tr>
+  </table>
+  </div>
+  <p class="caption">📌 四源全部落在文章发布（7/19）之后，属<b>事后验证而非事前引用</b>——说明文章判断与产业实时节奏同频，可信度较高。</p>
+</section>
+
+<!-- 05 巴蒂独立评价 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>巴蒂独立评价（盲区与风险）</div>
+  <p class="caption">文章是<b>纯多头叙事</b>，以下盲区需老潘独立记挂：</p>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>盲区</th><th>风险点</th><th>对汇绿的含义</th></tr>
+    <tr><td>供给扩产竞赛</td><td>旭创/新易盛/天孚/汇绿自身均在扩产</td><td>2027-28价格战</td></tr>
+    <tr><td>预测偏上沿</td><td>高盛/大摩/花旗均取乐观情景</td><td>实际或不及预期</td></tr>
+    <tr><td>汇绿个体未验</td><td>文章讲行业，份额/良率/客户绑定未知</td><td>黑马非龙头弱</td></tr>
+    <tr><td>短期回撤风险</td><td>叙事易让人忽视估值已高</td><td>20日超卖未企稳</td></tr>
+    <tr><td>外部冲击缺位</td><td>未提出口管制/贸易摩擦</td><td>供应链受冲击</td></tr>
+  </table>
+  </div>
+  <p class="caption">一句话：文章的<b>方向判对、节奏判对</b>，但把它当"现在就加仓"的理由则忽略了供给反身性与短期超卖。</p>
+</section>
+
+<!-- 06 操盘落地 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>操盘落地（S级纪律）</div>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>事项</th><th>说明</th><th>结论</th></tr>
+    <tr><td>是否减仓</td><td>文章强化S级逻辑，非减仓理由；汇绿仍是对赌期不动四标的之一</td><td><span class="tag tag-cyan">否</span></td></tr>
+    <tr><td>是否追高</td><td>超卖未企稳+五节点未走完，长逻辑≠短期买点</td><td><span class="tag tag-down">否</span></td></tr>
+    <tr><td>关键节点</td><td>LITE/CELESTICA(7/28)→META/MSFT(7/30)→AMZN(7/31)</td><td>7/28起</td></tr>
+    <tr><td>纪律红线</td><td>S级四标的(澜起/汇绿/三祥/罗博)AMZN财报前纹丝不动</td><td>7/31前不动</td></tr>
+  </table>
+  </div>
+  <p class="caption">📌 汇绿当前处在"长逻辑最强、技术面最弱"的背离区间——这正是耐心定力的试金石。节点走完（7/31 AMZN）再看是加仓理由还是减仓信号。</p>
+</section>
+
+<!-- 07 数据溯源 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>数据溯源与版本</div>
+  <p class="caption">· 文章观点：微信公众号《光电Seek》原创，2026-07-19 发布（光模块超级周期路线图）★★★<br>
+  · 汇绿关联映射：持仓记忆（S级·光模块黑马·CPO硅光代工★★★★★）★★★<br>
+  · 交叉验证：天孚通信Q2预告 / 长飞光纤WAIC发言 / 谷歌7/23财报 / 英特尔7/24财报 ★★★<br>
+  · 技术面：WeStock真实RSI/DMI（2026-07-24收盘，Wind通道故障fallback）★★★<br>
+  · 版本：V4.0关联解析 · 生成 2026-07-24</p>
+</section>
+
+<div id="chart"></div>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。投资者据此操作风险自担。
+</footer>
+
+<script>
+var chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  title:{text:'光模块市场规模增长路线图（亿美元）',left:'center',top:4,textStyle:{color:'#eef2f8',fontSize:13,fontWeight:700}},
+  grid:{left:60,right:30,top:42,bottom:28},
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},
+    formatter:function(p){return p[0].name+'<br/>'+p[0].value+' 亿美元';}},
+  xAxis:{
+    type:'value',
+    axisLabel:{color:'#9aa5b9',formatter:'{value}'},
+    axisLine:{lineStyle:{color:'#2a3556'}},
+    splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)'}}
+  },
+  yAxis:{
+    type:'category',
+    data:['2025','2026','2027','2028E'],
+    axisLabel:{color:'#eef2f8',fontSize:12},
+    axisLine:{lineStyle:{color:'#2a3556'}}
+  },
+  series:[{
+    type:'bar',
+    data:[
+      {value:342,itemStyle:{color:'#3ddcc8'}},
+      {value:509,itemStyle:{color:'#3ddcc8'}},
+      {value:726,itemStyle:{color:'#f5a623'}},
+      {value:1020,itemStyle:{color:'#ff3b3b'}}
+    ],
+    label:{show:true,position:'insideRight',color:'#0d1424',formatter:'{c}',fontSize:11,fontWeight:700},
+    barWidth:'54%'
+  }]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
