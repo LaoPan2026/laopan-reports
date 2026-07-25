@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>三祥新材603663深度解析·2026年7月25日</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px}
+.hero .sub{font-size:13px;color:var(--sub)}
+.anchor{margin:14px 16px 0;background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.3);
+  border-radius:10px;padding:12px 16px;font-size:12.5px;color:var(--data);line-height:1.65}
+.anchor b{color:#ffe98a}
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+
+/* f2 两列 28/72 */
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:26%;text-align:left}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:74%;text-align:left}
+
+/* f3 三列 22/18/60 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:24%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:58%;text-align:left}
+
+/* 财务摘要 f5.fin 六列 */
+table.fin th:nth-child(1),table.fin td:nth-child(1){width:28%;text-align:left}
+table.fin th:nth-child(2),table.fin td:nth-child(2){width:18%;text-align:right}
+table.fin th:nth-child(3),table.fin td:nth-child(3){width:18%;text-align:right}
+table.fin th:nth-child(4),table.fin td:nth-child(4){width:18%;text-align:right}
+table.fin th:nth-child(5),table.fin td:nth-child(5){width:18%;text-align:right}
+
+/* 估值对比 val 五列 */
+table.val th:nth-child(1),table.val td:nth-child(1){width:22%;text-align:left}
+table.val th:nth-child(2),table.val td:nth-child(2){width:20%;text-align:right}
+table.val th:nth-child(3),table.val td:nth-child(3){width:19%;text-align:right}
+table.val th:nth-child(4),table.val td:nth-child(4){width:19%;text-align:right}
+table.val th:nth-child(5),table.val td:nth-child(5){width:20%;text-align:right}
+
+/* 情景 sce 四列 18/26/28/28 */
+table.sce th:nth-child(1),table.sce td:nth-child(1){width:16%;text-align:left}
+table.sce th:nth-child(2),table.sce td:nth-child(2){width:26%;text-align:left}
+table.sce th:nth-child(3),table.sce td:nth-child(3){width:30%;text-align:left}
+table.sce th:nth-child(4),table.sce td:nth-child(4){width:28%;text-align:left}
+
+/* 催化日历 cal 四列 14/24/34/28 */
+table.cal th:nth-child(1),table.cal td:nth-child(1){width:14%;text-align:left}
+table.cal th:nth-child(2),table.cal td:nth-child(2){width:26%;text-align:left}
+table.cal th:nth-child(3),table.cal td:nth-child(3){width:38%;text-align:left}
+table.cal th:nth-child(4),table.cal td:nth-child(4){width:22%;text-align:left}
+
+/* 多空评分 score 三列 */
+table.score th:nth-child(1),table.score td:nth-child(1){width:26%;text-align:left}
+table.score th:nth-child(2),table.score td:nth-child(2){width:16%;text-align:center}
+table.score th:nth-child(3),table.score td:nth-child(3){width:58%;text-align:left}
+
+table td:first-child,table th:first-child{font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.up{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.down{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl{color:var(--data);font-weight:700}
+.cyan{color:var(--accent);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+
+.caption{font-size:13px;color:var(--text);margin:6px 0 10px;line-height:1.7}
+.verdict{background:rgba(61,220,200,0.06);border-left:4px solid var(--accent);
+  padding:12px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:13.5px;line-height:1.75}
+.verdict b{color:var(--accent)}
+.bull{background:rgba(255,59,59,0.05);border-left:4px solid var(--up);padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:13px;line-height:1.7}
+.bear{background:rgba(30,216,144,0.05);border-left:4px solid var(--down);padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:13px;line-height:1.7}
+.bull b{color:var(--up)}.bear b{color:var(--down)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#chart{width:100%;height:260px;margin:14px 0 4px}
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}.hero h1{font-size:18px}.hero .sub{font-size:12px}
+  .anchor{margin:10px 8px 0;padding:10px 12px;font-size:11.5px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px;border-radius:5px}
+  .caption{font-size:12px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px;letter-spacing:0.2px}
+  table td:first-child,table th:first-child{min-width:50px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}.stat-card .val{font-size:18px}.stat-card .lbl{font-size:10px}
+  #chart{height:220px}
+  footer{padding:14px;font-size:10px}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>三祥新材（603663）深度解析 · 2026年7月25日</h1>
+  <div class="sub">铪金属结构性短缺 × 锆铪分离国产破垄断 × 高估值 —— 浙商/华鑫研报交叉核对 + 独立评估（数据源：WeStock ★★★ / 公开研报）</div>
+</header>
+
+<div class="anchor">
+  ★ <b>时间锚点校准</b>：本文基于 <b>浙商证券 7/14</b>（半年报预告点评，买入）与 <b>华鑫证券 7/2</b>（东曹断供点评，买入）两份研报，叠加最新行情。<b>关键提醒：研报口径失真已修正</b> —— 浙商研报日（7/14）总股本 4.24 亿股、收盘 72.79 元；<b>期间公司做过送转扩股，最新总股本已增至 5.94 亿股</b>，故研报中 EPS 0.93 / PE 77.85 均为送转前旧口径，<b>不可直接套用</b>。本文一律用最新总市值（7/24 收盘 229.71 亿）重算 PE，确保口径可比。行情截至 <b>2026-07-24 收盘</b>（周五）。
+</div>
+
+<!-- 01 结论前置 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>结论前置 · 多空评分</div>
+  <div class="verdict">
+    <b>一句话结论：逻辑够硬、赛道够稀缺，但价格已提前透支——这是"小金属里的半导体材料期权"，S 级持有逻辑不变，但当前不是加仓的舒适区。</b><br>
+    三祥是全球最大电容氧化锆 + 亚洲最大工业级海绵锆龙头，锆铪分离产线已连续产出 4N 级以上电子级氧氯化铪，<b>打破 ATI/埃赫曼数十年海外垄断</b>，恰好踩在 AI 存储/先进制程 High-K 材料自主可控的风口。铪金属全球年产仅 70-75 吨、结构性短缺，价格创历史新高。<b>但反面是：TTM PE 163×、20 日回撤 42.6%，股价已跑在 2027-2028 年乐观预期前面。</b>对老潘的持仓（成本 18.18、浮盈约 +113%、S 级）：<b>逻辑未破 → HOLD 不减</b>；高位追加需等业绩兑现或估值回调。
+  </div>
+  <div class="table-wrap">
+  <table class="score nowrap-first">
+    <tr><th>维度</th><th>评分</th><th>核心依据</th></tr>
+    <tr><td>景气度</td><td><span class="tag tag-up">强多 9/10</span></td><td>铪金属同比 +188.8% 创新高、结构性短缺；AI 存储/3nm-2nm High-K 需求爆发</td></tr>
+    <tr><td>稀缺性/壁垒</td><td><span class="tag tag-up">强多 9/10</span></td><td>全球少数打破锆铪分离垄断者，4N 级电子级已量产，250 吨氧氯化铪产能改变全球供需</td></tr>
+    <tr><td>业绩兑现</td><td><span class="tag tag-cyan">中性偏多 6/10</span></td><td>2026H1 归母 +53.7%~78.1% 高增，但锆铪大线要 2026 底才投产，弹性尚未完全落地</td></tr>
+    <tr><td>估值安全边际</td><td><span class="tag tag-down">偏空 3/10</span></td><td>TTM PE 163×、PB 16.87×，机构一致目标价均值曾显著低于市价，赔率不佳</td></tr>
+    <tr><td>综合</td><td><span class="tag tag-gold">S 级持有</span></td><td>逻辑硬 + 稀缺高，但价格贵——持有不减，追加需等窗口</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 02 催化时间线 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>催化时间线</div>
+  <p class="caption">锆铪分离项目"小线→大线"两步走是核心节点，其余为价格/政策/需求侧催化。</p>
+  <div class="table-wrap">
+  <table class="cal nowrap-first">
+    <tr><th>时点</th><th>事件</th><th>内容</th><th>影响</th></tr>
+    <tr><td>已兑现</td><td>2026H1 预告</td><td>归母 0.69-0.80 亿，同比 +53.7%~78.1%</td><td><span class="pos">利好·已反映</span></td></tr>
+    <tr><td>已兑现</td><td>东曹断供</td><td>2026/6 日本东曹暂停对华供氧化锆粉体</td><td><span class="pos">国产替代加速</span></td></tr>
+    <tr><td>已兑现</td><td>战略矿产入法</td><td>2026/6 矿产资源法实施条例施行，锆铪列为国家级战略矿产</td><td><span class="pos">政策背书</span></td></tr>
+    <tr><td>2026 Q3</td><td>锆铪分离小线</td><td>半工业化产线连续产 4N 级电子级氧氯化铪（8月节点）</td><td><span class="cyan">量产验证</span></td></tr>
+    <tr><td>2026 底</td><td>2万吨大线投产</td><td>新增 250+ 吨氧氯化铪、8000 吨核级氧氯化锆</td><td><span class="hl">弹性放大关键</span></td></tr>
+    <tr><td>持续</td><td>铪价走势</td><td>海外报价创新高，Argus 判结构性短缺</td><td><span class="pos">量价齐升</span></td></tr>
+    <tr><td>远期</td><td>固态电池/镁铝</td><td>清陶等客户送样→批量；镁铝为参股非并表</td><td><span class="cyan">期权价值</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 03 公司画像·财务速览 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>公司画像 · 财务速览</div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="val" style="color:var(--text)">38.70</div><div class="lbl">7/24收盘（元）</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--down)">-5.70%</div><div class="lbl">当日涨跌</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--data)">163×</div><div class="lbl">TTM PE</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--up)">+53.7%</div><div class="lbl">年内涨幅</div></div>
+  </div>
+  <p class="caption">公司起步于电熔氧化锆等传统锆制品（1988 年成立），现为以<b>核级海绵锆 + 氧化铪</b>为核心的平台型新材料公司。全球最大电容氧化锆、亚洲最大工业级海绵锆生产商；核级海绵锆已进入法国法马通全球供应链。总市值 229.71 亿、总股本 5.94 亿股、PB 16.87×、52 周区间 17.26-75.54 元。</p>
+  <div class="table-wrap">
+  <table class="fin nowrap-first">
+    <tr><th>财务指标（浙商预测）</th><th>2025A</th><th>2026E</th><th>2027E</th><th>2028E</th></tr>
+    <tr><td>营业收入（亿）</td><td>11.66</td><td>16.31</td><td>21.02</td><td>23.55</td></tr>
+    <tr><td>营收同比</td><td class="pos">+10.6%</td><td class="pos">+39.9%</td><td class="pos">+28.9%</td><td class="pos">+12.0%</td></tr>
+    <tr><td>归母净利（亿）</td><td>1.18</td><td>3.96</td><td>6.50</td><td>7.52</td></tr>
+    <tr><td>归母同比</td><td class="pos">+55.2%</td><td class="pos">+237%</td><td class="pos">+64.1%</td><td class="pos">+15.6%</td></tr>
+    <tr><td>毛利率</td><td>26.7%</td><td>38.0%</td><td>43.7%</td><td>47.4%</td></tr>
+    <tr><td>净利率</td><td>10.1%</td><td>24.3%</td><td>30.9%</td><td>31.9%</td></tr>
+    <tr><td>ROE</td><td>8.6%</td><td>24.8%</td><td>33.0%</td><td>31.2%</td></tr>
+    <tr><td>经营现金流（亿）</td><td>1.78</td><td>4.36</td><td>5.90</td><td>10.16</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="color:var(--sub);font-size:12px">注：以上为浙商证券 7/14 预测值。<b>亮点是现金流为正且逐年放大</b>（区别于软通动力那类"增收不增现金"标的）；隐忧是 2026E 归母 +237% 高基数弹性主要来自铪价与锆铪投产，兑现依赖度高。</p>
+</section>
+
+<!-- 04 产业格局与景气度 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>产业格局与景气度</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>逻辑轴</th><th>关键数据</th><th>说明</th></tr>
+    <tr><td>铪·结构性短缺</td><td class="hl">年产70-75吨</td><td>全球纯铪金属年产能极小；燃气轮机+存储+航天+核电需求远超供给，Argus 判结构性短缺</td></tr>
+    <tr><td>铪·价格新高</td><td class="pos">+188.8% YoY</td><td>海外报价 12508 美元/千克（≈8500万元/吨），较年初 +31.7%、创历史新高（浙商口径）</td></tr>
+    <tr><td>High-K 材料</td><td class="cyan">3nm/2nm</td><td>氧化铪基高k替代SiO₂，抑制栅极漏电；台积电/英特尔7nm-5nm已用，向3nm-2nm延伸；DRAM/3D NAND关键材料</td></tr>
+    <tr><td>锆·国产替代</td><td class="pos">东曹断供</td><td>2026/6 日本东曹暂停对华供氧化锆粉体，三祥作头部有望扩份额</td></tr>
+    <tr><td>锆铪分离</td><td class="hl">破垄断</td><td>4N级以上电子级氧氯化铪连续量产，打破ATI/埃赫曼垄断；2万吨项目2026底建成</td></tr>
+    <tr><td>固态电池</td><td class="cyan">远期期权</td><td>纳米锆/氧化锆用于固态电解质方向，客户送样中，尚未放量</td></tr>
+  </table>
+  </div>
+  <p class="caption">一句话看懂产业：<b>三祥卡在"AI 算力→存储芯片→High-K 材料（铪）"这条国产替代链最上游的稀缺环节。</b>它不是卖算力、也不是卖芯片，是卖"芯片里那一层几纳米的关键介质材料"的原料——量小、壁垒高、涨价猛，是典型的"小金属里的隐形冠军"。</p>
+</section>
+
+<!-- 05 技术面·资金面 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>技术面 · 资金面</div>
+  <div class="table-wrap">
+  <table class="f3 nowrap-first">
+    <tr><th>指标</th><th>数值</th><th>解读</th></tr>
+    <tr><td>年内涨幅</td><td class="pos">+53.7%</td><td>年度大牛股，铪价+锆铪叙事驱动的戴维斯双击</td></tr>
+    <tr><td>60日涨幅</td><td class="pos">+11.4%</td><td>中期仍上行趋势</td></tr>
+    <tr><td>20日涨幅</td><td class="neg">-42.6%</td><td>高位急杀，从52周高75.54回撤近半，杀的是估值与拥挤度</td></tr>
+    <tr><td>52周区间</td><td>17.26-75.54</td><td>当前38.70处于区间中枢偏下，距高点-48.8%</td></tr>
+    <tr><td>换手率</td><td>2.82%</td><td>杀跌后换手回落，量比0.77缩量，抛压趋缓但未见放量承接</td></tr>
+    <tr><td>内外盘/委比</td><td class="neg">委比-48.6</td><td>内盘88418>外盘78835，卖压仍占优，短线情绪偏弱</td></tr>
+  </table>
+  </div>
+  <p class="caption"><b>技术面定性：典型"杀估值不杀逻辑"。</b>20日腰斩式回撤是前期涨幅过快 + AI 板块系统性杀跌的双重结果，但 60 日、年内仍为正——与罗博/软通同一节奏。缩量下跌意味着恐慌盘释放趋缓，但尚无放量反转信号，不宜抢反弹，逻辑仓可扛。</p>
+</section>
+
+<!-- 06 核心逻辑与风险 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>核心逻辑与风险（含反一致预期）</div>
+  <div class="bull"><b>多头逻辑（为何值得持有）</b>：① 稀缺性无可替代——全球极少数打破锆铪分离垄断者，250 吨氧氯化铪产能足以改变全球供需；② 景气度极强——铪价创新高 + AI 存储/先进制程 High-K 刚需；③ 政策护航——锆铪入国家级战略矿产 + 东曹断供腾出份额；④ 业绩拐点确认——2026H1 归母高增 +53.7%~78.1%，2026Q1 是上市以来最亮眼一季。</div>
+  <div class="bear"><b>空头/反一致预期（为何要警惕）</b>：① <b>估值先行</b>——TTM PE 163×、PB 16.87×，股价已定价 2027-2028 乐观预期，任何不及预期即戴维斯双杀；② <b>铪价已在极值</b>——同比 +188.8%，处历史高位，需求侧波动即引发回撤；③ <b>大线兑现有时滞</b>——2万吨锆铪分离 2026 底才投产，电子级良率/客户认证若慢于预期，2026-27 盈利预测要下修；④ <b>镁铝为参股非并表</b>，弹性有限；⑤ 若东曹恢复供应或东方锆业等扩产，国产替代逻辑被稀释。</div>
+  <div class="bear"><b>反媒体噪音·铪价口径辨析（写=审）</b>：多篇报道混用"铪金属"与"氧化铪产品"两种口径——浙商/网易口径的 <b>铪金属海外价年内 +31.7%、同比 +188.8%</b> 是对的；华鑫口径"<b>氧化铪产品</b>年内 +6%"指的是深加工品价格，两者不矛盾、别当成打架。转述时须钉死主体，避免以讹传讹。</div>
+</section>
+
+<!-- 07 可比估值 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>可比估值（送转口径已统一重算）</div>
+  <p class="caption">以下 PE 一律用<b>最新总市值 229.71 亿</b>（7/24 收盘）除以各家预测归母净利，规避送转前旧股本失真。研报原文 PE 因基于旧股本+旧价，不可直接引用。</p>
+  <div class="table-wrap">
+  <table class="val nowrap-first">
+    <tr><th>机构/口径</th><th>26E归母</th><th>26E PE</th><th>27E PE</th><th>28E PE</th></tr>
+    <tr><td>浙商 7/14</td><td>3.96亿</td><td class="hl">58.0×</td><td>35.3×</td><td>30.5×</td></tr>
+    <tr><td>华鑫 7/2</td><td>3.65亿</td><td class="hl">62.9×</td><td>45.8×</td><td>33.2×</td></tr>
+    <tr><td>TTM（当前）</td><td>—</td><td class="neg">163×</td><td>—</td><td>—</td></tr>
+    <tr><td>PB（当前）</td><td>—</td><td class="neg">16.87×</td><td>—</td><td>—</td></tr>
+  </table>
+  </div>
+  <p class="caption"><b>估值判断</b>：即便按最激进的浙商预测，2026E PE 也高达 58×、2027E 35×——这是"提前透支两年成长"的定价。对比 TTM 163×，说明市场已把 2026-27 的高增长打进现价。<b>结论：估值不便宜，安全边际薄，赔率不如 2025 年 4-7 月启动前那波。</b>更稳的介入方式是等锆铪大线投产（2026 底）业绩兑现验证，或铪价/估值回调后的二次买点。</p>
+</section>
+
+<!-- 08 三级情景 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">08</span>三级情景推演（送转后股价口径）</div>
+  <div class="table-wrap">
+  <table class="sce nowrap-first">
+    <tr><th>情景</th><th>触发条件</th><th>估值锚</th><th>股价/市值区间</th></tr>
+    <tr><td><span class="tag tag-up">乐观</span></td><td>锆铪大线2026底投产兑现 + 铪价维持8000万+/吨 + 固态电池放量</td><td>2027E业绩 PE 50-55× / 远期国金曾喊800亿市值</td><td><span class="pos">60-85元</span><br>市值356-505亿</td></tr>
+    <tr><td><span class="tag tag-cyan">中性</span></td><td>锆铪逐步放量 + 铪价高位震荡 + 业绩按预告兑现</td><td>2027E归母6.5亿 PE 35-48×</td><td><span class="cyan">38-52元</span><br>市值226-309亿</td></tr>
+    <tr><td><span class="tag tag-down">保守</span></td><td>铪价回调 + 电子级认证慢/良率不及 + 高估值系统性杀</td><td>PB回落至9.5-13×</td><td><span class="neg">22-30元</span><br>市值130-178亿</td></tr>
+  </table>
+  </div>
+  <p class="caption" style="color:var(--sub);font-size:12px">注：三档均为送转后（5.94 亿股）口径。老潘持仓成本 18.18 元、现价 38.70、浮盈约 +113%——即便落入保守档（22-30 元）仍为浮盈，中长线逻辑仓可承受。<b>纪律提示</b>："三祥 500 亿市值前不减"这条铁律，按最新股本对应股价约 <b>84 元</b>（此前记的"≈118 元"是送转前旧口径，已按新股本校准）。</p>
+</section>
+
+<!-- 09 数据溯源 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">09</span>数据溯源与操作落脚</div>
+  <div class="verdict">
+    <b>咱们该怎么做（S 级纪律）</b>：<br>
+    ① <b>HOLD 不减</b>——逻辑未破、基本面持续向好（H1 高增 + 锆铪破垄断 + 铪价新高），符合"卖出唯一理由=逻辑破/基本面恶化"的纪律，不因高位回撤砍仓；<br>
+    ② <b>不在此位追加</b>——TTM PE 163×、2026E PE 58×，安全边际薄；真要加算力自主可控弹性，节奏上等 <b>2026 底锆铪大线投产验证</b> 或 <b>股价回落至中性档下沿（38 元附近及以下）</b> 再考虑；<br>
+    ③ <b>盯三个反转开关</b>：铪价是否见顶回调、电子级氧氯化铪客户认证/良率进度、东曹是否恢复供应；任一恶化才触发重估；<br>
+    ④ 500 亿市值（≈84 元）前不减的纪律继续有效。
+  </div>
+  <div id="chart"></div>
+  <p class="caption" style="color:var(--sub);font-size:12px">数据来源：WeStock 实时行情（7/24 收盘，★★★）+ 浙商证券 7/14 研报 + 华鑫证券 7/2 研报 + 公司公告 + 公开媒体交叉核对。估值口径统一按最新总市值重算。版本：V2.1 深度研报模板（升级版 V4 排版，QC v2.4 校验通过）。</p>
+</section>
+
+<footer>
+  ⚠️ 免责声明：本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。市场有风险，投资需谨慎。铪价、锆铪分离项目进度、客户认证等关键变量存在不确定性，估值处高位，注意回撤风险。
+</footer>
+
+<script>
+var chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  legend:{data:['浙商证券','华鑫证券'],top:0,right:0,textStyle:{color:'#9aa5b9',fontSize:11}},
+  grid:{left:48,right:20,top:40,bottom:28},
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  xAxis:{
+    type:'category',
+    data:['2026E','2027E','2028E'],
+    axisLabel:{color:'#eef2f8',fontSize:12},
+    axisLine:{lineStyle:{color:'#2a3556'}}
+  },
+  yAxis:{
+    type:'value',
+    name:'归母净利(亿)',
+    nameTextStyle:{color:'#9aa5b9',fontSize:11},
+    axisLabel:{color:'#9aa5b9',formatter:'{value}'},
+    axisLine:{lineStyle:{color:'#2a3556'}},
+    splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)'}}
+  },
+  series:[
+    {name:'浙商证券',type:'bar',data:[3.96,6.50,7.52],itemStyle:{color:'#f5a623'},
+     label:{show:true,position:'top',color:'#eef2f8',fontSize:10,formatter:'{c}'},barWidth:'28%'},
+    {name:'华鑫证券',type:'bar',data:[3.65,5.01,6.91],itemStyle:{color:'#3ddcc8'},
+     label:{show:true,position:'top',color:'#eef2f8',fontSize:10,formatter:'{c}'},barWidth:'28%'}
+  ]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
