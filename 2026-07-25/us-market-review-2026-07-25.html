@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>昨夜美股复盘 · 2026-07-24（美东周五）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424; --card:#1a2540; --line:#2a3556;
+  --orange:#f5a623; --yellow:#ffd83d; --teal:#3ddcc8; --gray:#9aa5b9;
+  --text:#e8ecf4; --up:#ff3b3b; --down:#1ed890;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;padding:24px}
+.container{max-width:940px;margin:0 auto}
+.header{border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:20px}
+.header h1{font-size:22px;color:var(--yellow);letter-spacing:1px}
+.header .sub{color:var(--gray);font-size:13px;margin-top:6px}
+.anchor{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.35);border-radius:6px;padding:10px 14px;margin:14px 0;font-size:13px;color:var(--orange)}
+.verdict{background:rgba(61,220,200,.07);border:1px solid rgba(61,220,200,.35);border-radius:6px;padding:14px 16px;margin:16px 0;font-size:14px}
+.verdict b{color:var(--teal)}
+.module{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:16px 0;padding:18px 20px}
+.mod-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.mod-num{color:var(--orange);font-weight:800;font-size:15px}
+.mod-title{font-size:16px;font-weight:700;color:var(--text)}
+.mod-tag{margin-left:auto;font-size:12px;color:var(--gray)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums;word-break:break-word;overflow-wrap:anywhere}
+td{text-wrap:pretty}
+th{font-size:12px;font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06)}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+.pos,.up{color:var(--up);font-weight:700;white-space:nowrap}
+.neg,.down{color:var(--down);font-weight:700;white-space:nowrap}
+.hl{color:var(--yellow);font-weight:700}
+.tl{color:var(--teal);font-weight:700}
+.dim{color:var(--gray)}
+p.note{color:var(--gray);font-size:13px;margin-top:10px}
+ul{padding-left:20px;margin:8px 0}
+li{margin:5px 0}
+/* f4.idx 指数表 28/24/24/24 */
+table.f4.idx th:nth-child(1),table.f4.idx td:nth-child(1){width:28%;text-align:left;white-space:nowrap}
+table.f4.idx th:nth-child(2),table.f4.idx td:nth-child(2){width:24%;text-align:right}
+table.f4.idx th:nth-child(3),table.f4.idx td:nth-child(3){width:24%;text-align:right}
+table.f4.idx th:nth-child(4),table.f4.idx td:nth-child(4){width:24%;text-align:right}
+/* f4.us 映射标的表 22/12/18/48 */
+table.f4.us th:nth-child(1),table.f4.us td:nth-child(1){width:22%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4.us th:nth-child(2),table.f4.us td:nth-child(2){width:12%;text-align:right}
+table.f4.us th:nth-child(3),table.f4.us td:nth-child(3){width:18%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4.us th:nth-child(4),table.f4.us td:nth-child(4){width:48%;text-align:left}
+/* f4.cal 财报日历 10/24/30/36 */
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1){width:10%;text-align:left;white-space:nowrap}
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2){width:24%;text-align:left}
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3){width:30%;text-align:left}
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4){width:36%;text-align:left}
+/* f4.csp CSP表 22/16/16/46 */
+table.f4.csp th:nth-child(1),table.f4.csp td:nth-child(1){width:22%;text-align:left;white-space:nowrap}
+table.f4.csp th:nth-child(2),table.f4.csp td:nth-child(2){width:16%;text-align:right}
+table.f4.csp th:nth-child(3),table.f4.csp td:nth-child(3){width:16%;text-align:right}
+table.f4.csp th:nth-child(4),table.f4.csp td:nth-child(4){width:46%;text-align:left}
+/* f2 多空辩论 28/72 */
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%;text-align:left}
+#barChart{width:100%;height:460px}
+.footer{color:var(--gray);font-size:12px;border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
+@media (max-width:640px){
+  body{font-size:13px;padding:12px}
+  table{font-size:12px}
+  th,td{padding:6px 6px}
+  .table-wrap table{min-width:480px}
+  .header h1{font-size:18px}
+  #barChart{height:420px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>昨夜美股复盘：指数平静，半导体单边杀跌</h1>
+  <div class="sub">交易日：2026-07-24（美东周五）· 报告生成：2026-07-25（周六）09:15 · 数据源：WeStock 行情快照（Wind 直连不可用，已按约定 fallback）★★★</div>
+</div>
+
+<div class="anchor">★ 时间锚点：今天 7/25 周六（美股周线已收官）。长鑫存储 688825 下周一 <b>7/27 上市</b>（T-2，中签 1000 股已缴款完毕，无待办）。五节点对赌进度 2/5：台积电 7/16 ✅、GOOGLE 7/23 ✅，剩 META/MSFT 7/30 → AMZN 7/31 → SNDK 8/14。</div>
+
+<div class="verdict">
+<b>结论前置：</b>昨夜是<b>"AI 高估值获利了结 + 存储拐点预警首响"</b>，不是需求证伪。费半 <span class="neg">-4.25%</span>、30 只成份股全跌，光通信/存储映射链单日再挫 6~11%；但 CSP 四巨头股价平稳、英特尔基本面超预期反被卖——杀的是"卖铲人"的估值，不是买铲人的需求。<b>操作结论：A 股光通信链周一大概率低开，S 级持仓纪律不变（HOLD），对赌期不增不减、不因映射端情绪砍仓。</b>新增一条硬监控：大摩预警内存合约价 2026Q4 见顶——这是咱们"反转开关"框架里第一个方向性信号，从今天起升级为每周必查项。
+</div>
+
+<!-- 01 指数概览 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">01</span><span class="mod-title">指数概览：表面分化，内里失血</span><span class="mod-tag">WeStock ★★★</span></div>
+  <div class="table-wrap">
+  <table class="f4 idx">
+    <thead><tr><th>指数</th><th>收盘</th><th>日涨跌</th><th>本周累计</th></tr></thead>
+    <tbody>
+      <tr><td>道琼斯工业</td><td>51,947.25</td><td class="pos">+0.46%</td><td class="neg">-0.38%</td></tr>
+      <tr><td>标普500</td><td>7,411.98</td><td class="pos">+0.05%</td><td class="neg">-0.61%</td></tr>
+      <tr><td>纳斯达克综合</td><td>24,975.82</td><td class="neg">-0.64%</td><td class="neg">-2.13%</td></tr>
+      <tr><td>费城半导体</td><td class="dim">—</td><td class="neg">-4.25%</td><td class="dim">30 成份股全跌</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">结构极端分化：道指红盘、费半 -4.25%，资金从 AI 硬件撤向传统蓝筹与苹果（AAPL <span class="pos">+3.53%</span> 创收盘新高附近）。高盛交易台原话：全天几乎未见大量买入指令，科技股卖压来自<span class="hl">长线机构</span>，卖出强度处于可追溯记录最高水平之列——这不是散户恐慌，是机构在财报季高峰前主动降 AI 敞口。★★★</p>
+</div>
+
+<!-- 02 英特尔反转 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">02</span><span class="mod-title">英特尔：财报全面超预期，股价 -7.89% 的反转逻辑</span><span class="mod-tag">财报+电话会 ★★★</span></div>
+  <ul>
+    <li>Q2 营收 <span class="hl">161.3 亿美元（+25%）</span>，15 年最强增速；EPS 0.42 vs 预期 0.21；DCAI <span class="hl">+59%</span>、代工 +31%；Q3 指引 158-168 亿也超预期（预期 150.6 亿）</li>
+    <li>周四盘后一度 <span class="pos">+13%</span> → 周五（昨夜）收跌 <span class="neg">-7.89%</span>，放量 36%。市场卖的三个理由：①代工外部大客户仍未落地；②2026 年 capex 从 180 亿上调至 <span class="hl">200 亿+</span>，烧钱加速；③潜在股权融资稀释担忧</li>
+    <li>年内 +150% 之后，"好财报"不再是买入理由，"钱花出去何时变收入"才是——这与谷歌 7/23 财报后 -7% 是同一个定价逻辑：<span class="tl">市场开始对 AI capex 要回报时间表</span></li>
+  </ul>
+  <p class="note">对咱们的意义：电话会再次确认"供应短缺在可预见未来持续"+ capex 上调——<b>产业事实利好澜起/罗博（需求与扩产验证），股价反应利空（估值定价权收紧）</b>。事实与情绪分开记账，别混为一谈。</p>
+</div>
+
+<!-- 03 存储拐点预警 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">03</span><span class="mod-title">存储链重挫：大摩"合约价 2026Q4 见顶"预警 —— 反转开关首响</span><span class="mod-tag">重点 ★★★</span></div>
+  <div class="table-wrap">
+  <table class="f4 us">
+    <thead><tr><th>标的</th><th>昨夜</th><th>映射</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>SNDK 闪迪</td><td class="neg">-10.79%</td><td>澜起(情绪)</td><td>年内一度 +858%，现回撤 30%；目标价 3250→3050 但维持买入，24 分析师 21 家买入</td></tr>
+      <tr><td>MU 美光</td><td class="neg">-6.99%</td><td>存储风向</td><td>PE 仅 20.8 —— 记住铁律：周期顶点 PE 最低，低 PE 恰是危险信号</td></tr>
+      <tr><td>WDC 西数</td><td class="neg">-6.90%</td><td>澜起(情绪)</td><td>7/30 财报，20 日已回撤 23%</td></tr>
+      <tr><td>STX 希捷</td><td class="neg">-6.75%</td><td>澜起(情绪)</td><td>7/29 财报，HDD 供给紧张逻辑未变</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul>
+    <li><b>大摩报告核心：</b>AI 驱动的存储狂欢接近拐点，<span class="hl">内存合约价预计 2026Q4 见顶</span>——对照咱们的反转开关（"两存扩产 / 三星 capex 转常规颗粒 / 合约价方向"），这是<b>第一个由头部机构给出明确时间表的方向性信号</b></li>
+    <li><b>但注意口径：</b>大摩说的是"Q4 见顶"，即 Q3 合约价仍在涨。从预警到兑现有一个季度以上窗口，且英特尔/闪迪产业端口径（短缺持续、3-5 年长约+110 亿美元承诺）与之相反。<span class="tl">预警≠拐点已至，升级监控≠立即行动</span></li>
+    <li><b>对澜起的区分（写=审）：</b>澜起是内存<b>接口芯片</b>，量随 DDR5 渗透与服务器出货走，不直接吃颗粒涨价——合约价见顶对它是情绪连带而非逻辑打击。真正要盯的是 8/14 SNDK 财报里的出货量指引与 8 月合约价环比</li>
+  </ul>
+</div>
+
+<!-- 04 映射链压力图 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">04</span><span class="mod-title">AI 硬件/光通信映射链：昨夜跌幅全景</span><span class="mod-tag">WeStock ★★★</span></div>
+  <div id="barChart"></div>
+  <div class="table-wrap">
+  <table class="f4 us">
+    <thead><tr><th>标的</th><th>昨夜</th><th>映射持仓</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>COHR 相干</td><td class="neg">-9.84%</td><td>汇绿</td><td>20 日累计 -30.7%，光模块双雄估值挤压最猛；PE 134 是被杀的核心理由</td></tr>
+      <tr><td>TTMI 迅达</td><td class="neg">-9.28%</td><td>兴森</td><td>20 日 -37.6%，AI PCB 链回撤最深梯队，7/30 财报</td></tr>
+      <tr><td>CLS 天弘</td><td class="neg">-8.80%</td><td>汇绿/罗博</td><td>7/28（周一）财报——下周首个验证点，盘后企稳 +0.16%</td></tr>
+      <tr><td>LITE 朗美通</td><td class="neg">-8.47%</td><td>汇绿</td><td>年内仍 +107%；1.6T 逻辑未变，杀的是 134 倍 PE</td></tr>
+      <tr><td>MRVL 迈威尔</td><td class="neg">-7.21%</td><td>澜起/罗博</td><td>20 日 -30.9%，ASIC 叙事降温但 5 日仍 +2.9%，在底部区间震荡</td></tr>
+      <tr><td>GLW 康宁</td><td class="neg">-6.03%</td><td>汇绿</td><td>7/28（周一）财报；20 日 -35.7%，光纤光缆需求指引是关键</td></tr>
+      <tr><td>VRT 维谛</td><td class="neg">-4.50%</td><td>AI 基建链</td><td>7/29 财报，电源散热景气度参照</td></tr>
+      <tr><td>APH 安费诺</td><td class="neg">-3.02%</td><td>罗博</td><td>7/29 财报，铜连接相对抗跌</td></tr>
+      <tr><td>TSM 台积电</td><td class="neg">-2.93%</td><td>澜起+全链</td><td>基本面锚未松动，跌幅明显小于设计/光链</td></tr>
+      <tr><td>NVDA 英伟达</td><td class="neg">-0.92%</td><td>罗博</td><td><span class="hl">全场最抗跌</span>——链主稳住，说明市场杀估值不杀逻辑</td></tr>
+      <tr><td>SNOW 雪花</td><td class="pos">+1.11%</td><td>星环</td><td>软件数据栈逆势翻红，星环映射端无压力</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">规律很清楚：<b>跌幅与"年内涨幅×PE 倍数"成正比，与基本面证伪无关</b>。NVDA（PE 31.7）只跌 0.92%，COHR/LITE（PE 134）跌 8-10%。这是典型的拥挤交易退潮，不是产业逻辑反转。</p>
+</div>
+
+<!-- 05 CSP -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">05</span><span class="mod-title">CSP 四巨头平稳 = 需求端未证伪</span><span class="mod-tag">WeStock ★★★</span></div>
+  <div class="table-wrap">
+  <table class="f4 csp">
+    <thead><tr><th>公司</th><th>昨夜</th><th>本周</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>GOOGL 谷歌</td><td class="pos">+0.65%</td><td class="neg">-7.79%</td><td>财报周挨的打昨夜止住，capex 上调事实仍在</td></tr>
+      <tr><td>MSFT 微软</td><td class="pos">+0.03%</td><td class="neg">-3.08%</td><td>7/30 财报，Azure+capex 指引是五节点第 3 关</td></tr>
+      <tr><td>AMZN 亚马逊</td><td class="neg">-0.66%</td><td class="neg">-6.12%</td><td>7/31 财报，五节点第 4 关</td></tr>
+      <tr><td>META</td><td class="neg">-1.80%</td><td class="neg">-7.87%</td><td>7/30 财报；周内跌主要是广告端预期，不是 capex</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">买铲人（CSP）昨夜集体企稳、卖铲人（半导体/光器件）暴跌——如果市场真认为 AI 需求见顶，应该先杀 CSP 的云业务估值。目前的定价结构说明：<b>市场担心的是"铲子供应商的利润率与估值"，不是"挖矿活动本身停了"</b>。五节点框架仍然成立。</p>
+</div>
+
+<!-- 06 多空辩论 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">06</span><span class="mod-title">多空辩论与机构视角</span></div>
+  <div class="table-wrap">
+  <table class="f2">
+    <thead><tr><th>立场</th><th>论点</th></tr></thead>
+    <tbody>
+      <tr><td class="down">空方（昨夜主导）</td><td>①长线机构历史级卖压，非短线情绪；②大摩给出存储见顶时间表（2026Q4），周期股要提前 1-2 个季度定价；③纳指周跌 2.13%、光链 20 日回撤 30%+ 仍未见恐慌性放量底；④英特尔"好财报被卖"证明 capex 回报焦虑已成主导叙事</td></tr>
+      <tr><td class="up">多方</td><td>①CSP 四巨头企稳，需求端零证伪；②英特尔产业口径：短缺持续+capex 上调至 200 亿+；③闪迪手握 110 亿美元长约承诺，产业链锁价 3-5 年；④NVDA 仅 -0.92%，链主未破位；⑤下周标普 1/3 成份股出财报，Horizon 观点：盈利兑现即反转</td></tr>
+      <tr><td class="tl">落脚判断</td><td><b>短期（1-2 周）空方占优</b>——机构降敞口未结束，7/28-7/31 财报密集期波动放大；<b>中期（1-2 季度）多方证据链更硬</b>——需求、长约、capex 三重实证 vs 一份预警报告。定性：高位震荡去泡沫，不是趋势反转</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul>
+    <li><b>为何买：</b>产业实证（短缺+长约+capex）未破，五节点已过 2/5 全部超预期</li>
+    <li><b>为何卖：</b>拥挤度与估值（光链 PE 134）在机构风控模型里已触顶，先卖再验证</li>
+    <li><b>关键催化剂：</b>7/28（周一）CLS+GLW 财报——直接映射汇绿/罗博，是下周 A 股光通信链开盘后的第一个方向变量</li>
+  </ul>
+</div>
+
+<!-- 07 下周日历 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">07</span><span class="mod-title">下周财报日历：本财报季最繁忙一周</span></div>
+  <div class="table-wrap">
+  <table class="f4 cal">
+    <thead><tr><th>日期</th><th>公司</th><th>环节</th><th>映射持仓 · 关键性</th></tr></thead>
+    <tbody>
+      <tr><td>7/28</td><td>CELESTICA</td><td>服务器 ODM</td><td>汇绿/罗博 ★★★★</td></tr>
+      <tr><td>7/28</td><td>康宁 GLW</td><td>光纤光缆/光互联</td><td>汇绿 ★★★★</td></tr>
+      <tr><td>7/28</td><td>RAMBUS</td><td>连接芯片</td><td>澜起 ★★★</td></tr>
+      <tr><td>7/29</td><td>希捷 STX / KLAC / 安费诺 APH / 维谛 VRT</td><td>存储/设备/连接/电源</td><td>澜起/罗博 ★★★</td></tr>
+      <tr><td>7/30</td><td>META + 微软 MSFT</td><td>CSP capex</td><td>汇绿/罗博/澜起 ★★★★★ 五节点第3关</td></tr>
+      <tr><td>7/30</td><td>泛林 LRCX / 西数 WDC / 迅达 TTMI</td><td>设备/存储/PCB</td><td>罗博/澜起/兴森 ★★★</td></tr>
+      <tr><td>7/31</td><td>亚马逊 AMZN</td><td>CSP capex</td><td>全链 ★★★★★ 五节点第4关</td></tr>
+      <tr><td>8/14</td><td>闪迪 SNDK</td><td>存储合约价指引</td><td>澜起 ★★★★ 五节点第5关+存储拐点验证</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">下周标普 500 超三分之一成份股披露业绩。<b>对赌期铁律不变：五节点全部确认前，主线仓位不增不减。</b>现在多了一层含义——弱市里这条纪律同时防止了追高和割肉两种错误。</p>
+</div>
+
+<!-- 08 A股传导 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">08</span><span class="mod-title">对 A 股持仓的传导与周一预案</span></div>
+  <ul>
+    <li><b>光通信链（汇绿/罗博/中际旭创）：</b>COHR -9.8%/LITE -8.5%/GLW -6.0% 的映射压力下，周一低开是大概率。纪律：S 级不动，不接情绪飞刀也不砍仓；罗博若回踩 55 日线附近属正常波动区，逻辑（NVDA 抗跌+英特尔 capex 上调）未破</li>
+    <li><b>澜起（长期账户底仓）：</b>存储情绪连带 + MRVL -7.2% 双重压力，但接口芯片逻辑独立于颗粒价格；底仓不动，8 月盯两件事：SNDK 8/14 指引 + 内存合约价环比</li>
+    <li><b>兴森：</b>TTMI -9.3%（20 日 -37.6%）压力最直观，好在是负成本利润仓，波动承受力天然高；7/30 TTMI 财报前不动</li>
+    <li><b>星环：</b>SNOW +1.1% 逆势红盘，映射端本周最舒服的一只，无操作</li>
+    <li><b>长鑫 688825（7/27 周一上市，中签 1000 股）：</b>美股存储杀跌会压制开盘情绪溢价，三情景概率分布向中性档（22-32 元）偏移，强乐观档（35-50）兑现难度上升。既定操作方案不变，按上市指引执行，不因隔夜情绪临时改预案</li>
+    <li><b>防御仓（华峰/德展/太钢/泰和）：</b>道指红盘+资金撤向低估值蓝筹的结构，对防御仓反而是相对友好环境，验证了阶段 5 对冲配置的价值</li>
+  </ul>
+</div>
+
+<div class="verdict">
+<b>最终判断：偏贵但合理区间的强制去泡沫，中性偏防守（HOLD 全部持仓）。</b><br>
+这个数意味着什么，咱们该怎么做：费半 -4.25% + 长线机构历史级卖压 + 大摩存储见顶预警，三件事叠加说明<b>本轮 AI 硬件的"无脑β阶段"结束了，进入"财报逐个验证的α阶段"</b>。咱们该做的不是预测底部，而是执行既定纪律：①周一低开不砍仓、不接飞刀；②7/28 CLS/GLW 财报当晚必须复盘，那是光链方向的第一个硬数据；③内存合约价从本周起列入每周监控，大摩说 Q4 见顶，咱们用 8 月环比数据去证实或证伪它——反转开关响了第一声，但扣不扣扳机要看实据。
+</div>
+
+<div class="footer">
+数据来源：WeStock 行情快照（2026-07-24 美东收盘）★★★ · 证券时报/券商中国（英特尔财报、存储评级）★★★ · Yahoo Finance/Motley Fool（盘面归因）★★☆ · 高盛交易台/摩根士丹利观点转引自公开报道 ★★☆<br>
+免责声明：本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
+</div>
+
+</div>
+<script>
+var chart = echarts.init(document.getElementById('barChart'));
+var names = ['NVDA','AVGO','TSM','APH','AMD','VRT','GLW','STX','WDC','MU','MRVL','INTC','LITE','CLS','TTMI','COHR','SNDK'];
+var vals  = [-0.92,-2.69,-2.93,-3.02,-3.29,-4.50,-6.03,-6.75,-6.90,-6.99,-7.21,-7.89,-8.47,-8.80,-9.28,-9.84,-10.79];
+chart.setOption({
+  backgroundColor:'transparent',
+  title:{text:'AI 硬件链昨夜跌幅榜（%）',textStyle:{color:'#e8ecf4',fontSize:14},left:0,top:0},
+  grid:{left:8,right:16,top:40,bottom:40,containLabel:true},
+  xAxis:{type:'value',axisLabel:{color:'#9aa5b9'},splitLine:{lineStyle:{color:'#2a3556'}}},
+  yAxis:{type:'category',data:names,axisLabel:{color:'#e8ecf4',fontSize:12},axisLine:{lineStyle:{color:'#2a3556'}}},
+  series:[{
+    type:'bar',
+    data:vals,
+    barWidth:14,
+    itemStyle:{color:'#1ed890'},
+    label:{show:true,position:'insideRight',color:'#0d1424',fontSize:11,fontWeight:700,formatter:function(p){return p.value.toFixed(2)+'%';}}
+  }]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
