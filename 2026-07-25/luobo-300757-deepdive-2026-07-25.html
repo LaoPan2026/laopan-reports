@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗博特科 300757 深度解析 · 2026-07-25</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424; --card:#1a2540; --line:#2a3556;
+  --orange:#f5a623; --yellow:#ffd83d; --teal:#3ddcc8; --gray:#9aa5b9;
+  --text:#e8ecf4; --up:#ff3b3b; --down:#1ed890;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;padding:24px}
+.container{max-width:940px;margin:0 auto}
+.header{border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:20px}
+.header h1{font-size:22px;color:var(--yellow);letter-spacing:0.5px}
+.header .sub{color:var(--gray);font-size:13px;margin-top:6px}
+.anchor{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.35);border-radius:6px;padding:10px 14px;margin:14px 0;font-size:13px;color:var(--orange)}
+.verdict{background:rgba(61,220,200,.07);border:1px solid rgba(61,220,200,.35);border-radius:6px;padding:14px 16px;margin:16px 0;font-size:14px}
+.verdict b{color:var(--teal)}
+.module{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:16px 0;padding:18px 20px}
+.mod-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.mod-num{color:var(--orange);font-weight:800;font-size:15px}
+.mod-title{font-size:16px;font-weight:700;color:var(--text)}
+.mod-tag{margin-left:auto;font-size:12px;color:var(--gray)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums;margin:8px 0}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+td{text-wrap:pretty}
+th{font-size:12px;font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06);text-align:center;white-space:nowrap}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+.pos,.up{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.neg,.down{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl{color:var(--yellow);font-weight:700}
+.tl{color:var(--teal);font-weight:700}
+.dim{color:var(--gray)}
+p.note{color:var(--gray);font-size:13px;margin-top:10px}
+ul{padding-left:20px;margin:8px 0}
+li{margin:5px 0}
+/* 列宽类（按内容预检，避免窄列nowrap溢出） */
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%;text-align:left}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:30%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:24%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:23%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:23%;text-align:left}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:15%;text-align:left}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:23%;text-align:left}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:23%;text-align:left}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:23%;text-align:left}
+.scenario td:first-child{font-weight:700;color:var(--orange)}
+#chart{width:100%;height:240px;margin:14px 0 4px}
+.footer{color:var(--gray);font-size:12px;border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
+@media (max-width:640px){
+  body{font-size:13px;padding:12px}
+  table{font-size:12px}
+  th,td{padding:6px 6px}
+  .table-wrap table{min-width:480px}
+  .header h1{font-size:18px}
+  #chart{height:200px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>罗博特科（300757）深度解析：ficonTEC 是全球 CPO 量产的"卖铲人"</h1>
+  <div class="sub">交易日：2026-07-24 收盘 · 报告生成：2026-07-25（周六）10:30 · 数据源：WeStock 行情/财务 + 公开调研纪要（Wind 直连不可用，已按约定 fallback）★★★</div>
+</div>
+
+<div class="anchor">★ 时间锚点：今天 7/25 周六，A 股下周一开始交易。未来 10 天催化密集：<b>7/28</b> CELSTICA+康宁GLW 财报（直接映射罗博/汇绿）→ <b>7/29</b> 安费诺APH/维谛VRT/希捷STX → <b>7/30</b> LAM/META/MSFT/WDC/TTMI → <b>8/14</b> SNDK。罗博本身无A股财报披露日压力，但 139 家机构 7/20 调研纪要已释放强产业信号。</div>
+
+<div class="verdict">
+<b>结论前置：</b>罗博特科是 A 股里<b>唯一卡位 CPO/硅光整线自动化设备</b>的标的（ficonTEC），逻辑硬、稀缺性强，但当前 <b>PB 42.5x、TTM PS 约 68x、仍亏损</b>，估值已透支 1~2 年成长性。7/24 收 411.96 元，较 52 周高点 714 回撤 42%，20 日 -29.9%——这是<b>高景气赛道里的"杀估值不杀逻辑"</b>。咱们持仓成本 523.13 元（浮亏约 21%），按 S 级纪律：<b>逻辑未破、基本面未恶化，HOLD 不动；若下周随美股光链情绪再下杀至 360 元以下（对应市值约 600 亿、TTM PS ~59x），可视为加仓区而非砍仓区</b>。
+</div>
+
+<!-- 01 多空评分 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">01</span><span class="mod-title">多空评分（写=审，双向算账）</span><span class="mod-tag">综合 6.4/10 · 持有</span></div>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>维度</th><th>评分</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>产业景气度</td><td class="pos">9/10</td><td>CPO 产业化全面加速，Insertion 2/3 量产、Insertion 4 启动；AMD/英特尔/微软均为设备端客户</td></tr>
+      <tr><td>壁垒稀缺性</td><td class="pos">9/10</td><td>ficonTEC 是全球唯一能规模化交付 5nm 级光耦合+整线测试的设备商，UA-Link 1.0 指定供应商</td></tr>
+      <tr><td>业绩兑现</td><td class="neg">4/10</td><td>Q1 营收 +69% 仍亏 3882 万，商誉 9.95 亿（占净资产 61%），拐点未到</td></tr>
+      <tr><td>估值</td><td class="neg">3/10</td><td>PB 42.5x、TTM PS 68x，处历史高位区，靠远期订单预期支撑</td></tr>
+      <tr><td>技术面</td><td class="neg">4/10</td><td>20 日 -29.9%、跌破 55 日线，空头排列；但 YTD 仍 +76.6%，非趋势反转</td></tr>
+      <tr><td>资金面</td><td class="dim">5/10</td><td>7/24 主力净流出 1.14 亿；融资余额 47.3 亿（占流通 6.7%，>80% 分位），杠杆资金活跃度高、波动放大</td></tr>
+      <tr><td>催化剂密度</td><td class="pos">8/10</td><td>7/28-8/14 美股光链/存储财报密集；港股 IPO 已获证监会备案；Insertion 4 项目启动</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">综合 6.4/10 = <b>高确定性产业逻辑 + 高估值拉扯</b>。这不是"该不该买"的问题，而是"在 S 级仓位里如何扛波动"的问题。评分与咱们的 S 级定位一致：逻辑未破不加不减，回调给安全边际才考虑加。</p>
+</div>
+
+<!-- 02 公司画像·财务速览 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">02</span><span class="mod-title">公司画像 · 财务速览（2026Q1）</span><span class="mod-tag">WeStock 财务 ★★★</span></div>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>指标</th><th>数值</th><th>同比/备注</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>收盘价(7/24)</td><td class="neg">411.96</td><td>-2.08%</td><td>52周高 714 / 低 164.6，回撤 42%</td></tr>
+      <tr><td>总市值</td><td>690.5亿</td><td>—</td><td>流通 669.7 亿，A股设备稀缺标的</td></tr>
+      <tr><td>PB / PE</td><td>42.5x</td><td>PE 为负</td><td>并购 ficonTEC 形成高溢价净资产</td></tr>
+      <tr><td>Q1 营收</td><td>1.64亿</td><td class="pos">+69.3%</td><td>并表+设备交付加速</td></tr>
+      <tr><td>Q1 归母净利</td><td class="neg">-3882万</td><td class="neg">-48.3%</td><td>仍亏损，费用/折旧拖累</td></tr>
+      <tr><td>毛利率</td><td>36.3%</td><td>—</td><td>设备毛利稳健</td></tr>
+      <tr><td>商誉</td><td>9.95亿</td><td>占净资产61%</td><td class="neg">高商誉减值风险点</td></tr>
+      <tr><td>有息负债</td><td>14.3亿</td><td>现金 3.25亿</td><td>净负债约 11 亿，HK IPO 可补血</td></tr>
+      <tr><td>TTM 营收</td><td>10.17亿</td><td>—</td><td>对应 TTM PS ≈ 68x</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">写=审：营收高增但利润未出，典型"设备放量前置、盈利后置"特征。关键不是当前 PE，而是 <b>2026-2027 订单能见度</b>。商誉 9.95 亿是并购 ficonTEC 形成，若 CPO 量产不及预期将成减值隐雷——这是空头最硬的抓手。</p>
+</div>
+
+<!-- 03 产业格局与景气度 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">03</span><span class="mod-title">产业格局：ficonTEC 是 CPO 量产的"卖铲人"</span><span class="mod-tag">调研纪要 ★★★</span></div>
+  <ul>
+    <li><b>卡位：</b>ficonTEC 提供从 FAU 光纤制备、纳米级光耦合到整线系统测试的 <span class="hl">全自动方案</span>，适配可插拔/硅光/NPO/CPO/OCS/OIO 全路径。全球能规模化交付 5nm 级耦合整线的设备商仅此一家。</li>
+    <li><b>客户绑定：</b>①<b>AMD</b>——UA-Link 1.0 指定光耦合设备商，开放互连生态核心供应商；②<b>英特尔</b>——已交付 4 条硅光耦合产线，2026 计划再扩 3 条（约 4500 万欧元），英特尔capex 上调至 200 亿美元直接受益；③<b>微软/英伟达</b>生态通过 CPO/硅光链条间接拉动。</li>
+    <li><b>订单节奏（7/20 调研实锤）：</b>Insertion 2/3 已批量供货（CPO 测试端核心支撑方），<b>Insertion 4 量产项目已启动</b>，单价 Insertion4 &gt; 3 &gt; 2。苏州基地月产能 300-400 台，台湾伙伴分担测试产能。</li>
+    <li><b>需求验证：</b>公司明确"未从任何客户处获得 CPO 延迟消息，下游高速增长需求清晰可见"——市场 CPO 延期传言被设备端证伪。</li>
+    <li><b>资本运作：</b>港股 IPO 已获证监会备案，构建 A+H 双平台，利好扩产资金但短期有稀释预期。</li>
+  </ul>
+  <p class="note">映射链：罗博 → NVDA / MRVL / APH（铜连接）。昨夜美股（7/24）光链杀估值（COHR -9.8%、TTMI -9.3%、MRVL -7.2%），但 NVDA 仅 -0.9%——链主稳，杀的是卖铲人估值不是买铲人需求，与罗博"设备卖铲"定位一致：<b>需求端零证伪，只是估值贵</b>。</p>
+</div>
+
+<!-- 04 技术面·资金面 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">04</span><span class="mod-title">技术面 · 资金面：杀估值状态下的位置</span><span class="mod-tag">WeStock 行情 ★★★</span></div>
+  <div id="chart"></div>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>区间</th><th>涨跌幅</th><th>信号</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>近5日</td><td class="neg">-0.25%</td><td>企稳</td><td>跌速暂缓</td></tr>
+      <tr><td>近10日</td><td class="neg">-15.75%</td><td>主跌</td><td>随光链情绪退潮</td></tr>
+      <tr><td>近20日</td><td class="neg">-29.93%</td><td class="neg">空头排列</td><td>跌破 55 日线，中期趋势走弱</td></tr>
+      <tr><td>近60日</td><td class="neg">-20.55%</td><td>回撤</td><td>自高位平台下移</td></tr>
+      <tr><td>年初至今</td><td class="pos">+76.58%</td><td>强势</td><td>产业逻辑全年未被证伪</td></tr>
+      <tr><td>主力资金(7/24)</td><td class="neg">-1.14亿</td><td>净流出</td><td>占成交额 6.8%，机构降敞口</td></tr>
+      <tr><td>融资余额(7/23)</td><td>47.3亿</td><td class="neg">高位</td><td>占流通 6.7%，>80% 分位，杠杆拥挤</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">技术结论：<b>中期趋势已破 55 日线，但 YTD 仍强，属"高位震荡去泡沫"而非"逻辑反转"</b>。融资余额处历史高位是双刃剑——反弹时杠杆助推，下杀时易触发负反馈。咱们的成本 523 元已低于 55 日线，纪律上不因技术破位砍 S 级仓，只等基本面信号。</p>
+</div>
+
+<!-- 05 核心逻辑与风险（含反一致预期） -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">05</span><span class="mod-title">核心逻辑与风险（含反一致预期）</span></div>
+  <ul>
+    <li><b>多方核心：</b>①CPO 从 800G→1.6T→3.2T 代际升级，耦合/测试设备是"卖铲人"中最不可替代环节；②ficonTEC 全球独家，客户锁死 AMD/英特尔/微软生态；③Insertion 4 单价最高，量产启动打开 2027 单价×量的双击。</li>
+    <li><b>空方核心：</b>①PB 42x、PS 68x 已透支；②仍亏损+商誉 9.95 亿（净资产 61%）减值隐雷；③HK IPO 稀释；④杠杆融资拥挤，情绪退潮易踩踏；⑤CPO 若真延迟（虽被公司否认）则估值锚崩塌。</li>
+    <li><b>反一致预期（写=审）：</b>市场当前把罗博当"光模块情绪票"跟着 COHR/LITE 杀，但<b>它是设备商不是模块商</b>——模块厂杀 PE（134x），设备商杀的是远期 PS，且设备订单来自客户 capex 规划（已上修），滞后于模块股价 1-2 季。<b>真正要盯的不是 COHR 隔夜涨跌，而是 7/30 前后英特尔/AMD 生态的 capex 指引与 Insertion 4 后续公告</b>。</li>
+  </ul>
+</div>
+
+<!-- 06 可比估值 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">06</span><span class="mod-title">可比估值：用 PS 而非 PE（周期/成长设备股铁律）</span><span class="mod-tag">Wind/WeStock 类比 ★★</span></div>
+  <div class="table-wrap">
+  <table class="f5">
+    <thead><tr><th>标的</th><th>角色</th><th>估值特征</th><th>对罗博含义</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>罗博特科</td><td>CPO设备</td><td>PB 42.5x / PS 68x</td><td>自身锚</td><td>亏损故 PE 失效</td></tr>
+      <tr><td>NVDA</td><td>链主</td><td>PE 31.7x</td><td>需求未灭</td><td>昨夜仅 -0.9%</td></tr>
+      <tr><td>MRVL</td><td>ASIC</td><td>高 PS</td><td>映射走弱</td><td>昨夜 -7.2%</td></tr>
+      <tr><td>APH</td><td>铜连接</td><td>中等 PE</td><td>间接映射</td><td>昨夜 -3.0%</td></tr>
+      <tr><td>COHR/LITE</td><td>光模块</td><td>PE 134x</td><td>杀估值源</td><td>昨夜 -8~10%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">估值铁律：<b>亏损/周期设备股禁静态 PE 横比</b>。罗博应看 PS 与订单能见度。当前 68x TTM PS 隐含 2026 营收翻倍预期；若 2026 营收达 20-25 亿且 Insertion 4 放量，PS 可维持 40-50x（对应市值 800-1250 亿），即当前价仍有重估空间——但前提是订单兑现，否则回归 25-30x PS 是保守情景。</p>
+</div>
+
+<!-- 07 三级情景 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">07</span><span class="mod-title">三级情景与操作应对（12 个月）</span><span class="mod-tag">双向算账</span></div>
+  <div class="table-wrap">
+  <table class="f4 scenario">
+    <thead><tr><th>情景</th><th>核心假设</th><th>营收/PS</th><th>对应股价区间</th></tr></thead>
+    <tbody>
+      <tr><td>乐观</td><td>CPO 按计划加速，Insertion4 量产，港股募资顺利，英特尔/AMD 扩线超预期</td><td>营收 25-30亿 / PS 40-50x</td><td class="pos">600-900 元</td></tr>
+      <tr><td>中性</td><td>产业化稳步推进，逐季减亏，估值随业绩消化，无重大延迟</td><td>营收 18-22亿 / PS 35-45x</td><td class="hl">380-590 元</td></tr>
+      <tr><td>保守</td><td>CPO 延迟属实/竞争破局/商誉减值/港股稀释，情绪退潮</td><td>营收 12-15亿 / PS 25-30x</td><td class="neg">180-270 元</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">当前 411.96 元落在中性下沿~中枢。保守情景 180-270 元（较现价 -35%~-55%）是"逻辑破"才到的价，不是基准情形。咱们成本 523 元，<b>若跌至 360 元以下（市值 ~600 亿、PS ~59x）属错杀加仓区，而非止损区</b>——S 级卖出唯一理由=逻辑破/基本面恶化，目前两者皆未触发。</p>
+</div>
+
+<!-- 08 催化日历 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">08</span><span class="mod-title">未来催化日历（写=审，已校准时点）</span><span class="mod-tag">五节点对照</span></div>
+  <div class="table-wrap">
+  <table class="f5">
+    <thead><tr><th>日期</th><th>事件</th><th>映射</th><th>对罗博影响</th><th>关注度</th></tr></thead>
+    <tbody>
+      <tr><td>7/28</td><td>CELESTICA/GLW 财报</td><td>汇绿/罗博</td><td>光链需求验证首枪</td><td class="hl">高</td></tr>
+      <tr><td>7/29</td><td>APH/维谛/希捷</td><td>罗博/AI基建</td><td>铜连接+散热景气</td><td>中</td></tr>
+      <tr><td>7/30</td><td>LAM/META/MSFT/WDC/TTMI</td><td>全链</td><td> capex 指引定调</td><td class="hl">高</td></tr>
+      <tr><td>待公告</td><td>Insertion 4 进展/订单</td><td>罗博本体</td><td>最直接催化</td><td class="hl">高</td></tr>
+      <tr><td>待定</td><td>港股 IPO 发行</td><td>罗博本体</td><td>补血但稀释</td><td>中</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- 09 最终判断 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">09</span><span class="mod-title">最终判断 · 咱们该怎么做</span></div>
+  <p class="note" style="color:var(--text);font-size:14px">
+  <b style="color:var(--teal)">最终判断：</b>罗博特科是 A 股 CPO 设备唯一的"卖铲人"，产业逻辑硬、客户绑定深、订单能见度提升，<b>逻辑未破</b>；但 PB 42.5x / PS 68x 的估值已把 2026-2027 成长性大幅透支，短期处"杀估值不杀逻辑"的技术弱势（20 日 -30%、跌破 55 日线）。<br><br>
+  <b style="color:var(--orange)">这个数意味着什么，咱们该怎么做：</b><br>
+  ① <b>持仓（成本 523 元，浮亏 ~21%）：S 级纪律不动</b>——卖出唯一理由=逻辑破/基本面恶化，目前两者皆不满足，不因光模块情绪杀跌砍仓。<br>
+  ② <b>加仓区而非止损区</b>：若下周随美股光链情绪再下杀至 <b>360 元以下（市值 ~600 亿、PS ~59x）</b>，属错杀，可分批低吸；不追高、不杠杆加。<br>
+  ③ <b>盯证伪点</b>：7/28-7/30 美股 capex 指引 + Insertion 4 后续公告 + 港股 IPO 发行价。若英特尔/AMD 生态 capex 下修或 CPO 延迟被官方证实，才是触发重估的反转开关，届时再评估。<br>
+  ④ <b>风险底线</b>：商誉 9.95 亿（净资产 61%）+ 融资余额历史高位，是两颗雷；若逻辑破，保守情景看 180-270 元，必须坚决执行退出。
+  </p>
+</div>
+
+<div class="footer">
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。数据来源：WeStock 行情/财务快照（Wind 直连不可用已 fallback）、公司 7/20 调研纪要、公开财报日历（置信度 ★★★）。生成于 2026-07-25，复盘框架遵循 H2 七步闭环与五节点对赌纪律。
+</div>
+
+</div>
+<script>
+var chart = echarts.init(document.getElementById('chart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  grid:{left:70,right:30,top:20,bottom:30},
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  xAxis:{type:'value',axisLabel:{color:'#9aa5b9',formatter:'{value}%'},axisLine:{lineStyle:{color:'#2a3556'}},splitLine:{lineStyle:{color:'rgba(155,165,185,0.06)'}}},
+  yAxis:{type:'category',data:['近5日','近10日','近20日','近60日','年初至今'],axisLabel:{color:'#eef2f8',fontSize:12},axisLine:{lineStyle:{color:'#2a3556'}}},
+  series:[{type:'bar',data:[
+    {value:-0.25,itemStyle:{color:'#1ed890'}},
+    {value:-15.75,itemStyle:{color:'#1ed890'}},
+    {value:-29.93,itemStyle:{color:'#1ed890'}},
+    {value:-20.55,itemStyle:{color:'#1ed890'}},
+    {value:76.58,itemStyle:{color:'#ff3b3b'}}
+  ],label:{show:true,position:'insideRight',color:'#eef2f8',formatter:'{c}%',fontSize:11,fontWeight:600},barWidth:'52%'}]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
