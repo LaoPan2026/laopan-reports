@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI还要跌多久：三只钟+盈利二阶导框架图</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--line:#2a3556;
+  --num:#f5a623;--data:#ffd83d;--sub:#3ddcc8;--gray:#9aa5b9;
+  --up:#ff3b3b;--down:#1ed890;--text:#e8ecf4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;padding:24px 16px}
+.container{max-width:860px;margin:0 auto}
+header{margin-bottom:24px;padding:20px;background:var(--card);border-radius:10px;border:1px solid var(--line)}
+header h1{font-size:20px;color:var(--text);margin-bottom:8px}
+header .meta{font-size:12px;color:var(--gray)}
+header .meta span{margin-right:14px;white-space:nowrap}
+.anchor{margin-top:10px;padding:8px 12px;background:rgba(245,166,35,0.08);border-left:4px solid var(--num);border-radius:4px;font-size:13px;color:var(--data)}
+.module{background:var(--card);border-radius:10px;border:1px solid var(--line);margin-bottom:20px;overflow:hidden}
+.module-head{display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.module-head .bar{width:6px;height:22px;background:var(--num);border-radius:3px;margin-right:10px;flex-shrink:0}
+.module-head .no{color:var(--num);font-weight:800;font-size:15px;margin-right:10px;white-space:nowrap}
+.module-head h2{font-size:16px;color:var(--text);font-weight:700}
+.module-body{padding:16px}
+.module-body p{margin-bottom:10px;color:var(--text)}
+.module-body p.sub{color:var(--sub);font-weight:700;margin-top:6px}
+.module-body p.gray{color:var(--gray);font-size:13px}
+.verdict{margin-top:12px;padding:10px 14px;background:rgba(61,220,200,0.07);border-left:4px solid var(--sub);border-radius:4px;font-size:13.5px}
+.verdict b{color:var(--sub)}
+.table-wrap{overflow-x:auto;margin:10px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th{color:var(--sub);font-weight:700;font-size:12.5px;background:rgba(42,53,86,0.5)}
+th,td{padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.10);vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;text-wrap:pretty}
+tbody tr:nth-child(even){background:rgba(42,53,86,0.25)}
+.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag-s{background:rgba(255,59,59,0.15);color:var(--up)}
+.tag-a{background:rgba(245,166,35,0.15);color:var(--num)}
+.tag-d{background:rgba(155,165,185,0.15);color:var(--gray)}
+/* 三源头 f4a: 14/22/36/28 */
+table.f4a th:nth-child(1),table.f4a td:nth-child(1){width:14%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4a th:nth-child(2),table.f4a td:nth-child(2){width:22%;text-align:left}
+table.f4a th:nth-child(3),table.f4a td:nth-child(3){width:36%;text-align:left}
+table.f4a th:nth-child(4),table.f4a td:nth-child(4){width:28%;text-align:left}
+/* 三只钟 f4b: 14/16/42/28 */
+table.f4b th:nth-child(1),table.f4b td:nth-child(1){width:14%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4b th:nth-child(2),table.f4b td:nth-child(2){width:16%;text-align:left}
+table.f4b th:nth-child(3),table.f4b td:nth-child(3){width:42%;text-align:left}
+table.f4b th:nth-child(4),table.f4b td:nth-child(4){width:28%;text-align:left}
+/* 三信号 f3a: 38/44/18 */
+table.f3a th:nth-child(1),table.f3a td:nth-child(1){width:38%;text-align:left}
+table.f3a th:nth-child(2),table.f3a td:nth-child(2){width:44%;text-align:left}
+table.f3a th:nth-child(3),table.f3a td:nth-child(3){width:18%;text-align:left}
+/* 三条件 f2a: 28/72 */
+table.f2a th:nth-child(1),table.f2a td:nth-child(1){width:28%;text-align:left}
+table.f2a th:nth-child(2),table.f2a td:nth-child(2){width:72%;text-align:left}
+/* 持仓对号 f4c: 16/26/40/18 */
+table.f4c th:nth-child(1),table.f4c td:nth-child(1){width:16%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4c th:nth-child(2),table.f4c td:nth-child(2){width:26%;text-align:left}
+table.f4c th:nth-child(3),table.f4c td:nth-child(3){width:40%;text-align:left}
+table.f4c th:nth-child(4),table.f4c td:nth-child(4){width:18%;text-align:left}
+/* 对照 f3b: 42/42/16 */
+table.f3b th:nth-child(1),table.f3b td:nth-child(1){width:42%;text-align:left}
+table.f3b th:nth-child(2),table.f3b td:nth-child(2){width:42%;text-align:left}
+table.f3b th:nth-child(3),table.f3b td:nth-child(3){width:16%;text-align:left}
+#chart1{width:100%;height:320px}
+.final{background:var(--card);border:1px solid var(--num);border-radius:10px;padding:16px;margin-bottom:20px}
+.final h3{color:var(--num);font-size:15px;margin-bottom:8px}
+.disclaimer{text-align:center;font-size:11px;color:var(--gray);opacity:0.7;margin:20px 0}
+@media(max-width:640px){
+  body{padding:14px 8px;font-size:13px}
+  table{font-size:12px}
+  th,td{padding:7px 8px}
+  header h1{font-size:17px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>📐 AI还要跌多久：三只钟 + 盈利二阶导框架图</h1>
+  <div class="meta">
+    <span>来源：东吴证券 陈李团队 2026-07-25</span>
+    <span>整理：巴蒂 2026-07-26</span>
+    <span>用途：磨底期常翻工具卡</span>
+  </div>
+  <div class="anchor">★时间锚点：今日为 2026-07-26（周日）。关键节点：7/27（周一）长鑫上市兑现 → 7/28 CELESTICA/康宁财报 → 7/30 META/MSFT capex 指引（最重发令枪）→ 7/31 AMZN → 8/14 SNDK。</div>
+</header>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">01</span><h2>框架总览：三个思维工具</h2></div>
+  <div class="module-body">
+    <p><span class="hl">工具一「三源头」</span>——回答"为什么跌"：这轮 A 股 AI 下跌的根不在 A 股，是美国利润问题+韩国杠杆问题+中东利率问题同窗口交汇。</p>
+    <p><span class="hl">工具二「三只钟」</span>——回答"还要跌多久"：杠杆、估值、盈利三条不同速度的时间线，政策只能拨快第一只钟。</p>
+    <p><span class="hl">工具三「盈利增速二阶导」</span>——回答"下一轮买什么"：市场杀的不是利润，是"高增长还能持续几年"的预期；下一轮找增速还在加快且未被定价的。</p>
+    <div class="verdict"><b>最终判断：</b>框架印证咱们"估值消化非趋势反转"的既定结论，并升级了选股尺子——从"还有利润"换成"盈利加速度"。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">02</span><h2>三源头：这轮下跌的根不在A股</h2></div>
+  <div class="module-body">
+    <div class="table-wrap">
+      <table class="f4a">
+        <thead><tr><th>源头</th><th>核心问题</th><th>传导链条</th><th>对咱们的含义</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">美国</td><td>利润分配问题</td><td>市场焦点从算力需求量，转向算力赚多少钱；上游利润越肥，云厂商回本压力越大</td><td>光模块/PCB/HBM 等上游估值首当其冲</td></tr>
+          <tr><td class="hl">韩国</td><td>杠杆出清问题</td><td>存储龙头+高个人杠杆去杠杆，经全球 AI 主题基金外溢到 A股/港股</td><td>卖盘是真实的，但属技术性，不是逻辑证伪</td></tr>
+          <tr><td class="hl">中东</td><td>利率折现问题</td><td>霍尔木兹风险→油价通胀→压制降息→"等 AI 利润的时间变贵"</td><td>远期叙事型标的（汇绿）折价最重</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict"><b>最终判断：</b>三条都是外生冲击，没有一条否定 AI 产业需求本身——这个定性决定了"熬"是对的策略。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">03</span><h2>三只钟：三条速度不同的时间线</h2></div>
+  <div class="module-body">
+    <div class="table-wrap">
+      <table class="f4b">
+        <thead><tr><th>时钟</th><th>速度</th><th>机制说明</th><th>当前读数（7/26）</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">杠杆钟</td><td>最快·几周</td><td>强平/去杠杆卖盘出清；救市资金只能拨快这只钟</td><td>国家队单周 2036 亿净流入，出清近尾声</td></tr>
+          <tr><td class="hl">估值钟</td><td>更慢·月级</td><td>急跌 1-3 周完成大半，高波动+重探底还需 3-5 周</td><td>进行中，急跌或已入后半段</td></tr>
+          <tr><td class="hl">盈利钟</td><td>最慢·最重要</td><td>盈利周期重新定价，决定真正的底和下一轮主线</td><td>待 7/30 capex 指引开牌</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="gray">关键推论：政策底（杠杆钟）≠ 市场底（估值钟+盈利钟）。历史上政策底之后往往还要磨 1-3 个月。</p>
+    <div class="verdict"><b>最终判断：</b>现在处于"杠杆钟走完、估值钟后半段、盈利钟未开牌"的两底之间——安全垫是实的，发令枪未响。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">04</span><h2>见底三信号：看信号不看点位</h2></div>
+  <div class="module-body">
+    <div class="table-wrap">
+      <table class="f3a">
+        <thead><tr><th>信号</th><th>当前观察</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>① 业绩好的公司出利好后不再创新低</td><td>澜起周涨 +27.27%、放量走强，是首个正样本</td><td><span class="pos">局部出现</span></td></tr>
+          <tr><td>② 指数重探底时下跌股票数量减少</td><td>周五缩量回落仍普跌，宽度未修复</td><td><span class="neg">未出现</span></td></tr>
+          <tr><td>③ 市场重新比较利润/现金流/估值</td><td>存储涨价现实标的走强、纯叙事标的走弱，切换刚起步</td><td><span class="hl">萌芽中</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict"><b>最终判断：</b>三信号 1 个局部出现、1 个萌芽、1 个未出现——底部特征在积累但未确认，与"7/30 前不加仓"纪律自洽。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">05</span><h2>盈利增速二阶导：宁德时代的提醒</h2></div>
+  <div class="module-body">
+    <p>业绩增长挡不住估值下降：盈利 +30%、PE 从 50 倍压到 30 倍，股价照样跌约两成。市场没有否定利润，只是把"高增长能维持 3-5 年"的预期缩短为"只能 1-2 年"——<span class="hl">影响 PE 的是增速的二阶导，不是增速本身</span>。</p>
+    <div id="chart1"></div>
+    <p class="gray">示意图：盈利持续增长（黄）+ PE 持续压缩（青）→ 股价（红）不涨反跌。数据为原理示意，非真实行情。</p>
+    <div class="verdict"><b>最终判断：</b>这是咱们周期股红线（"高点低PE是顶部信号"）的成长股版本——对汇绿/罗博这类高估值标的，盯的不是"有没有利润"，而是"增速还在不在加速"。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">06</span><h2>下一轮上涨：新盈利加速度三条件</h2></div>
+  <div class="module-body">
+    <div class="table-wrap">
+      <table class="f2a">
+        <thead><tr><th>条件</th><th>内涵</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">① 增速提高</td><td>盈利增速在提高，而非仅维持高位（二阶导为正）</td></tr>
+          <tr><td class="hl">② 增长可延续</td><td>增长有产业逻辑支撑，能看到延续 2 年以上的路径</td></tr>
+          <tr><td class="hl">③ 未充分定价</td><td>价格尚未反映；前期最拥挤的方向反而要打折看</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>硬件会先反弹，但中期估值空间可能转向"率先证明商业化收入的下游应用"。<span class="hl">一个例外</span>：若美国出口管制进一步收紧，自主可控成为国产链独立定价逻辑——但它只<span class="hl">缓冲跌幅，不替代盈利加速度</span>。</p>
+    <div class="verdict"><b>最终判断：</b>三条件就是财报开牌后的补强排序尺子；自主可控（兴森/三祥）是防守属性加分项，不是进攻主逻辑。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">07</span><h2>持仓对号入座：用新尺子重排</h2></div>
+  <div class="module-body">
+    <div class="table-wrap">
+      <table class="f4c">
+        <thead><tr><th>标的</th><th>框架内定位</th><th>二阶导审视要点</th><th>动作</th></tr></thead>
+        <tbody>
+          <tr><td>澜起科技</td><td><span class="tag tag-s">S</span> 存储涨价现实</td><td>接口芯片量价齐升，周 +27% 即"信号①"正样本，最抗跌</td><td class="hl">HOLD</td></tr>
+          <tr><td>罗博特科</td><td><span class="tag tag-s">S</span> 加速度候选</td><td>CPO 设备=需求增长+价值量提高双击，但前期拥挤、估值透支</td><td class="hl">HOLD</td></tr>
+          <tr><td>汇绿生态</td><td><span class="tag tag-s">S</span> 远期叙事型</td><td>最需盯二阶导：中报订单/毛利是否硬，跌幅本身无保护</td><td class="hl">HOLD 盯中报</td></tr>
+          <tr><td>三祥新材</td><td><span class="tag tag-s">S</span> 自主可控例外</td><td>铪垄断突破=管制收紧受益，但 TTM PE 163x 已定价乐观</td><td class="hl">HOLD 不加</td></tr>
+          <tr><td>兴森科技</td><td><span class="tag tag-a">利润仓</span> 自主可控</td><td>载板随昇腾放量，管制收紧时独立缓冲，成本为负安心</td><td class="hl">HOLD</td></tr>
+          <tr><td>星环科技</td><td><span class="tag tag-a">利润仓</span> 下游应用</td><td>属"商业化收入待证明"的下游，中期空间大但兑现最慢</td><td class="hl">HOLD</td></tr>
+          <tr><td>软通动力</td><td><span class="tag tag-a">A</span> capex 衍生</td><td>低毛利集成商，收入难转利润，了结第一顺位候选</td><td class="hl">HOLD 不加</td></tr>
+          <tr><td>泰和新材</td><td><span class="tag tag-a">A-</span> 材料周期</td><td>氨纶减亏+芳纶放量，与 AI 周期弱相关</td><td class="hl">HOLD</td></tr>
+          <tr><td>防御三只</td><td><span class="tag tag-d">防御</span> 华峰/德展/太钢</td><td>与 AI 三只钟无关，压舱石属性</td><td class="hl">HOLD</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict"><b>最终判断：</b>新尺子没有触发任何卖出——它改变的是<b>财报开牌后的补强顺序</b>：澜起回踩 &gt; 罗博 360 下方 &gt; 兴森，汇绿需先过中报二阶导检验。</div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-head"><div class="bar"></div><span class="no">08</span><h2>框架 vs 咱们既定判断对照</h2></div>
+  <div class="module-body">
+    <div class="table-wrap">
+      <table class="f3b">
+        <thead><tr><th>陈李框架</th><th>咱们既定判断</th><th>一致性</th></tr></thead>
+        <tbody>
+          <tr><td>估值消化未结束，急跌或入后半段</td><td>牛市中继的估值消化，非趋势反转</td><td><span class="pos">一致</span></td></tr>
+          <tr><td>第一次现实检验=巨头财报 capex</td><td>7/30 META/MSFT capex 是最重发令枪</td><td><span class="pos">一致</span></td></tr>
+          <tr><td>政策只拨快杠杆钟</td><td>政策底当安全垫，不当发令枪</td><td><span class="pos">一致</span></td></tr>
+          <tr><td>盈利增速二阶导定 PE</td><td>周期红线"高点低PE=顶部信号"的成长版</td><td><span class="pos">互补</span></td></tr>
+          <tr><td>下轮找"新盈利加速度"</td><td>原尺子"还有利润"需升级</td><td><span class="hl">新增吸收</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="final">
+  <h3>🎯 这个框架意味着什么，咱们该怎么做</h3>
+  <p>1. <b>定性不变</b>：三源头都是外生冲击，AI 需求未被证伪——继续熬住，7/30 前不加仓。</p>
+  <p>2. <b>节奏看钟</b>：杠杆钟走完、估值钟后半段、盈利钟 7/30 开牌——政策底是安全垫，capex 指引是发令枪。</p>
+  <p>3. <b>换尺子</b>：财报开牌后按"盈利加速度三条件"重排补强顺序（澜起回踩 &gt; 罗博 360 下方 &gt; 兴森），汇绿先过中报二阶导检验。</p>
+  <p>4. <b>唯一主动操作</b>：7/27（周一）长鑫上市按三情景机械兑现，打新收益落袋。</p>
+</div>
+
+<p class="disclaimer">本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。<br>框架来源：东吴证券陈李团队《AI还要跌多久》2026-07-25 · 整理：巴蒂 · 2026-07-26</p>
+
+</div>
+<script>
+var c1=echarts.init(document.getElementById('chart1'));
+c1.setOption({
+  backgroundColor:'transparent',
+  legend:{top:26,right:0,textStyle:{color:'#9aa5b9',fontSize:11},itemWidth:14},
+  grid:{left:44,right:14,top:64,bottom:44},
+  tooltip:{trigger:'axis'},
+  xAxis:{type:'category',data:['T0','T1','T2','T3','T4'],axisLine:{lineStyle:{color:'#2a3556'}},axisLabel:{color:'#9aa5b9'}},
+  yAxis:{type:'value',name:'指数化(T0=100)',nameTextStyle:{color:'#9aa5b9',fontSize:11},splitLine:{lineStyle:{color:'rgba(42,53,86,0.5)'}},axisLabel:{color:'#9aa5b9'}},
+  series:[
+    {name:'盈利(+30%/期)',type:'line',data:[100,113,124,130,134],lineStyle:{color:'#ffd83d',width:2},itemStyle:{color:'#ffd83d'},smooth:true},
+    {name:'PE(50x→30x)',type:'line',data:[100,88,76,66,60],lineStyle:{color:'#3ddcc8',width:2},itemStyle:{color:'#3ddcc8'},smooth:true},
+    {name:'股价=盈利×PE',type:'line',data:[100,99,94,86,80],lineStyle:{color:'#ff3b3b',width:3},itemStyle:{color:'#ff3b3b'},smooth:true}
+  ],
+  title:{text:'盈利增长 ≠ 股价上涨：二阶导决定PE（原理示意）',left:0,top:0,textStyle:{color:'#e8ecf4',fontSize:13}}
+});
+window.addEventListener('resize',function(){c1.resize()});
+</script>
+</body>
+</html>
