@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周度复盘 2026-07-20~07-24 | 巴蒂投研</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--line:#2a3556;
+  --txt:#e8ecf4;--sub:#9aa5b9;
+  --accent:#f5a623;--data:#ffd83d;--cyan:#3ddcc8;
+  --up:#ff3b3b;--down:#1ed890;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;padding:20px}
+.container{max-width:900px;margin:0 auto}
+header{padding:22px 0 14px;border-bottom:2px solid var(--line);margin-bottom:20px}
+h1{font-size:22px;color:var(--txt)}
+.meta{color:var(--sub);font-size:12px;margin-top:6px}
+.anchor{background:var(--card);border-left:6px solid var(--accent);padding:10px 14px;margin:14px 0;font-size:13px;color:var(--sub)}
+.anchor b{color:var(--data)}
+.module{background:var(--card);border-radius:8px;padding:18px 20px;margin-bottom:18px}
+.mod-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;border-left:6px solid var(--accent);padding-left:12px;margin-left:-20px}
+.mod-num{color:var(--accent);font-weight:800;font-size:18px}
+.mod-title{font-size:17px;font-weight:700}
+.sub-t{color:var(--cyan);font-weight:700;margin:12px 0 6px;font-size:14px}
+p{margin:8px 0;color:var(--txt)}
+.dim{color:var(--sub)}
+.table-wrap{overflow-x:auto;margin:10px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th{background:#141c33;color:var(--cyan);font-weight:700;font-size:13px}
+th,td{padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+.up,.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.down,.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag-s{background:rgba(245,166,35,0.15);color:var(--accent)}
+.tag-a{background:rgba(61,220,200,0.15);color:var(--cyan)}
+.tag-d{background:rgba(154,165,185,0.15);color:var(--sub)}
+/* 列宽类 */
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%;text-align:left}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%;text-align:left}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:14%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:54%;text-align:left}
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1){width:10%;text-align:left}
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2){width:24%;text-align:left}
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3){width:30%;text-align:left}
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4){width:36%;text-align:left}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:14%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:26%;text-align:left}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:16%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:28%;text-align:left}
+.judge{background:#141c33;border-left:6px solid var(--data);padding:12px 14px;margin-top:14px;border-radius:0 6px 6px 0}
+.judge b{color:var(--data)}
+.chart{width:100%;height:340px;margin:12px 0}
+.disclaimer{color:var(--sub);font-size:11px;text-align:center;padding:18px 0;border-top:1px solid var(--line);margin-top:10px}
+@media(max-width:640px){
+  body{padding:10px;font-size:13px}
+  .module{padding:14px 12px}
+  th,td{padding:7px 8px;font-size:12px}
+  h1{font-size:18px}
+  .chart{height:280px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>📅 周度复盘 · 2026年第30周（7/20-7/24）</h1>
+  <div class="meta">生成时间：2026-07-26（周日）11:35 ｜ 数据源：WeStock（Wind连接器本次断开，互为fallback）★★★ ｜ 第59篇</div>
+</header>
+
+<div class="anchor">★时间锚点：今天是<b>7/26（周日）</b>。下周关键时点——<b>7/27（周一）长鑫存储688825上市</b>、7/28-7/31 美股财报密集周（CLS/GLW→VERTIV/APH/STX→META/MSFT→AMZN）、<b>7月底政治局会议</b>（下半年政策定调）、7/28-29 美联储FOMC。缴款/申购类时点事项本周无。</div>
+
+<!-- 01 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">01</span><span class="mod-title">本周大盘：指数假修复，结构真分化</span></div>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>指数</th><th>周涨跌</th><th>年内</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>科创综指</td><td><span class="pos">+0.12%</span></td><td class="pos">+18.60%</td><td>周五冲高回落（周五-1.05%），10日仍-17.4%，处深调后弱修复</td></tr>
+      <tr><td>上证指数</td><td><span class="pos">+1.33%</span></td><td class="neg">-3.90%</td><td>权重托底式反弹，周五缩量9154亿回落-1.61%</td></tr>
+      <tr><td>深证成指</td><td><span class="pos">+0.49%</span></td><td class="pos">+1.85%</td><td>反弹乏力，20日-12.7%的坑只填了零头</td></tr>
+      <tr><td>创业板指</td><td><span class="pos">+1.52%</span></td><td class="pos">+8.67%</td><td>超跌反抽，周五-2.65%把周内涨幅吐掉大半</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><span class="dim">本周节奏：周一至周四情绪修复（上证周内高点3861），<span class="hl">周五被美股半导体杀跌预期+缩量共振打回</span>。全周万得全A仅微涨0.22%，反弹集中在中芯国际、寒武纪等大市值权重，科创100同期下跌——是流动性向大票集中，不是系统性修复。</span></p>
+  <div class="judge"><b>最终判断：</b>指数层面"假企稳"，结构层面"去杠杆+风格再平衡"仍在进行。<b>这个数意味着什么，咱们该怎么做：</b>成交缩回2万亿下方说明增量资金观望，政治局会议落地前不做指数判断，只做个股纪律。</div>
+</div>
+
+<!-- 02 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">02</span><span class="mod-title">持仓周度体检：一头大象起舞，光链继续挖坑</span></div>
+  <div class="table-wrap">
+  <table class="f5">
+    <thead><tr><th>持仓</th><th>周涨跌</th><th>7/24收盘/年内</th><th>分级</th><th>周内驱动</th></tr></thead>
+    <tbody>
+      <tr><td>澜起科技</td><td><span class="pos">+27.27%</span></td><td>233.66 ／ +98.4%</td><td><span class="tag tag-s">S</span></td><td>存储短缺+英特尔电话会验证，全周最强</td></tr>
+      <tr><td>华峰化学</td><td><span class="pos">+5.46%</span></td><td>10.62 ／ -2.6%</td><td><span class="tag tag-d">防御</span></td><td>氨纶减亏预期，周五获利回吐-6%</td></tr>
+      <tr><td>太钢不锈</td><td><span class="pos">+0.87%</span></td><td>3.49 ／ -28.5%</td><td><span class="tag tag-d">防御</span></td><td>钢铁反内卷弱脉冲</td></tr>
+      <tr><td>罗博特科</td><td><span class="neg">-0.25%</span></td><td>411.96 ／ +76.6%</td><td><span class="tag tag-s">S</span></td><td>横盘抗跌，139家机构调研托底</td></tr>
+      <tr><td>兴森科技</td><td><span class="neg">-0.76%</span></td><td>33.80 ／ +59.9%</td><td><span class="tag tag-a">利润仓</span></td><td>华为150万片利好 vs 光链情绪对冲</td></tr>
+      <tr><td>德展健康</td><td><span class="neg">-2.45%</span></td><td>3.19 ／ -16.9%</td><td><span class="tag tag-d">防御</span></td><td>随大盘，GLP-1无兑现</td></tr>
+      <tr><td>星环科技</td><td><span class="neg">-4.11%</span></td><td>84.60 ／ -21.8%</td><td><span class="tag tag-a">利润仓</span></td><td>AI软件板块继续出清</td></tr>
+      <tr><td>泰和新材</td><td><span class="neg">-5.11%</span></td><td>11.15 ／ +11.5%</td><td><span class="tag tag-a">A-</span></td><td>芳纶叙事熄火，20日-42.4%仍在磨底</td></tr>
+      <tr><td>软通动力</td><td><span class="neg">-6.47%</span></td><td>35.00 ／ -26.1%</td><td><span class="tag tag-a">A</span></td><td>AI应用杀估值，周五-7.04%领跌持仓</td></tr>
+      <tr><td>三祥新材</td><td><span class="neg">-7.44%</span></td><td>38.70 ／ +53.7%</td><td><span class="tag tag-s">S</span></td><td>送转除权后情绪退潮，20日-42.6%</td></tr>
+      <tr><td>汇绿生态</td><td><span class="neg">-11.23%</span></td><td>31.00 ／ +42.0%</td><td><span class="tag tag-s">S</span></td><td>光模块高位估值消化周期，周度最弱</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="dim">周度结构：<span class="hl">3涨8跌</span>。澜起一只票的周涨幅（+27%）抵消了整个光链的失血——这正是"存储强、光链弱"的跷跷板：市场把AI叙事的确定性从"光互连预期"切换到"存储涨价现实"。</p>
+  <div class="judge"><b>最终判断：</b>组合内部完成了一次被动再平衡——澜起权重被动抬升，汇绿/三祥/泰和的回撤都属于"杀估值不杀逻辑"。<b>这个数意味着什么，咱们该怎么做：</b>S级四张牌逻辑均未破，一张都不动；但要承认光链的估值消化还没走完，五节点对赌期不增不减的纪律恰好是保护。</div>
+</div>
+
+<!-- 03 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">03</span><span class="mod-title">本周大事对账：五节点验证2/5，预警首响</span></div>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>事件</th><th>状态</th><th>对咱们的意义</th></tr></thead>
+    <tbody>
+      <tr><td>谷歌财报 7/23</td><td class="pos">✅利好</td><td>capex上调至850亿美元级，五节点第1关确认，云需求未证伪</td></tr>
+      <tr><td>英特尔电话会 7/24</td><td class="pos">✅利好</td><td>确认"存储短缺持续+Capex>200亿"，五节点第2关确认，直接点燃澜起周五+3.62%</td></tr>
+      <tr><td>大摩存储预警 7/24</td><td class="neg">⚠️首响</td><td>预警内存合约价2026Q4见顶→美股存储链单日崩（SNDK-10.8%/MU-7.0%），反转开关第一声方向性信号，已升级每周必查</td></tr>
+      <tr><td>美股半导体杀跌 7/24</td><td class="neg">⚠️压制</td><td>费半-4.25%成份股全跌，但NVDA仅-0.9%+CSP企稳=杀估值非杀需求</td></tr>
+      <tr><td>NVIDIA-SK 5000亿计划</td><td class="pos">✅对冲</td><td>Reuters验证，HBM4长协+2GW数据中心，直接反制"capex见顶"叙事</td></tr>
+      <tr><td>华为AI芯片150万片</td><td class="pos">✅验证</td><td>WSJ+多方交叉，出货翻倍→兴森载板/长鑫配套需求实质增量</td></tr>
+      <tr><td>长鑫存储 IPO</td><td class="hl">🔔在途</td><td>中签1000股成本8660元，7/27上市；隔夜美股存储杀跌压制首日溢价，情景概率向中性档偏移</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="judge"><b>最终判断：</b>产业端（谷歌capex、英特尔短缺、NVIDIA-SK、华为翻倍）与卖方端（大摩见顶预警）本周正式打对台。<b>这个数意味着什么，咱们该怎么做：</b>产业事实四条 vs 卖方预警一条，天平仍在多头侧，但预警首响后必须提高监控频率——每周五复盘固定核查合约价方向。</div>
+</div>
+
+<!-- 04 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">04</span><span class="mod-title">美股映射链周对账：A股这边先跌为敬</span></div>
+  <div id="chart-map" class="chart"></div>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>A股持仓</th><th>A股周度</th><th>美股锚周五</th><th>映射解读</th></tr></thead>
+    <tbody>
+      <tr><td>澜起科技</td><td><span class="pos">+27.3%</span></td><td class="neg">MRVL -7.2%</td><td>罕见背离：A股炒国产存储短缺现实，MRVL挨AI估值杀，周一注意情绪回传</td></tr>
+      <tr><td>汇绿生态</td><td><span class="neg">-11.2%</span></td><td class="neg">COHR -9.8%</td><td>同向共振，A股已提前一个月消化，7/28 CLS/GLW财报是修复扳机</td></tr>
+      <tr><td>罗博特科</td><td><span class="neg">-0.2%</span></td><td class="neg">NVDA -0.9%</td><td>双双抗跌，链主与卖铲人独家设备商同步守住</td></tr>
+      <tr><td>兴森科技</td><td><span class="neg">-0.8%</span></td><td class="neg">TTMI -9.3%</td><td>兴森抗跌靠华为链对冲，7/30 TTMI财报验证AI PCB景气</td></tr>
+      <tr><td>星环科技</td><td><span class="neg">-4.1%</span></td><td class="neg">SNOW周跌</td><td>AI软件中美同步出清，利润仓不加</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="judge"><b>最终判断：</b>A股光链20日已跌30-45%，领先美股映射链回调约3-4周——坏消息是共振未完，好消息是A股估值坑已挖得更深。<b>这个数意味着什么，咱们该怎么做：</b>周一低开是大概率（周五美股费半-4.25%传导），但"先跌的修复也先"，7/28-7/30美股财报若不证伪，A股光链反而具备率先企稳条件。</div>
+</div>
+
+<!-- 05 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">05</span><span class="mod-title">反一致预期审查：本周必须自我质疑的三件事</span></div>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>一致预期</th><th>咱们立场</th><th>反方证据与自查结论</th></tr></thead>
+    <tbody>
+      <tr><td>"存储超级周期到2027"</td><td class="hl">部分警惕</td><td>大摩已喊2026Q4合约价见顶。自查：产业端口径相反——英特尔短缺、闪迪110亿长约、NVIDIA-SK HBM4长协，但"高点低PE是顶部信号"是周期铁律，要求咱们盯PB分位与合约价方向，而非听多头故事。结论：预警计分1次，连续两周卖方下修才升级为行动信号</td></tr>
+      <tr><td>"光模块回调即买点"</td><td class="hl">不急</td><td>汇绿20日-44.7%、中际旭创-16.5%，回调够深但右侧未现。自查：若7/30 META/MSFT capex下修，光链还有一层杀业绩风险。结论：等财报验证，不抄底不补仓</td></tr>
+      <tr><td>"政治局会议=大利好"</td><td class="hl">降温</td><td>卖方共识是"存量加快+结构性增量"，非大规模刺激。自查：若会议措辞平淡，短线情绪盘会失望回落。结论：把会议当风险事件管理，不当利好去赌</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="judge"><b>最终判断：</b>三项一致预期均有裂缝，但都未到证伪临界。<b>这个数意味着什么，咱们该怎么做：</b>下周是"验证周"不是"下注周"——让财报和会议先说话，咱们后动手。</div>
+</div>
+
+<!-- 06 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">06</span><span class="mod-title">长鑫上市专项：周一开盘怎么接</span></div>
+  <p>中签 <span class="hl">1000股（2签），成本8660元（发行价8.66元）</span>，7/27（周一）科创板上市，流通盘仅6.73%。</p>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>情景</th><th>开盘区间</th><th>浮盈</th><th>操作</th></tr></thead>
+    <tbody>
+      <tr><td>乐观</td><td class="pos">35-50元</td><td class="pos">+2.6万~4.1万</td><td>冲高分批了结：首笔40%落袋，余下挂阶梯卖单，不贪尾部</td></tr>
+      <tr><td>中性</td><td class="hl">22-32元</td><td class="pos">+1.3万~2.3万</td><td>开盘价高于25元即分批兑现50%以上；低于25元可观察半小时再动</td></tr>
+      <tr><td>保守</td><td>15-22元</td><td class="pos">+0.6万~1.3万</td><td>全部兑现不恋战——打新盈利本质是制度红利，不转为持仓逻辑</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="dim">隔夜变量对冲：美股存储链周五崩盘（SNDK-10.8%）压制溢价 vs 华为150万片+国产HBM配套叙事托底。<span class="hl">概率上向中性档偏移</span>，30元以上开盘需要情绪面超预期配合。</p>
+  <div class="judge"><b>最终判断：</b>无论开在哪个档，都执行"兑现为主"——中签收益不赌不贪。<b>这个数意味着什么，咱们该怎么做：</b>周一9:15盯集合竞价，按上表机械执行；若真到乐观档上沿，剩余筹码也在当日内清完。</div>
+</div>
+
+<!-- 07 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">07</span><span class="mod-title">下周作战日历：一周五个验证点</span></div>
+  <div class="table-wrap">
+  <table class="f4 cal">
+    <thead><tr><th>日期</th><th>事件</th><th>影响标的</th><th>看什么</th></tr></thead>
+    <tbody>
+      <tr><td>7/27</td><td class="hl">长鑫存储上市</td><td>中签1000股＋存储板块情绪</td><td>开盘价落哪个情景档；对澜起/兴森的板块情绪外溢</td></tr>
+      <tr><td>7/28</td><td>CELESTICA/康宁GLW/RAMBUS 财报</td><td>汇绿、罗博、澜起</td><td>光链需求验证首枪；RAMBUS是澜起最直接同业</td></tr>
+      <tr><td>7/29</td><td>VERTIV/APH/希捷STX/KLAC 财报＋FOMC开始</td><td>罗博、汇绿</td><td>AI硬件订单能见度；HDD涨价口径</td></tr>
+      <tr><td>7/30</td><td class="hl">META/MSFT/泛林/WDC/TTMI 财报</td><td>全链，五节点第3关</td><td>唯一问题：capex指引上调还是下修——最重要反转指标</td></tr>
+      <tr><td>7/31</td><td>AMZN 财报，五节点第4关</td><td>全链</td><td>AWS增速+capex；同时盯政治局会议通稿落地</td></tr>
+      <tr><td>7月底</td><td class="hl">中央政治局会议</td><td>A股整体</td><td>逆周期力度、"六张网"新基建（算力/新型通信直接相关）、资本市场表述</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="judge"><b>最终判断：</b>下周是全年密度最高的验证周之一：美股财报定AI链方向，政治局会议定A股水温，长鑫定存储情绪。<b>这个数意味着什么，咱们该怎么做：</b>所有主动操作（除长鑫兑现外）都排在7/30 META/MSFT之后——先验证，后动作。</div>
+</div>
+
+<!-- 08 -->
+<div class="module">
+  <div class="mod-head"><span class="mod-num">08</span><span class="mod-title">下周计划与态度：机构视角 + 多空辩论</span></div>
+
+  <p class="sub-t">▍机构视角</p>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>视角</th><th>方向</th><th>逻辑</th></tr></thead>
+    <tbody>
+      <tr><td>为何买（多方机构）</td><td class="pos">科技超跌</td><td>银河等卖方明确"半导体/存储/先进封装/通信设备回调压力释放后关注布局机会"；产业端四重验证（谷歌capex/英特尔短缺/NVIDIA-SK/华为翻倍）未被推翻</td></tr>
+      <tr><td>为何卖（空方机构）</td><td class="neg">杀估值未完</td><td>大摩存储见顶预警；AI板块"好财报也被卖"说明拥挤度出清中；融资余额回落=杠杆资金仍在撤</td></tr>
+      <tr><td>催化剂</td><td class="hl">三箭齐发</td><td>7/30 META/MSFT capex指引（最重）、政治局会议"六张网"算力表述、长鑫上市激活存储情绪</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="sub-t">▍多空辩论</p>
+  <div class="table-wrap">
+  <table class="f2">
+    <thead><tr><th>方向</th><th>论点</th></tr></thead>
+    <tbody>
+      <tr><td class="pos">多方</td><td>①A股光链20日已跌30-45%，估值坑领先美股挖好；②产业需求端零证伪，NVDA未破位+CSP企稳；③政治局会议对算力新基建是结构性顺风；④长鑫上市+华为翻倍强化国产存储叙事，澜起周五放量新高确认资金共识</td></tr>
+      <tr><td class="neg">空方</td><td>①美股周五费半-4.25%必然传导周一低开；②若META/MSFT capex下修，光链从杀估值升级为杀业绩；③成交缩回2万亿下方，增量资金没进场，反弹靠存量腾挪；④大摩预警若被7/30后更多卖方跟进，存储周期顶部叙事会自我实现</td></tr>
+      <tr><td class="hl">落脚判断</td><td><b>震荡市里的验证周，态度=中性偏多但手要慢。</b>核心变量不在A股在美股财报：capex不下修→光链月内见底概率大增；下修→接受再挖一层坑，用防御仓和澜起对冲。两种情况S级都不卖，差别只在"何时可以加"</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="sub-t">▍下周操作清单（按纪律执行）</p>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>动作</th><th>时点</th><th>细则</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">长鑫兑现</td><td>7/27 开盘</td><td>按模块06三情景机械执行，兑现为主不恋战</td></tr>
+      <tr><td>持仓不动</td><td>全周</td><td>S级四张牌+利润仓+防御仓全部HOLD；周一低开不砍，不做恐慌盘</td></tr>
+      <tr><td>禁止加仓</td><td>7/30 前</td><td>五节点第3/4关（META/MSFT/AMZN）确认前，主线仓位不增不减——包括"看起来很便宜"的汇绿</td></tr>
+      <tr><td>观察触发</td><td>7/30 后</td><td>若capex不下修且光链缩量企稳，可讨论用长鑫兑现资金小比例补strongest标的（候选顺序：澜起回踩/罗博360下方/兴森）</td></tr>
+      <tr><td>反转开关</td><td>每日</td><td>盯CSP capex指引下修（最重要）、内存合约价方向、CPO延迟官方口径；跟踪池异动≥5%单独提示</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="judge"><b>最终判断：BUY等验证、HOLD是主旋律、SELL只有长鑫。</b>用一句话定调下周：<b>"让财报先开牌，咱们只在牌面确认后下注。"</b>行情趋势上，这轮科技调整属于牛市中继的估值消化而非趋势反转——判断依据是产业需求四重验证未破+链主NVDA未破位+政策面算力新基建顺风；但中继结束的时间由7/30的capex指引决定，不由咱们的期待决定。<b>这个数意味着什么，咱们该怎么做：</b>态度=尊重趋势、敬畏验证、纪律优先。手里的货拿稳，兜里的钱等信号。</div>
+</div>
+
+<div class="disclaimer">数据来源：WeStock行情接口（★★★）、Reuters/WSJ交叉验证、公开卖方研报 ｜ 本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担</div>
+</div>
+
+<script>
+var chart = echarts.init(document.getElementById('chart-map'));
+chart.setOption({
+  backgroundColor:'transparent',
+  title:{text:'本周持仓涨跌幅（%）',textStyle:{color:'#e8ecf4',fontSize:14},left:0,top:0},
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  grid:{left:10,right:20,top:50,bottom:60,containLabel:true},
+  xAxis:{type:'category',
+    data:['澜起','华峰','太钢','罗博','兴森','德展','星环','泰和','软通','三祥','汇绿'],
+    axisLabel:{color:'#9aa5b9',fontSize:11,interval:0,rotate:38},
+    axisLine:{lineStyle:{color:'#2a3556'}}},
+  yAxis:{type:'value',axisLabel:{color:'#9aa5b9'},splitLine:{lineStyle:{color:'rgba(42,53,86,0.5)'}}},
+  series:[{type:'bar',barWidth:'55%',
+    data:[27.27,5.46,0.87,-0.25,-0.76,-2.45,-4.11,-5.11,-6.47,-7.44,-11.23].map(function(v){
+      return {value:v,itemStyle:{color:v>=0?'#ff3b3b':'#1ed890'}};
+    }),
+    label:{show:true,position:'outside',color:'#e8ecf4',fontSize:10,formatter:function(p){return p.value>0?'+'+p.value:p.value;}}
+  }]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
