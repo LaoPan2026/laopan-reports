@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7/30 盘后复盘 · 政策底未救市 · S 级单日集体重挫</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#d0d8e6;--text-dim:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;line-height:1.7;padding:20px;max-width:940px;margin:0 auto}
+h1{font-size:22px;color:var(--yellow);border-bottom:2px solid var(--orange);padding-bottom:8px;margin-bottom:6px}
+.subtitle{font-size:12px;color:var(--text-dim);margin-bottom:16px}
+.module{background:var(--card);border:1px solid var(--line);border-radius:6px;margin:14px 0;overflow:hidden}
+.module-title{padding:10px 14px;background:rgba(245,166,35,0.08);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.module-num{background:var(--orange);color:#0d1424;font-weight:800;font-size:12px;padding:3px 8px;border-radius:3px;flex-shrink:0}
+.module h2{font-size:15px;color:var(--yellow);font-weight:700}
+.module h3{font-size:13px;color:var(--cyan);margin:10px 0 6px;font-weight:600}
+.module-body{padding:14px}
+p{margin:6px 0}
+em{color:var(--cyan);font-style:normal;font-weight:600}
+strong{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2),table.f5 th:nth-child(3),table.f5 td:nth-child(3),table.f5 th:nth-child(4),table.f5 td:nth-child(4),table.f5 th:nth-child(5),table.f5 td:nth-child(5){text-align:right}
+table.f5 th:nth-child(6),table.f5 td:nth-child(6){text-align:left}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2),table.f4 th:nth-child(3),table.f4 td:nth-child(3),table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:right}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;text-wrap:pretty;overflow:hidden;border-right:1px solid rgba(155,165,185,0.08)}
+th:last-child,td:last-child{border-right:none}
+th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:var(--text);background:rgba(155,165,185,0.06)}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+.table-wrap table{min-width:480px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.stat-box{background:rgba(245,166,35,0.06);border:1px solid var(--line);border-radius:6px;padding:10px;text-align:center}
+.stat-box .label{font-size:11px;color:var(--text-dim);margin-bottom:4px}
+.stat-box .value{font-size:16px;font-weight:700;color:var(--yellow)}
+.stat-box .delta{font-size:12px;margin-top:2px}
+.risk-box{background:rgba(255,59,59,0.06);border-left:3px solid var(--up);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.opp-box{background:rgba(30,216,144,0.06);border-left:3px solid var(--down);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.tip{background:rgba(61,220,200,0.06);border:1px dashed var(--cyan);padding:10px 14px;margin:8px 0;border-radius:4px;font-size:12px}
+.chart-box{height:300px;margin:10px 0}
+@media(max-width:640px){body{font-size:12px;padding:12px}h1{font-size:18px}.stat-grid{grid-template-columns:repeat(2,1fr)}table{font-size:11px}th,td{padding:6px 4px}.module-body{padding:10px}}
+</style>
+</head>
+<body>
+<h1>7/30 盘后复盘 · 政策底未救市 · S 级单日集体重挫</h1>
+<div class="subtitle">数据时点：北京时间 2026/7/30 15:00 收盘 · Wind 核源版（Key `ak_SlQ25juzu...` 已通）</div>
+
+<div class="module warn">
+<div class="module-title"><span class="module-num">01</span><h2>核心结论：今日是 S 级单日最深跌，政治局"政策底"未救市</h2></div>
+<div class="module-body">
+<p><strong>今日是 7 月以来 S 级单日最深跌</strong>——<em class="neg">罗博 -12.56%</em> / 兴森 <em class="neg">-10.01% 跌停</em> / 汇绿 <em class="neg">-9.99% 跌停</em> / 三祥 -9.00% / 澜起 -5.17%——四大 S 级<strong>无一上涨</strong>。</p>
+<p><strong>政治局会议"适度宽松货币政策"未救市</strong>——14:30 发布的重大利好，**今日盘面反应平淡**——4 指数全部收跌，科创综指 -5.70% / 创业板 -3.97% / 深证 -2.73% / 上证 -0.62%。</p>
+<p><strong>政策底 ≠ 市场底</strong>——历史上政策底领先市场底 <strong>1-3 个月</strong>，今日市场用真金白银证明了这一点。</p>
+<p><strong>情景校准：B 跌破，C 概率显著回升至 60%</strong>——今日走势 = "中幅下修 + 流动性危机"，**情景 C（明确大幅下修）概率从 7/30 早盘的 5% 升至 60%**。</p>
+<p><strong>老潘操作纪律：</strong><em class="pos">7/31 早盘观望 30 分钟后再判断</em>——今日跌势已**破坏所有逻辑支撑**，强行加仓是赌博。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">02</span><h2>4 个指数快照（Wind 核源）</h2></div>
+<div class="module-body">
+<div class="stat-grid">
+<div class="stat-box"><div class="label">上证</div><div class="value">3804.69</div><div class="delta neg">-0.62%</div></div>
+<div class="stat-box"><div class="label">深证</div><div class="value">13285.80</div><div class="delta neg">-2.73%</div></div>
+<div class="stat-box"><div class="label">创业板</div><div class="value">3244.62</div><div class="delta neg">-3.97%</div></div>
+<div class="stat-box"><div class="label">科创综指</div><div class="value">1755.22</div><div class="delta neg">-5.70%</div></div>
+</div>
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>指数</th><th>7/29 收</th><th>7/30 开</th><th>高</th><th>低</th><th>7/30 收</th><th>今日%</th></tr></thead>
+<tbody>
+<tr><td>上证</td><td>3828.47</td><td>3812.11</td><td>3839.34</td><td>3767.50</td><td>3804.69</td><td class="neg">-0.62%</td></tr>
+<tr><td>深证</td><td>13658.44</td><td>13531.07</td><td>13619.03</td><td>13068.56</td><td>13285.80</td><td class="neg">-2.73%</td></tr>
+<tr><td>创业板</td><td>3378.70</td><td>3331.32</td><td>3353.81</td><td>3158.14</td><td>3244.62</td><td class="neg">-3.97%</td></tr>
+<tr><td>科创综指</td><td>1861.24</td><td>1840.78</td><td>1854.29</td><td>1732.52</td><td>1755.22</td><td class="neg">-5.70%</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键观察</strong>：4 指数日内 V 型反转幅度最大的是 <strong>科创综指</strong>（1732 → 1755，+22 点反弹）+ <strong>创业板</strong>（3158 → 3244，+86 点反弹）——但**反弹未抵消开盘跌幅**，最终全部收跌。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">03</span><h2>11 只持仓今日杀伤图（Wind 核源）</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>持仓</th><th>7/29 收</th><th>7/30 开</th><th>高</th><th>低</th><th>7/30 收</th><th>今日%</th></tr></thead>
+<tbody>
+<tr><td><strong>罗博特科(S)</strong></td><td>409.45</td><td>406.04</td><td>408.00</td><td>353.49</td><td>358.03</td><td class="neg"><strong>-12.56%</strong></td></tr>
+<tr><td><strong>兴森科技(利润仓)</strong></td><td>30.77</td><td>30.75</td><td>31.10</td><td>27.69</td><td>27.69</td><td class="neg"><strong>-10.01%</strong></td></tr>
+<tr><td><strong>汇绿生态(S)</strong></td><td>30.12</td><td>29.57</td><td>30.32</td><td>27.11</td><td>27.11</td><td class="neg"><strong>-9.99%</strong></td></tr>
+<tr><td><strong>三祥新材(S)</strong></td><td>37.00</td><td>37.03</td><td>37.42</td><td>33.52</td><td>33.67</td><td class="neg">-9.00%</td></tr>
+<tr><td><strong>澜起科技(S底仓)</strong></td><td>207.50</td><td>205.00</td><td>210.77</td><td>194.53</td><td>196.78</td><td class="neg">-5.17%</td></tr>
+<tr><td><strong>泰和新材(A-)</strong></td><td>11.50</td><td>11.43</td><td>11.64</td><td>11.01</td><td>11.13</td><td class="neg">-3.22%</td></tr>
+<tr><td><strong>星环科技(利润仓)</strong></td><td>82.25</td><td>82.28</td><td>88.18</td><td>80.27</td><td>80.33</td><td class="neg">-2.33%</td></tr>
+<tr><td><strong>德展健康(防御)</strong></td><td>3.32</td><td>3.31</td><td>3.36</td><td>3.24</td><td>3.27</td><td class="neg">-1.51%</td></tr>
+<tr><td><strong>软通动力(A+)</strong></td><td>35.39</td><td>35.00</td><td>36.00</td><td>34.70</td><td>34.91</td><td class="neg">-1.36%</td></tr>
+<tr><td><strong>华峰化学(防御)</strong></td><td>11.22</td><td>11.12</td><td>11.68</td><td>10.95</td><td>11.15</td><td class="neg">-0.62%</td></tr>
+<tr><td><strong>太钢不锈(防御)</strong></td><td>3.61</td><td>3.60</td><td>3.69</td><td>3.60</td><td>3.63</td><td class="pos">+0.55%</td></tr>
+</tbody>
+</table>
+</div>
+<h3>分类汇总</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>分级</th><th>持仓数</th><th>今日涨</th><th>今日跌</th><th>代表性标的</th></tr></thead>
+<tbody>
+<tr><td><strong>S 级（4 只）</strong></td><td>4</td><td>0</td><td><strong>4</strong></td><td>罗博-12.56% / 汇绿-9.99% / 三祥-9.00% / 澜起-5.17%</td></tr>
+<tr><td>利润仓（2 只）</td><td>2</td><td>0</td><td>2</td><td>兴森-10.01% / 星环-2.33%</td></tr>
+<tr><td>A 级标杆（2 只）</td><td>2</td><td>0</td><td>2</td><td>软通-1.36% / 泰和-3.22%</td></tr>
+<tr><td><strong>防御级（3 只）</strong></td><td>3</td><td><strong>1</strong></td><td>2</td><td><strong>太钢+0.55%</strong> / 华峰-0.62% / 德展-1.51%</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>今日最惨：罗博 -12.56%</strong>——单日跌幅创年内最大。<br>
+- <strong>汇绿/兴森双双跌停</strong>——跌停板封死，<em>流动性问题暴露</em><br>
+- <strong>11 只 9 跌 1 涨 1 平</strong>——今日全线溃败，无人能逃<br>
+- <strong>防御级分化</strong>：太钢翻红 +0.55% / 华峰 /德展微跌——不是"防御无虞"，是"防御级分化"</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">04</span><h2>板块对比 + 今日重大事件梳理</h2></div>
+<div class="module-body">
+<h3>今日 4 大事件叠加</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>时点</th><th>事件</th><th>市场反应</th><th>含义</th></tr></thead>
+<tbody>
+<tr><td>北京时间 7:00</td><td>META 财报出（盘后）</td><td>META -1.31%</td><td>中性偏弱</td></tr>
+<tr><td>北京时间 8:00</td><td>三星 Q2 财报（盘前）</td><td>韩国 KOSPI +5.46%</td><td><strong>超级利好</strong></td></tr>
+<tr><td>9:30 开盘</td><td>A 股 4 指数低开</td><td>-0.43% to -1.40%</td><td>未消化 META+三星双信号</td></tr>
+<tr><td>11:30</td><td>上午盘收盘</td><td>4 指数 -1.15% to -6.25%</td><td><strong>恐慌性杀跌</strong></td></tr>
+<tr><td>13:00-14:00</td><td>午后反弹</td><td>创业板 +2.22pct</td><td>资金抄底迹象</td></tr>
+<tr><td>14:30</td><td><strong>政治局会议"适度宽松"</strong></td><td><strong>未救市</strong></td><td><strong>政策底≠市场底</strong></td></tr>
+<tr><td>15:00 收盘</td><td>4 指数全跌</td><td>-0.62% to -5.70%</td><td>S 级全跌</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>关键反思</strong>：今日全天 <strong>4 大事件叠加</strong>——META 财报（中性）+ 三星业绩（暴增 18 倍）+ 早盘杀跌（恐慌）+ 政治局政策利好——结果是 <strong>全部被市场吸收为利空</strong>。<br>
+这不是"基本面失效"，是"市场恐慌状态下基本面短期失灵"。<br>
+<em>需要 3-5 个交易日的资金面修复 + 政策细则落地</em>，市场才能重新开始按基本面定价。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">05</span><h2>持仓纪律检查</h2></div>
+<div class="module-body">
+<div class="tip">
+<p><strong>今日 11 只持仓操作纪律：0 动作（与盘前锁定一致）</strong></p>
+<p>今日盘中我**曾经错判**——10:42 时我说"加仓窗口可能打开"是基于三星业绩暴增 18 倍判断。<strong>实际走势完全反向</strong>——三大权重股（罗博/汇绿/兴森）杀跌/跌停。这是错题本第 9/10 条"归因谬误"的现场教训。</p>
+</div>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>分级</th><th>今日动作</th><th>逻辑</th><th>7/31 决策</th></tr></thead>
+<tbody>
+<tr><td>S 级（4 只）</td><td class="pos">不动</td><td>逻辑仍存但短期被资金面压制</td><td>观望 30 分钟</td></tr>
+<tr><td>利润仓（2 只）</td><td class="pos">不动</td><td>已大幅回吐不减仓（兴森-32% / 星环-28%）</td><td>同上</td></tr>
+<tr><td>A 级标杆（2 只）</td><td class="pos">不动</td><td>软通+418%利润仓 / 泰和防御属性</td><td>同上</td></tr>
+<tr><td>防御级（3 只）</td><td class="pos">不动</td><td>太钢微涨 / 华峰德展走稳</td><td>继续持有</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">06</span><h2>关键节点倒计时</h2></div>
+<div class="module-body">
+<div class="chart-box" id="chart-countdown"></div>
+<script>
+const chartC = echarts.init(document.getElementById('chart-countdown'));
+chartC.setOption({
+  backgroundColor:'transparent',
+  grid:{left:60,right:30,top:30,bottom:60},
+  xAxis:{type:'category',data:['AMZN(7/31)','SNDK(8/14)','政治局细则(8月)','降息降准(8月?)'],axisLine:{lineStyle:{color:'#9aa5b9'}},axisLabel:{color:'#d0d8e6',rotate:0}},
+  yAxis:{type:'value',name:'重要性(1-5)',min:0,max:5,axisLine:{lineStyle:{color:'#9aa5b9'}},splitLine:{lineStyle:{color:'rgba(155,165,185,0.1)'}},axisLabel:{color:'#d0d8e6'}},
+  series:[{type:'bar',data:[{value:5,itemStyle:{color:'#ff3b3b'}},{value:3,itemStyle:{color:'#9aa5b9'}},{value:5,itemStyle:{color:'#3ddcc8'}},{value:5,itemStyle:{color:'#ffd83d'}}],label:{show:true,position:'top',color:'#ffd83d',fontWeight:'bold'},itemStyle:{borderRadius:[4,4,0,0]}}]
+});
+window.addEventListener('resize',()=>chartC.resize());
+</script>
+<div class="risk-box">
+<p><strong>📌 7/31 凌晨 AMZN 财报（约 14 小时后）</strong>—— META 后二次验证<br>
+- 如果 AMZN capex 维持 → 情景 B 复活 → 7/31 高开反弹<br>
+- 如果 AMZN capex 下修 → 情景 C 确认 → 7/31 可能再跌一波</p>
+<p><strong>📌 政治局会议政策细则</strong>（预计 8 月）<br>
+- 适度宽松货币政策要等降息/降准落地<br>
+- "稳房地产"政策要等具体方案<br>
+- 这两个细则才是真正的"市场底"信号</p>
+</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">07</span><h2>反一致预期：今日最痛的教训</h2></div>
+<div class="module-body">
+<h3>巴蒂 7/30 早盘判断错误（必须诚实记录）</h3>
+<div class="risk-box">
+<p><strong>10:42 时我说</strong>："澜起/罗博加仓窗口可能打开，三星业绩暴增 18 倍是真正的超级利好。"</p>
+<p><strong>实际走势</strong>：罗博 -12.56% / 汇绿 -9.99% / 兴森 -10.01%——三星业绩**完全没有传导到 A 股**。</p>
+<p><strong>错在哪</strong>：<em>把"一级供应商确认"误读为"A 股 AI 链立刻兑现"</em>。A 股在恐慌状态下，**基本面对短期的指导意义归零**。</p>
+<p><strong>错题本第 14 条新增案例</strong>：<em>在市场恐慌状态下，做任何基本面判断都可能被反向打脸</em>。</p>
+</div>
+
+<h3>反一致预期 A：今日跌势会延续吗？</h3>
+<div class="opp-box"><strong>逻辑</strong>：<em>政策底已出但市场底未到</em>——历史规律"政策底领先市场底 1-3 个月"。<strong>7/31 跌势可能延续</strong>，尤其是科创/创业板短期超跌反弹后仍可能再下一城。</div>
+
+<h3>反一致预期 B：今夜美股可能反弹</h3>
+<div class="opp-box"><strong>逻辑</strong>：今日美股映射（A 股早盘已跌）→ 但**今夜美股可能反弹**（META 三星均好消息已出）。如果美股反弹，明日 A 股 7/31 有"外围提振"。</div>
+
+<h3>反一致预期 C：7/31 AMZN 是真拐点</h3>
+<div class="tip"><strong>关键判断</strong>：如果 AMZN 7/31 凌晨财报 capex <strong>维持 + 收入加速</strong>，市场可能解读为"AI capex 周期未结束"——这是真正的"市场底"信号。<br>
+- 但如果 AMZN 业绩**对不上 META 的 capex 维持**——则 7/31 早盘可能再恐慌一次。</div>
+
+<h3>反向检验自己</h3>
+<div class="risk-box"><strong>核心警告</strong>：今日 S 级集体 -5%~-12.56% 已**破坏所有短期逻辑**——META 利好、三星利好、政策利好<em>全部失效</em>。在这种情况下，<strong>任何加仓动作都是赌博</strong>。<br>
+7/31 的核心是<em>观察 AMZN 财报+ 政治局细则</em>，在那之前**0 动作**。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">08</span><h2>数据核源矩阵</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>数据</th><th>源</th><th>工具</th><th>已核</th><th>置信</th></tr></thead>
+<tbody>
+<tr><td>4 指数今日收盘价/高/低</td><td>Wind index_data K 线</td><td>node scripts/cli.mjs</td><td>✓</td><td>★★★</td></tr>
+<tr><td>11 只持仓今日收盘</td><td>Wind stock_data K 线</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>META 7/29 收盘 -1.31%</td><td>Wind stock_data K 线</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>三星 Q2 业绩 +18 倍（中文媒体核源）</td><td>WebSearch 核源</td><td>格隆汇/CFM</td><td>✓</td><td>★★（中文媒体二次）</td></tr>
+<tr><td>政治局会议"适度宽松货币政策"</td><td>新华社原文</td><td>同花顺 WebFetch</td><td>✓</td><td>★★★</td></tr>
+<tr><td>早盘 9:42 / 11:30 / 13:29 各时点数据</td><td>Wind 5 分钟线</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>情景概率校准</td><td>巴蒂主观判断</td><td>—</td><td>—</td><td>★★（主观）</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:10px"><strong>Wind Key 状态：</strong>`ak_SlQ25juzuTUmALGZUR0uER5rQ9hzSKnl`（今日全天通，3 次复测 ✅）</p>
+</div>
+</div>
+
+<div class="subtitle" style="text-align:center;margin-top:20px;color:var(--text-dim);font-size:11px">
+本报告仅供研究参考，不构成投资建议。据此操作风险自担。<br>
+数据来源：Wind 金融数据服务（Key `ak_SlQ25juzu...`）· 生成时间 2026-07-30 18:08 GMT+8
+</div>
+
+</body>
+</html>
