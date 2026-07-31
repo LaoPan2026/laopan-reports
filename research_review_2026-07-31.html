@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研报解读 · 天风超节点 + 开源谷歌/英特尔capex（2026-07-31）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424; --card:#1a2540; --orange:#f5a623; --yellow:#ffd83d;
+  --teal:#3ddcc8; --gray:#9aa5b9; --line:#2a3556;
+  --up:#ff3b3b; --down:#1ed890; --white:#e8ecf4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--white);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.7;padding:24px 16px 60px}
+.wrap{max-width:860px;margin:0 auto}
+.header{background:linear-gradient(135deg,#1a2540 0%,#0d1424 100%);border:1px solid var(--line);border-radius:12px;padding:28px 24px;margin-bottom:20px}
+.header .tag{display:inline-block;background:rgba(245,166,35,.12);color:var(--orange);border:1px solid rgba(245,166,35,.4);border-radius:20px;padding:2px 12px;font-size:12px;margin-bottom:10px}
+.header h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.header .sub{color:var(--gray);font-size:13px}
+.header .anchor{margin-top:12px;background:rgba(61,220,200,.08);border:1px solid rgba(61,220,200,.3);border-radius:8px;padding:8px 12px;font-size:12.5px;color:var(--teal)}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:16px;overflow:hidden}
+.mod-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.mod-head .bar{width:6px;height:20px;border-radius:3px;background:var(--orange);flex-shrink:0}
+.mod-head .num{color:var(--orange);font-weight:700;font-size:14px;font-family:monospace}
+.mod-head h2{font-size:16px;font-weight:700;color:var(--white)}
+.mod-body{padding:16px 18px}
+.mod-body h3{font-size:14px;color:var(--yellow);margin:14px 0 8px;font-weight:600}
+.mod-body p{margin-bottom:8px;color:#d3d9e5}
+.table-wrap{overflow-x:auto;margin:10px 0}
+table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:13.5px}
+th,td{vertical-align:top;overflow:hidden;text-overflow:ellipsis;padding:9px 10px;border:1px solid var(--line);line-height:1.6;text-wrap:pretty}
+th{background:rgba(42,53,86,.5);color:var(--yellow);font-weight:600;text-align:left;font-size:13px}
+tbody tr:nth-child(even){background:rgba(255,255,255,.03)}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:20%;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:58%;text-align:left}
+table.f3b th:nth-child(1),table.f3b td:nth-child(1){width:22%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f3b th:nth-child(2),table.f3b td:nth-child(2){width:30%;text-align:left}
+table.f3b th:nth-child(3),table.f3b td:nth-child(3){width:48%;text-align:left}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:14%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%;text-align:left}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:22%;text-align:left}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:46%;text-align:left}
+.pos{color:var(--up);white-space:nowrap}
+.neg{color:var(--down);white-space:nowrap}
+.yellow{color:var(--yellow);font-weight:600}
+.teal{color:var(--teal);font-weight:600}
+.gray{color:var(--gray)}
+.tip{background:rgba(245,166,35,.07);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;padding:12px 14px;margin:12px 0;font-size:14px}
+.final{background:linear-gradient(135deg,rgba(245,166,35,.12),rgba(245,166,35,.04));border:1px solid rgba(245,166,35,.4);border-radius:10px;padding:16px 18px;margin:14px 0}
+.final .fl{color:var(--orange);font-weight:700;font-size:15px;margin-bottom:8px}
+.verdict{background:rgba(61,220,200,.08);border:1px solid rgba(61,220,200,.35);border-radius:10px;padding:14px 16px;margin-top:12px}
+.verdict .vl{color:var(--teal);font-weight:700;margin-bottom:6px}
+.chart-box{width:100%;height:300px;margin:12px 0}
+.source{margin-top:16px;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;font-size:12px;color:var(--gray)}
+@media(max-width:640px){
+  body{font-size:14px;padding:14px 10px 40px}
+  .header h1{font-size:18px}
+  table{font-size:12.5px}
+  th,td{padding:7px 6px}
+  .chart-box{height:260px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <span class="tag">研报解读 · 双报核源</span>
+  <h1>研报解读：天风超节点 + 开源谷歌/英特尔capex</h1>
+  <div class="sub">2026-07-31 周五 13:56 · 数据源：研报PDF原文提取 + Wind核源</div>
+  <div class="anchor">★ 时间锚点：两份研报均为财报季顺势确认（7/26、7/29 发布）→ 与五节点对账互相印证 → 下一验证点 <span class="yellow">SNDK 8/14</span></div>
+</div>
+
+<div class="mod">
+  <div class="mod-head"><span class="bar"></span><span class="num">01</span><h2>两份研报一句话概括</h2></div>
+  <div class="mod-body">
+    <div class="table-wrap"><table class="f3b">
+      <thead><tr><th>研报</th><th>发布时间</th><th>核心一句话</th></tr></thead>
+      <tbody>
+        <tr><td>天风·通信</td><td>2026-07-29</td><td>超节点国产化大检阅（WAIC 2026）：昇腾950做到1024卡、海光+曙光十万卡集群——"系统架构创新突破物理极限"的AI算力新时代</td></tr>
+        <tr><td>开源·通信</td><td>2026-07-26</td><td>谷歌 capex 上调至 1950-2050亿 + 英特尔 180→200亿上调——财报季确认 AI 算力链景气，推荐"光、液冷、国产算力"三大主线</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<div class="mod">
+  <div class="mod-head"><span class="bar"></span><span class="num">02</span><h2>天风核心：超节点 = 中国 AI 基建新形态</h2></div>
+  <div class="mod-body">
+    <p>超节点 = 通过高速互联协议 + 专用交换芯片，将数十至数百颗 GPU 整合为统一编址、低延迟、高带宽的协同计算系统。WAIC 2026 是国产超节点的集中检阅。</p>
+    <div class="table-wrap"><table class="f3b">
+      <thead><tr><th>展品</th><th>关键数据</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>昇腾950超节点</td><td>1024卡 / 1 EFLOPS FP8 / 256TB内存 / 3μs时延</td><td>业界最大规模，突破集群通信瓶颈</td></tr>
+        <tr><td>中兴 Matrix</td><td>128卡 / 多芯片混插 / dOCS光交换 + 液冷</td><td>国产唯一同时满足的高密度方案</td></tr>
+        <tr><td>海光+中科曙光</td><td>ScaleX640+ScaleX40 / 十万卡集群</td><td>"芯片+系统"深度协同，全国产落成</td></tr>
+        <tr><td>新华三 UniPoD</td><td>32→1024卡，最高16384卡</td><td>"算-网-存-云-安-维"全栈协同</td></tr>
+        <tr><td>联想问天</td><td>单节点40卡 / FP8 28 PFLOPS / HBM 5.76TB</td><td>满足万亿参数大模型训练推理</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tip"><strong>中际旭创 H 股上市（7/30）</strong>：募资 540 亿港元（35% 光互连研发 + 30% 扩产能）——龙头用真金白银确认光模块景气，对光模块产业链是中长期利好信号（短期或分流 A 股资金）。</div>
+  </div>
+</div>
+
+<div class="mod">
+  <div class="mod-head"><span class="bar"></span><span class="num">03</span><h2>开源核心：谷歌/英特尔 capex 双上调</h2></div>
+  <div class="mod-body">
+    <div class="table-wrap"><table class="f4">
+      <thead><tr><th>指标</th><th>谷歌 Q2</th><th>英特尔 Q2</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>营收</td><td>1198亿$ <span class="pos">+24%</span></td><td>161亿$ <span class="pos">+25%</span></td><td>英特尔增速创2011年来新高</td></tr>
+        <tr><td>云/数据中心</td><td>谷歌云248亿$ <span class="pos">+82%</span></td><td>DCAI 63亿$ <span class="pos">+59%</span></td><td>谷歌云利润率35.6%（+14.9pct）</td></tr>
+        <tr><td>营业利润率</td><td>35.6%</td><td>40%（+24pct）</td><td>双双大幅提升</td></tr>
+        <tr><td>2026 capex</td><td><span class="yellow">1950-2050亿$（上调）</span></td><td><span class="yellow">180→200亿$（上调）</span></td><td>谷歌较2025年914.5亿翻倍</td></tr>
+        <tr><td>供不应求</td><td>积压订单5139亿$ <span class="pos">+375%</span></td><td>服务器紧缺持续到2027</td><td>景气确认，需求可见性强</td></tr>
+      </tbody>
+    </table></div>
+    <div class="chart-box" id="capexChart"></div>
+    <div class="tip"><strong>第三方背书</strong>：两份研报 = 五节点对账的卖方印证——谷歌上调 ✅（7/23）+ 英特尔上调 ✅（7/24）+ AMZN 上调 ✅（今晨 2000→2200亿），AI 算力链景气验证继续。</div>
+  </div>
+</div>
+
+<div class="mod">
+  <div class="mod-head"><span class="bar"></span><span class="num">04</span><h2>独立评价（找硬伤）</h2></div>
+  <div class="mod-body">
+    <div class="table-wrap"><table class="f3b">
+      <thead><tr><th>硬伤</th><th>级别</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>润泽PE口径失真</td><td>硬伤★★</td><td>研报用含31.49亿REITs一次性收益的EPS 3.09给出2025A PE 20.46——2026E PE 33.81才是真实口径，印证上午对润泽"表面便宜"的判断</td></tr>
+        <tr><td>周报无独家增量</td><td>中性</td><td>财报季顺势确认，数据全部已公开，没有新框架</td></tr>
+        <tr><td>旭创H股540亿港元</td><td>双刃</td><td>长期利好扩产，短期分流A股光模块资金</td></tr>
+        <tr><td>冲突局势轻描淡写</td><td>遗漏</td><td>天风一句话带过，但7/28-30暴跌里地缘风偏是真实因子</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<div class="mod">
+  <div class="mod-head"><span class="bar"></span><span class="num">05</span><h2>操价值：持仓逐一对照</h2></div>
+  <div class="mod-body">
+    <div class="table-wrap"><table class="f3b">
+      <thead><tr><th>持仓</th><th>研报名单位置</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿(S)</td><td>开源"光模块受益标的"</td><td><span class="teal">✅ 卖方名单背书</span>——S级逻辑获公开认可（受益级，非推荐级）</td></tr>
+        <tr><td>罗博(S)</td><td>天风+开源双重列入</td><td><span class="teal">✅ 双重背书</span>——超节点光互连需求间接受益</td></tr>
+        <tr><td>澜起(S)</td><td>不在名单（通信行业）</td><td>⚠️ "存储"是天风四大受益方向之一，但澜起需 SNDK 8/14 自己验证</td></tr>
+        <tr><td>兴森(利润仓)</td><td>不在任何名单</td><td>⚠️ 卖方视角印证"换出兴森"方向（PCB核心是沪电/胜宏）</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<div class="mod">
+  <div class="mod-head"><span class="bar"></span><span class="num">06</span><h2>最终判断</h2></div>
+  <div class="mod-body">
+    <div class="final">
+      <div class="fl">最终判断</div>
+      <p><strong>两份研报 = 财报季的"顺势确认"，无增量但方向明确：全球 CSP capex 全面上调（谷歌/英特尔/AMZN 三家背书），AI 算力链景气验证继续。对老潘三个直接含义：①汇绿获卖方名单背书（加分）②兴森不在任何名单（调仓方向的侧面印证）③澜起逻辑仍需 SNDK 8/14 自己验证——8/14 前纪律不变。</strong></p>
+    </div>
+    <div class="verdict">
+      <div class="vl">这个数意味着什么，咱们该怎么做</div>
+      <p><strong>意味着</strong>：卖方研报与您已核源的五节点数据完全一致——全球 AI capex 不降反升是共识不是孤证；超节点国产化加速（昇腾1024卡/十万卡集群）意味着国产算力链进入"系统级创新"阶段。</p>
+      <p><strong>该怎么做</strong>：① 汇绿/罗博持有（获名单背书，逻辑未破）；② 兴森调仓方向获侧面印证（可执行"卖得快"批次）；③ 澜起第三批买入压在 SNDK 8/14 后（纪律不变）；④ 旭创 H 股上市后关注 A 股光模块资金分流，不追高。</p>
+    </div>
+  </div>
+</div>
+
+<div class="source">
+数据核源矩阵：天风研报（7/29，11页PDF提取）✅；开源研报（7/26，13页PDF提取）✅；润泽PE口径=Wind财务数据核源（2025净利含31.49亿REITs一次性收益）✅；capex数据=研报原文+多源交叉✅。免责声明：本报告基于研报原文+巴蒂独立判断，不构成投资建议，据此操作风险自担。
+</div>
+
+</div>
+<script>
+var chart = echarts.init(document.getElementById('capexChart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  legend:{top:26,right:0,textStyle:{color:'#9aa5b9'},data:['原指引','最新指引']},
+  grid:{left:110,right:40,top:70,bottom:40},
+  xAxis:{type:'value',name:'亿美元',nameTextStyle:{color:'#9aa5b9'},axisLabel:{color:'#9aa5b9'},splitLine:{lineStyle:{color:'#2a3556'}}},
+  yAxis:{type:'category',data:['META','AMZN','英特尔','谷歌'],axisLabel:{color:'#e8ecf4'},axisLine:{lineStyle:{color:'#2a3556'}}},
+  series:[
+    {name:'原指引',type:'bar',barWidth:12,itemStyle:{color:'#2a3556'},data:[1250,2000,180,1800]},
+    {name:'最新指引',type:'bar',barWidth:12,itemStyle:{color:'#3ddcc8'},data:[1300,2200,200,1950]}
+  ]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
