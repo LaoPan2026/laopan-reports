@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7/31 盘后复盘 · 美股AI链传导成功 · 大反弹但冲高回落</title>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <style>
 :root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#d0d8e6;--text-dim:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -189,24 +188,23 @@ th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:var
 <div class="module">
 <div class="module-title"><span class="module-num">06</span><h2>关键节点倒计时</h2></div>
 <div class="module-body">
-<div class="chart-box" id="chart-countdown"></div>
-<script>
-const chartC = echarts.init(document.getElementById('chart-countdown'));
-chartC.setOption({
-  backgroundColor:'transparent',
-  grid:{left:60,right:30,top:30,bottom:60},
-  xAxis:{type:'category',data:['SNDK 8/14','政治局细则 8月','调仓执行 下周','日本央行 9月','8/4留用裁决'],axisLine:{lineStyle:{color:'#9aa5b9'}},axisLabel:{color:'#d0d8e6',rotate:0}},
-  yAxis:{type:'value',name:'重要性(1-5)',min:0,max:5,axisLine:{lineStyle:{color:'#9aa5b9'}},splitLine:{lineStyle:{color:'rgba(155,165,185,0.1)'}},axisLabel:{color:'#d0d8e6'}},
-  series:[{type:'bar',data:[{value:5,itemStyle:{color:'#ff3b3b'}},{value:5,itemStyle:{color:'#3ddcc8'}},{value:4,itemStyle:{color:'#f5a623'}},{value:4,itemStyle:{color:'#ffd83d'}},{value:3,itemStyle:{color:'#9aa5b9'}}],label:{show:true,position:'top',color:'#ffd83d',fontWeight:'bold'},itemStyle:{borderRadius:[4,4,0,0]}}]
-});
-window.addEventListener('resize',()=>chartC.resize());
-</script>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>节点</th><th>时点</th><th>重要性</th><th>触发 / 验收标准</th></tr></thead>
+<tbody>
+<tr><td><strong>SNDK 财报</strong></td><td>8/14（~2 周后）</td><td>★★★★★</td><td>NAND 涨价周期确认 → 澜起 DDR5 TAM 强化</td></tr>
+<tr><td><strong>政治局细则</strong></td><td>8 月</td><td>★★★★★</td><td>降息/降准落地 = 政策底→市场底信号</td></tr>
+<tr><td><strong>调仓执行窗口</strong></td><td>下周初</td><td>★★★★</td><td>卖兴森第一批 + 澜起回踩 200 下方 1/2（老潘亲自执行）</td></tr>
+<tr><td><strong>日本央行 9 月会议</strong></td><td>9 月</td><td>★★★★</td><td>日元单日 &gt;2% / 日本卖美债 / 加息表态三触发监控</td></tr>
+<tr><td><strong>8/4 留用裁决</strong></td><td>8/4（周二）22:00</td><td>★★★</td><td>巴蒂 8 项指标 ≥6 通过 / ≤5 劝退合理</td></tr>
+</tbody>
+</table>
+</div>
 <div class="risk-box">
 <p><strong>📌 SNDK 财报 8/14（约 2 周后）</strong>——五节点最后一块拼图<br>
 - 已验证：英特尔 7/24 电话会确认存储短缺 + 三星 Q2 利润 +1813%<br>
 - SNDK 若确认 NAND 涨价周期 → 存储链主线（澜起 DDR5 TAM）继续强化</p>
-<p><strong>📌 政治局会议政策细则（8 月）</strong>——“适度宽松”落地需降息/降准细则，政策底→市场底还需细则催化</p>
-<p><strong>📌 调仓执行窗口（下周初）</strong>——卖兴森第一批 + 澜起回踩 200 下方 1/2，老潘亲自执行</p>
+<p><strong>📌 政治局会议政策细则（8 月）</strong>——"适度宽松"落地需降息/降准细则，政策底→市场底还需细则催化</p>
 <p><strong>📌 日本央行 9 月会议</strong>——日元套息平仓尾部风险监控（日元单日波动 &gt;2% / 日本卖美债 / 加息表态三触发）</p>
 </div>
 </div>
