@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>组合月线复盘 2026-07 · S级集体月线巨阴 · 防御仓验证压舱石</title>
+<style>
+:root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#d0d8e6;--text-dim:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;line-height:1.7;padding:20px;max-width:940px;margin:0 auto}
+h1{font-size:22px;color:var(--yellow);border-bottom:2px solid var(--orange);padding-bottom:8px;margin-bottom:6px}
+.subtitle{font-size:12px;color:var(--text-dim);margin-bottom:16px}
+.module{background:var(--card);border:1px solid var(--line);border-radius:6px;margin:14px 0;overflow:hidden}
+.module-title{padding:10px 14px;background:rgba(245,166,35,0.08);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.module-num{background:var(--orange);color:#0d1424;font-weight:800;font-size:12px;padding:3px 8px;border-radius:3px;flex-shrink:0}
+.module h2{font-size:15px;color:var(--yellow);font-weight:700}
+.module h3{font-size:13px;color:var(--cyan);margin:10px 0 6px;font-weight:600}
+.module-body{padding:14px}
+p{margin:6px 0}
+em{color:var(--cyan);font-style:normal;font-weight:600}
+strong{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+/* f5 行情表: 标的/6月收/7月开/高/低/7月收/月% */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2),table.f5 th:nth-child(3),table.f5 td:nth-child(3),table.f5 th:nth-child(4),table.f5 td:nth-child(4),table.f5 th:nth-child(5),table.f5 td:nth-child(5),table.f5 th:nth-child(6),table.f5 td:nth-child(6),table.f5 th:nth-child(7),table.f5 td:nth-child(7){text-align:right}
+/* f4 通用: 列1左 列2-3右 列4左 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2),table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}
+/* f4.ld 深度表: 维度/内容 */
+table.f4.ld th:nth-child(1),table.f4.ld td:nth-child(1){text-align:left}
+table.f4.ld th:nth-child(2),table.f4.ld td:nth-child(2){text-align:left}
+/* f4.cyc 产业周期: 方向/状态 */
+table.f4.cyc th:nth-child(1),table.f4.cyc td:nth-child(1){text-align:left}
+table.f4.cyc th:nth-child(2),table.f4.cyc td:nth-child(2){text-align:center}
+table.f4.cyc th:nth-child(3),table.f4.cyc td:nth-child(3){text-align:left}
+table.f4.cyc th:nth-child(4),table.f4.cyc td:nth-child(4){text-align:left}
+/* f5.matrix 核源矩阵 */
+table.f5.matrix th:nth-child(1),table.f5.matrix td:nth-child(1){text-align:left}
+table.f5.matrix th:nth-child(2),table.f5.matrix td:nth-child(2){text-align:left}
+table.f5.matrix th:nth-child(3),table.f5.matrix td:nth-child(3){text-align:left}
+table.f5.matrix th:nth-child(4),table.f5.matrix td:nth-child(4){text-align:center}
+table.f5.matrix th:nth-child(5),table.f5.matrix td:nth-child(5){text-align:center}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;text-wrap:pretty;overflow:hidden;border-right:1px solid rgba(155,165,185,0.08);font-variant-numeric:tabular-nums}
+th:last-child,td:last-child{border-right:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:var(--text);background:rgba(155,165,185,0.06)}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+.table-wrap table{min-width:520px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.stat-box{background:rgba(245,166,35,0.06);border:1px solid var(--line);border-radius:6px;padding:10px;text-align:center}
+.stat-box .label{font-size:11px;color:var(--text-dim);margin-bottom:4px}
+.stat-box .value{font-size:16px;font-weight:700;color:var(--yellow)}
+.stat-box .delta{font-size:12px;margin-top:2px}
+.risk-box{background:rgba(255,59,59,0.06);border-left:3px solid var(--up);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.opp-box{background:rgba(30,216,144,0.06);border-left:3px solid var(--down);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.tip{background:rgba(61,220,200,0.06);border:1px dashed var(--cyan);padding:10px 14px;margin:8px 0;border-radius:4px;font-size:12px}
+@media(max-width:640px){body{font-size:12px;padding:12px}h1{font-size:18px}.stat-grid{grid-template-columns:repeat(2,1fr)}table{font-size:11px}th,td{padding:6px 4px}.module-body{padding:10px}}
+</style>
+</head>
+<body>
+<h1>组合月线复盘 2026-07 · S级集体月线巨阴 · 防御仓验证压舱石</h1>
+<div class="subtitle">覆盖区间：2026-07 月K线（前复权）· 数据时点 7/31 收盘 · Wind 核源版（11 只持仓月 K 全量拉取）</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">01</span><h2>月线总览：7月收官，S级月线集体巨阴、防御仓逆势收红</h2></div>
+<div class="module-body">
+<div class="stat-grid">
+<div class="stat-box"><div class="label">S级4只 7月月线</div><div class="value">全阴</div><div class="delta neg">-33.8% ~ -50.9%</div></div>
+<div class="stat-box"><div class="label">防御3只 7月月线</div><div class="value">全红</div><div class="delta pos">+6.5% ~ +15.7%</div></div>
+<div class="stat-box"><div class="label">11只 7月涨跌家数</div><div class="value">3红8绿</div><div class="delta neg">红=华峰/德展/太钢</div></div>
+<div class="stat-box"><div class="label">月线巨阴（&gt;-30%）</div><div class="value">6只</div><div class="delta neg">澜起/汇绿/三祥/罗博/泰和/兴森</div></div>
+</div>
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>标的</th><th>6月收</th><th>7月开</th><th>7月高</th><th>7月低</th><th>7月收</th><th>7月%</th></tr></thead>
+<tbody>
+<tr><td><strong>三祥新材(S)</strong></td><td>68.68</td><td>68.70</td><td>71.43</td><td>33.50</td><td>33.70</td><td class="neg"><strong>-50.9%</strong></td></tr>
+<tr><td><strong>兴森科技(利润仓)</strong></td><td>50.95</td><td>51.70</td><td>53.24</td><td>27.51</td><td>27.51</td><td class="neg"><strong>-46.0%</strong></td></tr>
+<tr><td><strong>汇绿生态(S)</strong></td><td>53.50</td><td>53.50</td><td>53.85</td><td>27.11</td><td>29.82</td><td class="neg"><strong>-44.3%</strong></td></tr>
+<tr><td><strong>泰和新材(A-)</strong></td><td>18.19</td><td>17.83</td><td>18.39</td><td>10.29</td><td>11.40</td><td class="neg"><strong>-37.3%</strong></td></tr>
+<tr><td><strong>澜起科技(S底仓)</strong></td><td>309.31</td><td>311.62</td><td>332.27</td><td>179.91</td><td>204.90</td><td class="neg"><strong>-33.8%</strong></td></tr>
+<tr><td><strong>罗博特科(S)</strong></td><td>619.00</td><td>612.00</td><td>618.88</td><td>353.49</td><td>415.56</td><td class="neg"><strong>-32.9%</strong></td></tr>
+<tr><td><strong>星环科技(利润仓)</strong></td><td>115.18</td><td>114.83</td><td>124.00</td><td>78.18</td><td>90.42</td><td class="neg">-21.5%</td></tr>
+<tr><td><strong>软通动力(A+)</strong></td><td>42.45</td><td>42.03</td><td>43.92</td><td>33.91</td><td>38.33</td><td class="neg">-9.7%</td></tr>
+<tr><td><strong>太钢不锈(防御)</strong></td><td>3.41</td><td>3.40</td><td>3.69</td><td>3.28</td><td>3.63</td><td class="pos">+6.5%</td></tr>
+<tr><td><strong>德展健康(防御)</strong></td><td>3.03</td><td>3.04</td><td>3.55</td><td>2.98</td><td>3.30</td><td class="pos">+8.9%</td></tr>
+<tr><td><strong>华峰化学(防御)</strong></td><td>9.49</td><td>9.51</td><td>11.68</td><td>9.27</td><td>10.98</td><td class="pos">+15.7%</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>月线核心判断</strong>：7月是 <em>S 级主升浪后的月线级调整月</em>——6只持仓月线跌幅 &gt;-30%，其中三祥/兴森光脚大阴（收在月最低）、汇绿几乎光脚。这不是产业逻辑破坏（AMZN capex 上调 2000→2200 亿、SNDK 8/14 待验证），是 <strong>5-6 月加速赶顶后的获利盘 + 杠杆去化共振</strong>。</p>
+<p><strong>防御仓的价值被月线验证</strong>：华峰 +15.7% / 德展 +8.9% / 太钢 +6.5%——在 S 级月线 -33%~-51% 的月份里逆势全红，<em>压舱石功能完美发挥</em>。老潘"太钢暂留"决策被市场验证。</p>
+<div class="risk-box"><strong>月线形态预警（按强弱排序）</strong>：<br>
+- <strong>最弱（光脚大阴收最低）</strong>：三祥、兴森、汇绿——月线破位，反弹需时间换空间<br>
+- <strong>中弱（长下影阴线）</strong>：罗博（月内低点 353.49 已收复至 415.56）、星环——月线调整但留转机<br>
+- <strong>中（阴线有支撑）</strong>：澜起（收 204.90 站稳 180 平台上方）<br>
+- <strong>抗跌</strong>：软通（-9.7%，月线 32.84-46.76 区间筑底）</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">02</span><h2>S级深度①：澜起科技 688008——月线主升见顶？未破180平台前中期趋势未坏</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 ld">
+<thead><tr><th>维度</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>月线结构</td><td>2025-08（122.49）→ 2026-06（309.31）主升 11 个月 +152%；2026-07 月线：开 311.62 / 高 332.27 / 低 179.91 / 收 204.90，<em class="neg">-33.8%</em>，换手 144.66% 历史天量</td></tr>
+<tr><td>月线形态</td><td>长上影+长下影巨阴，月内高点 332.27 回撤 45.8%，收在 180 平台上方——<em>高位放天量=筹码剧烈交换，月线级震荡消化（预计 2-4 个月）</em></td></tr>
+<tr><td>月线支撑</td><td>第一支撑 187.65（5月低）/ 第二支撑 180.26（4月高，前平台突破位）；<strong>180 下方破位=中期趋势破坏</strong></td></tr>
+<tr><td>月线压力</td><td>230-240（7月收盘上方套牢区，反弹第一道坎）</td></tr>
+<tr><td>产业周期定位</td><td>DDR5 渗透 + 内存接口芯片 TAM 扩张，<em>景气上行中段</em>：三星 Q2 +1813%、英特尔存储短缺、AMZN capex 上调、SNDK 8/14 待验证——逻辑完好</td></tr>
+<tr><td>估值水位</td><td>成本 96.83（浮盈 +112%）；月线调整后估值消化中，非泡沫顶形态</td></tr>
+<tr><td>操作纪律</td><td><strong>S级底仓不动</strong>；调仓第二批 200 下方加仓 1/2 仍按计划（7/31 最低 204.60 未触发）；230+ 不追；<strong>跌破 180 才触发减仓评估</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip"><strong>月线结论</strong>：主升后的健康调整（产业逻辑未破坏+回撤未破平台）。7月天量换手是主升行情正常的高位换手，不是出货完成形态——<em>DDR5 逻辑锚定 AMZN capex + SNDK 验证</em>。8月操作=等回踩分批+不追高。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">03</span><h2>S级深度②：汇绿生态 001267——1年10倍后的月线级消化，五节点对赌期不增不减</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 ld">
+<thead><tr><th>维度</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>月线结构</td><td>2025-07（14.38）→ 2026-05（57.94）主升 10 个月 +303%；2026-07 月线：开 53.50 / 高 53.85 / 低 27.11 / 收 29.82，<em class="neg">-44.3%</em>，月内高点回撤 49.7%</td></tr>
+<tr><td>月线形态</td><td><strong>大阴线+几乎无下影，收在月内低点附近</strong>——月线极弱形态，5月高点 69.72 至今回撤 -57%</td></tr>
+<tr><td>月线支撑</td><td>第一支撑 24.98（2月低）/ 第二支撑 20.42（1月低）</td></tr>
+<tr><td>月线压力</td><td>40（3月收盘区）</td></tr>
+<tr><td>产业周期定位</td><td>JDM（Coherent 代工）+ 钧恒重组——光模块景气仍在，但 <em>股价已巨幅透支（1年10倍）</em>，7月-44% 属获利盘+情绪双杀</td></tr>
+<tr><td>估值水位</td><td>成本 48.09（浮亏 -38%）；月线级别估值消化中</td></tr>
+<tr><td>操作纪律</td><td><strong>五节点对赌期（8/14 SNDK 前）不增不减</strong>——纪律唯一依据，情绪不参与；8/14 后重新评估 JDM 逻辑兑现度</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>必须承认</strong>：汇绿月线 -44% 收在最低附近，是 S 级里月线最弱的之一。<em>五节点对赌期不动不是"死扛"，是纪律定义的行为边界</em>——8/14 SNDK 验证后，若 JDM 逻辑兑现则加回观察、若存储/光模块链走弱则启动减仓评估。在此之前任何情绪化动作都是违背纪律。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">04</span><h2>S级深度③：罗博特科 300757——长下影留转机，ficonTEC 设备逻辑最硬</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 ld">
+<thead><tr><th>维度</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>月线结构</td><td>2025-08（262.85）→ 2026-06（714.00 月高）主升 11 个月 +172%；2026-07 月线：开 612.00 / 高 618.88 / 低 353.49 / 收 415.56，<em class="neg">-32.9%</em></td></tr>
+<tr><td>月线形态</td><td><strong>大阴线+长下影</strong>（月内低点 353.49 收复至 415.56，+17.5%）——7/31 放量 49 亿 +16.07% 为 8 月留下修复转机</td></tr>
+<tr><td>月线支撑</td><td>第一支撑 382.50（4月低）/ 第二支撑 328.50（3月低）；<strong>328 下方破位=月线趋势破坏</strong></td></tr>
+<tr><td>月线压力</td><td>471.70（5月低，7月反弹第一道坎）</td></tr>
+<tr><td>产业周期定位</td><td>ficonTEC（NVDA/Coherent 设备供应商）——AI 硬件设备景气最确定的一环，NVDA 链映射（罗博→NVDA/MRVL/APH）</td></tr>
+<tr><td>估值水位</td><td>成本 523.13（浮亏 -21%）；月线调整后进入可接受波动区</td></tr>
+<tr><td>操作纪律</td><td><strong>S级持有不动</strong>；大涨不追（7/31 盘中 +17.4% 未追正确）；<strong>跌破 328 月线支撑才触发评估</strong>；反弹至 471 压力位观察量能</td></tr>
+</tbody>
+</table>
+</div>
+<div class="opp-box"><strong>月线结论</strong>：4 只 S 级里月线形态第二强（长下影+尾盘资金承接）。ficonTEC 是 NVDA 链设备国产替代最稀缺标的，<em>逻辑硬、波动大是这类标的的固有属性</em>——20%+ 回撤是买入者必须接受的票价。8月重点看能否收复 471。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">05</span><h2>S级深度④：三祥新材 603663——光脚大阴+RSI超卖，等新催化不猜底</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 ld">
+<thead><tr><th>维度</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>月线结构</td><td>2025-02（19.87）→ 2026-06（68.68 复权）主升 16 个月 +246%；2026-07 月线：开 68.70 / 高 71.43 / 低 33.50 / 收 33.70，<em class="neg">-50.9%</em>（7/24 送转 10 转 4，复权口径已剔除除权跳变）</td></tr>
+<tr><td>月线形态</td><td><strong>光脚大阴（收盘=月内最低 33.50 上方 0.2）</strong>——S级中最弱形态，无下影=无承接</td></tr>
+<tr><td>月线支撑</td><td>第一支撑 28.57（4月低复权）/ 第二支撑 27.92（3月低复权）</td></tr>
+<tr><td>月线压力</td><td>40.58（3月高复权）</td></tr>
+<tr><td>产业周期定位</td><td>固态电池（氧化锆/锂电材料）——<em>产业化早期，短期无新催化</em>；华为韬定律 V2：9月 Kirin 9050 Pro 真机再评估（利好先进封装/固态电池链）</td></tr>
+<tr><td>估值水位</td><td>成本 18.18（浮盈 +85%）；当前复权 33.70 对应市值约 200 亿（5.94 亿股）</td></tr>
+<tr><td>操作纪律</td><td>老潘纪律：<strong>500 亿市值（送转后≈84 元）前不减</strong>——当前 200 亿距目标甚远，纪律上不减；RSI 24.66 超卖区不割肉；<strong>等固态电池新催化（9月华为真机）</strong></td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>三祥月线最弱但要分清两件事</strong>：①月线形态弱（光脚大阴）= 短期无底信号，反弹需要催化；②但持仓纪律明确（500亿前不减）且 RSI 超卖——<em>既不减仓也不加仓，持有等催化</em>。9月华为 Kirin 9050 Pro 是下一个确定性窗口。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">06</span><h2>利润仓 + A级：月线快速体检</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>标的</th><th>7月%</th><th>月线状态</th><th>决策</th></tr></thead>
+<tbody>
+<tr><td><strong>兴森科技(利润仓)</strong></td><td class="neg">-46.0%</td><td>光脚巨阴收月最低 27.51，月线彻底破位（6月高 55.00→7月低 27.51，-50%）</td><td><strong>调仓第一批卖出（下周初执行）</strong>——月线确认退出逻辑，反抽 28 上方优先出</td></tr>
+<tr><td><strong>星环科技(利润仓)</strong></td><td class="neg">-21.5%</td><td>2026-02 顶 225.80 至今回撤 -65% 月线熊市；7月长下影（低 78.18）</td><td>负成本利润仓持有；不加仓；月线未现反转信号前不动</td></tr>
+<tr><td><strong>软通动力(A+)</strong></td><td class="neg">-9.7%</td><td>相对抗跌；月线 32.84-46.76 区间震荡筑底，7月收 38.33 中枢</td><td>+420% 利润仓标杆持有；月线站稳 42 上方视为右侧确认</td></tr>
+<tr><td><strong>泰和新材(A-)</strong></td><td class="neg">-37.3%</td><td>巨阴收低（11.40），芳纶光缆概念退潮；6月高 21.50 至今 -47%</td><td>观察（同业沧州大化 TDI 交叉验证）；月线不企稳则维持 A- 不升级；跌破 10.29 触发降级评估</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>体检结论</strong>：兴森月线破位=调仓退出决策的月线级确认（下周初执行第一批）；星环/软通利润仓持有不动；泰和概念退潮观察。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">07</span><h2>防御仓 + 产业周期定位矩阵</h2></div>
+<div class="module-body">
+<h3>防御 3 只月线体检（全部收红=压舱石验证）</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>标的</th><th>7月%</th><th>月线状态</th><th>决策</th></tr></thead>
+<tbody>
+<tr><td><strong>华峰化学</strong></td><td class="pos">+15.7%</td><td>TDI 链条企稳反弹，7月阳线（低 9.27→收 10.98）</td><td>持有；同业沧州大化交叉验证 TDI 周期</td></tr>
+<tr><td><strong>德展健康</strong></td><td class="pos">+8.9%</td><td>医药低位企稳，7月阳线</td><td>持有；防御功能有效</td></tr>
+<tr><td><strong>太钢不锈</strong></td><td class="pos">+6.5%</td><td>钢铁压舱石 7月小阳，周度 +4.01% 已验证</td><td><strong>持有不动</strong>（老潘决策"太钢暂留"，市场验证正确）</td></tr>
+</tbody>
+</table>
+</div>
+<h3>产业周期定位矩阵（看大层面）</h3>
+<div class="table-wrap">
+<table class="f4 cyc">
+<thead><tr><th>产业链</th><th>方向</th><th>周期位置</th><th>持仓/信号</th></tr></thead>
+<tbody>
+<tr><td>存储/DDR5</td><td>↑</td><td>上行中段（三星+1813%/AMZN capex 上调/SNDK 8/14 验证）</td><td>澜起（S 底仓）</td></tr>
+<tr><td>光模块 JDM</td><td>↑</td><td>上行但股价透支（1年10倍后月线消化）</td><td>汇绿（S，对赌期不动）</td></tr>
+<tr><td>AI 硬件设备</td><td>↑</td><td>景气最确定（NVDA 链），月线调整中</td><td>罗博（S）</td></tr>
+<tr><td>固态电池</td><td>→</td><td>产业化早期，等催化（9月华为真机）</td><td>三祥（S，等催化）</td></tr>
+<tr><td>PCB/载板</td><td>↓</td><td>5-6月暴涨后崩盘，月线破位</td><td>兴森（调仓卖出）</td></tr>
+<tr><td>数据库软件</td><td>→</td><td>无 AI 催化阴跌，月线熊市</td><td>星环（利润仓持有）</td></tr>
+<tr><td>信创/华为链</td><td>→</td><td>区间筑底</td><td>软通（+420% 利润仓）</td></tr>
+<tr><td>芳纶光缆</td><td>↓</td><td>概念退潮，月线巨阴</td><td>泰和（A-，观察）</td></tr>
+<tr><td>TDI 化工</td><td>↑</td><td>周期底部回升</td><td>华峰（防御）</td></tr>
+<tr><td>医药</td><td>→</td><td>低位企稳</td><td>德展（防御）</td></tr>
+<tr><td>钢铁</td><td>→</td><td>周期低位压舱石</td><td>太钢（防御）</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip"><strong>看大结论</strong>：产业周期层面，<em>存储/AI 硬件/光模块景气上行未破</em>（7月下跌是股价层面消化，不是产业层面反转）；防御端 TDI/钢铁/医药低位企稳。8月组合 = 进攻主线（存储+AI设备）不动 + 防御压舱石不动 + 调仓集中到最强主线。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">08</span><h2>8月操作纪律 + 数据核源矩阵</h2></div>
+<div class="module-body">
+<h3>8月操作纪律（月线级别锚定）</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>标的</th><th>月线关键位</th><th>纪律</th></tr></thead>
+<tbody>
+<tr><td><strong>澜起</strong></td><td>支撑 180 / 压力 230-240</td><td>底仓不动；回踩 200 下方执行调仓第二批；230+ 不追；破 180 触发评估</td></tr>
+<tr><td><strong>汇绿</strong></td><td>支撑 25 / 压力 40</td><td>五节点对赌期（8/14 前）不增不减；8/14 后重新评估</td></tr>
+<tr><td><strong>罗博</strong></td><td>支撑 328 / 压力 471</td><td>持有不动；大涨不追；破 328 触发评估</td></tr>
+<tr><td><strong>三祥</strong></td><td>支撑 27.92 / 压力 40.58</td><td>500 亿市值前不减；RSI 超卖不割肉；等 9 月催化</td></tr>
+<tr><td><strong>兴森</strong></td><td>反抽 28-30 压力</td><td><strong>下周初卖第一批（调仓）</strong>；不恋战</td></tr>
+<tr><td><strong>防御3只</strong></td><td>华峰 9.27 / 德展 2.98 / 太钢 3.28</td><td>持有不动（压舱石，已验证）</td></tr>
+</tbody>
+</table>
+</div>
+<h3>数据核源矩阵</h3>
+<div class="table-wrap">
+<table class="f5 matrix">
+<thead><tr><th>数据</th><th>源</th><th>工具</th><th>已核</th><th>置信</th></tr></thead>
+<tbody>
+<tr><td>11 只持仓 2024-01~2026-07 月K（前复权）</td><td>Wind stock_data K线 period=12</td><td>node scripts/cli.mjs</td><td>✓</td><td>★★★</td></tr>
+<tr><td>7月涨跌幅（6月收→7月收）</td><td>Wind 月K 计算</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>三祥送转复权口径（10转4）</td><td>7/24 除权日核源</td><td>记忆+Wind前复权</td><td>✓</td><td>★★★</td></tr>
+<tr><td>产业周期信号（三星/AMZN/SNDK）</td><td>7/29-7/31 多源核源</td><td>WebSearch+财联社</td><td>✓</td><td>★★★</td></tr>
+<tr><td>月线支撑/压力位</td><td>巴蒂技术分析（前复权月K）</td><td>—</td><td>—</td><td>★★（主观判断）</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:10px"><strong>Wind Key 状态：</strong>11 次月K调用全部成功 ✅ · 无 WebSearch 凑数项</p>
+</div>
+</div>
+
+<div class="subtitle" style="text-align:center;margin-top:20px;color:var(--text-dim);font-size:11px">
+本报告仅供研究参考，不构成投资建议。据此操作风险自担。<br>
+数据来源：Wind 金融数据服务（月K前复权）· 生成时间 2026-08-01 10:30 GMT+8
+</div>
+</body>
+</html>
