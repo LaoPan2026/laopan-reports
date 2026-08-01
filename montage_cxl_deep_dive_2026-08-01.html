@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>澜起科技CXL深度解析 | 2026-08-01</title>
+<style>
+:root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#e8edf6;--muted:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:14px/1.7 "Microsoft YaHei","PingFang SC",Arial,sans-serif;letter-spacing:0}
+.page{width:min(960px,calc(100% - 28px));margin:0 auto;padding:30px 0 46px}.hero{padding:8px 0 20px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:1px}.hero h1{font-size:30px;line-height:1.3;margin:6px 0 8px;letter-spacing:0}.subtitle{margin:0;color:var(--muted);font-size:15px}.anchor{margin-top:16px;padding:11px 14px;background:#111c31;border:1px solid var(--line);color:#d9e2f0}.anchor strong{color:var(--yellow)}
+.section{margin-top:22px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:6px}.section h2{margin:0 0 15px;padding-left:12px;border-left:6px solid var(--orange);font-size:19px;line-height:1.25;letter-spacing:0}.no{color:var(--orange);font-family:Arial,sans-serif;font-size:13px;margin-right:8px}.section h3{margin:18px 0 8px;color:var(--cyan);font-size:15px}.section p{margin:8px 0}.lead{font-size:16px;color:#f2f5fb}.key{color:var(--yellow);font-weight:700}.pos,.up{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.neg,.down{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag{display:inline-block;max-width:100%;padding:2px 7px;border:1px solid #465575;color:#d9e2f0;font-size:12px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag.warn{border-color:#806125;color:var(--yellow)}.tag.ok{border-color:#24756c;color:var(--cyan)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.stat{padding:12px;border:1px solid var(--line);background:#121d33}.stat .label{display:block;color:var(--muted);font-size:12px}.stat .value{display:block;color:var(--yellow);font-weight:700;font-size:19px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stat .note{display:block;color:var(--muted);font-size:11px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}th,td{padding:10px 11px;border-bottom:1px solid var(--line);border-right:1px solid rgba(42,53,86,.75);vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;text-wrap:pretty;font-variant-numeric:tabular-nums}th:last-child,td:last-child{border-right:0}th{background:rgba(155,165,185,.08);color:#dbe3ef;font-weight:700;font-size:12px}tbody tr:nth-child(even){background:rgba(255,255,255,.02)}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:10px}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%;text-align:left}table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%;text-align:left}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;text-align:left}table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:19%;text-align:right}table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:19%;text-align:right}table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:44%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2),table.f4 th:nth-child(3),table.f4 td:nth-child(3){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}.flow .step{min-height:102px;padding:12px;background:#121d33;border:1px solid var(--line);position:relative}.flow .n{display:block;color:var(--orange);font-size:12px;font-weight:700}.flow strong{display:block;margin:4px 0;color:#eaf1fb}.flow span{display:block;color:var(--muted);font-size:12px;line-height:1.45}.callout{padding:13px 15px;border-left:4px solid var(--cyan);background:#132237;color:#dbe5f3}.risk{padding:13px 15px;border-left:4px solid var(--orange);background:#242036}.source{margin-top:12px;color:var(--muted);font-size:12px}.source a{color:var(--cyan);text-decoration:none}.final{border-color:#806125;background:#211e2e}.final .lead{color:#fff3cc}.disclaimer{margin-top:20px;color:var(--muted);font-size:12px}
+@media(max-width:640px){.page{width:min(100% - 18px,960px);padding-top:18px}.hero h1{font-size:23px}.section{padding:15px}.stat-grid{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:1fr}.flow .step{min-height:auto}table{font-size:12px}th,td{padding:8px 7px}.table-wrap table{min-width:560px}.section h2{font-size:17px}body{font-size:13px}}
+</style>
+</head>
+<body>
+<main class="page">
+<header class="hero">
+<div class="eyebrow">688008.SH · 个股深度解析</div>
+<h1>澜起科技：CXL 试产不是业绩兑现，但第二曲线已跨过最关键的生态门槛</h1>
+<p class="subtitle">核心问题：CXL 3.2 MXC 是概念催化，还是可进入 2027-2028 年利润表的新增长曲线？</p>
+<div class="anchor"><strong>时间锚点：</strong>2026 年 8 月 1 日 10:40（北京时间）。本文将 2026 年 7 月 31 日 CXL 3.2 MXC 试产视为已发生事件；行情、Wind 一致预期截至 2026 年 8 月 1 日，业绩预告截至 2026 年 7 月 17 日。</div>
+</header>
+
+<section class="section">
+<h2><span class="no">01</span>结论前置</h2>
+<p class="lead"><span class="key">结论：</span>澜起的核心价值仍是 DDR5 内存接口芯片在 AI 服务器内存升级中的份额、代际和产品结构上行；CXL 3.2 MXC 则从“技术储备”推进到了<span class="key">试产 + 两家头部存储厂下一代产品初步验证 + Intel/AMD 平台兼容</span>。这使它具备第二成长曲线的资格，但尚不具备把收入线性外推的条件。</p>
+<div class="callout"><strong>一句话本质：</strong>买澜起，本质上是在买 AI 服务器内存架构从“DDR5 升代”走向“DDR5 + CXL 内存扩展/池化”时，公司以协议、高速 I/O、DDR 控制与生态认证卡住关键控制器位置的能力。</div>
+<div class="stat-grid">
+<div class="stat"><span class="label">7/31 收盘</span><span class="value">¥204.90</span><span class="note">Wind，2026-07-31</span></div>
+<div class="stat"><span class="label">2026E EPS</span><span class="value">¥2.7541</span><span class="note">Wind 一致预期</span></div>
+<div class="stat"><span class="label">隐含 2026E PE</span><span class="value">74.4x</span><span class="note">204.90 ÷ 2.7541</span></div>
+<div class="stat"><span class="label">2027E 净利</span><span class="value">¥45.09亿</span><span class="note">Wind 一致预期</span></div>
+</div>
+<p><span class="tag ok">中期判断：谨慎乐观</span> <span class="tag warn">短期定性：事件催化，不等于订单催化</span></p>
+</section>
+
+<section class="section">
+<h2><span class="no">02</span>先分清事实：技术里程碑与收入兑现不是一回事</h2>
+<div class="table-wrap"><table class="f3"><thead><tr><th>层级</th><th>状态</th><th>已核验事实与含义</th></tr></thead><tbody>
+<tr><td>产品技术</td><td><span class="tag ok">已发生</span></td><td>公司 7/31 发布 CXL 3.2 MXC 试产信息：支持 CXL Type 3 的 CXL.mem/CXL.io、PCIe 6.x、最高 64 GT/s；集成双 DDR5 控制器，支持最高 8000 MT/s DDR5。</td></tr>
+<tr><td>生态验证</td><td><span class="tag ok">初步完成</span></td><td>公司称产品已导入三星、SK 海力士下一代 CXL 产品并完成初步验证；方案面向 Intel Xeon、AMD EPYC 平台。它证明“模组厂 + 主机平台”两端正在衔接。</td></tr>
+<tr><td>商业导入</td><td><span class="tag warn">尚待验证</span></td><td>公告未披露正式量产时间、客户订单、ASP、产品毛利率、单年收入或客户采购量。故不能把“导入/初步验证”翻译成“已形成大规模收入”。</td></tr>
+<tr><td>财务线索</td><td><span class="tag ok">已有增量</span></td><td>7/17 半年报预增公告称，MRCD/MDB、PCIe Retimer、CKD 及 CXL MXC 等互连新品收入“显著攀升”；但没有单列 CXL MXC 金额，因此只可确认方向，不能测算份额。</td></tr>
+</tbody></table></div>
+<p class="source">一手来源：澜起科技《2026 年半年度业绩预增的自愿性公告》（2026-07-17）；澜起科技新闻稿 <a href="https://web.montage-tech.com/Press_Releases/20260731">《Industry-First Trial Production of CXL 3.2 MXC Chip》</a>（2026-07-31）。</p>
+</section>
+
+<section class="section">
+<h2><span class="no">03</span>CXL 为什么可能成为第二曲线：价值卡点在“控制器 + 生态”，不在概念名词</h2>
+<p>CXL 的实质是把主机侧内存请求更灵活地连接到扩展内存、资源池化和分层内存架构。对 AI 推理、云计算和数据中心而言，核心收益是提高可用内存容量与利用率；但落地并不只取决于 DRAM 本身，而取决于主机、协议、控制器、模组、操作系统及客户工作负载能否共同验证。</p>
+<div class="flow">
+<div class="step"><span class="n">01</span><strong>AI 内存墙</strong><span>模型、KV Cache 与云端多租户提高容量和调度诉求。</span></div>
+<div class="step"><span class="n">02</span><strong>主机支持</strong><span>Intel Xeon 与 AMD EPYC 已布局 CXL 内存扩展能力。</span></div>
+<div class="step"><span class="n">03</span><strong>MXC 控制器</strong><span>把 CXL 请求实时转换为 DDR 命令，是协议与高速 I/O 的交汇点。</span></div>
+<div class="step"><span class="n">04</span><strong>模组定型</strong><span>三星、SK 海力士下一代产品验证，决定能否进入可售 SKU。</span></div>
+<div class="step"><span class="n">05</span><strong>客户部署</strong><span>云厂商/OEM 采购与实际工作负载采用，才形成可确认收入。</span></div>
+</div>
+<p class="risk"><strong>真正的卡点：</strong>澜起强项不是单一 DDR PHY，而是将 CXL 协议、PCIe 6.x PHY、DDR5 控制器、RISC-V 管理子系统、SDK/测试工具和长期内存模组生态组合成可部署方案。反面也成立：一旦 CPU 平台代际、CXL 软件栈或客户 TCO 验证滞后，芯片试产会停留在“技术领先”而不转化为收入领先。</p>
+<p class="source">产业佐证：Intel Xeon 6 产品资料披露 CXL 2.0 Type 1/2/3 支持；三星 CXL Memory 官方页面强调内存扩展、带宽扩展与池化；SK hynix 2026 HPE Discover 展示 CXL 3.2 CMM-DDR5 产品。上述用于验证生态方向，不用于推导澜起具体收入。</p>
+</section>
+
+<section class="section">
+<h2><span class="no">04</span>增长引擎矩阵：主业赚确定性，新品争取估值重估</h2>
+<div class="table-wrap"><table class="f4"><thead><tr><th>驱动</th><th>兑现时段</th><th>确定性</th><th>对盈利与估值的传导</th></tr></thead><tbody>
+<tr><td>DDR5 RCD 迭代</td><td>2026-2027</td><td><span class="tag ok">高</span></td><td>公司已披露 DDR5 渗透率提升、第三/四子代 RCD 出货占比提高。量增叠加产品结构升级，是当前利润增长的基本盘。</td></tr>
+<tr><td>MRCD/MDB、CKD</td><td>2026-2028</td><td><span class="tag ok">中高</span></td><td>内存模组配套产品提升单平台价值量，形成从单颗接口芯片到“接口 + 配套”的扩品类路径。</td></tr>
+<tr><td>PCIe Retimer</td><td>2026-2028</td><td><span class="tag ok">中</span></td><td>随高速互连代际升级扩大可服务市场，但需持续观察客户导入、竞品格局和收入占比。</td></tr>
+<tr><td>CXL MXC</td><td>2027 以后更关键</td><td><span class="tag warn">中低</span></td><td>当前贡献更偏技术与估值期权；若模组定型、平台验证和客户部署连续兑现，则可能打开比 DDR5 更高的新增价值量。</td></tr>
+</tbody></table></div>
+<h3>增长质量：基本盘不是空转</h3>
+<p>公司 7/17 预告 2026 年上半年营收约 <span class="key">33.35 亿元</span>，同比约 <span class="up">+26.6%</span>；归母净利 <span class="key">19.00-21.00 亿元</span>，同比约 <span class="up">+63.9% 至 +81.2%</span>。其中互连类芯片产品线收入约 <span class="key">31.11 亿元</span>，同比约 <span class="up">+26.4%</span>；二季度约 16.94 亿元，环比约 <span class="up">+19.5%</span>。这说明 2026 年利润驱动仍以互连主业的景气与产品结构为主，CXL 是已开始出现、但未可拆分的增量。</p>
+</section>
+
+<section class="section">
+<h2><span class="no">05</span>共识、预期差与机构视角</h2>
+<div class="table-wrap"><table class="f2"><thead><tr><th>维度</th><th>判断</th></tr></thead><tbody>
+<tr><td>市场已知</td><td>DDR5 升级、AI 服务器需求、澜起在内存接口芯片的领先位置，以及公司 2026 年较高增速，已构成当前约 74.4x 2026E PE 的主要基础。</td></tr>
+<tr><td>可能的预期差</td><td>CXL 的核心不只是“多一个芯片品类”，而是把澜起从 DDR5 内存接口供应商，推向 CXL 内存扩展控制器与系统生态入口。若 2027 年出现量产/客户采用证据，市场可能重估其可服务市场和产品价值量。</td></tr>
+<tr><td>为何机构会买</td><td>主业已在兑现，互连新品矩阵正在扩张；7/31 的三星、SK 海力士初步验证使“CXL 仅是研发项目”的质疑减弱。</td></tr>
+<tr><td>为何机构会卖</td><td>高估值需要高增长持续兑现；若 CXL 迟迟无量产指标、DDR5 需求或产品结构不及预期，股价会先承受估值压缩。</td></tr>
+<tr><td>最重要催化剂</td><td>不是再出现一篇技术新闻，而是公司后续正式披露：量产节点、客户 SKU、订单/收入占比、毛利率趋势，或模组厂与平台方进一步商业化证据。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="section">
+<h2><span class="no">06</span>估值：当前价格已要求主业高增，CXL 的价值要靠兑现后再加分</h2>
+<p>澜起属于高成长芯片设计公司，适合以远期 PE / PEG 观察，而不应以单期静态 PE 下结论。以下以 Wind 一致预期及 12.205 亿股总股本为基础；2027-2028 一致预期并未拆分 CXL 贡献，因此不能声称“已计入”或“完全未计入”CXL。</p>
+<div class="table-wrap"><table class="f4"><thead><tr><th>项目</th><th>2026E</th><th>2027E</th><th>2028E</th></tr></thead><tbody>
+<tr><td>营收（亿元）</td><td>74.65</td><td>97.30</td><td>123.86</td></tr>
+<tr><td>归母净利（亿元）</td><td>33.61</td><td>45.09</td><td>58.59</td></tr>
+<tr><td>EPS（元）</td><td>2.7541</td><td>3.6945</td><td>4.8002</td></tr>
+<tr><td>按 ¥204.90 折 PE</td><td>74.4x</td><td>55.5x</td><td>42.7x</td></tr>
+</tbody></table></div>
+<h3>2027 年情景定价框架（不是目标价承诺）</h3>
+<div class="table-wrap"><table class="f4"><thead><tr><th>情景</th><th>2027E PE</th><th>对应股价</th><th>成立条件</th></tr></thead><tbody>
+<tr><td>Bear</td><td>45x</td><td>¥166.2</td><td>DDR5 增长降速，或新品未形成可观察收入，市场仅给成熟成长估值。</td></tr>
+<tr><td>Base</td><td>55x</td><td>¥203.2</td><td>Wind 2027E 盈利大体兑现；DDR5 与互连新品延续增长，CXL仍处于量产导入验证期。</td></tr>
+<tr><td>Bull</td><td>65x</td><td>¥240.5</td><td>主业超预期，且 CXL 出现量产、客户采用或收入贡献的连续证据，市场愿意给予第二曲线溢价。</td></tr>
+</tbody></table></div>
+<p class="source">计算口径：对应股价 = 2027E EPS ¥3.6945 × 情景 PE；不含股本变化影响。Wind 一致预期和总股本截至 2026-08-01，收盘价取 2026-07-31。</p>
+</section>
+
+<section class="section">
+<h2><span class="no">07</span>多空辩论与可证伪跟踪表</h2>
+<div class="table-wrap"><table class="f3"><thead><tr><th>立场</th><th>权重</th><th>核心论据与落脚判断</th></tr></thead><tbody>
+<tr><td>多头</td><td><span class="up">更强</span></td><td>主业已给出业绩兑现，CXL 又完成从试产到两大存储厂初步验证的跃迁。公司在 DDR5 时代积累的客户与验证能力，可能缩短 CXL 商业化路径。</td></tr>
+<tr><td>空头</td><td><span class="down">不可忽视</span></td><td>CXL 的系统级部署受 CPU、软件、模组、云厂商 TCO 共振制约；技术新闻可先抬估值，但没有量产订单时，估值无法永久脱离利润表。</td></tr>
+<tr><td>落脚判断</td><td><span class="tag warn">分层定价</span></td><td>把 DDR5 和互连新品当作利润锚，把 CXL 当作估值上行期权。市场若只按“试产”追逐，风险收益比会变差；若后续量产证据出现，才有资格上修第二曲线权重。</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table class="f3"><thead><tr><th>验证节点</th><th>优先级</th><th>看什么，如何改变判断</th></tr></thead><tbody>
+<tr><td>2026H1 正式报告</td><td>高</td><td>互连新品收入、毛利率、库存与应收变化；验证“增长质量”而非只看预告利润。</td></tr>
+<tr><td>公司业绩会/交流</td><td>高</td><td>是否明确 CXL 的量产时间、客户 SKU、收入占比或商业导入阶段；这是 CXL 估值从期权到盈利预测的第一道门。</td></tr>
+<tr><td>三星/SK 海力士产品</td><td>高</td><td>下一代 CXL 产品是否进入可销售状态、是否披露更多互操作/客户验证信息。</td></tr>
+<tr><td>Intel/AMD 平台演进</td><td>中高</td><td>平台对 CXL 内存扩展和更高代际协议的实际支持节奏，决定 CXL 可部署市场开启速度。</td></tr>
+<tr><td>行业反转开关</td><td>高</td><td>云厂商资本开支首次系统性下修、DDR5 升级弱于预期、CXL 导入延期或竞品抢占关键客户，均会削弱增长与估值基础。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="section final">
+<h2><span class="no">08</span>最终判断</h2>
+<p class="lead"><span class="key">澜起的未来成长不是只押 CXL：</span>2026 年靠 DDR5 与互连新品证明盈利，2027 年开始观察 CXL 是否从“产品验证”进入“收入验证”。7/31 的意义是把第二曲线从零分推进到有资格跟踪的阶段；它尚不足以直接上调全年盈利预测，却足以让市场开始为下一代内存架构重新审视澜起的产品边界。</p>
+<p><strong>这个数意味着什么，咱们该怎么做：</strong>当前 ¥204.90 对应约 74.4x 2026E、55.5x 2027E PE，已经要求 DDR5 主业持续高增长。对长期底仓而言，真正要盯的是正式量产、客户 SKU 与收入拆分三项硬证据；在它们出现前，CXL 只按期权估值，不按已兑现利润加仓。</p>
+</section>
+
+<p class="disclaimer"><strong>免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</main>
+</body>
+</html>
