@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7/31 盘后复盘 · 美股AI链传导成功 · 大反弹但冲高回落</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#d0d8e6;--text-dim:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;line-height:1.7;padding:20px;max-width:940px;margin:0 auto}
+h1{font-size:22px;color:var(--yellow);border-bottom:2px solid var(--orange);padding-bottom:8px;margin-bottom:6px}
+.subtitle{font-size:12px;color:var(--text-dim);margin-bottom:16px}
+.module{background:var(--card);border:1px solid var(--line);border-radius:6px;margin:14px 0;overflow:hidden}
+.module-title{padding:10px 14px;background:rgba(245,166,35,0.08);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.module-num{background:var(--orange);color:#0d1424;font-weight:800;font-size:12px;padding:3px 8px;border-radius:3px;flex-shrink:0}
+.module h2{font-size:15px;color:var(--yellow);font-weight:700}
+.module h3{font-size:13px;color:var(--cyan);margin:10px 0 6px;font-weight:600}
+.module-body{padding:14px}
+p{margin:6px 0}
+em{color:var(--cyan);font-style:normal;font-weight:600}
+strong{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+/* 7列行情表 ih: 名称/前收/开/高/低/收/今日% */
+table.ih th:nth-child(1),table.ih td:nth-child(1){text-align:left}
+table.ih th:nth-child(2),table.ih td:nth-child(2),table.ih th:nth-child(3),table.ih td:nth-child(3),table.ih th:nth-child(4),table.ih td:nth-child(4),table.ih th:nth-child(5),table.ih td:nth-child(5),table.ih th:nth-child(6),table.ih td:nth-child(6),table.ih th:nth-child(7),table.ih td:nth-child(7){text-align:right}
+/* f4 分类汇总 5列: 分级/持仓数/今日涨/今日跌/代表性标的 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2),table.f4 th:nth-child(3),table.f4 td:nth-child(3),table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:right}
+table.f4 th:nth-child(5),table.f4 td:nth-child(5){text-align:left}
+/* f4.tl 事件时间线 4列: 时点/事件/市场反应/含义 */
+table.f4.tl th:nth-child(1),table.f4.tl td:nth-child(1){text-align:left;white-space:nowrap}
+table.f4.tl th:nth-child(2),table.f4.tl td:nth-child(2){text-align:left}
+table.f4.tl th:nth-child(3),table.f4.tl td:nth-child(3){text-align:left}
+table.f4.tl th:nth-child(4),table.f4.tl td:nth-child(4){text-align:left}
+/* f5 核源矩阵 5列: 数据/源/工具/已核/置信 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){text-align:left}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){text-align:left}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){text-align:center}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){text-align:center}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;text-wrap:pretty;overflow:hidden;border-right:1px solid rgba(155,165,185,0.08);font-variant-numeric:tabular-nums}
+th:last-child,td:last-child{border-right:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:var(--text);background:rgba(155,165,185,0.06)}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+.table-wrap table{min-width:520px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.stat-box{background:rgba(245,166,35,0.06);border:1px solid var(--line);border-radius:6px;padding:10px;text-align:center}
+.stat-box .label{font-size:11px;color:var(--text-dim);margin-bottom:4px}
+.stat-box .value{font-size:16px;font-weight:700;color:var(--yellow)}
+.stat-box .delta{font-size:12px;margin-top:2px}
+.risk-box{background:rgba(255,59,59,0.06);border-left:3px solid var(--up);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.opp-box{background:rgba(30,216,144,0.06);border-left:3px solid var(--down);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.tip{background:rgba(61,220,200,0.06);border:1px dashed var(--cyan);padding:10px 14px;margin:8px 0;border-radius:4px;font-size:12px}
+.chart-box{height:300px;margin:10px 0}
+@media(max-width:640px){body{font-size:12px;padding:12px}h1{font-size:18px}.stat-grid{grid-template-columns:repeat(2,1fr)}table{font-size:11px}th,td{padding:6px 4px}.module-body{padding:10px}}
+</style>
+</head>
+<body>
+<h1>7/31 盘后复盘 · 美股AI链传导成功 · 大反弹但冲高回落</h1>
+<div class="subtitle">数据时点：北京时间 2026/7/31 15:00 收盘 · Wind 核源版（Key 已通，全量日K+RSI 复测）</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">01</span><h2>核心结论：隔夜美股 AI 链暴涨传导成功，但反弹质量打折</h2></div>
+<div class="module-body">
+<p><strong>7/30 反一致预期 B 兑现</strong>——隔夜美股 AI 链暴涨（MSFT +15.51% / LITE +15.09% / MRVL +12.18% / COHR +12.16% / STX +11.41% / GLW +9.00%），今日 A 股 4 指数全涨：<em class="pos">科创综指 +3.69%</em> / 创业板 +3.06% / 深证 +2.21% / 上证 +0.72%。</p>
+<p><strong>AMZN capex 2000→2200 亿上调 = 五节点收官最强信号</strong>——Q2 capex 542 亿$（+69%）、AWS +37% 为 18 季最快，在手订单 4960 亿$。<em>“CSP capex 首次下修”反转指标未触发</em>，AI 链主线逻辑强化。</p>
+<p><strong>但反弹质量打折——全部冲高回落</strong>：科创综指高开 +7.07%（1879 开 / 1911 高）→ 收 1819.90（日低附近）；澜起高开 222.02（+12.8%）→ 收 204.90（+4.13%，回吐约七成涨幅）；深证/创业板收盘均贴近日低。<em>更像超跌反弹，而非趋势反转。</em></p>
+<p><strong>S 级反弹分化</strong>：罗博 +16.07%（放量 49 亿 / 换手 7.21%）领涨 / 汇绿 <em class="pos">涨停 +10%</em> / 软通 +9.80% / 星环 +12.56%；但澜起高开低走 +4.13%、三祥 +0.09% 几近平盘、兴森 -0.65% 仍弱。</p>
+<p><strong>情景校准：B 回升至 50%，C 降至 35%</strong>——7/30“C 升至 60%”被证伪一半：反弹证实“政策底 + AI 链基本面未坏”，但冲高回落说明“市场底”仍需确认。</p>
+<p><strong>操作纪律：今日 0 动作符合约定</strong>——7/31 盘中约定“波澜不惊则维持不动”：澜起未冲 230+/未破 196（✓）、兴森未放量异动（✓）→ 维持不动。调仓计划三批中①③未触发、②澜起回踩 200 下方未到（最低 204.60）。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">02</span><h2>4 个指数快照（Wind 核源）</h2></div>
+<div class="module-body">
+<div class="stat-grid">
+<div class="stat-box"><div class="label">上证</div><div class="value">3832.26</div><div class="delta pos">+0.72%</div></div>
+<div class="stat-box"><div class="label">深证</div><div class="value">13578.93</div><div class="delta pos">+2.21%</div></div>
+<div class="stat-box"><div class="label">创业板</div><div class="value">3343.96</div><div class="delta pos">+3.06%</div></div>
+<div class="stat-box"><div class="label">科创综指</div><div class="value">1819.90</div><div class="delta pos">+3.69%</div></div>
+</div>
+<div class="table-wrap">
+<table class="ih">
+<thead><tr><th>指数</th><th>7/30 收</th><th>7/31 开</th><th>高</th><th>低</th><th>7/31 收</th><th>今日%</th></tr></thead>
+<tbody>
+<tr><td>上证</td><td>3804.69</td><td>3833.54</td><td>3847.09</td><td>3822.37</td><td>3832.26</td><td class="pos">+0.72%</td></tr>
+<tr><td>深证</td><td>13285.80</td><td>13690.00</td><td>13841.96</td><td>13578.93</td><td>13578.93</td><td class="pos">+2.21%</td></tr>
+<tr><td>创业板</td><td>3244.62</td><td>3411.61</td><td>3464.90</td><td>3343.96</td><td>3343.96</td><td class="pos">+3.06%</td></tr>
+<tr><td>科创综指</td><td>1755.22</td><td>1879.30</td><td>1911.78</td><td>1819.90</td><td>1819.90</td><td class="pos">+3.69%</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键观察</strong>：科创综指高开 +7.07%，盘中最高 1911.78（+8.9%），收盘 1819.90——<em>回吐近六成涨幅</em>；深证/创业板收盘即日低。<strong>高开幅度越大、回落越狠</strong>，说明上方套牢盘抛压真实存在，反弹持续性待验证。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">03</span><h2>11 只持仓反弹图（Wind 核源 · 按今日涨跌幅排序）</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="ih">
+<thead><tr><th>持仓</th><th>7/30 收</th><th>7/31 开</th><th>高</th><th>低</th><th>7/31 收</th><th>今日%</th></tr></thead>
+<tbody>
+<tr><td><strong>罗博特科(S)</strong></td><td>358.03</td><td>402.00</td><td>429.64</td><td>400.28</td><td>415.56</td><td class="pos"><strong>+16.07%</strong></td></tr>
+<tr><td><strong>星环科技(利润仓)</strong></td><td>80.33</td><td>85.00</td><td>95.53</td><td>83.88</td><td>90.42</td><td class="pos"><strong>+12.56%</strong></td></tr>
+<tr><td><strong>汇绿生态(S)</strong></td><td>27.11</td><td>29.00</td><td>29.82</td><td>29.00</td><td>29.82</td><td class="pos"><strong>+10.00% 涨停</strong></td></tr>
+<tr><td><strong>软通动力(A+)</strong></td><td>34.91</td><td>35.77</td><td>39.88</td><td>35.76</td><td>38.33</td><td class="pos">+9.80%</td></tr>
+<tr><td><strong>澜起科技(S底仓)</strong></td><td>196.78</td><td>222.02</td><td>223.00</td><td>204.60</td><td>204.90</td><td class="pos">+4.13%</td></tr>
+<tr><td><strong>泰和新材(A-)</strong></td><td>11.13</td><td>11.51</td><td>11.88</td><td>11.40</td><td>11.40</td><td class="pos">+2.43%</td></tr>
+<tr><td><strong>德展健康(防御)</strong></td><td>3.27</td><td>3.28</td><td>3.32</td><td>3.26</td><td>3.30</td><td class="pos">+0.92%</td></tr>
+<tr><td><strong>三祥新材(S)</strong></td><td>33.67</td><td>36.37</td><td>36.56</td><td>33.50</td><td>33.70</td><td class="pos">+0.09%</td></tr>
+<tr><td><strong>太钢不锈(防御)</strong></td><td>3.63</td><td>3.62</td><td>3.67</td><td>3.58</td><td>3.63</td><td>0.00%</td></tr>
+<tr><td><strong>兴森科技(利润仓)</strong></td><td>27.69</td><td>29.58</td><td>29.98</td><td>27.51</td><td>27.51</td><td class="neg">-0.65%</td></tr>
+<tr><td><strong>华峰化学(防御)</strong></td><td>11.15</td><td>10.93</td><td>11.15</td><td>10.87</td><td>10.98</td><td class="neg">-1.52%</td></tr>
+</tbody>
+</table>
+</div>
+<h3>分类汇总</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>分级</th><th>持仓数</th><th>今日涨</th><th>今日跌</th><th>代表性标的</th></tr></thead>
+<tbody>
+<tr><td><strong>S 级（4 只）</strong></td><td>4</td><td><strong>4</strong></td><td>0</td><td>罗博+16.07% / 汇绿涨停 / 澜起+4.13% / 三祥+0.09%</td></tr>
+<tr><td>利润仓（2 只）</td><td>2</td><td>1</td><td>1</td><td>星环+12.56% / 兴森-0.65%</td></tr>
+<tr><td>A 级标杆（2 只）</td><td>2</td><td><strong>2</strong></td><td>0</td><td>软通+9.80% / 泰和+2.43%</td></tr>
+<tr><td><strong>防御级（3 只）</strong></td><td>3</td><td>2</td><td>1</td><td>德展+0.92% / 太钢 0.00% / 华峰-1.52%</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>今日结构性信号：</strong><br>
+- <strong>罗博/星环/软通 = 真反弹</strong>（收盘远离日低，量能放大）<br>
+- <strong>澜起/三祥 = 假反弹</strong>（高开低走 / 几近平盘，澜起最低 204.60 距日低一步之遥）<br>
+- <strong>兴森继续弱</strong>——调仓计划第一批卖出窗口的有效性再获确认<br>
+- <strong>汇绿涨停但未放巨量</strong>（换手 5.49% vs 7/30 的 6.11%）——五节点对赌期不增不减纪律维持</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">04</span><h2>今日事件时间线 + 隔夜美股传导</h2></div>
+<div class="module-body">
+<h3>今日 4 大事件</h3>
+<div class="table-wrap">
+<table class="f4 tl">
+<thead><tr><th>时点</th><th>事件</th><th>市场反应</th><th>含义</th></tr></thead>
+<tbody>
+<tr><td>凌晨 4:00</td><td><strong>AMZN Q2 财报</strong>（营收 2006 亿$ +20% / AWS 422 亿$ +37% / Q2 capex 542 亿$ +69% / 全年 capex <em class="pos">2000→2200 亿$ 上调</em>）</td><td>盘后 +9~10%</td><td><strong>五节点收官最强</strong>，AI 链逻辑强化</td></tr>
+<tr><td>隔夜</td><td>美股 AI 链暴涨：MSFT +15.51% / LITE +15.09% / MRVL +12.18% / COHR +12.16% / STX +11.41% / GLW +9.00% / NVDA +2.65%</td><td>A 股 4 指数全高开</td><td>映射链集体传导</td></tr>
+<tr><td>9:30</td><td>A 股高开：科创综指 +7.07% / 创业板 +5.15% / 深证 +3.04% / 上证 +0.76%</td><td>高位放量</td><td>隔夜利好一次性兑现</td></tr>
+<tr><td>10:00-14:00</td><td>冲高回落：罗博盘中 +17.4%→收 +16.07%；澜起 222.02→204.90</td><td>尾盘指数收日低附近</td><td><strong>上方套牢盘抛压</strong></td></tr>
+<tr><td>15:00</td><td>4 指数全涨收阳，但全部贴近日低</td><td>科创 +3.69% 领涨</td><td>超跌反弹特征</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip"><strong>关键判断</strong>：今日反弹 <strong>不改变 7/30“政策底≠市场底”框架</strong>——政策底（7/30 政治局）+ 外围利好（7/31 AMZN）双重叠加，A 股只给出“高开回落”，说明 <em>市场仍在消化 7 月中旬以来的杠杆去化</em>。反弹的持续性取决于下周量能能否维持（今日两市合计成交约 2.54 万亿，沪市 1.19 万亿 + 深市 1.35 万亿，较 7/30 的 2.34 万亿放量约 9%）。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">05</span><h2>持仓纪律检查 + 调仓计划执行状态</h2></div>
+<div class="module-body">
+<div class="tip">
+<p><strong>今日操作：0 动作（与 7/31 盘中约定一致）</strong></p>
+<p>约定复盘：“波澜不惊则维持不动”。逐项核验：<br>
+① 澜起 +4.13% 收 204.90——<em>未冲 230+、未破 196</em>（✓ 波澜不惊）<br>
+② 兴森 -0.65%——<em>未放量异动</em>（✓，虽换手 9.37% 但方向向下非向上异动）<br>
+③ 科创/创业板 +3.69%/+3.06%——超出 ±2% 波动带，但属于 <em>向上</em> 方向，不构成卖出理由<br>
+→ 结论：维持不动 ✅，无违约动作。</p>
+</div>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>调仓批次</th><th>计划</th><th>今日状态</th><th>下周触发条件</th></tr></thead>
+<tbody>
+<tr><td><strong>第一批</strong></td><td>卖兴森（利润仓落袋）</td><td class="neg">未执行</td><td>下周初，兴森若反抽至 28 上方优先出；直接低开则分批</td></tr>
+<tr><td><strong>第二批</strong></td><td>澜起回踩 200 下方买 1/2（约 11 万）</td><td class="neg">未触发（最低 204.60）</td><td>回踩 200 下方（196-200 区间）分批，不追高</td></tr>
+<tr><td><strong>第三批</strong></td><td>SNDK 8/14 财报确认后买 1/2</td><td class="neg">未到</td><td>8/14 财报确认存储链逻辑后再执行</td></tr>
+<tr><td><strong>红线</strong></td><td>澜起冲 230+ 不追 / 单票占比 &gt;40% 不加</td><td class="pos">未触发</td><td>全程监控</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>S 级纪律</strong>：五节点对赌期汇绿不增不减（今日涨停未动 ✓）；SNDK 8/14 前主线仓位不增不减 ✓。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">06</span><h2>关键节点倒计时</h2></div>
+<div class="module-body">
+<div class="chart-box" id="chart-countdown"></div>
+<script>
+const chartC = echarts.init(document.getElementById('chart-countdown'));
+chartC.setOption({
+  backgroundColor:'transparent',
+  grid:{left:60,right:30,top:30,bottom:60},
+  xAxis:{type:'category',data:['SNDK 8/14','政治局细则 8月','调仓执行 下周','日本央行 9月','8/4留用裁决'],axisLine:{lineStyle:{color:'#9aa5b9'}},axisLabel:{color:'#d0d8e6',rotate:0}},
+  yAxis:{type:'value',name:'重要性(1-5)',min:0,max:5,axisLine:{lineStyle:{color:'#9aa5b9'}},splitLine:{lineStyle:{color:'rgba(155,165,185,0.1)'}},axisLabel:{color:'#d0d8e6'}},
+  series:[{type:'bar',data:[{value:5,itemStyle:{color:'#ff3b3b'}},{value:5,itemStyle:{color:'#3ddcc8'}},{value:4,itemStyle:{color:'#f5a623'}},{value:4,itemStyle:{color:'#ffd83d'}},{value:3,itemStyle:{color:'#9aa5b9'}}],label:{show:true,position:'top',color:'#ffd83d',fontWeight:'bold'},itemStyle:{borderRadius:[4,4,0,0]}}]
+});
+window.addEventListener('resize',()=>chartC.resize());
+</script>
+<div class="risk-box">
+<p><strong>📌 SNDK 财报 8/14（约 2 周后）</strong>——五节点最后一块拼图<br>
+- 已验证：英特尔 7/24 电话会确认存储短缺 + 三星 Q2 利润 +1813%<br>
+- SNDK 若确认 NAND 涨价周期 → 存储链主线（澜起 DDR5 TAM）继续强化</p>
+<p><strong>📌 政治局会议政策细则（8 月）</strong>——“适度宽松”落地需降息/降准细则，政策底→市场底还需细则催化</p>
+<p><strong>📌 调仓执行窗口（下周初）</strong>——卖兴森第一批 + 澜起回踩 200 下方 1/2，老潘亲自执行</p>
+<p><strong>📌 日本央行 9 月会议</strong>——日元套息平仓尾部风险监控（日元单日波动 &gt;2% / 日本卖美债 / 加息表态三触发）</p>
+</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">07</span><h2>技术雷达 + 反一致预期审查</h2></div>
+<div class="module-body">
+<h3>RSI-14 技术雷达（Wind 核源，7/31 收盘）</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>标的</th><th>RSI-14</th><th>区间</th><th>信号</th></tr></thead>
+<tbody>
+<tr><td><strong>三祥新材(S)</strong></td><td>24.66</td><td>&lt;30 超卖</td><td class="pos">🟢 超卖（追跌风险大，勿在此割肉）</td></tr>
+<tr><td><strong>兴森科技</strong></td><td>33.32</td><td>30-40 偏弱</td><td>弱势区，反弹乏力确认调仓逻辑</td></tr>
+<tr><td><strong>汇绿生态(S)</strong></td><td>33.89</td><td>30-40 偏弱</td><td>涨停后 RSI 仍低，反弹空间未被透支</td></tr>
+<tr><td><strong>澜起科技(S)</strong></td><td>42.36</td><td>40-50 中性</td><td>高开低走消化中，中性偏弱</td></tr>
+<tr><td><strong>罗博特科(S)</strong></td><td>42.81</td><td>40-50 中性</td><td>放量反弹但 RSI 未过热，仍有空间</td></tr>
+<tr><td><strong>软通动力(A+)</strong></td><td>50.16</td><td>50 中枢</td><td>强弱均衡，本周最抗跌</td></tr>
+</tbody>
+</table>
+</div>
+<h3>反一致预期 A：今日反弹 = 反转起点？</h3>
+<div class="opp-box"><strong>支持反转</strong>：AMZN capex 上调（史上最强验证）+ 政策底已出 + SNDK 8/14 前无利空节点。若下周量能维持 1.2 万亿+，指数有望二次探底后反转。</div>
+<div class="risk-box"><strong>支持超跌反弹</strong>：今日全指数收盘贴近日低、高开回落 61.8%，套牢盘抛压未尽；政策底领先市场底 1-3 个月的历史规律未被打破。<em>倾向：先按超跌反弹对待，反转需 3-5 日量价确认。</em></div>
+<h3>反一致预期 B：S 级下周延续性</h3>
+<div class="tip"><strong>分化判断</strong>：罗博（放量+RSI 42）与汇绿（涨停+RSI 33.89 未透支）延续性较好；澜起（高开低走+RSI 42）与三祥（RSI 24.66 超卖）<em>需要个股级别催化</em>（澜起等回踩 200 分批、三祥等新催化）。</div>
+<h3>反向检验自己</h3>
+<div class="risk-box"><strong>7/31 不追高纪律被验证正确</strong>——盘中罗博 +17.4%、澜起 +12.8% 高开时追入，收盘分别只剩 +16.07% / +4.13%。<em>“大涨不追高”是本周用真金白银验证过的纪律，下周继续执行。</em></div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">08</span><h2>数据核源矩阵</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>数据</th><th>源</th><th>工具</th><th>已核</th><th>置信</th></tr></thead>
+<tbody>
+<tr><td>4 指数 7/31 收盘/开/高/低</td><td>Wind index_data K 线</td><td>node scripts/cli.mjs</td><td>✓</td><td>★★★</td></tr>
+<tr><td>11 只持仓 7/31 收盘/开/高/低</td><td>Wind stock_data K 线</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>RSI-14（6 只关键持仓）</td><td>Wind get_stock_technicals</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>AMZN Q2 财报（营收/AWS/capex）</td><td>多源核源（7/31 凌晨）</td><td>WebSearch+财联社</td><td>✓</td><td>★★★</td></tr>
+<tr><td>隔夜美股涨幅（MSFT/MRVL/COHR…）</td><td>7/31 盘前简报核源</td><td>Wind/WebSearch</td><td>✓</td><td>★★★</td></tr>
+<tr><td>情景概率校准（B 50% / C 35%）</td><td>巴蒂主观判断</td><td>—</td><td>—</td><td>★★（主观）</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:10px"><strong>Wind Key 状态：</strong>本次全量 22 次调用（15 标的×日 K + 6 RSI + 指数）全部成功 ✅</p>
+</div>
+</div>
+
+<div class="subtitle" style="text-align:center;margin-top:20px;color:var(--text-dim);font-size:11px">
+本报告仅供研究参考，不构成投资建议。据此操作风险自担。<br>
+数据来源：Wind 金融数据服务 · 生成时间 2026-08-01 10:20 GMT+8
+</div>
+</body>
+</html>
