@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>周度复盘 7/27-7/31 · 过山车一周 · 政策底 vs AI 链韧性</title>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <style>
 :root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#d0d8e6;--text-dim:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -193,32 +192,20 @@ th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:var
 <div class="module">
 <div class="module-title"><span class="module-num">06</span><h2>下周展望 + 关键节点</h2></div>
 <div class="module-body">
-<div class="chart-box" id="chart-week"></div>
-<script>
-const chartW = echarts.init(document.getElementById('chart-week'));
-chartW.setOption({
-  backgroundColor:'transparent',
-  grid:{left:60,right:30,top:30,bottom:60},
-  xAxis:{type:'category',data:['调仓执行(下周初)','政治局细则(8月)','8/4留用裁决','SNDK(8/14)','日本央行(9月)'],axisLine:{lineStyle:{color:'#9aa5b9'}},axisLabel:{color:'#d0d8e6',rotate:0}},
-  yAxis:{type:'value',name:'重要性(1-5)',min:0,max:5,axisLine:{lineStyle:{color:'#9aa5b9'}},splitLine:{lineStyle:{color:'rgba(155,165,185,0.1)'}},axisLabel:{color:'#d0d8e6'}},
-  series:[{type:'bar',data:[{value:4,itemStyle:{color:'#f5a623'}},{value:5,itemStyle:{color:'#3ddcc8'}},{value:3,itemStyle:{color:'#9aa5b9'}},{value:5,itemStyle:{color:'#ff3b3b'}},{value:4,itemStyle:{color:'#ffd83d'}}],label:{show:true,position:'top',color:'#ffd83d',fontWeight:'bold'},itemStyle:{borderRadius:[4,4,0,0]}}]
-});
-window.addEventListener('resize',()=>chartW.resize());
-</script>
 <div class="table-wrap">
 <table class="f4">
-<thead><tr><th>下周事项</th><th>时点</th><th>行动</th><th>触发/验收标准</th></tr></thead>
+<thead><tr><th>节点</th><th>时点</th><th>重要性</th><th>触发 / 验收标准</th></tr></thead>
 <tbody>
-<tr><td><strong>调仓第一批</strong></td><td>下周初</td><td>卖兴森（利润仓落袋）</td><td>反抽 28 上方优先出；低开则分批，不恋战</td></tr>
-<tr><td><strong>调仓第二批</strong></td><td>澜起回踩 200 下方</td><td>买入 1/2（约 11 万）</td><td>196-200 区间分批；冲 230+ 不追</td></tr>
-<tr><td>留用裁决</td><td>8/4（周二）22:00</td><td>巴蒂交 8 指标裁决报告</td><td>≥6 项 ✓ 通过</td></tr>
-<tr><td>SNDK 财报</td><td>8/14</td><td>存储链最后验证</td><td>确认 NAND 涨价 → 调仓第三批 + 澜起 TAM 逻辑</td></tr>
-<tr><td>政治局细则</td><td>8 月</td><td>等降息/降准落地</td><td>细则落地 = 市场底信号之一</td></tr>
-<tr><td>日本央行</td><td>9 月会议</td><td>流动性风险监控</td><td>日元单日 &gt;2% / 日本卖美债 / 加息表态</td></tr>
+<tr><td><strong>调仓第一批</strong></td><td>下周初</td><td>★★★★</td><td>卖兴森：反抽 28 上方优先出；低开则分批，不恋战</td></tr>
+<tr><td><strong>调仓第二批</strong></td><td>澜起回踩 200 下方</td><td>★★★★</td><td>买入 1/2（约 11 万），196-200 区间分批；冲 230+ 不追</td></tr>
+<tr><td><strong>政治局细则</strong></td><td>8 月</td><td>★★★★★</td><td>降息/降准落地 = 政策底→市场底信号</td></tr>
+<tr><td><strong>8/4 留用裁决</strong></td><td>8/4（周二）22:00</td><td>★★★</td><td>巴蒂 8 项指标 ≥6 通过 / ≤5 劝退合理</td></tr>
+<tr><td><strong>SNDK 财报</strong></td><td>8/14</td><td>★★★★★</td><td>确认 NAND 涨价 → 调仓第三批 + 澜起 TAM 逻辑</td></tr>
+<tr><td><strong>日本央行</strong></td><td>9 月会议</td><td>★★★★</td><td>日元单日 &gt;2% / 日本卖美债 / 加息表态三触发监控</td></tr>
 </tbody>
 </table>
 </div>
-<div class="risk-box"><strong>下周风险提示</strong>：① 反弹若不能放量站稳（上证 3830 / 科创 1830 上方），可能二次探底；② 兴森卖出时点若遇板块脉冲，勿因“少卖几个点”动摇——<em>调仓目标是集中到最强主线，不是卖在最高点</em>；③ 日本央行套息平仓是中期尾部风险，任何“日元单日 &gt;2%”异动需立即复核 AI 链。</div>
+<div class="risk-box"><strong>下周风险提示</strong>：① 反弹若不能放量站稳（上证 3830 / 科创 1830 上方），可能二次探底；② 兴森卖出时点若遇板块脉冲，勿因"少卖几个点"动摇——<em>调仓目标是集中到最强主线，不是卖在最高点</em>；③ 日本央行套息平仓是中期尾部风险，任何"日元单日 &gt;2%"异动需立即复核 AI 链。</div>
 </div>
 </div>
 
