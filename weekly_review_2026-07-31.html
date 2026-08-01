@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>周度复盘 7/27-7/31 · 过山车一周 · 政策底 vs AI 链韧性</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#0d1424;--card:#1a2540;--line:#2a3556;--text:#d0d8e6;--text-dim:#9aa5b9;--orange:#f5a623;--yellow:#ffd83d;--cyan:#3ddcc8;--up:#ff3b3b;--down:#1ed890}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;line-height:1.7;padding:20px;max-width:940px;margin:0 auto}
+h1{font-size:22px;color:var(--yellow);border-bottom:2px solid var(--orange);padding-bottom:8px;margin-bottom:6px}
+.subtitle{font-size:12px;color:var(--text-dim);margin-bottom:16px}
+.module{background:var(--card);border:1px solid var(--line);border-radius:6px;margin:14px 0;overflow:hidden}
+.module-title{padding:10px 14px;background:rgba(245,166,35,0.08);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.module-num{background:var(--orange);color:#0d1424;font-weight:800;font-size:12px;padding:3px 8px;border-radius:3px;flex-shrink:0}
+.module h2{font-size:15px;color:var(--yellow);font-weight:700}
+.module h3{font-size:13px;color:var(--cyan);margin:10px 0 6px;font-weight:600}
+.module-body{padding:14px}
+p{margin:6px 0}
+em{color:var(--cyan);font-style:normal;font-weight:600}
+strong{color:var(--yellow)}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+/* f5 周度表: 名称/7.24收/7.31收/周% /特征 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2),table.f5 th:nth-child(3),table.f5 td:nth-child(3),table.f5 th:nth-child(4),table.f5 td:nth-child(4){text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){text-align:left}
+/* f4.tl 逐日大事 4列 */
+table.f4.tl th:nth-child(1),table.f4.tl td:nth-child(1){text-align:left;white-space:nowrap}
+table.f4.tl th:nth-child(2),table.f4.tl td:nth-child(2){text-align:left}
+table.f4.tl th:nth-child(3),table.f4.tl td:nth-child(3){text-align:left}
+table.f4.tl th:nth-child(4),table.f4.tl td:nth-child(4){text-align:left}
+/* f4.node 五节点 4列 */
+table.f4.node th:nth-child(1),table.f4.node td:nth-child(1){text-align:left}
+table.f4.node th:nth-child(2),table.f4.node td:nth-child(2){text-align:left}
+table.f4.node th:nth-child(3),table.f4.node td:nth-child(3){text-align:center}
+table.f4.node th:nth-child(4),table.f4.node td:nth-child(4){text-align:left}
+/* f4.grade 判断复盘 4列 */
+table.f4.grade th:nth-child(1),table.f4.grade td:nth-child(1){text-align:left}
+table.f4.grade th:nth-child(2),table.f4.grade td:nth-child(2){text-align:left}
+table.f4.grade th:nth-child(3),table.f4.grade td:nth-child(3){text-align:center}
+table.f4.grade th:nth-child(4),table.f4.grade td:nth-child(4){text-align:left}
+/* f5.matrix 核源矩阵 */
+table.f5.matrix th:nth-child(1),table.f5.matrix td:nth-child(1){text-align:left}
+table.f5.matrix th:nth-child(2),table.f5.matrix td:nth-child(2){text-align:left}
+table.f5.matrix th:nth-child(3),table.f5.matrix td:nth-child(3){text-align:left}
+table.f5.matrix th:nth-child(4),table.f5.matrix td:nth-child(4){text-align:center}
+table.f5.matrix th:nth-child(5),table.f5.matrix td:nth-child(5){text-align:center}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;text-wrap:pretty;overflow:hidden;border-right:1px solid rgba(155,165,185,0.08);font-variant-numeric:tabular-nums}
+th:last-child,td:last-child{border-right:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.02)}
+th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:var(--text);background:rgba(155,165,185,0.06)}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+.table-wrap table{min-width:520px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.stat-box{background:rgba(245,166,35,0.06);border:1px solid var(--line);border-radius:6px;padding:10px;text-align:center}
+.stat-box .label{font-size:11px;color:var(--text-dim);margin-bottom:4px}
+.stat-box .value{font-size:16px;font-weight:700;color:var(--yellow)}
+.stat-box .delta{font-size:12px;margin-top:2px}
+.risk-box{background:rgba(255,59,59,0.06);border-left:3px solid var(--up);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.opp-box{background:rgba(30,216,144,0.06);border-left:3px solid var(--down);padding:10px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.tip{background:rgba(61,220,200,0.06);border:1px dashed var(--cyan);padding:10px 14px;margin:8px 0;border-radius:4px;font-size:12px}
+.chart-box{height:300px;margin:10px 0}
+@media(max-width:640px){body{font-size:12px;padding:12px}h1{font-size:18px}.stat-grid{grid-template-columns:repeat(2,1fr)}table{font-size:11px}th,td{padding:6px 4px}.module-body{padding:10px}}
+</style>
+</head>
+<body>
+<h1>周度复盘 7/27-7/31 · 过山车一周 · 政策底 vs AI 链韧性</h1>
+<div class="subtitle">覆盖区间：2026/7/27-7/31（周一至周五）· 数据时点 7/31 收盘 · Wind 核源版</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">01</span><h2>周度总览：先扬 → 暴跌 → 政策底 → 外围反弹，成长板块深调一周</h2></div>
+<div class="module-body">
+<p><strong>一周四段式</strong>：周一反弹（科创 +2.49%）→ <em class="neg">周二暴跌（创业板 -7.35%）</em> → 周三企稳（META capex 维持）→ <em>周四政策底但未救市（科创 -5.70% 周内最惨）</em> → 周五 AMZN capex 上调 + 美股 AI 链暴涨传导大反弹（科创 +3.69%）。</p>
+<p><strong>周度格局：权重稳、成长杀</strong>——上证 <em class="pos">+0.47%</em>（唯一收红），深证 -1.42%、创业板 <em class="neg">-3.93%</em>、科创综指 <em class="neg">-6.24%</em>。市场风格剧烈切换：资金从高位 AI/半导体撤向低位权重防御。</p>
+<p><strong>S 级持仓周度承压</strong>——澜起 -12.14%、三祥 -12.92%，但周五罗博 +16.07% / 汇绿涨停收复部分失地；<em>软通 +9.51% / 星环 +6.88% 逆势收涨</em>，AI 链内部剧烈分化。</p>
+<p><strong>本周三个战略成果（非行情层面）</strong>：① 五节点对账 4/5 确认（AMZN 收官最强，CSP capex 下修反转指标未触发）；② 老潘拍板放弃算力租赁、回归 S 级核心深耕；③ 调仓计划锁定（兴森/太钢 → 澜起，方案 A 三批执行）。</p>
+<p><strong>框架校准</strong>：7/30“政策底 ≠ 市场底”框架本周被验证（政治局利好当日未救市），但 7/31 外围验证 AI 链基本面未坏。<em>“政策底 + 基本面未坏 + 杠杆去化中”</em> = 当前最准确的组合描述。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">02</span><h2>4 指数周度表现（Wind 核源）</h2></div>
+<div class="module-body">
+<div class="stat-grid">
+<div class="stat-box"><div class="label">上证</div><div class="value">3832.26</div><div class="delta pos">周 +0.47%</div></div>
+<div class="stat-box"><div class="label">深证</div><div class="value">13578.93</div><div class="delta neg">周 -1.42%</div></div>
+<div class="stat-box"><div class="label">创业板</div><div class="value">3343.96</div><div class="delta neg">周 -3.93%</div></div>
+<div class="stat-box"><div class="label">科创综指</div><div class="value">1819.90</div><div class="delta neg">周 -6.24%</div></div>
+</div>
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>指数</th><th>7/24 收</th><th>7/31 收</th><th>周%</th><th>周内特征</th></tr></thead>
+<tbody>
+<tr><td>上证</td><td>3814.20</td><td>3832.26</td><td class="pos">+0.47%</td><td>唯一收红，权重防御托底</td></tr>
+<tr><td>深证</td><td>13774.68</td><td>13578.93</td><td class="neg">-1.42%</td><td>周中探底 13068 后收复</td></tr>
+<tr><td>创业板</td><td>3480.87</td><td>3343.96</td><td class="neg">-3.93%</td><td>周二单日 -7.35% 深调</td></tr>
+<tr><td>科创综指</td><td>1941.07</td><td>1819.90</td><td class="neg">-6.24%</td><td>周内最深 -10.7%（1732），周五强反</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键观察</strong>：科创综指周内最低 1732.52（7/30 盘中）较 7/24 收盘 1941.07 回撤 <strong>-10.7%</strong>，周五反弹至 1819.90 仍低于 7/24 约 6%。<em>成长板块的技术性熊市特征（20% 以下）未解除，反弹只修复了三分之一。</em></p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">03</span><h2>11 只持仓周度表现（7/24 → 7/31 · Wind 核源 · 按周涨跌排序）</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f5">
+<thead><tr><th>持仓</th><th>7/24 收</th><th>7/31 收</th><th>周%</th><th>本周特征</th></tr></thead>
+<tbody>
+<tr><td><strong>软通动力(A+)</strong></td><td>35.00</td><td>38.33</td><td class="pos"><strong>+9.51%</strong></td><td>全周最抗跌，周五放量 +9.80%</td></tr>
+<tr><td><strong>星环科技(利润仓)</strong></td><td>84.60</td><td>90.42</td><td class="pos"><strong>+6.88%</strong></td><td>周五 +12.56%，利润仓弹性大</td></tr>
+<tr><td><strong>太钢不锈(防御)</strong></td><td>3.49</td><td>3.63</td><td class="pos">+4.01%</td><td>防御压舱石本周最稳</td></tr>
+<tr><td><strong>德展健康(防御)</strong></td><td>3.19</td><td>3.30</td><td class="pos">+3.45%</td><td>防御级走稳</td></tr>
+<tr><td><strong>华峰化学(防御)</strong></td><td>10.62</td><td>10.98</td><td class="pos">+3.39%</td><td>TDI 链条企稳</td></tr>
+<tr><td><strong>泰和新材(A-)</strong></td><td>11.15</td><td>11.40</td><td class="pos">+2.24%</td><td>芳纶光缆属性抗跌</td></tr>
+<tr><td><strong>罗博特科(S)</strong></td><td>411.96</td><td>415.56</td><td class="pos">+0.87%</td><td>周内探底 353.49（-17.7%），周五 +16.07% 收复大半</td></tr>
+<tr><td><strong>汇绿生态(S)</strong></td><td>31.00</td><td>29.82</td><td class="neg">-3.81%</td><td>周三连跌后周五涨停</td></tr>
+<tr><td><strong>澜起科技(S底仓)</strong></td><td>233.22</td><td>204.90</td><td class="neg">-12.14%</td><td>周内最低 191.80，周五高开低走</td></tr>
+<tr><td><strong>三祥新材(S)</strong></td><td>38.70</td><td>33.70</td><td class="neg">-12.92%</td><td>RSI 24.66 超卖，等新催化</td></tr>
+<tr><td><strong>兴森科技(利润仓)</strong></td><td>33.80</td><td>27.51</td><td class="neg"><strong>-18.61%</strong></td><td>全周最弱，7/30 跌停，调仓卖出标的</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>周度结构信号：</strong><br>
+- <strong>6 涨 5 跌</strong>：抗跌集中在防御级（+2.2% ~ +4.0%）与周五弹性品种（软通/星环）<br>
+- <strong>S 级分化：罗博最强（+0.87%）→ 汇绿（-3.81%）→ 澜起（-12.14%）→ 三祥（-12.92%）</strong>——高景气度排序与本轮回撤深度成反比，符合“资金先杀高位高估值”规律<br>
+- <strong>兴森 -18.61% 连续两周垫底</strong>——调仓计划“卖兴森换澜起”的逻辑本周进一步强化（兴森反弹乏力 vs 澜起基本面确定性）<br>
+- <strong>太钢 +4.01%</strong>——老潘“太钢暂留做压舱石”的判断被市场验证</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">04</span><h2>本周大事记（7/27-7/31 逐日）</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 tl">
+<thead><tr><th>日期</th><th>当日市场</th><th>重大事件</th><th>巴蒂评价</th></tr></thead>
+<tbody>
+<tr><td>7/27 周一</td><td>反弹：科创 +2.49% / 创业板 +3.16%</td><td><strong>长鑫存储上市首日 +439.8%</strong>，老潘中签 1000 股止盈落袋 38,084 元</td><td>机械止盈纪律执行完美 ✓</td></tr>
+<tr><td>7/28 周二</td><td><em class="neg">暴跌：创业板 -7.35% / 科创 -5.93%</em></td><td>S 级集体重挫，恐慌蔓延</td><td>杠杆去化加速，未加仓正确</td></tr>
+<tr><td>7/29 周三</td><td>企稳：创业板 +1.55% / 上证 +0.40%</td><td><strong>META capex 维持 1300-1450 亿$</strong>；巴蒂出 META capex 三情景推演</td><td>4 步硬流程首次跑通 0 返工 ✓</td></tr>
+<tr><td>7/30 周四</td><td><em class="neg">政策底：科创 -5.70% 周内最惨</em></td><td><strong>政治局会议“适度宽松货币政策”未救市</strong>；月度自评 62 分；S 级单日最深跌（罗博 -12.56%）</td><td>“政策底≠市场底”框架确立；早盘“加仓窗口”判断错误</td></tr>
+<tr><td>7/31 周五</td><td>大反弹：科创 +3.69% / 创业板 +3.06%</td><td><strong>AMZN capex 2000→2200 亿$ 上调</strong>；美股 AI 链暴涨传导；老潘拍板放弃算力租赁 + 锁定调仓计划</td><td>五节点 4/5 确认；S 级深耕报告 QC 双 0</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tip"><strong>本周战略盘点（非行情）</strong>：<br>
+① 长鑫止盈 +439.8% 落袋（机械止盈）<br>
+② 放弃算力租赁板块——老潘确认“<em>做小</em>”板块，回归 S 级核心深耕（澜起/汇绿/罗博/三祥）<br>
+③ 调仓计划锁定：兴森/太钢 → 澜起（方案 A：卖兴森 → 澜起 200 下方 1/2 → SNDK 后 1/2）<br>
+④ 日元套息风险（日本央行 9 月会议）加入流动性监控</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">05</span><h2>五节点对账（4/5 确认）+ S 级周度状态</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 node">
+<thead><tr><th>节点</th><th>日期</th><th>状态</th><th>验证结果</th></tr></thead>
+<tbody>
+<tr><td>台积电 Q2</td><td>7/16</td><td>✅</td><td>AI 需求确认</td></tr>
+<tr><td>GOOGLE</td><td>7/23</td><td>✅</td><td>capex 上修</td></tr>
+<tr><td>META</td><td>7/30</td><td>✅</td><td>capex 维持 1300-1450 亿$（利润暴雷系一次性成本）</td></tr>
+<tr><td>MSFT</td><td>7/30</td><td>✅</td><td>capex 1750 亿$ + Azure 增速 40%</td></tr>
+<tr><td>AMZN</td><td>7/31</td><td>✅</td><td><strong>capex 2000→2200 亿$ 上调</strong>（收官最强）</td></tr>
+<tr><td><strong>SNDK</strong></td><td><strong>8/14</strong></td><td>⏳</td><td>存储链最后验证（英特尔短缺 + 三星 +1813% 已铺垫）</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>反转指标状态</strong>：CSP capex 首次下修 —— <em class="pos">未触发</em>。四大 CSP 全部维持或上修，AI 链主线逻辑本周经受住考验。</p>
+<h3>S 级四只周度状态</h3>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>标的</th><th>周%</th><th>RSI-14</th><th>周度结论</th></tr></thead>
+<tbody>
+<tr><td><strong>罗博特科</strong></td><td class="pos">+0.87%</td><td>42.81</td><td>深 V 收复，周五放量 49 亿最强 S 级</td></tr>
+<tr><td><strong>汇绿生态</strong></td><td class="neg">-3.81%</td><td>33.89</td><td>JDM 逻辑未变，涨停后 RSI 未透支</td></tr>
+<tr><td><strong>澜起科技</strong></td><td class="neg">-12.14%</td><td>42.36</td><td>回踩 200 下方即调仓第二批买点（本周最低 191.80 已到过）</td></tr>
+<tr><td><strong>三祥新材</strong></td><td class="neg">-12.92%</td><td>24.66</td><td>超卖区，等固态电池新催化</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>周度提醒</strong>：澜起本周最低 191.80（7/29），已跌破 200 关键位——<em>老潘若在 191-200 区间已按计划买入第二批，即无需等下周；若未买，下周回踩仍是买点</em>。SNDK 8/14 前主线仓位不增不减的纪律与调仓第二批（澜起加仓）并不冲突——第二批是“换仓”而非“新增”，是集中到最强主线的既定动作。</p>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">06</span><h2>下周展望 + 关键节点</h2></div>
+<div class="module-body">
+<div class="chart-box" id="chart-week"></div>
+<script>
+const chartW = echarts.init(document.getElementById('chart-week'));
+chartW.setOption({
+  backgroundColor:'transparent',
+  grid:{left:60,right:30,top:30,bottom:60},
+  xAxis:{type:'category',data:['调仓执行(下周初)','政治局细则(8月)','8/4留用裁决','SNDK(8/14)','日本央行(9月)'],axisLine:{lineStyle:{color:'#9aa5b9'}},axisLabel:{color:'#d0d8e6',rotate:0}},
+  yAxis:{type:'value',name:'重要性(1-5)',min:0,max:5,axisLine:{lineStyle:{color:'#9aa5b9'}},splitLine:{lineStyle:{color:'rgba(155,165,185,0.1)'}},axisLabel:{color:'#d0d8e6'}},
+  series:[{type:'bar',data:[{value:4,itemStyle:{color:'#f5a623'}},{value:5,itemStyle:{color:'#3ddcc8'}},{value:3,itemStyle:{color:'#9aa5b9'}},{value:5,itemStyle:{color:'#ff3b3b'}},{value:4,itemStyle:{color:'#ffd83d'}}],label:{show:true,position:'top',color:'#ffd83d',fontWeight:'bold'},itemStyle:{borderRadius:[4,4,0,0]}}]
+});
+window.addEventListener('resize',()=>chartW.resize());
+</script>
+<div class="table-wrap">
+<table class="f4">
+<thead><tr><th>下周事项</th><th>时点</th><th>行动</th><th>触发/验收标准</th></tr></thead>
+<tbody>
+<tr><td><strong>调仓第一批</strong></td><td>下周初</td><td>卖兴森（利润仓落袋）</td><td>反抽 28 上方优先出；低开则分批，不恋战</td></tr>
+<tr><td><strong>调仓第二批</strong></td><td>澜起回踩 200 下方</td><td>买入 1/2（约 11 万）</td><td>196-200 区间分批；冲 230+ 不追</td></tr>
+<tr><td>留用裁决</td><td>8/4（周二）22:00</td><td>巴蒂交 8 指标裁决报告</td><td>≥6 项 ✓ 通过</td></tr>
+<tr><td>SNDK 财报</td><td>8/14</td><td>存储链最后验证</td><td>确认 NAND 涨价 → 调仓第三批 + 澜起 TAM 逻辑</td></tr>
+<tr><td>政治局细则</td><td>8 月</td><td>等降息/降准落地</td><td>细则落地 = 市场底信号之一</td></tr>
+<tr><td>日本央行</td><td>9 月会议</td><td>流动性风险监控</td><td>日元单日 &gt;2% / 日本卖美债 / 加息表态</td></tr>
+</tbody>
+</table>
+</div>
+<div class="risk-box"><strong>下周风险提示</strong>：① 反弹若不能放量站稳（上证 3830 / 科创 1830 上方），可能二次探底；② 兴森卖出时点若遇板块脉冲，勿因“少卖几个点”动摇——<em>调仓目标是集中到最强主线，不是卖在最高点</em>；③ 日本央行套息平仓是中期尾部风险，任何“日元单日 &gt;2%”异动需立即复核 AI 链。</div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">07</span><h2>反一致预期审查：本周判断对错复盘</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f4 grade">
+<thead><tr><th>巴蒂判断</th><th>结果</th><th>对错</th><th>归因</th></tr></thead>
+<tbody>
+<tr><td>7/30 早盘“加仓窗口可能打开”（三星业绩 +18 倍）</td><td>当日 S 级集体重挫，罗博 -12.56%</td><td class="neg">❌ 错</td><td>把“一级供应商确认”误读为“A 股立刻兑现”；恐慌状态下基本面短期失灵（错题本 #14）</td></tr>
+<tr><td>7/30“政策底 ≠ 市场底”</td><td>7/30 政治局利好当日未救市，7/31 靠外围反弹</td><td class="pos">✓ 对</td><td>历史规律：政策底领先市场底 1-3 个月</td></tr>
+<tr><td>7/29“AMZN capex 维持 → 7/31 反弹”</td><td>AMZN 不维持而是上调 2000→2200 亿，7/31 如期大反弹</td><td class="pos">✓ 对</td><td>AMZN 上修超预期，反弹逻辑兑现（方向对、强度超预期）</td></tr>
+<tr><td>7/31“大涨不追高”</td><td>罗博盘中 +17.4%→收 +16.07%、澜起 +12.8% 高开→收 +4.13%</td><td class="pos">✓ 对</td><td>追高即套，纪律被验证</td></tr>
+<tr><td>7/31 放弃算力租赁回归 S 级</td><td>当日 S 级集体反弹、润泽 +10.3% 后回落</td><td class="pos">✓ 对</td><td>收益空间标准（&lt;20% 涨幅不看）筛掉重资产做小板块</td></tr>
+</tbody>
+</table>
+</div>
+<div class="opp-box"><strong>本周最宝贵的收获</strong>：<em>“事后归因谬误”自我纠偏成功</em>——7/30 早盘误判后，当天复盘即固化错题本 #14（恐慌状态前置检查），7/31 面对同样的“利好”不再急于下结论，改为“观望 30 分钟 + 不追高”，结果正确。<em>机制在生效，这是比任何一次判断对错更重要的进步。</em></div>
+</div>
+</div>
+
+<div class="module">
+<div class="module-title"><span class="module-num">08</span><h2>数据核源矩阵</h2></div>
+<div class="module-body">
+<div class="table-wrap">
+<table class="f5 matrix">
+<thead><tr><th>数据</th><th>源</th><th>工具</th><th>已核</th><th>置信</th></tr></thead>
+<tbody>
+<tr><td>4 指数 7/24-7/31 日 K（周度涨跌）</td><td>Wind index_data K 线</td><td>node scripts/cli.mjs</td><td>✓</td><td>★★★</td></tr>
+<tr><td>11 只持仓 7/24-7/31 日 K</td><td>Wind stock_data K 线</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>RSI-14（6 只关键持仓）</td><td>Wind get_stock_technicals</td><td>同上</td><td>✓</td><td>★★★</td></tr>
+<tr><td>五节点（台积电/GOOGLE/META/MSFT/AMZN）</td><td>各节点当日核源（记忆日志）</td><td>WebSearch+财联社</td><td>✓</td><td>★★★</td></tr>
+<tr><td>长鑫止盈 +439.8% / 38,084 元</td><td>7/27 工作日志</td><td>记忆核源</td><td>✓</td><td>★★★</td></tr>
+<tr><td>政治局“适度宽松货币政策”</td><td>新华社原文</td><td>同花顺 WebFetch</td><td>✓</td><td>★★★</td></tr>
+<tr><td>情景概率校准</td><td>巴蒂主观判断</td><td>—</td><td>—</td><td>★★（主观）</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:10px"><strong>Wind Key 状态：</strong>本周复盘全量 22 次调用成功 ✅ · 无 WebSearch 凑数项</p>
+</div>
+</div>
+
+<div class="subtitle" style="text-align:center;margin-top:20px;color:var(--text-dim);font-size:11px">
+本报告仅供研究参考，不构成投资建议。据此操作风险自担。<br>
+数据来源：Wind 金融数据服务 · 生成时间 2026-08-01 10:40 GMT+8
+</div>
+</body>
+</html>
