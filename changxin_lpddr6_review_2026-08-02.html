@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>长鑫LPDDR6研报独立评估 | 2026-08-02</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--text:#eef2f8;--sub:#9aa5b9;
+  --divider:#2a3556;--accent:#3ddcc8;--num:#f5a623;--data:#ffd83d;
+  --up:#ff3b3b;--down:#1ed890;--purple:#9b6dff;--blue:#3b82f6;
+  --zebra:rgba(255,255,255,0.02);--head-bg:rgba(155,165,185,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  padding:0 0 24px;max-width:940px;margin:0 auto;
+  font-size:14px;line-height:1.7;
+  overflow-wrap:break-word;word-break:break-word;
+}
+.hero{padding:28px 20px;border-bottom:2px solid var(--accent)}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.3px;text-wrap:balance}
+.hero .sub{font-size:13px;color:var(--sub)}
+
+.module{
+  margin:14px 16px;background:var(--card);
+  border:1px solid var(--divider);border-radius:10px;
+  padding:20px 22px;overflow:hidden;
+}
+.module-title{
+  font-size:16px;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.module-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;font-size:13px;font-weight:900;
+  border-radius:6px;flex-shrink:0;background:var(--num);color:#0d1424;
+}
+
+/* === 表格 === */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed}
+th,td{
+  padding:9px 12px;border-bottom:1px solid rgba(155,165,185,0.08);
+  vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;
+}
+th{
+  color:#d0d8e6;font-weight:700;font-size:12px;
+  background:var(--head-bg);white-space:nowrap;letter-spacing:0.5px;
+  text-align:center;
+}
+td{text-align:left}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--zebra)}
+
+/* f4 12/30/14/44 用于论点/判断表，第二列长文本需更宽 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:12%}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:30%}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:44%}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){text-align:left}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:center}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}
+
+/* f4.hold 22/18/14/46 用于持仓映射，首列股票名+代码需更宽 */
+table.f4.hold th:nth-child(1),table.f4.hold td:nth-child(1){width:22%}
+table.f4.hold th:nth-child(2),table.f4.hold td:nth-child(2){width:18%}
+table.f4.hold th:nth-child(3),table.f4.hold td:nth-child(3){width:14%}
+table.f4.hold th:nth-child(4),table.f4.hold td:nth-child(4){width:46%}
+table.f4.hold th:nth-child(1),table.f4.hold td:nth-child(1){text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4.hold th:nth-child(2),table.f4.hold td:nth-child(2){text-align:left}
+table.f4.hold th:nth-child(3),table.f4.hold td:nth-child(3){text-align:center}
+table.f4.hold th:nth-child(4),table.f4.hold td:nth-child(4){text-align:left}
+
+/* f3 22/38/40 用于观察清单，第二列长文本需更宽 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:38%}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:40%}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){text-align:left}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){text-align:left}
+
+/* f3.op 操作建议 28/16/56 */
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){width:28%}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){width:16%}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){width:56%}
+table.f3.op th:nth-child(1),table.f3.op td:nth-child(1){text-align:left}
+table.f3.op th:nth-child(2),table.f3.op td:nth-child(2){text-align:center}
+table.f3.op th:nth-child(3),table.f3.op td:nth-child(3){text-align:left}
+
+/* 首列加亮 */
+table td:first-child,table th:first-child{font-weight:600;color:#c8d0dc}
+table.nowrap-first td:first-child,table.nowrap-first th:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 颜色——铁律3: 涨红跌绿 + nowrap防拆行 */
+.up{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.down{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.highlight-data{color:var(--data);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.tag-up{background:rgba(255,59,59,0.12);color:var(--up)}
+.tag-down{background:rgba(30,216,144,0.12);color:var(--down)}
+.tag-cyan{background:rgba(61,220,200,0.12);color:var(--accent)}
+.tag-gold{background:rgba(255,216,61,0.12);color:var(--data)}
+
+.caption{font-size:13px;color:var(--text);margin:6px 0 0;line-height:1.7}
+.caption-sub{font-size:12px;color:var(--sub);margin:6px 0 0;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.03);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+.stat-card .val{font-size:22px;font-weight:900;letter-spacing:-0.5px}
+.stat-card .lbl{font-size:11px;color:var(--sub);margin-top:3px}
+
+/* 溢出兜底 */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+#chart{width:100%;height:220px;margin:14px 0 4px}
+footer{padding:18px 20px;color:var(--sub);font-size:11px;line-height:1.6;border-top:1px solid var(--divider);margin-top:16px}
+
+/* === 铁律4: 移动端响应式——必须项 === */
+@media(max-width:640px){
+  body{font-size:13px;padding:0 0 16px}
+  .hero{padding:20px 14px}
+  .hero h1{font-size:18px}
+  .hero .sub{font-size:12px}
+  .module{margin:10px 8px;padding:16px 14px;border-radius:8px}
+  .module-title{font-size:14px;margin-bottom:10px;gap:8px}
+  .module-num{width:24px;height:24px;font-size:11px;border-radius:5px}
+  .caption{font-size:11px}
+  table{font-size:11px;margin:6px 0}
+  th,td{padding:6px 6px}
+  th{font-size:10px;letter-spacing:0.2px}
+  table td:first-child,table th:first-child{min-width:50px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:10px}
+  .stat-card .val{font-size:18px}
+  .stat-card .lbl{font-size:10px}
+  #chart{height:180px}
+  footer{padding:14px;font-size:10px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table-wrap table{min-width:320px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>长鑫 LPDDR6 研报独立评估</h1>
+  <div class="sub">来源：海涵财经《终于开始亮剑了（深度解读长鑫 LPDDR6）》· 评估时间：2026-08-02 17:48 · 置信度 ★★★☆</div>
+</header>
+
+<!-- 01 核心结论 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">01</span>核心结论</div>
+  <p class="caption">这是一份<strong>产业叙事扎实、但投资推论需要降维处理</strong>的分析。长鑫 LPDDR6 进度超预期是事实，国产 DRAM 从“跟跑”进入“并跑”的叙事成立，对国产算力链情绪是顺风。但它<span class="highlight-data">不能直接推导出澜起短期大涨</span>，也不能推导出 AI 硬件链整体再加仓。</p>
+  <p class="caption" style="margin-top:10px"><strong>最终判断：</strong>长鑫 LPDDR6 是国产 DRAM 的里程碑，但不是澜起的业绩开关。澜起的业绩开关仍在 DDR5 子代迭代、MRDIMM 放量和毛利率上。维持原有持仓纪律，不因单篇文章改变仓位。</p>
+</section>
+
+<!-- 02 文章核心论点 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">02</span>文章核心论点</div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="val" style="color:var(--data)">12800</div><div class="lbl">设计速率 Mbps</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--accent)">16GB</div><div class="lbl">芯片容量</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--data)">7.6%</div><div class="lbl">2026Q1 DRAM 份额</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--accent)">18%</div><div class="lbl">野村 2028 年底份额预测</div></div>
+  </div>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>维度</th><th>文章论点</th><th>置信度</th><th>说明</th></tr>
+    <tr><td>进度</td><td>LPDDR6 研发验证收尾，下半年量产导入</td><td><span class="tag tag-cyan">★★★★</span></td><td>8 月 1 日观察者网/第一财经/163 等多家媒体交叉验证</td></tr>
+    <tr><td>规格</td><td>12800 Mbps/10667 Mbps，16Gb 颗粒，1295 Ball POP</td><td><span class="tag tag-cyan">★★★★</span></td><td>与产业链消息口径一致</td></tr>
+    <tr><td>份额</td><td>2026Q1 全球 DRAM 营收份额 7.6%，2028 年底约 18%</td><td><span class="tag tag-gold">★★★</span></td><td>Omdia 7.6% 是历史数据，18% 是野村预测</td></tr>
+    <tr><td>应用</td><td>LPDDR6 是端侧 AI 通用底座，从手机内存升级为大品类</td><td><span class="tag tag-cyan">★★★★</span></td><td>本地跑 7B/14B 模型对容量/带宽是硬约束</td></tr>
+    <tr><td>华为链</td><td>昇腾/鲲鹏体系采用长鑫 LPDDR 类模组；华为 HBM3 与长鑫合作</td><td><span class="tag tag-gold">★★☆</span></td><td>公开信息极少，弹性大但确定性低</td></tr>
+    <tr><td>苹果</td><td>苹果测试长鑫 DRAM，用于中国市场产品</td><td><span class="tag tag-gold">★★★</span></td><td>FT/库克电话会确认“评估中”，但导入时间和许可不确定</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 03 独立判断 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">03</span>独立判断：哪里站得住，哪里要谨慎</div>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>类型</th><th>具体内容</th><th>判断</th><th>依据</th></tr>
+    <tr><td>硬事实</td><td>长鑫 LPDDR6 研发验证收尾、规格参数、2026 下半年量产计划</td><td><span class="tag tag-cyan">已验证</span></td><td>多家媒体 8/1 报道口径一致</td></tr>
+    <tr><td>硬事实</td><td>SK 海力士/三星 2026 下半年量产 LPDDR6</td><td><span class="tag tag-cyan">已验证</span></td><td>海力士 3 月完成验证，三星 1 月发布产品</td></tr>
+    <tr><td>硬趋势</td><td>端侧 AI 拉动内存容量与带宽升级</td><td><span class="tag tag-cyan">成立</span></td><td>AI 手机/AI PC/汽车/服务器 SOCAMM 共同驱动</td></tr>
+    <tr><td>软推论</td><td>LPDDR6 直接拉动澜起业绩</td><td><span class="tag tag-down">不直接</span></td><td>LPDDR 本身不需要 RCD/DB；SOCAMM2 接口芯片价值量低</td></tr>
+    <tr><td>软推论</td><td>华为 HBM3 是重大预期差</td><td><span class="tag tag-gold">待验证</span></td><td>公开信息极少，2027 年后才能见分晓</td></tr>
+    <tr><td>软推论</td><td>长鑫“估值重构叙事”将推动股价持续上行</td><td><span class="tag tag-gold">需业绩验证</span></td><td>短期情绪与筹码影响更大</td></tr>
+  </table>
+  </div>
+  <p class="caption-sub">注：软推论不是错误，而是需要更多数据才能纳入投资决策。把它当事实操作，风险大于机会。</p>
+</section>
+
+<!-- 04 持仓映射 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">04</span>持仓映射：谁受益，谁无感</div>
+  <div class="table-wrap">
+  <table class="f4 hold">
+    <tr><th>标的</th><th>影响方向</th><th>强度</th><th>说明</th></tr>
+    <tr><td>澜起科技 688008</td><td>间接/情绪利好</td><td><span class="tag tag-gold">中等偏弱</span></td><td>LPDDR6 本身不直接需要 RCD/DB；SOCAMM2 是远期变量但价值量低。澜起核心逻辑仍是 DDR5 子代迭代+MRDIMM 放量+CKD 渗透</td></tr>
+    <tr><td>兴森科技 002436</td><td>间接利好</td><td><span class="tag tag-cyan">中等</span></td><td>长鑫 HBM/先进封装若放量，带动国产先进封装载板需求。兴森有布局，但弹性取决于验证进度</td></tr>
+    <tr><td>三祥新材 603663</td><td>极弱相关</td><td><span class="tag tag-down">弱</span></td><td>锆基材料理论上可用于 HBM/先进封装陶瓷基板等，但离业绩兑现很远</td></tr>
+    <tr><td>罗博特科 300757</td><td>弱相关</td><td><span class="tag tag-down">弱</span></td><td>ficonTEC 是光电子封装设备，与 DRAM 封装设备不是同一条线</td></tr>
+    <tr><td>汇绿生态 001267</td><td>基本无关</td><td><span class="tag tag-down">无</span></td><td>光模块/光器件，与 DRAM 产业链无直接交集</td></tr>
+    <tr><td>软通动力 301236</td><td>间接情绪利好</td><td><span class="tag tag-down">弱</span></td><td>国产算力/AI 应用情绪提升，但业绩映射不清晰</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 05 操作建议 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">05</span>操作建议</div>
+  <div class="table-wrap">
+  <table class="f3.op nowrap-first">
+    <tr><th>标的/事项</th><th>动作</th><th>条件与说明</th></tr>
+    <tr><td>澜起科技</td><td><span class="tag tag-cyan">持有</span></td><td>不因本文追涨。下周若因长鑫/国产 DRAM 情绪带动冲高，观察 200–230 元压力区，不是加仓点。加仓窗口仍在回踩确认时</td></tr>
+    <tr><td>兴森科技</td><td><span class="tag tag-gold">按原计划转换</span></td><td>利润仓可在反弹有承接时逐步向澜起转换，不需要因这篇文章改变转换节奏</td></tr>
+    <tr><td>三祥/罗博/汇绿/软通</td><td><span class="tag tag-cyan">按原纪律</span></td><td>不受本文直接影响</td></tr>
+    <tr><td>长鑫存储</td><td><span class="tag tag-gold">产业观察</span></td><td>7/27 已止盈，现在转为观察变量。若重新关注，需等待量产官宣规格、TechInsights 拆解、旗舰机型导入、季度财报毛利率/良率</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 06 新增观察清单 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">06</span>新增观察清单</div>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>观察项</th><th>信号意义</th><th>验证标准</th></tr>
+    <tr><td>长鑫 LPDDR6 量产官宣</td><td>实际速率档位决定版本 A/B</td><td>是否摸到 14.4Gbps，还是仅 10.7–12.8Gbps 主力档</td></tr>
+    <tr><td>TechInsights 拆解</td><td>反推制程代际和良率</td><td>die 面积、结构、制程节点公开数据</td></tr>
+    <tr><td>旗舰机型导入</td><td>小米 17/18 顶配是否搭载</td><td>拆机或官方规格确认</td></tr>
+    <tr><td>澜起 SOCAMM2 布局</td><td>判断 LPDDR 模块化的实际受益程度</td><td>产品送样/量产/客户认证公开信息</td></tr>
+    <tr><td>华为昇腾/鲲鹏内存形态</td><td>长鑫进入服务器内存链的关键窗口</td><td>鲲鹏 960 平台或 Atlas 950 后续型号官宣</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 07 最终判断 -->
+<section class="module">
+  <div class="module-title"><span class="module-num">07</span>最终判断</div>
+  <p class="caption"><strong>长鑫 LPDDR6 是国产 DRAM 的里程碑，但不是澜起的业绩开关。</strong>它强化了国产算力链的中期叙事，对老潘 S 级持仓整体偏顺风，但直接业绩拉动有限。</p>
+  <p class="caption" style="margin-top:10px">真正决定澜起 2026–2027 年业绩的，仍是 <span class="highlight-data">DDR5 渗透率、MRDIMM 放量、子代迭代和毛利率</span>。在此之前，维持原有纪律：<strong>核心仓持有并验证，非核心仓等待转换窗口，新增仓位从严。</strong></p>
+</section>
+
+<footer>
+  ⚠️ 风险提示：本报告仅供研究参考，不构成投资建议。市场有风险，投资需谨慎。文中所涉标的、价位、策略均仅供研究参考，投资者据此操作风险自担。<br>
+  数据来源：海涵财经《终于开始亮剑了（深度解读长鑫 LPDDR6）》、观察者网、第一财经、Wccftech、东方证券研报、雪球公开分析。
+</footer>
+
+</body>
+</html>
