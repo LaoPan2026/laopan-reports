@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周末 AI 主线交叉验证 · 2026-08-02</title>
+<style>
+:root{
+  --bg:#0d1424; --card:#1a2540; --bar:#f5a623; --data:#ffd83d;
+  --cyan:#3ddcc8; --grey:#9aa5b9; --line:#2a3556;
+  --up:#ff3b3b; --down:#1ed890;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#e6ecf5;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.62}
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,#16203a,#0d1424);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:22px}
+.hero .tag{display:inline-block;background:rgba(245,166,35,.15);color:var(--bar);font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:25px;line-height:1.3;margin:6px 0 8px;letter-spacing:0;text-wrap:balance;color:#fff}
+.hero .sub{color:var(--grey);font-size:13.5px}
+.hero .thesis{margin-top:12px;padding:12px 14px;border-left:4px solid var(--cyan);background:rgba(61,220,200,.08);border-radius:0 8px 8px 0;font-size:14px;color:#cfe9e4}
+.hero .thesis b{color:var(--cyan)}
+.mod{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--bar);border-radius:10px;padding:16px 18px;margin-bottom:18px}
+.mod h2{font-size:18px;margin:0 0 12px;color:#fff;display:flex;align-items:center;gap:8px}
+.mod h2 .no{color:var(--bar);font-weight:700;font-size:15px}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:6px 0 4px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 9px;vertical-align:top;overflow:hidden;text-wrap:pretty}
+th{background:rgba(42,53,86,.55);color:var(--cyan);font-weight:600;text-align:left}
+td{color:#dde4f0}
+.pos{color:var(--up);white-space:nowrap;font-weight:600}
+.neg{color:var(--down);white-space:nowrap;font-weight:600}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nowrap{white-space:nowrap}
+.src{display:inline-block;background:rgba(154,165,185,.15);color:var(--grey);font-size:11px;padding:1px 6px;border-radius:4px;margin-left:3px}
+.callout{padding:14px 16px;border-radius:10px;margin:4px 0 6px;font-size:14px;line-height:1.68}
+.verdict{background:rgba(61,220,200,.10);border-left:5px solid var(--cyan)}
+.edge{background:rgba(245,166,35,.10);border-left:5px solid var(--bar)}
+.risk{background:rgba(255,59,59,.10);border-left:5px solid var(--up)}
+.callout b{color:#fff}
+.pipeline{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:10px 0}
+.stage{flex:1;min-width:150px;background:rgba(42,53,86,.4);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+.stage .t{color:var(--cyan);font-weight:600;margin-bottom:6px;font-size:13px}
+.stage .i{color:var(--grey);font-size:12px;line-height:1.55}
+.arrow{display:flex;align-items:center;color:var(--bar);font-size:20px;padding:0 3px}
+ul.facts{margin:6px 0;padding-left:0;list-style:none;counter-reset:f}
+ul.facts li{counter-increment:f;position:relative;padding:10px 12px 10px 44px;margin-bottom:8px;background:rgba(42,53,86,.3);border-radius:8px;font-size:13.5px;line-height:1.6}
+ul.facts li::before{content:counter(f);position:absolute;left:12px;top:10px;width:22px;height:22px;background:var(--bar);color:#0d1424;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+ul.facts li b{color:#fff}
+.disclaim{margin-top:24px;padding:14px 16px;background:rgba(42,53,86,.3);border:1px dashed var(--line);border-radius:8px;font-size:12.5px;color:var(--grey);line-height:1.75}
+/* f-a 四源速览 20/14/34/32 */
+table.f-a th:nth-child(1),table.f-a td:nth-child(1){width:20%}
+table.f-a th:nth-child(2),table.f-a td:nth-child(2){width:14%}
+table.f-a th:nth-child(3),table.f-a td:nth-child(3){width:34%}
+table.f-a th:nth-child(4),table.f-a td:nth-child(4){width:32%}
+table.f-a td:nth-child(1){white-space:nowrap}
+/* f-b 多空对账 28/40/32 */
+table.f-b th:nth-child(1),table.f-b td:nth-child(1){width:28%}
+table.f-b th:nth-child(2),table.f-b td:nth-child(2){width:40%}
+table.f-b th:nth-child(3),table.f-b td:nth-child(3){width:32%}
+/* f-c 映射矩阵 18/16/36/30 */
+table.f-c th:nth-child(1),table.f-c td:nth-child(1){width:18%}
+table.f-c th:nth-child(2),table.f-c td:nth-child(2){width:16%}
+table.f-c th:nth-child(3),table.f-c td:nth-child(3){width:36%}
+table.f-c th:nth-child(4),table.f-c td:nth-child(4){width:30%}
+table.f-c td:nth-child(1),table.f-c td:nth-child(2){white-space:nowrap}
+/* f-d 硬开关 20/25/25/30 */
+table.f-d th:nth-child(1),table.f-d td:nth-child(1){width:20%}
+table.f-d th:nth-child(2),table.f-d td:nth-child(2){width:25%}
+table.f-d th:nth-child(3),table.f-d td:nth-child(3){width:25%}
+table.f-d th:nth-child(4),table.f-d td:nth-child(4){width:30%}
+table.f-d td:nth-child(1){white-space:nowrap}
+/* f-e 操作框架 26/36/38 */
+table.f-e th:nth-child(1),table.f-e td:nth-child(1){width:26%}
+table.f-e th:nth-child(2),table.f-e td:nth-child(2){width:36%}
+table.f-e th:nth-child(3),table.f-e td:nth-child(3){width:38%}
+table.f-e td:nth-child(1){white-space:nowrap}
+/* f-g 核源矩阵 30/20/15/35 */
+table.f-g th:nth-child(1),table.f-g td:nth-child(1){width:30%}
+table.f-g th:nth-child(2),table.f-g td:nth-child(2){width:20%}
+table.f-g th:nth-child(3),table.f-g td:nth-child(3){width:15%}
+table.f-g th:nth-child(4),table.f-g td:nth-child(4){width:35%}
+table.f-g td:nth-child(3){white-space:nowrap;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <span class="tag">周末 AI 主线交叉验证</span>
+  <h1>四份关键输入对账：调整是流动性负反馈，不是逻辑破坏</h1>
+  <div class="sub">覆盖时段 2026-07-31 ~ 08-02（周末）｜生成时间 2026-08-02 21:49（北京时间）｜数据锚点以当前系统时间为准</div>
+  <div class="thesis"><b>一句话主线：</b>本周末的看多事实（三星存储短缺延长至 2028、MLCC 全系涨价、CSP Capex 上修、OpenAI 能力跃迁）一致指向——AI 硬件链的波动来自估值/筹码/情绪，而非基本面；供给硬约束反而把景气长度拉长。但「AI 通胀」是双刃剑，且不等于周一追涨的理由。</div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">01</span>四源速览</h2>
+  <table class="f-a">
+    <tr><th>来源</th><th>时间 · 类型</th><th>核心论点</th><th>对持仓的含义</th></tr>
+    <tr><td>天赢居技术复盘</td><td>08-02 18:33<br>技术派</td><td>上证 55 交易日窗止跌，科技强反弹定性为「A 浪后的 B 浪修复」；主升未确认；3811 守/3900 站稳为分水岭。</td><td>连偏多技术派都承认主升未确认 → 与「验证反弹质量、不扩大赌注」同向。3811/3900 是情绪开关非个股止损线。</td></tr>
+    <tr><td>OpenAI Astra</td><td>08-01 官方<br>科技事件</td><td>内部版 Astra 在 10 个十年以上数学/理论计算机难题取得突破，Lean 形式化验证，论文 249 页。</td><td>短期利好 AI 叙事与情绪，或助推 8/3 高开；但非 CSP Capex/订单/毛利率层面的基本面变化，不构成加仓理由。</td></tr>
+    <tr><td>兴证策略张启尧</td><td>08-02 17:27<br>卖方策略</td><td>大跌改变「位置/估值/筹码分化」，未改变「景气分化（AI 仍优于非 AI）」；四大 CSP 26 年 Capex +80%、RPO 高增超云收入。</td><td>用卖方数据验证「大逻辑没破、跌的是估值」；支持持有 S 级穿越波动、推进兴森→澜起转换。长期合意≠周一追。</td></tr>
+    <tr><td>AI通胀日报</td><td>07-31~08-02<br>产业链聚合</td><td>存储短缺延长至 2028 + 60–70% 产能锁长协；三星电机 MLCC 全系 +30%；电子布/CCL 连续月度提价；PJM 电力约束升级。</td><td>强验证 S 级大逻辑；存储与 Capex 两开关均反向走强。成本传导吃掉终端利润为风险面。</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">02</span>本周末关键事实清单</h2>
+  <ul class="facts">
+    <li><b>存储短缺延长至 2028。</b>三星 7/30 电话会：2027 比 2026 更紧，总产能 60–70% 纳入 5 年滚动长协（含预付款、最低价格保底）；HBM4 Q3 销售额环比 +3 倍。<span class="src">证券时报/腾讯/上证报 多源验证</span></li>
+    <li><b>MLCC 从传闻变函件涨价。</b>三星电机 8/1 起全系 +30%；太阳诱电 9/1 跟进；村田高容选择性 +15–35%；高端高容交期 20–30 周。<span class="src">TechNews/The Elec/上证报 多源验证</span></li>
+    <li><b>CSP Capex 继续上修。</b>兴证引四大 CSP 26 年 Capex 指引 +80%、27 年无缩减；云厂 RPO/Backlog 增速超云收入 → 供需缺口保障持续性。<span class="src">兴证策略/汇丰</span></li>
+    <li><b>OpenAI Astra 能力跃迁。</b>8/1 官方发布 10 项数学突破，全部经 Lean 4 形式化验证；模型解题 Token 成本按 Sol API 约 $2,000。<span class="src">OpenAI 官方 已验证</span></li>
+    <li><b>技术派自认主升未确认。</b>天赢居：科技硬件强反弹为 B 浪修复，3811（趋势线交点）守住=筑底延续、3900 上方密集区为试金石。<span class="src">天赢居 技术复盘</span></li>
+  </ul>
+</div>
+
+<div class="mod">
+  <h2><span class="no">03</span>多空对账：看空叙事 vs 看多事实</h2>
+  <table class="f-b">
+    <tr><th>看空叙事</th><th>看多事实</th><th>我们的判断</th></tr>
+    <tr><td>DeepSeek 价格战 → 算力需求崩 → AI 硬件泡沫</td><td>存储/MLCC 结构性涨价、CSP Capex 上修、RPO 高增、三星产能锁长协</td><td>模型降价→应用爆发→算力总需求非线性上升。需求没死，是供给跟不上。不构成 S 级卖出理由。</td></tr>
+    <tr><td>周五强反弹 = 死猫跳，调整未结束</td><td>天赢居自认主升未确认（B 浪）；兴证：两融电子 -23%、公募 AI 回撤 25–50% 已调仓</td><td>不追涨但也非逻辑破。验证反弹质量，核心仓持有穿越；澜起加仓只在回踩确认。</td></tr>
+    <tr><td>AI 估值太贵，随时杀</td><td>兴证：广义科技篮子 27 年 PE 10–20x；但 S 级仍高溢价（澜起 55x）</td><td>「10–20x」是大市值篮子均值，不等同高成长 AI 硬件。长期合意≠周一追；S 级高溢价正因景气高，回踩确认才接。</td></tr>
+    <tr><td>2.3 万亿云订单 = 硬件再翻倍</td><td>订单≠利润≠股价；口径含 TCV/意向，模糊</td><td>强化需求真实，但不能直接推导股价空间；非加仓理由，仅作情绪顺风。</td></tr>
+    <tr><td>AI 通胀全是利好</td><td>三星 MX 2Q 因元件通胀亏 0.7 万亿韩元、苹果下修毛利；PJM 备用 22→5GW</td><td>双刃剑。汇绿/罗博盯毛利率能否传导；电力约束或拖延 2.3 万亿订单部署节奏。</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">04</span>核心判断</h2>
+  <div class="callout verdict">
+    <b>本轮 AI 调整是流动性/仓位/情绪负反馈，不是基本面破坏；供给硬约束把景气长度拉长到 2028。</b><br>
+    五个硬开关（CSP Capex 下修 / 存储合约价转弱 / 日元套息失序 / 公司基本面恶化 / SNDK 8-14 财报）当前全部未触发，且存储与 Capex 维度反而边际走强。结论是：<b>核心仓持有并验证，非核心仓等转换窗口，新增仓位从严；周一不因周末利好追涨。</b>
+  </div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">05</span>预期差：市场正在误读什么</h2>
+  <div class="callout edge">
+    <b>误读一：「科技已不贵」→ 直接追高 S 级。</b>兴证「27 年 PE 10–20x」是广义大市值科技篮子均值，澜起/罗博/汇绿仍享高溢价，正因为景气更高。不能用篮子均值给 S 级定便宜。<br>
+    <b>误读二：「2.3 万亿订单=股价空间」。</b>订单是未来收入承诺，含多年 TCV/意向，非会计准则 RPO；且订单≠利润≠现金流，更≠股价空间。<br>
+    <b>误读三：「AI 通胀全是利好」。</b>涨价吃掉的是终端利润（三星 MX 亏、苹果降毛利），对光模块/设备毛利率是潜在挤压，需盯传导能力。
+  </div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">06</span>持仓映射矩阵</h2>
+  <table class="f-c">
+    <tr><th>标的</th><th>方向·强度</th><th>逻辑链</th><th>动作</th></tr>
+    <tr><td>澜起 688008</td><td class="pos">强正面 ★★★★★</td><td>存储短缺到 2028→内存厂超常盈利→扩产 Capex→DDR5/MRDIMM/CKD/CXL 需求延长；DRAM ASP +294%（里昂模型）、3Q 合约 +15%。</td><td>持有穿越；回踩 200 附近缩量企稳才加，不追。</td></tr>
+    <tr><td>罗博 300757</td><td class="pos">正面 ★★★★</td><td>CPO 量产启动（英伟达 Spectrum-X/博通 Bailly）、1.6T 测试设备单价 4–5 倍→ficonTEC 光电子封装设备卡位。</td><td>S 级逻辑不变；周五 +16% 后不追，等承接。</td></tr>
+    <tr><td>汇绿 001267</td><td class="pos">正面带刺 ★★★★</td><td>光模块需求强（设备需求 26 年 20–30 亿→27 年 50–60 亿）；但 CPO 降本 30%+、上游 MLCC/CCL/电子布涨价挤压毛利。</td><td>五节点对赌期不增不减；多盯毛利率传导。</td></tr>
+    <tr><td>兴森 002436</td><td class="pos">正面 ★★★</td><td>先进封装载板随三星电机 FC-BGA Capex 上修（27 年 3.2→3.8 万亿韩元）、AI 封装扩产受益。</td><td>利润仓；反弹承接时卖、配合澜起回踩转换。</td></tr>
+    <tr><td>三祥 603663</td><td>弱相关 ★</td><td>电子布/CCL/MLCC 与锆/固态无直接交集；仅供给硬约束情绪泛相关。</td><td>500 亿前不减，按原纪律。</td></tr>
+    <tr><td>软通 301236</td><td>情绪正面 ★★</td><td>AI 应用层叙事受益，业绩映射不清晰。</td><td>标杆仓不动。</td></tr>
+    <tr><td>华峰/泰和/德展/太钢</td><td>无关 —</td><td>防御仓，不受 AI 链影响。</td><td>防御持有。</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">07</span>硬开关状态（反转开关巡检）</h2>
+  <table class="f-d">
+    <tr><th>开关</th><th>当前状态</th><th>信号源</th><th>结论</th></tr>
+    <tr><td>CSP Capex 下修</td><td class="pos">未触发（绿灯）</td><td>四大 CSP 26 年 +80%、27 年无缩减；AMZN 2000→2200 亿上修</td><td>维持核心仓</td></tr>
+    <tr><td>存储合约价转弱</td><td class="pos">反向（上涨）</td><td>3Q26 DRAM +15%、NAND +10–15%；三星 60–70% 产能锁长协至 2028</td><td>强支撑澜起</td></tr>
+    <tr><td>日元套息失序</td><td class="pos">未触发</td><td>美日联合干预后汇率趋稳；单日波动 &lt;2%</td><td>监控 BOJ 路径</td></tr>
+    <tr><td>公司基本面恶化</td><td class="pos">未触发</td><td>持仓无订单/毛利率 miss 公告；S 级逻辑底座未破</td><td>维持</td></tr>
+    <tr><td>SNDK 8-14 财报</td><td class="neg">待验</td><td>五节点最后一项</td><td>节点前主线不增不减</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">08</span>产业链全景（需求→组件→材料→电力）</h2>
+  <div class="pipeline">
+    <div class="stage"><div class="t">需求端</div><div class="i">AI 算力 Capex 上修、Agentic AI、模型降价促应用爆发</div></div>
+    <div class="arrow">→</div>
+    <div class="stage"><div class="t">核心组件</div><div class="i">内存接口（澜起）、光模块（汇绿）、被动元件 MLCC、先进封装设备（罗博）</div></div>
+    <div class="arrow">→</div>
+    <div class="stage"><div class="t">上游材料</div><div class="i">电子布/CCL 连续提价、MLCC 陶瓷、ABF 载板（兴森）、硅片</div></div>
+    <div class="arrow">→</div>
+    <div class="stage"><div class="t">电力基建</div><div class="i">数据中心/PJM 约束、SMR 核电、供电设备</div></div>
+  </div>
+  <div class="callout edge" style="margin-top:8px">读图要点：涨价沿「需求→组件→材料」传导顺畅，但终端（手机/云厂）利润被成本吃掉；电力是最后一段瓶颈，可能拖延整体部署节奏。我们的 S 级卡在「核心组件」段，最受益于前两段传导。</div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">09</span>下周操作框架（8/3–8/7）</h2>
+  <table class="f-e">
+    <tr><th>标的 / 事项</th><th>观察项</th><th>条件动作</th></tr>
+    <tr><td>澜起 688008</td><td>能否在 200 上方缩量企稳、非冲高回落；AI/存储逻辑海外映射确认</td><td>不追 230+；回踩确认才分步转换；放量跌破 196 暂停新增</td></tr>
+    <tr><td>兴森→澜起转换</td><td>兴森反弹承接卖、澜起回踩确认买</td><td>两件事不能倒转；不在澜起冲高时追价换仓</td></tr>
+    <tr><td>汇绿 001267</td><td>涨停后封单/换手/次日溢价；有无产业催化</td><td>对赌期不增不减；高开大幅回落、放量开板，属情绪波动非逻辑破</td></tr>
+    <tr><td>罗博 300757</td><td>16% 大涨后承接；ficonTEC 逻辑延续</td><td>不追；高位巨量滞涨按情绪过热</td></tr>
+    <tr><td>三祥 603663</td><td>锆/固态催化与送转后筹码</td><td>500 亿前不减；不因 20 日跌幅技术止损</td></tr>
+    <tr><td>宏观与海外</td><td>日元波动/美长债/CSP 预期</td><td>三者任一恶化暂停所有新增风险敞口</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">10</span>风险</h2>
+  <div class="callout risk">
+    <b>① AI 通胀双刃剑：</b>成本传导吃掉终端利润（三星 MX 2Q 亏 0.7 万亿韩元、苹果下修毛利）→ 汇绿/罗博毛利率能否传导需盯。<br>
+    <b>② 电力约束升级：</b>PJM 拟对 50MW+ 负荷登记，紧张时可能拉闸；7 月备用容量 22→5GW → 或拖延 2.3 万亿云订单部署。<br>
+    <b>③ 部分数字为激进估计：</b>里昂「DRAM ASP 2026 +294%」为模型值；MLCC 现货「2–3 倍」为渠道极端样本，引用需分层。<br>
+    <b>④ 日元套息失序尾部：</b>若美日干预迫使 BOJ 更快收紧，套息平仓或冲击全球高估值 AI 资产。
+  </div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">11</span>数据核源矩阵</h2>
+  <table class="f-g">
+    <tr><th>关键数据</th><th>来源</th><th>置信度</th><th>备注</th></tr>
+    <tr><td>存储短缺至 2028 + 60–70% 长协</td><td>三星 7/30 电话会（证券时报/腾讯/上证报证实）</td><td>已验证</td><td>官方表述，强支撑 S 级</td></tr>
+    <tr><td>三星电机 MLCC +30%（8/1）</td><td>TechNews/The Elec/上证报</td><td>已验证</td><td>原厂涨价函；高端高容交期 20–30 周</td></tr>
+    <tr><td>四大 CSP 26 年 Capex +80%</td><td>兴证策略/汇丰</td><td>高</td><td>与五节点验证同向</td></tr>
+    <tr><td>OpenAI Astra 10 项突破</td><td>OpenAI 官方 8/1</td><td>已验证</td><td>待数学界评议；情绪催化非基本面</td></tr>
+    <tr><td>DRAM ASP 2026 +294%</td><td>里昂模型</td><td>中</td><td>模型估计非已实现，引用分层</td></tr>
+    <tr><td>PJM 备用 22→5GW</td><td>日报引电网数据</td><td>中</td><td>电力约束或拖延部署</td></tr>
+  </table>
+</div>
+
+<div class="disclaim">
+  ⚠️ 免责声明：本报告仅为基于公开信息的分析讨论，不构成任何投资建议、理财建议或交易邀约。市场有风险，投资需谨慎。文中所涉标的、价位、策略均仅供研究参考，不保证分析准确性或完整性，不代表对任何投资结果的承诺。投资者应根据自身风险承受能力、投资目标和财务状况独立做出决策并承担相应风险。过往业绩不预示未来表现。
+</div>
+
+</div>
+</body>
+</html>
