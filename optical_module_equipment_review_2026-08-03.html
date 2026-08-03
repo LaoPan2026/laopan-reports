@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>光模块设备扩产×持仓映射 · 2026-08-03</title>
+<style>
+:root{
+  --bg:#0d1424; --card:#1a2540; --bar:#f5a623; --data:#ffd83d;
+  --cyan:#3ddcc8; --grey:#9aa5b9; --line:#2a3556;
+  --up:#ff3b3b; --down:#1ed890;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#e6ecf5;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.62}
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,#16203a,#0d1424);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:22px}
+.hero .tag{display:inline-block;background:rgba(245,166,35,.15);color:var(--bar);font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:25px;line-height:1.3;margin:6px 0 8px;letter-spacing:0;text-wrap:balance;color:#fff}
+.hero .sub{color:var(--grey);font-size:13.5px}
+.hero .thesis{margin-top:12px;padding:12px 14px;border-left:4px solid var(--cyan);background:rgba(61,220,200,.08);border-radius:0 8px 8px 0;font-size:14px;color:#cfe9e4}
+.hero .thesis b{color:var(--cyan)}
+.mod{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--bar);border-radius:10px;padding:16px 18px;margin-bottom:18px}
+.mod h2{font-size:18px;margin:0 0 12px;color:#fff;display:flex;align-items:center;gap:8px}
+.mod h2 .no{color:var(--bar);font-weight:700;font-size:15px}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:6px 0 4px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 9px;vertical-align:top;overflow:hidden;text-wrap:pretty}
+th{background:rgba(42,53,86,.55);color:var(--cyan);font-weight:600;text-align:left}
+td{color:#dde4f0}
+.pos{color:var(--up);white-space:nowrap;font-weight:600}
+.neg{color:var(--down);white-space:nowrap;font-weight:600}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nowrap{white-space:nowrap}
+.src{display:inline-block;background:rgba(154,165,185,.15);color:var(--grey);font-size:11px;padding:1px 6px;border-radius:4px;margin-left:3px}
+.callout{padding:14px 16px;border-radius:10px;margin:4px 0 6px;font-size:14px;line-height:1.68}
+.verdict{background:rgba(61,220,200,.10);border-left:5px solid var(--cyan)}
+.edge{background:rgba(245,166,35,.10);border-left:5px solid var(--bar)}
+.risk{background:rgba(255,59,59,.10);border-left:5px solid var(--up)}
+.callout b{color:#fff}
+.pipeline{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:10px 0}
+.stage{flex:1;min-width:150px;background:rgba(42,53,86,.4);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+.stage .t{color:var(--cyan);font-weight:600;margin-bottom:6px;font-size:13px}
+.stage .i{color:var(--grey);font-size:12px;line-height:1.55}
+.stage.posb{background:rgba(255,59,59,.10);border-color:rgba(255,59,59,.4)}
+.stage.posb .t{color:var(--up)}
+.stage.posc{background:rgba(61,220,200,.10);border-color:rgba(61,220,200,.4)}
+.stage.posc .t{color:var(--cyan)}
+.arrow{display:flex;align-items:center;color:var(--bar);font-size:20px;padding:0 3px}
+ul.facts{margin:6px 0;padding-left:0;list-style:none;counter-reset:f}
+ul.facts li{counter-increment:f;position:relative;padding:10px 12px 10px 44px;margin-bottom:8px;background:rgba(42,53,86,.3);border-radius:8px;font-size:13.5px;line-height:1.6}
+ul.facts li::before{content:counter(f);position:absolute;left:12px;top:10px;width:22px;height:22px;background:var(--bar);color:#0d1424;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+ul.facts li b{color:#fff}
+.disclaim{margin-top:24px;padding:14px 16px;background:rgba(42,53,86,.3);border:1px dashed var(--line);border-radius:8px;font-size:12.5px;color:var(--grey);line-height:1.75}
+/* f-verify 核对 28/42/30 */
+table.f-verify th:nth-child(1),table.f-verify td:nth-child(1){width:28%}
+table.f-verify th:nth-child(2),table.f-verify td:nth-child(2){width:42%}
+table.f-verify th:nth-child(3),table.f-verify td:nth-child(3){width:30%;text-align:center}
+/* f-map 持仓映射 20/14/12/54 */
+table.f-map th:nth-child(1),table.f-map td:nth-child(1){width:20%}
+table.f-map th:nth-child(2),table.f-map td:nth-child(2){width:14%;text-align:center}
+table.f-map th:nth-child(3),table.f-map td:nth-child(3){width:12%;text-align:center}
+table.f-map th:nth-child(4),table.f-map td:nth-child(4){width:54%}
+/* f-op 操作框架 20/40/40 */
+table.f-op th:nth-child(1),table.f-op td:nth-child(1){width:20%}
+table.f-op th:nth-child(2),table.f-op td:nth-child(2){width:40%}
+table.f-op th:nth-child(3),table.f-op td:nth-child(3){width:40%}
+/* f-g 核源矩阵 26/24/16/34 */
+table.f-g th:nth-child(1),table.f-g td:nth-child(1){width:26%}
+table.f-g th:nth-child(2),table.f-g td:nth-child(2){width:24%}
+table.f-g th:nth-child(3),table.f-g td:nth-child(3){width:16%;text-align:center}
+table.f-g th:nth-child(4),table.f-g td:nth-child(4){width:34%}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <span class="tag">光模块产业链 · 设备视角 × 持仓映射 · V4增强版</span>
+  <h1>光模块设备扩产：设备链景气长度，为何长于模块厂链</h1>
+  <div class="sub">★时间锚点：生成 2026-08-03 13:17（周一盘中）｜文章发布 2026-08-03 11:01（调研纪事先知）｜数据交叉验证截至 2026-08-03</div>
+  <div class="thesis"><b>一句话主线：</b>市场把光模块解读为「景气见顶」，但<b>设备端排产与资本开支未降，真实扩产高峰在 2027 年</b>——设备需求才刚从 0 到 1。对持仓的直接含义：<b>罗博特科（设备商）比汇绿生态（模块厂）更受益</b>，但两者当前均不构成加仓理由（罗博不追高、汇绿对赌期不动）。</div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">01</span>结论前置 · 给老潘的落地</h2>
+  <div class="callout verdict"><b>核心判断：</b>这是一篇「光模块制造设备」视角的文章，不是「模块厂」视角。三个核心数字（出货量、测试设备单价、国产化率）经交叉验证全部站得住，且与 8/2「AI 通胀日报」的 1.6T 设备单价数据完全吻合。它帮我们厘清一个关键分层：<b>设备链（罗博）的景气长度 > 模块厂链（汇绿）</b>。</div>
+  <div class="callout edge"><b>给老潘的动作：</b>①<b>罗博 300757</b>：S 级逻辑被强化（ficonTEC 卡位获公开资料确认），但周五 +16% 后<b>不追</b>，等回踩承接；②<b>汇绿 001267</b>：需求 beta 正面，但扩产资本开支 + CPO 降本 + 上游瓶颈 = 毛利两端受压，<b>五节点对赌期不增不减</b>不变；③<b>光库 300620</b>：薄膜铌酸锂方向受益，仍等 160–185 击球区。</div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">02</span>文章关键事实清单</h2>
+  <ul class="facts">
+    <li><b>设备扩产高峰后移。</b>市场误读光模块「景气见顶」，但设备端排产与资本开支未下降，真实扩产高峰要等到 <b>2027 年</b>，设备需求刚从 0 到 1。<span class="src">调研纪事先知 2026-08-03</span></li>
+    <li><b>800G+ 出货量跳升。</b>2025≈2000 万 → 2026≥6500 万 → 2027≥1.5 亿颗，两年 +650%，文章口径偏保守。<span class="src">同文数据 / LightCounting 量级印证</span></li>
+    <li><b>测试设备单价跃升。</b>采样示波器 800G 约 30 万 → 1.6T 约 150 万（4–5 倍），与 AI 通胀日报完全吻合。<span class="src">设备报价 / 通胀日报交叉</span></li>
+    <li><b>高端设备国产化率低。</b>高精度贴片机 / 高端测量仪器国产化率 <20%，中低精度 70–80%；高端仍被是德、安立、泰克等垄断。<span class="src">产业调研 / 国产化率测算</span></li>
+    <li><b>CPO 催生全新设备品类。</b>2026–2027 放量带来耦合、检测、OCS 等新增设备需求，检测环节爆发最快。<span class="src">文章论点</span></li>
+  </ul>
+</div>
+
+<div class="mod">
+  <h2><span class="no">03</span>数据交叉验证</h2>
+  <table class="f-verify">
+    <tr><th>文章 claim</th><th>公开交叉验证</th><th>结论</th></tr>
+    <tr><td>800G+ 出货：2025≈2000万→2026≥6500万→2027≥1.5亿</td><td>OFC 2026 厂商指引：2025 年 4000–4500 万、2026 年 8000–9000 万、2027 年 1.5–1.6 亿；雪球分析 2026 年 7000 万只、2027 年 1–1.5 亿只</td><td>量级与方向一致，文章偏保守<span class="src">✅</span></td></tr>
+    <tr><td>采样示波器：800G 30万→1.6T 150万（4–5倍）</td><td>AI 通胀日报已验证同数；800G 测试系统约 10 万美金/套、1.6T 海外报价超 40 万美金/套</td><td>完全吻合<span class="src">✅</span></td></tr>
+    <tr><td>高精度贴片机/测量仪国产化率&lt;20%</td><td>光通信测试仪器国产化率约 16%（是德、安立占 84%）；高端贴片/耦合机仍进口主导</td><td>印证<span class="src">✅</span></td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">04</span>核心判断 · 预期差 · 风险</h2>
+  <div class="callout verdict"><b>核心判断：</b>设备链的订单释放曲线比模块出货更晚、更长。模块厂 2026 年就在出量，但设备（尤其高端测试/耦合机）受海外交付周期 6–12 个月约束，资本开支兑现与订单释放高峰落在 2027。这意味着<b>罗博（设备）的景气能见度比汇绿（模块）更延伸到明年</b>。</div>
+  <div class="callout edge"><b>预期差：</b>市场用「模块厂景气见顶」的框架套整个光通信链，忽略了设备端刚起步。公开资料明确：罗博通过全资控股德国 ficonTEC，构建覆盖耦合、检测、CPO、OCS 全核心环节的技术壁垒，5nm 运动控制精度全球领先——这正是「扩产高峰 2027 才到」最确定的受益者。</div>
+  <div class="callout risk"><b>风险：</b>①文章的「扩产高峰 2027」是乐观假设，前提是 CSP Capex 不下调、1.6T/CPO 渗透率如期，若 CSP 首次下修 Capex 整个设备订单曲线推迟（头号硬开关）；②用「锂电池扩产」类比有瑕疵——光模块高端设备被海外垄断、国产化率低、交付慢，不是想扩就能扩；③汇绿「黑马」身份在 CPO 时代未必占优，新架构精度/良率要求更高，资源向头部集中。</div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">05</span>关键区分：设备视角 vs 模块厂视角</h2>
+  <div class="pipeline">
+    <div class="stage posc">
+      <div class="t">CSP Capex 上修</div>
+      <div class="i">四大云厂 26 年约 7200–7450 亿美元，27 年无缩减信号</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage posc">
+      <div class="t">光模块出货跳升</div>
+      <div class="i">800G+：2026≥6500万→2027≥1.5亿；需求侧无虞</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage posb">
+      <div class="t">分化：设备商 vs 模块厂</div>
+      <div class="i">罗博（设备）卡位 CPO/耦合/检测，景气更长；汇绿（模块）毛利受压</div>
+    </div>
+  </div>
+  <div class="callout edge"><b>对汇绿（模块厂）的隐含压力：</b>①「扩产高峰 2027 才到」= 模块厂要在 2026–2027 承受资本开支 + 折旧摊销压力；②CPO 降本 30%+（通胀日报已提）挤压单价/毛利率；③上游卡脖子——磷化铟衬底缺口 70%+、200G EML 芯片 90% 被美日垄断，成本端受压；④中小厂在旭创/新易盛（毛利率 46–47%）挤压下能否保住毛利是问号。结论：<b>这篇文章不构成汇绿加仓理由，反提示模块厂扩产周期里的毛利风险</b>。</div>
+</div>
+
+<div class="mod">
+  <h2><span class="no">06</span>持仓映射矩阵</h2>
+  <table class="f-map">
+    <tr><th>标的</th><th>方向</th><th>强度</th><th>逻辑链</th></tr>
+    <tr><td>罗博特科 300757</td><td class="pos">正面</td><td>★★★★</td><td>ficonTEC 光电子/硅光封装设备卡位 CPO、检测、OCS 全环节；扩产高峰 2027 才到 = 设备订单曲线更长更晚，S 级逻辑细化强化</td></tr>
+    <tr><td>汇绿生态 001267</td><td class="nowrap">双向偏中性</td><td>★★★</td><td>需求 beta 正面，但扩产 Capex + CPO 降本 30% + 上游瓶颈 = 毛利两端受压；五节点对赌期不增不减</td></tr>
+    <tr><td>光库科技 300620</td><td class="pos">正面</td><td>★★★</td><td>薄膜铌酸锂/CPO 方向受益，调制器龙头；但 203 元、TTM 241× 仍贵，等 160–185 击球区</td></tr>
+    <tr><td>兴森科技 002436</td><td class="pos">间接正面</td><td>★★</td><td>先进封装载板随算力芯片放量，节奏滞后；利润仓转换逻辑不变</td></tr>
+    <tr><td>三祥/软通/防御仓</td><td class="nowrap">弱相关</td><td>★</td><td>与光模块设备链无直接交集，按原纪律执行</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">07</span>操作框架</h2>
+  <table class="f-op">
+    <tr><th>标的</th><th>文章映射</th><th>操作判断</th></tr>
+    <tr><td>罗博 300757</td><td>设备扩产高峰未到 = 设备订单曲线更长；ficonTEC 卡位获公开资料确认</td><td>S 级逻辑强化。周五 +16% 后<b>不追</b>，等回踩承接；无基本面反证不动摇</td></tr>
+    <tr><td>汇绿 001267</td><td>需求 beta 正面，但扩产 Capex + CPO 降本 + 上游瓶颈 = 毛利受压</td><td><b>五节点对赌期不增不减</b>不变；该文不改变纪律，反而提示须盯毛利率传导</td></tr>
+    <tr><td>光库 300620</td><td>薄膜铌酸锂 / CPO 方向受益</td><td>等 160–185 击球区，<b>不追高</b>；与汇绿产业链互补但抬升集中度，小仓观察起步</td></tr>
+    <tr><td>组合整体</td><td>五大硬开关一个未触发</td><td>维持「核心仓持有验证、非核心仓等转换窗口、新增从严」；CSP Capex 下修 / 光模块砍单是头号逆转信号</td></tr>
+  </table>
+</div>
+
+<div class="mod">
+  <h2><span class="no">08</span>数据核源矩阵</h2>
+  <table class="f-g">
+    <tr><th>维度</th><th>数值（截至）</th><th>来源</th><th>已核</th></tr>
+    <tr><td>文章来源</td><td>调研纪事先知 2026-08-03 11:01 发布</td><td>微信公众号</td><td>✅ 已读取正文</td></tr>
+    <tr><td>800G+ 出货</td><td>2026≥6500万 / 2027≥1.5亿</td><td>OFC 2026 / LightCounting</td><td>✅ 量级印证</td></tr>
+    <tr><td>测试设备单价</td><td>800G 30万 → 1.6T 150万</td><td>AI 通胀日报 / 设备报价</td><td>✅ 多源吻合</td></tr>
+    <tr><td>国产化率</td><td>高端&lt;20% / 中低 70–80%</td><td>产业调研 / 国产化测算</td><td>✅ 印证</td></tr>
+    <tr><td>罗博 ficonTEC</td><td>耦合/检测/CPO/OCS 全环节；5nm 精度</td><td>公开资料 / 公司披露</td><td>✅ 已验证</td></tr>
+    <tr><td>汇绿毛利率</td><td>头部 46–47%，中小厂受压</td><td>财报 / 行业对比</td><td>✅ 中性</td></tr>
+  </table>
+</div>
+
+<div class="disclaim">
+  ⚠️ <b>免责声明：</b>本报告仅为基于公开信息的分析讨论，不构成任何投资建议、理财建议或交易邀约。市场有风险，投资需谨慎。文中所涉标的、价位、策略均仅供研究参考，投资者据此操作风险自担。本会话 Wind / WeStock 连接器当前断开，部分行情数据取自公开快照，置信度以来源标注为准，交易前请以券商终端实时数据核对。
+</div>
+
+</div>
+</body>
+</html>
