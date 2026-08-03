@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日盘后复盘 · 2026-08-03</title>
+<style>
+:root{
+  --bg:#0d1424;--card:#1a2540;--bar:#f5a623;--y:#ffd83d;--cyan:#3ddcc8;
+  --gray:#9aa5b9;--line:#2a3556;--red:#ff3b3b;--green:#1ed890;
+  --txt:#e8eefc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6;font-size:15px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 60px}
+.banner{background:linear-gradient(135deg,#1a2540,#22304f);border:1px solid var(--line);border-left:6px solid var(--bar);border-radius:10px;padding:14px 18px;margin-bottom:18px}
+.banner h1{margin:0 0 6px;font-size:22px;color:#fff;letter-spacing:.5px}
+.banner .sub{color:var(--gray);font-size:13px}
+.banner .lead{margin-top:8px;color:var(--cyan);font-size:14px;font-weight:600}
+.note{background:#15203a;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:0 0 18px;color:var(--gray);font-size:13px}
+.note b{color:var(--y)}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.mod h2{margin:0 0 12px;font-size:17px;color:#fff;display:flex;align-items:center;gap:8px}
+.mod h2 .no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--bar);color:#0d1424;border-radius:6px;font-size:14px;font-weight:800}
+.mod h3{font-size:14px;color:var(--cyan);margin:14px 0 8px}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:8px 0 4px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 9px;vertical-align:top;overflow:hidden;text-wrap:pretty}
+th{background:#202d4d;color:#cfe0ff;font-weight:600}
+tr:nth-child(even) td{background:#17203a}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pos{color:var(--red);font-weight:600;white-space:nowrap}
+.neg{color:var(--green);font-weight:600;white-space:nowrap}
+.up{color:var(--red);white-space:nowrap}
+.down{color:var(--green);white-space:nowrap}
+.src{font-size:11px;color:var(--gray)}
+.callout{border-radius:8px;padding:12px 14px;margin:10px 0;border-left:5px solid}
+.c-key{background:#15203a;border-color:var(--cyan)}
+.c-exp{background:#1d2236;border-color:var(--y)}
+.c-risk{background:#241a1a;border-color:var(--red)}
+.callout h4{margin:0 0 6px;font-size:14px}
+.c-key h4{color:var(--cyan)}.c-exp h4{color:var(--y)}.c-risk h4{color:var(--red)}
+.chain{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chain .node{background:#202d4d;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;min-width:120px}
+.chain .arrow{color:var(--bar);align-self:center;font-size:18px}
+.tag{display:inline-block;background:#22304f;border:1px solid var(--line);border-radius:5px;padding:2px 8px;font-size:12px;color:var(--cyan);margin:2px}
+.ft{color:var(--gray);font-size:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+.mono{font-variant-numeric:tabular-nums}
+/* 列宽 */
+.f-idx th:nth-child(1),.f-idx td:nth-child(1){width:22%}
+.f-idx th:nth-child(2),.f-idx td:nth-child(2){width:14%;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.f-idx th:nth-child(3),.f-idx td:nth-child(3){width:12%;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.f-idx th:nth-child(4),.f-idx td:nth-child(4){width:14%;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.f-idx th:nth-child(5),.f-idx td:nth-child(5){width:38%}
+.f-hold th:nth-child(1),.f-hold td:nth-child(1){width:18%}
+.f-hold th:nth-child(2),.f-hold td:nth-child(2){width:12%;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.f-hold th:nth-child(3),.f-hold td:nth-child(3){width:12%;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.f-hold th:nth-child(4),.f-hold td:nth-child(4){width:14%}
+.f-hold th:nth-child(5),.f-hold td:nth-child(5){width:44%}
+.f-g th:nth-child(1),.f-g td:nth-child(1){width:26%}
+.f-g th:nth-child(2),.f-g td:nth-child(2){width:24%}
+.f-g th:nth-child(3),.f-g td:nth-child(3){width:14%;text-align:center}
+.f-g th:nth-child(4),.f-g td:nth-child(4){width:36%}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="banner">
+  <h1>今日盘后复盘 · 2026-08-03（周一）</h1>
+  <div class="sub">覆盖时段：A股全天收盘 ｜ 锚点 20:50 ｜ 数据口径：公开行情快照（Wind/WeStock 断连，置信度 ★★）</div>
+  <div class="lead">主线：指数大跌、个股普涨的结构再平衡日——半导体/存储权重领跌，光模块相对抗跌；澜起跌破 200 进入预设回踩观察区，但放量非企稳，不急于接。</div>
+</div>
+
+<div class="note">
+  <b>★ 时间锚点</b>：当前 2026-08-03 周一 20:50（收盘后）。<b>★ 数据说明</b>：本会话 Wind、WeStock 连接器均断开，今日行情取自公开行情聚合（搜狐证券/金投/上证报/腾讯财经等收盘数据），置信度标注 ★★；美股 8/1 收盘取自公开报道，置信度 ★★。交易前请以券商终端实时数据复核。
+</div>
+
+<!-- 执行摘要 -->
+<div class="mod">
+  <h2><span class="no">01</span>今日关键事实（N 件事）</h2>
+  <table class="f-idx">
+    <tr><th>维度</th><th>今日</th><th>涨跌</th><th>信号</th><th>含义</th></tr>
+    <tr><td>上证指数</td><td class="num">3809.66</td><td class="num down">-0.59%</td><td>险守3800</td><td>大盘权重跌幅有限，3800 为多空分水岭</td></tr>
+    <tr><td>创业板指</td><td class="num">3302.55</td><td class="num down">-1.24%</td><td>弱势</td><td>成长风格承压</td></tr>
+    <tr><td>科创50</td><td class="num">1552.89</td><td class="num down">-5.08%</td><td>重挫</td><td>半导体权重集中杀跌</td></tr>
+    <tr><td>半导体指数</td><td class="num">11631.06</td><td class="num down">-6.86%</td><td>领跌</td><td>电子板块领跌全市场，兆易创新跌停</td></tr>
+    <tr><td>全市场成交</td><td class="num">≈2万亿</td><td class="num">缩量</td><td>缩量5446亿</td><td>较上日大幅缩量，下跌未放量=抛压边际减弱</td></tr>
+    <tr><td>个股涨跌</td><td class="num">＞4000涨</td><td class="num">—</td><td>普涨</td><td>指数跌但个股普涨=结构再平衡，非系统性崩盘</td></tr>
+  </table>
+  <div style="margin-top:10px">
+    <span class="tag">澜起 189.94（-7.30%）跌破200</span>
+    <span class="tag">汇绿 29.15（-2.25%）涨停回落</span>
+    <span class="tag">罗博 410.80（-1.15%）相对抗跌</span>
+    <span class="tag">三祥 31.96（-5.16%）超卖加剧</span>
+    <span class="tag">天孚+5.55% 光库+3.23% 光模块抗跌</span>
+    <span class="tag">中东/油价 新变量</span>
+  </div>
+</div>
+
+<!-- 大盘复盘 -->
+<div class="mod">
+  <h2><span class="no">02</span>大盘复盘：指数跌、个股涨的再平衡</h2>
+  <p>今日最核心的特征是<b>指数与个股的严重背离</b>：主要指数集体收跌（上证 -0.59%、深成 -0.96%、创业板 -1.24%、科创50 -5.08%），但全市场超 4000 只个股上涨，下跌不足 1500 只。这种"指数跌、小票普涨"的组合，通常出现在<b>权重科技股集中杀跌、而前期超跌中小票技术性反弹</b>的阶段。</p>
+  <div class="callout c-key">
+    <h4>核心判断</h4>
+    这不是系统性风险释放，而是科技主线的<b>结构性再平衡</b>。德邦证券程强今日盘后观点明确："当前科技调整是'再平衡'而非'大切换'"——驱动因素是科技主线回调后资金寻找新方向，反弹后市场风格有望重回主线。这与我们周复盘"验证反弹质量、不扩大赌注"的框架同向。
+  </div>
+  <h3>板块分化</h3>
+  <table class="f-idx">
+    <tr><th>方向</th><th>今日表现</th><th>强度</th><th>性质</th><th>对持仓映射</th></tr>
+    <tr><td>半导体/存储链</td><td class="num down">-4%~-10%+</td><td class="num">领跌</td><td>权重集中杀跌</td><td>澜起/三祥承压，但属去杠杆非逻辑破</td></tr>
+    <tr><td>光模块/光通信</td><td class="num">-0.5%~+5.6%</td><td class="num">抗跌</td><td>资金净流入居前</td><td>汇绿/罗博相对抗跌，天孚获净流入超10亿</td></tr>
+    <tr><td>核电/AI应用/机器人</td><td class="num">+强</td><td class="num">走强</td><td>资金轮动承接</td><td>与持仓弱相关，提示资金在AI内部腾挪</td></tr>
+    <tr><td>造纸/环保/钢铁</td><td class="num">+强</td><td class="num">领涨</td><td>低位补涨</td><td>无关，属超跌修复</td></tr>
+  </table>
+</div>
+
+<!-- 持仓复盘 -->
+<div class="mod">
+  <h2><span class="no">03</span>持仓复盘（有信号者）</h2>
+  <table class="f-hold">
+    <tr><th>标的</th><th>收盘</th><th>涨跌幅</th><th>信号</th><th>独立判断与动作</th></tr>
+    <tr><td>澜起科技<br><span class="src">688008</span></td><td class="num">189.94</td><td class="num down">-7.30%</td><td>🔴 跌破200</td><td>进入预设回踩观察区（上周五设200附近缩量企稳为加仓触发），但今日换手4.13%、成交91.65亿=放量下跌，<b>非企稳信号</b>。等缩量（换手&lt;3%）且不创新低再分步，不急于今日接。PE(TTM)90.64。</td></tr>
+    <tr><td>汇绿生态<br><span class="src">001267</span></td><td class="num">29.15</td><td class="num down">-2.25%</td><td>🟡 涨停回落</td><td>上周五涨停后正常回落，量能未失控。<b>五节点对赌期不增不减</b>纪律不变；今天回落不等于逻辑破。</td></tr>
+    <tr><td>罗博特科<br><span class="src">300757</span></td><td class="num">410.80</td><td class="num down">-1.15%</td><td>🟢 相对抗跌</td><td>资金净流入前十，S级逻辑（ficonTEC设备卡位）未变。不追，等回踩承接。</td></tr>
+    <tr><td>三祥新材<br><span class="src">603663</span></td><td class="num">31.96</td><td class="num down">-5.16%</td><td>🔴 超卖加剧</td><td>RSI_6此前19.6，今日再跌超卖加深。ADX70趋势仍向下。<b>500亿（84元）前不减</b>，不技术止损；等8月锆铪小线+中报催化。</td></tr>
+    <tr><td>兴森科技<br><span class="src">002436</span></td><td class="num">—</td><td class="num">跟踪</td><td>⚪ 利润仓</td><td>今日随半导体调整，反弹承接时处理、转向澜起的转换逻辑不变；今天非好窗口（澜起未企稳）。</td></tr>
+    <tr><td>软通动力<br><span class="src">301236</span></td><td class="num">—</td><td class="num">标杆</td><td>⚪ 不动</td><td>AI应用端今日走强（传智教育6连板等），情绪偏正面；标杆仓不动。</td></tr>
+  </table>
+  <p class="src">注：软通/兴森/泰和/星环/德展/太钢/华峰今日快照未逐只抓取，按板块联动定性；如需逐只精确数字可后续补拉。置信度 ★★。</p>
+</div>
+
+<!-- AI主线与美股映射 -->
+<div class="mod">
+  <h2><span class="no">04</span>AI 主线与美股映射（8/1 收盘）</h2>
+  <p>美股上周五（8/1 美东）与今日 A 股出现<b>明显分化</b>：美股大型科技大涨（亚马逊 +15% 创2012来最大单日涨幅、谷歌 +6%、英伟达 +近3% 重回全球股王），但<b>存储芯片逆势走弱</b>（美光 -5%、SK海力士 -3%、闪迪 -5%），苹果 -7%。今日 A 股把"存储走弱"这个分支放大成了半导体链集体重挫。</p>
+  <div class="callout c-exp">
+    <h4>预期差</h4>
+    市场把"存储股回调"误读为"存储逻辑破坏"，但今日下跌与美股存储走弱同源——属于<b>全球存储链的同步情绪回调</b>，而非"存储短缺至2028"的基本面证伪。三星电话会确认的产能锁长协、DRAM合约价上行趋势未被任何新信息推翻。光模块相对抗跌（天孚+5.55%、中际旭创平、光库+3.23%）进一步印证：资金在AI内部做"设备/器件 &gt; 存储/设备链"的细分轮动，而非撤离AI。
+  </div>
+  <h3>映射链今日状态</h3>
+  <table class="f-idx">
+    <tr><th>持仓</th><th>美股映射</th><th>映射标的今日</th><th>信号</th><th>结论</th></tr>
+    <tr><td>澜起</td><td>MRVL</td><td>迈威尔 +2%（8/1）</td><td>美股温和</td><td>A股今日杀跌属独立去杠杆，非映射恶化</td></tr>
+    <tr><td>汇绿</td><td>COHR/LITE</td><td>光通信相对抗跌</td><td>中性偏稳</td><td>光模块需求逻辑未破</td></tr>
+    <tr><td>罗博</td><td>NVDA/MRVL</td><td>英伟达 +近3%</td><td>正面</td><td>设备链景气度获美股支撑</td></tr>
+  </table>
+</div>
+
+<!-- 硬开关巡检 -->
+<div class="mod">
+  <h2><span class="no">05</span>五节点 / 五大硬开关巡检</h2>
+  <table class="f-g">
+    <tr><th>硬开关</th><th>今日状态</th><th>触发？</th><th>说明</th></tr>
+    <tr><td>CSP Capex 下修</td><td>亚马逊+15%确认上修</td><td>✅ 未触发</td><td>8/1 亚马逊财报 capex 2000→2200亿上修，收官最强；五节点全确认</td></tr>
+    <tr><td>存储合约价转弱</td><td>全球存储股回调</td><td>⚠️ 观察</td><td>属情绪回调，短缺至2028基本面未破；需盯后续合约价与长协执行</td></tr>
+    <tr><td>日元套息失序</td><td>无新增恶化</td><td>✅ 未触发</td><td>美日干预后平稳，单日波动&lt;2%</td></tr>
+    <tr><td>公司基本面恶化</td><td>无持仓负面公告</td><td>✅ 未触发</td><td>今日无持仓公司财报miss/订单负面</td></tr>
+    <tr><td>光模块砍单</td><td>无</td><td>✅ 未触发</td><td>光模块龙头抗跌、天孚净流入超10亿</td></tr>
+    <tr><td>中东/油价（新增）</td><td>布油+5% 美油+4%</td><td>🔴 新监控</td><td>特朗普下令对伊朗新一轮袭击，油价大涨；若持续推升通胀/美债收益率，将压制全球高估值AI资产</td></tr>
+  </table>
+</div>
+
+<!-- 技术信号雷达 -->
+<div class="mod">
+  <h2><span class="no">06</span>技术信号雷达（关键标的）</h2>
+  <table class="f-hold">
+    <tr><th>标的</th><th>关键价位</th><th>信号</th><th>强度</th><th>解读</th></tr>
+    <tr><td>澜起 688008</td><td class="num">189.94</td><td class="num">跌破200</td><td>🔴</td><td>进入预设回踩观察区下沿；放量下跌非企稳，等缩量止跌（换手&lt;3%且不再创新低）</td></tr>
+    <tr><td>三祥 603663</td><td class="num">31.96</td><td class="num">RSI极弱</td><td>🔴</td><td>超卖加剧，ADX70趋势向下；底仓不动、500亿前不减</td></tr>
+    <tr><td>罗博 300757</td><td class="num">410.80</td><td class="num">缩量小跌</td><td>🟢</td><td>相对抗跌，资金净流入前十；S级逻辑未变</td></tr>
+    <tr><td>汇绿 001267</td><td class="num">29.15</td><td class="num">涨停回落</td><td>🟡</td><td>正常换手回落；对赌期不增不减</td></tr>
+  </table>
+</div>
+
+<!-- 新增变量 -->
+<div class="mod">
+  <h2><span class="no">07</span>新增变量：中东地缘 / 油价</h2>
+  <div class="callout c-risk">
+    <h4>风险提示</h4>
+    8/1 报道特朗普已下令对伊朗发动新一轮袭击，目标可能包括发电与炼油设施；布油 +近5%、美油 +近4%。这是一个<b>新增宏观尾部风险</b>：油价持续上涨 → 通胀预期回升 → 美债收益率上行 → 压制全球高估值 AI 资产。今日 A 股半导体重挫虽有自身去杠杆原因，但中东风险会放大全球风险偏好的脆弱性。
+  </div>
+  <p><b>监控标准</b>：①布油是否站稳 95–100 美元上方；②美10年债收益率是否突破前高；③日元/黄金是否同步避险跳涨。三者任一持续恶化，需提升防御仓位权重。</p>
+</div>
+
+<!-- 操作建议 -->
+<div class="mod">
+  <h2><span class="no">08</span>看大做小：操作建议</h2>
+  <div class="callout c-key">
+    <h4>看大（产业趋势 / 流动性 / 板块景气）</h4>
+    AI 硬件景气逻辑未破：存储短缺至2028、CSP capex 仍上修、光模块需求高增长。但<b>中东油价风险是新增变量</b>，纳入监控。中期方向：核心仓持有穿越波动。
+  </div>
+  <div class="callout c-exp">
+    <h4>做小（节奏 / 时机 / 点位）</h4>
+    今日是结构性再平衡，不是趋势反转。澜起跌破200但放量非企稳，<b>不急于接</b>；兴森→澜起转换窗口未到（澜起未企稳）；其余按原纪律。
+  </div>
+  <table class="f-hold">
+    <tr><th>标的</th><th>动作</th><th>触发条件</th><th>强度</th><th>说明</th></tr>
+    <tr><td>澜起 688008</td><td>观察 / 不接</td><td>缩量企稳（换手&lt;3%且不再新低）</td><td>🔴</td><td>进入回踩区但今日放量，等信号；不追190下方恐慌盘</td></tr>
+    <tr><td>汇绿 001267</td><td>不增不减</td><td>五节点对赌期</td><td>🟡</td><td>涨停回落属正常，逻辑未破</td></tr>
+    <tr><td>罗博 300757</td><td>持有</td><td>S级逻辑未变</td><td>🟢</td><td>相对抗跌，不追</td></tr>
+    <tr><td>三祥 603663</td><td>持有</td><td>500亿前不减</td><td>🔴</td><td>超卖加剧，等8月锆铪小线+中报</td></tr>
+    <tr><td>兴森→澜起</td><td>暂缓</td><td>澜起企稳后</td><td>⚪</td><td>今日非转换窗口；反弹承接卖兴森、回踩确认买澜起不倒转</td></tr>
+  </table>
+</div>
+
+<!-- 核源矩阵 -->
+<div class="mod">
+  <h2><span class="no">09</span>数据核源矩阵</h2>
+  <table class="f-g">
+    <tr><th>维度</th><th>数值（截至）</th><th>来源</th><th>已核 / 置信度</th></tr>
+    <tr><td>大盘指数</td><td>上证3809.66/科创50 1552.89/半导体-6.86%</td><td>上证报/腾讯财经 2026-08-03 收盘</td><td>★★ 公开聚合</td></tr>
+    <tr><td>全市场成交</td><td>≈2万亿 缩量5446亿 / 超4000只涨</td><td>上证报/每日经济新闻 2026-08-03</td><td>★★ 多源一致</td></tr>
+    <tr><td>澜起 688008</td><td>189.94 / -7.30% / PE(TTM)90.64</td><td>搜狐证券/金投 2026-08-03 收盘</td><td>★★ 快照</td></tr>
+    <tr><td>汇绿/罗博/三祥</td><td>29.15 / 410.80 / 31.96</td><td>公开行情聚合 2026-08-03</td><td>★★ 快照</td></tr>
+    <tr><td>光模块抗跌</td><td>天孚+5.55% 光库+3.23% 中际旭创平</td><td>概念板块表 2026-08-03</td><td>★★ 多源一致</td></tr>
+    <tr><td>资金流向</td><td>天孚净流入超10亿 / 罗博前十</td><td>Choice/上证报 2026-08-03</td><td>★★</td></tr>
+    <tr><td>美股 8/1</td><td>AMZN+15% NVDA+3% 美光-5% 海力士-3%</td><td>中新经纬/新浪财经 2026-08-01</td><td>★★ 报道</td></tr>
+    <tr><td>中东/油价</td><td>布油+5% 美油+4% 特朗普对伊袭击</td><td>央视/21财经 2026-08-01</td><td>★★ 报道</td></tr>
+  </table>
+</div>
+
+<div class="ft">
+  ★ 时间锚点：2026-08-03 周一 20:50（收盘后）。数据来源：公开行情聚合（Wind/WeStock 断连），置信度 ★★，交易前请以券商终端复核。<br>
+  本报告仅供研究参考，不构成投资建议，投资者据此操作风险自担。
+</div>
+
+</div>
+</body>
+</html>
