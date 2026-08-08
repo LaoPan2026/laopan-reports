@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汇绿生态深度研报 20260808</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --up:#ff3b3b; --down:#1ed890;
+  --blue:#4285F4; --yellow:#FBBC05; --red:#EA4335; --green:#34A853;
+  --bg:#f8f9fa; --card:#ffffff; --line:#e8eaed; --text:#1f2933; --sub:#5f6b7a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.7}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 20px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 28px;margin-bottom:20px}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+h2{font-size:20px;font-weight:700;margin-bottom:14px;padding-left:12px;border-left:4px solid var(--blue)}
+h3{font-size:16px;font-weight:700;margin:18px 0 10px}
+.meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+.hero{background:linear-gradient(135deg,#eef3fe,#f6f8fd);border:1px solid #d8e1f5}
+.tldr{font-size:16px;font-weight:600;margin:10px 0}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.score{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;text-align:center}
+.score .num{font-size:26px;font-weight:700;color:var(--blue)}
+.score .lbl{font-size:13px;color:var(--sub);margin-top:2px}
+.score .desc{font-size:12px;color:var(--sub);margin-top:6px}
+.verdict{display:inline-block;font-size:15px;font-weight:700;padding:6px 16px;border-radius:20px;margin:4px 4px 4px 0}
+.v-wait{background:#fff4e0;color:#b06000;border:1px solid #f5c76a}
+.v-hold{background:#e8f0fe;color:#1a56c4;border:1px solid #a9c2ef}
+.v-buy{background:#e6f4ea;color:#1e7e34;border:1px solid #a8d8b5}
+.v-sell{background:#fdecea;color:#c5221f;border:1px solid #f2a8a5}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:12px;margin:2px 4px 2px 0;white-space:nowrap}
+.t-blue{background:#e8f0fe;color:#1a56c4}
+.t-yellow{background:#fef7e0;color:#9a6b00}
+.t-red{background:#fdecea;color:#c5221f}
+.t-green{background:#e6f4ea;color:#1e7e34}
+.t-gray{background:#f1f3f4;color:#5f6b7a}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:12px 0}
+th,td{vertical-align:top;padding:10px 12px;border-bottom:1px solid #eef0f3;font-variant-numeric:tabular-nums;word-break:break-word;overflow-wrap:anywhere;text-wrap:pretty}
+th{font-size:12.5px;font-weight:700;color:#3c4858;background:#f6f8fa;white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfc}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.num{text-align:right}
+.center{text-align:center}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* f3: 22/18/60 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+/* f3.rk 风险表: 26/14/60 */
+table.f3.rk th:nth-child(1),table.f3.rk td:nth-child(1){width:26%;text-align:left}
+table.f3.rk th:nth-child(2),table.f3.rk td:nth-child(2){width:14%;text-align:right}
+table.f3.rk th:nth-child(3),table.f3.rk td:nth-child(3){width:60%;text-align:left}
+/* f3.src 溯源表: 20/20/60 */
+table.f3.src th:nth-child(1),table.f3.src td:nth-child(1){width:20%;text-align:left}
+table.f3.src th:nth-child(2),table.f3.src td:nth-child(2){width:20%;text-align:left}
+table.f3.src th:nth-child(3),table.f3.src td:nth-child(3){width:60%;text-align:left}
+/* f4: 18/16/14/52 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:16%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%;text-align:left}
+/* f4.tl 催化时间线: 14/30/12/44 */
+table.f4.tl th:nth-child(1),table.f4.tl td:nth-child(1){width:14%;text-align:right}
+table.f4.tl th:nth-child(2),table.f4.tl td:nth-child(2){width:30%;text-align:left}
+table.f4.tl th:nth-child(3),table.f4.tl td:nth-child(3){width:12%;text-align:center}
+table.f4.tl th:nth-child(4),table.f4.tl td:nth-child(4){width:44%;text-align:left}
+/* f5: 18/16/16/14/36 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:18%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:16%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:16%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:14%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:36%;text-align:left}
+/* f5.fin 财务速览: 14/16/16/14/40 */
+table.f5.fin th:nth-child(1),table.f5.fin td:nth-child(1){width:14%;text-align:right}
+table.f5.fin th:nth-child(2),table.f5.fin td:nth-child(2){width:16%;text-align:right}
+table.f5.fin th:nth-child(3),table.f5.fin td:nth-child(3){width:16%;text-align:right}
+table.f5.fin th:nth-child(4),table.f5.fin td:nth-child(4){width:14%;text-align:right}
+table.f5.fin th:nth-child(5),table.f5.fin td:nth-child(5){width:40%;text-align:left}
+.chart{width:100%;height:360px;margin:14px 0}
+.src{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.6}
+.foot{font-size:12px;color:var(--sub);margin-top:30px;padding-top:14px;border-top:1px solid var(--line)}
+.foot p{margin:4px 0}
+@media(max-width:640px){
+  body{font-size:13px}
+  .wrap{padding:14px 10px 40px}
+  .card{padding:16px 14px}
+  h1{font-size:20px}
+  .score-grid{grid-template-columns:repeat(2,1fr)}
+  table{font-size:11.5px}
+  th,td{padding:7px 6px}
+  .chart{height:280px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="card hero">
+  <h1>汇绿生态（001267.SZ）深度研报</h1>
+  <div class="meta">园林跨界光模块 · 重组审核中 · 数据截至 2026-08-07 收盘 · 报告日期 2026-08-08</div>
+  <div class="tldr">核心判断：<span style="color:#b06000">高弹性重组标的、短线连板情绪主导、基本面未接住股价</span>——光模块转型（武汉钧恒）方向正确、业绩承诺明确，但现价已透支审批预期（PE-TTM 403 倍、6 天 5 板），重组审核未落地前<b>属于博弈品种而非配置品种</b>。</div>
+  <div>
+    <span class="verdict v-sell">结论：SELL 部分（已有仓）</span>
+    <span class="verdict v-wait">新仓：WAIT / 不参与</span>
+  </div>
+  <div class="tag t-blue">产业逻辑 ★★★★</div>
+  <div class="tag t-yellow">业绩兑现 ★★★</div>
+  <div class="tag t-red">估值安全 ★★</div>
+  <div class="tag t-gray">技术位置 ★★★</div>
+  <div class="score-grid">
+    <div class="score"><div class="num">6.5/10</div><div class="lbl">产业景气度</div><div class="desc">AI 光模块供不应求，武汉钧恒绑定 Coherent</div></div>
+    <div class="score"><div class="num">4/10</div><div class="lbl">业绩兑现度</div><div class="desc">2026Q1 归母 1488 万下滑，经营现金流持续为负</div></div>
+    <div class="score"><div class="num">2/10</div><div class="lbl">估值安全边际</div><div class="desc">PE-TTM 403 倍，PB 21 倍，价格透支审批预期</div></div>
+  </div>
+  <div class="src">综合评分 4.5/10（弹性大但安全边际差）。数据源：Wind 行情/财务快照、公司公告、券商研报（非一手来源需核实原文），均截至 2026-08-07。</div>
+</div>
+
+<div class="card">
+  <h2>① 催化时间线</h2>
+  <table class="f4 tl">
+    <tr><th>时间</th><th>事件</th><th>性质</th><th>点评</th></tr>
+    <tr><td>2024-05</td><td>1.95 亿收购武汉钧恒 30%</td><td class="center">正面</td><td>跨界切入光模块，分步收购第一步</td></tr>
+    <tr><td>2025-02</td><td>增资 2.46 亿持股 51%</td><td class="center">正面</td><td>取得控股权并表，光电子器件成为核心收入</td></tr>
+    <tr><td>2026-04 初</td><td>2025 年报：营收 +167.7%</td><td class="center">正面</td><td>营收 15.72 亿、归母 0.88 亿，光模块占比 72.4%</td></tr>
+    <tr><td>2026-05-27</td><td>深交所同意恢复审核</td><td class="center">正面</td><td>重组推进，市场情绪升温</td></tr>
+    <tr><td>2026-06 中</td><td>重组草案修订稿</td><td class="center">正面</td><td>11.27 亿收购钧恒 49%；业绩承诺 2026-28 净利 ≥1.83/2.32/2.92 亿</td></tr>
+    <tr><td>2026-06</td><td>股价一月涨 97.35%</td><td class="center"><span class="pos">过热</span></td><td>公司 7 月 1 日发布股票交易风险提示公告</td></tr>
+    <tr><td>2026-08 上旬</td><td>连续三日异动（涨超 20%）</td><td class="center"><span class="pos">过热</span></td><td>8 月 7 日异动公告：无应披露未披露事项</td></tr>
+    <tr><td>2026-08-07</td><td>再涨停（6 天 5 板）</td><td class="center"><span class="pos">过热</span></td><td>游资主导，当日主力净流入 5.37 亿，换手 11.85%</td></tr>
+    <tr><td>2026-08-08</td><td>重组进展提示公告</td><td class="center">中性</td><td>仍在深交所审核阶段，需证监会注册，存在不确定性</td></tr>
+  </table>
+  <div class="src">来源：Wind 公司事件/公告、公司公告原文（2024-05 ~ 2026-08-08）。</div>
+</div>
+
+<div class="card">
+  <h2>② 公司画像 · 财务速览</h2>
+  <p><b>一句话本质：买汇绿生态，买的是"武汉钧恒 100% 控股 + AI 光模块放量"的重组期权——园林壳资产 + 光模块新主业，赌的是审批落地与业绩承诺兑现。</b></p>
+  <table class="f3">
+    <tr><th>项目</th><th>数据</th><th>说明</th></tr>
+    <tr><td>上市板块</td><td class="num">深主板</td><td>2021-11 上市，发行价 3.91 元；主营园林，2024 起跨界光模块</td></tr>
+    <tr><td>核心资产</td><td class="num">武汉钧恒 51%</td><td>光模块/AOC/光引擎；拟 11.27 亿收购剩余 49% 实现 100% 控股</td></tr>
+    <tr><td>竞争地位</td><td class="num">代工绑定龙头</td><td>ODM/JDM 模式绑定 Coherent（第一大客户占 45.09%）；COB 工艺、耦合环节设备自研率 40%</td></tr>
+    <tr><td>总市值</td><td class="num">335.12 亿</td><td>2026-08-07 收盘涨停后</td></tr>
+    <tr><td>PE(TTM) / PB</td><td class="num">403.19 / 21.06 倍</td><td>估值极高，市场按"重组后并表"预期定价</td></tr>
+    <tr><td>重组进度</td><td class="num">深交所审核中</td><td>2026-05-27 恢复审核；尚需证监会注册</td></tr>
+  </table>
+  <div class="chart" id="finChart"></div>
+  <table class="f5 fin">
+    <tr><th>年度</th><th>营收(亿)</th><th>归母(亿)</th><th>毛利率</th><th>关键变化</th></tr>
+    <tr><td>2023</td><td>6.85</td><td>0.57</td><td>25.20%</td><td>园林主业，业绩低迷</td></tr>
+    <tr><td>2024</td><td>5.87</td><td>0.65</td><td>26.57%</td><td>参股钧恒，归母 +13.9%</td></tr>
+    <tr><td>2025</td><td>15.72</td><td>0.88</td><td>18.41%</td><td>钧恒并表，营收 +167.7%，光电子器件占 72.4%</td></tr>
+    <tr><td>2026Q1</td><td>3.87</td><td>0.15</td><td>21.60%</td><td>归母 1488 万，环比下滑，毛利率承压</td></tr>
+  </table>
+  <div class="src">数据源：Wind 财务数据（2026-08-07 快照，2023A-2025A 年报 + 2026Q1）。</div>
+  <p style="margin-top:10px"><b>财务速览核心：</b>2025 年营收暴增全靠钧恒并表（光电子器件 11.38 亿、占 72.4%），但<b>毛利率仅 18.4%、2026Q1 归母净利环比下滑、经营现金流 2025 年 -0.67 亿、钧恒连续两年经营现金流为负</b>——光模块代工是"薄利多销"生意，规模大但赚钱能力弱。当前估值完全押注重组后的盈利承诺（2026-28 年 ≥1.83/2.32/2.92 亿）。</p>
+</div>
+
+<div class="card">
+  <h2>③ 产业格局与景气度</h2>
+  <h3>行业逻辑：AI 算力爆发驱动光模块供不应求，代工模式卡位供应链</h3>
+  <table class="f3">
+    <tr><th>维度</th><th>状态</th><th>说明</th></tr>
+    <tr><td>行业需求</td><td class="num">高景气</td><td>2026 年全球 1.6T+800G 光模块总需求预计超 1 亿只；AI 算力"军备竞赛"未见顶，供不应求持续</td></tr>
+    <tr><td>商业模式</td><td class="num">代工/ODM 路径</td><td>钧恒以 ODM/JDM/OEM 模式服务 Coherent（Finisar）等巨头，避开自建品牌与头部直供竞争</td></tr>
+    <tr><td>产能扩张</td><td class="num">快速爬坡</td><td>武汉 300 万只/年 + 鄂州一期 150 万只（2025 底投产）+ 马来 100-150 万只（2026-04 投产）+ 鄂州二期 300 万只（2027 底）</td></tr>
+    <tr><td>技术布局</td><td class="num">1.6T 送样中</td><td>1.6T 硅光模块已进入客户送样认证，预计 2026H2-2027 规模商用；LPO/CPO 探索中</td></tr>
+    <tr><td>客户集中</td><td class="num">高度集中</td><td>2025 年前五大客户占光电子器件收入 58.5%，Coherent 占 45.09%——绑定深度高但单一客户依赖大</td></tr>
+  </table>
+  <p style="margin-top:10px"><b>产业链位置：</b>通信设备（申万三级）→ 光模块代工环节。钧恒是"服务巨头"的代工型选手，好处是绑定 Coherent 获得稳定订单，坏处是议价权弱、毛利率低（18% 级别）、光芯片/电芯片境外采购占比高达 85%/94%，供应链受地缘影响大。</p>
+  <div class="src">来源：公司投资者关系记录、证券时报专访（彭开盛）、国盛证券研报（2026-04，非一手来源需核实原文）。</div>
+</div>
+
+<div class="card">
+  <h2>④ 技术面 · 资金面</h2>
+  <table class="f4">
+    <tr><th>指标</th><th>数值(2026-08-07)</th><th>状态</th><th>解读</th></tr>
+    <tr><td>收盘价</td><td class="num">42.69 元</td><td class="num">+10.00%</td><td>涨停，6 天 5 板，成交额 29.72 亿，换手 11.85%，量比 1.83</td></tr>
+    <tr><td>区间涨跌</td><td class="num">5日+43.2% / 10日+37.7% / 20日-1.6% / 60日-38.8% / YTD+95.1%</td><td class="num">短线过热</td><td>短线连板暴拉，但 60 日仍大幅回撤（6 月底高点 69.72 元以来 -39%）</td></tr>
+    <tr><td>均线系统</td><td class="num">MA5 35.6 / MA10 33.0 / MA20 34.4 / MA60 47.7</td><td class="num">短线多头</td><td>站上 MA5/MA10/MA20/MA250，但 MA60（47.7）与 MA120（45.1）仍在上方压制</td></tr>
+    <tr><td>MACD</td><td class="num">DIF -2.57 / DEA -4.31</td><td class="num"><span class="pos">红柱放大</span></td><td>柱体 +3.47 持续放大，短线动能强但高位钝化风险</td></tr>
+    <tr><td>KDJ</td><td class="num">K 81.5 / D 59.7 / J 125.2</td><td class="num"><span class="pos">超买</span></td><td>J 值 125 严重超买，随时可能出现高位钝化/回调</td></tr>
+    <tr><td>RSI</td><td class="num">RSI6 78.2 / RSI12 60.9</td><td class="num"><span class="pos">短线超买</span></td><td>RSI6 接近超买区</td></tr>
+    <tr><td>BOLL</td><td class="num">上 43.72 / 中 34.39 / 下 25.07</td><td class="num">贴上轨</td><td>股价贴 BOLL 上轨运行，短线乖离率极高</td></tr>
+    <tr><td>主力资金</td><td class="num">当日 +5.37 亿 / 5日 +13.73 亿 / 20日 +19.54 亿</td><td class="num">游资流入</td><td>资金持续流入但以游资/短线资金为主（换手 11.85%），机构定价弱</td></tr>
+  </table>
+  <div class="src">数据源：Wind 行情快照与技术指标（2026-08-07，前复权口径）；主力资金为 Wind 口径。</div>
+  <p style="margin-top:10px"><b>技术结论：</b>典型<b>短线连板情绪驱动行情</b>——KDJ J 值 125、RSI6 78、贴 BOLL 上轨，全部指向超买；股价虽站上短均线，但 MA60/MA120（45-48 元）仍在头顶，且 6 月底高点以来 60 日仍 -38.8%。这种行情<b>不追、只考虑逢高减</b>——开板、放量长上影、高开低走即是减仓信号。</p>
+</div>
+
+<div class="card">
+  <h2>⑤ 核心逻辑与风险（含反一致预期）</h2>
+  <h3>核心逻辑（市场已定价部分）</h3>
+  <table class="f3">
+    <tr><th>逻辑</th><th>强度</th><th>兑现路径</th></tr>
+    <tr><td>光模块代工卡位</td><td class="num">★★★★</td><td>绑定 Coherent（全球光通信龙头），ODM 模式获稳定订单；COB 工艺 + 40% 耦合设备自研</td></tr>
+    <tr><td>产能快速扩张</td><td class="num">★★★★</td><td>2027 年相比 2025 年新增产能约 450 万只，聚焦 400G/800G/1.6T 高速率</td></tr>
+    <tr><td>业绩承诺明确</td><td class="num">★★★★</td><td>武汉钧恒 2026-28 年净利承诺 ≥1.83/2.32/2.92 亿（合计 7.07 亿），重组后并表利润显著增厚</td></tr>
+    <tr><td>海外布局</td><td class="num">★★★</td><td>马来西亚基地规避地缘风险、贴近海外大客户，满足供应链合规要求</td></tr>
+  </table>
+  <h3>风险（市场可能低估的部分）</h3>
+  <table class="f3 rk">
+    <tr><th>风险</th><th>级别</th><th>触发与影响</th></tr>
+    <tr><td><span class="tag t-red">重组审批不确定</span></td><td class="num">高</td><td>尚需深交所审核通过 + 证监会注册，存在终止/变更可能；此前已因财务资料过期中止过一次</td></tr>
+    <tr><td><span class="tag t-red">估值严重透支</span>PE 403 倍</td><td class="num">高</td><td>现价 42.69 元 vs 机构 2026E 净利 2.5 亿对应 148 倍 PE——审批落地、业绩达标全部兑现才有支撑</td></tr>
+    <tr><td><span class="tag t-red">大客户依赖</span>Coherent 45%</td><td class="num">高</td><td>单一大客户占比近半，客户砍单/份额变化直接冲击业绩</td></tr>
+    <tr><td><span class="tag t-red">供应链境外依赖</span></td><td class="num">高</td><td>光芯片境外采购 85%/73.7%，电芯片 94.6%/94.4%——地缘限制或光芯片短缺直接卡脖子</td></tr>
+    <tr><td><span class="tag t-yellow">现金流差</span></td><td class="num">中</td><td>钧恒 2024-2025 经营现金流 -0.9 亿/-1.66 亿，连续两年"赚利润不赚现金"</td></tr>
+    <tr><td><span class="tag t-yellow">毛利率低</span></td><td class="num">中</td><td>光模块代工毛利率 18% 级别，远低于头部厂商（30%+），议价权弱</td></tr>
+    <tr><td><span class="tag t-gray">短线情绪退潮</span></td><td class="num">中</td><td>6 天 5 板、J 值 125 超买，游资撤退时回撤速度同样快</td></tr>
+  </table>
+  <h3>反一致预期（我的独立判断）</h3>
+  <p>市场当前把汇绿当作"下一个算力新贵"炒作，6 天 5 板、PE 403 倍。但有两个被忽略的事实：①<b>光模块代工不是高毛利生意</b>——钧恒毛利率 18%，本质是"卖产能+卖劳动力"的制造业，赚的是辛苦钱，给 400 倍 PE 的前提是"业绩承诺全部兑现 + 长期维持高增长"，这在 18% 毛利下极难实现；②<b>重组审批是"非对称风险"</b>——通过则利好兑现、股价可能见光死，不通过则戴维斯双杀。<b>当前价格交易的是"审批通过"的确定性预期，但审批本身就是最大的不确定性</b>——这正是典型的"预期差陷阱"：涨得越凶，安全边际越差。</p>
+</div>
+
+<div class="card">
+  <h2>⑥ 可比估值</h2>
+  <table class="f5">
+    <tr><th>口径</th><th>2026E 净利</th><th>2027E 净利</th><th>对应 PE</th><th>说明</th></tr>
+    <tr><td>业绩承诺（钧恒）</td><td class="num">1.83 亿</td><td class="num">2.32 亿</td><td class="num">—</td><td>重组草案承诺口径，全资并表前归属上市公司比例不同</td></tr>
+    <tr><td>国盛证券</td><td class="num">2.5 亿</td><td class="num">3.8 亿</td><td class="num">148/96 倍</td><td>2026-04 首次覆盖买入（非一手需核实原文）</td></tr>
+    <tr><td>现价对应（TTM）</td><td class="num">—</td><td class="num">—</td><td class="num">403 倍</td><td>PE-TTM 基于现有盈利，尚未含重组后并表</td></tr>
+    <tr><td>光模块可比（中际旭创等）</td><td class="num">—</td><td class="num">—</td><td class="num">20-40 倍</td><td>头部直供厂商估值 20-40 倍 PE，远低于汇绿代工定位</td></tr>
+  </table>
+  <div class="src">来源：重组草案业绩承诺（公司公告）、国盛证券研报（2026-04-24，非一手来源需核实原文）；可比公司估值未单独核验，仅作定性参照。</div>
+  <p style="margin-top:10px"><b>估值判断：</b>即便按最乐观的机构预测（2026E 净利 2.5 亿、2027E 3.8 亿），现价 335 亿市值对应 <b>2026E 148 倍、2027E 96 倍 PE</b>——远超光模块头部厂商（20-40 倍）。代工模式的毛利率上限决定了它撑不起这么高的估值，<b>当前价格已经透支了 2027 年业绩承诺全部兑现 + 估值维持高位的双重乐观假设</b>。</p>
+</div>
+
+<div class="card">
+  <h2>⑦ 三级情景（2026-2027E）</h2>
+  <div class="chart" id="scnChart"></div>
+  <table class="f5">
+    <tr><th>情景</th><th>2027E 净利</th><th>估值倍数</th><th>对应股价</th><th>触发条件</th></tr>
+    <tr><td><span class="tag t-red">Bear 悲观</span></td><td class="num">1.5 亿</td><td class="num">30×</td><td class="num">约 5.8 元 <span class="neg">(-86%)</span></td><td>重组被否/终止；Coherent 砍单；光芯片断供；业绩承诺落空</td></tr>
+    <tr><td><span class="tag t-yellow">Base 中性</span></td><td class="num">3.0 亿</td><td class="num">45×</td><td class="num">约 17 元 <span class="neg">(-60%)</span></td><td>重组过会、承诺兑现；但代工低毛利限制估值，回归制造业估值带</td></tr>
+    <tr><td><span class="tag t-green">Bull 乐观</span></td><td class="num">3.8 亿</td><td class="num">60×</td><td class="num">约 29 元 <span class="neg">(-32%)</span></td><td>重组过会 + 1.6T 放量 + 维持 AI 高估值</td></tr>
+  </table>
+  <div class="src">测算口径：总股本约 8.2 亿股（重组发行后约 8.85 亿）；净利参考业绩承诺与国盛预测区间；倍数参考光模块制造估值带。仅为情景推演，不构成目标价承诺。</div>
+  <p style="margin-top:10px"><b>情景结论：</b>三个情景对应股价全部大幅低于现价（42.69 元），连最乐观的 Bull 情景（29 元）也还有 -32% 空间——<b>这是组合 8 只中估值透支最严重的一只</b>。与澜起（Base 接近现价）不同，汇绿的现价完全由情绪与审批预期支撑，任何利空兑现都可能带来剧烈回撤。</p>
+</div>
+
+<div class="card">
+  <h2>⑧ 结论与操作框架（对老潘组合的意义）</h2>
+  <div class="tldr">综合结论：<span style="color:#c5221f">SELL 部分 / 不新增 —— 借短线连板情绪逢高降低仓位</span>。这是组合中估值与基本面背离最严重、波动最大的标的。</div>
+  <table class="f3">
+    <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+    <tr><td>是否继续持有</td><td class="num">减仓为主</td><td>重组方向正确但价格严重透支（PE 403 倍、三情景全低于现价）；6 天 5 板情绪高峰是减仓窗口而非加仓窗口</td></tr>
+    <tr><td>减仓节奏</td><td class="num">分两笔执行</td><td>① 冲高出现开板/放量长上影/高开低走，减 1800~2000 股（约 8 万元）；② 若二次冲高滞涨再减 1000~1500 股，保留 2400~3000 股跟踪重组</td></tr>
+    <tr><td>不做什么</td><td class="num"><span class="neg">绝不加仓</span></td><td>不追连板、不在涨停板附近买入；新仓不参与（与"开新仓只开低相关确定性标的"纪律一致）</td></tr>
+    <tr><td>持有剩余仓的条件</td><td class="num">重组逻辑未破坏</td><td>若深交所过会 + 证监会注册落地且股价不暴涨，剩余底仓可继续跟踪业绩兑现</td></tr>
+    <tr><td>失效条件</td><td class="num">全部清仓</td><td>重组终止/被否；Coherent 砍单或份额流失；业绩承诺大幅落空</td></tr>
+    <tr><td>与组合关系</td><td class="num">高波动暴露</td><td>美股映射 COHR/LITE；光模块转型有弹性但确定性低，权重 13.82% 偏高，应降到 8% 以下</td></tr>
+  </table>
+  <p style="margin-top:10px"><b>执行提醒：</b>① 减仓动作在"情绪高峰"执行（开板、放量滞涨即走），不要在下跌恐慌中割；② 保留的底仓不超过 3000 股，作为重组期权而非配置仓位；③ 中报（8 月底）看钧恒毛利率与现金流是否改善，若不改善即使重组过会也不追加。</p>
+</div>
+
+<div class="card">
+  <h2>⑨ 数据溯源与版本追踪</h2>
+  <table class="f3 src">
+    <tr><th>数据项</th><th>来源</th><th>时点/口径</th></tr>
+    <tr><td>行情/技术/资金</td><td>Wind 行情与技术指标</td><td>2026-08-07 收盘，前复权口径</td></tr>
+    <tr><td>财务数据</td><td>Wind 财务数据</td><td>2023A-2025A 年报 + 2026Q1 季报</td></tr>
+    <tr><td>重组/承诺/异动</td><td>公司公告（Wind 公告库）</td><td>2024-05 ~ 2026-08-08</td></tr>
+    <tr><td>机构预测</td><td>国盛证券研报</td><td>2026-04-24，非一手需核实原文</td></tr>
+    <tr><td>行业/产能数据</td><td>证券时报专访、投资者关系记录</td><td>2026-05~06，非一手需核实原文</td></tr>
+    <tr><td>52 周高低</td><td>Wind（复权口径）</td><td>69.72 / 12.36 元</td></tr>
+  </table>
+  <p style="margin-top:8px">版本：V1.0（2026-08-08 首次发布）。数据为静态快照；重组审核进展、中报披露（8 月底）后需更新。</p>
+  <div class="foot">
+    <p>版式：Google Insight V1 · 数据截至 2026-08-07 收盘，报告日期 2026-08-08</p>
+    <p><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </div>
+</div>
+
+</div>
+<script>
+var finChart=echarts.init(document.getElementById('finChart'));
+finChart.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['营收(亿)','归母净利(亿)']},
+  grid:{left:60,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['2023A','2024A','2025A','2026Q1']},
+  yAxis:[
+    {type:'value',name:'营收(亿)'},
+    {type:'value',name:'归母净利(亿)'}
+  ],
+  series:[
+    {name:'营收(亿)',type:'bar',data:[6.85,5.87,15.72,3.87],itemStyle:{color:'#4285F4'}},
+    {name:'归母净利(亿)',type:'line',yAxisIndex:1,data:[0.57,0.65,0.88,0.15],itemStyle:{color:'#FBBC05'}}
+  ]
+});
+var scnChart=echarts.init(document.getElementById('scnChart'));
+scnChart.setOption({
+  tooltip:{trigger:'item',formatter:'{b}: {c} 元'},
+  legend:{data:['情景股价','现价 42.69']},
+  grid:{left:60,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['Bear 悲观','Base 中性','Bull 乐观']},
+  yAxis:[{type:'value',name:'股价(元)'}],
+  series:[
+    {name:'情景股价',type:'bar',data:[
+      {value:5.8,itemStyle:{color:'#EA4335'}},
+      {value:17,itemStyle:{color:'#FBBC05'}},
+      {value:29,itemStyle:{color:'#34A853'}}
+    ]},
+    {name:'现价 42.69',type:'line',data:[42.69,42.69,42.69],itemStyle:{color:'#1f2933'},lineStyle:{type:'dashed'}}
+  ]
+});
+window.addEventListener('resize',function(){finChart.resize();scnChart.resize();});
+</script>
+</body>
+</html>

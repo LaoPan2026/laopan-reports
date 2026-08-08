@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澜起科技深度研报 20260808</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --up:#ff3b3b; --down:#1ed890;
+  --blue:#4285F4; --yellow:#FBBC05; --red:#EA4335; --green:#34A853;
+  --bg:#f8f9fa; --card:#ffffff; --line:#e8eaed; --text:#1f2933; --sub:#5f6b7a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.7}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 20px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 28px;margin-bottom:20px}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+h2{font-size:20px;font-weight:700;margin-bottom:14px;padding-left:12px;border-left:4px solid var(--blue)}
+h3{font-size:16px;font-weight:700;margin:18px 0 10px}
+.meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+.hero{background:linear-gradient(135deg,#eef3fe,#f6f8fd);border:1px solid #d8e1f5}
+.tldr{font-size:16px;font-weight:600;margin:10px 0}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.score{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;text-align:center}
+.score .num{font-size:26px;font-weight:700;color:var(--blue)}
+.score .lbl{font-size:13px;color:var(--sub);margin-top:2px}
+.score .desc{font-size:12px;color:var(--sub);margin-top:6px}
+.verdict{display:inline-block;font-size:15px;font-weight:700;padding:6px 16px;border-radius:20px;margin:4px 4px 4px 0}
+.v-wait{background:#fff4e0;color:#b06000;border:1px solid #f5c76a}
+.v-hold{background:#e8f0fe;color:#1a56c4;border:1px solid #a9c2ef}
+.v-buy{background:#e6f4ea;color:#1e7e34;border:1px solid #a8d8b5}
+.v-sell{background:#fdecea;color:#c5221f;border:1px solid #f2a8a5}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:12px;margin:2px 4px 2px 0;white-space:nowrap}
+.t-blue{background:#e8f0fe;color:#1a56c4}
+.t-yellow{background:#fef7e0;color:#9a6b00}
+.t-red{background:#fdecea;color:#c5221f}
+.t-green{background:#e6f4ea;color:#1e7e34}
+.t-gray{background:#f1f3f4;color:#5f6b7a}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:12px 0}
+th,td{vertical-align:top;padding:10px 12px;border-bottom:1px solid #eef0f3;font-variant-numeric:tabular-nums;word-break:break-word;overflow-wrap:anywhere;text-wrap:pretty}
+th{font-size:12.5px;font-weight:700;color:#3c4858;background:#f6f8fa;white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfc}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.num{text-align:right}
+.center{text-align:center}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* f3: 22/18/60 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+/* f3.rk 风险表: 26/14/60 */
+table.f3.rk th:nth-child(1),table.f3.rk td:nth-child(1){width:26%;text-align:left}
+table.f3.rk th:nth-child(2),table.f3.rk td:nth-child(2){width:14%;text-align:right}
+table.f3.rk th:nth-child(3),table.f3.rk td:nth-child(3){width:60%;text-align:left}
+/* f3.src 溯源表: 20/20/60 */
+table.f3.src th:nth-child(1),table.f3.src td:nth-child(1){width:20%;text-align:left}
+table.f3.src th:nth-child(2),table.f3.src td:nth-child(2){width:20%;text-align:left}
+table.f3.src th:nth-child(3),table.f3.src td:nth-child(3){width:60%;text-align:left}
+/* f4: 18/16/14/52 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:16%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%;text-align:left}
+/* f4.tl 催化时间线: 14/30/12/44 */
+table.f4.tl th:nth-child(1),table.f4.tl td:nth-child(1){width:14%;text-align:right}
+table.f4.tl th:nth-child(2),table.f4.tl td:nth-child(2){width:30%;text-align:left}
+table.f4.tl th:nth-child(3),table.f4.tl td:nth-child(3){width:12%;text-align:center}
+table.f4.tl th:nth-child(4),table.f4.tl td:nth-child(4){width:44%;text-align:left}
+/* f5: 18/16/16/14/36 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:18%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:16%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:16%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:14%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:36%;text-align:left}
+/* f5.fin 财务速览: 14/16/16/14/40 */
+table.f5.fin th:nth-child(1),table.f5.fin td:nth-child(1){width:14%;text-align:right}
+table.f5.fin th:nth-child(2),table.f5.fin td:nth-child(2){width:16%;text-align:right}
+table.f5.fin th:nth-child(3),table.f5.fin td:nth-child(3){width:16%;text-align:right}
+table.f5.fin th:nth-child(4),table.f5.fin td:nth-child(4){width:14%;text-align:right}
+table.f5.fin th:nth-child(5),table.f5.fin td:nth-child(5){width:40%;text-align:left}
+.chart{width:100%;height:360px;margin:14px 0}
+.src{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.6}
+.foot{font-size:12px;color:var(--sub);margin-top:30px;padding-top:14px;border-top:1px solid var(--line)}
+.foot p{margin:4px 0}
+@media(max-width:640px){
+  body{font-size:13px}
+  .wrap{padding:14px 10px 40px}
+  .card{padding:16px 14px}
+  h1{font-size:20px}
+  .score-grid{grid-template-columns:repeat(2,1fr)}
+  table{font-size:11.5px}
+  th,td{padding:7px 6px}
+  .chart{height:280px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="card hero">
+  <h1>澜起科技（688008.SH）深度研报</h1>
+  <div class="meta">全球内存接口芯片龙头 · 数据截至 2026-08-07 收盘 · 报告日期 2026-08-08</div>
+  <div class="tldr">核心判断：<span style="color:#1a56c4">基本面最硬、估值偏高、事件扰动未落地</span>——全球内存互连芯片市占率第一（36.8%），2026H1 归母预增 63.9%~81.2%，但韩国反垄断调查仍是股价最大不确定性。现价 215.52 元处于回调修复期，<b>当前维持"条件加仓、不追高"</b>。</div>
+  <div>
+    <span class="verdict v-hold">结论：HOLD（已持仓）</span>
+    <span class="verdict v-wait">新仓/加仓：WAIT 条件触发</span>
+  </div>
+  <div class="tag t-blue">产业逻辑 ★★★★★</div>
+  <div class="tag t-green">业绩兑现 ★★★★★</div>
+  <div class="tag t-yellow">估值水平 ★★★</div>
+  <div class="tag t-yellow">事件风险 ★★★</div>
+  <div class="tag t-gray">技术位置 ★★★</div>
+  <div class="score-grid">
+    <div class="score"><div class="num">9/10</div><div class="lbl">产业景气度</div><div class="desc">AI 服务器 + DDR5 子代迭代 + MRDIMM 放量</div></div>
+    <div class="score"><div class="num">8.5/10</div><div class="lbl">业绩兑现度</div><div class="desc">2026H1 归母预增 63.9%~81.2%，毛利率近 70%</div></div>
+    <div class="score"><div class="num">4.5/10</div><div class="lbl">估值安全边际</div><div class="desc">PE-TTM 102.85 倍，机构目标价分歧极大（165-400 元）</div></div>
+  </div>
+  <div class="src">综合评分 7.3/10（基本面强、估值与事件拖累）。数据源：Wind 行情/财务快照、公司公告、券商研报（非一手来源需核实原文），均截至 2026-08-07。</div>
+</div>
+
+<div class="card">
+  <h2>① 催化时间线</h2>
+  <table class="f4 tl">
+    <tr><th>时间</th><th>事件</th><th>性质</th><th>点评</th></tr>
+    <tr><td>2026-02-09</td><td>H 股上市，完成 A+H 双上市</td><td class="center">正面</td><td>增强境外融资能力，国际化布局加速</td></tr>
+    <tr><td>2026-06 中</td><td>DDR5 第六子代 RCD 送样</td><td class="center">正面</td><td>9200 MT/s，较上代 +15%，适配下一代服务器平台</td></tr>
+    <tr><td>2026-07-15</td><td>韩国首尔检方突击搜查</td><td class="center"><span class="neg">负面</span></td><td>涉嫌内存价格串通调查（同查瑞萨、Rambus）；公司未被指控，但股价 3 日大跌约 32%</td></tr>
+    <tr><td>2026-07-16</td><td>董事长提议回购 3-6 亿</td><td class="center">正面</td><td>触发"20 日跌超 20%"回购条件，护盘信号明确</td></tr>
+    <tr><td>2026-07-17</td><td>2026H1 业绩预增公告</td><td class="center">正面</td><td>归母 19~21 亿（+63.9%~81.2%），剔除股份支付 20.8~22.8 亿</td></tr>
+    <tr><td>2026-07-24</td><td>回购方案落地</td><td class="center">正面</td><td>3-6 亿、上限 332.90 元/股，期限至 10 月 23 日</td></tr>
+    <tr><td>2026-07-29</td><td>首次回购 50 万股</td><td class="center">正面</td><td>均价约 205.5 元（192.18-210 元区间），真金白银护盘</td></tr>
+    <tr><td>2026-08-04</td><td>累计回购 70.5 万股</td><td class="center">正面</td><td>累计 1.44 亿元，回购执行中</td></tr>
+    <tr><td>2026-08 底</td><td>2026 中报正式披露（预期）</td><td class="center">关键验证</td><td>验证预增兑现度、互连芯片毛利率趋势</td></tr>
+  </table>
+  <div class="src">来源：Wind 公司事件/公告、公司公告原文（2026-02~08）。</div>
+</div>
+
+<div class="card">
+  <h2>② 公司画像 · 财务速览</h2>
+  <p><b>一句话本质：买澜起科技，买的是 AI 服务器"运力"确定性——全球内存接口芯片绝对龙头，DDR5 子代迭代 + MRDIMM 放量带来的量价齐升。</b></p>
+  <table class="f3">
+    <tr><th>项目</th><th>数据</th><th>说明</th></tr>
+    <tr><td>上市板块</td><td class="num">科创板+港股</td><td>2019-07 科创板首批上市（发行价 24.8 元）；2026-02 港股上市；无控股股东/实控人</td></tr>
+    <tr><td>主营</td><td class="num">互连类芯片</td><td>内存接口芯片（RCD/DB、MRCD/MDB）、PCIe Retimer、CXL MXC、CKD；津逮平台占约 5.7%</td></tr>
+    <tr><td>竞争地位</td><td class="num">全球第一</td><td>2024 年全球内存互连芯片市占率 36.8%；DDR5 RCD 份额 2025 年升至 43.5% 超越瑞萨；JEDEC 董事会成员</td></tr>
+    <tr><td>总市值</td><td class="num">2643.76 亿</td><td>2026-08-07 收盘，A+H 合计</td></tr>
+    <tr><td>PE(TTM) / PB</td><td class="num">102.85 / 13.05 倍</td><td>PE(2026E) 约 64~85 倍（机构 2026 净利预测 31~41 亿）</td></tr>
+    <tr><td>机构评级</td><td class="num">100% 买入/增持</td><td>近 6 个月机构全覆盖看多；目标价区间 165~400 元，分歧极大</td></tr>
+  </table>
+  <div class="chart" id="finChart"></div>
+  <table class="f5 fin">
+    <tr><th>报告期</th><th>营收(亿)</th><th>归母(亿)</th><th>毛利率</th><th>关键变化</th></tr>
+    <tr><td>2024A</td><td>36.39</td><td>14.12</td><td>—</td><td>归母 +213.1%，DDR5 放量元年</td></tr>
+    <tr><td>2025A</td><td>54.56</td><td>22.36</td><td>62.23%</td><td>营收 +49.9%，归母 +58.4%</td></tr>
+    <tr><td>2026Q1</td><td>14.61</td><td>8.47</td><td>69.79%</td><td>归母 +61.3%，毛利率逼近 70%</td></tr>
+    <tr><td>2026H1(预告)</td><td>约 33.35</td><td>19~21</td><td>—</td><td><span class="pos">归母 +63.9%~81.2%</span>，扣非 +14.5%~32.9%</td></tr>
+  </table>
+  <div class="src">数据源：Wind 财务数据 + 公司 2026H1 业绩预告（2026-07-17 公告）。</div>
+  <p style="margin-top:10px"><b>财务速览核心：</b>营收、净利连续两年高增，毛利率从 2025 年 62.2% 提升至 2026Q1 的 69.8%（DDR5 高子代占比提升 + 新品放量）。<b>关键口径提示</b>：2026H1 归母增速（+64%~81%）显著高于扣非增速（+14.5%~32.9%），差额来自投资收益及公允价值变动收益（2026Q1 合计 2.33 亿，同比 +1235%）——主业增长扎实，但账面利润也吃到非经营性红利，需区分看待。</p>
+</div>
+
+<div class="card">
+  <h2>③ 产业格局与景气度</h2>
+  <h3>行业逻辑：AI 服务器"运力"扩张，内存互连芯片量价齐升</h3>
+  <table class="f3">
+    <tr><th>维度</th><th>状态</th><th>说明</th></tr>
+    <tr><td>行业需求</td><td class="num">高景气</td><td>TrendForce：2026 年 AI 服务器出货量同比 +28.3%、超 200 万台；AI 服务器内存搭载量大幅高于传统服务器</td></tr>
+    <tr><td>市场空间</td><td class="num">双位数增长</td><td>2026 年全球内存互连芯片市场约 18.46 亿美元，2025-2030 CAGR 约 25.9%；PCIe 互连芯片市场 39 亿美元、CAGR 20.1%</td></tr>
+    <tr><td>竞争格局</td><td class="num">寡头垄断</td><td>澜起（36.8%）+ 瑞萨（约 36%）+ Rambus（约 25%）合计 93%+；认证壁垒极高（2-3 年认证周期）</td></tr>
+    <tr><td>技术迭代</td><td class="num">领先一子代</td><td>DDR5 第三子代营收超第二子代，第四子代量产，第五储备、第六送样；牵头制定 DDR5 RCD 国际标准</td></tr>
+    <tr><td>第二曲线</td><td class="num">放量期</td><td>PCIe Retimer 全球第二（约 10%）；MRCD/MDB 全球唯二供应商；CKD 首家发布；CXL MXC 布局中</td></tr>
+  </table>
+  <p style="margin-top:10px"><b>产业链位置：</b>数字芯片设计（申万三级）→ 内存接口芯片环节。公司卡位"运力"核心，每一轮 DDR5 子代迭代都带来单价上浮（量价齐升），且客户（三星、SK 海力士、美光）认证壁垒构成天然护城河。AI 服务器对高带宽内存（MRDIMM）需求是中期最大增量。</p>
+  <div class="src">来源：TrendForce、东海证券/国盛证券研报（2026-05~06，非一手来源需核实原文）；公司公告。</div>
+</div>
+
+<div class="card">
+  <h2>④ 技术面 · 资金面</h2>
+  <table class="f4">
+    <tr><th>指标</th><th>数值(2026-08-07)</th><th>状态</th><th>解读</th></tr>
+    <tr><td>收盘价</td><td class="num">215.52 元</td><td class="num">+3.44%</td><td>当日放量反弹，成交额 111.47 亿，换手 4.55%，量比 0.97</td></tr>
+    <tr><td>区间涨跌</td><td class="num">5日+5.2% / 20日-19.5% / 60日-18.6% / YTD+83.3%</td><td class="num">高位回撤</td><td>年内翻倍后自 7 月高点大幅回调，仍处 60 日弱势区</td></tr>
+    <tr><td>均线系统</td><td class="num">MA5 205.8 / MA10 207.1 / MA20 216.5 / MA60 244.9</td><td class="num">弱多</td><td>站上 MA5/MA10/MA120，跌破 MA20/MA30/MA60；MA250 162.3 为长期支撑</td></tr>
+    <tr><td>MACD</td><td class="num">DIF -11.2 / DEA -12.0</td><td class="num"><span class="pos">红柱转正</span></td><td>柱体 +1.49 转正，DIF 上穿 DEA 在即，短线修复信号</td></tr>
+    <tr><td>KDJ</td><td class="num">K 50.3 / D 39.7 / J 71.6</td><td class="num">中位</td><td>K 上穿 D，修复进行中</td></tr>
+    <tr><td>RSI</td><td class="num">RSI6 54.5 / RSI12 47.8</td><td class="num">中性</td><td>超卖修复至中性，无过热</td></tr>
+    <tr><td>BOLL</td><td class="num">上 259.9 / 中 216.5 / 下 172.9</td><td class="num">中轨附近</td><td>股价贴中轨运行，方向选择期</td></tr>
+    <tr><td>主力资金</td><td class="num">当日 +2.43 亿 / 5日 -13.87 亿 / 20日 -82.87 亿</td><td class="num"><span class="neg">持续流出</span></td><td>20 日主力净流出近 83 亿，回调中资金尚未回流</td></tr>
+  </table>
+  <div class="src">数据源：Wind 行情快照与技术指标（2026-08-07，前复权口径）；主力资金为 Wind 口径。</div>
+  <p style="margin-top:10px"><b>技术结论：</b>股价处于"韩国事件冲击后的修复期"——MACD 红柱转正、站上 MA5/MA10 是积极信号，但 MA20（216.5 元）/MA60（244.9 元）仍压制上方空间，且近 20 日主力净流出 83 亿说明机构资金尚未回补。<b>关键分水岭：MA60（约 245 元）</b>——放量站回 MA60 才算真正修复完成；在此之前反弹定性为超跌修复。</p>
+</div>
+
+<div class="card">
+  <h2>⑤ 核心逻辑与风险（含反一致预期）</h2>
+  <h3>核心逻辑（市场已定价部分）</h3>
+  <table class="f3">
+    <tr><th>逻辑</th><th>强度</th><th>兑现路径</th></tr>
+    <tr><td>全球内存接口芯片龙头</td><td class="num">★★★★★</td><td>市占率 36.8% 全球第一，DDR5 RCD 43.5% 超越瑞萨；三寡头格局稳定，定价权强</td></tr>
+    <tr><td>DDR5 子代迭代量价齐升</td><td class="num">★★★★★</td><td>每一子代单价上浮 10%+，第三/四子代占比提升直接拉动 ASP；第六子代已送样</td></tr>
+    <tr><td>MRDIMM 打开 AI 增量</td><td class="num">★★★★★</td><td>MRDIMM 接口芯片用量与价值量超越同期 RDIMM；公司全球唯二供应商</td></tr>
+    <tr><td>第二曲线（PCIe/CXL）</td><td class="num">★★★★</td><td>PCIe Retimer 全球第二（约 10%），8 卡 AI 服务器需 8-16 颗 Retimer + 2-4 颗 Switch</td></tr>
+    <tr><td>财务极稳健</td><td class="num">★★★★★</td><td>资产负债率约 4%，账上现金 146 亿，几乎无有息负债；毛利率近 70%</td></tr>
+  </table>
+  <h3>风险（市场可能低估的部分）</h3>
+  <table class="f3 rk">
+    <tr><th>风险</th><th>级别</th><th>触发与影响</th></tr>
+    <tr><td><span class="tag t-red">韩国反垄断调查</span></td><td class="num">高</td><td>2026-07-15 首尔检方搜查（同查瑞萨、Rambus）；公司未被指控，但调查时间与结果不可预测，若认定价格串通可能面临罚款/整改，是当前股价最大不确定性</td></tr>
+    <tr><td><span class="tag t-red">境外收入占比高</span>71.5%</td><td class="num">高</td><td>2025 年境外收入约 39 亿、占 71.5%，高度依赖三星/SK 海力士等海外客户，地缘风险压制估值</td></tr>
+    <tr><td><span class="tag t-yellow">估值偏高</span>PE-TTM 103 倍</td><td class="num">中高</td><td>机构目标价 165~400 元分歧极大；华泰/天风目标价接近或低于现价，若 AI 周期或调查落地不及预期，杀估值空间存在</td></tr>
+    <tr><td><span class="tag t-yellow">利润含非经常性收益</span></td><td class="num">中</td><td>2026H1 归母增速（+64%~81%）远高于扣非（+14.5%~32.9%），公允价值变动收益贡献显著，主业增速需以扣非为准</td></tr>
+    <tr><td><span class="tag t-gray">机构减持</span></td><td class="num">中</td><td>公募持仓环比 -6.25%，近 20 日主力净流出 83 亿，筹码结构松动中</td></tr>
+    <tr><td><span class="tag t-gray">业务结构单一</span></td><td class="num">低</td><td>互连芯片占 94%，津逮平台收缩，抗周期能力相对弱</td></tr>
+  </table>
+  <h3>反一致预期（我的独立判断）</h3>
+  <p>市场当前把澜起当作"AI 运力最确定龙头"，给 103 倍 TTM 估值，隐含的是<b>"业绩高增 + 韩国调查无实质影响"</b>同时兑现。但两个预期差值得注意：①<b>扣非增速（+14.5%~32.9%）才是主业真相</b>——市场热议的 +80% 归母增速里含公允价值变动收益，主业并没有那么夸张；②<b>韩国调查若落地为处罚，市场可能重演 7 月 15-17 日式暴跌</b>，即便最终只影响当年利润的几个百分点，情绪冲击也不可小觑。真正的预期差在"调查结果"——未落地前，103 倍 PE 对负面事件的容错度很低。</p>
+</div>
+
+<div class="card">
+  <h2>⑥ 可比估值</h2>
+  <table class="f5">
+    <tr><th>机构</th><th>2026E 净利(亿)</th><th>2027E 净利(亿)</th><th>目标价(元)</th><th>估值逻辑</th></tr>
+    <tr><td>高盛</td><td class="num">41.0</td><td class="num">53.4</td><td class="num">387</td><td>最乐观；2030E PE 48 倍，2026-28 CAGR 约 38%</td></tr>
+    <tr><td>伯恩斯坦</td><td class="num">—</td><td class="num">—</td><td class="num">400</td><td>优于大市，最高目标价</td></tr>
+    <tr><td>花旗</td><td class="num">—</td><td class="num">—</td><td class="num">245</td><td>买入，上调 EPS 预测</td></tr>
+    <tr><td>浙商证券</td><td class="num">34.61</td><td class="num">51.22</td><td class="num">—</td><td>2026E PE 约 85 倍</td></tr>
+    <tr><td>中航证券</td><td class="num">31.81</td><td class="num">45.04</td><td class="num">—</td><td>首次覆盖买入</td></tr>
+    <tr><td>华泰/天风等</td><td class="num">—</td><td class="num">—</td><td class="num">165~215</td><td>目标价接近或低于现价，偏谨慎</td></tr>
+  </table>
+  <div class="src">来源：各券商研报（2026-04~07，非一手来源需核实原文）；目标价区间差异极大，反映对韩国事件与 AI 周期判断分歧。</div>
+  <p style="margin-top:10px"><b>估值判断：</b>2026 年归母净利一致预期中枢约 34~35 亿，按现价 2643.76 亿市值对应 2026E PE 约 <b>76~78 倍</b>。乐观派（高盛/伯恩斯坦）看 387-400 元，悲观派（华泰/天风）看 165-215 元——<b>目标价分歧达 2.4 倍，这在龙头股中非常罕见</b>，说明市场对韩国事件定价极不确定。当前估值已包含"业绩高增"预期，但未包含"调查落地"风险。</p>
+</div>
+
+<div class="card">
+  <h2>⑦ 三级情景（2026-2027E）</h2>
+  <div class="chart" id="scnChart"></div>
+  <table class="f5">
+    <tr><th>情景</th><th>2027E 净利</th><th>估值倍数</th><th>对应股价</th><th>触发条件</th></tr>
+    <tr><td><span class="tag t-red">Bear 悲观</span></td><td class="num">30 亿</td><td class="num">50×</td><td class="num">约 123 元 <span class="neg">(-43%)</span></td><td>韩国调查落地处罚；AI 资本开支放缓；扣非增速持续个位数</td></tr>
+    <tr><td><span class="tag t-yellow">Base 中性</span></td><td class="num">45 亿</td><td class="num">55×</td><td class="num">约 203 元 <span class="neg">(-6%)</span></td><td>调查以和解/罚款收场；MRDIMM+Retimer 按预期放量；扣非增速回到 25%+</td></tr>
+    <tr><td><span class="tag t-green">Bull 乐观</span></td><td class="num">53.4 亿</td><td class="num">65×</td><td class="num">约 284 元 <span class="pos">(+32%)</span></td><td>调查无实质影响；AI 内存扩容超预期；高子代+MRDIMM 全面放量</td></tr>
+  </table>
+  <div class="src">测算口径：总股本约 12.2 亿股（A+H）；净利预测参考高盛/浙商/中航区间；倍数参考历史 PE 带与 AI 算力板块估值。仅为情景推演，不构成目标价承诺。</div>
+  <p style="margin-top:10px"><b>情景结论：</b>与华海清科不同，澜起的 Base 情景（203 元）与现价（215.52 元）已较接近，Bull 情景有 +32% 空间——<b>当前价格处于"跌出来的价值区"上沿</b>，下行风险主要来自调查落地与 AI 周期证伪，上行来自 MRDIMM 放量与调查平安落地。赔率中性偏好，但确定性取决于事件，故维持"条件加仓"而非"立即重仓"。</p>
+</div>
+
+<div class="card">
+  <h2>⑧ 结论与操作框架（对老潘组合的意义）</h2>
+  <div class="tldr">综合结论：<span style="color:#1a56c4">HOLD —— 已持仓者持有等待事件落地，加仓须条件触发</span>。这是组合中基本面兑现度最高的成长股，但当前处于"事件未落地 + 资金未回流"的窗口。</div>
+  <table class="f3">
+    <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+    <tr><td>是否继续持有</td><td class="num">是</td><td>全球龙头 + 业绩高增 + 财务极稳健；逻辑未破坏，不因事件恐慌卖出（符合"不做技术止损"纪律）</td></tr>
+    <tr><td>是否加仓</td><td class="num"><span class="neg">条件触发才加</span></td><td>现价 215.52 元仍处修复期、20 日主力净流出 83 亿、韩国调查未落地——不符合"大幅加仓标准"，与前期判断一致</td></tr>
+    <tr><td>加仓触发条件</td><td class="num">两个满足其一</td><td>① 回调至 205~210 元缩量承接后重新转强；② 放量站回 220~225 元且回踩不破；③ 韩国调查出现明确"无实质影响"结论或中报扣非增速验证 25%+</td></tr>
+    <tr><td>加仓规模</td><td class="num">200 股/笔</td><td>科创板单笔下限 200 股；按现价约 4.3 万/笔；完成 2 笔后目标 800 股（权重约 7.5%）</td></tr>
+    <tr><td>失效条件</td><td class="num">停止加仓/重估</td><td>韩国调查认定实质违法并重罚；或跌破 205 元且板块转弱；或中报扣非增速不及预期</td></tr>
+    <tr><td>与组合关系</td><td class="num">核心成长仓</td><td>美股映射 MRVL；AI 硬件确定性核心，权重 4.73% 偏低，值得条件加仓提升</td></tr>
+  </table>
+  <p style="margin-top:10px"><b>执行提醒：</b>① 200 股/笔、分 2 笔、不一次到位；② 关注 8 月底中报（扣非增速与互连毛利率是核心验证点）；③ 韩国调查任何进展公告第一时间评估；④ 不与华峰加仓冲突——华峰靠"便宜+已验证"左侧执行，澜起靠"事件落地+资金回流"右侧执行。</p>
+</div>
+
+<div class="card">
+  <h2>⑨ 数据溯源与版本追踪</h2>
+  <table class="f3 src">
+    <tr><th>数据项</th><th>来源</th><th>时点/口径</th></tr>
+    <tr><td>行情/技术/资金</td><td>Wind 行情与技术指标</td><td>2026-08-07 收盘，前复权口径</td></tr>
+    <tr><td>财务数据</td><td>Wind 财务数据 + 公司业绩预告</td><td>2024A-2025A 年报 + 2026Q1 + 2026H1 预告</td></tr>
+    <tr><td>回购/调查/事件</td><td>公司公告（Wind 公告库）</td><td>2026-02 ~ 2026-08</td></tr>
+    <tr><td>机构预测与目标价</td><td>高盛/伯恩斯坦/花旗/浙商/中航等研报</td><td>2026-04 ~ 2026-07，非一手需核实原文</td></tr>
+    <tr><td>行业数据</td><td>TrendForce、券商策略</td><td>2026 年，非一手需核实原文</td></tr>
+    <tr><td>52 周高低</td><td>Wind（复权口径）</td><td>332.51 / 87.75 元</td></tr>
+  </table>
+  <p style="margin-top:8px">版本：V1.0（2026-08-08 首次发布）。数据为静态快照；韩国调查进展、中报披露（8 月底）后需更新财务与情景测算。</p>
+  <div class="foot">
+    <p>版式：Google Insight V1 · 数据截至 2026-08-07 收盘，报告日期 2026-08-08</p>
+    <p><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </div>
+</div>
+
+</div>
+<script>
+var finChart=echarts.init(document.getElementById('finChart'));
+finChart.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['营收(亿)','归母净利(亿)','毛利率(%)']},
+  grid:{left:60,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['2024A','2025A','2026Q1','2026H1E']},
+  yAxis:[
+    {type:'value',name:'营收/净利(亿)'},
+    {type:'value',name:'毛利率(%)',min:0,max:80}
+  ],
+  series:[
+    {name:'营收(亿)',type:'bar',data:[36.39,54.56,14.61,33.35],itemStyle:{color:'#4285F4'}},
+    {name:'归母净利(亿)',type:'bar',data:[14.12,22.36,8.47,20],itemStyle:{color:'#FBBC05'}},
+    {name:'毛利率(%)',type:'line',yAxisIndex:1,data:[null,62.23,69.79,null],itemStyle:{color:'#34A853'}}
+  ]
+});
+var scnChart=echarts.init(document.getElementById('scnChart'));
+scnChart.setOption({
+  tooltip:{trigger:'item',formatter:'{b}: {c} 元'},
+  legend:{data:['情景股价','现价 215.52']},
+  grid:{left:60,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['Bear 悲观','Base 中性','Bull 乐观']},
+  yAxis:[{type:'value',name:'股价(元)'}],
+  series:[
+    {name:'情景股价',type:'bar',data:[
+      {value:123,itemStyle:{color:'#EA4335'}},
+      {value:203,itemStyle:{color:'#FBBC05'}},
+      {value:284,itemStyle:{color:'#34A853'}}
+    ]},
+    {name:'现价 215.52',type:'line',data:[215.52,215.52,215.52],itemStyle:{color:'#1f2933'},lineStyle:{type:'dashed'}}
+  ]
+});
+window.addEventListener('resize',function(){finChart.resize();scnChart.resize();});
+</script>
+</body>
+</html>
