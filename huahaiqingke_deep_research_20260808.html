@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华海清科深度研报 20260808</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --up:#ff3b3b; --down:#1ed890;
+  --blue:#4285F4; --yellow:#FBBC05; --red:#EA4335; --green:#34A853;
+  --bg:#f8f9fa; --card:#ffffff; --line:#e8eaed; --text:#1f2933; --sub:#5f6b7a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.7}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 20px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 28px;margin-bottom:20px}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+h2{font-size:20px;font-weight:700;margin-bottom:14px;padding-left:12px;border-left:4px solid var(--blue)}
+h3{font-size:16px;font-weight:700;margin:18px 0 10px}
+.meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+.hero{background:linear-gradient(135deg,#eef3fe,#f6f8fd);border:1px solid #d8e1f5}
+.tldr{font-size:16px;font-weight:600;margin:10px 0}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.score{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;text-align:center}
+.score .num{font-size:26px;font-weight:700;color:var(--blue)}
+.score .lbl{font-size:13px;color:var(--sub);margin-top:2px}
+.score .desc{font-size:12px;color:var(--sub);margin-top:6px}
+.verdict{display:inline-block;font-size:15px;font-weight:700;padding:6px 16px;border-radius:20px;margin:4px 4px 4px 0}
+.v-wait{background:#fff4e0;color:#b06000;border:1px solid #f5c76a}
+.v-hold{background:#e8f0fe;color:#1a56c4;border:1px solid #a9c2ef}
+.v-buy{background:#e6f4ea;color:#1e7e34;border:1px solid #a8d8b5}
+.v-sell{background:#fdecea;color:#c5221f;border:1px solid #f2a8a5}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:12px;margin:2px 4px 2px 0;white-space:nowrap}
+.t-blue{background:#e8f0fe;color:#1a56c4}
+.t-yellow{background:#fef7e0;color:#9a6b00}
+.t-red{background:#fdecea;color:#c5221f}
+.t-green{background:#e6f4ea;color:#1e7e34}
+.t-gray{background:#f1f3f4;color:#5f6b7a}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:12px 0}
+th,td{vertical-align:top;padding:10px 12px;border-bottom:1px solid #eef0f3;font-variant-numeric:tabular-nums;word-break:break-word;overflow-wrap:anywhere;text-wrap:pretty}
+th{font-size:12.5px;font-weight:700;color:#3c4858;background:#f6f8fa;white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfc}
+.pos,.neg{white-space:nowrap;font-weight:700}
+.pos{color:var(--up)}.neg{color:var(--down)}
+.num{text-align:right}
+.center{text-align:center}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* f3: 22/18/60 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+/* f4: 18/16/14/52 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:16%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:14%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:52%;text-align:left}
+/* f4.tl 催化时间线: 14/30/12/44 */
+table.f4.tl th:nth-child(1),table.f4.tl td:nth-child(1){width:14%;text-align:right}
+table.f4.tl th:nth-child(2),table.f4.tl td:nth-child(2){width:30%;text-align:left}
+table.f4.tl th:nth-child(3),table.f4.tl td:nth-child(3){width:12%;text-align:center}
+table.f4.tl th:nth-child(4),table.f4.tl td:nth-child(4){width:44%;text-align:left}
+/* f5: 18/16/16/14/36 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:18%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:16%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:16%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:14%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:36%;text-align:left}
+/* f5.fin 财务速览: 14/16/16/14/40 */
+table.f5.fin th:nth-child(1),table.f5.fin td:nth-child(1){width:14%;text-align:right}
+table.f5.fin th:nth-child(2),table.f5.fin td:nth-child(2){width:16%;text-align:right}
+table.f5.fin th:nth-child(3),table.f5.fin td:nth-child(3){width:16%;text-align:right}
+table.f5.fin th:nth-child(4),table.f5.fin td:nth-child(4){width:14%;text-align:right}
+table.f5.fin th:nth-child(5),table.f5.fin td:nth-child(5){width:40%;text-align:left}
+/* f3.rk 风险表: 26/14/60 */
+table.f3.rk th:nth-child(1),table.f3.rk td:nth-child(1){width:26%;text-align:left}
+table.f3.rk th:nth-child(2),table.f3.rk td:nth-child(2){width:14%;text-align:right}
+table.f3.rk th:nth-child(3),table.f3.rk td:nth-child(3){width:60%;text-align:left}
+/* f3.src 溯源表: 20/20/60 */
+table.f3.src th:nth-child(1),table.f3.src td:nth-child(1){width:20%;text-align:left}
+table.f3.src th:nth-child(2),table.f3.src td:nth-child(2){width:20%;text-align:left}
+table.f3.src th:nth-child(3),table.f3.src td:nth-child(3){width:60%;text-align:left}
+.chart{width:100%;height:360px;margin:14px 0}
+.src{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.6}
+.foot{font-size:12px;color:var(--sub);margin-top:30px;padding-top:14px;border-top:1px solid var(--line)}
+.foot p{margin:4px 0}
+@media(max-width:640px){
+  body{font-size:13px}
+  .wrap{padding:14px 10px 40px}
+  .card{padding:16px 14px}
+  h1{font-size:20px}
+  .score-grid{grid-template-columns:repeat(2,1fr)}
+  table{font-size:11.5px}
+  th,td{padding:7px 6px}
+  .chart{height:280px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="card hero">
+  <h1>华海清科（688120.SH）深度研报</h1>
+  <div class="meta">CMP 设备国产龙头 · 数据截至 2026-08-07 收盘 · 报告日期 2026-08-08</div>
+  <div class="tldr">核心判断：<span style="color:#b06000">好公司、贵价格</span> —— 现价 259.30 元已高于机构目标价均值（229.86 元），PE(TTM) 117 倍透支未来 1-2 年增长，<b>当前不构成开仓买点</b>。</div>
+  <div>
+    <span class="verdict v-wait">结论：WAIT（观察仓暂缓）</span>
+    <span class="verdict v-hold">若持有：HOLD 观察</span>
+  </div>
+  <div class="tag t-blue">产业逻辑 ★★★★★</div>
+  <div class="tag t-yellow">业绩兑现 ★★★</div>
+  <div class="tag t-red">估值安全 ★★</div>
+  <div class="tag t-green">资金关注 ★★★★</div>
+  <div class="tag t-gray">技术位置 ★★★</div>
+  <div class="score-grid">
+    <div class="score"><div class="num">9/10</div><div class="lbl">产业景气度</div><div class="desc">CMP 国产替代 + 存储扩产 + HBM 需求</div></div>
+    <div class="score"><div class="num">5/10</div><div class="lbl">业绩兑现度</div><div class="desc">2025-2026Q1 利润增速仅 +5.9%</div></div>
+    <div class="score"><div class="num">3/10</div><div class="lbl">估值安全边际</div><div class="desc">PE-TTM 117 倍，机构目标价低于现价</div></div>
+  </div>
+  <div class="src">综合评分 6.3/10（中性偏谨慎）。数据源：Wind 行情/财务快照、公司公告、券商研报（非一手来源需核实原文），均截至 2026-08-07。</div>
+</div>
+
+<div class="card">
+  <h2>① 催化时间线</h2>
+  <table class="f4 tl">
+    <tr><th>时间</th><th>事件</th><th>性质</th><th>点评</th></tr>
+    <tr><td>2026-04-22</td><td>终止 H 股，改定增募资 ≤40 亿</td><td class="center">中性</td><td>转投高端装备研发（20.08 亿）、上海基地（13.42 亿，+150 台套/年）、昆山晶圆再生扩产（4.45 亿，+20 万片/月）</td></tr>
+    <tr><td>2026-04</td><td>第 1000 台 CMP 设备出机</td><td class="center">正面</td><td>国产 CMP 龙头地位标志性事件，先进制程出货量显著增长</td></tr>
+    <tr><td>2026-05 末</td><td>装备在手订单 74.81 亿</td><td class="center">正面</td><td>较上年末 +30.02%；离子注入在手订单 +116%</td></tr>
+    <tr><td>2026-06-10</td><td>10 派 4 元转 4 股实施</td><td class="center">中性</td><td>股本由约 3.54 亿股扩至 4.96 亿股，EPS 摊薄约 40%</td></tr>
+    <tr><td>2026-06-23</td><td>回复问询，募资调减至 37.95 亿</td><td class="center">中性</td><td>测算未来三年资金缺口 39.52 亿，募资基本打平缺口</td></tr>
+    <tr><td>2026-07</td><td>定增获上交所过会</td><td class="center">正面</td><td>尚待证监会注册；发行价不低于基准价 80%，锁 6 个月</td></tr>
+    <tr><td>2026-08-03</td><td>股权激励 155 万股解禁</td><td class="center">中性</td><td>规模小（占股本 0.3%），压力有限</td></tr>
+    <tr><td>2026-08-04</td><td>激励获国资委批准</td><td class="center">正面</td><td>602 人，拟授 ≤1694.31 万股（占 3.42%），授予价 66.01 元</td></tr>
+    <tr><td>2026-08 底</td><td>2026 中报披露（预期）</td><td class="center">关键验证</td><td>观察毛利率是否企稳、利润增速能否回升至 20%+</td></tr>
+  </table>
+  <div class="src">来源：Wind 公司事件/公告、公司公告原文；定增、订单数据为公司公告口径（2026-04~08）。</div>
+</div>
+
+<div class="card">
+  <h2>② 公司画像 · 财务速览</h2>
+  <p><b>一句话本质：买华海清科，买的是中国半导体设备国产替代的"确定性"——CMP 环节国内 90% 以上份额的绝对龙头，从"单点突破"走向"装备+服务"平台化。</b></p>
+  <table class="f3">
+    <tr><th>项目</th><th>数据</th><th>说明</th></tr>
+    <tr><td>上市板块</td><td class="num">科创板</td><td>2022-06 上市，发行价 136.66 元；实控人四川省国资委（间接持股 25.55%）</td></tr>
+    <tr><td>主营</td><td class="num">半导体设备</td><td>CMP 抛光为核心，延伸减薄、划切、离子注入、湿法、晶圆再生、耗材维保</td></tr>
+    <tr><td>竞争地位</td><td class="num">国内 CMP 龙头</td><td>12 英寸国产 CMP 份额 90%+；市占率从 2017 年约 1% → 2024 年 50%+</td></tr>
+    <tr><td>总市值</td><td class="num">1286.86 亿</td><td>2026-08-07 收盘，总股本 4.96 亿股</td></tr>
+    <tr><td>PE(TTM) / PB</td><td class="num">117.2 / 16.9 倍</td><td>PE(2026E) 约 85.5 倍（机构均值 15.05 亿）</td></tr>
+    <tr><td>机构评级</td><td class="num">买入 5 / 增持 2</td><td>近 90 天 7 家机构；目标均价 229.86 元，低于现价 259.30 元</td></tr>
+  </table>
+  <div class="chart" id="finChart"></div>
+  <table class="f5 fin">
+    <tr><th>年度</th><th>营收(亿)</th><th>归母(亿)</th><th>毛利率</th><th>关键变化</th></tr>
+    <tr><td>2022</td><td>16.49</td><td>5.02</td><td>47.72%</td><td>12 英寸 CMP 放量起步</td></tr>
+    <tr><td>2023</td><td>25.08</td><td>7.24</td><td>46.02%</td><td>营收 +52.1%，利润 +44.3%</td></tr>
+    <tr><td>2024</td><td>34.06</td><td>10.23</td><td>43.20%</td><td>营收 +35.8%，利润 +41.4%</td></tr>
+    <tr><td>2025</td><td>46.48</td><td>10.84</td><td>41.81%</td><td><span class="neg">利润增速骤降至 +5.9%</span>，研发 +40.6%</td></tr>
+    <tr><td>2026Q1</td><td>12.01</td><td>2.47</td><td>42.31%</td><td>营收 +31.7%，利润 +5.9% <span class="neg">增收不增利</span></td></tr>
+  </table>
+  <div class="src">数据源：Wind 财务数据（2026-08-07 快照，2022A-2025A 年报 + 2026Q1）。</div>
+  <p style="margin-top:10px"><b>财务速览核心矛盾：</b>营收三年 CAGR 约 41%（16.49→46.48 亿），但归母净利润增速从 2024 年 +41.4% 骤降至 2025 年 +5.9%、2026Q1 仅 +5.9%。毛利率从 2022 年 47.7% 一路滑到 2026Q1 的 42.3%。主因：①新产品（离子注入、减薄、湿法）导入期拉低毛利率；②2025 年研发投入 5.37 亿（+40.6%）；③2025 年经营现金流 8.0 亿（-30.7%）、2026Q1 仅 0.08 亿，现金回收明显转弱。</p>
+</div>
+
+<div class="card">
+  <h2>③ 产业格局与景气度</h2>
+  <h3>行业逻辑：国产替代 + 存储扩产双轮驱动，景气确定性强</h3>
+  <table class="f3">
+    <tr><th>维度</th><th>状态</th><th>说明</th></tr>
+    <tr><td>行业需求</td><td class="num">高景气</td><td>2026 年 1-3 月全球半导体销售额同比 +62.5%、国内 +59.9%（SIA）；北美云厂商资本开支持续上调</td></tr>
+    <tr><td>国产替代</td><td class="num">黄金窗口</td><td>外部限制强化供应链安全诉求；国内晶圆厂扩产 + 设备国产化共振，头部设备企业合同负债持续走高</td></tr>
+    <tr><td>存储扩产</td><td class="num">核心增量</td><td>AI 服务器 DRAM/NAND 搭载量大增，存储原厂产能向 HBM/高端 DDR5 倾斜，CMP 需求随之放大</td></tr>
+    <tr><td>先进封装</td><td class="num">新增长极</td><td>3D IC / Chiplet / HBM 堆叠推动 CMP、减薄设备需求；公司部分先进制程 CMP 已进入头部存储 HBM 产线基线设备</td></tr>
+    <tr><td>公司卡位</td><td class="num">细分龙头</td><td>国内唯一 12 英寸 CMP 量产企业，打破应用材料、荏原垄断；减薄抛光一体机累计出货超 20 台获重复订单</td></tr>
+  </table>
+  <p style="margin-top:10px"><b>产业链位置：</b>半导体设备（申万三级）→ 前道 CMP 设备环节。CMP 是晶圆平坦化的必需工艺，逻辑/存储/先进封装均不可跳过，属于"卖铲人"环节——不押注单一客户景气，只享受整个半导体扩产周期的确定性。</p>
+  <div class="src">来源：SIA 数据、券商半导体行业策略（2026-07~08，非一手来源需核实原文）；公司公告、投资者关系记录。</div>
+</div>
+
+<div class="card">
+  <h2>④ 技术面 · 资金面</h2>
+  <table class="f4">
+    <tr><th>指标</th><th>数值(2026-08-07)</th><th>状态</th><th>解读</th></tr>
+    <tr><td>收盘价</td><td class="num">259.30 元</td><td class="num">+6.01%</td><td>当日放量反弹，成交额 37.79 亿，换手 3.0%，量比 0.77</td></tr>
+    <tr><td>区间涨跌</td><td class="num">5日+0.9% / 20日-20.1% / 60日+45.0% / YTD+142.3%</td><td class="num">高位回撤</td><td>年内翻倍后 20 日回撤两成，仍处 60 日强势区</td></tr>
+    <tr><td>均线系统</td><td class="num">MA5 240.4 / MA10 252.6 / MA20 262.4 / MA60 239.0</td><td class="num">弱多</td><td>站上 MA5/MA10/MA60，跌破 MA20/MA30（275.8）；MA120 185.4 为中期支撑</td></tr>
+    <tr><td>MACD</td><td class="num">DIF -3.49 / DEA 0.19</td><td class="num"><span class="neg">空头</span></td><td>DIF 下穿 DEA，柱体 -7.35，短期动能偏弱</td></tr>
+    <tr><td>KDJ</td><td class="num">K 34.9 / D 34.9 / J 34.8</td><td class="num">低位</td><td>J 值低位，超卖修复中，未现金叉确认</td></tr>
+    <tr><td>RSI</td><td class="num">RSI6 55.8 / RSI12 50.7</td><td class="num">中性</td><td>多空平衡，无明确方向信号</td></tr>
+    <tr><td>BOLL</td><td class="num">上 311.6 / 中 262.4 / 下 213.1</td><td class="num">中轨下方</td><td>股价运行于中轨（262.4）与下轨（213.1）之间</td></tr>
+    <tr><td>主力资金</td><td class="num">当日 +1.87 亿 / 5日 -0.51 亿 / 10日 +12.59 亿 / 20日 +25.44 亿</td><td class="num">中期流入</td><td>近 20 日主力净流入 25.44 亿，说明回调中资金仍在承接</td></tr>
+  </table>
+  <div class="src">数据源：Wind 行情快照与技术指标（2026-08-07，前复权口径）；主力资金为 Wind 口径。</div>
+  <p style="margin-top:10px"><b>技术结论：</b>股价处于"年内大涨后的高位回调修复期"——60 日趋势未破坏（45.0% 涨幅、MA60 上方），但 20 日级别破位（-20.1%）、MACD 空头，短线仍在下行修复通道。关键分水岭：<b>MA60（约 239 元）</b>——守住则回调健康，跌破则中期趋势转弱。</p>
+</div>
+
+<div class="card">
+  <h2>⑤ 核心逻辑与风险（含反一致预期）</h2>
+  <h3>核心逻辑（市场已定价部分）</h3>
+  <table class="f3">
+    <tr><th>逻辑</th><th>强度</th><th>兑现路径</th></tr>
+    <tr><td>CMP 绝对龙头地位</td><td class="num">★★★★★</td><td>12 英寸国产份额 90%+，客户为国内头部逻辑/存储/代工厂，粘性极强</td></tr>
+    <tr><td>存储扩产直接受益</td><td class="num">★★★★★</td><td>存储 IDM 资本开支加速 + HBM 产线基线设备导入，CMP/减薄需求共振</td></tr>
+    <tr><td>平台化第二曲线</td><td class="num">★★★★</td><td>离子注入在手订单 +116%、2026 年目标营收 3.4 亿；晶圆再生月产能 20 万片、在手订单 150 万片</td></tr>
+    <tr><td>在手订单饱满</td><td class="num">★★★★</td><td>2026-05 末装备在手订单 74.81 亿（+30%），合同负债 18.33 亿（+11.7%）</td></tr>
+  </table>
+  <h3>风险（市场可能低估的部分）</h3>
+  <table class="f3 rk">
+    <tr><th>风险</th><th>级别</th><th>触发与影响</th></tr>
+    <tr><td><span class="tag t-red">估值透支</span><br>现价高于机构目标价</td><td class="num">高</td><td>机构目标均价 229.86 元 < 现价 259.30 元；按 2027E 净利 19 亿算现价对应 67 倍 2027E PE，远高于高盛给出的 37.8 倍合理值</td></tr>
+    <tr><td><span class="tag t-red">增收不增利</span><br>利润增速仅 6%</td><td class="num">高</td><td>毛利率 47.7%→42.3% 连续下滑，研发+薪酬+折旧侵蚀利润；若中报仍维持个位数利润增速，杀估值风险大</td></tr>
+    <tr><td><span class="tag t-yellow">定增摊薄</span><br>37.95 亿 A 股定增</td><td class="num">中</td><td>发行 ≤4947 万股（约 +10% 股本），发行价不低于基准价 80%——若股价下行，摊薄与压制并存</td></tr>
+    <tr><td><span class="tag t-yellow">经营现金流恶化</span></td><td class="num">中</td><td>2025 年经营现金流 8.0 亿（-30.7%），2026Q1 仅 0.08 亿；存货 42.3 亿（+21.3%）占用资金</td></tr>
+    <tr><td><span class="tag t-gray">板块拥挤度</span><br>半导体上半年 +103%</td><td class="num">中</td><td>申万半导体板块上半年涨 103%，交易拥挤度高，板块情绪退潮时高 PE 标的首当其冲</td></tr>
+    <tr><td><span class="tag t-gray">收入确认季节性</span></td><td class="num">低</td><td>设备收入确认集中下半年，季度间波动大</td></tr>
+  </table>
+  <h3>反一致预期（我的独立判断）</h3>
+  <p>市场当前把华海清科当作"存储扩产最确定的卖铲人"，给它 117 倍 TTM 估值，隐含预期是<b>利润增速将从 6% 快速回到 30%+ 且高毛利的新品占比快速提升</b>。但 2025-2026Q1 连续两个报告期利润增速都只有 6%，毛利率持续下滑——<b>市场在为"未来 2 年"买单，而公司当下还没有证明利润弹性何时回来</b>。真正的预期差不在"订单好不好"（订单确实好，已被定价），而在"利润什么时候兑现"（尚未兑现，是主要风险）。若中报毛利率企稳 + 利润增速回到 20% 以上，则估值可被业绩消化；若仍是个位数增长，117 倍 PE 难以为继。</p>
+</div>
+
+<div class="card">
+  <h2>⑥ 可比估值</h2>
+  <table class="f5">
+    <tr><th>标的</th><th>市值(亿)</th><th>PE-TTM</th><th>2026E PE</th><th>备注</th></tr>
+    <tr><td>华海清科 688120</td><td class="num">1286.86</td><td class="num">117.2</td><td class="num">约 85.5</td><td>CMP 龙头（2026E 净利均值 15.05 亿）</td></tr>
+    <tr><td>北方华创 002371</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>平台型设备龙头，PE 显著低于华海清科</td></tr>
+    <tr><td>中微公司 688012</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>刻蚀龙头，估值低于华海清科</td></tr>
+    <tr><td>拓荆科技 688072</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>薄膜沉积，估值低于华海清科</td></tr>
+    <tr><td>华泰证券口径</td><td class="num">—</td><td class="num">—</td><td class="num">65.3</td><td>可比公司 2026 年均值 PE 65.3 倍 → 目标价 229.86 元</td></tr>
+    <tr><td>高盛口径</td><td class="num">—</td><td class="num">—</td><td class="num">37.8</td><td>2027E PE 37.8 倍（按 2027-28 增速 25% 回归）→ 目标价 214.70 元</td></tr>
+  </table>
+  <div class="src">来源：Wind 估值数据、华泰证券/高盛研报（2026-04~05，非一手来源需核实原文）。北方华创/中微/拓荆估值数据本次未单独核验，仅作定性参照。</div>
+  <p style="margin-top:10px"><b>估值判断：</b>无论用哪家机构的框架（华泰 65.3 倍 2026E 或高盛 37.8 倍 2027E），目标价都在 <b>214-230 元区间，低于现价 259.30 元</b>。现价隐含的是"2027 年业绩 + 板块高景气延续"同时兑现的乐观情形。用市值法验证：现价对应 2027E 净利 19.1 亿（东吴预测）的 67 倍，需要 2028 年净利 24.4 亿 + 50 倍 PE 才能支撑——<b>当前价格已经定价了 2028 年</b>。</p>
+</div>
+
+<div class="card">
+  <h2>⑦ 三级情景（2026-2027E）</h2>
+  <div class="chart" id="scnChart"></div>
+  <table class="f5">
+    <tr><th>情景</th><th>2027E 净利</th><th>估值倍数</th><th>对应股价</th><th>触发条件</th></tr>
+    <tr><td><span class="tag t-red">Bear 悲观</span></td><td class="num">14.0 亿</td><td class="num">35×</td><td class="num">约 99 元 <span class="neg">(-62%)</span></td><td>半导体资本开支不及预期；毛利率继续下滑；利润增速持续个位数</td></tr>
+    <tr><td><span class="tag t-yellow">Base 中性</span></td><td class="num">19.1 亿</td><td class="num">40×</td><td class="num">约 154 元 <span class="neg">(-41%)</span></td><td>订单正常兑现，毛利率企稳在 42%，利润增速回到 20%+</td></tr>
+    <tr><td><span class="tag t-green">Bull 乐观</span></td><td class="num">24.4 亿</td><td class="num">50×</td><td class="num">约 246 元 <span class="neg">(-5%)</span></td><td>HBM/先进封装放量超预期；离子注入爆发；板块维持高估值</td></tr>
+  </table>
+  <div class="src">测算口径：总股本 4.96 亿股（2026-06 转股后）；净利预测参考东吴证券（14.3/19.1/24.4 亿）；倍数参考高盛 37.8 倍与 A 股设备板块估值带。仅为情景推演，不构成目标价承诺。</div>
+  <p style="margin-top:10px"><b>情景结论：</b>即使最乐观情景（2027E 净利 24.4 亿 + 50 倍），对应股价也仅约 246 元，<b>仍低于现价 259.30 元</b>——意味着当前价格已经透支了最乐观的 2027 年预期。风险收益比不佳。</p>
+</div>
+
+<div class="card">
+  <h2>⑧ 结论与操作框架（对老潘组合的意义）</h2>
+  <div class="tldr">综合结论：<span style="color:#b06000">WAIT —— 当前不是开仓买点</span>。作为新仓备选标的，逻辑质地够格，但价格不够格。</div>
+  <table class="f3">
+    <tr><th>维度</th><th>判断</th><th>依据</th></tr>
+    <tr><td>是否值得纳入观察池</td><td class="num">是</td><td>CMP 国产替代确定性 + 与老潘现有 8 只持仓低相关（前道设备 vs 光模块/内存接口）</td></tr>
+    <tr><td>当前是否开仓</td><td class="num"><span class="neg">否</span></td><td>现价高于机构目标价均值；PE-TTM 117 倍；情景推演显示价格已透支 2027 年</td></tr>
+    <tr><td>开仓触发条件</td><td class="num">两个满足其一</td><td>① 回调至 MA60（约 239 元）或 BOLL 下轨（约 213 元）缩量企稳；② 2026 中报（8 月底）验证利润增速回到 20%+、毛利率企稳，右侧确认</td></tr>
+    <tr><td>观察仓规模</td><td class="num">5 万元内</td><td>约 200 股（科创板单笔下限 200 股），与既定新仓框架一致，绝不超过 10 万</td></tr>
+    <tr><td>失效条件</td><td class="num">停止跟踪</td><td>跌破 MA60 且板块整体转弱；或中报利润增速仍为个位数且毛利率再下滑</td></tr>
+    <tr><td>与组合关系</td><td class="num">低相关补充</td><td>与罗博（后道 CPO 组装）、澜起（内存接口设计）产业链环节不同，可降组合相关性</td></tr>
+  </table>
+  <p style="margin-top:10px"><b>执行提醒：</b>① 科创板单笔申报 ≥200 股（超出部分 1 股递增），5 万观察仓按现价约可买 190 股、按 239 元可买 200 股，实际下单以 ≥200 股为限；② 不在 +6% 这类异动日追高，等回调或右侧确认；③ 华海清科是"好公司、贵价格"的典型，观察池可以放，子弹要省着打。</p>
+</div>
+
+<div class="card">
+  <h2>⑨ 数据溯源与版本追踪</h2>
+  <table class="f3 src">
+    <tr><th>数据项</th><th>来源</th><th>时点/口径</th></tr>
+    <tr><td>行情/技术/资金</td><td>Wind 行情与技术指标</td><td>2026-08-07 收盘，前复权口径</td></tr>
+    <tr><td>财务数据</td><td>Wind 财务数据</td><td>2022A-2025A 年报 + 2026Q1 季报</td></tr>
+    <tr><td>订单/定增/激励</td><td>公司公告（Wind 公告库）</td><td>2026-04 ~ 2026-08</td></tr>
+    <tr><td>机构预测与目标价</td><td>东吴/华泰/高盛/中泰研报</td><td>2026-04 ~ 2026-05，非一手需核实原文</td></tr>
+    <tr><td>行业数据</td><td>SIA、券商策略</td><td>2026-01~03 / 2026-07~08，非一手需核实原文</td></tr>
+    <tr><td>52 周高低</td><td>Wind（复权口径）</td><td>374.85 / 74.34 元</td></tr>
+  </table>
+  <p style="margin-top:8px">版本：V1.0（2026-08-08 首次发布）。数据为静态快照，次日开盘前需复核最新价格与资金；中报披露后（预期 8 月底）需更新财务与情景测算。</p>
+  <div class="foot">
+    <p>版式：Google Insight V1 · 数据截至 2026-08-07 收盘，报告日期 2026-08-08</p>
+    <p><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </div>
+</div>
+
+</div>
+<script>
+var finChart=echarts.init(document.getElementById('finChart'));
+finChart.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['营收(亿)','归母净利(亿)']},
+  grid:{left:60,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['2022A','2023A','2024A','2025A','2026Q1']},
+  yAxis:[
+    {type:'value',name:'营收(亿)'},
+    {type:'value',name:'归母净利(亿)'}
+  ],
+  series:[
+    {name:'营收(亿)',type:'bar',data:[16.49,25.08,34.06,46.48,12.01],itemStyle:{color:'#4285F4'}},
+    {name:'归母净利(亿)',type:'line',yAxisIndex:1,data:[5.02,7.24,10.23,10.84,2.47],itemStyle:{color:'#FBBC05'}}
+  ]
+});
+var scnChart=echarts.init(document.getElementById('scnChart'));
+scnChart.setOption({
+  tooltip:{trigger:'item',formatter:'{b}: {c} 元'},
+  legend:{data:['情景股价','现价 259.30']},
+  grid:{left:60,right:60,top:40,bottom:30},
+  xAxis:{type:'category',data:['Bear 悲观','Base 中性','Bull 乐观']},
+  yAxis:[{type:'value',name:'股价(元)'}],
+  series:[
+    {name:'情景股价',type:'bar',data:[
+      {value:99,itemStyle:{color:'#EA4335'}},
+      {value:154,itemStyle:{color:'#FBBC05'}},
+      {value:246,itemStyle:{color:'#34A853'}}
+    ]},
+    {name:'现价 259.30',type:'line',data:[259.3,259.3,259.3],itemStyle:{color:'#1f2933'},lineStyle:{type:'dashed'}}
+  ]
+});
+window.addEventListener('resize',function(){finChart.resize();scnChart.resize();});
+</script>
+</body>
+</html>
