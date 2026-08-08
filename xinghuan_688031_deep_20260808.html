@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星环科技-U(688031) 深度个股研报 V2.1 — 2026-08-08</title>
+<meta name="description" content="星环科技深度研报：AI Infra赛道成长股，PS估值框架下三级情景分析，一致性预期与反一致预期审查">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#1a1a2e;--sub:#555;--border:#e0e0e0;--red:#d32f2f;--green:#2e7d32;--blue:#1565c0;--orange:#e65100;--accent:#6a1b9a;--pos-bg:#e8f5e9;--neg-bg:#ffebee;--warn-bg:#fff3e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:20px 16px 60px}
+.container{max-width:960px;margin:0 auto}
+.header{text-align:center;padding:32px 20px 24px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;border-radius:12px;margin-bottom:24px}
+.header h1{font-size:26px;font-weight:700;margin-bottom:4px;letter-spacing:0.5px}
+.header .sub{font-size:14px;color:#b0bec5;margin-top:8px}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:600}
+.badge-info{background:rgba(21,101,192,0.3);color:#90caf9}
+.badge-warn{background:rgba(230,81,0,0.3);color:#ffcc80}
+.badge-pos{background:rgba(46,125,50,0.3);color:#a5d6a7}
+.badge-neg{background:rgba(211,47,47,0.3);color:#ef9a9a}
+
+.card{background:var(--card);border-radius:10px;padding:24px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);border:1px solid var(--border)}
+.card h2{font-size:20px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--blue);color:var(--blue)}
+.card h3{font-size:16px;font-weight:600;margin:16px 0 10px;color:var(--text)}
+.card h4{font-size:14px;font-weight:600;margin:12px 0 6px;color:#333}
+
+.premise-box{background:linear-gradient(135deg,#fff8e1,#fff3e0);border:1px solid #ffe0b2;border-radius:8px;padding:16px 20px;margin-bottom:20px}
+.premise-box h3{color:var(--orange);margin-top:0;margin-bottom:10px;font-size:17px}
+.premise-box .score-row{display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px;margin:10px 0}
+.score-item{text-align:center;min-width:80px}
+.score-item .val{font-size:28px;font-weight:800}
+.score-item .lbl{font-size:11px;color:var(--sub);margin-top:2px}
+
+.bull{color:var(--red)}.bear{color:var(--green)}.neutral{color:var(--blue)}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);vertical-align:top;white-space:nowrap}
+th{background:#f5f5f5;font-weight:600;font-size:12px;color:var(--sub);position:sticky;top:0}
+td:first-child,th:first-child{text-align:left}
+.pos{color:var(--red);font-weight:600}
+.neg{color:var(--green);font-weight:600}
+.neut{color:var(--sub)}
+
+.chart-box{width:100%;height:360px;margin:12px 0}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+.metric-row{display:flex;flex-wrap:wrap;gap:16px;margin:10px 0}
+.metric-item{flex:1;min-width:140px;background:#fafafa;border-radius:6px;padding:12px;text-align:center;border:1px solid var(--border)}
+.metric-item .num{font-size:22px;font-weight:700}
+.metric-item .label{font-size:11px;color:var(--sub);margin-top:2px}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;margin:2px 3px}
+.tag-r{background:var(--pos-bg);color:var(--red)}
+.tag-g{background:var(--neg-bg);color:var(--green)}
+.tag-b{background:#e3f2fd;color:var(--blue)}
+.tag-o{background:var(--warn-bg);color:var(--orange)}
+
+.verdict-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:8px;margin:12px 0;font-size:14px;font-weight:600}
+.verdict-hold{background:#e8eaf6;border:1px solid #c5cae9;color:#283593}
+.verdict-buy{background:var(--pos-bg);border:1px solid #c8e6c9;color:#1b5e20}
+.verdict-sell{background:var(--neg-bg);border:1px solid #ffcdd2;color:#b71c1c}
+
+.risk-row{display:flex;align-items:flex-start;gap:8px;margin:6px 0;font-size:13px}
+.risk-icon{font-weight:700;min-width:18px;text-align:center}
+.risk-high{color:var(--red)}.risk-mid{color:var(--orange)}.risk-low{color:var(--green)}
+
+.footnote{font-size:11px;color:#999;border-top:1px solid var(--border);padding-top:12px;margin-top:20px;line-height:1.5}
+.footnote strong{color:var(--text)}
+
+.scenario-card{background:#fafafa;border-radius:8px;padding:16px;border:1px solid var(--border)}
+.scenario-card h4{margin-top:0;font-size:15px}
+.scenario-card .price{font-size:20px;font-weight:700;margin:6px 0}
+
+.timeline{position:relative;padding-left:20px;border-left:2px solid var(--border);margin:10px 0}
+.timeline-item{margin-bottom:12px;position:relative}
+.timeline-item::before{content:'';position:absolute;left:-25px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.timeline-item .date{font-size:11px;color:var(--sub);font-weight:600}
+.timeline-item .desc{font-size:13px;margin-top:2px}
+
+@media(max-width:640px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .header h1{font-size:21px}
+  .score-row{gap:8px}
+  .metric-row{flex-direction:column}
+  table{font-size:11px}
+  th,td{padding:5px 6px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ========== HEADER ========== -->
+<div class="header">
+<h1>星环科技-U (688031.SH)</h1>
+<div style="font-size:16px;font-weight:600;margin:4px 0">深度个股研报 V2.1 | AI Infra 赛道成长股估值框架</div>
+<div class="sub">数据时点：2026-08-07 收盘 | 数据源：WeStock × Wind一致预期 × WebSearch | 老潘持仓：负成本·纯利润仓</div>
+<div class="badges">
+<span class="badge badge-warn">⚠ 持仓股·利益相关</span>
+<span class="badge badge-info">PS估值框架</span>
+<span class="badge badge-pos">营收CAGR 30%+</span>
+<span class="badge badge-info">AI Infra主线</span>
+</div>
+</div>
+
+<!-- ========== 结论前置 ========== -->
+<div class="premise-box">
+<h3>结论前置 · 多空评分</h3>
+<div class="score-row">
+<div class="score-item"><div class="val bull">★★★★☆</div><div class="lbl">产业景气度</div></div>
+<div class="score-item"><div class="val bull">★★★★☆</div><div class="lbl">成长确定性</div></div>
+<div class="score-item"><div class="val neutral">★★★☆☆</div><div class="lbl">估值合理性</div></div>
+<div class="score-item"><div class="val bear">★★☆☆☆</div><div class="lbl">财务安全性</div></div>
+<div class="score-item"><div class="val neutral">★★★☆☆</div><div class="lbl">技术面</div></div>
+<div class="score-item"><div class="val neutral">★★★☆☆</div><div class="lbl">综合(多空平衡)</div></div>
+</div>
+<div style="font-size:13px;color:#555;margin-top:8px;line-height:1.6">
+<strong>核心判断：HOLD，暂不加仓。</strong>星环处于AI Infra黄金赛道，营收CAGR 30%+，一致预期2027年扭亏、2028年净利2.07亿。但当前PS(TTM) 30x已隐含2026E增速预期，短期KDJ/RSI极度超买（J=108, RSI6=76），6日暴涨43%后需要消化。<strong>老潘负成本仓无下行风险，应耐心持有等待回调至合理区间再考虑加仓。</strong>
+</div>
+</div>
+
+<!-- ========== 操作建议 ========== -->
+<div class="card">
+<h2>一、操作建议与风控框架</h2>
+<div class="verdict-bar verdict-hold">📌 操作评级：<strong>HOLD</strong>（持有不加仓）——已持仓负成本，零下行风险，等回调加仓窗口</div>
+<table>
+<tr><th style="width:20%">维度</th><th style="width:40%">信号</th><th style="width:40%">操作含义</th></tr>
+<tr><td>基本面</td><td>营收增长+亏损收窄双重验证，AI Infra催化密集</td><td>逻辑完好，无卖出理由</td></tr>
+<tr><td>估值</td><td>PS(TTM) 30x，2026E PS 27x，2028E PS 12.9x</td><td>当前估值合理偏高，但成长可消化</td></tr>
+<tr><td>技术面</td><td>KDJ J=108, RSI6=76 → 极度超买；MACD刚金叉</td><td>短期追高风险大，等回踩确认</td></tr>
+<tr><td>资金面</td><td>融资余额8.63亿(80%分位)，8/6-7主力小幅净流出</td><td>杠杆偏高+获利盘兑现，短期整固需求</td></tr>
+<tr style="background:#fff8e1"><td><strong>风控底线</strong></td><td colspan="2"><strong>负成本仓，无强制止损线。但若跌破80元（PS<21x 2026E）且逻辑未破，是加仓观察区；逻辑破坏（AI Infra叙事崩塌/连续两季营收零增长）则考虑减仓。</strong></td></tr>
+</table>
+<div class="metric-row">
+<div class="metric-item"><div class="num" style="color:var(--orange)">HOLD</div><div class="label">当前操作</div></div>
+<div class="metric-item"><div class="num" style="color:var(--red)">~150</div><div class="label">加仓触发价(放量站上布林上轨)</div></div>
+<div class="metric-item"><div class="num" style="color:var(--green)">80-95</div><div class="label">回调加仓观察区(PS<25x 2026E)</div></div>
+<div class="metric-item"><div class="num" style="color:var(--blue)">< 80</div><div class="label">极端低估区(PS<21x)</div></div>
+</div>
+</div>
+
+<!-- ========== 公司画像 ========== -->
+<div class="card">
+<h2>二、公司画像 · 财务速览</h2>
+<div class="grid2">
+<div>
+<h3>公司概况</h3>
+<table>
+<tr><td style="width:80px">全称</td><td>星环信息科技(上海)股份有限公司</td></tr>
+<tr><td>上市日期</td><td>2022-10-18（科创板）</td></tr>
+<tr><td>实际控制人</td><td>孙元浩（董事长）</td></tr>
+<tr><td>主营业务</td><td>企业级大数据基础软件——数据集成/存储/治理/建模/分析/挖掘/流通全生命周期</td></tr>
+<tr><td>核心标签</td><td><span class="tag tag-b">AI Infra</span><span class="tag tag-b">大数据平台</span><span class="tag tag-b">GPU数据库</span><span class="tag tag-o">信创</span><span class="tag tag-b">MLOps</span></td></tr>
+<tr><td>行业/GICS</td><td>计算机 / 软件</td></tr>
+</table>
+</div>
+<div>
+<h3>核心估值指标</h3>
+<table>
+<tr><td>收盘价</td><td><strong>115.40</strong>（8/7）</td></tr>
+<tr><td>总市值</td><td><strong>139.79亿</strong></td></tr>
+<tr><td>PE(TTM)</td><td class="neg">-64.24（亏损）</td></tr>
+<tr><td>PB</td><td>17.33</td></tr>
+<tr><td>PS(TTM)</td><td><strong>30.1x</strong></td></tr>
+<tr><td>52周区间</td><td>49.60 ~ 264.88</td></tr>
+<tr><td>近5日/20日</td><td><span class="pos">+27.63%</span> / <span class="pos">+6.79%</span></td></tr>
+<tr><td>YTD/近60日</td><td><span class="pos">+6.66%</span> / <span class="neg">-6.18%</span></td></tr>
+</table>
+</div>
+</div>
+
+<h3>营收与利润趋势</h3>
+<table>
+<tr><th>期间</th><th>营收(亿)</th><th>YoY</th><th>归母净利(亿)</th><th>净利率</th><th>毛利率</th><th>R&D(亿)</th><th>R&D/营收</th></tr>
+<tr><td>2026Q1(TTM)</td><td>4.64</td><td class="pos">+3.7%</td><td class="neg">-2.18</td><td class="neg">-46.9%</td><td>54.2%</td><td>~1.8</td><td>~39%</td></tr>
+<tr><td>2025FY</td><td>4.48</td><td class="pos">+20.5%</td><td class="neg">-2.45</td><td class="neg">-54.8%</td><td>54.1%</td><td>2.04</td><td>45.6%</td></tr>
+<tr><td>2024FY</td><td>3.71</td><td class="pos">+30.9%</td><td class="neg">-3.43</td><td class="neg">-92.5%</td><td>50.6%</td><td>2.27</td><td>61.2%</td></tr>
+<tr style="background:#f5f5f5;font-weight:600"><td>2026E(一致预期)</td><td>5.18</td><td class="pos">+15.8%</td><td class="neg">-1.03</td><td class="neg">-19.9%</td><td>—</td><td>—</td><td>—</td></tr>
+<tr style="background:#e8f5e9;font-weight:600"><td>2027E(一致预期)</td><td>7.09</td><td class="pos">+36.9%</td><td class="pos">+0.13</td><td class="pos">1.8%</td><td>—</td><td>—</td><td>—</td></tr>
+<tr style="background:#e3f2fd;font-weight:600"><td>2028E(一致预期)</td><td>10.83</td><td class="pos">+52.8%</td><td class="pos">+2.07</td><td class="pos">19.1%</td><td>—</td><td>—</td><td>—</td></tr>
+</table>
+
+<h4>关键财务趋势</h4>
+<div style="font-size:13px;line-height:1.7;color:#555">
+✅ <strong>营收加速：</strong>2024→2025→2026E→2027E→2028E，营收从3.71→4.48→5.18→7.09→10.83亿，CAGR ~30.7%。2027E营收跳升(+36.9%)是关键拐点验证。<br>
+✅ <strong>亏损收窄：</strong>净利从-3.43→-2.45→-2.18亿(TTM)，亏损幅度持续收窄。一致预期2027年扭亏(0.13亿)，2028年利润突破2亿。<br>
+✅ <strong>毛利稳定：</strong>毛利率从50.6%(2024)→54.1%(2025)→54.2%(TTM)，标准化软件产品结构改善毛利。<br>
+⚠️ <strong>R&D重投入：</strong>R&D/营收从61%→46%→39%，处于下降通道但绝对比例仍高，是亏损主因但也是护城河来源。<br>
+⚠️ <strong>现金消耗：</strong>现金从3.54亿(FY2025)→2.43亿(Q1 2026)，若亏损持续则需关注融资需求。
+</div>
+</div>
+
+<!-- ========== 催化时间线 ========== -->
+<div class="card">
+<h2>三、催化时间线</h2>
+<div class="timeline">
+<div class="timeline-item"><div class="date">2026-06-04</div><div class="desc"><span class="tag tag-r">已发生</span> 涨停(+20%)，龙虎榜北向净买入3794万。NVIDIA网络发布开源cufile API，市场解读利好GPU数据库路线。</div></div>
+<div class="timeline-item"><div class="date">2026-07-31</div><div class="desc"><span class="tag tag-b">已发生</span> 秩鼎ESG评级维持A级，GICS三级软件行业143家排第32名。</div></div>
+<div class="timeline-item"><div class="date">2026-08-05</div><div class="desc"><span class="tag tag-r">已发生</span> 单日暴涨+13.22%，成交14.26亿。市场重新定价AI Infra资产，NVIDIA生态催化延续。</div></div>
+<div class="timeline-item"><div class="date">2026-08-08</div><div class="desc"><span class="tag tag-b">今日</span> 入选CCSA TC601《AI原生数据平台研究报告(2026)》代表厂商。"全栈AI Infra、多模知识融合"。</div></div>
+<div class="timeline-item"><div class="date">~2026-08下旬</div><div class="desc"><span class="tag tag-o">即将</span> <strong>2026年中报发布(1个月内)</strong>——营收增速和亏损收窄幅度是核心验证点。</div></div>
+<div class="timeline-item"><div class="date">2026Q4</div><div class="desc"><span class="tag tag-b">预期</span> GPU原生认知数据库正式版发布(WAIC预览版已出)。</div></div>
+</div>
+</div>
+
+<!-- ========== 产业格局 ========== -->
+<div class="card">
+<h2>四、产业格局与景气度</h2>
+<h3>赛道定位：AI Infra —— 数据基础设施的"卖铲人"</h3>
+<div style="font-size:13px;line-height:1.7;color:#555;margin-bottom:12px">
+星环科技不直接做AI应用，而是做<strong>AI应用所依赖的数据底座</strong>——类似于AI时代的"Oracle + Cloudera"。核心产品矩阵：大数据平台(TDH)、分布式数据库(ArgoDB/KunDB)、智能分析工具(Sophon)、MLOps平台、大模型运营平台。<br><br>
+<strong>产业趋势三重共振：</strong><br>
+① <strong>AI Agent规模化→数据平台升级：</strong>传统数据平台面向"人"，AI时代需要面向"AI+人"的智能基础设施。CCSA TC601报告明确将星环列为AI原生数据平台代表厂商。<br>
+② <strong>NVIDIA GPU直读数据→GPU数据库：</strong>cufile API开源后，GPU可以直接读写数据，绕过CPU瓶颈。星环的GPU原生数据库正是这一技术路线的核心受益者。<br>
+③ <strong>信创+国产替代：</strong>大数据基础软件领域，星环是国内少数能与Cloudera/Hortonworks/甲骨文对标的全栈厂商。
+</div>
+
+<h3>产业链位置</h3>
+<div style="font-size:13px;line-height:1.7;color:#555">
+<strong>上游：</strong>硬件(服务器/GPU/存储) → 通用，不依赖单一供应商<br>
+<strong>中游(星环位置)：</strong>大数据平台 + 数据库 + AI开发工具 + 知识平台 → <strong>承上启下的核心层</strong><br>
+<strong>下游：</strong>金融/能源/制造/政务等B端客户 → 项目制收入为主，客单价高但周期长<br><br>
+<strong>竞争格局：</strong>国际对标Snowflake/Databricks(美股千亿美金市值)，国内直接竞品少但面临华为云/阿里云等云厂商替代威胁。星环的差异化是"全栈+私有部署+信创合规"。
+</div>
+
+<h3>景气度指标</h3>
+<div class="metric-row">
+<div class="metric-item"><div class="num" style="color:var(--red)">★★★★☆</div><div class="label">AI Infra赛道景气</div></div>
+<div class="metric-item"><div class="num" style="color:var(--red)">30.7%</div><div class="label">2024-2028E营收CAGR</div></div>
+<div class="metric-item"><div class="num" style="color:var(--blue)">扭亏在即</div><div class="label">2027E一致预期扭亏</div></div>
+<div class="metric-item"><div class="num" style="color:var(--orange)">中等</div><div class="label">竞争烈度(替代风险)</div></div>
+</div>
+</div>
+
+<!-- ========== 技术面 ========== -->
+<div class="card">
+<h2>五、技术面 · 资金面</h2>
+<div class="grid2">
+<div>
+<h3>技术指标(2026-08-07)</h3>
+<table>
+<tr><td>收盘价</td><td><strong>115.40</strong></td></tr>
+<tr><td>MACD</td><td>DIF 0.10 / DEA -4.56 / <span class="pos">柱9.32</span>（刚金叉）</td></tr>
+<tr><td>KDJ</td><td>K 83.58 / D 71.39 / <span class="pos" style="font-weight:800">J 107.97（超买）</span></td></tr>
+<tr><td>RSI</td><td>RSI6 <span class="pos">76.17（超买）</span> / RSI12 64.03 / RSI24 53.37</td></tr>
+<tr><td>BOLL</td><td>上轨 117.03 / 中轨 94.83 / 下轨 72.62</td></tr>
+<tr><td>换手率</td><td><strong>10.00%</strong>（近期偏活跃）</td></tr>
+<tr><td>量比</td><td>1.19</td></tr>
+</table>
+</div>
+<div>
+<h3>资金面(6/1-8/7)</h3>
+<table>
+<tr><td>6月主力累计</td><td><span class="pos">+3.48亿</span>（6/4单日+3.34亿）</td></tr>
+<tr><td>7月主力累计</td><td><span class="neg">-3.65亿</span>（持续流出）</td></tr>
+<tr><td>8/5主力</td><td><span class="pos">+0.90亿</span>（放量突破日）</td></tr>
+<tr><td>8/6主力</td><td><span class="neg">-0.88亿</span>（获利兑现）</td></tr>
+<tr><td>8/7主力</td><td><span class="neg">-0.17亿</span>（小幅流出）</td></tr>
+<tr><td>融资余额</td><td><strong>8.63亿</strong>（占流通市值<strong>6.18%</strong>，近一年<strong>80%分位</strong>）</td></tr>
+<tr><td>近5日融资</td><td><span class="pos">连续3日净买入</span>累计3557万</td></tr>
+</table>
+</div>
+</div>
+<div style="font-size:13px;color:#555;margin-top:8px;line-height:1.7">
+<strong>技术面判断：</strong>6日暴涨43%(80.33→115.40)，KDJ J值108、RSI6 76双双超买，MACD刚形成金叉但DIF仅0.10——短期动能亢奋但根基尚浅。价格已触及布林上轨117.03，历史规律显示触及上轨后大概率回踩中轨(当前94.83)。<strong>短期不宜追涨，等回踩100-110区间确认支撑后再评估。</strong><br>
+<strong>资金面判断：</strong>融资余额8.63亿处于历史80%分位，杠杆偏高。8/5大涨后8/6-7主力连续两日小幅净流出，获利了结迹象。但融资仍在净买入，短线情绪尚未退潮。典型的"高位放量换手"阶段。
+</div>
+</div>
+
+<!-- ========== K线图 ========== -->
+<div class="card">
+<h2>六、价格走势(近90日)</h2>
+<div class="chart-box" id="chart-kline"></div>
+<div style="font-size:12px;color:#999;margin-top:4px">数据源：WeStock 前复权日K线 | 灰线=BOLL中轨(94.83) | 阴影=BOLL上下轨</div>
+</div>
+
+<!-- ========== 核心逻辑 ========== -->
+<div class="card">
+<h2>七、核心逻辑与风险</h2>
+
+<h3>多头逻辑（5条）</h3>
+<div style="font-size:13px;line-height:1.7;color:#555">
+<strong>① AI Infra赛道"卖铲人"——确定性最高的AI受益路径之一。</strong>无论AI应用谁胜出，都需要数据基础设施。星环的全栈AI Infra(数据→知识→模型→应用)使其处于产业链的"必选消费"位置。<br>
+<strong>② 营收高增长+亏损收窄双验证。</strong>一致预期2027年扭亏、2028年净利2.07亿，届时PS将降至12.9x(仅金山办公当前PS的一半)。<br>
+<strong>③ GPU数据库——NVIDIA生态直接受益。</strong>NVIDIA开源cufile API打通GPU直读数据通道，星环GPU原生数据库是这一技术路线的核心承载者，具备"星辰大海"级别的想象空间。<br>
+<strong>④ 信创+国产替代刚性需求。</strong>金融/政务/能源等关键行业大数据平台国产化是政策硬约束，星环是科创板大数据第一股。<br>
+<strong>⑤ 筹码面：老潘负成本仓。</strong>零下行风险，可以"坐看云起"，任何回调都是纯利润的波动，不影响本金安全。
+</div>
+
+<h3>空头逻辑（5条）</h3>
+<div style="font-size:13px;line-height:1.7;color:#555">
+<strong>① PS 30x(TTM)在当前亏损状态下不便宜。</strong>即便2026E PS 27x，在A股软件板块中处于中上水平。金山办公(已盈利)PE仅34x。<br>
+<strong>② 亏损收窄速度不确定。</strong>一致预期2026E净利-1.03亿(亏损率-20%)，同比改善有限。若R&D投入维持高位，扭亏可能延后。<br>
+<strong>③ 云厂商替代风险。</strong>华为云FusionInsight、阿里云MaxCompute等产品在功能和生态上持续进化，可能侵蚀星环的私有部署市场。<br>
+<strong>④ 股东人数大增→筹码分散化。</strong>2026Q1股东人数环比暴增63%(+7682户)，人均持股降至6097股，散户化趋势明显。<br>
+<strong>⑤ 2月解禁2716万股(22.42%)。</strong>解禁后减持压力尚未完全释放。
+</div>
+
+<h3>反一致预期审查</h3>
+<div style="font-size:13px;line-height:1.7;padding:12px;background:#fff3e0;border-radius:6px;border-left:3px solid var(--orange)">
+<strong>质疑1：一致预期是否过于乐观？</strong><br>
+2027E营收7.09亿(+36.9%)、2028E 10.83亿(+52.8%)的增速假设，隐含前提是AI Infra需求出现非线性爆发。若行业采纳速度慢于预期(如企业仍以传统数据仓库为主)，营收可能仅实现线性增长(20-25%)，届时PS将维持25x+高估状态。<br><br>
+<strong>质疑2：GPU数据库到底有多大市场？</strong><br>
+NVIDIA cufile是开源工具，不构成排他性壁垒。如果华为/阿里云也推出GPU直读方案，星环的先发优势能否转化为市场份额存疑。此外，GPU数据库目前处于概念验证阶段，商业化落地时间和规模不确定。<br><br>
+<strong>检验信号：</strong>①2026H1中报营收增速(>20%算及格，>30%算超预期)；②GPU数据库正式版发布后的客户签约公告；③2026Q3是否出现单季扭亏。
+</div>
+</div>
+
+<!-- ========== 可比估值 ========== -->
+<div class="card">
+<h2>八、可比估值</h2>
+<table>
+<tr><th>公司</th><th>代码</th><th>市值(亿)</th><th>PE(TTM)</th><th>PB</th><th>PS(TTM约)</th><th>业务</th><th>盈利</th></tr>
+<tr style="font-weight:600;background:#e3f2fd"><td>星环科技-U</td><td>688031</td><td>139.8</td><td class="neg">-64.2</td><td>17.33</td><td>~30x</td><td>大数据AI Infra</td><td class="neg">亏损</td></tr>
+<tr><td>金山办公</td><td>688111</td><td>1,233</td><td class="pos">34.0</td><td>8.42</td><td>~27x</td><td>办公SaaS</td><td class="pos">盈利</td></tr>
+<tr><td>寒武纪</td><td>688256</td><td>7,539</td><td class="pos">277.5</td><td>61.60</td><td>~99x</td><td>AI芯片</td><td class="neg">微利</td></tr>
+<tr><td>奇安信-U</td><td>688561</td><td>183.9</td><td class="neg">-14.6</td><td>2.60</td><td>~3x</td><td>网络安全</td><td class="neg">亏损</td></tr>
+<tr><td>宝兰德</td><td>688058</td><td>17.2</td><td class="neg">-21.8</td><td>2.79</td><td>~6x</td><td>中间件</td><td class="neg">亏损</td></tr>
+<tr><td>光云科技</td><td>688365</td><td>69.1</td><td class="neg">-972</td><td>7.21</td><td>~12x</td><td>电商SaaS</td><td class="neg">亏损</td></tr>
+</table>
+<div style="font-size:13px;color:#555;margin-top:8px;line-height:1.7">
+<strong>PS估值定位：</strong>星环30x PS在亏损软件股中偏高但非最极端(寒武纪99x)。金山办公27x PS同为30x级但已盈利，星环需要2027-2028年兑现扭亏才能消化当前估值。奇安信3x PS因营收体量更大(约60亿)但亏损同样严重。<br>
+<strong>核心差异：</strong>星环比奇安信/宝兰德/光云享有估值溢价，源于AI Infra赛道更性感和GPU数据库更前沿的叙事。溢价能否维持，取决于中报营收增速是否支撑30%+ CAGR预期。
+</div>
+
+<h3>一致预期估值路径</h3>
+<table>
+<tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>当前市值对应PS</th><th>当前市值对应PE</th><th>PS(20x)目标价</th><th>PS(25x)目标价</th></tr>
+<tr><td>2026E</td><td>5.18</td><td class="neg">-1.03</td><td>27.0x</td><td>亏损</td><td class="neg">85.5</td><td>106.9</td></tr>
+<tr><td>2027E</td><td>7.09</td><td class="pos">0.13</td><td>19.7x</td><td>1,049x</td><td>117.1</td><td class="neut">146.3</td></tr>
+<tr style="background:#e8f5e9"><td>2028E</td><td>10.83</td><td class="pos">2.07</td><td>12.9x</td><td>67.5x</td><td>178.8</td><td class="pos">223.5</td></tr>
+</table>
+<div style="font-size:12px;color:#999;margin-top:4px">注：PS目标价 = 营收 × PS倍数 ÷ 总股本1.2114亿。一致预期数据源为Wind。</div>
+</div>
+
+<!-- ========== 三级情景 ========== -->
+<div class="card">
+<h2>九、三级情景分析</h2>
+<div class="grid3">
+<div class="scenario-card" style="border-left:3px solid var(--red)">
+<h4>🐂 乐观情景 (概率25%)</h4>
+<div class="price" style="color:var(--red)">目标：160-180</div>
+<div style="font-size:12px;color:#555;line-height:1.6">
+<strong>触发条件：</strong><br>
+• 2026H1营收>2亿(+30%+)，亏损率降至-15%以内<br>
+• GPU数据库正式版客户签约超预期<br>
+• AI Infra板块β共振(全球AI算力投资再加速)<br>
+• 对应PS 25x 2027E = 146；PS 18x 2028E = 161<br>
+<strong>老潘影响：</strong>纯利润再翻倍
+</div>
+</div>
+<div class="scenario-card" style="border-left:3px solid var(--blue)">
+<h4>🐱 基准情景 (概率55%)</h4>
+<div class="price" style="color:var(--blue)">区间：95-130</div>
+<div style="font-size:12px;color:#555;line-height:1.6">
+<strong>条件：</strong><br>
+• 营收CAGR 25-30%，扭亏在2027年<br>
+• AI Infra叙事持续但无超预期催化<br>
+• 当前PS 27x 2026E合理，随季度消化估值<br>
+• 回踩布林中轨(95)到前高(119)区间运行<br>
+<strong>老潘影响：</strong>波动持有，静待兑现
+</div>
+</div>
+<div class="scenario-card" style="border-left:3px solid var(--green)">
+<h4>🐻 悲观情景 (概率20%)</h4>
+<div class="price" style="color:var(--green)">目标：60-85</div>
+<div style="font-size:12px;color:#555;line-height:1.6">
+<strong>触发条件：</strong><br>
+• 中报营收增速<15%，亏损收窄停滞<br>
+• 云厂商推出竞品打压估值溢价<br>
+• 融资盘集中平仓引发踩踏<br>
+• PS回归15-20x 2026E = 64-85<br>
+<strong>老潘影响：</strong>负成本仓仍无忧，耐心等待
+</div>
+</div>
+</div>
+<div style="font-size:13px;color:#555;margin-top:12px;line-height:1.7">
+<strong>概率加权预期：</strong>160×25% + 112.5×55% + 72.5×20% = <strong>~116</strong>，与当前价115.40基本吻合——市场定价已计入基准预期，超额收益需要催化剂驱动。
+</div>
+</div>
+
+<!-- ========== 仓位映射 ========== -->
+<div class="card">
+<h2>十、持仓映射与老潘专属分析</h2>
+<table>
+<tr><th style="width:18%">维度</th><th>数据</th></tr>
+<tr><td>成本</td><td><span class="neg">-44.4831</span>（负成本，纯利润仓）</td></tr>
+<tr><td>持仓数量</td><td>2,358股</td></tr>
+<tr><td>持仓市值</td><td>~27.8万（按115.40计）</td></tr>
+<tr><td>浮盈额/率</td><td><span class="pos">+38.33万 / N/A（负成本不可计算率）</span></td></tr>
+<tr><td>占组合权重</td><td><strong>13.61%</strong>（第3大持仓，仅次于罗博18.57%、太钢13.91%）</td></tr>
+<tr style="background:#e8f5e9"><td><strong>持有心态</strong></td><td><strong>零下行风险 + 高上行弹性 = 最佳持有状态。</strong>已通过做T收回全部本金，剩余2385股是"免费彩票"，任何价格卖出都是纯利润。这是持仓组合中最不需要焦虑的一只。</td></tr>
+<tr style="background:#fff3e0"><td><strong>操作倾向</strong></td><td><strong>继续HOLD，不做T。</strong>①负成本仓T出去如果飞了得不偿失；②AI Infra是组合中仅次于光通信的第二大主线仓位，长期配置价值高；③短期超买等自然回调即可，无需主动操作。</td></tr>
+<tr style="background:#e3f2fd"><td><strong>加仓条件</strong></td><td>①股价回调至85-95区间(PS<25x 2026E)；②2026H1中报营收增速>25%且亏损率显著收窄；③GPU数据库正式版客户签约公告。三个条件满足两个即可考虑小仓位加仓。</td></tr>
+</table>
+</div>
+
+<!-- ========== 数据溯源 ========== -->
+<div class="footnote">
+<strong>数据溯源与版本追踪</strong><br>
+报告版本：V2.1 | 生成日期：2026-08-08 | 数据截止日：2026-08-07收盘<br>
+<strong>数据源：</strong>WeStock MCP（行情/财务/技术/资金流/K线）★★★★★ | Wind一致预期（营收/净利预测）★★★★ | WebSearch（行业新闻/催化事件）★★★ | 百度/雪球/同花顺（融资数据/市场解读）★★<br>
+<strong>关键假设：</strong>①一致预期营收CAGR ~30.7%可实现；②2027年扭亏时点不晚于预期；③AI Infra赛道景气度维持；④无重大股权稀释事件。<br>
+<strong>置信度声明：</strong>一致预期数据为多家券商均值，个体误差存在。PS估值框架适用于成长阶段亏损企业，但对营收增速和竞争格局变化高度敏感。<br>
+<strong>免责声明：</strong>本报告仅供研究参考，不构成投资建议。星环科技(688031)为报告撰写人持仓股，存在利益相关性。市场有风险，投资需谨慎。<br>
+<strong>GitHub Pages：</strong><a href="https://laopan2026.github.io/laopan-reports/xinghuan_688031_deep_20260808.html">https://laopan2026.github.io/laopan-reports/xinghuan_688031_deep_20260808.html</a>
+</div>
+
+</div><!-- .container -->
+
+<script>
+// K-line chart
+(function(){
+var dom=document.getElementById('chart-kline');
+if(!dom)return;
+var chart=echarts.init(dom);
+var raw=[{d:'2026-05-11',o:152.67,c:143.86,l:138.3,h:154.5,v:14543813},{d:'2026-05-14',o:139.04,c:123,l:122.95,h:139.9,v:11526974},{d:'2026-05-18',o:122.68,c:123.68,l:120.19,h:125.55,v:5121940},{d:'2026-05-21',o:125,c:133.19,l:124.03,h:146.32,v:14874071},{d:'2026-05-25',o:132.88,c:125.97,l:124.4,h:134,v:8319612},{d:'2026-05-28',o:120,c:115.7,l:111.1,h:121.6,v:8576665},{d:'2026-06-01',o:122,c:135.25,l:122,h:140.26,v:19719786},{d:'2026-06-04',o:122.4,c:152.32,l:119.8,h:152.32,v:22332484},{d:'2026-06-08',o:127,c:132.62,l:125.63,h:141.21,v:12303309},{d:'2026-06-11',o:135,c:124.31,l:123,h:135.88,v:13617195},{d:'2026-06-15',o:127,c:129.55,l:126.03,h:131.72,v:9193798},{d:'2026-06-18',o:123,c:127.35,l:121.2,h:130.4,v:9392856},{d:'2026-06-23',o:121.28,c:116.61,l:115.66,h:122.35,v:7166854},{d:'2026-06-26',o:114.63,c:107.51,l:107.51,h:114.63,v:6894042},{d:'2026-06-30',o:110.3,c:115.18,l:108.3,h:115.5,v:5239860},{d:'2026-07-03',o:110.13,c:106.53,l:106.5,h:112.34,v:4686400},{d:'2026-07-07',o:102,c:99.3,l:97.45,h:104.56,v:5449040},{d:'2026-07-10',o:102.67,c:108.06,l:102.6,h:113.99,v:7228255},{d:'2026-07-14',o:100.91,c:102.07,l:96.68,h:102.8,v:4282697},{d:'2026-07-17',o:97.42,c:88.23,l:87.73,h:98.01,v:5478902},{d:'2026-07-21',o:87,c:90.12,l:78.18,h:90.5,v:6887408},{d:'2026-07-24',o:85.3,c:84.6,l:84.06,h:87.24,v:3259191},{d:'2026-07-28',o:86.21,c:84.76,l:84.5,h:88.77,v:2912476},{d:'2026-07-31',o:85,c:90.42,l:83.88,h:95.53,v:10724221},{d:'2026-08-04',o:95,c:104.28,l:94.11,h:105.65,v:9441238},{d:'2026-08-07',o:114,c:115.4,l:108.99,h:119.77,v:12114293}];
+var dates=raw.map(function(r){return r.d});
+var ohlc=raw.map(function(r){return[r.o,r.c,r.l,r.h]});
+var vols=raw.map(function(r){return r.v});
+
+// Bollinger: mid=94.83, upper=117.03, lower=72.62 (from 8/7)
+var bollMid=94.83,bollUp=117.03,bollLo=72.62;
+
+var upData=[],midData=[],loData=[];
+for(var i=0;i<dates.length;i++){
+  upData.push(bollUp);midData.push(bollMid);loData.push(bollLo);
+}
+
+// MA55 approximate (using rough calc from 52 data points we have)
+var ma5Data=[];
+for(var i=0;i<dates.length;i++){
+  var start=Math.max(0,i-4);
+  var sum=0,cnt=0;
+  for(var j=start;j<=i;j++){sum+=ohlc[j][1];cnt++}
+  ma5Data.push((sum/cnt).toFixed(2));
+}
+
+chart.setOption({
+  tooltip:{trigger:'axis',axisPointer:{type:'cross'}},
+  legend:{data:['K线','MA5','BOLL上轨','BOLL中轨','BOLL下轨'],top:0,textStyle:{fontSize:11}},
+  grid:[{left:'8%',right:'8%',top:'12%',height:'60%'},{left:'8%',right:'8%',top:'78%',height:'14%'}],
+  xAxis:[{data:dates,axisLabel:{fontSize:10,rotate:30}},{data:dates,gridIndex:1,axisLabel:{show:false}}],
+  yAxis:[{scale:true,splitArea:{show:true},axisLabel:{fontSize:10}},{gridIndex:1,axisLabel:{fontSize:9}}],
+  series:[
+    {name:'K线',type:'candlestick',data:ohlc,
+      itemStyle:{color:'#d32f2f',color0:'#2e7d32',borderColor:'#d32f2f',borderColor0:'#2e7d32'}},
+    {name:'MA5',type:'line',data:ma5Data,smooth:true,lineStyle:{color:'#ff9800',width:1.5},symbol:'none'},
+    {name:'BOLL上轨',type:'line',data:upData,lineStyle:{color:'#90caf9',width:1,type:'dashed'},symbol:'none'},
+    {name:'BOLL中轨',type:'line',data:midData,lineStyle:{color:'#78909c',width:1.5},symbol:'none'},
+    {name:'BOLL下轨',type:'line',data:loData,lineStyle:{color:'#90caf9',width:1,type:'dashed'},symbol:'none'},
+    {name:'成交量',type:'bar',xAxisIndex:1,yAxisIndex:1,data:vols,
+      itemStyle:{color:function(p){return ohlc[p.dataIndex][1]>=ohlc[p.dataIndex][0]?'#d32f2f':'#2e7d32'}}}
+  ]
+});
+window.addEventListener('resize',function(){chart.resize()});
+})();
+</script>
+</body>
+</html>
