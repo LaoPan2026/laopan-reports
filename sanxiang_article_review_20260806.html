@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>三祥新材文章核验与交易框架｜2026-08-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f5f7fb;--ink:#172235;--muted:#667386;--line:#dfe6f0;--panel:#ffffff;--blue:#276ef1;--up:#e64845;--down:#238a55;--amber:#a46700;--soft-blue:#edf4ff;--soft-red:#fff1f0;--soft-green:#eff9f2;--soft-amber:#fff8e8}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;font-size:15px;line-height:1.72}body{padding:24px 16px 40px}.page{max-width:1120px;margin:0 auto}.hero,.card{background:var(--panel);border:1px solid var(--line);box-shadow:0 3px 14px rgba(31,51,82,.05)}.hero{border-top:4px solid var(--blue);padding:24px;margin-bottom:16px}.card{padding:20px;margin-bottom:16px}h1{font-size:28px;line-height:1.25;letter-spacing:0;margin:5px 0 10px}h2{font-size:19px;line-height:1.35;margin:0}h3{font-size:15px;line-height:1.45;margin:0 0 8px}.meta,.source,.small{color:var(--muted)}.meta,.source{font-size:12px;line-height:1.65}.source{margin-top:12px}.conclusion{font-size:17px;font-weight:720;line-height:1.65;margin:14px 0}.section-title{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.section-title b{display:inline-flex;width:25px;height:25px;border-radius:50%;align-items:center;justify-content:center;background:var(--soft-blue);color:var(--blue);font-size:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#fbfcff;border:1px solid var(--line);padding:12px;min-width:0}.metric .label{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric .value{font-size:22px;line-height:1.22;font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.box{border:1px solid var(--line);padding:14px;background:#fbfcfe}.ok{border-left:3px solid var(--down);background:var(--soft-green)}.risk{border-left:3px solid var(--up);background:var(--soft-red)}.warn{border-left:3px solid #dc9600;background:var(--soft-amber);padding:12px 14px}.callout{font-weight:720;margin-bottom:6px}.tag{display:inline-block;border:1px solid currentColor;border-radius:3px;padding:1px 7px;margin:0 5px 5px 0;font-size:12px;line-height:1.45;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}.blue{color:var(--blue);background:var(--soft-blue)}.red{color:var(--up);background:var(--soft-red)}.green{color:var(--down);background:var(--soft-green)}.amber{color:var(--amber);background:var(--soft-amber)}.up,.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.down,.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.list{margin:6px 0 0;padding-left:20px}.list li{margin:5px 0}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;background:#fff}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;overflow:hidden;text-wrap:pretty;word-break:break-word;font-variant-numeric:tabular-nums}th{background:#f5f8fc;color:#344258;font-size:12px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}tbody tr:nth-child(even){background:#fafcff}tbody tr:last-child td{border-bottom:0}table.f3 col:nth-child(1){width:25%}table.f3 col:nth-child(2){width:20%}table.f3 col:nth-child(3){width:55%}table.f3 th:nth-child(1),table.f3 td:nth-child(1),table.f3 th:nth-child(3),table.f3 td:nth-child(3){text-align:left}table.f3 th:nth-child(2),table.f3 td:nth-child(2){text-align:center}table.audit col:nth-child(1){width:24%}table.audit col:nth-child(2){width:24%}table.audit col:nth-child(3){width:34%}table.audit col:nth-child(4){width:18%}table.audit th:nth-child(1),table.audit td:nth-child(1),table.audit th:nth-child(2),table.audit td:nth-child(2),table.audit th:nth-child(3),table.audit td:nth-child(3){text-align:left}table.audit th:nth-child(4),table.audit td:nth-child(4){text-align:center}table.price col:nth-child(1){width:27%}table.price col:nth-child(2){width:19%}table.price col:nth-child(3){width:18%}table.price col:nth-child(4){width:36%}table.price th:nth-child(1),table.price td:nth-child(1),table.price th:nth-child(4),table.price td:nth-child(4){text-align:left}table.price th:nth-child(2),table.price td:nth-child(2),table.price th:nth-child(3),table.price td:nth-child(3){text-align:right}.chart{height:330px;width:100%;border:1px solid var(--line);background:#fcfdff}.footer{font-size:12px;color:#657287;padding:14px 4px;line-height:1.7}
+@media(max-width:640px){body{padding:12px 10px 28px;font-size:14px}.hero,.card{padding:15px 14px;margin-bottom:12px}h1{font-size:23px}.conclusion{font-size:16px}.metric-grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:10px}.metric .value{font-size:19px}.cols{grid-template-columns:1fr;gap:12px}.chart{height:270px}table{font-size:12px}th,td{padding:8px 8px}.table-wrap table{min-width:650px}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<div class="meta">20260803W31 · 文章核验与持仓框架 · 数据截至 2026-08-06 收盘</div>
+<h1>三祥新材：有真实高纯铪产业化基础，但估值先走在利润兑现之前</h1>
+<div><span class="tag amber">现有底仓：HOLD + 做T优先</span><span class="tag red">新增资金：WAIT，不追涨</span><span class="tag blue">核心变量：项目、订单、收入三重验证</span></div>
+<p class="conclusion">结论先行：雪球文章抓到了三祥新材锆铪分离与电子级高纯铪的真实产业化线索，但把“4N产品、送样、小批量供货”直接推导为“全球唯一新增产能、HBM不可替代、业绩即将爆发”，中间跨越了客户认证、规模订单、量产爬坡和财务确认四道门槛。截至8月6日，股价39.31元已从20日低点31.50元反弹，但仍受MA20 40.94元和MA55 49.57元压制。对已有底仓，正确动作是持有并利用波动做T；对新增资金，等待基本面兑现与趋势确认，不能追反弹。</p>
+<div class="meta">数据口径：行情、技术、估值来自 Wind；项目和财务以公司公告、定期报告及上证e互动公开回复为准。文章为雪球用户观点，不能作为公司事实。置信度：公告/定期报告 ★★★，互动问答 ★★，产业推断 ★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>01</b><h2>一页判断：真实与预期的分界线</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">8月6日收盘</div><div class="value">39.31元</div><div class="up">+5.50%</div></div>
+<div class="metric"><div class="label">PE-TTM / PB</div><div class="value">225.9 / 13.1</div><div class="red">高估值区间</div></div>
+<div class="metric"><div class="label">氧氯化铪设计能力</div><div class="value">250+ 吨/年</div><div class="small">项目规划口径</div></div>
+<div class="metric"><div class="label">项目公开状态</div><div class="value">建设中</div><div class="amber">非财务兑现期</div></div>
+</div>
+<div class="cols" style="margin-top:14px">
+<div class="box ok"><div class="callout">已经被公开信息支持的部分</div><div class="small">2万吨锆铪系列产品项目真实存在；公司公开称半工业化产线可连续稳定产出4N级以上氧氯化铪/氧氯化锆；部分产品曾送样、获得客户认可及小批量供货。</div></div>
+<div class="box risk"><div class="callout">市场已提前计价、但尚未量化的部分</div><div class="small">客户实名、认证节点、订单金额、产线达产率、独立收入与毛利率都未披露。高纯铪业务的想象空间很大，但尚不能视为已验证的利润来源。</div></div>
+</div>
+<div class="source">来源：三祥新材2025-07-29项目公告；2025-12-15、2026-04-21、2026-05-13公开互动回复；Wind行情与估值，2026-08-06。置信度 ★★★/★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>02</b><h2>雪球文章断言审计：把事实、披露与推断分开</h2></div>
+<div class="table-wrap"><table class="audit"><colgroup><col><col><col><col></colgroup><thead><tr><th>文章核心断言</th><th>可核验公开依据</th><th>独立判断</th><th>结论</th></tr></thead><tbody>
+<tr><td>锆铪分离产业化项目存在，并面向高纯铪</td><td>2025-07-29公告：辽宁华祥拟建年产2万吨锆铪系列产品项目，设计新增250多吨氧氯化铪能力。</td><td>项目存在是高置信度事实；但公告同时写明尚未正式投建，建设期预计15个月，不能等同于量产收入。</td><td><span class="tag green">基本成立</span></td></tr>
+<tr><td>公司已经具备电子级高纯铪工艺能力</td><td>2026-04-21互动回复：半工业化产线可连续稳定产出4N级以上氧氯化铪、氧氯化锆，并称为电子级产品。</td><td>工艺与中试能力有公司口径支持；4N是否完全匹配不同下游的具体纯度、杂质控制标准，仍需客户认证验证。</td><td><span class="tag green">基本成立</span></td></tr>
+<tr><td>产品已进入半导体客户并有订单</td><td>2025-12-15回复称部分产品获下游半导体产业链客户认可及订单，并小批量供货；2026-05-13称部分产品向客户送样。</td><td>送样、认可、小批量供货不等于稳定批量销售。未披露客户名称、金额、持续性及收入确认。</td><td><span class="tag amber">部分成立</span></td></tr>
+<tr><td>氧化铪是AI芯片/DRAM/HBM的关键材料</td><td>氧化铪在先进逻辑高k介质及部分先进存储材料路径中有应用基础。</td><td>“有应用”不能推导为“H​​BM不可替代”。HBM需求还受DRAM工艺、堆叠、封装和材料路线共同约束。</td><td><span class="tag amber">边界很强</span></td></tr>
+<tr><td>海外厂商无新增供给，三祥是全球唯一新增产能</td><td>未找到公司公告、权威行业数据库或海外厂商产能规划支持该绝对表述。</td><td>这是高风险营销式断言。供给紧张、海外扩产谨慎与“全球唯一”不是同一命题。</td><td><span class="tag red">未证实</span></td></tr>
+<tr><td>项目将快速全面投产并显著贡献业绩</td><td>公司2026-05仍称项目建设中；项目最初披露建设期为15个月。</td><td>未见设备安装、试车、验收、达产率和收入拆分公告。该结论目前比公开信息走得更远。</td><td><span class="tag red">不成立</span></td></tr>
+<tr><td>高纯铪会成为公司核心业绩来源</td><td>2025年增长主因公开表述偏向核级海绵锆和高端客户结构改善。</td><td>年报未拆分高纯铪收入、利润和订单贡献。它是第二增长曲线候选，不是已证实的主利润引擎。</td><td><span class="tag amber">等待验证</span></td></tr>
+</tbody></table></div>
+<div class="source">来源分层：公司项目公告/定期报告 ★★★；公司互动回复 ★★；半导体材料产业逻辑为公开行业知识与推断 ★；雪球文章为作者观点，不赋予事实权重。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>03</b><h2>产业链判断：逻辑成立，但不是短链条利润映射</h2></div>
+<div class="cols"><div class="box"><div class="callout">成立的产业路径</div><ul class="list small"><li>锆、铪天然伴生，锆铪分离是高纯铪供给的关键工艺环节。</li><li>氧化铪属于高k介质材料，在先进逻辑器件和部分存储材料路径中具备应用价值。</li><li>国产替代背景下，电子级高纯铪若完成认证和稳定供应，具备高附加值可能。</li></ul></div><div class="box"><div class="callout">被文章压缩掉的四个验证环节</div><ul class="list small"><li>客户认证：合格供应商不等于验证后立刻放量。</li><li>质量稳定：4N级不等于覆盖所有高端工艺节点和杂质规范。</li><li>产线爬坡：设计产能不等于实际达产率与良率。</li><li>财务确认：订单、收入、毛利和现金流必须最终出现在报表中。</li></ul></div></div>
+<div class="warn" style="margin-top:14px"><b>反一致预期审查：</b>市场现在给高纯铪的是“从0到1、高壁垒、强供给约束”的期权估值。真正能超预期的不是再讲一次材料故事，而是公司披露可量化的客户、认证、订单与收入；反过来，若建设或认证慢于市场预期，高估值会放大回撤。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>04</b><h2>财务与估值：主业有支撑，第二曲线尚未拆分验证</h2></div>
+<div class="table-wrap"><table class="price"><colgroup><col><col><col><col></colgroup><thead><tr><th>指标</th><th>已披露数值</th><th>口径</th><th>解读</th></tr></thead><tbody>
+<tr><td>2025年营收</td><td>11.6554亿元</td><td>年报</td><td>公司不是纯题材标的，具备真实主业基础。</td></tr>
+<tr><td>2025年归母净利润</td><td>1.1755亿元</td><td>年报</td><td>公开业绩增长主因偏向核级海绵锆与客户结构改善，高纯铪未被拆分确认。</td></tr>
+<tr><td>2026Q1营收 / 归母净利润</td><td>2.6374亿 / 3688.91万</td><td>季报</td><td>采用公司公告同比口径：+14.26% / +173.08%。Wind返回同比字段存在冲突，未采用。</td></tr>
+<tr><td>PE-TTM / PB</td><td>225.87倍 / 13.12倍</td><td>Wind 8月6日</td><td>估值已明显反映产业化与高纯铪想象空间，不能用“发现新题材”作为追涨理由。</td></tr>
+</tbody></table></div>
+<div id="valuationChart" class="chart" style="margin-top:14px"></div>
+<div class="source">来源：三祥新材2025年报、2026年一季报、业绩预告/公告；Wind估值，2026-08-06。Wind Q1同比字段与公司公告冲突，报告明确采用公司公告口径。置信度 ★★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>05</b><h2>价格结构：短线修复已发生，趋势反转尚未确认</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">MA5 / MA10</div><div class="value">35.22 / 36.41</div><div class="up">收盘已站上</div></div>
+<div class="metric"><div class="label">MA20 / MA55</div><div class="value">40.94 / 49.57</div><div class="red">上方压制</div></div>
+<div class="metric"><div class="label">MACD / RSI</div><div class="value">-0.06 / 50.39</div><div class="amber">修复未完成</div></div>
+<div class="metric"><div class="label">近20日区间</div><div class="value">31.50 - 81.91</div><div class="small">高波动状态</div></div>
+</div>
+<div class="table-wrap" style="margin-top:14px"><table class="price"><colgroup><col><col><col><col></colgroup><thead><tr><th>价格区域</th><th>位置</th><th>角色</th><th>交易含义</th></tr></thead><tbody>
+<tr><td>第一压力</td><td>39.63元</td><td>8月6日日内高点</td><td>放量突破并收盘站稳，才有资格挑战MA20；冲高回落则继续视为反抽区。</td></tr>
+<tr><td>第二压力</td><td>40.94元</td><td>MA20</td><td>日线修复的第一道确认。没有收复前，不把反弹升级为趋势加仓。</td></tr>
+<tr><td>中期压力</td><td>49.57元</td><td>MA55</td><td>中期趋势仍偏弱的分水岭；只有放量站上并回踩确认，才讨论提高趋势仓。</td></tr>
+<tr><td>短线观察</td><td>36.41 / 35.22元</td><td>MA10 / MA5</td><td>用于做T后的承接观察，不是基本面止损线。</td></tr>
+<tr><td>关键防守</td><td>31.50元</td><td>近20日低点</td><td>若再次跌破且项目、订单等基本面没有新验证，应下调题材溢价预期，降低交易仓风险。</td></tr>
+</tbody></table></div>
+<div class="source">来源：Wind日线技术指标，2026-08-06。技术指标只用于管理节奏，不作为因K线止损的唯一依据。置信度 ★★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>06</b><h2>持仓动作：HOLD + 做T优先，新增仓等待双确认</h2></div>
+<div class="table-wrap"><table class="f3"><colgroup><col><col><col></colgroup><thead><tr><th>账户动作</th><th>结论</th><th>触发条件与纪律</th></tr></thead><tbody>
+<tr><td>现有底仓</td><td><span class="tag green">HOLD</span></td><td>产业化方向并未证伪，且公司存在真实中试、项目与客户验证线索；但高估值下不把题材当利润，仓位保持可承受波动。</td></tr>
+<tr><td>日内与波段做T</td><td><span class="tag amber">优先</span></td><td>反弹靠近39.63至40.94元压力区而量能不能持续时，交易仓可分批兑现；回踩35.22至36.41元并缩量企稳时，再考虑回补。底仓不因单日波动全部卖空。</td></tr>
+<tr><td>新增资金</td><td><span class="tag red">WAIT</span></td><td>不追8月6日的反弹阳线。只有“项目进入试车/投产等实质进展或订单收入量化披露”与“日线放量站稳40.94元并回踩不破”同时出现，才讨论分批增加趋势仓。</td></tr>
+<tr><td>降低题材溢价</td><td><span class="tag red">警戒</span></td><td>若后续披露显示建设延期、认证不顺、订单无法放量，或高纯铪仍长期没有收入拆分，则将其按传统主业估值重估，优先压缩交易仓。</td></tr>
+</tbody></table></div>
+<div class="warn" style="margin-top:14px"><b>与老潘的原则一致：</b>不因技术位跌破就机械止损。真正需要改变持仓方向的，是项目、产品认证、客户订单、经营现金流或竞争格局出现实质性恶化；技术位置的功能是管理做T节奏和新增仓成本，不替代基本面判断。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>07</b><h2>后续跟踪清单：下一次必须问到可量化答案</h2></div>
+<div class="cols"><div class="box"><div class="callout">项目端</div><ul class="list small"><li>是否完成开工、设备安装、试车、验收？</li><li>实际投产时间、达产节奏和良率是多少？</li><li>250多吨设计能力中，电子级可售产出占比多少？</li></ul></div><div class="box"><div class="callout">商业化端</div><ul class="list small"><li>客户属于晶圆厂、材料厂还是贸易链？</li><li>认证到哪一阶段，订单规模和供货周期如何？</li><li>高纯铪收入、毛利率、现金回款能否进入定期报告？</li></ul></div></div>
+<div class="source">下一验证窗口：公司定期报告、项目进度公告、互动问答及投资者调研纪要。没有量化新增信息时，避免用重复叙事抬高胜率判断。</div>
+</section>
+<div class="footer"><b>免责声明</b>：以上内容基于公开资料和市场数据整理，仅供研究参考，不构成投资建议或收益承诺。市场有风险，投资需谨慎。任何买卖决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</div>
+</main>
+<script>
+const chart=echarts.init(document.getElementById('valuationChart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  legend:{data:['PE-TTM','PB'],top:12,right:12,textStyle:{color:'#46566d'}},
+  grid:{left:68,right:68,top:58,bottom:42},
+  xAxis:{type:'category',data:['估值水平'],axisLine:{lineStyle:{color:'#cfd8e5'}},axisLabel:{color:'#55657a'}},
+  yAxis:[
+    {type:'value',name:'PE-TTM（倍）',nameTextStyle:{color:'#55657a'},axisLabel:{color:'#55657a'},splitLine:{lineStyle:{color:'#e7edf5'}}},
+    {type:'value',name:'PB（倍）',nameTextStyle:{color:'#55657a'},axisLabel:{color:'#55657a'},splitLine:{show:false}}
+  ],
+  series:[
+    {name:'PE-TTM',type:'bar',data:[225.87],barMaxWidth:76,itemStyle:{color:'#e64845'},label:{show:true,position:'top',color:'#344258',formatter:'225.87倍'}},
+    {name:'PB',type:'bar',yAxisIndex:1,data:[13.12],barMaxWidth:76,itemStyle:{color:'#276ef1'},label:{show:true,position:'top',color:'#344258',formatter:'13.12倍'}}
+  ]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>

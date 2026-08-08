@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>指数趋势验证与月内预判｜2026-08-08</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f5f7fb;--ink:#172235;--muted:#667386;--line:#dfe6f0;--panel:#fff;--blue:#276ef1;--up:#e64845;--down:#238a55;--amber:#a46700;--soft-blue:#edf4ff;--soft-red:#fff1f0;--soft-green:#eff9f2;--soft-amber:#fff8e8}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;font-size:15px;line-height:1.72}body{padding:24px 16px 40px}.page{max-width:1120px;margin:0 auto}.hero,.card{background:var(--panel);border:1px solid var(--line);box-shadow:0 3px 14px rgba(31,51,82,.05)}.hero{border-top:4px solid var(--blue);padding:24px;margin-bottom:16px}.card{padding:20px;margin-bottom:16px}h1{font-size:28px;line-height:1.25;margin:5px 0 10px}h2{font-size:19px;line-height:1.35;margin:0}h3{font-size:15px;line-height:1.45;margin:0 0 8px}.meta,.source,.small{color:var(--muted)}.meta,.source{font-size:12px;line-height:1.65}.source{margin-top:12px}.conclusion{font-size:17px;font-weight:720;line-height:1.65;margin:14px 0}.section-title{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.section-title b{display:inline-flex;width:25px;height:25px;border-radius:50%;align-items:center;justify-content:center;background:var(--soft-blue);color:var(--blue);font-size:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#fbfcff;border:1px solid var(--line);padding:12px;min-width:0}.metric .label{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric .value{font-size:22px;line-height:1.22;font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.box{border:1px solid var(--line);padding:14px;background:#fbfcfe}.ok{border-left:3px solid var(--down);background:var(--soft-green)}.risk{border-left:3px solid var(--up);background:var(--soft-red)}.warn{border:1px solid #f0d58d;background:var(--soft-amber);padding:13px 15px}.callout{font-weight:750;margin-bottom:5px}.tag{display:inline-block;border:1px solid currentColor;padding:1px 7px;margin:2px 4px 2px 0;font-size:12px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}.tag.blue{color:var(--blue);background:var(--soft-blue)}.tag.red{color:var(--up);background:var(--soft-red)}.tag.green{color:var(--down);background:var(--soft-green)}.tag.amber{color:var(--amber);background:var(--soft-amber)}.up,.pos{color:var(--up);font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.down,.neg{color:var(--down);font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chart{width:100%;height:330px}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}th,td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top;overflow:hidden;text-wrap:pretty;word-break:break-word;overflow-wrap:anywhere}th{font-size:12px;font-weight:700;color:#526176;background:rgba(155,165,185,.08);white-space:nowrap}tbody tr:nth-child(even){background:rgba(155,165,185,.035)}.f3 col:nth-child(1){width:23%}.f3 col:nth-child(2){width:22%}.f3 col:nth-child(3){width:55%}.f3 th:nth-child(1),.f3 td:nth-child(1),.f3 th:nth-child(3),.f3 td:nth-child(3){text-align:left}.f3 th:nth-child(2),.f3 td:nth-child(2){text-align:right}.f4 col:nth-child(1){width:18%}.f4 col:nth-child(2){width:18%}.f4 col:nth-child(3){width:26%}.f4 col:nth-child(4){width:38%}.f4 th:nth-child(1),.f4 td:nth-child(1),.f4 th:nth-child(4),.f4 td:nth-child(4){text-align:left}.f4 th:nth-child(2),.f4 td:nth-child(2),.f4 th:nth-child(3),.f4 td:nth-child(3){text-align:right}.list{margin:8px 0 0;padding-left:20px}.stock-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stock-card{border:1px solid var(--line);padding:14px;background:#fbfcff}.stock-card h3{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.stock-card p{margin:5px 0;font-size:14px}.footer{color:var(--muted);font-size:12px;line-height:1.65;padding:8px 2px}
+@media(max-width:640px){body{padding:14px 10px 28px;font-size:14px}.hero,.card{padding:15px;margin-bottom:12px}h1{font-size:22px}.conclusion{font-size:16px}.metric-grid{grid-template-columns:repeat(2,1fr)}.cols,.stock-grid{grid-template-columns:1fr}.chart{height:300px}table{font-size:12px}.table-wrap table{min-width:520px}th,td{padding:7px 7px}.metric .value{font-size:19px}.source{font-size:11px}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<div class="meta">20260803W31 · 指数趋势验证与月内预判 · 2026-08-08（星期六）· 数据截止2026-08-07收盘</div>
+<h1>右侧修复已成立，但“主升浪确认”仍需突破3953—4000</h1>
+<div><span class="tag blue">框架：有依据</span><span class="tag amber">结论：需二次确认</span><span class="tag red">下周：先看压力换手</span></div>
+<p class="conclusion">核心结论：天赢居老师的推演，本质是“多周期均线修复 + 趋势线交点 + 斐波那契目标 + 时间窗口”的右侧交易框架。周五上证收3940.04点，已经站上截图中的3888强弱位和3918确认位，说明短周期修复并非空想；但收盘仍低于周线/日线层面的3953、布林中轨3956.06和20日均线3978.54，距离3988—4000压力区尚有验证过程。因此，下周大概率先冲击3943—3956，再观察3953—3988能否放量突破；8月剩余行情更可能是“压力区换手后再选择”，不是无回撤直线上涨。</p>
+<div class="meta">来源：老潘提供的4张截图；指数行情与技术指标来自Wind，2026-08-07收盘。截图中的时间周期和均线数值属于作者自定义技术体系，部分无法直接用日线数据逐项复算，报告对可复算项和不可复算项分开标注。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>01</b><h2>老师推演的内在逻辑：四层信号叠加</h2></div>
+<div class="stock-grid">
+<div class="stock-card"><h3>第一层：短周期转强 <span class="tag green">已部分验证</span></h3><p>截图强调15分钟144T、30分钟144T重新站上，以及MACD/KDJ双金叉。周五上证从7月20日最低3741.11反弹至3940.04，反弹约5.32%；这支持“短周期右侧修复”判断，但不能单独证明大级别主升。</p></div>
+<div class="stock-card"><h3>第二层：中周期确认位 <span class="tag blue">3888/3918</span></h3><p>3888是截图中的短线强弱位，3918是30分钟233T与趋势线交点附近。周五最高3940.93、收盘3940.04，已站上两道位置，说明第一阶段修复有效。</p></div>
+<div class="stock-card"><h3>第三层：压力带推进 <span class="tag amber">3953/3988</span></h3><p>作者把60分钟144T、55周均线/8周均线交点及233日均线集中到3953、3988附近。这里的价值不在精确到1点，而在于提示“越接近长期均线密集区，越需要换手确认”。</p></div>
+<div class="stock-card"><h3>第四层：目标推演 <span class="tag red">4000</span></h3><p>截图中的斐波那契计算以3884.44、3741.11、3767.5为锚，计算结果约3999.4，算术上成立。但目标位是路径推演，不是基本面目标，也不是突破必然到达。</p></div>
+</div>
+<div class="source">逻辑评级：短周期修复★★★；关键位参考★★★；时间循环★★；“主升浪已经开始”★★。作者“胜算64→72→74”的评分缺乏公开定义，不能作为独立证据。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>02</b><h2>逐项验证：哪些是真的，哪些需要降级表述</h2></div>
+<div class="table-wrap"><table class="f4"><colgroup><col><col><col><col></colgroup><thead><tr><th>推演内容</th><th>验证结果</th><th>支持证据</th><th>巴蒂修正后的表述</th></tr></thead><tbody>
+<tr><td>3741.11是探底低点</td><td class="up">成立</td><td>Wind日线显示7月20日最低3741.11点，之后指数收盘逐步抬高。</td><td>低点已经出现的概率高，但是否是中期最终低点，必须由后续不破3741.11来验证。</td></tr>
+<tr><td>3888以上进入右侧修复</td><td class="up">基本成立</td><td>周五收盘3940.04，明显高于7月31日收盘3832.26及8月5日收盘3878.43。</td><td>右侧修复成立；“主升浪启动”仍需突破压力带并完成回踩确认。</td></tr>
+<tr><td>3918是关键确认位</td><td class="up">盘中验证</td><td>截图时间表指向8月6日3918；Wind显示8月6日收3900.35、8月7日收3940.04。</td><td>3918已从目标/压力转为短线支撑观察位，后续有效跌破才削弱判断。</td></tr>
+<tr><td>3953是第一道中周期压力</td><td class="amber">待验证</td><td>周五最高3940.93，尚未触及3953；Wind布林中轨3956.06也在附近。</td><td>下周首要压力区，不是已经突破的支撑位。</td></tr>
+<tr><td>3988—4000是目标区</td><td class="amber">逻辑成立但未确认</td><td>斐波那契计算约3999.4；截图均线密集区指向3988—4000。</td><td>只有放量突破3953并在3988附近完成换手，4000才从“目标”升级为“可交易路径”。</td></tr>
+<tr><td>7月31日结束洗盘，主升开启</td><td class="amber">判断偏快</td><td>7月31日收3832.26，8月5日收3878.43，确有修复；但周五仍低于MA5、MA10、MA20。</td><td>“洗盘后的第一波反弹开始”比“主升浪已确认”更严谨。</td></tr>
+</tbody></table></div>
+<div class="source">数据来源：Wind上证指数日线与价格指标，2026-07-20至2026-08-07；截图中的30/60分钟均线为作者图表读数，无法由本次日线接口逐项复算。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>03</b><h2>周五收盘结构：指数站上中期分水岭，但短线仍在压力下方</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">上证收盘</div><div class="value">3,940.04</div><div class="up">+1.02%</div></div>
+<div class="metric"><div class="label">60日均线</div><div class="value">3,887.67</div><div class="small">收盘高约52.37点</div></div>
+<div class="metric"><div class="label">布林中轨</div><div class="value">3,956.06</div><div class="small">尚差约16.02点</div></div>
+<div class="metric"><div class="label">20日均线</div><div class="value">3,978.54</div><div class="small">尚差约38.50点</div></div>
+</div>
+<div id="levelChart" class="chart" style="margin-top:10px"></div>
+<div class="cols" style="margin-top:14px"><div class="box ok"><div class="callout">偏多证据</div><div class="small">周五高点3940.93、收盘3940.04，站上60日均线3887.67；科创50上涨2.51%，深成指和创业板同步上涨，说明修复不是单一权重指数拉动。</div></div><div class="box risk"><div class="callout">反向证据</div><div class="small">上证5日均线3998.99、10日均线3994.83、20日均线3978.54均高于收盘；MACD合成值为-12.13，说明日线级别还没有完成趋势反转确认。</div></div></div>
+<div class="source">来源：Wind上证指数价格指标，2026-08-07收盘，置信度★★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>04</b><h2>下周趋势预判：先冲压力，再看是否升级</h2></div>
+<div class="table-wrap"><table class="f3"><colgroup><col><col><col></colgroup><thead><tr><th>路径</th><th>概率判断</th><th>触发条件与指数路径</th></tr></thead><tbody>
+<tr><td>基准路径：压力区换手</td><td><span class="tag blue">约55%</span></td><td>先在3918—3956之间反复，若量能没有明显萎缩，尝试突破3953；突破不稳则回踩3918—3888。该路径最符合“修复已成立、主升未确认”的现状。</td></tr>
+<tr><td>强势路径：向4000推进</td><td><span class="tag red">约25%</span></td><td>放量站上3953，随后3988不出现长上影和放量滞涨，才有机会测试4000；若4000附近出现量价背离，应控制追涨冲动。</td></tr>
+<tr><td>转弱路径：修复失败</td><td><span class="tag green">约20%</span></td><td>跌破3918且无法收回，先看3888；放量跌破3888，再看3852附近布林下轨与3820—3795支撑带。跌破3741.11则“7月低点结束调整”判断失效。</td></tr>
+</tbody></table></div>
+<div class="warn" style="margin-top:14px"><b>下周核心判断：</b>指数不缺上冲空间，缺的是压力位的有效换手。3943—3956是第一道检验，3953—3988是主升确认区。冲过3940不等于已经确认主升，放量突破并回踩不破才算。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>05</b><h2>8月剩余行情：偏多但高波动，主线会从普涨转为筛选</h2></div>
+<div class="cols"><div class="box ok"><h3>月内偏多条件</h3><ul class="list small"><li>上证维持在3888/3918上方；</li><li>科创50相对上证继续强，科技中军不出现连续负反馈；</li><li>指数突破3953后，成交额同步放大而非单日脉冲；</li><li>光通信、AI硬件、半导体设备出现轮动接力，而不是只有单只小票上涨。</li></ul></div><div class="box risk"><h3>月内转弱条件</h3><ul class="list small"><li>指数冲击3953—4000时放量滞涨；</li><li>涨停股次日溢价下降、龙头开板后不能回封；</li><li>科创50跌回关键均线下方，成长风格相对强度消失；</li><li>上证跌破3888后，反弹变成高位震荡或二次探底。</li></ul></div></div>
+<p class="conclusion">月内预判：**震荡偏强，运行中枢上移，但不排除一次5%—8%的科技板块级别回撤。**如果3953—4000完成有效突破，8月后半段才有机会从“反弹修复”升级为“趋势扩张”；如果压力区连续受阻，行情会回到高低切换和强势股做T，而不是全面加仓。</p>
+<div class="source">市场状态：震荡偏强/切换中，不是无条件进攻档。依据：指数中期分水岭已收复，但日线短均线仍在上方且20日涨跌幅尚未完全修复。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>06</b><h2>对老潘持仓的映射：先看第一波强度，再看回档质量</h2></div>
+<div class="table-wrap"><table class="f4"><colgroup><col><col><col><col></colgroup><thead><tr><th>持仓</th><th>映射关系</th><th>下周判断</th><th>执行纪律</th></tr></thead><tbody>
+<tr><td>汇绿生态</td><td>光通信高弹性映射</td><td><span class="tag red">HOLD</span></td><td>已涨停且近5日涨幅高，不用现金追；看42.20—41.80承接和板块龙头是否继续强。</td></tr>
+<tr><td>罗博特科</td><td>AI硬件/设备弹性</td><td><span class="tag amber">HOLD+T优先</span></td><td>指数若冲压力区，罗博是交易仓首选；冲高滞涨才做小比例T，放量突破不卖。</td></tr>
+<tr><td>澜起科技</td><td>半导体/AI基础设施</td><td><span class="tag blue">HOLD</span></td><td>周五收215.52接近MA20 216.43；不因指数突破3888就追价，需站稳MA20并回踩确认。</td></tr>
+<tr><td>三祥新材</td><td>高端材料间接受益</td><td><span class="tag blue">HOLD</span></td><td>指数强只能改善情绪，不能替代高纯铪订单、收入和利润验证；不新增现金。</td></tr>
+<tr><td>星环科技</td><td>AI基础软件，非截图第一波硬件核心</td><td><span class="tag amber">交易仓T</span></td><td>指数强时可利用弹性做T，但不把老师的“科技硬件主升”直接套到星环基本面。</td></tr>
+</tbody></table></div>
+<div class="source">持仓行情来源：Wind 2026-08-07收盘；映射判断沿用当前组合研究框架，置信度★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>07</b><h2>最终结论：老师看对了方向，但把确认时间提前了</h2></div>
+<ul class="list"><li><b>看对的部分：</b>3741.11低点后的右侧修复、3888强弱位、3918确认位，以及3953—4000压力带，构成一套有内在一致性的多周期交易框架；周五行情已经验证其中前两层。</li><li><b>需要修正的部分：</b>均线金叉、趋势线交点和时间循环只能提高胜率，不能证明“主升浪已确认”；当前收盘还低于日线MA5、MA10、MA20和布林中轨。</li><li><b>下周动作：</b>不把“主升浪开始”当成追涨信号。先看3943—3956，再看3953—3988是否放量突破并回踩不破。</li><li><b>月内动作：</b>维持震荡偏强判断，组合执行核心仓持有、交易仓做T、现金等待，不扩大科技总敞口。</li></ul>
+<div class="source">报告生成：2026-08-08 01:05（北京时间）· 数据源：老潘提供截图、Wind · 版式：Google Insight V1。</div>
+</section>
+<div class="footer"><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</div>
+</main>
+<script>
+const levelChart=echarts.init(document.getElementById('levelChart'));
+const levels=[
+  {name:'3888 强弱位',value:3888,color:'#238a55'},
+  {name:'3918 确认位',value:3918,color:'#276ef1'},
+  {name:'3943 压力',value:3943,color:'#a46700'},
+  {name:'3953 压力',value:3953,color:'#a46700'},
+  {name:'3956 布林中轨',value:3956.06,color:'#a46700'},
+  {name:'3979 MA20',value:3978.54,color:'#e64845'},
+  {name:'3988 长期均线区',value:3988,color:'#e64845'},
+  {name:'4000 斐波目标',value:4000,color:'#e64845'},
+  {name:'3940 周五收盘',value:3940.04,color:'#276ef1'}
+];
+levelChart.setOption({backgroundColor:'transparent',tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){const p=params[0];return p.name+'：'+p.value.toFixed(2);}},grid:{left:130,right:48,top:24,bottom:30},xAxis:{type:'value',min:3860,max:4070,axisLabel:{color:'#55657a'},splitLine:{lineStyle:{color:'#e7edf5'}}},yAxis:{type:'category',data:levels.map(function(x){return x.name;}).reverse(),axisLabel:{color:'#55657a'},axisLine:{lineStyle:{color:'#cfd8e5'}}},series:[{type:'bar',barMaxWidth:18,data:levels.slice().reverse().map(function(x){return {value:x.value,itemStyle:{color:x.color}};}),label:{show:true,position:'right',color:'#344258',formatter:function(p){return p.value.toFixed(2);}}}]});
+window.addEventListener('resize',function(){levelChart.resize();});
+</script>
+</body>
+</html>

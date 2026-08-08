@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前简报｜2026-08-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f5f7fb;--ink:#172235;--muted:#667386;--line:#dfe6f0;--panel:#fff;--blue:#276ef1;--up:#e64845;--down:#238a55;--amber:#a46700;--soft-red:#fff1f0;--soft-green:#eff9f2;--soft-blue:#edf4ff}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;font-size:15px;line-height:1.72}body{padding:24px 16px 40px}.page{max-width:1120px;margin:0 auto}.hero,.card{background:var(--panel);border:1px solid var(--line);box-shadow:0 3px 14px rgba(31,51,82,.05)}.hero{border-top:4px solid var(--blue);padding:24px;margin-bottom:16px}.card{padding:20px;margin-bottom:16px}h1{font-size:28px;line-height:1.25;letter-spacing:0;margin:5px 0 10px}h2{font-size:19px;line-height:1.35;margin:0}h3{font-size:15px;line-height:1.45;margin:0 0 8px}.meta,.source,.small{color:var(--muted)}.meta,.source{font-size:12px;line-height:1.65}.source{margin-top:12px}.conclusion{font-size:17px;font-weight:720;line-height:1.65;margin:14px 0}.section-title{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.section-title b{display:inline-flex;width:25px;height:25px;border-radius:50%;align-items:center;justify-content:center;background:var(--soft-blue);color:var(--blue);font-size:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#fbfcff;border:1px solid var(--line);padding:12px;min-width:0}.metric .label{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric .value{font-size:22px;line-height:1.22;font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.box{border:1px solid var(--line);padding:14px;background:#fbfcfe}.ok{border-left:3px solid var(--down);background:var(--soft-green)}.risk{border-left:3px solid var(--up);background:var(--soft-red)}.warn{border-left:3px solid #dc9600;background:#fff9eb;padding:12px 14px}.callout{font-weight:720;margin-bottom:6px}.tag{display:inline-block;border:1px solid currentColor;border-radius:4px;padding:1px 7px;margin-right:5px;font-size:12px;font-weight:700;line-height:1.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag.blue{color:var(--blue);background:var(--soft-blue)}.tag.green{color:var(--down);background:var(--soft-green)}.tag.red{color:var(--up);background:var(--soft-red)}.tag.amber{color:var(--amber);background:#fff7e9}.up,.pos{color:var(--up);font-weight:720;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.down,.neg{color:var(--down);font-weight:720;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chart{height:315px;width:100%}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:10px 11px;border-bottom:1px solid var(--line);border-right:1px solid #edf1f6;vertical-align:top;overflow:hidden;text-wrap:pretty;word-break:break-word}th{font-size:12px;color:#364257;background:#f3f6fa;font-weight:750;white-space:nowrap;text-overflow:ellipsis}th:last-child,td:last-child{border-right:0}tbody tr:nth-child(even){background:rgba(59,81,115,.025)}table.f4 col:nth-child(1){width:18%}table.f4 col:nth-child(2){width:18%}table.f4 col:nth-child(3){width:18%}table.f4 col:nth-child(4){width:46%}table.f5 col:nth-child(1){width:18%}table.f5 col:nth-child(2){width:14%}table.f5 col:nth-child(3){width:17%}table.f5 col:nth-child(4){width:16%}table.f5 col:nth-child(5){width:35%}table.f3 col:nth-child(1){width:26%}table.f3 col:nth-child(2){width:16%}table.f3 col:nth-child(3){width:58%}table.f4 th:nth-child(1),table.f4 td:nth-child(1),table.f4 th:nth-child(4),table.f4 td:nth-child(4),table.f5 th:nth-child(1),table.f5 td:nth-child(1),table.f5 th:nth-child(5),table.f5 td:nth-child(5),table.f3 th:nth-child(1),table.f3 td:nth-child(1),table.f3 th:nth-child(3),table.f3 td:nth-child(3){text-align:left}table.f4 th:nth-child(2),table.f4 td:nth-child(2),table.f4 th:nth-child(3),table.f4 td:nth-child(3),table.f5 th:nth-child(3),table.f5 td:nth-child(3){text-align:right}table.f5 th:nth-child(2),table.f5 td:nth-child(2),table.f5 th:nth-child(4),table.f5 td:nth-child(4),table.f3 th:nth-child(2),table.f3 td:nth-child(2){text-align:center}table.f4 td:first-child,table.f4 th:first-child,table.f5 td:first-child,table.f5 th:first-child{white-space:nowrap;text-overflow:ellipsis}.footer{font-size:12px;color:#536174;padding:5px 6px}.list{margin:7px 0 0;padding-left:19px}.list li{margin:6px 0}.kicker{font-size:12px;color:var(--muted)}
+@media(max-width:640px){body{padding:12px 10px 28px;font-size:14px}.hero,.card{padding:15px 14px;margin-bottom:12px}h1{font-size:23px}.conclusion{font-size:16px}.metric-grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:10px}.metric .value{font-size:19px}.cols{grid-template-columns:1fr;gap:12px}.chart{height:260px}table{font-size:12px}th,td{padding:8px 8px}.table-wrap table{min-width:620px}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<div class="meta">20260803W31 · 盘前简报 · 2026-08-06（星期四）· 北京时间 08:49 前可得数据</div>
+<h1>科技修复仍在，但今天必须从“普涨”切换到“承接筛选”</h1>
+<div><span class="tag blue">市场档位：修复进攻</span><span class="tag amber">今日阶段：强分歧验证</span><span class="tag red">禁止：竞价追科技</span></div>
+<p class="conclusion">核心结论：8月5日 A 股的放量普涨和半导体领涨，确认了风险偏好修复；但隔夜费城半导体跌 1.40%、MRVL 跌 3.46%、LITE 跌 2.73%，外盘已从全面共振转为分化。今日策略不是继续扩张风险敞口，而是只保留能在高开、回踩后重新放量的核心资产。太钢不锈、德展健康继续执行本周 SELL；澜起科技只等预设价格与趋势触发，不因昨日反弹追补。</p>
+<div class="meta">时点与口径：A 股为 2026-08-05 收盘；美股为 2026-08-05 美东收盘，对应北京时间 2026-08-06 清晨。行情数据来自 Wind，置信度 ★★★；新闻为 Wind 财经新闻聚合，属于非一手来源，均标注需核实原文。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>01</b><h2>一页交易结论</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">上证指数</div><div class="value">3,878.43</div><div class="up">+1.47%</div></div>
+<div class="metric"><div class="label">科创50</div><div class="value">1,693.67</div><div class="up">+4.78%</div></div>
+<div class="metric"><div class="label">费城半导体</div><div class="value">12,008.88</div><div class="down">-1.40%</div></div>
+<div class="metric"><div class="label">A股两市成交额</div><div class="value">2.66万亿</div><div class="up">较前日 +4,460亿</div></div>
+</div>
+<div class="cols" style="margin-top:14px">
+<div class="box ok"><div class="callout">成立的多头事实</div><div class="small">8月5日超过 3,700 只个股上涨，成交额放大；半导体指数涨 6.18%，主力净流入约 129.64 亿元。指数、广度、资金三项同步改善，修复不是单一权重股拉升。</div></div>
+<div class="box risk"><div class="callout">今天最重要的风险</div><div class="small">半导体昨日已经走出加速，隔夜海外映射股明显分化；同时有关美国拟限制中国 AI 光模块进口的报道尚缺正式政策文本。高开未必代表趋势确认，可能只是兑现窗口。</div></div>
+</div>
+<div class="source">来源：Wind 指数与行业新闻，数据日期 2026-08-05/06。成交额、上涨家数、资金流为新闻转述，需核实原始行情字段，置信度 ★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>02</b><h2>隔夜全球市场：GPU强，光通信与半导体链分化</h2></div>
+<div id="globalChart" class="chart"></div>
+<div class="table-wrap"><table class="f4"><colgroup><col><col><col><col></colgroup><thead><tr><th>海外变量</th><th>收盘</th><th>日变动</th><th>对今日 A 股的含义</th></tr></thead><tbody>
+<tr><td>标普500</td><td>7,723.55</td><td class="down">-0.17%</td><td>总体风险偏好没有崩坏，但已不支持 A 股全面高开后继续扩张。</td></tr>
+<tr><td>纳斯达克100</td><td>29,487.79</td><td class="down">-0.83%</td><td>成长风格出现获利回吐，A 股创业板与科创板早盘需看承接。</td></tr>
+<tr><td>费城半导体</td><td>12,008.88</td><td class="down">-1.40%</td><td>对昨日大涨的国产半导体是短线降温，不足以否定存储与设备的中期景气叙事。</td></tr>
+<tr><td>NVDA</td><td>219.22 USD</td><td class="up">+3.43%</td><td>AI 算力核心锚仍强，对罗博特科的映射是正面；但不能把单日 NVDA 上涨等同于订单兑现。</td></tr>
+<tr><td>MRVL</td><td>211.02 USD</td><td class="down">-3.46%</td><td>澜起科技、罗博特科的外盘映射短线偏负，今天重点看自身资金承接而非外盘标题。</td></tr>
+<tr><td>COHR / LITE</td><td>328.22 / 826.26 USD</td><td><span class="up">+1.39%</span> / <span class="down">-2.73%</span></td><td>光通信链没有统一方向，汇绿生态更应按 A 股自身涨停后的换手质量判断。</td></tr>
+</tbody></table></div>
+<div class="warn" style="margin-top:14px"><b>传导链判断：</b>NVDA 上行只能支撑 AI 资本开支叙事；MRVL、LITE 回落则意味着数据中心互连和光模块的海外映射转弱。对 A 股的正确解读是“科技修复仍在、内部开始挑公司”，不是“科技全面转空”。</div>
+<div class="source">来源：Wind 海外市场行情，2026-08-05 美东收盘。置信度 ★★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>03</b><h2>A 股状态：从反弹确认进入分歧筛选</h2></div>
+<div class="table-wrap"><table class="f4"><colgroup><col><col><col><col></colgroup><thead><tr><th>指数</th><th>8月5日收盘</th><th>当日涨跌</th><th>阶段含义</th></tr></thead><tbody>
+<tr><td>上证指数</td><td>3,878.43</td><td class="up">+1.47%</td><td>修复扩散至主板，不是纯科创小票脉冲。</td></tr>
+<tr><td>深证成指</td><td>14,144.20</td><td class="up">+1.86%</td><td>成长权重强于主板，风险偏好回升明确。</td></tr>
+<tr><td>创业板指</td><td>3,535.14</td><td class="up">+1.32%</td><td>指数涨幅低于科创50，今天要防高弹性方向内部兑现。</td></tr>
+<tr><td>科创50</td><td>1,693.67</td><td class="up">+4.78%</td><td>半导体带动最明显；昨日已加速，今天只看强者续强与回踩承接。</td></tr>
+</tbody></table></div>
+<div class="cols" style="margin-top:14px"><div class="box"><div class="callout">主线等级</div><ul class="list small"><li><b>真主线：</b>存储、半导体设备、先进封装。昨日行业涨幅、资金流入和市场广度同时确认。</li><li><b>高波动分支：</b>光通信/CPO。基本面景气未证伪，但政策传言放大了估值与出口风险。</li><li><b>非主攻方向：</b>钢铁、医药、传统周期。不能因为科技强就用反弹预期拖延退出决策。</li></ul></div><div class="box"><div class="callout">09:30—10:00 的三个硬开关</div><ul class="list small"><li>科创50若高开后不能守住昨日收盘，停止新增科技仓。</li><li>半导体若只有后排冲高、设备与存储中军缩量回落，按脉冲处理。</li><li>光通信若政策传言继续发酵且龙头放量下跌，汇绿只持仓观察，不加仓。</li></ul></div></div>
+<div class="source">来源：Wind 指数行情，2026-08-05；广度、行业资金流来自 Wind 新闻聚合，2026-08-05/06，需核实原文。行情置信度 ★★★，市场状态判断 ★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>04</b><h2>重要变量：光模块限制传闻不能当作既成事实</h2></div>
+<div class="cols"><div class="box risk"><div class="callout">已知信息</div><div class="small">Wind 新闻聚合显示，媒体报道称美国 FCC 正起草限制进口中国制造新型数据中心光收发模块的规则；8月5日有公司回应称当前仍属市场消息。相关政府部门亦就涉华措施表态。上述均为媒体或新闻转述，尚未取得可核验的正式规则文本与适用范围。</div></div><div class="box ok"><div class="callout">对持仓的执行含义</div><div class="small">这不是立即下调 AI 光通信产业趋势的充分证据，也不是对汇绿生态的直接公司基本面结论。它的真实作用是抬高板块风险溢价：今天若光通信不能走出“低开修复或高开承接”，就不把昨日涨停延续为加仓信号。</div></div></div>
+<div class="source">来源：Wind 财经新闻《路透社消息搅动光通信板块》《操盘必读》，2026-08-05/06；非一手来源，正式政策文本待核实。置信度：事件存在 ★★，经济影响判断 ★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>05</b><h2>大账户持仓盘前扫描</h2></div>
+<div class="table-wrap"><table class="f5"><colgroup><col><col><col><col><col></colgroup><thead><tr><th>标的</th><th>账户定位</th><th>8月5日收盘</th><th>技术状态</th><th>今日执行</th></tr></thead><tbody>
+<tr><td>汇绿生态<br><span class="meta">001267</span></td><td><span class="tag blue">光通信</span></td><td><span class="up">35.28 / +10.01%</span></td><td>5日 +17.13%，RSI6 62.45；仍低于60MA 48.55。</td><td><b>HOLD，不加仓。</b>涨停是修复不是反转确认；观察开板后的换手承接，政策传言发酵时不接高位波动。</td></tr>
+<tr><td>罗博特科<br><span class="meta">300757</span></td><td><span class="tag blue">AI硬件</span></td><td><span class="up">475.00 / +6.03%</span></td><td>5日 +16.01%，RSI6 65.48；仍低于60MA 544.98。</td><td><b>HOLD，冲高不追。</b>NVDA 强势提供映射，但 MRVL 回落；若早盘放量冲高后跌回昨日收盘，按弹性仓做减法，不加杠杆。</td></tr>
+<tr><td>澜起科技<br><span class="meta">688008</span></td><td><span class="tag green">S级底仓</span></td><td><span class="up">212.00 / +4.31%</span></td><td>5日 +2.17%，RSI6 51.09；60MA 246.48，DIF -13.18。</td><td><b>WAIT，禁止追补。</b>大账户成本193.567元。左侧只在195—210元缩量企稳、DIF收敛转平时分批；右侧只在放量站上247元且回踩不破时分批。</td></tr>
+<tr><td>软通动力<br><span class="meta">301236</span></td><td><span class="tag blue">AI软件</span></td><td><span class="up">42.79 / +11.55%</span></td><td>5日 +20.91%，RSI6 75.37，短线过热。</td><td><b>HOLD，禁止追高。</b>浮盈仓保留趋势收益；若高开后跌破昨日收盘且量能放大，优先锁定交易仓利润。</td></tr>
+<tr><td>三祥新材<br><span class="meta">603663</span></td><td><span class="tag amber">材料</span></td><td>37.26</td><td>本次技术字段未完整返回。</td><td><b>HOLD。</b>不因科技行情切换而追高补仓，继续按锆材料与固态电池验证节点跟踪。</td></tr>
+<tr><td>星环科技-U<br><span class="meta">688031</span></td><td><span class="tag blue">AI软件</span></td><td>118.07</td><td>本次技术字段未完整返回。</td><td><b>HOLD。</b>负成本仓不做情绪性减仓，重点防高波动下的仓位失控。</td></tr>
+<tr><td>泰和新材<br><span class="meta">002254</span></td><td><span class="tag amber">化工</span></td><td>12.24</td><td>本次技术字段未完整返回。</td><td><b>HOLD。</b>不参与科技冲高；仅当自身经营、供给或产品价格出现正向验证才重估。</td></tr>
+<tr><td>华峰化学<br><span class="meta">002064</span></td><td><span class="tag amber">化工</span></td><td>11.55</td><td>本次技术字段未完整返回。</td><td><b>HOLD。</b>周期判断盯价差、库存、供给和开工率，不使用静态PE做横向比较。</td></tr>
+<tr><td>太钢不锈<br><span class="meta">000825</span></td><td><span class="tag red">退出对象</span></td><td>3.63</td><td>60MA 3.69，仍未重建中期优势。</td><td><b>SELL，本周执行。</b>最大拖累且偏离主线，反弹不是保留理由；卖出后保留现金，不立即换入澜起。</td></tr>
+<tr><td>德展健康<br><span class="meta">000813</span></td><td><span class="tag red">退出对象</span></td><td>3.34</td><td>60MA 3.31，短线信号不足以改变基本面判断。</td><td><b>SELL，本周执行。</b>医药逻辑与组合主线不匹配；不因靠近均线而推迟退出。</td></tr>
+</tbody></table></div>
+<div class="source">来源：Wind 股票技术指标，数据日期 2026-08-05。大账户口径：澜起成本193.567元、200股；96.8333元为独立长线账户成本，不合并计算。缺失字段不作推断。置信度：已列技术数据 ★★★，执行判断 ★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>06</b><h2>今日动作清单</h2></div>
+<div class="table-wrap"><table class="f3"><colgroup><col><col><col></colgroup><thead><tr><th>优先级</th><th>动作</th><th>条件与边界</th></tr></thead><tbody>
+<tr><td>1. 太钢不锈</td><td><span class="tag red">SELL</span></td><td>本周内完成退出。若出现反弹，只改善成交价格，不改变退出方向；资金留为现金。</td></tr>
+<tr><td>2. 德展健康</td><td><span class="tag red">SELL</span></td><td>本周内完成退出。短线均线附近波动不构成长期保留理由。</td></tr>
+<tr><td>3. 澜起科技</td><td><span class="tag amber">WAIT</span></td><td>只接受两种买点：195—210元缩量企稳且DIF收敛转平；或放量站上247元并回踩不破。其余价格区间不主动加仓。</td></tr>
+<tr><td>4. 科技持仓</td><td><span class="tag blue">HOLD / 观察</span></td><td>早盘高开后能守住昨日收盘并继续放量，持有；高开低走且中军同步转弱，停止新增，弹性仓优先兑现。</td></tr>
+<tr><td>5. 现金</td><td><span class="tag green">保留</span></td><td>卖出太钢、德展后的现金不是“必须找标的”的压力测试，而是等待澜起或主线核心出现赔率窗口。</td></tr>
+</tbody></table></div>
+<div class="warn" style="margin-top:14px"><b>盘中禁令：</b>不因半导体昨日大涨而追竞价；不因光模块传闻就把产业趋势一票否决；不因太钢或德展出现反弹就撤销退出。今日要做的是执行既定纪律，而不是把盘面噪音重新解释成长期逻辑。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>07</b><h2>数据缺口与风险</h2></div>
+<ul class="list small"><li>有关中国光模块进口限制的信息尚无本报告核验到的正式政策文本；不将其作为公司基本面确定事实。</li><li>本报告部分行业资金流、上涨家数与新闻事件来自 Wind 新闻聚合，属于非一手信息，需以交易所、监管机构或公司公告复核。</li><li>当前处于 A 股盘前，所有盘中价位判断均以8月5日收盘为基准，开盘后需用竞价、量能和均价线重新验证。</li><li>55日线是中期趋势分水岭；本次部分标的未回传完整55日线字段，因此不编造精确数字。</li></ul>
+<p class="source">报告生成：2026-08-06 08:49（北京时间）· 数据源：Wind · 版式：Google Insight V1。</p>
+</section>
+<div class="footer"><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</div>
+</main>
+<script>
+const marketData=[
+  {name:'上证',value:1.47,color:'#e64845'},
+  {name:'深证',value:1.86,color:'#e64845'},
+  {name:'创业板',value:1.32,color:'#e64845'},
+  {name:'科创50',value:4.78,color:'#e64845'},
+  {name:'标普500',value:-0.17,color:'#238a55'},
+  {name:'纳指100',value:-0.83,color:'#238a55'},
+  {name:'费城半导体',value:-1.40,color:'#238a55'}
+];
+const chart=echarts.init(document.getElementById('globalChart'));
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){const p=params[0];return p.name+'：'+p.value.toFixed(2)+'%';}},
+  grid:{left:68,right:22,top:28,bottom:58},
+  xAxis:{type:'category',data:marketData.map(function(d){return d.name;}),axisLabel:{color:'#55657a',interval:0,rotate:20},axisLine:{lineStyle:{color:'#cfd8e5'}}},
+  yAxis:{type:'value',axisLabel:{color:'#55657a',formatter:'{value}%'},splitLine:{lineStyle:{color:'#e7edf5'}}},
+  series:[{type:'bar',barMaxWidth:38,data:marketData.map(function(d){return {value:d.value,itemStyle:{color:d.color}};}),label:{show:true,position:'top',color:'#344258',formatter:function(p){return (p.value>0?'+':'')+p.value.toFixed(2)+'%';}}}]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>

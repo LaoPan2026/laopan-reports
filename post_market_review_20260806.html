@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘后复盘｜2026-08-06</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f5f7fb;--ink:#172235;--muted:#667386;--line:#dfe6f0;--panel:#fff;--blue:#276ef1;--up:#e64845;--down:#238a55;--amber:#a46700;--soft-blue:#edf4ff;--soft-red:#fff1f0;--soft-green:#eff9f2;--soft-amber:#fff8e8}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;font-size:15px;line-height:1.72}body{padding:24px 16px 40px}.page{max-width:1120px;margin:0 auto}.hero,.card{background:var(--panel);border:1px solid var(--line);box-shadow:0 3px 14px rgba(31,51,82,.05)}.hero{border-top:4px solid var(--blue);padding:24px;margin-bottom:16px}.card{padding:20px;margin-bottom:16px}h1{font-size:28px;line-height:1.25;letter-spacing:0;margin:5px 0 10px}h2{font-size:19px;line-height:1.35;margin:0}h3{font-size:15px;line-height:1.45;margin:0 0 8px}.meta,.source,.small{color:var(--muted)}.meta,.source{font-size:12px;line-height:1.65}.source{margin-top:12px}.conclusion{font-size:17px;font-weight:720;line-height:1.65;margin:14px 0}.section-title{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.section-title b{display:inline-flex;width:25px;height:25px;border-radius:50%;align-items:center;justify-content:center;background:var(--soft-blue);color:var(--blue);font-size:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#fbfcff;border:1px solid var(--line);padding:12px;min-width:0}.metric .label{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric .value{font-size:22px;line-height:1.22;font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.box{border:1px solid var(--line);padding:14px;background:#fbfcfe}.ok{border-left:3px solid var(--down);background:var(--soft-green)}.risk{border-left:3px solid var(--up);background:var(--soft-red)}.warn{border-left:3px solid #dc9600;background:var(--soft-amber);padding:12px 14px}.callout{font-weight:720;margin-bottom:6px}.tag{display:inline-block;border:1px solid currentColor;border-radius:3px;padding:1px 7px;margin:0 5px 5px 0;font-size:12px;line-height:1.45;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}.blue{color:var(--blue);background:var(--soft-blue)}.red{color:var(--up);background:var(--soft-red)}.green{color:var(--down);background:var(--soft-green)}.amber{color:var(--amber);background:var(--soft-amber)}.up,.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.down,.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.list{margin:6px 0 0;padding-left:20px}.list li{margin:5px 0}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;background:#fff}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;overflow:hidden;text-wrap:pretty;word-break:break-word;font-variant-numeric:tabular-nums}th{background:#f5f8fc;color:#344258;font-size:12px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}tbody tr:nth-child(even){background:#fafcff}tbody tr:last-child td{border-bottom:0}table.hold col:nth-child(1){width:18%}table.hold col:nth-child(2){width:12%}table.hold col:nth-child(3){width:15%}table.hold col:nth-child(4){width:15%}table.hold col:nth-child(5){width:12%}table.hold col:nth-child(6){width:28%}table.hold th:nth-child(1),table.hold td:nth-child(1),table.hold th:nth-child(6),table.hold td:nth-child(6){text-align:left}table.hold th:nth-child(2),table.hold td:nth-child(2){text-align:center}table.hold th:nth-child(3),table.hold td:nth-child(3),table.hold th:nth-child(4),table.hold td:nth-child(4),table.hold th:nth-child(5),table.hold td:nth-child(5){text-align:right}table.f3 col:nth-child(1){width:25%}table.f3 col:nth-child(2){width:20%}table.f3 col:nth-child(3){width:55%}table.f3 th:nth-child(1),table.f3 td:nth-child(1),table.f3 th:nth-child(3),table.f3 td:nth-child(3){text-align:left}table.f3 th:nth-child(2),table.f3 td:nth-child(2){text-align:center}.chart{height:350px;width:100%;border:1px solid var(--line);background:#fcfdff}.footer{font-size:12px;color:#657287;padding:14px 4px;line-height:1.7}@media(max-width:640px){body{padding:12px 10px 28px;font-size:14px}.hero,.card{padding:15px 14px;margin-bottom:12px}h1{font-size:23px}.conclusion{font-size:16px}.metric-grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:10px}.metric .value{font-size:19px}.cols{grid-template-columns:1fr;gap:12px}.chart{height:270px}table{font-size:12px}th,td{padding:8px 8px}.table-wrap table{min-width:710px}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<div class="meta">20260803W31 · 盘后复盘 · 2026-08-06（星期四）· 截至A股收盘</div>
+<h1>完成“去非主线、加核心”的结构调整，但明天不再追高扩张</h1>
+<div><span class="tag green">太钢、德展：已清仓</span><span class="tag blue">澜起、三祥：计划持有</span><span class="tag amber">星环：交易仓待做T</span></div>
+<p class="conclusion">核心结论：今天清掉太钢不锈和德展健康是组合质量提升，不是简单换股；加仓澜起与三祥把资金集中到半导体与高端材料的可跟踪逻辑上。问题不在方向，而在短线节奏：汇绿、星环、三祥都已处于高波动区，明日的第一原则不是继续加仓，而是观察科技主线在缩量分歧下能否保住承接。星环新增600股定义为交易仓，优先寻找反弹做T，而不是与负成本底仓混成一笔长期加仓。</p>
+<div class="meta">数据口径：持仓成本、数量与现价来自老潘提供的2026-08-06收盘截图；市场、个股行情和技术指标来自Wind，数据日期2026-08-06。星环为负成本做T口径，组合总成本和收益率仅作账面汇总参考，不与普通现金投入回报等同。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>01</b><h2>今日市场：缩量分歧下，科技仍有结构承接</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">上证指数</div><div class="value">3,900.35</div><div class="up">+0.57%</div></div>
+<div class="metric"><div class="label">深证成指</div><div class="value">14,110.12</div><div class="down">-0.24%</div></div>
+<div class="metric"><div class="label">创业板指</div><div class="value">3,515.56</div><div class="down">-0.55%</div></div>
+<div class="metric"><div class="label">科创50</div><div class="value">1,701.29</div><div class="up">+0.45%</div></div>
+</div>
+<div class="cols" style="margin-top:14px"><div class="box ok"><div class="callout">盘面成立的部分</div><div class="small">上证重返3900点，科创50收涨；半导体、电子化学品和CPO盘中仍有强势个股。两市成交额约2.53万亿元，仍处高活跃区间，科技主线尚未失效。</div></div><div class="box risk"><div class="callout">必须承认的分歧</div><div class="small">两市成交额较前日缩量约1309亿元，深创指数走弱；日韩芯片股大跌也给高估值科技资产增加情绪压力。市场从普涨转向“只挑强者”，不适合无差别加仓。</div></div></div>
+<div class="source">来源：Wind指数行情与财经新闻，2026-08-06。新闻属于第三方媒体汇总，需核实原文；行情置信度 ★★★，市场状态判断 ★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>02</b><h2>今日交易复盘：结构正确，交易仓必须保持边界</h2></div>
+<div class="table-wrap"><table class="f3"><colgroup><col><col><col></colgroup><thead><tr><th>今日动作</th><th>复盘结论</th><th>为什么重要</th></tr></thead><tbody>
+<tr><td>清仓太钢不锈、德展健康</td><td><span class="tag green">执行正确</span></td><td>两只均偏离组合AI/半导体/光通信主线，且此前被定义为资金占用型问题仓。今天完成退出，组合不再用“等解套”替代资产选择。</td></tr>
+<tr><td>澜起科技加仓200股</td><td><span class="tag amber">逻辑正确，节奏待验证</span></td><td>大账户现持400股，成本199.5775元，收盘208.36元。半导体主线仍在，但股价低于MA10、MA20、MA60，新增仓是左侧布局，不是趋势确认加仓。</td></tr>
+<tr><td>三祥新材加仓1800股</td><td><span class="tag amber">可持有，不追补</span></td><td>现持3820股，成本21.2474元，收盘39.31元。产业化线索真实，但高纯铪利润仍待量化，短线已反弹到MA20下方，明天避免继续把题材仓加速做大。</td></tr>
+<tr><td>星环科技加仓600股</td><td><span class="tag blue">明确为交易仓</span></td><td>现持2958股，成本已降至-11.9824元。今天收114.45元、跌3.07%，RSI 75.42且换手8.31%，高波动特征明显；新增600股必须独立管理，择机T出，不改变底仓定位。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>03</b><h2>最新组合：8只持仓，成长主线更集中</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">股票市值</div><div class="value">182.48万元</div><div class="small">按截图收盘价计算</div></div>
+<div class="metric"><div class="label">账面成本</div><div class="value">133.08万元</div><div class="small">含星环负成本</div></div>
+<div class="metric"><div class="label">账面浮盈</div><div class="value">49.40万元</div><div class="up">汇总口径 +37.12%</div></div>
+<div class="metric"><div class="label">第一大持仓</div><div class="value">罗博 20.64%</div><div class="small">按市值权重</div></div>
+</div>
+<div class="table-wrap" style="margin-top:14px"><table class="hold"><colgroup><col><col><col><col><col><col></colgroup><thead><tr><th>标的</th><th>持有数量</th><th>成本价</th><th>收盘市值</th><th>市值权重</th><th>组合定位</th></tr></thead><tbody>
+<tr><td>罗博特科<br><span class="meta">300757</span></td><td>800</td><td>523.1338</td><td>37.67万</td><td>20.64%</td><td><span class="tag blue">AI硬件核心</span>收470.90元，日跌0.86%；仍低于MA60，反弹持有、不追补。</td></tr>
+<tr><td>星环科技-U<br><span class="meta">688031</span></td><td>2958</td><td>-11.9824</td><td>33.85万</td><td>18.55%</td><td><span class="tag amber">底仓 + 交易仓</span>新增600股做T，不以负成本为理由忽略波动风险。</td></tr>
+<tr><td>泰和新材<br><span class="meta">002254</span></td><td>20000</td><td>13.3505</td><td>24.70万</td><td>13.54%</td><td><span class="tag amber">化工观察仓</span>收12.35元，日涨0.90%；仍等待自身经营或供给变量验证。</td></tr>
+<tr><td>汇绿生态<br><span class="meta">001267</span></td><td>5900</td><td>48.0939</td><td>22.90万</td><td>12.55%</td><td><span class="tag red">高波动光通信</span>收38.81元，涨停、换手12.21%，只持有观察，不加速追仓。</td></tr>
+<tr><td>软通动力<br><span class="meta">301236</span></td><td>5000</td><td>7.3635</td><td>21.09万</td><td>11.56%</td><td><span class="tag blue">AI软件浮盈仓</span>收42.18元，日跌1.43%；RSI 70.64，趋势持有但防获利回吐。</td></tr>
+<tr><td>华峰化学<br><span class="meta">002064</span></td><td>16000</td><td>12.4461</td><td>18.91万</td><td>10.36%</td><td><span class="tag amber">周期化工</span>收11.82元，日涨2.34%；继续按价差、库存与供给跟踪。</td></tr>
+<tr><td>三祥新材<br><span class="meta">603663</span></td><td>3820</td><td>21.2474</td><td>15.02万</td><td>8.23%</td><td><span class="tag blue">高端材料计划仓</span>收39.31元，日涨5.50%；HOLD，不因短线反弹继续追补。</td></tr>
+<tr><td>澜起科技<br><span class="meta">688008</span></td><td>400</td><td>199.5775</td><td>8.33万</td><td>4.57%</td><td><span class="tag green">S级底仓</span>收208.36元，日跌1.72%；新加仓后仍是小权重，后续只接受预设条件加仓。</td></tr>
+</tbody></table></div>
+<div class="source">持仓字段来自老潘截图；市值、权重、盈亏由“截图数量 × 截图现价”计算。因星环总成本为负，组合账面成本、汇总收益率不应视作普通投入资本回报率。置信度 ★★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>04</b><h2>集中度与风险：从杂仓转向成长集中，但需要控制相关性</h2></div>
+<div id="weightChart" class="chart"></div>
+<div class="cols" style="margin-top:14px"><div class="box ok"><div class="callout">组合的实质改善</div><div class="small">退出钢铁、医药后，组合不再配置与主线关系弱且长期拖累的仓位。资金集中到AI硬件、AI软件、光通信、半导体与高端材料，后续跟踪重点更聚焦。</div></div><div class="box risk"><div class="callout">新的核心风险</div><div class="small">罗博、星环、汇绿、软通、三祥、澜起均属于成长/科技景气框架，市值合计约75.1%。主线集中提高弹性，也意味着若科技风险偏好降温，组合会出现同步波动。</div></div></div>
+<div class="warn" style="margin-top:14px"><b>组合风控结论：</b>当前不是“仓位不足”的问题，而是“如何让核心仓和交易仓不互相污染”。明天不新增第三类题材、不临时把星环交易仓转成长线、不因单日强势继续扩大汇绿与三祥；先观察已有主线仓的分歧承接。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>05</b><h2>明日执行单：先看承接，再决定做T或持有</h2></div>
+<div class="table-wrap"><table class="f3"><colgroup><col><col><col></colgroup><thead><tr><th>对象</th><th>明日结论</th><th>条件与动作</th></tr></thead><tbody>
+<tr><td>星环科技交易仓</td><td><span class="tag amber">择机T出</span></td><td>短线RSI 75.42、换手8.31%，明日若反弹但不能持续站稳分时均价线，优先卖出今天新增的600股；底仓保留，避免交易仓变成追高长线仓。</td></tr>
+<tr><td>澜起科技</td><td><span class="tag green">HOLD，暂不再加</span></td><td>收208.36元，仍低于MA10 208.86元与MA20 219.03元。先观察能否重新收复并站稳MA10；未完成前不追加，跌回左侧区间也必须看缩量企稳。</td></tr>
+<tr><td>三祥新材</td><td><span class="tag green">HOLD，禁追涨</span></td><td>收39.31元，压力首先在40.94元MA20。放量收复并回踩确认才提高趋势判断；冲高回落时交易仓优先落袋，不改变项目和订单须量化验证的原则。</td></tr>
+<tr><td>汇绿生态</td><td><span class="tag amber">持有观察</span></td><td>涨停后换手12.21%、RSI 71.36，明天最重要的是开板后的承接质量。高开低走并放量时不加仓；能守住关键均价与昨日收盘才保留强势解释。</td></tr>
+<tr><td>罗博与软通</td><td><span class="tag blue">持有，防获利回吐</span></td><td>罗博仍处均线修复中；软通RSI 70.64。若科技主线缩量转弱，优先用弹性仓管理波动，而不是继续扩大单一科技暴露。</td></tr>
+</tbody></table></div>
+<div class="source">技术指标来源：Wind，2026-08-06收盘。技术位置用于管理新增仓与做T节奏，不作为机械止损依据；基本面、项目和行业景气变化才是中长期持仓调整的核心触发器。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>06</b><h2>明日观察的三个问题</h2></div>
+<ul class="list small"><li><b>科技分歧是否良性：</b>成交额继续下降时，科创50能否维持相对强势，半导体材料和设备能否继续获得资金承接。</li><li><b>光通信是否从情绪转为确认：</b>汇绿涨停后的换手质量，比再讲一遍光模块故事更重要；传闻尚未等同于正式政策文本。</li><li><b>新增仓是否遵守原计划：</b>澜起、三祥的持有逻辑来自产业趋势与估值赔率，不需要靠明天上涨证明；星环交易仓必须有出场纪律。</li></ul>
+<div class="source">报告生成：2026-08-06 21:41（北京时间）· 数据源：老潘持仓截图、Wind · 版式：Google Insight V1。</div>
+</section>
+<div class="footer"><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</div>
+</main>
+<script>
+const chart=echarts.init(document.getElementById('weightChart'));
+const weights=[
+  {name:'罗博特科',value:20.64,color:'#276ef1'},
+  {name:'星环科技-U',value:18.55,color:'#a46700'},
+  {name:'泰和新材',value:13.54,color:'#6c7a90'},
+  {name:'汇绿生态',value:12.55,color:'#e64845'},
+  {name:'软通动力',value:11.56,color:'#4285f4'},
+  {name:'华峰化学',value:10.36,color:'#8b6c42'},
+  {name:'三祥新材',value:8.23,color:'#276ef1'},
+  {name:'澜起科技',value:4.57,color:'#238a55'}
+];
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){const p=params[0];return p.name+'：'+p.value.toFixed(2)+'%';}},
+  grid:{left:96,right:42,top:28,bottom:34},
+  xAxis:{type:'value',max:25,axisLabel:{color:'#55657a',formatter:'{value}%'},splitLine:{lineStyle:{color:'#e7edf5'}}},
+  yAxis:{type:'category',data:weights.map(function(item){return item.name;}).reverse(),axisLabel:{color:'#55657a'},axisLine:{lineStyle:{color:'#cfd8e5'}}},
+  series:[{type:'bar',barMaxWidth:26,data:weights.slice().reverse().map(function(item){return {value:item.value,itemStyle:{color:item.color}};}),label:{show:true,position:'right',color:'#344258',formatter:function(p){return p.value.toFixed(2)+'%';}}}]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前简报｜2026-08-07</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f5f7fb;--ink:#172235;--muted:#667386;--line:#dfe6f0;--panel:#fff;--blue:#276ef1;--up:#e64845;--down:#238a55;--amber:#a46700;--soft-red:#fff1f0;--soft-green:#eff9f2;--soft-blue:#edf4ff}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;font-size:15px;line-height:1.7}body{padding:24px 16px 40px}.page{max-width:1120px;margin:0 auto}.hero,.card{background:var(--panel);border:1px solid var(--line);box-shadow:0 3px 14px rgba(31,51,82,.05)}.hero{border-top:4px solid var(--blue);padding:24px;margin-bottom:16px}.card{padding:20px;margin-bottom:16px}h1{font-size:28px;line-height:1.25;margin:5px 0 10px}h2{font-size:19px;line-height:1.35;margin:0}h3{font-size:15px;line-height:1.45;margin:0 0 8px}.meta,.source,.small{color:var(--muted)}.meta,.source{font-size:12px;line-height:1.65}.source{margin-top:12px}.conclusion{font-size:17px;font-weight:720;line-height:1.65;margin:14px 0}.section-title{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}.section-title b{display:inline-flex;width:25px;height:25px;border-radius:50%;align-items:center;justify-content:center;background:var(--soft-blue);color:var(--blue);font-size:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:#fbfcff;border:1px solid var(--line);padding:12px;min-width:0}.metric .label{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric .value{font-size:22px;line-height:1.22;font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:4px 0}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.box{border:1px solid var(--line);padding:14px;background:#fbfcfe}.ok{border-left:3px solid var(--down);background:var(--soft-green)}.risk{border-left:3px solid var(--up);background:var(--soft-red)}.warn{border-left:3px solid #dc9600;background:#fff9eb;padding:12px 14px}.callout{font-weight:720;margin-bottom:6px}.tag{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:1px 8px;margin:0 6px 6px 0;font-size:12px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag.blue{color:var(--blue);background:var(--soft-blue)}.tag.red{color:var(--up);background:var(--soft-red)}.tag.green{color:var(--down);background:var(--soft-green)}.tag.amber{color:var(--amber);background:#fff9eb}.up,.pos{color:var(--up);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.down,.neg{color:var(--down);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chart{height:300px;width:100%}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}th,td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top;overflow:hidden;text-wrap:pretty;word-break:break-word;overflow-wrap:anywhere}th{font-size:12px;font-weight:700;color:#d0d8e6;background:#39465b;white-space:nowrap}tbody tr:nth-child(even){background:rgba(38,57,88,.025)}td{font-size:13px;text-align:left}table.f4 col:nth-child(1){width:20%}table.f4 col:nth-child(2){width:17%}table.f4 col:nth-child(3){width:15%}table.f4 col:nth-child(4){width:48%}table.f4 th:nth-child(1),table.f4 td:nth-child(1){text-align:left}table.f4 th:nth-child(2),table.f4 td:nth-child(2),table.f4 th:nth-child(3),table.f4 td:nth-child(3){text-align:right}table.f4 th:nth-child(4),table.f4 td:nth-child(4){text-align:left}table.f5 col:nth-child(1){width:16%}table.f5 col:nth-child(2){width:13%}table.f5 col:nth-child(3){width:17%}table.f5 col:nth-child(4){width:25%}table.f5 col:nth-child(5){width:29%}table.f5 th:nth-child(1),table.f5 td:nth-child(1),table.f5 th:nth-child(2),table.f5 td:nth-child(2),table.f5 th:nth-child(4),table.f5 td:nth-child(4),table.f5 th:nth-child(5),table.f5 td:nth-child(5){text-align:left}table.f5 th:nth-child(3),table.f5 td:nth-child(3){text-align:right}.list{margin:0;padding-left:20px}.list li{margin:5px 0}.footer{color:var(--muted);font-size:12px;line-height:1.65;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:640px){body{padding:12px 10px 28px;font-size:14px}.hero,.card{padding:15px 14px;margin-bottom:12px}h1{font-size:23px}.conclusion{font-size:16px}.metric-grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:10px}.metric .value{font-size:19px}.cols{grid-template-columns:1fr;gap:12px}.chart{height:260px}table{font-size:12px}.table-wrap table{min-width:720px}th,td{padding:8px 8px}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<div class="meta">20260803W31 · 盘前简报 · 2026-08-07（星期五）· 数据截止 2026-08-06 收盘及美东收盘</div>
+<h1>外盘没有共振，今日以持仓内做T和承接筛选为主</h1>
+<div><span class="tag blue">市场档位：震荡分化</span><span class="tag amber">主线：科技内部轮动</span><span class="tag red">禁令：不追竞价、不动用40万现金扩仓</span></div>
+<p class="conclusion">核心结论：8月6日上证指数重新站上3900点，但深证成指、创业板指收跌，说明指数强度并不等于成长板块全面健康。隔夜美股中 NVDA 基本横盘，MRVL 微跌，LITE/COHR/AMD 走强，光通信与AI链条仍是结构性行情。今日优先执行罗博特科持仓内T；星环只围绕新增600股交易仓处理；澜起、三祥、汇绿继续持有观察，不追高加仓。</p>
+<div class="meta">行情来源：Wind，数据日期 2026-08-06；新闻来源：公开财经媒体，非一手信息，需核实原文。红涨绿跌遵循中国市场惯例。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>01</b><h2>一页交易结论</h2></div>
+<div class="metric-grid">
+<div class="metric"><div class="label">上证指数</div><div class="value">3,900.35</div><div class="up">+0.57%</div></div>
+<div class="metric"><div class="label">深证成指</div><div class="value">14,110.12</div><div class="down">-0.24%</div></div>
+<div class="metric"><div class="label">创业板指</div><div class="value">3,515.56</div><div class="down">-0.55%</div></div>
+<div class="metric"><div class="label">科创50</div><div class="value">1,701.29</div><div class="up">+0.45%</div></div>
+</div>
+<div class="cols" style="margin-top:14px">
+<div class="box ok"><div class="callout">市场仍有进攻性</div><div class="small">上证、科创50维持红盘，20日跌幅较大的成长指数仍处修复阶段；科技主线没有被隔夜外盘彻底破坏。</div></div>
+<div class="box risk"><div class="callout">但不适合扩大风险</div><div class="small">深证与创业板收跌，说明昨日普涨后的资金开始挑选个股。指数站上3900点不是追高理由，今天更容易出现冲高回落和强弱切换。</div></div>
+</div>
+<div class="source">来源：Wind指数行情，2026-08-06，置信度 ★★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>02</b><h2>隔夜全球市场：AI核心尚稳，存储链出现风险信号</h2></div>
+<div id="globalChart" class="chart"></div>
+<div class="table-wrap"><table class="f4"><colgroup><col><col><col><col></colgroup><thead><tr><th>海外变量</th><th>收盘</th><th>日变动</th><th>对今日A股的含义</th></tr></thead><tbody>
+<tr><td>NVDA</td><td>218.99 USD</td><td class="down">-0.10%</td><td>AI算力核心锚没有明显转弱，但也没有给A股科技继续加速的外部催化。</td></tr>
+<tr><td>MRVL</td><td>210.54 USD</td><td class="down">-0.23%</td><td>澜起与高速互联映射中性偏弱，今天看A股自身承接，不看单一美股标题。</td></tr>
+<tr><td>LITE / COHR</td><td>838.06 / 334.22 USD</td><td><span class="up">+1.43%</span> / <span class="up">+1.83%</span></td><td>光通信海外映射相对偏强，但汇绿昨日涨停后仍需先看换手质量，不能直接追。</td></tr>
+<tr><td>AMD / SOXX</td><td>489.28 / 532.52 USD</td><td><span class="up">+1.50%</span> / <span class="up">+0.34%</span></td><td>半导体整体没有出现全面退潮，但强度已经从单边脉冲转为内部轮动。</td></tr>
+<tr><td>QQQ</td><td>714.65 USD</td><td class="down">-0.37%</td><td>成长风格外部环境一般，A股高弹性小票需要量能确认，不宜竞价追涨。</td></tr>
+</tbody></table></div>
+<div class="warn" style="margin-top:14px"><b>隔夜最值得重视的反面信号：</b>存储相关海外个股在财报/指引后出现明显下跌。对A股而言，这会压制存储情绪，但不能直接推导为国内半导体景气反转；今天要看A股中军是否承接，而不是看概念股数量。</div>
+<div class="source">来源：Wind海外股票行情，2026-08-06美东收盘，置信度 ★★★；存储财报影响来自公开媒体，置信度 ★★，需核实原文。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>03</b><h2>今日主线与市场状态</h2></div>
+<div class="cols">
+<div class="box"><div class="callout">主线判断：科技仍是主战场，但进入分化</div><ul class="list small"><li><b>强度较高：</b>半导体设备、存储、AI硬件，昨日后排扩散明显，今天看中军能否继续放量。</li><li><b>高波动分支：</b>光通信。海外需求更新仍偏强，但美国限制传闻抬高风险溢价。</li><li><b>市场阶段：</b>不是防守退潮，而是“修复后的分歧筛选”。</li></ul></div>
+<div class="box"><div class="callout">09:30—10:00 三个硬开关</div><ul class="list small"><li>上证守住3900点、科创50保持红盘：科技持仓以持有为主。</li><li>科技高开后普遍跌回昨收、成交放大：停止新增，优先处理交易仓。</li><li>光通信龙头冲高回落而汇绿开板放量：汇绿只观察，不补仓。</li></ul></div>
+</div>
+<div class="source">市场状态判断：Wind指数行情 + 公开市场资讯交叉，置信度 ★★。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>04</b><h2>持仓盘前扫描与执行顺序</h2></div>
+<div class="table-wrap"><table class="f5"><colgroup><col><col><col><col><col></colgroup><thead><tr><th>标的</th><th>8月6日收盘</th><th>技术/位置</th><th>今日评级</th><th>执行计划</th></tr></thead><tbody>
+<tr><td>罗博特科<br><span class="meta">300757</span></td><td><span class="down">470.90 / -0.86%</span></td><td>5日 +31.53%；MA20 437.52，MA60 543.83；分时均价469.61。</td><td><span class="tag blue">首选T</span></td><td>只动100—200股。474—478附近冲高受阻且跌回均价线下，先卖；463—468缩量企稳并重新站回均价线，才接回。放量突破478不卖，放量跌破458.18不接。</td></tr>
+<tr><td>星环科技-U<br><span class="meta">688031</span></td><td><span class="down">114.45 / -3.07%</span></td><td>5日 +42.47%；MA60 112.90；RSI偏热，波动显著。</td><td><span class="tag amber">交易仓T</span></td><td>新增600股独立管理。冲高受阻优先T出；回落缩量、重新站回均价线再接回。若放量跌破112.90，不接下跌刀。</td></tr>
+<tr><td>澜起科技<br><span class="meta">688008</span></td><td><span class="down">208.36 / -1.72%</span></td><td>MA10 208.99，MA20 219.31，MA60 246.06；20日 -26.96%。</td><td><span class="tag green">HOLD</span></td><td>大账户400股、成本199.5775元，今日不追补。只有重新站稳MA10并向MA20修复，才重新讨论趋势加仓。</td></tr>
+<tr><td>三祥新材<br><span class="meta">603663</span></td><td><span class="up">39.31 / +5.50%</span></td><td>5日 +16.75%；MA20 40.94，MA60 48.00；20日 -30.79%。</td><td><span class="tag green">HOLD</span></td><td>计划持有，不把单日反弹当趋势反转。靠近40.94压力区先观察，不主动用现金追涨。</td></tr>
+<tr><td>汇绿生态<br><span class="meta">001267</span></td><td><span class="up">38.81 / +10.01%</span></td><td>5日 +43.16%；MA20 34.43，MA60 48.14；涨停后换手12.21%。</td><td><span class="tag amber">HOLD</span></td><td>不追、不补。开板后若量能快速放大且跌破分时均价，先观察承接；缺口35.28仍是重要结构位。</td></tr>
+<tr><td>软通动力<br><span class="meta">301236</span></td><td><span class="down">42.18 / -1.43%</span></td><td>5日 +20.82%；MA20 38.45，MA60 39.46；估值仍高。</td><td><span class="tag green">HOLD</span></td><td>浮盈仓不追高。高开低走且放量跌破昨日收盘时，交易仓优先锁定部分利润。</td></tr>
+<tr><td>泰和新材 / 华峰化学<br><span class="meta">002254 / 002064</span></td><td><span class="up">12.35 / +0.90%</span><br><span class="up">11.82 / +2.34%</span></td><td>均线修复，但仍属化工周期逻辑。</td><td><span class="tag amber">观察</span></td><td>不因科技行情切换资金。周期股继续盯价格、库存、供给与开工率，不用静态PE横比。</td></tr>
+</tbody></table></div>
+<div class="source">来源：Wind股票行情与技术指标，数据日期2026-08-06，置信度 ★★★；持仓定位依据老潘8月6日截图与已确认交易计划。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>05</b><h2>今日最重要的三条纪律</h2></div>
+<div class="cols"><div class="box ok"><div class="callout">第一：罗博特科做T，不扩仓</div><div class="small">利用现有800股完成持仓内T，首轮只动100—200股。没有“冲高受阻→跌回均价线”的完整结构，就不卖。</div></div><div class="box risk"><div class="callout">第二：不把40万现金用掉</div><div class="small">昨日科技修复已经发生，今天现金的价值是等待赔率，而不是补仓。除非出现独立、清晰、缩量企稳结构，否则新增现金投入为0。</div></div></div>
+<div class="warn" style="margin-top:14px"><b>第三：星环交易仓和底仓分开。</b>负成本底仓不因盘中波动情绪化处理；新增600股才是今日可主动管理的交易仓。三祥与澜起是计划持有仓，不与罗博T计划混在一起。</div>
+<div class="source">本简报不预测指数涨跌方向，只提供盘中观察开关与条件化执行框架。</div>
+</section>
+
+<section class="card">
+<div class="section-title"><b>06</b><h2>风险与数据边界</h2></div>
+<ul class="list small"><li>美国拟限制中国光模块进口的消息目前仍缺少本报告核验到的正式规则文本，不作为既成基本面事实。</li><li>星环科技与英伟达合作目前公开披露仍以技术验证、方案孵化为主；不要把英伟达生态合作直接等同于订单和收入。</li><li>星环科技2025年营业收入4.4753亿元、归母净亏损2.4517亿元；2026年一季报归母净亏损约5600万元，亏损软件公司估值对新业务兑现极其敏感。财务数据来源Wind，最新可得期为2026Q1，置信度 ★★★。</li><li>所有价格均为8月6日收盘数据，8月7日开盘后必须重新以竞价、分时均价、量能和板块承接校准。</li></ul>
+<p class="source">报告生成：2026-08-07 08:46（北京时间）· 数据源：Wind、公开财经资讯 · 版式：Google Insight V1。</p>
+</section>
+<div class="footer"><b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</div>
+</main>
+<script>
+const data=[
+{name:'上证',value:0.57,color:'#e64845'},
+{name:'深证',value:-0.24,color:'#238a55'},
+{name:'创业板',value:-0.55,color:'#238a55'},
+{name:'科创50',value:0.45,color:'#e64845'},
+{name:'NVDA',value:-0.10,color:'#238a55'},
+{name:'MRVL',value:-0.23,color:'#238a55'},
+{name:'LITE',value:1.43,color:'#e64845'},
+{name:'COHR',value:1.83,color:'#e64845'},
+{name:'AMD',value:1.50,color:'#e64845'},
+{name:'SOXX',value:0.34,color:'#e64845'}
+];
+const chart=echarts.init(document.getElementById('globalChart'));
+chart.setOption({backgroundColor:'transparent',tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){const p=params[0];return p.name+'：'+p.value.toFixed(2)+'%';}},grid:{left:54,right:20,top:24,bottom:58},xAxis:{type:'category',data:data.map(function(d){return d.name;}),axisLabel:{color:'#55657a',interval:0,rotate:28},axisLine:{lineStyle:{color:'#cfd8e5'}}},yAxis:{type:'value',axisLabel:{color:'#55657a',formatter:'{value}%'},splitLine:{lineStyle:{color:'#e7edf5'}}},series:[{type:'bar',barMaxWidth:34,data:data.map(function(d){return {value:d.value,itemStyle:{color:d.color}};}),label:{show:true,position:'top',color:'#344258',formatter:function(p){return (p.value>0?'+':'')+p.value.toFixed(2)+'%';}}}]});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
