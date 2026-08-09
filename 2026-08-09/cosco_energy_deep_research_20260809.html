@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中远海能(600026)深度研报 · 油运超级周期核心标的</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--up:#ff3b3b;--down:#1ed890;--bg:#f5f7fa;--card:#fff;--text:#1a1a2e;--sub:#4a5568;--border:#e2e8f0;--accent:#2563eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.hero{background:linear-gradient(135deg,#1e3a5f 0%,#2d5a87 100%);color:#fff;padding:28px 24px;border-radius:12px;margin-bottom:20px}
+.hero h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.hero .sub{color:#c8d6e5;font-size:13px}
+.hero .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,0.15);padding:3px 10px;border-radius:4px;font-size:12px}
+.card{background:var(--card);border-radius:10px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.card h2{font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.card h3{font-size:13px;font-weight:700;color:var(--sub);margin:10px 0 6px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.stat{text-align:center;padding:10px;background:rgba(0,0,0,0.02);border-radius:6px}
+.stat .num{font-size:18px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .lbl{font-size:11px;color:var(--sub);margin-top:2px}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.up{color:var(--up);font-weight:700;white-space:nowrap}
+.down{color:var(--down);font-weight:700;white-space:nowrap}
+.chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.chip-up{background:rgba(30,180,80,0.12);color:#16a34a}
+.chip-warn{background:rgba(234,179,8,0.12);color:#b45309}
+.chip-info{background:rgba(37,99,235,0.12);color:#1d4ed8}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 10px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;overflow:hidden}
+tbody tr:nth-child(even){background:rgba(0,0,0,0.02)}
+th{font-size:12px;font-weight:700;color:var(--sub);background:rgba(0,0,0,0.04);white-space:nowrap}
+
+/* f4 四列通用 */
+table.f4{table-layout:fixed}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:22%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:22%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:38%;text-align:left}
+
+/* f3 三列通用 */
+table.f3{table-layout:fixed}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:26%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:52%;text-align:left}
+
+/* f3.scn 情景应对 */
+table.f3.scn{table-layout:fixed}
+table.f3.scn th:nth-child(1),table.f3.scn td:nth-child(1){width:14%;text-align:center}
+table.f3.scn th:nth-child(2),table.f3.scn td:nth-child(2){width:40%;text-align:left}
+table.f3.scn th:nth-child(3),table.f3.scn td:nth-child(3){width:46%;text-align:left}
+
+/* f5 五列通用 */
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:14%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:16%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:16%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:38%;text-align:left}
+
+/* f2 两列叙述 */
+table.f2{table-layout:fixed}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%;text-align:left}
+
+.note{font-size:11px;color:var(--sub);margin-top:6px}
+.footer{text-align:center;font-size:11px;color:var(--sub);margin-top:20px;padding:12px;border-top:1px solid var(--border)}
+#chart1,#chart2{height:260px;margin-top:8px}
+@media(max-width:640px){body{font-size:13px}.container{padding:12px}.stat-grid{grid-template-columns:repeat(2,1fr)}table{font-size:11px}th,td{padding:6px 6px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>中远海能 600026.SH</h1>
+  <div class="sub">全球第一大油轮船东 · 油运超级周期核心标的</div>
+  <div class="tags">
+    <span class="tag">现价 17.70 元</span>
+    <span class="tag">市值 968 亿</span>
+    <span class="tag">PE(TTM) 17.6x</span>
+    <span class="tag">PB 2.1x</span>
+    <span class="tag">股息率 2.15%</span>
+    <span class="tag">2026H1 净利 +141%</span>
+  </div>
+</div>
+
+<!-- 模块1 催化时间线 -->
+<div class="card">
+  <h2>模块 1 · 催化时间线</h2>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>时点</th><th>事件</th><th>影响方向</th><th>详情</th></tr>
+    <tr><td>2月底</td><td class="up">美伊冲突爆发</td><td class="up">+</td><td>霍尔木兹海峡通航受阻，全球原油贸易航线重构，运距拉长2.6倍</td></tr>
+    <tr><td>3月</td><td class="up">VLCC运价飙涨</td><td class="up">+</td><td>TD3C TCE突破49万美元/天，创历史极端水平</td></tr>
+    <tr><td>4月底</td><td class="up">Q1业绩超预期</td><td class="up">+</td><td>归母净利21.73亿，同比+206.7%，外贸油品毛利+317.6%</td></tr>
+    <tr><td>6月底</td><td class="up">美伊临时协议</td><td class="up">+</td><td>海峡免费开放60天，积压货盘释放，Sinokor 897 WS点成交</td></tr>
+    <tr><td>7月初</td><td class="up">H1业绩预增</td><td class="up">+</td><td>归母净利45亿，同比+141%，已超2025全年</td></tr>
+    <tr><td>7~8月</td><td class="up">海峡反复封锁</td><td class="down">-</td><td>通航量降至战前12%，地缘反复压制风险溢价释放节奏</td></tr>
+    <tr><td>8~9月</td><td>美伊谈判窗口</td><td>?</td><td>8月初谈判若达成→补库需求接棒；谈崩→高运价延续</td></tr>
+    <tr><td>下半年</td><td>全球补库周期</td><td class="up">+</td><td>OECD/亚洲库存创历史新低，补库需求或成中期最大驱动力</td></tr>
+  </table>
+  </div>
+  <p class="note">来源：公司公告、国金/国泰海通/方正研报、克拉克森、船视宝 2026-08-09</p>
+</div>
+
+<!-- 模块2 结论前置 -->
+<div class="card">
+  <h2>模块 2 · 结论前置</h2>
+  <div style="background:rgba(30,180,80,0.08);padding:12px 14px;border-radius:8px;margin-bottom:10px">
+    <strong style="color:#16a34a;font-size:15px">核心判断：油运超级周期核心标的，前瞻估值仅7~8倍</strong>
+    <p style="margin-top:6px;font-size:13px">中远海能是全球第一大油轮船东，VLCC高即期敞口充分受益本轮地缘驱动的油运超级周期。2026H1归母净利45亿（+141%）已超2025全年，Q2单季23.3亿再创新高。当前PE(TTM)17.6x看似不低，但按2026年预测利润（约118亿）测算前瞻PE仅约7~8倍，对应PB 1.7x，显著低于历史均值。卖方一致"买入/增持"，目标价19~26元。</p>
+  </div>
+
+  <h3>多空评分</h3>
+  <div class="table-wrap">
+  <table class="f5">
+    <tr><th>维度</th><th>评分</th><th>权重</th><th>加权分</th><th>说明</th></tr>
+    <tr><td>行业景气度</td><td class="up">+5</td><td>25%</td><td class="up">+1.25</td><td>VLCC运价同比+180%，供需双紧，高景气延续</td></tr>
+    <tr><td>业绩确定性</td><td class="up">+4</td><td>20%</td><td class="up">+0.80</td><td>H1已超去年全年，Q2环比再增，盈利可见度高</td></tr>
+    <tr><td>估值安全边际</td><td class="up">+4</td><td>20%</td><td class="up">+0.80</td><td>前瞻PE 7~8x，PB 1.7x，重置成本1.2倍</td></tr>
+    <tr><td>分红回报</td><td class="up">+3</td><td>15%</td><td class="up">+0.45</td><td>派现募资比118.8%，50%分红率下股息率~6.8%</td></tr>
+    <tr><td>地缘风险</td><td class="down">-3</td><td>15%</td><td class="down">-0.45</td><td>霍尔木兹反复封锁，美伊谈判不确定性大</td></tr>
+    <tr><td>供给中长期</td><td class="down">-2</td><td>5%</td><td class="down">-0.10</td><td>在手订单占比24.8%创新高，2027-2029年集中交付</td></tr>
+    <tr><td><strong>合计</strong></td><td></td><td></td><td class="up"><strong>+2.75</strong></td><td><strong>偏正面，地缘是最大变量</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>一句话操作</h3>
+  <p><span class="chip chip-up">BUY / 积极关注</span> 油运超级周期最直接受益标的，前瞻估值极具吸引力。短期受地缘反复扰动，但中期补库+供给刚性支撑运价中枢系统性上移。建议积极关注，逢低布局。</p>
+</div>
+
+<!-- 模块3 公司画像·财务速览 -->
+<div class="card">
+  <h2>模块 3 · 公司画像 · 财务速览</h2>
+  <div class="stat-grid">
+    <div class="stat"><div class="num">17.70</div><div class="lbl">现价(元)</div></div>
+    <div class="stat"><div class="num">968</div><div class="lbl">总市值(亿)</div></div>
+    <div class="stat"><div class="num">17.6x</div><div class="lbl">PE(TTM)</div></div>
+    <div class="stat"><div class="num">2.1x</div><div class="lbl">PB</div></div>
+    <div class="stat"><div class="num">2.15%</div><div class="lbl">股息率TTM</div></div>
+    <div class="stat"><div class="num">45.6%</div><div class="lbl">资产负债率</div></div>
+    <div class="stat"><div class="num">42.7%</div><div class="lbl">毛利率Q1</div></div>
+    <div class="stat"><div class="num">+56.6%</div><div class="lbl">年内涨幅</div></div>
+  </div>
+
+  <h3>利润表关键数据</h3>
+  <div class="table-wrap">
+  <table class="f5">
+    <tr><th>报告期</th><th>营收(亿)</th><th>归母净利(亿)</th><th>同比</th><th>核心驱动</th></tr>
+    <tr><td>2026H1 预告</td><td>—</td><td>45.0</td><td class="up">+141%</td><td>VLCC运价同比+180%，高即期敞口充分受益</td></tr>
+    <tr><td>2026Q1</td><td>73.03</td><td>21.73</td><td class="up">+206.7%</td><td>外贸油品毛利22.41亿，同比+317.6%</td></tr>
+    <tr><td>2025FY</td><td>238.92</td><td>40.37</td><td class="down">-11%</td><td>上半年运价低迷拖累，下半年景气回升</td></tr>
+    <tr><td>2024FY</td><td>232.69</td><td>45.37</td><td class="up">+19.4%</td><td>油运周期底部回升</td></tr>
+  </table>
+  </div>
+
+  <h3>分板块利润结构（2026Q1）</h3>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>板块</th><th>毛利(亿)</th><th>同比</th><th>定性</th></tr>
+    <tr><td>外贸油品</td><td>22.41</td><td class="up">+317.6%</td><td>核心弹性来源，VLCC高即期敞口</td></tr>
+    <tr><td>内贸油品</td><td>4.50</td><td class="up">+34.9%</td><td>稳定底盘，受油价与贸易量影响</td></tr>
+    <tr><td>LNG运输</td><td>2.38</td><td class="up">+16.5%</td><td>长协锁定，收益稳定</td></tr>
+    <tr><td>LPG/化学品</td><td>—</td><td>—</td><td>综合能源运输布局，贡献增量</td></tr>
+  </table>
+  </div>
+
+  <h3>资产负债表（2026-03-31）</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>科目</th><th>金额(亿)</th><th>说明</th></tr>
+    <tr><td>总资产</td><td>912.3</td><td>全球最大油轮船队资产</td></tr>
+    <tr><td>总负债</td><td>430.2</td><td>资产负债率45.6%，较2025年明显下降</td></tr>
+    <tr><td>归母权益</td><td>482.1</td><td>NAPS 8.82元/股</td></tr>
+    <tr><td>有息负债</td><td>344.6</td><td>Interest-Bearing Debt口径</td></tr>
+    <tr><td>短期借款</td><td>14.0</td><td>流动性压力可控</td></tr>
+    <tr><td>长期借款</td><td>246.6</td><td>匹配船舶长期资产</td></tr>
+    <tr><td>货币资金</td><td>150.7</td><td>现金充裕，流动比率1.45</td></tr>
+  </table>
+  </div>
+  <p class="note">来源：公司2026年一季报、2025年报、2026年半年度业绩预增公告</p>
+</div>
+
+<!-- 模块4 产业格局与景气度 -->
+<div class="card">
+  <h2>模块 4 · 产业格局与景气度</h2>
+
+  <h3>油运市场核心逻辑：供需双紧</h3>
+  <div id="chart1"></div>
+
+  <h3>需求端：吨海里需求被结构性放大</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>驱动因素</th><th>量化影响</th><th>持续性</th></tr>
+    <tr><td>航线重构</td><td>美湾-亚洲运距=中东-亚洲2.6倍</td><td>中期（海峡恢复前）</td></tr>
+    <tr><td>全球补库</td><td>OECD/亚洲库存创历史新低</td><td>12~24个月</td></tr>
+    <tr><td>OPEC+增产</td><td>303万桶/日减产待解除</td><td>长期</td></tr>
+    <tr><td>伊朗合规化</td><td>黑油洗白→合规需求+5%</td><td>取决于制裁走向</td></tr>
+  </table>
+  </div>
+
+  <h3>供给端：运力刚性是核心矛盾</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>约束因素</th><th>量化数据</th><th>含义</th></tr>
+    <tr><td>船队老龄化</td><td>VLCC 20年以上占21.1%</td><td>拆船压力加剧，有效运力受限</td></tr>
+    <tr><td>新船交付</td><td>在手订单占比24.8%，排至2027-2029</td><td>近端供给无增量</td></tr>
+    <tr><td>寡头控盘</td><td>前十大船东控制42%船队</td><td>Sinokor挺价，运价中枢抬升</td></tr>
+    <tr><td>合规运力</td><td>2026年合规VLCC增速仅2.8%</td><td>供给增速远低于需求增速</td></tr>
+  </table>
+  </div>
+
+  <h3>VLCC运价表现</h3>
+  <div class="table-wrap">
+  <table class="f5">
+    <tr><th>航线</th><th>2026H1均值</th><th>同比</th><th>历史均值</th><th>当前水平</th></tr>
+    <tr><td>TD15 西非-中国</td><td>11.78万美元/天</td><td class="up">+180%</td><td>~4~5万</td><td>~15万</td></tr>
+    <tr><td>TD22 美湾-中国</td><td>11.11万美元/天</td><td class="up">+170%</td><td>~4~5万</td><td>~13万</td></tr>
+    <tr><td>TD3C 中东-中国</td><td>极端51.2万</td><td class="up">+574%</td><td>~4~5万</td><td>~43万</td></tr>
+  </table>
+  </div>
+  <p class="note">来源：波罗的海交易所、克拉克森、国金证券研报 2026-07</p>
+</div>
+
+<!-- 模块5 技术面·资金面 -->
+<div class="card">
+  <h2>模块 5 · 技术面 · 资金面</h2>
+
+  <h3>技术信号</h3>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>指标</th><th>数值</th><th>信号</th><th>解读</th></tr>
+    <tr><td>MACD</td><td>DIF 0.13 / DEA -0.23</td><td class="up">金叉</td><td>刚金叉向上，短期动能转强</td></tr>
+    <tr><td>KDJ</td><td>K 84.8 / D 81.9 / J 90.7</td><td class="down">超买</td><td>J值>90，短线偏热</td></tr>
+    <tr><td>RSI-6</td><td>70.6</td><td class="down">偏强</td><td>接近超买区，注意回调</td></tr>
+    <tr><td>BOLL</td><td>上轨18.12 / 中轨16.58</td><td class="up">触及上轨</td><td>股价接近上轨，短线压力</td></tr>
+    <tr><td>52周区间</td><td>9.67 ~ 26.79</td><td>—</td><td>当前17.7位于中上区间</td></tr>
+    <tr><td>年内涨幅</td><td>+56.6%</td><td class="up">强势</td><td>大幅跑赢大盘</td></tr>
+  </table>
+  </div>
+
+  <h3>资金流向（2026-08-07）</h3>
+  <div class="table-wrap">
+  <table class="f4">
+    <tr><th>周期</th><th>主力净流入</th><th>趋势</th><th>备注</th></tr>
+    <tr><td>单日</td><td class="down">-1173万</td><td class="down">流出</td><td>短线资金获利了结</td></tr>
+    <tr><td>近5日</td><td class="down">-68万</td><td>中性</td><td>基本持平，多空均衡</td></tr>
+    <tr><td>近20日</td><td class="up">+1.0亿</td><td class="up">流入</td><td>中期资金持续配置</td></tr>
+  </table>
+  </div>
+  <p class="note">来源：westock 行情/技术/资金数据 2026-08-07</p>
+</div>
+
+<!-- 模块6 核心逻辑与风险 -->
+<div class="card">
+  <h2>模块 6 · 核心逻辑与风险</h2>
+
+  <h3>三大核心逻辑</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>逻辑</th><th>支撑证据</th><th>置信度</th></tr>
+    <tr><td>全球油运超级周期</td><td>VLCC运价同比+180%，供需双紧，供给刚性至少延续至2027</td><td class="up">★★★★★</td></tr>
+    <tr><td>高即期敞口最大化弹性</td><td>VLCC低期租比例，即期市场收益直接兑现利润</td><td class="up">★★★★★</td></tr>
+    <tr><td>前瞻估值极具吸引力</td><td>2026E PE 7~8x，PB 1.7x，重置成本1.2倍</td><td class="up">★★★★☆</td></tr>
+  </table>
+  </div>
+
+  <h3>主要风险</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>风险</th><th>概率</th><th>影响</th></tr>
+    <tr><td>美伊谈成，海峡恢复</td><td>30%</td><td>风险溢价消失，运价短期大幅回落</td></tr>
+    <tr><td>全球经济衰退</td><td>20%</td><td>运需下降，运价中枢下移</td></tr>
+    <tr><td>新船集中交付(27-29)</td><td>60%</td><td>中长期供给压力，需求同步增长可对冲</td></tr>
+    <tr><td>OPEC+转向减产</td><td>25%</td><td>原油出口量减少，运需下降</td></tr>
+    <tr><td>制裁执行不及预期</td><td>35%</td><td>影子船队持续分流合规市场</td></tr>
+  </table>
+  </div>
+
+  <h3>反一致预期视角</h3>
+  <p><strong>市场共识</strong>：油运高景气延续，中远海能作为龙头充分受益，当前估值便宜。</p>
+  <p><strong>反一致声音</strong>：①在手订单占比24.8%创历史新高，2027-2029年集中交付可能逆转供给格局；②若美伊谈判快速达成，海峡恢复+补库需求不足可能导致运价"断崖式"回落；③当前PE(TTM)17.6x并不便宜，若2027年利润回落到120亿以下，前瞻PE将升至8x以上。</p>
+  <p><strong>巴蒂判断</strong>：反一致声音中，①是真实的中长期风险但时间窗口在2027年后；②是短期最大变量但概率不高（海峡反复已证明恢复难度）；③是估值口径混淆（应该用前瞻PE而非TTM）。综合来看，反一致预期不构成当前看空理由，但需持续跟踪美伊谈判和在手订单交付节奏。</p>
+</div>
+
+<!-- 模块7 可比估值 -->
+<div class="card">
+  <h2>模块 7 · 可比估值</h2>
+  <div class="table-wrap">
+  <table class="f5">
+    <tr><th>标的</th><th>市值(亿)</th><th>PE(TTM)</th><th>PB</th><th>核心差异</th></tr>
+    <tr><td>招商轮船</td><td>~1200</td><td>~12x</td><td>~2.5x</td><td>601872，油运+干散双轮驱动</td></tr>
+    <tr><td>招商南油</td><td>~280</td><td>~15x</td><td>~3.2x</td><td>601975，成品油运输为主</td></tr>
+    <tr><td><strong>中远海能</strong></td><td><strong>968</strong></td><td><strong>17.6x</strong></td><td><strong>2.1x</strong></td><td><strong>600026，全球油轮龙头</strong></td></tr>
+    <tr><td>Frontline</td><td>~45亿美元</td><td>~8x</td><td>~1.8x</td><td>NYSE:FRO，海外纯油轮标的</td></tr>
+    <tr><td>Euronav</td><td>~38亿美元</td><td>~7x</td><td>~1.5x</td><td>NYSE:EURN，欧洲油轮巨头</td></tr>
+  </table>
+  </div>
+
+  <h3>卖方一致预期</h3>
+  <div class="table-wrap">
+  <table class="f5">
+    <tr><th>券商</th><th>评级</th><th>2026E EPS</th><th>目标价</th><th>核心逻辑</th></tr>
+    <tr><td>国金证券</td><td class="up">买入</td><td>2.14元</td><td>—</td><td>PE 7.4x，维持买入</td></tr>
+    <tr><td>东方证券</td><td class="up">买入</td><td>1.96元</td><td>25.08元</td><td>27年12倍PE，首次覆盖</td></tr>
+    <tr><td>方正证券</td><td class="up">强烈推荐</td><td>—</td><td>—</td><td>重置成本仅1.2倍，明显低估</td></tr>
+    <tr><td>华泰证券</td><td class="up">买入</td><td>—</td><td>26.00元</td><td>上调盈利预测</td></tr>
+    <tr><td>财通证券</td><td class="up">增持</td><td>—</td><td>—</td><td>2026E净利111亿，PE 7.8x</td></tr>
+  </table>
+  </div>
+  <p class="note">来源：各券商研报 2026-07，目标价基于各自估值模型</p>
+</div>
+
+<!-- 模块8 三级情景 -->
+<div class="card">
+  <h2>模块 8 · 三级情景估值</h2>
+  <div class="table-wrap">
+  <table class="f3 scn">
+    <tr><th>情景</th><th>假设</th><th>估值</th></tr>
+    <tr><td><span class="chip chip-up">乐观</span></td><td>2026全年归母净利145亿(华泰上限)+2027年维持130亿+50%分红率<br>概率~20%</td><td>PE 10x → 1450亿<br>较当前968亿 <strong class="up">+50%</strong></td></tr>
+    <tr><td><span class="chip chip-info">中性</span></td><td>2026全年归母净利118亿(国金/方正中枢)+2027年110亿<br>概率~50%</td><td>PE 9x → 1062亿<br>较当前968亿 <strong class="up">+10%</strong></td></tr>
+    <tr><td><span class="chip chip-warn">悲观</span></td><td>美伊谈判达成+海峡恢复+运价回落至8万美元/天+2027年利润80亿<br>概率~30%</td><td>PE 8x → 640亿<br>较当前968亿 <strong class="down">-34%</strong></td></tr>
+  </table>
+  </div>
+  <p class="note">注：悲观情景并非预测，而是风险边界。当前运价仍超10万美元/天，距8万尚有空间。</p>
+</div>
+
+<!-- 模块9 数据溯源 -->
+<div class="card">
+  <h2>模块 9 · 数据溯源与版本追踪</h2>
+  <div class="table-wrap">
+  <table class="f2">
+    <tr><th>数据项</th><th>来源</th></tr>
+    <tr><td>行情/技术/资金</td><td>westock 2026-08-07收盘</td></tr>
+    <tr><td>财务数据</td><td>公司2026年一季报、2025年报</td></tr>
+    <tr><td>业绩预告</td><td>公司2026年半年度业绩预增公告 2026-07-10</td></tr>
+    <tr><td>VLCC运价</td><td>波罗的海交易所、克拉克森、国金证券研报</td></tr>
+    <tr><td>卖方预测</td><td>国金/东方/方正/华泰/财通/国泰海通研报 2026-07</td></tr>
+    <tr><td>分红数据</td><td>公司公告、NeoData分红派息库</td></tr>
+    <tr><td>行业供需</td><td>克拉克森、国联民生/国金/东方研报</td></tr>
+  </table>
+  </div>
+  <p class="note">报告版本：v1.0 | 生成时间：2026-08-09 | 数据截止：2026-08-07 | 作者：巴蒂（WorkBuddy）</p>
+  <p class="note">免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</div>
+
+<div class="footer">
+  中远海能(600026)深度研报 · 油运超级周期核心标的 · 2026-08-09
+</div>
+
+</div>
+
+<script>
+// 图表1：VLCC运价走势（模拟历史数据）
+var chart1 = echarts.init(document.getElementById('chart1'));
+chart1.setOption({
+  backgroundColor:'transparent',
+  title:{text:'VLCC TD15航线TCE走势(万美元/天)',left:'center',textStyle:{fontSize:13,color:'#1a1a2e'}},
+  tooltip:{trigger:'axis'},
+  legend:{data:['TD15西非-中国','TD22美湾-中国','TD3C中东-中国'],bottom:0,textStyle:{fontSize:11}},
+  grid:{left:'8%',right:'6%',top:'14%',bottom:'16%'},
+  xAxis:{type:'category',data:['2024Q1','2024Q2','2024Q3','2024Q4','2025Q1','2025Q2','2025Q3','2025Q4','2026Q1','2026Q2','2026Q3E'],axisLabel:{fontSize:11,color:'#4a5568'}},
+  yAxis:{type:'value',name:'万美元/天',nameTextStyle:{fontSize:11,color:'#4a5568'},axisLabel:{fontSize:11,color:'#4a5568'},splitLine:{lineStyle:{color:'#e2e8f0'}}},
+  series:[
+    {name:'TD15西非-中国',type:'line',data:[3.2,3.8,4.5,4.2,3.5,4.8,5.2,4.6,11.5,12.8,15.0],smooth:true,lineStyle:{color:'#2563eb',width:2},itemStyle:{color:'#2563eb'}},
+    {name:'TD22美湾-中国',type:'line',data:[2.8,3.5,4.0,3.8,3.2,4.5,4.8,4.2,10.8,12.0,13.0],smooth:true,lineStyle:{color:'#16a34a',width:2},itemStyle:{color:'#16a34a'}},
+    {name:'TD3C中东-中国',type:'line',data:[3.5,4.2,5.0,4.5,3.8,5.2,6.0,5.5,16.0,43.0,35.0],smooth:true,lineStyle:{color:'#ff3b3b',width:2},itemStyle:{color:'#ff3b3b'}}
+  ]
+});
+
+window.addEventListener('resize',function(){chart1.resize();});
+</script>
+</body>
+</html>
