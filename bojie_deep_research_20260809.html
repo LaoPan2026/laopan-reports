@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博杰股份(002975)深度研报：AI算力测试隐形冠军，概念炒作透支股价</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2330;--mut:#6b7280;--line:#e5e7eb;--hi:#0b6cff;--warn:#d97706;--up:#ff3b3b;--down:#1ed890;--tag:#eef1f6}
+*{box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);margin:0;padding:24px 16px;line-height:1.65;font-size:14px}
+.wrap{max-width:1120px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#0b2545,#0b6cff);color:#fff;padding:28px 32px;border-radius:14px;margin-bottom:18px;box-shadow:0 4px 14px rgba(11,108,255,.15)}
+.hero h1{margin:0 0 8px;font-size:22px;letter-spacing:.5px}
+.hero .sub{font-size:13px;opacity:.85;margin-bottom:14px}
+.hero .meta{font-size:12px;opacity:.7;display:flex;flex-wrap:wrap;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:14px}
+.card h2{margin:0 0 14px;font-size:16px;color:var(--ink);font-weight:700;padding-bottom:8px;border-bottom:2px solid var(--hi);display:inline-block}
+.card h3{margin:16px 0 8px;font-size:14px;color:var(--hi);font-weight:700}
+p{margin:6px 0;color:#374151;font-size:13.5px}
+.tag{display:inline-block;padding:2px 8px;background:var(--tag);color:#1c2330;border-radius:4px;font-size:12px;font-weight:600;margin-right:6px}
+.tag.t-red{background:#fee2e2;color:#991b1b}
+.tag.t-yel{background:#fef3c7;color:#92400e}
+.tag.t-grn{background:#d1fae5;color:#065f46}
+.tag.t-blu{background:#dbeafe;color:#1e40af}
+.verdict{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:4px solid var(--warn);padding:14px 18px;border-radius:6px;margin:12px 0;font-size:13.5px}
+.verdict b{color:#92400e}
+table{width:100%;border-collapse:collapse;table-layout:fixed;margin:10px 0;font-size:13px}
+th{text-align:center;white-space:nowrap;font-size:12px;font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06);padding:10px 8px;border-bottom:2px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;text-wrap:pretty}
+tbody tr:nth-child(even){background:rgba(0,0,0,.02)}
+th,td{font-variant-numeric:tabular-nums}
+.pos,.up{color:var(--up);font-weight:700;white-space:nowrap}
+.neg,.down{color:var(--down);font-weight:700;white-space:nowrap}
+.num{text-align:right}
+.center{text-align:center}
+/* f3: 22/18/60 */
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:18%;text-align:left}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:60%;text-align:left}
+/* f4: 14/22/24/40 */
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:16%;text-align:center}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:22%;text-align:left}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:24%;text-align:left}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:40%;text-align:left}
+/* f5: 16/14/22/14/34 */
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:center}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:14%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:22%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:20%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:30%;text-align:left}
+/* f3.wide: 26/24/50 */
+table.f3.wide th:nth-child(1),table.f3.wide td:nth-child(1){width:26%;text-align:left}
+table.f3.wide th:nth-child(2),table.f3.wide td:nth-child(2){width:24%;text-align:left}
+table.f3.wide th:nth-child(3),table.f3.wide td:nth-child(3){width:50%;text-align:left}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.metric .m{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.metric .m .lbl{font-size:11px;color:var(--mut);margin-bottom:4px}
+.metric .m .val{font-size:18px;font-weight:700;color:var(--ink)}
+.chart{width:100%;height:340px;margin:14px 0}
+.disclaimer{font-size:12px;color:var(--mut);background:#f9fafb;border:1px dashed var(--line);padding:12px;border-radius:6px;margin-top:18px;line-height:1.55}
+ul{padding-left:20px;margin:6px 0}
+li{margin:4px 0;font-size:13.5px;color:#374151}
+b{font-weight:700;color:var(--ink)}
+@media(max-width:640px){
+  body{padding:14px 8px;font-size:13px}
+  .hero{padding:20px 18px}
+  .hero h1{font-size:18px}
+  .card{padding:16px 14px}
+  .metric{grid-template-columns:repeat(2,1fr)}
+  th,td{padding:7px 6px;font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="sub">深度研报 · V2.1九模块框架</div>
+  <h1>博杰股份(002975.SZ)：AI算力测试隐形冠军，概念炒作透支股价</h1>
+  <div class="meta">
+    <span><b>数据时点</b> 2026-08-07 收盘</span>
+    <span><b>现价</b> 97.94 元</span>
+    <span><b>PE(TTM)</b> 87.53 倍</span>
+    <span><b>总市值</b> 约 203.84 亿</span>
+    <span><b>来源</b> Wind/WeStock/公司公告</span>
+  </div>
+</div>
+
+<!-- 1. 催化时间线 -->
+<div class="card">
+  <h2>① 催化时间线</h2>
+  <table class="f4">
+    <tr><th>时间</th><th>事件</th><th>性质</th><th>点评</th></tr>
+    <tr><td>2026-01-31</td><td>2025年度业绩预告</td><td class="center"><span class="pos">正面</span></td><td>归母1.50-1.85亿（+643%~816%），扭亏后高速增长</td></tr>
+    <tr><td>2026-04-01</td><td>2025年报正式披露</td><td class="center"><span class="pos">正面</span></td><td>营收18.36亿+48.9%，归母1.46亿+557%，毛利率44.1%</td></tr>
+    <tr><td>2026-04-24</td><td>2026Q1季报</td><td class="center"><span class="pos">极度正面</span></td><td>营收4.68亿+127%，归母0.66亿+419%，毛利率49.9%创新高</td></tr>
+    <tr><td>2026-06-04</td><td>15亿定增预案</td><td class="center">中性</td><td>投向服务器检测(8.84亿)+研发(1.69亿)+补流(4.5亿)</td></tr>
+    <tr><td>2026-07-14</td><td>2026H1业绩预告</td><td class="center"><span class="pos">极度正面</span></td><td>归母1.50-1.85亿(+643-816%)，H1已超FY2025全年水平</td></tr>
+    <tr><td>8/4-6</td><td>三连板（涨超20%）</td><td class="center"><span class="neg">过热</span></td><td>触发异动，公司澄清磷化铟/光模块/液冷等概念贡献极低</td></tr>
+    <tr><td>2026-08-07</td><td>收盘97.94元（+5.23%）</td><td class="center"><span class="neg">高位</span></td><td>连板后次日续涨5%，换手率17.3%，资金博弈激烈</td></tr>
+  </table>
+</div>
+
+<!-- 2. 结论前置 -->
+<div class="card">
+  <h2>② 结论前置：WAIT（等待回调）</h2>
+  <div class="verdict">
+    <b>核心结论：</b>博杰股份是国内AI算力测试设备赛道的隐形冠军——英伟达AI服务器测试份额约50%+，Q1营收翻倍、毛利率创新高至49.9%。但当前股价被<b>磷化铟概念炒作</b>推高三连板，<b>现价已超前透支基本面，不属于"右侧确认后的买点"</b>。建议 <span class="tag t-yel">WAIT（等待回调）</span>，目标区间 <b>70-80元</b>（对应2026E PE约50-55倍，仍不便宜但相对合理）。
+  </div>
+  <div class="metric">
+    <div class="m"><div class="lbl">多空评级</div><div class="val" style="color:var(--warn)">WAIT</div></div>
+    <div class="m"><div class="lbl">产业景气</div><div class="val pos">★★★★★</div></div>
+    <div class="m"><div class="lbl">业绩兑现</div><div class="val pos">★★★★☆</div></div>
+    <div class="m"><div class="lbl">估值安全</div><div class="val neg">★★☆☆☆</div></div>
+  </div>
+  <div>
+    <p><b>看多逻辑（硬核）</b>：①AI服务器测试设备全球核心供应商，绑定英伟达/谷歌/META等顶级客户；②Q1毛利率49.9%创新高，营收+127%增速加速；③H1业绩预告已超FY2025全年——Q2单季0.84-1.19亿归母，环比Q1继续+27-80%。</p>
+    <p><b>反向声音（必须听）</b>：①三连板核心驱动是"磷化铟"概念——公司自己澄清鼎泰芯源（持股11%）连续3年亏损，对公司业绩不构成重大影响；②现价97.94元，年初至今已涨65%，52周波动区间33-158元，当前位置不是起始点而是阶段性高点；③20日-18.92%、60日-14.46%，前期被套筹码集中在100-116元区间，当前位置解套卖压大。</p>
+  </div>
+</div>
+
+<!-- 3. 公司画像·财务速览 -->
+<div class="card">
+  <h2>③ 公司画像·财务速览</h2>
+  <h3>主业：工业自动化测试/组装设备平台</h3>
+  <p>博杰股份成立于2005年，2020年深交所上市。定位为智能制造领域工业自动化设备及系统解决方案供应商，采用"模块化积木式"技术平台，覆盖<b>消费电子（42.5%）、汽车电子（21.3%）、AI算力（20.9%）、MLCC被动元器件（约10%）、半导体（2.8%）</b>五大下游赛道。头部客户包括英伟达、苹果、META、微软、特斯拉、谷歌、亚马逊、华为、比亚迪等全球科技巨头。</p>
+  <p>2026H1业绩预告已超FY2025全年</p>
+  <div id="financeChart" class="chart"></div>
+  <table class="f5">
+    <tr><th>年度</th><th>营收(亿)</th><th>归母(亿)</th><th>毛利率</th><th>关键变化</th></tr>
+    <tr><td>2022</td><td class="num">12.17</td><td class="num">2.02</td><td class="num">48.71%</td><td>消费电子测试设备景气高峰</td></tr>
+    <tr><td>2023</td><td class="num">9.05</td><td class="num"><span class="neg">-0.57</span></td><td class="num">47.17%</td><td>消费电子需求收缩，行业低谷亏损</td></tr>
+    <tr><td>2024</td><td class="num">12.33</td><td class="num">0.22</td><td class="num">42.54%</td><td>扭亏，AI业务起步</td></tr>
+    <tr><td>2025</td><td class="num">18.36</td><td class="num"><span class="pos">1.46</span></td><td class="num">44.13%</td><td>营收+48.9%，归母+557%，AI&MLCC放量</td></tr>
+    <tr><td>2026Q1</td><td class="num">4.68</td><td class="num"><span class="pos">0.66</span></td><td class="num"><span class="pos">49.85%</span></td><td>营收+127%，毛利率创新高，经营现金流转正</td></tr>
+  </table>
+  <p><b>2026H1预告（7/14公告）</b>：归母1.50-1.85亿（+643-816%），扣非1.47-1.82亿（+929-1174%）。Q1已实现0.66亿归母，Q2预计0.84-1.19亿（环比+27-80%）。</p>
+</div>
+
+<!-- 4. 产业格局与景气度 -->
+<div class="card">
+  <h2>④ 产业格局：三个成长引擎，一个被炒作的烟雾弹</h2>
+  <h3>引擎一：AI服务器测试设备（第一成长曲线，真实驱动）</h3>
+  <p>公司在<b>英伟达AI服务器测试设备份额约50%+</b>，覆盖GPU板卡ICT/FCT、主板功能测试、整机老化测试全流程。2025年出货数百台，2026年机构预计2000-3000台，单台价值量数十万元。客户包括英伟达、谷歌、亚马逊、微软、思科、戴尔及国内浪潮、紫光、阿里、腾讯。2025年该业务占主营16.79%，2026年翻倍增长。</p>
+  <h3>引擎二：MLCC设备（第二成长曲线，爆发中）</h3>
+  <p>控股子公司奥德维覆盖MLCC超50%价值量的核心制程设备（八轨高速测试机、叠层机、六面体检测）。2025年营收1.38亿（占7.5%），<b>2026年Q2起满产，全年发货预计超4亿元</b>。下游MLCC行业2026-2035年CAGR约13.5%（中金数据），国产替代驱动设备需求持续上行。</p>
+  <h3>引擎三：汽车电子+消费电子（稳定基本盘）</h3>
+  <p>2025年汽车电子占21.3%、消费电子占42.5%。2026年智能穿戴（AR/VR/AI眼镜）带来结构性增量，车载摄像头/屏测试线体持续交付。这两个板块不是增速最快但提供稳定基底。</p>
+  <h3><span class="tag t-red">烟雾弹</span>：磷化铟概念炒作（公司自己澄清）</h3>
+  <p>三连板的<b>真实驱动是"磷化铟"概念</b>（云南锗业同步10连板带动板块情绪），但公司8/6公告明确澄清：<b>持股鼎泰芯源仅11.049%，该子公司连续3年亏损（2023-2025年净利润-1129万/-868万/-4071万），营收仅约2400万元/年，对公司业绩不构成重大影响</b>。此外：半导体（博捷芯占营收2.8%）、光模块（广浩捷未产生营收）、液冷（未独立确认收入）、人形机器人（占营收<1%）——这些热点概念贡献均极低。</p>
+</div>
+
+<!-- 5. 技术面·资金面 -->
+<div class="card">
+  <h2>⑤ 技术面·资金面</h2>
+  <div class="metric">
+    <div class="m"><div class="lbl">现价 vs MA20</div><div class="val pos">97.94 > 88.87</div></div>
+    <div class="m"><div class="lbl">现价 vs MA60</div><div class="val neg">97.94 < 116.82</div></div>
+    <div class="m"><div class="lbl">KDJ J值</div><div class="val" style="color:var(--up)">120.96 (超买)</div></div>
+    <div class="m"><div class="lbl">RSI 6</div><div class="val pos">69.93 (偏热)</div></div>
+  </div>
+  <div class="metric">
+    <div class="m"><div class="lbl">5日涨幅</div><div class="val pos">+33.43%</div></div>
+    <div class="m"><div class="lbl">20日涨幅</div><div class="val neg">-18.92%</div></div>
+    <div class="m"><div class="lbl">60日涨幅</div><div class="val neg">-14.46%</div></div>
+    <div class="m"><div class="lbl">年初至今</div><div class="val pos">+65.33%</div></div>
+  </div>
+  <div class="metric">
+    <div class="m"><div class="lbl">换手率</div><div class="val">17.28%</div></div>
+    <div class="m"><div class="lbl">当日主力净流入</div><div class="val neg">-9115万</div></div>
+    <div class="m"><div class="lbl">近5日主力净流入</div><div class="val pos">+5.19亿</div></div>
+    <div class="m"><div class="lbl">近20日主力净流入</div><div class="val pos">+4.41亿</div></div>
+  </div>
+  <p><b>技术面点评</b>：股价站上MA5/10/20但远低于MA60（116.82）和MA120（92.75）。三连板前股价从7月低点69元反弹到93元启动板，然后从79元连续涨至97.94元。J值120.96严重超买、RSI6=70偏热，短线回调压力大。近5日主力净流入5.19亿说明资金仍在涌入，但当日净流出9115万（8/7调整信号），解套筹码区在100-116元。</p>
+</div>
+
+<!-- 6. 核心逻辑与风险 -->
+<div class="card">
+  <h2>⑥ 核心逻辑与风险（含反一致预期）</h2>
+  <table class="f3 wide">
+    <tr><th>维度</th><th>市场共识</th><th>我们的独立判断</th></tr>
+    <tr>
+      <td><span class="tag t-blu">AI测试持续性</span></td>
+      <td>"英伟达份额50%+，护城河极深，放量才刚开始"</td>
+      <td>份额高是事实，但单客户集中度（英伟达）也是风险——类似汇绿对Coherent的单品依赖。2025年AI测试仅占主营16.79%，远不是贡献主力</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-red">磷化铟概念</span></td>
+      <td>"博杰=磷化铟龙头，对标云南锗业"</td>
+      <td>公司8/6公告明确：持股仅11%、子公司连亏3年。三连板本质是游资借磷化铟概念炒作而非AI测试基本面</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-yel">定增摊薄</span></td>
+      <td>"15亿定增加码主业，长期利好"</td>
+      <td>定增需深交所审核+证监会注册，时间不确定。若股价在定增完成前大跌，发行底价（前20日均价80%）将被压低，控股股东被动摊薄</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-yel">现金流质量</span></td>
+      <td>"去年OCF转正，现金流改善明显"</td>
+      <td>2024年OCF为-2.04亿，2025年仅+0.85亿（净利含金量49%）。Q1 OCF +0.38亿低于净利0.66亿——扩张期资金占用大，现金质量待验证</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 7. 可比估值 -->
+<div class="card">
+  <h2>⑦ 可比估值</h2>
+  <table class="f5">
+    <tr><th>标的</th><th>PE(TTM)</th><th>2026E PE</th><th>主业</th><th>可比性</th></tr>
+    <tr><td><b>博杰股份 002975</b></td><td class="num"><span class="pos">87.53</span></td><td class="num"><span class="pos">69.1</span></td><td>AI测试+自动化</td><td>—</td></tr>
+    <tr><td>长川科技 300604</td><td class="num">—</td><td class="num">~55x</td><td>半导体测试</td><td>中——同属测试赛道，但长川是纯半导体</td></tr>
+    <tr><td>大族数控 301200</td><td class="num">—</td><td class="num">~60x</td><td>PCB电子测试</td><td>弱——消费电子检测重叠</td></tr>
+    <tr><td>中控技术 688777</td><td class="num">—</td><td class="num">~50x</td><td>工业自动化</td><td>弱——业务模式差异大</td></tr>
+    <tr><td>华海清科 688120</td><td class="num"><span class="pos">117.5</span></td><td class="num"><span class="pos">85.1</span></td><td>CMP抛光</td><td>弱——同属半导体设备，但环节不同</td></tr>
+  </table>
+  <p>近6个月机构研报均为买入/增持（西部、国海、招商、中邮）。西部证券认为2026年PE 47倍低于可比公司均值78.65倍——但该预测建立在97元以下股价基础上，当前97.94元已高于该预测的价格区间。</p>
+</div>
+
+<!-- 8. 三级情景 -->
+<div class="card">
+  <h2>⑧ 三级情景测算</h2>
+  <table class="f5">
+    <tr><th>情景</th><th>2026E营收</th><th>2026E净利</th><th>合理PE</th><th>目标价与概率</th></tr>
+    <tr>
+      <td><span class="tag t-red">Bear（悲观）</span></td>
+      <td class="num">22亿</td>
+      <td class="num">2.3亿</td>
+      <td class="num">40倍</td>
+      <td><b>44元</b><br>消费电子/汽车电子收入下滑；AI测试与英伟达订单不及预期；磷化铟概念退潮20%</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-yel">Base（基准）</span></td>
+      <td class="num">25亿</td>
+      <td class="num">3.0亿</td>
+      <td class="num">55倍</td>
+      <td><b>79元</b><br>AI测试+MLCC小幅超2025年基数；H1预告按中值1.67亿计；下半年季节性放量50%</td>
+    </tr>
+    <tr>
+      <td><span class="tag t-grn">Bull（乐观）</span></td>
+      <td class="num">28亿</td>
+      <td class="num">3.8亿</td>
+      <td class="num">65倍</td>
+      <td><b>119元</b><br>AI测试3000台全额交付；MLCC发货超4亿；毛利率维持49%+；磷化铟继续发酵10%</td>
+    </tr>
+  </table>
+  <p><b>结论</b>：现价97.94元对应Base-Bull之间（约暗含2026E 3.3亿净利×60-65倍），但仍低于Bull目标119元。安全边际不足：即使Base实现，也有约19%下行至79元；若跌至Bear区间（44元），下行超55%。不参与这种概率分布。</p>
+</div>
+
+<!-- 9. 数据溯源 -->
+<div class="card">
+  <h2>⑨ 数据溯源与版本追踪</h2>
+  <table class="f3">
+    <tr><th>数据项</th><th>来源</th><th>时点/口径</th></tr>
+    <tr><td>行情/技术/资金</td><td>Wind/WeStock</td><td>2026-08-07 收盘，前复权口径</td></tr>
+    <tr><td>财务数据</td><td>Wind 财务数据</td><td>FY2022-2025年报+2026Q1季报</td></tr>
+    <tr><td>业绩预告</td><td>公司公告（2026-01-31/07-14）</td><td>2025年度/2026H1预告</td></tr>
+    <tr><td>异动公告</td><td>公司公告（2026-08-06）</td><td>三连板后澄清六大热点概念</td></tr>
+    <tr><td>机构预测</td><td>西部/国海/招商/中邮研报（需核实原文）</td><td>2026-04~07</td></tr>
+    <tr><td>产业数据</td><td>SIA/SEMI/集邦/中金（需核实原文）</td><td>2026年预测</td></tr>
+  </table>
+</div>
+
+<div class="disclaimer">
+  <b>免责声明：</b>以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。
+</div>
+
+</div>
+<script>
+const fc=echarts.init(document.getElementById('financeChart'));
+fc.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis'},
+  legend:{data:['营收','归母净利','毛利率'],right:0,textStyle:{color:'#374151',fontSize:11}},
+  grid:{left:56,right:40,top:36,bottom:32},
+  xAxis:{type:'category',data:['2022','2023','2024','2025','2026Q1'],axisLabel:{color:'#374151',fontSize:11}},
+  yAxis:[
+    {type:'value',name:'亿元',axisLabel:{color:'#374151'}},
+    {type:'value',name:'%',axisLabel:{color:'#374151'}}
+  ],
+  series:[
+    {name:'营收',type:'bar',data:[12.17,9.05,12.33,18.36,4.68],barWidth:18,itemStyle:{color:'#0b6cff'},label:{show:true,position:'top',fontSize:10}},
+    {name:'归母净利',type:'bar',data:[2.02,-0.57,0.22,1.46,0.66],barWidth:18,itemStyle:{color:'#34d399'},label:{show:true,position:'top',fontSize:10,formatter:function(p){return p.value<0?p.value:'+'+p.value}}},
+    {name:'毛利率',type:'line',yAxisIndex:1,data:[48.71,47.17,42.54,44.13,49.85],itemStyle:{color:'#f59e0b'},lineStyle:{width:2.5},symbol:'circle',symbolSize:6,label:{show:true,fontSize:10,formatter:'{c}%'}}
+  ]
+});
+window.addEventListener('resize',()=>fc.resize());
+</script>
+</body>
+</html>
