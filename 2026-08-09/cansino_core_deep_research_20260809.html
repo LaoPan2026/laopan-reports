@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>灿芯股份 vs 国芯科技 | AI ASIC双雄深度研报 V2.1</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--up:#ff3b3b;--down:#1ed890;--bg:#f8f9fc;--card:#fff;--text:#1a1a2e;--sub:#555;--rule:#e0e4ed;--accent:#2563eb;--alight:#eff6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.wrap{max-width:1120px;margin:0 auto;padding:32px 24px}
+h1{font-size:24px;font-weight:700;margin-bottom:4px}
+h2{font-size:18px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--rule)}
+h3{font-size:15px;font-weight:700;margin:20px 0 10px;color:#333}
+.card{background:var(--card);border-radius:10px;padding:24px;margin-bottom:20px;border:1px solid var(--rule)}
+.mr{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.m{flex:1;min-width:120px;background:var(--alight);border-radius:8px;padding:14px 16px;text-align:center}
+.m .lb{font-size:11px;color:var(--sub);text-transform:uppercase}
+.m .vl{font-size:20px;font-weight:700;color:var(--text)}
+.up{color:var(--up);font-weight:700}
+.down{color:var(--down);font-weight:700}
+.pos{color:var(--up);font-weight:700;white-space:nowrap}
+.neg{color:var(--down);font-weight:700;white-space:nowrap}
+.sd{color:var(--sub);font-size:13px;margin-bottom:12px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+th,td{padding:10px 10px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;text-wrap:pretty;overflow:hidden}
+tbody tr:nth-child(even){background:rgba(0,0,0,0.02)}
+th{font-size:12px;font-weight:700;color:#4a5568;background:rgba(0,0,0,0.04);white-space:nowrap;text-align:center}
+td{text-align:left}
+table.f3{ }
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:20%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:30%;text-align:left}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:50%;text-align:left}
+table.f3 th:nth-child(4),table.f3 td:nth-child(4){width:auto;text-align:left}
+table.f2{ }
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:28%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:72%;text-align:left}
+table.f2 th:nth-child(3),table.f2 td:nth-child(3){width:50%;text-align:left}
+.chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-right:4px}
+.chip-up{background:#fee2e2;color:var(--up)}
+.chip-down{background:#e6f7f0;color:var(--down)}
+.chip-warn{background:#fef3c7;color:#92400e}
+.chip-info{background:#dbeafe;color:#1e40af}
+.chip-green{background:#dcfce7;color:#166534}
+.lb{border-left:3px solid var(--accent);padding:10px 14px;background:var(--alight);border-radius:0 6px 6px 0;margin:10px 0;font-size:13px}
+.rb{border-left:3px solid #f59e0b;padding:10px 14px;background:#fffbeb;border-radius:0 6px 6px 0;margin:10px 0;font-size:13px}
+.vb{border-left:3px solid #059669;padding:10px 14px;background:#ecfdf5;border-radius:0 6px 6px 0;margin:10px 0;font-size:13px}
+.chart-box{width:100%;height:320px;margin:12px 0}
+.summary-box{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;border-radius:10px;padding:28px}
+.score-row{display:flex;gap:8px;align-items:center;margin:4px 0}
+.score-bar{height:8px;border-radius:4px;flex:1;background:#e5e7eb}
+.score-fill{height:100%;border-radius:4px;background:var(--accent)}
+@media(max-width:640px){body{font-size:13px}.wrap{padding:16px 12px}h1{font-size:20px}.m{min-width:80px}.m .vl{font-size:16px}table{font-size:12px}th,td{padding:8px 6px}.table-wrap table{min-width:600px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>灿芯股份(688691) vs 国芯科技(688262) · AI ASIC 双雄深度研报</h1>
+<p class="sd">V2.1 框架 · 9 模块 · 数据时点 2026-08-07 收盘 · 生成时间 2026-08-09<br>
+老潘战略诉求：挖掘下一只"新易盛"——具备 10 倍回报潜质的 AI 基础设施公司</p>
+
+<!-- ======== 模块1: 结论前置 ======== -->
+<h2>模块 1 · 结论前置：二选一对比评级</h2>
+<div class="card">
+  <table class="f2">
+    <tr><th>维度</th><th>灿芯股份 688691 (82亿)</th><th>国芯科技 688262 (92亿)</th></tr>
+    <tr><td>多空总评</td><td><span class="chip chip-up">⭐⭐⭐⭐ 强烈关注</span></td><td><span class="chip chip-info">⭐⭐⭐ 关注</span></td></tr>
+    <tr><td>新易盛基因契合度</td><td><span class="chip chip-up">★★★★★ 最高</span><br>市值最小(82亿)+亏损(PE无效)+中芯ASIC唯一通道+在手订单9.22亿</td><td><span class="chip chip-info">★★★★ 很高</span><br>92亿+亏损+合同负债9.81亿+AI ASIC定制翻倍+汽车电子放量</td></tr>
+    <tr><td>赛道确定性</td><td>★★★★☆ AI ASIC设计服务——中芯国际第一大股东，"设计+制造"协同，国产AI芯片回流核心通道</td><td>★★★★☆ 云侧AI ASIC + 端侧AI MCU + 汽车电子 + 量子安全——多线并进，弹性最大但聚焦性不如灿芯</td></tr>
+    <tr><td>订单能见度</td><td>★★★★☆ 在手订单9.22亿(2026Q1)，设计4.08亿+量产5.14亿</td><td>★★★★★ 合同负债9.81亿(2026Q1)，主要来自AI ASIC量产预付款，Q1营收+79.5%验证转化</td></tr>
+    <tr><td>扭亏时间线</td><td>不明确——Q1仍亏损2853万，设计业务收入-24.6%拖后腿</td><td>2026年力争扭亏——股权激励考核指标，Q1亏损4870万但营收增长迅猛</td></tr>
+    <tr><td>最大亮点</td><td>"中国版世芯"——中芯唯一ASIC通道，类比世芯靠亚马逊/谷歌业务股价翻6倍</td><td>9.81亿合同负债+三大业务全线翻倍增长(汽车+95%/信创+85%/AI+105%)</td></tr>
+    <tr><td>最大短板</td><td>市值82亿但盈利模式"服务型"——ASIC设计服务天花板比芯片产品低</td><td>92亿但负债率38.9%+货币资金仅6920万，现金流紧张</td></tr>
+    <tr><td>择时建议</td><td><span class="chip chip-warn">等回踩MA60(56-60元区域)</span><br>当前68.35元刚从低点反弹，5日+14%短线过热</td><td><span class="chip chip-warn">等回踩MA60(22-24元区域)</span><br>当前27.42元，RSI2=97.8极度超买，不宜追</td></tr>
+  </table>
+</div>
+
+<!-- ======== 模块2: 催化时间线 ======== -->
+<h2>模块 2 · 催化时间线（未来 12 个月）</h2>
+<div class="card">
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>时间窗</th><th>催化剂</th><th>影响标的</th></tr>
+    <tr><td>2026-08 中下旬</td><td>H1 中报披露：营收增速验证+扭亏进展更新</td><td>灿芯 / 国芯</td></tr>
+    <tr><td>2026-Q3</td><td>DeepSeek/智谱等大厂自研ASIC流片进展——决定赛道β</td><td>灿芯 / 国芯</td></tr>
+    <tr><td>2026-Q3</td><td>国芯科技 GPNPU SoC（AI PC芯片）流片验证结果出炉——端侧AI破局关键</td><td>国芯</td></tr>
+    <tr><td>2026-Q4</td><td>灿芯股份在手订单9.22亿转化为收入——设计→量产转化率</td><td>灿芯</td></tr>
+    <tr><td>2026-09~2027-03</td><td>芯原股份 H 股上市——AI ASIC赛道关注度提升，带动灿芯/国芯估值重定价</td><td>灿芯 / 国芯</td></tr>
+    <tr><td>2026-12</td><td>年报预告——扭亏能否兑现（国芯2026年力争扭亏）</td><td>国芯</td></tr>
+    <tr><td>2027-H1</td><td>百度/阿里/字节ASIC量产订单分配——决定大客户格局</td><td>灿芯 / 国芯</td></tr>
+    <tr><td>2027全年</td><td>灿芯ASIC订单从20亿→75亿（雪球预测）——若兑现则是"新易盛级别"的爆发</td><td>灿芯</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ======== 模块3: 公司画像·财务速览 ======== -->
+<h2>模块 3 · 公司画像 · 财务速览</h2>
+
+<h3>灿芯股份 688691</h3>
+<div class="card">
+  <div class="mr">
+    <div class="m"><div class="lb">现价 / 市值</div><div class="vl">68.35 / 82亿</div></div>
+    <div class="m"><div class="lb">PE-TTM</div><div class="vl" style="color:var(--down)">-72.6</div></div>
+    <div class="m"><div class="lb">PB</div><div class="vl">6.80</div></div>
+    <div class="m"><div class="lb">营收TTM</div><div class="vl">7.57亿</div></div>
+    <div class="m"><div class="lb">净利TTM</div><div class="vl" style="color:var(--down)">-1.13亿</div></div>
+    <div class="m"><div class="lb">负债率</div><div class="vl">24.4%</div></div>
+  </div>
+  <div class="lb"><strong>公司本质</strong>：一站式芯片定制服务商（"芯片设计服务界的世芯"）。中芯国际持股18.98%（第二大股东），是国产AI ASIC回流中芯工艺的核心通道。2024年营收10.9亿/净利6105万——曾经赚钱，2025年因客户需求变化营收暴跌33.5%至7.24亿、转为亏损1.1亿。2026Q1营收1.71亿(+23.4%)，量产业务暴增82.3%但设计业务-24.6%。在手订单9.22亿。资产负债24.4%极低，货币资金+交易性金融资产约8亿，财务安全垫充足。</div>
+  <div class="table-wrap" style="margin-top:12px">
+  <table class="f3">
+    <tr><th>财务指标</th><th>2024</th><th>2025</th><th>2026Q1</th></tr>
+    <tr><td>营收</td><td>10.90亿</td><td>7.24亿(-33.5%)</td><td>1.71亿(+23.4%)</td></tr>
+    <tr><td>归母净利</td><td>6105万</td><td>-1.10亿</td><td>-2853万</td></tr>
+    <tr><td>毛利率</td><td>25.2%</td><td>16.0%</td><td>16.7%</td></tr>
+    <tr><td>研发费率</td><td>11.7%</td><td>24.7%</td><td>23.7%</td></tr>
+  </table>
+  </div>
+  <div class="rb"><strong>风险提示</strong>：①2025年营收暴跌33.5%，52周高点168.58→当前68.35已跌去59%。②买楼风波——拟花2.06亿购上海/苏州办公房，中芯国际派驻董事投反对票"买入时点有待商榷"。③毛利率从25%骤降至16%，盈利模式脆弱。</div>
+</div>
+
+<h3>国芯科技 688262</h3>
+<div class="card">
+  <div class="mr">
+    <div class="m"><div class="lb">现价 / 市值</div><div class="vl">27.42 / 92亿</div></div>
+    <div class="m"><div class="lb">PE-TTM</div><div class="vl" style="color:var(--down)">-34.4</div></div>
+    <div class="m"><div class="lb">PB</div><div class="vl">4.78</div></div>
+    <div class="m"><div class="lb">营收TTM</div><div class="vl">6.01亿</div></div>
+    <div class="m"><div class="lb">净利TTM</div><div class="vl" style="color:var(--down)">-2.68亿</div></div>
+    <div class="m"><div class="lb">负债率</div><div class="vl">38.9%</div></div>
+  </div>
+  <div class="lb"><strong>公司本质</strong>：RISC-V CPU + AI NPU 双轮驱动的芯片设计公司。三大业务线：信创安全(46%)+汽车电子(26%)+AI先进计算(28%，含云侧AI ASIC定制)。2026Q1营收1.57亿(+79.5%)，三大业务全线翻倍：汽车+94.8%、信创+85.3%、AI+105.4%。核心亮点是合同负债9.81亿(主要来自云侧AI ASIC量产预付款)。股权激励考核2026年力争扭亏。三年累计亏损超6亿。货币资金仅6920万，资产负债率38.9%，信用减值+资产减值持续拖累利润。</div>
+  <div class="table-wrap" style="margin-top:12px">
+  <table class="f3">
+    <tr><th>财务指标</th><th>2024</th><th>2025</th><th>2026Q1</th></tr>
+    <tr><td>营收</td><td>5.74亿</td><td>5.32亿(-7.4%)</td><td>1.57亿(+79.5%)</td></tr>
+    <tr><td>归母净利</td><td>-1.81亿</td><td>-2.54亿</td><td>-4867万</td></tr>
+    <tr><td>毛利率</td><td>24.2%</td><td>21.8%</td><td>22.9%</td></tr>
+    <tr><td>研发费率</td><td>56.3%</td><td>63.2%</td><td>52.6%</td></tr>
+  </table>
+  </div>
+  <div class="rb"><strong>风险提示</strong>：①连续三年亏损累计超6亿，货币资金仅6920万，经营现金流持续为负——需要持续融资或收入暴增来维持运营。②研发费率63.2%极高，意味着"亏损是主动选择"但也意味着"盈利改善缓慢"。③52周高点47.66→当前27.42跌42%，但RSI2=97.8极度超买。</div>
+</div>
+
+<!-- ======== 模块4: 产业格局 ======== -->
+<h2>模块 4 · 产业格局与景气度</h2>
+<div class="card">
+  <p><strong>AI ASIC 赛道正在复现"新易盛时代"的光模块逻辑</strong>：当大模型厂商从"买GPU"转向"自研AI芯片"时，芯片设计服务公司是"把PPT变成硅片"的关键角色——这与新易盛在光模块爆发前夜的定位高度相似。</p>
+  <div class="table-wrap" style="margin-top:12px">
+  <table class="f3">
+    <tr><th>对标维度</th><th>2022年光模块</th><th>2026年AI ASIC</th></tr>
+    <tr><td>产业催化剂</td><td>AI大模型训练引爆算力需求</td><td>大模型厂商自研ASIC降成本+国产替代</td></tr>
+    <tr><td>全球参照</td><td>英伟达H100→800G光模块</td><td>博通ASIC业务年增100%+；世芯(3661.TW)靠AWS翻6倍</td></tr>
+    <tr><td>A股映射标的</td><td>新易盛(300502)：光模块核心供应商</td><td>灿芯(688691)：ASIC设计服务；芯原(688521)：IP+设计龙头</td></tr>
+    <tr><td>TAM预测</td><td>40亿→428亿(2020-2024)</td><td>全球ASIC市场2028年或达300亿美元(Broadcom口径)</td></tr>
+    <tr><td>核心差异</td><td>标准化产品、规模效应明显</td><td>高度定制化、服务粘性强、客户锁定效应</td></tr>
+  </table>
+  </div>
+  <div class="rb" style="margin-top:12px"><strong>反一致预期</strong>：市场普遍认为"AI ASIC = 芯原股份(688521)= 龙头"，但忽略了<strong>芯原市值1212亿、灿芯仅82亿</strong>。如果ASIC赛道整体爆发，灿芯的市值弹性远大于芯原。就像新易盛在光模块爆发期的涨幅远超中际旭创——小市值的弹性优势。</div>
+</div>
+
+<!-- ======== 模块5: 技术面·资金面 ======== -->
+<h2>模块 5 · 技术面 · 资金面</h2>
+<div class="card">
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>指标</th><th>灿芯股份 688691</th><th>国芯科技 688262</th></tr>
+    <tr><td>52周区间</td><td>56.58~168.58（跌59%自高点）</td><td>22.51~47.66（跌42%自高点）</td></tr>
+    <tr><td>YTD</td><td class="neg">-32.98%</td><td class="neg">-9.65%</td></tr>
+    <tr><td>近5日</td><td class="pos">+14.11%</td><td class="pos">+14.97%</td></tr>
+    <tr><td>近20日</td><td class="neg">-36.42%</td><td class="neg">-37.68%</td></tr>
+    <tr><td>MACD</td><td>DIF -9.32 / DEA -10.13 / MACD 1.61（刚金叉）</td><td>DIF -2.90 / DEA -3.39 / MACD 0.98（刚金叉）</td></tr>
+    <tr><td>KDJ-J</td><td><span class="chip chip-warn">112.0 超买</span></td><td><span class="chip chip-warn">118.4 超买</span></td></tr>
+    <tr><td>RSI6</td><td>57.0（中性）</td><td>61.1（中性偏强）</td></tr>
+    <tr><td>RSI2</td><td><span class="chip chip-warn">95.4 极度超买</span></td><td><span class="chip chip-warn">97.8 极度超买</span></td></tr>
+    <tr><td>近5日主力净流入</td><td class="neg">-1448万（流出）</td><td class="pos">+4111万（流入）</td></tr>
+    <tr><td>近20日主力净流入</td><td class="neg">-913万（流出）</td><td class="pos">+3558万（流入）</td></tr>
+  </table>
+  </div>
+  <div class="rb" style="margin-top:12px"><strong>技术面判断</strong>：两只都处于"刚金叉+极度超买(RSI2>95)"的短线过热状态。20日暴跌36-37%后快速反弹14%，属于典型的超跌反弹而非趋势反转。MACD刚金叉说明底部开始形成，但RSI2极度超买警示短线回调压力。国芯科技主力资金近20日净流入更强(+3558万 vs 灿芯-913万)，显示机构对国芯的认可度略高于灿芯。</div>
+</div>
+
+<!-- ======== 模块6: 核心逻辑与风险 ======== -->
+<h2>模块 6 · 核心逻辑与风险（含反一致预期审查）</h2>
+
+<div class="card">
+  <h3>灿芯股份——"中国版世芯"的逻辑与风险</h3>
+  <div class="lb"><strong>核心做多逻辑</strong><br>
+  ① <strong>中芯国际ASIC唯一通道</strong>：中芯控股持股18.98%。互联网大厂（阿里/百度/字节）如果要自研AI芯片并使用中芯工艺，灿芯是最优甚至唯一的设计服务通道。2026年预计向中芯采购5亿（占同类采购90%）。<br>
+  ② <strong>参考世芯(3661.TW)</strong>：世芯靠Amazon AWS的ASIC订单，股价在3年内翻了6倍。灿芯能否复制？取决于能否拿下阿里/百度的ASIC大单。<br>
+  ③ <strong>量产业务暴增82.3%</strong>：2026Q1芯片量产业务1.14亿(+82.3%)，验证ASIC项目正从"设计流片"进入"量产交付"阶段——量产是利润率最高的环节。
+  </div>
+  <div class="rb"><strong>关键风险（反一致预期）</strong><br>
+  ① <strong>"中国版世芯"可能是过度类比</strong>：世芯的客户是Amazon AWS（全球最大云厂商），灿芯依赖的主要是国内互联网大厂和中芯国际——生态规模和客户支付能力差距明显。<br>
+  ② <strong>设计业务仍在萎缩</strong>：2026Q1设计业务5876万(-24.6%)——如果新ASIC项目承接不足，量产业务增长只是消化存量订单。<br>
+  ③ <strong>毛利率16.7%太薄</strong>：芯片设计服务应该30%+毛利，16.7%说明要么竞争激烈（被迫降价），要么业务结构不佳（低毛利量产占比过高）。<br>
+  ④ <strong>买楼争议</strong>：亏损状态下花2亿购办公楼，中芯董事反对——治理风险信号。
+  </div>
+</div>
+
+<div class="card">
+  <h3>国芯科技——"AI+量子+汽车"三线并进</h3>
+  <div class="lb"><strong>核心做多逻辑</strong><br>
+  ① <strong>合同负债9.81亿=订单铁证</strong>：来自云侧AI ASIC和高性能CPU定制的量产预付款，在Q1营收+79.5%后不降反增——说明新签订单比消化速度快。<br>
+  ② <strong>三大业务全线翻倍</strong>：汽车+95%、信创+85%、AI+105%——不是某一个板块爆发，是全面反转。<br>
+  ③ <strong>端侧AI前景</strong>：GPNPU SoC(AI PC芯片)进入流片验证，车规级AI MCU(CCRC4XXX)已送样——端侧AI是下一个10倍级赛道。<br>
+  ④ <strong>2026年扭亏明确</strong>：股权激励考核指标，管理层在业绩说明会上明确表态。
+  </div>
+  <div class="rb"><strong>关键风险（反一致预期）</strong><br>
+  ① <strong>现金流极度紧张</strong>：货币资金仅6920万，连续三年经营现金流为负，总负债12.26亿 vs 货币+交易性金融资产约4.36亿——如果收入转化不及时，可能面临融资压力。<br>
+  ② <strong>盈利改善可能比市场预期慢</strong>：研发费率63%，即使营收翻倍到10亿，利润可能仅勉强打平。市场给92亿市值定价的是"扭亏+持续高增长"，而非"扭亏即止"。<br>
+  ③ <strong>华为合作"澄清"信号</strong>：公司明确表示"与华为在AI芯片领域尚无合作"——这是给"华为AI ASIC"概念炒作者泼冷水。
+  </div>
+</div>
+
+<!-- ======== 模块7: 可比估值 ======== -->
+<h2>模块 7 · 可比估值</h2>
+<div class="card">
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>可比公司</th><th>市值</th><th>PS-TTM</th><th>备注</th></tr>
+    <tr><td>芯原股份 688521</td><td>1212亿</td><td>~20x</td><td>AI ASIC设计服务龙头，2026新签订单82亿</td></tr>
+    <tr><td>世芯-KY 3661.TW</td><td>~1800亿</td><td>~8x</td><td>全球ASIC设计服务标杆，AWS为核心客户</td></tr>
+    <tr><td><strong>灿芯股份 688691</strong></td><td><strong>82亿</strong></td><td><strong>~10.8x</strong></td><td>对标世芯/芯原存在明显折价——小市值折价</td></tr>
+    <tr><td><strong>国芯科技 688262</strong></td><td><strong>92亿</strong></td><td><strong>~15.3x</strong></td><td>PS高于灿芯——市场给"扭亏+三线并进"的溢价</td></tr>
+    <tr><td>翱捷科技 688220</td><td>470亿</td><td>~15x</td><td>AI IoT芯片</td></tr>
+  </table>
+  </div>
+  <div class="lb" style="margin-top:12px"><strong>估值核心逻辑</strong>：两只标的都是亏损状态，不能用PE估值，只能用PS（市销率）和历史区间对标。灿芯PS 10.8x vs 芯原20x，若ASIC赛道β起来，灿芯PS修复到15-20x对应市值120-160亿（较当前+46~95%）。国芯PS 15.3x已在合理区间，需要营收增长驱动而非估值扩张。</div>
+</div>
+
+<!-- ======== 模块8: 三级情景 ======== -->
+<h2>模块 8 · 三级情景分析</h2>
+
+<div class="card">
+  <h3>灿芯股份 688691 —— 目标市值情景</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>情景</th><th>假设</th><th>估值逻辑</th></tr>
+    <tr><td><span class="chip chip-up">乐观 🟢</span></td><td>2027年营收15亿(ASIC订单爆发)+扭亏+世芯模式验证<br>概率~20%</td><td>PS 15x → 225亿<br>较当前82亿 <strong>+174%</strong></td></tr>
+    <tr><td><span class="chip chip-info">中性 🟡</span></td><td>2027年营收10亿(Q1营收翻倍趋势延续)+接近盈亏平衡<br>概率~50%</td><td>PS 12x → 120亿<br>较当前82亿 <strong>+46%</strong></td></tr>
+    <tr><td><span class="chip chip-warn">悲观 🔴</span></td><td>设计业务萎缩+ASIC订单不及预期<br>概率~30%</td><td>PS 6x(回归传统IC设计估值) → 45亿<br>较当前82亿 <strong>-45%</strong></td></tr>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>国芯科技 688262 —— 目标市值情景</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <tr><th>情景</th><th>假设</th><th>估值逻辑</th></tr>
+    <tr><td><span class="chip chip-up">乐观 🟢</span></td><td>2027年营收16亿(机构预测)+扭亏+端侧AI芯片放量<br>概率~20%</td><td>PS 12x → 192亿<br>较当前92亿 <strong>+109%</strong></td></tr>
+    <tr><td><span class="chip chip-info">中性 🟡</span></td><td>2027年营收11亿(机构预测中位数)+微利0.5亿<br>概率~50%</td><td>PS 10x → 110亿<br>较当前92亿 <strong>+20%</strong></td></tr>
+    <tr><td><span class="chip chip-warn">悲观 🔴</span></td><td>扭亏延迟至2028年+现金流紧张→再融资稀释<br>概率~30%</td><td>PS 5x → 55亿<br>较当前92亿 <strong>-40%</strong></td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ======== 模块9: 数据溯源 ======== -->
+<h2>模块 9 · 数据溯源与版本追踪</h2>
+<div class="card">
+  <table class="f3">
+    <tr><th>数据类别</th><th>来源</th><th>时点</th></tr>
+    <tr><td>行情/市值/PE/PB</td><td>WeStock MCP 实时数据</td><td>2026-08-07 收盘</td></tr>
+    <tr><td>财务数据</td><td>WeStock MCP (公司公告口径)</td><td>2025年报 + 2026Q1</td></tr>
+    <tr><td>技术指标</td><td>WeStock MCP data_technical</td><td>2026-08-07</td></tr>
+    <tr><td>资金流向</td><td>WeStock MCP data_fund_flow</td><td>2026-08-07</td></tr>
+    <tr><td>在手订单/合同负债</td><td>公司公告(投资者关系记录/季报)</td><td>2026-03-31</td></tr>
+    <tr><td>ASIC订单预测</td><td>雪球/市场传闻</td><td>需核实原文</td></tr>
+    <tr><td>机构盈利预测</td><td>中邮/东北证券研报</td><td>2026-06</td></tr>
+    <tr><td>世芯对标逻辑</td><td>公开市场信息+研报</td><td>需核实原文</td></tr>
+    <tr><td>版本</td><td>V2.1 框架 / 生成 2026-08-09</td><td>—</td></tr>
+  </table>
+</div>
+
+<!-- ======== 最终结论 ======== -->
+<div class="summary-box">
+  <h3 style="color:#fff;margin-top:0">最终判断：二选一建议</h3>
+  <p style="color:#cbd5e1;font-size:13px;line-height:2;">
+    <strong style="color:#fbbf24;">灿芯股份(688691)更接近"新易盛基因"</strong>——市值最小(82亿)、卡位最独(中芯ASIC唯一通道)、赛道对标最清晰(世芯模式)。但毛利率16.7%太薄+设计业务萎缩是硬伤。需要等中报验证量产业务能否持续高增+新ASIC项目承接。<br><br>
+    <strong style="color:#60a5fa;">国芯科技(688262)更均衡但弹性略低</strong>——合同负债9.81亿订单最扎实、三线翻倍增长最漂亮、2026扭亏确定性最高。但92亿市值起点比灿芯高、现金流紧张是真实风险、聚焦性不如灿芯(非纯ASIC标的)。<br><br>
+    <strong style="color:#fbbf24;">择时是关键——两只现在都不该买。</strong>RSI2>95极度超买，5日反弹14-15%是短线过热。耐心等回踩MA60——灿芯56-60元、国芯22-24元——不追高，不因"怕错过"而破坏既有纪律。<br><br>
+    <strong style="color:#60a5fa;">试探仓位建议</strong>：等回调到位后，科创板200股下限，各≤3万（共6万，占50万现金的12%）先建观察仓。中报验证后再决定是否加仓。<br><br>
+    <strong style="color:#fbbf24;">最后一句坦诚提醒</strong>：新易盛从15涨到150的现象级回报，是一个时代窗口+公司执行力的叠加产物——无法复制，只能寻找"大概率事件"。灿芯和国芯都是"AI ASIC赛道早期阶段的小市值公司"，这意味着巨大的上行空间+同样巨大的下行风险。拿今天的50万去押一只小市值公司10年10倍，不是投资策略——是赌博。建议的策略是<strong>"观察仓验证+逻辑确认后逐步加仓"</strong>。
+  </p>
+</div>
+
+<p style="font-size:11px;color:var(--sub);text-align:center;margin-top:32px">
+  免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。V2.1 框架 2026-08-09 生成
+</p>
+</div>
+</body>
+</html>
