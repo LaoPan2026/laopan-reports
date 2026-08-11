@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W32周二盘前简报｜光通信美股暴跌 持仓压力测试</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root {
+  --up: #ff3b3b; --down: #1ed890;
+  --bg: #f8f9fb; --card: #fff; --text: #1a1a2e; --muted: #555;
+  --border: #e0e4ea; --accent: #3b5998;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.content { max-width: 1120px; margin: 0 auto; padding: 24px 20px; }
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 17px; font-weight: 600; margin: 28px 0 12px; color: #2c3e6b; }
+h3 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #444; }
+.card { background: var(--card); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; border: 1px solid var(--border); }
+.meta { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+.hero { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.metric { flex: 1 1 140px; background: var(--card); border-radius: 10px; padding: 14px 16px; border: 1px solid var(--border); text-align: center; }
+.metric .label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.metric .val { font-size: 20px; font-weight: 700; }
+.cols { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; }
+.cols > div { flex: 1 1 300px; }
+.section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7a8a9e; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 8px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tag-red { background: #ffe5e5; color: var(--up); }
+.tag-green { background: #e5fdf2; color: var(--down); }
+.tag-info { background: #e5edff; color: var(--accent); }
+.tag-warn { background: #fff3e0; color: #e67e22; }
+.up,.pos { color: var(--up); font-weight: 700; white-space: nowrap; }
+.down,.neg { color: var(--down); font-weight: 700; white-space: nowrap; }
+.note { font-size: 12px; color: var(--muted); margin-top: 8px; padding: 10px 14px; background: #f0f4f8; border-radius: 8px; }
+.conclusion { background: #fff8e1; border-left: 4px solid #f0a030; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 13px; }
+.conclusion strong { color: #c67a0a; }
+.disclaimer { font-size: 11px; color: #999; margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--border); }
+th,td { vertical-align: top; overflow: hidden; word-break: break-word; overflow-wrap: anywhere; padding: 10px 10px; }
+th { font-size: 12px; font-weight: 700; color: #5a6a80; background: rgba(155,165,185,0.06); text-align: left; white-space: nowrap; }
+td { font-size: 13px; text-align: left; font-variant-numeric: tabular-nums; }
+tbody tr:nth-child(even) { background: rgba(155,165,185,0.04); }
+table { width: 100%; border-collapse: collapse; }
+
+table.f5 { table-layout: fixed; }
+table.f5 th:nth-child(1),table.f5 td:nth-child(1) { width: 16%; text-align: left; }
+table.f5 th:nth-child(2),table.f5 td:nth-child(2) { width: 14%; text-align: right; }
+table.f5 th:nth-child(3),table.f5 td:nth-child(3) { width: 10%; text-align: center; }
+table.f5 th:nth-child(4),table.f5 td:nth-child(4) { width: 10%; text-align: center; }
+table.f5 th:nth-child(5),table.f5 td:nth-child(5) { width: 50%; text-align: left; }
+
+table.f4.map { table-layout: fixed; }
+table.f4.map th:nth-child(1),table.f4.map td:nth-child(1) { width: 15%; text-align: left; }
+table.f4.map th:nth-child(2),table.f4.map td:nth-child(2) { width: 23%; text-align: left; }
+table.f4.map th:nth-child(3),table.f4.map td:nth-child(3) { width: 12%; text-align: center; }
+table.f4.map th:nth-child(4),table.f4.map td:nth-child(4) { width: 50%; text-align: left; }
+
+table.f4.cal { table-layout: fixed; }
+table.f4.cal th:nth-child(1),table.f4.cal td:nth-child(1) { width: 12%; text-align: center; white-space: nowrap; }
+table.f4.cal th:nth-child(2),table.f4.cal td:nth-child(2) { width: 26%; text-align: left; }
+table.f4.cal th:nth-child(3),table.f4.cal td:nth-child(3) { width: 12%; text-align: center; }
+table.f4.cal th:nth-child(4),table.f4.cal td:nth-child(4) { width: 50%; text-align: left; }
+
+table.f3 { table-layout: fixed; }
+table.f3 th:nth-child(1),table.f3 td:nth-child(1) { width: 22%; text-align: left; }
+table.f3 th:nth-child(2),table.f3 td:nth-child(2) { width: 18%; text-align: center; }
+table.f3 th:nth-child(3),table.f3 td:nth-child(3) { width: 60%; text-align: left; }
+
+@media (max-width: 640px) {
+  body { font-size: 13px; }
+  table { font-size: 11px; }
+  th,td { padding: 6px 6px; }
+  .table-wrap table { min-width: 320px; }
+  .hero { gap: 8px; }
+  .metric { flex: 1 1 120px; padding: 10px 12px; }
+  .metric .val { font-size: 17px; }
+  .content { padding: 12px 12px; }
+  .card { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="content">
+
+<h1>W32 周二盘前简报</h1>
+<div class="meta">2026-08-11 09:10 | 光通信美股暴跌，今天A股压力测试</div>
+
+<div class="conclusion">
+<strong>结论先行</strong>：昨夜光通信美股惨跌——COHR -14%、LITE -8%、费城半导体 -2.94%。汇绿生态面临本周最大外部压力测试。但不构成持仓卖出信号：上周净流入664亿机构资金不可能一天出清；中概股金龙指数逆势+1.65%、阿里云扩产是正面催化。关键看今日光通信板块低开后承接力度——若开盘半小时内缩量企稳而非放量杀跌，视为上周涨21%后的正常获利回吐，非趋势破坏。
+</div>
+
+<div class="card">
+<div class="section-title">美股映射链收盘速览（8/10周一）</div>
+<div class="table-wrap">
+<table class="f5">
+<thead>
+<tr><th>标的</th><th>收盘价</th><th>涨跌</th><th>5日</th><th>关键信号</th></tr>
+</thead>
+<tbody>
+<tr><td>英伟达</td><td class="pos">217.55</td><td><span class="neg">-2.86%</span></td><td><span class="pos">+5.3%</span></td><td>5000亿联合融资疑云拖累；盘后确认与Apollo/黑石等战略合作</td></tr>
+<tr><td>迈威尔</td><td class="pos">208.56</td><td><span class="neg">-4.65%</span></td><td><span class="pos">+7.6%</span></td><td>费城半导体全线走低，MRVL为跌幅前三</td></tr>
+<tr><td><b>Coherent</b></td><td class="pos">325.15</td><td><span class="neg"><b>-14.24%</b></span></td><td><span class="pos">+12.8%</span></td><td><b>光通信领跌龙头，日内振幅16.22%</b>；周三盘后财报</td></tr>
+<tr><td><b>Lumentum</b></td><td class="pos">813.51</td><td><span class="neg"><b>-8.61%</b></span></td><td><span class="pos">+4.3%</span></td><td><b>今晚盘后Q4财报</b>（EPS $2.89/Rev $987M，隐含波动13.91%）</td></tr>
+<tr><td>费半指数</td><td>—</td><td><span class="neg">-2.94%</span></td><td>—</td><td>30只成分股全线走低</td></tr>
+<tr><td>纳指</td><td>26,605</td><td><span class="neg">-0.32%</span></td><td><span class="pos">+2.7%</span></td><td>金龙指数+1.65%逆势走强</td></tr>
+<tr><td>WTI原油</td><td>$81.5</td><td><span class="pos">+5%</span></td><td>—</td><td>霍尔木兹海峡局势反复，油价大涨</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<div class="section-title">暴跌根因拆解：三点叠加</div>
+
+<p style="font-size:13px;margin-bottom:12px;">
+<b>1. 英伟达"循环融资"疑云</b> — 英伟达联合Apollo/黑石/贝莱德等6家金融巨头，计划为AI基建筹集5000亿美元。市场担忧这种"与生态伙伴深度绑定"的融资模式推高整体估值，部分投资者质疑需求真实性。NVDA -2.9%，整个AI硬件链被拖累。
+</p>
+<p style="font-size:13px;margin-bottom:12px;">
+<b>2. 光通信获利了结</b> — 上周COHR/LITE分别涨13%和6%，AAOI财报引爆的涨幅在周一集中兑现。社交媒体上"Optics vs Memory"争论加剧获利盘抛售意愿。COHR日内从开盘383跌至收盘325，振幅16.2%。
+</p>
+<p style="font-size:13px;margin-bottom:12px;">
+<b>3. 油价大涨压制宽松预期</b> — 霍尔木兹海峡局势反复，油价涨5%。此前美债收益率下行的逻辑被油价上涨打断，通胀预期回升→加息概率走高→成长股估值承压。
+</p>
+<p style="font-size:13px;margin-bottom:12px;">
+<b>4. 英特尔150亿美元增发</b> — 英特尔1971年上市以来首次公开增发，股价-4%，拖累整体半导体情绪。
+</p>
+</div>
+
+<div class="card">
+<div class="section-title">持仓影响映射</div>
+<div class="table-wrap">
+<table class="f4 map">
+<thead>
+<tr><th>持仓</th><th>映射标的</th><th>影响</th><th>逻辑与应对</th></tr>
+</thead>
+<tbody>
+<tr><td><b>汇绿生态</b></td><td>COHR/LITE</td><td><span class="tag tag-red">强压力</span></td><td>COHR -14%+LITE -8%直接映射。今日大概率低开，关键看40元支撑（20日线）能否守住。守住=正常获利回吐；跌破=短线弱势确认。不加仓，观察为主</td></tr>
+<tr><td><b>罗博特科</b></td><td>NVDA/MRVL</td><td><span class="tag tag-warn">中等压力</span></td><td>NVDA -3%+MRVL -5%，AI硬件链承压。但昨日缩量回调（867万 vs 1019万），不是恐慌出货。做T机会：若低开创年内新低附近（475-480），买200股反抽490-495</td></tr>
+<tr><td><b>澜起科技</b></td><td>MRVL</td><td><span class="tag tag-warn">中等压力</span></td><td>MRVL -5%情绪传导。但澜起是接口芯片≠存储颗粒，逻辑独立。200-205为双底支撑带，若今日触及可小试做T</td></tr>
+<tr><td>星环科技</td><td>AI软件</td><td><span class="tag tag-info">中性</span></td><td>AI软件端美股分歧大（PLTR +1.9%、微软 +1.2%），非统一暴跌。星环属数据平台（Snowflake属性），不跟纯SaaS波动</td></tr>
+<tr><td>软通动力</td><td>AI服务</td><td><span class="tag tag-info">中性</span></td><td>阿里云大幅扩产是正面信号。软通做政企数字化+AI服务，间接受益国内算力建设</td></tr>
+<tr><td>三祥新材</td><td>—</td><td><span class="tag tag-info">独立</span></td><td>固态电池/锆材与美股无直接映射，独立走势</td></tr>
+<tr><td>泰和新材</td><td>油价</td><td><span class="tag tag-red">偏利好</span></td><td>油价+5%利好化工品涨价预期，芳纶/氨纶成本传导需具体跟踪</td></tr>
+<tr><td>华峰化学</td><td>油价</td><td><span class="tag tag-red">偏利好</span></td><td>化工板块整体情绪受益油价上涨</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="cols">
+<div class="card">
+<div class="section-title">今日事件日历</div>
+<div class="table-wrap">
+<table class="f4 cal">
+<thead>
+<tr><th>时间</th><th>事件</th><th>重要</th><th>影响</th></tr>
+</thead>
+<tbody>
+<tr><td>09:30</td><td>A股开盘</td><td><span class="tag tag-red">高</span></td><td>光通信低开幅度=日内风向标。汇绿若低开>3%需警惕；若低开2%内快速拉回=承接有力</td></tr>
+<tr><td>盘中</td><td>阿里云扩产</td><td><span class="tag tag-info">中</span></td><td>数据中心100天交付+成本降10%，利好算力/AIDC/光模块产业链</td></tr>
+<tr><td>盘中</td><td>工业富联中报</td><td><span class="tag tag-info">中</span></td><td>AI服务器龙头业绩，影响AI硬件链情绪</td></tr>
+<tr><td><b>盘后</b></td><td><b>Lumentum Q4财报</b></td><td><span class="tag tag-red"><b>极高</b></span></td><td>EPS $2.89/营收$987M。Q1指引是否超$10亿=汇绿映射直接验证</td></tr>
+<tr><td>盘后</td><td>超微电脑财报</td><td><span class="tag tag-info">中</span></td><td>AI服务器需求验证</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<div class="section-title">今日正面催化</div>
+<div class="table-wrap">
+<table class="f3">
+<thead>
+<tr><th>事件</th><th>方向</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>阿里云扩产</td><td><span class="tag tag-red">利好</span></td><td>数据中心100天交付+成本降10%+全球产能翻3倍，直接利好算力/光模块/AIDC</td></tr>
+<tr><td>中概股逆势</td><td><span class="tag tag-red">利好</span></td><td>金龙指数+1.65%，阿里+3%，外资未撤离中概</td></tr>
+<tr><td>央行十五五规划</td><td><span class="tag tag-red">利好</span></td><td>维持流动性合理充裕、支持资本市场、加大科创融资</td></tr>
+<tr><td>韩国5万亿半导体基金</td><td><span class="tag tag-info">中性偏多</span></td><td>全球半导体材料/零部件竞争升级，利好国产替代</td></tr>
+<tr><td>英伟达盘后确认合作</td><td><span class="tag tag-red">利好</span></td><td>与Apollo/黑石等6家战略合作，5000亿AI基建融资方案获确认</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="section-title">今日三个关键盯盘点</div>
+<p style="font-size:13px;margin-bottom:10px;">
+<b>1. 汇绿生态开盘承接力度</b> — 今日最强外部压力测试。若低开3%以内+10:00前拉回平盘=强承接；若低开放量杀跌超5%=短线弱势确认。不以今日涨跌论逻辑，以量价关系判断筹码换手。
+</p>
+<p style="font-size:13px;margin-bottom:10px;">
+<b>2. 科创50能否守住20日线（约1715点）</b> — 昨日V型收复、今天面临美股科技暴跌考验。守住=突破确认；跌破=假突破，短期回踩加深。
+</p>
+<p style="font-size:13px;margin-bottom:10px;">
+<b>3. 光通信板块内部分化</b> — 中际旭创/新易盛是否跟跌？半导体设备（中微/北方华创）是否延续昨日净流入？如果资金继续从光模块切向设备材料，说明不是全线逃离，是科技内部调仓。
+</p>
+</div>
+
+<div class="note">
+<b>本周关键事件速览</b><br>
+8/11今晚：Lumentum财报（盘后）+ 超微电脑 + CoreWeave<br>
+8/12周三：美国7月CPI（20:30）+ Coherent财报（盘后）+ 腾讯Q2<br>
+8/13周四：美国PPI + 中芯国际Q2 + 华虹半导体<br>
+8/14周五：应用材料财报（盘后）+ 海光信息/茅台中报<br>
+8/15周五：A股126家集中放榜（含工业富联/江波龙）
+</div>
+
+<div id="chart1" style="width:100%;height:300px;margin-top:16px;"></div>
+
+</div>
+
+<div class="disclaimer">
+<b>免责声明</b>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。<br>
+数据来源：Wind/东方财富/证券时报/财联社（★★★）｜生成时间：2026-08-11 09:10
+</div>
+
+<script>
+(function(){
+  var c=document.getElementById('chart1');
+  var ch=echarts.init(c);
+  var data=[
+    {name:'NVDA',val:-2.86,color:'#1ed890'},
+    {name:'MRVL',val:-4.65,color:'#1ed890'},
+    {name:'COHR',val:-14.24,color:'#1ed890'},
+    {name:'LITE',val:-8.61,color:'#1ed890'},
+    {name:'ARM',val:-5.21,color:'#1ed890'},
+    {name:'道指',val:-0.11,color:'#1ed890'},
+    {name:'纳指',val:-0.32,color:'#1ed890'},
+    {name:'金龙指数',val:1.65,color:'#ff3b3b'}
+  ];
+  ch.setOption({
+    title:{text:'美股8/10涨跌幅（%）',left:'center',textStyle:{fontSize:14,color:'#333'}},
+    tooltip:{trigger:'axis'},
+    grid:{left:'20%',right:'10%',top:'15%',bottom:'5%'},
+    xAxis:{type:'value',axisLabel:{fontSize:11}},
+    yAxis:{type:'category',inverse:true,data:data.map(function(d){return d.name;}),axisLabel:{fontSize:11,fontWeight:'bold'}},
+    series:[{
+      type:'bar',data:data.map(function(d,i){
+        return {value:d.val,itemStyle:{color:d.color}};
+      }),
+      label:{show:true,position:'right',fontSize:11,formatter:function(p){return p.value+'%';},color:'#333'}
+    }]
+  });
+  window.addEventListener('resize',function(){ch.resize();});
+})();
+</script>
+</body>
+</html>
