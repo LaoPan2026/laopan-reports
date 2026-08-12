@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W33周三盘后复盘 | 2026-08-12</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{--bg:#f5f7fa;--card:#ffffff;--text:#1a1a2e;--muted:#5a5a6e;--border:#dde3ec;--up:#ff3b3b;--down:#1ed890;--accent:#4285F4;--accent2:#FBBC05;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.65}
+  .wrap{max-width:1120px;margin:0 auto;padding:16px}
+  .hero{background:linear-gradient(135deg,#1a1a2e 0%,#2d3748 100%);border-radius:10px;padding:20px 22px;color:#fff;margin-bottom:14px}
+  .hero h1{font-size:17px;font-weight:700;margin-bottom:8px}
+  .hero .summary{font-size:13px;color:#c8d0e0;line-height:1.7}
+  .hero .summary b{color:#fff}
+  .card{background:var(--card);border-radius:8px;padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .section-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--accent);display:inline-block}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:8px 10px;vertical-align:top;overflow:hidden}
+  th{font-size:12px;font-weight:700;color:var(--muted);background:rgba(155,165,185,.06)}
+  td{color:var(--text)}
+  tbody tr:nth-child(even){background:rgba(0,0,0,.015)}
+  .up,.pos{color:var(--up);font-weight:700;white-space:nowrap}
+  .down,.neg{color:var(--down);font-weight:700;white-space:nowrap}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+  .tag-red{background:#fff0f0;color:var(--up)}
+  .tag-green{background:#f0fff5;color:var(--down)}
+  .tag-blue{background:#f0f5ff;color:var(--accent)}
+  .tag-yellow{background:#fffbeb;color:#b45309}
+  .muted{color:var(--muted);font-size:12px}
+  .note{background:#fffbeb;border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12.5px;color:#744210;margin-top:10px}
+  .metric{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+  .metric:last-child{border-bottom:none}
+  .metric .label{color:var(--muted);font-size:12px}
+  .metric .value{font-size:13px;font-weight:700}
+  .cols2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .highlight{background:var(--bg);border-radius:6px;padding:10px 12px;margin-top:8px;font-size:12.5px}
+  @media(max-width:640px){body{font-size:13px}.wrap{padding:10px}.cols2{grid-template-columns:1fr}.hero h1{font-size:15px}table{font-size:11.5px}th,td{padding:6px}}
+  table.f7{table-layout:fixed}
+  table.f7 th:nth-child(1),table.f7 td:nth-child(1){width:10%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  table.f7 th:nth-child(2),table.f7 td:nth-child(2){width:8%;text-align:left}
+  table.f7 th:nth-child(3),table.f7 td:nth-child(3){width:12%;text-align:right;font-variant-numeric:tabular-nums}
+  table.f7 th:nth-child(4),table.f7 td:nth-child(4){width:12%;text-align:right;font-variant-numeric:tabular-nums}
+  table.f7 th:nth-child(5),table.f7 td:nth-child(5){width:10%;text-align:right;font-variant-numeric:tabular-nums}
+  table.f7 th:nth-child(6),table.f7 td:nth-child(6){width:10%;text-align:right;font-variant-numeric:tabular-nums}
+  table.f7 th:nth-child(7),table.f7 td:nth-child(7){width:14%;text-align:right;font-variant-numeric:tabular-nums}
+  table.f7 th:nth-child(8),table.f7 td:nth-child(8){width:24%;text-align:left}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>W33 周三盘后复盘 | 2026-08-12</h1>
+  <div class="summary">
+    <b>科技链强势修复，持仓单日+2.10%跑赢大盘。</b>
+    创业板指+1.49%领涨，AI硬件/光通信/存储链资金大幅回流。
+    罗博特科+5.53%（机构净买5.4亿）、澜起+4.22%（机构净买10亿）、汇绿+4.65%——三只核心仓位全线上涨。
+    软通-1.81%（主力净流出1.5亿）是唯一逆势标的。
+    大盘浪型上仍处1浪3末期→1浪4过渡阶段，周四策略以锁定利润+控仓为主。
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">一、市场概况</div>
+  <div class="table-wrap">
+  <table style="table-layout:fixed">
+    <thead>
+      <tr><th style="width:20%;text-align:left">指数</th><th style="width:18%;text-align:right">收盘</th><th style="width:14%;text-align:right">涨跌</th><th style="width:14%;text-align:right">涨跌幅</th><th style="width:16%;text-align:right">成交额</th><th style="width:18%;text-align:right">振幅</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>上证指数</b></td><td style="text-align:right">3,946.68</td><td style="text-align:right" class="pos">+12.58</td><td style="text-align:right" class="pos">+0.32%</td><td style="text-align:right">9,861亿</td><td style="text-align:right">0.59%</td></tr>
+      <tr><td><b>深证成指</b></td><td style="text-align:right">14,414.43</td><td style="text-align:right" class="pos">+154.99</td><td style="text-align:right" class="pos">+1.09%</td><td style="text-align:right">11,663亿</td><td style="text-align:right">1.61%</td></tr>
+      <tr><td><b>创业板指</b></td><td style="text-align:right">3,602.08</td><td style="text-align:right" class="pos">+52.92</td><td style="text-align:right" class="pos">+1.49%</td><td style="text-align:right">5,615亿</td><td style="text-align:right">2.38%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="muted">数据来源：Wind，置信度★★★</div>
+  <div class="note">
+    <b>关键定性：</b>今日深强沪弱，创业板指+1.49%大幅跑赢上证+0.32%，说明资金在向中小盘成长股回流。两市合计成交约2.15万亿，量能充足。这与"1浪3末期科技链还有惯性上冲"的判断一致。
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">二、持仓涨跌全景</div>
+  <div class="table-wrap">
+  <table class="f7">
+    <thead>
+      <tr><th>代码</th><th>名称</th><th>收盘</th><th>涨跌</th><th>涨跌幅</th><th>振幅</th><th>成交额</th><th>今日点评</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>300757</b></td><td>罗博特科</td><td class="pos">515.83</td><td class="pos">+27.03</td><td class="pos">+5.53%</td><td>8.58%</td><td>37.5亿</td><td>机构净买5.4亿，占成交额64.8%。最高527.96，做T土壤极佳</td></tr>
+      <tr><td><b>001267</b></td><td>汇绿生态</td><td class="pos">41.38</td><td class="pos">+1.84</td><td class="pos">+4.65%</td><td>6.70%</td><td>20.9亿</td><td>Lumentum财报+OCS催化共振，机构净买0.95亿</td></tr>
+      <tr><td><b>688008</b></td><td>澜起科技</td><td class="pos">215.43</td><td class="pos">+8.73</td><td class="pos">+4.22%</td><td>4.66%</td><td class="pos">94.4亿</td><td>成交额创近期天量，机构净买10.0亿。存储链+MRVL映射修复</td></tr>
+      <tr><td><b>603663</b></td><td>三祥新材</td><td class="pos">41.31</td><td class="pos">+0.86</td><td class="pos">+2.13%</td><td>3.63%</td><td>8.7亿</td><td>跟随科技链温和上涨，OCS锆材料期权待验证</td></tr>
+      <tr><td><b>002254</b></td><td>泰和新材</td><td class="pos">12.79</td><td class="pos">+0.23</td><td class="pos">+1.83%</td><td>2.63%</td><td>2.6亿</td><td>化工防守属性，波动较小</td></tr>
+      <tr><td><b>002064</b></td><td>华峰化学</td><td>11.53</td><td>0.00</td><td>0.00%</td><td>3.04%</td><td>3.5亿</td><td>平盘震荡，成交萎缩</td></tr>
+      <tr><td><b>688031</b></td><td>星环科技-U</td><td class="neg">112.76</td><td class="neg">-1.24</td><td class="neg">-1.09%</td><td>3.68%</td><td>5.9亿</td><td>软件链受中概-2.94%情绪压制，小幅回调</td></tr>
+      <tr><td><b>301236</b></td><td>软通动力</td><td class="neg">40.07</td><td class="neg">-0.74</td><td class="neg">-1.81%</td><td>3.63%</td><td>9.6亿</td><td>主力净流出1.5亿，机构-大户双出</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="muted">数据来源：Wind，置信度★★★。持仓数量按8/8截图口径；周二新增罗博200股/澜起500股未单独拆分</div>
+
+  <div class="highlight">
+    <b>今日市值变动估算（按8/8持仓口径）：</b><br>
+    罗博 +21,624 | 汇绿 +10,856 | 澜起 +3,492 | 三祥 +3,285 | 泰和 +4,600 | 华峰 0 | 星环 -2,924 | 软通 -3,700<br>
+    <b>合计 +37,233元（+2.10%），跑赢上证0.32%、跑赢创业板1.49%</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">三、资金面透视</div>
+  <div class="table-wrap">
+  <table style="table-layout:fixed">
+    <thead>
+      <tr><th style="width:14%;text-align:left">标的</th><th style="width:18%;text-align:right">主力净流入</th><th style="width:14%;text-align:right">流入占比</th><th style="width:18%;text-align:right">机构净流入</th><th style="width:18%;text-align:right">大户净流入</th><th style="width:18%;text-align:right">散户净流入</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>罗博特科</b></td><td style="text-align:right" class="pos">+5.42亿</td><td style="text-align:right" class="pos">64.8%</td><td style="text-align:right" class="pos">+5.15亿</td><td style="text-align:right" class="pos">+0.27亿</td><td style="text-align:right" class="pos">+0.01亿</td></tr>
+      <tr><td><b>澜起科技</b></td><td style="text-align:right" class="pos">+10.07亿</td><td style="text-align:right" class="pos">41.0%</td><td style="text-align:right" class="pos">+10.04亿</td><td style="text-align:right" class="pos">+0.02亿</td><td style="text-align:right" class="neg">-0.01亿</td></tr>
+      <tr><td><b>汇绿生态</b></td><td style="text-align:right" class="pos">+1.28亿</td><td style="text-align:right" class="pos">51.4%</td><td style="text-align:right" class="pos">+0.95亿</td><td style="text-align:right" class="pos">+0.34亿</td><td style="text-align:right" class="pos">+0.05亿</td></tr>
+      <tr><td><b>软通动力</b></td><td style="text-align:right" class="neg">-1.54亿</td><td style="text-align:right" class="neg">-48.5%</td><td style="text-align:right" class="neg">-0.40亿</td><td style="text-align:right" class="neg">-1.13亿</td><td style="text-align:right" class="neg">-0.04亿</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="muted">数据来源：Wind，置信度★★★</div>
+  <div class="note">
+    <b>关键信号：</b><br>
+    1. <b>罗博+澜起+汇绿三只核心仓位今日机构合计净流入16.2亿</b>——这不是散户跟风，是机构在主动配置AI硬件/光通信/存储链。<br>
+    2. 澜起成交额94.4亿创近期天量，机构净买10亿占成交额41%——典型的大资金建仓特征。<br>
+    3. 软通是唯一机构+大户双流出的标的，资金在从软件链向硬件链迁移。<br>
+    4. <span class="tag tag-yellow">注意</span>：机构大额流入发生在1浪3末期，也可能是"拉高出货"的前奏，需配合明日前半小时量能验证。
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">四、波浪理论跟踪</div>
+  <div class="cols2">
+    <div>
+      <div class="metric"><span class="label">当前位置</span><span class="value">1浪3末期 → 1浪4过渡</span></div>
+      <div class="metric"><span class="label">上证关键位</span><span class="value">3,864（跌破确认1浪4）</span></div>
+      <div class="metric"><span class="label">今日收盘</span><span class="value">3,946.68</span></div>
+      <div class="metric"><span class="label">偏离关键位</span><span class="value" class="pos">+82点（+2.1%）</span></div>
+    </div>
+    <div>
+      <div class="metric"><span class="label">创业板指</span><span class="value">3,602.08（创阶段新高）</span></div>
+      <div class="metric"><span class="label">科创50</span><span class="value">随存储/半导体强势</span></div>
+      <div class="metric"><span class="label">量能状态</span><span class="value">2.15万亿（充沛）</span></div>
+      <div class="metric"><span class="label">明日变量</span><span class="value">美国CPI + 今夜美股</span></div>
+    </div>
+  </div>
+  <div class="note">
+    <b>波浪推演：</b>今日深创指创新高，但上证未创新高，印证"部分指数1浪3末期、部分已进入1浪4"的分化判断。
+    科技链今日大涨更像1浪3的<b>最后一冲</b>而非新一轮主升开启——机构大额流入+天量成交，是阶段性高潮的典型特征。
+    <b>策略含义：不追涨，锁定利润，等1浪4回调后再加仓。</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">五、明日策略建议</div>
+  <div style="font-size:13px;line-height:1.8">
+    <p><b>1. 罗博特科（300757）</b></p>
+    <p>今日+5.53%振幅8.58%，最高527.96。<span class="tag tag-yellow">关键</span>：周二484元买入的200股，今日收盘515.83已浮盈+6.4%。</p>
+    <p>→ <b>建议：明日若高开过520，先止盈T出这200股</b>（利润锁定约6,400-7,000元）；若低开在505附近，持有不动等反抽。</p>
+    <p><b>2. 澜起科技（688008）</b></p>
+    <p>今日+4.22%，成交额94.4亿天量，机构净买10亿。周二起新增的500股（约103,350元成本）。</p>
+    <p>→ <b>建议：明日若冲高至220+，可T出部分新增仓位</b>；若回调至210以下，持有不动。400股底仓长期不动。</p>
+    <p><b>3. 汇绿生态（001267）</b></p>
+    <p>今日+4.65%，Lumentum+OCS双催化。最高41.80，收盘41.38。</p>
+    <p>→ <b>建议：明日若冲高42.5+，可减1/3（约1,960股）</b>做T；回调40以下可接回。618亿市值目标属中长期逻辑，不急于一次打满。</p>
+    <p><b>4. 软通动力（301236）</b></p>
+    <p>今日-1.81%，机构+大户双流出。软件链短期承压。</p>
+    <p>→ <b>建议：持有不动，不补仓。</b>等1浪4走完+中概情绪修复后再评估。</p>
+    <p><b>5. 三祥新材（603663）</b></p>
+    <p>今日+2.13%，跟随科技链温和上涨。</p>
+    <p>→ <b>建议：持有不动。</b>OCS压电陶瓷逻辑待验证，不追高。</p>
+    <p><b>6. 泰和新材 / 华峰化学</b></p>
+    <p>→ <b>建议：化工防守仓位持有不动，不调仓。</b>1浪4回调中化工相对抗跌。</p>
+  </div>
+
+  <div class="highlight">
+    <b>仓位管理原则：</b><br>
+    当前现金约50万。1浪4阶段保留至少30万现金（60%）作为后手，不要因今日大涨就把现金全部打光。
+    明日操作优先级：<b>止盈T出（罗博/澜起/汇绿）> 持有观望 > 逢低加仓</b>。
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">六、风险提示</div>
+  <div style="font-size:12.5px;line-height:1.8;color:#5a5a6e">
+    <p>1. <b>今夜美国7月CPI（20:30）</b>是全局定价锚。若CPI超预期，外围大跌可能引发A股明日直接跳空低开，做T窗口会提前关闭。</p>
+    <p>2. <b>机构大额流入≠必然上涨。</b>1浪3末期机构集中买入后，往往伴随1浪4的快速回调——历史数据显示，天量成交后的5个交易日内回调概率>60%。</p>
+    <p>3. <b>罗博特科负成本不适用。</b>罗博成本523.13，收盘515.83仍浮亏——今日大涨只是减亏，尚未扭亏。做T纪律不能因情绪而放松。</p>
+    <p>4. <b>浪型判断存在主观性。</b>若上证跌破3,864，浪型升级为新一浪假设，届时所有策略需重新评估。</p>
+    <p>5. <b>本复盘所有数据来源于Wind金融终端，仅供参考，不构成投资建议。股市有风险，投资需谨慎。</b></p>
+  </div>
+</div>
+
+<div class="muted" style="text-align:center;margin-top:16px">版式：Google Insight V1 | 数据：Wind | 生成时间：2026-08-12 20:30</div>
+
+</div>
+</body>
+</html>
