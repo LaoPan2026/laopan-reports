@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乐普医疗 | 当下介入时间节奏与布局方案</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --border: #e0e0e0;
+  --text: #202124;
+  --text-secondary: #5f6368;
+  --up: #ff3b3b;
+  --down: #1ed890;
+  --blue: #1a73e8;
+  --green: #34a853;
+  --amber: #f9ab00;
+  --red: #ea4335;
+  --tag-bg: #e8f0fe;
+  --tag-text: #1a73e8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65;
+  padding: 24px 16px 60px;
+}
+.container { max-width: 1120px; margin: 0 auto; }
+
+.hero {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; margin-bottom: 24px;
+}
+.hero .title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.hero h1 { font-size: 22px; font-weight: 700; color: var(--text); }
+.hero .badge {
+  font-size: 12px; padding: 2px 10px; border-radius: 12px; font-weight: 600;
+  background: var(--tag-bg); color: var(--tag-text);
+}
+.hero .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
+.hero .verdict {
+  background: #fef7e0; border-left: 4px solid var(--amber); border-radius: 4px;
+  padding: 12px 16px; margin-top: 12px; font-size: 14px; line-height: 1.7;
+}
+.hero .verdict strong { color: #e37400; }
+
+.metric-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 0;
+}
+.metric-card {
+  background: #f8f9fa; border-radius: 8px; padding: 14px 16px; text-align: center;
+}
+.metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.metric-card .value { font-size: 20px; font-weight: 700; color: var(--text); }
+.metric-card .sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+.section { margin-bottom: 24px; }
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px 28px; margin-bottom: 16px;
+}
+.card h2 {
+  font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 18px 0 10px; }
+.card h4 { font-size: 14px; font-weight: 600; color: var(--text-secondary); margin: 12px 0 6px; }
+.card p, .card li { font-size: 14px; line-height: 1.75; color: var(--text); }
+.card ul, .card ol { padding-left: 20px; margin: 8px 0; }
+.card li { margin-bottom: 4px; }
+
+.biz-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+.biz-card {
+  border: 1px solid var(--border); border-radius: 8px; padding: 14px;
+}
+.biz-card .biz-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.biz-card .biz-status { font-size: 12px; margin-bottom: 4px; }
+.biz-card .biz-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+.step { border-left: 3px solid var(--blue); padding-left: 14px; margin: 12px 0; }
+.step.amber { border-left-color: var(--amber); }
+.step.red { border-left-color: var(--red); }
+.step.green { border-left-color: var(--green); }
+.step .step-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.step .step-body { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+.tag {
+  display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px;
+  font-weight: 600; margin-right: 4px;
+}
+.tag-buy { background: #fce8e6; color: #c5221f; }
+.tag-hold { background: #fef7e0; color: #e37400; }
+.tag-sell { background: #e6f4ea; color: #137333; }
+.tag-info { background: #e8f0fe; color: #1a73e8; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  font-size: 13px; padding: 10px 12px; text-align: left; word-break: break-word;
+  overflow-wrap: anywhere; border-bottom: 1px solid var(--border); vertical-align: top; overflow: hidden;
+}
+th { font-size: 12px; font-weight: 700; color: var(--text-secondary); background: #f8f9fa; text-align: center; }
+tbody tr:nth-child(even) { background: rgba(0,0,0,0.015); }
+td { font-variant-numeric: tabular-nums; }
+
+table.f5 { table-layout: fixed; }
+table.f5 th:nth-child(1), table.f5 td:nth-child(1) { width: 16%; }
+table.f5 th:nth-child(2), table.f5 td:nth-child(2) { width: 14%; }
+table.f5 th:nth-child(3), table.f5 td:nth-child(3) { width: 26%; }
+table.f5 th:nth-child(4), table.f5 td:nth-child(4) { width: 16%; }
+table.f5 th:nth-child(5), table.f5 td:nth-child(5) { width: 28%; }
+
+table.f4 { table-layout: fixed; }
+table.f4 th:nth-child(1), table.f4 td:nth-child(1) { width: 14%; }
+table.f4 th:nth-child(2), table.f4 td:nth-child(2) { width: 18%; }
+table.f4 th:nth-child(3), table.f4 td:nth-child(3) { width: 14%; }
+table.f4 th:nth-child(4), table.f4 td:nth-child(4) { width: 54%; }
+
+table.f4.scn { table-layout: fixed; }
+table.f4.scn th:nth-child(1), table.f4.scn td:nth-child(1) { width: 18%; }
+table.f4.scn th:nth-child(2), table.f4.scn td:nth-child(2) { width: 28%; }
+table.f4.scn th:nth-child(3), table.f4.scn td:nth-child(3) { width: 27%; }
+table.f4.scn th:nth-child(4), table.f4.scn td:nth-child(4) { width: 27%; }
+
+table.f4.cal2 { table-layout: fixed; }
+table.f4.cal2 th:nth-child(1), table.f4.cal2 td:nth-child(1) { width: 14%; }
+table.f4.cal2 th:nth-child(2), table.f4.cal2 td:nth-child(2) { width: 24%; }
+table.f4.cal2 th:nth-child(3), table.f4.cal2 td:nth-child(3) { width: 14%; }
+table.f4.cal2 th:nth-child(4), table.f4.cal2 td:nth-child(4) { width: 48%; }
+
+table.f3 { table-layout: fixed; }
+table.f3 th:nth-child(1), table.f3 td:nth-child(1) { width: 22%; }
+table.f3 th:nth-child(2), table.f3 td:nth-child(2) { width: 18%; }
+table.f3 th:nth-child(3), table.f3 td:nth-child(3) { width: 60%; }
+
+table.f2 { table-layout: fixed; }
+table.f2 th:nth-child(1), table.f2 td:nth-child(1) { width: 28%; }
+table.f2 th:nth-child(2), table.f2 td:nth-child(2) { width: 72%; }
+
+.pos, .up { color: var(--up); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.neg, .down { color: var(--down); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 对齐规则 */
+table.f5 th:nth-child(1), table.f5 td:nth-child(1) { text-align: left; }
+table.f5 th:nth-child(2), table.f5 td:nth-child(2) { text-align: right; }
+table.f5 th:nth-child(3), table.f5 td:nth-child(3) { text-align: left; }
+table.f5 th:nth-child(4), table.f5 td:nth-child(4) { text-align: right; }
+table.f5 th:nth-child(5), table.f5 td:nth-child(5) { text-align: left; }
+
+table.f4 th:nth-child(1), table.f4 td:nth-child(1) { text-align: left; }
+table.f4 th:nth-child(2), table.f4 td:nth-child(2) { text-align: right; }
+table.f4 th:nth-child(3), table.f4 td:nth-child(3) { text-align: center; }
+table.f4 th:nth-child(4), table.f4 td:nth-child(4) { text-align: left; }
+
+table.f4.scn th:nth-child(1), table.f4.scn td:nth-child(1) { text-align: left; }
+table.f4.scn th:nth-child(2), table.f4.scn td:nth-child(2) { text-align: left; }
+table.f4.scn th:nth-child(3), table.f4.scn td:nth-child(3) { text-align: left; }
+table.f4.scn th:nth-child(4), table.f4.scn td:nth-child(4) { text-align: left; }
+
+table.f4.cal2 th:nth-child(1), table.f4.cal2 td:nth-child(1) { text-align: left; }
+table.f4.cal2 th:nth-child(2), table.f4.cal2 td:nth-child(2) { text-align: left; }
+table.f4.cal2 th:nth-child(3), table.f4.cal2 td:nth-child(3) { text-align: center; }
+table.f4.cal2 th:nth-child(4), table.f4.cal2 td:nth-child(4) { text-align: left; }
+
+table.f3 th:nth-child(1), table.f3 td:nth-child(1) { text-align: left; }
+table.f3 th:nth-child(2), table.f3 td:nth-child(2) { text-align: right; }
+table.f3 th:nth-child(3), table.f3 td:nth-child(3) { text-align: left; }
+
+table.f2 th:nth-child(1), table.f2 td:nth-child(1) { text-align: left; }
+table.f2 th:nth-child(2), table.f2 td:nth-child(2) { text-align: left; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.chart-box { width: 100%; height: 360px; margin: 12px 0; }
+
+.scheme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+.scheme-card {
+  border: 1px solid var(--border); border-radius: 10px; padding: 18px;
+}
+.scheme-card .scheme-label { font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+.scheme-card .scheme-name { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.scheme-card .scheme-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 10px; }
+.scheme-card .scheme-action { font-size: 12px; line-height: 1.6; }
+.scheme-card.highlight { border-color: var(--blue); background: #f8fbff; }
+
+.checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.check-item {
+  border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.check-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.caution-box {
+  background: #fef7e0; border: 1px solid #f9ab00; border-radius: 8px;
+  padding: 14px 18px; margin: 16px 0; font-size: 13px; line-height: 1.7;
+}
+.caution-box strong { color: #e37400; }
+
+.source-note { font-size: 12px; color: var(--text-secondary); margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); line-height: 1.8; }
+
+@media (max-width: 640px) {
+  body { font-size: 13px; padding: 12px 8px 40px; }
+  .hero { padding: 18px 16px; }
+  .hero h1 { font-size: 18px; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .biz-row { grid-template-columns: 1fr; }
+  .scheme-grid { grid-template-columns: 1fr; }
+  .checklist { grid-template-columns: 1fr; }
+  .card { padding: 16px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="title-row">
+    <h1>乐普医疗（300003）</h1>
+    <span class="badge">创业板</span>
+  </div>
+  <div class="meta">当下介入时间节奏与布局方案 · 2026-08-12 盘前定稿 · 数据截至 2026-08-12 09:44</div>
+
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="label">最新价</div>
+      <div class="value">13.05</div>
+      <div class="sub">较前日 <span class="up">+0.15%</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="label">总市值</div>
+      <div class="value">240.6亿</div>
+      <div class="sub">PE-TTM 28.97 | PB 1.49</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">52周区间</div>
+      <div class="value">11.01 ~ 21.31</div>
+      <div class="sub">距高点 <span class="down">-38.8%</span> | 距低点 <span class="up">+18.5%</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="label">年初至今</div>
+      <div class="value"><span class="down">-16.34%</span></div>
+      <div class="sub">55日均线 12.36 | 现价站上均线</div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <strong>核心判断：WAIT — 等8月22日中报信号确认后再决策，不提前左侧重仓。</strong><br>
+    当前股价13.05处于55日均线（12.36）上方，技术面短期修复但基本面拐点尚未确认。2026Q1归母净利润2.47亿（同比-34.8%），主要受可转债赎回一次性财务费用扰动，扣非端反映传统器械仍在筑底。医美放量+GLP-1管线进展是中报的核心校验变量。在8月22日中报披露前，<strong>不建议追涨现有反弹</strong>（6月低点11.01以来已反弹约+18.5%），等财报实锤后再分步验证建仓。
+  </div>
+</div>
+
+<!-- 一、核心数据快照 -->
+<div class="section">
+  <div class="card">
+    <h2>一、核心数据快照</h2>
+    <h3>1.1 财务逐季对比</h3>
+    <div class="table-wrap">
+    <table class="f5">
+      <thead>
+        <tr><th>指标</th><th>2026Q1</th><th>2025Q1</th><th>同比变化</th><th>解读</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>营业收入</td>
+          <td>16.72亿</td>
+          <td>17.36亿</td>
+          <td class="down">-3.69%</td>
+          <td>传统器械承压，医美增量尚未完全对冲</td>
+        </tr>
+        <tr>
+          <td>归母净利润</td>
+          <td>2.47亿</td>
+          <td>3.79亿</td>
+          <td class="down">-34.82%</td>
+          <td>可转债赎回一次性费用扰动</td>
+        </tr>
+        <tr>
+          <td>扣非归母净利润</td>
+          <td>2.41亿</td>
+          <td>3.37亿</td>
+          <td class="down">-28.50%</td>
+          <td>剔除一次性因素后仍下滑，但幅度收窄</td>
+        </tr>
+        <tr>
+          <td>毛利率</td>
+          <td>62.03%</td>
+          <td>64.03%</td>
+          <td class="down">-2.00pp</td>
+          <td>略降，集采对器械端毛利率持续压制</td>
+        </tr>
+        <tr>
+          <td>净利率</td>
+          <td>13.35%</td>
+          <td>21.73%</td>
+          <td class="down">-8.38pp</td>
+          <td>降幅大，含一次性费用+研发投入增加</td>
+        </tr>
+        <tr>
+          <td>研发费用</td>
+          <td>2.41亿</td>
+          <td>2.03亿</td>
+          <td class="up">+18.34%</td>
+          <td>GLP-1/医美管线推进，研发强度提升</td>
+        </tr>
+        <tr>
+          <td>商誉</td>
+          <td>36.20亿</td>
+          <td>36.20亿</td>
+          <td>持平</td>
+          <td>商誉规模未削减，仍是核心风险点</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>1.2 技术面关键价位</h3>
+    <div class="table-wrap">
+    <table class="f4">
+      <thead>
+        <tr><th>均线/指标</th><th>数值</th><th>相对现价</th><th>技术含义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MA5</td><td>13.00</td><td class="down">-0.38%</td><td>短期趋势线，现价微幅站上</td>
+        </tr>
+        <tr>
+          <td>MA20</td><td>12.90</td><td class="down">-1.15%</td><td>中期第一支撑，跌破则短线动能转弱</td>
+        </tr>
+        <tr>
+          <td>MA55</td><td>12.36</td><td class="down">-5.29%</td>
+          <td><strong>中期趋势分水岭</strong>，跌破=中期转弱</td>
+        </tr>
+        <tr>
+          <td>MA60</td><td>12.41</td><td class="down">-4.90%</td>
+          <td>与MA55重合区间，构成强支撑带</td>
+        </tr>
+        <tr>
+          <td>MA120</td><td>14.22</td><td class="up">+8.97%</td>
+          <td>中期强阻力，突破需基本面配合</td>
+        </tr>
+        <tr>
+          <td>MA250</td><td>15.79</td><td class="up">+21.00%</td>
+          <td>年线，反转确认标志，当前距离较远</td>
+        </tr>
+        <tr>
+          <td>MACD</td><td>+0.14</td><td>—</td>
+          <td>零轴附近刚金叉，动能偏弱</td>
+        </tr>
+        <tr>
+          <td>RSI(6)</td><td>54.94</td><td>—</td>
+          <td>中性区间，未超买超卖</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>1.3 价格走势（近4个月日K）</h3>
+    <div class="chart-box" id="chart-kline"></div>
+
+    <h3>1.4 关键价位区间图示</h3>
+    <div class="table-wrap">
+    <table class="f3">
+      <thead>
+        <tr><th>区间</th><th>价格带</th><th>操作参考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>强阻力区</td>
+          <td>14.22 ~ 15.79</td>
+          <td>MA120~MA250区间，需要连续两个季度财报验证+GLP-1催化才可能突破</td>
+        </tr>
+        <tr>
+          <td>第一阻力</td>
+          <td>13.50 ~ 13.87</td>
+          <td>7月16日高点区域，短期放量突破则看14.22</td>
+        </tr>
+        <tr>
+          <td>当前中枢</td>
+          <td>12.90 ~ 13.15</td>
+          <td>MA20支撑+短期整理平台，当前价格在此区间</td>
+        </tr>
+        <tr>
+          <td>中期支撑带</td>
+          <td>12.36 ~ 12.41</td>
+          <td>MA55/MA60重合区间，<strong>中期趋势分水岭</strong>，有效跌破则趋势转弱</td>
+        </tr>
+        <tr>
+          <td>强支撑</td>
+          <td>11.01 ~ 11.45</td>
+          <td>52周低点+6月初底部区域，极限防守位</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- 二、三线业务拆解 -->
+<div class="section">
+  <div class="card">
+    <h2>二、三线业务现状拆解</h2>
+    <div class="biz-row">
+      <div class="biz-card">
+        <div class="biz-title">传统心血管器械</div>
+        <div class="biz-status"><span class="tag tag-hold">筑底中</span></div>
+        <div class="biz-detail">
+          集采后量增价减格局延续，2025Q4扣非亏损近1亿（含减值），2026Q1扣非2.41亿环比大幅改善但仍同比-28.5%。核心变量：冠脉支架续标价格能否稳住、外周/结构心新品放量节奏。
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-title">医美业务（第二曲线）</div>
+        <div class="biz-status"><span class="tag tag-info">放量验证中</span></div>
+        <div class="biz-detail">
+          悦雅颜童颜针7月获印尼注册证出海；赛乐提热玛吉国内推广中；重组肉毒毒素重庆基地环评受理（8月10日）、H1 2026启动Ⅲ期。2026中报是医美收入增速的<strong>首个硬校验窗口</strong>。
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-title">GLP-1/创新药管线</div>
+        <div class="biz-status"><span class="tag tag-info">临床推进中</span></div>
+        <div class="biz-detail">
+          MWN105（GIP/GLP-1双靶）海外临床推进中，暂无最新数据读出公告；MWN110（ActRIIA/B单抗）7月15日获国内临床批件，定位差异化减重（增肌减脂）。<strong>弹性来源，不能单独作为买入理由</strong>。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 三、三套介入方案 -->
+<div class="section">
+  <div class="card">
+    <h2>三、三套介入节奏方案</h2>
+
+    <div class="scheme-grid">
+      <div class="scheme-card highlight">
+        <div class="scheme-label">推荐 · 适合多数投资者</div>
+        <div class="scheme-name">方案A：稳健型</div>
+        <div class="scheme-desc">等信号确认，分步验证建仓。不提前左侧重仓，规避"故事很美但兑现不足"的坑。</div>
+        <div class="scheme-action" style="font-size:13px; line-height:1.65;">
+          <strong>流程：</strong><br>
+          ① 8/22中报 → 超预期则建5-8%底仓<br>
+          ② 若中报一般 → 等Q3三季报验证<br>
+          ③ 仓位上限：单票≤12%组合<br>
+          ④ 止损：有效跌破MA55(12.36)
+        </div>
+      </div>
+
+      <div class="scheme-card">
+        <div class="scheme-label">激进 · 需承受摩擦成本</div>
+        <div class="scheme-name">方案B：左侧分批</div>
+        <div class="scheme-desc">分三批越跌越买，博弈困境反转。适合理解集采压力、能接受2-4个月震荡。</div>
+        <div class="scheme-action" style="font-size:13px; line-height:1.65;">
+          <strong>节奏：</strong><br>
+          ① 试探仓3-4%（当前可建）<br>
+          ② 回调至12.36附近加4-5%<br>
+          ③ 财报/临床实锤后完成最后仓位<br>
+          ④ 硬约束：无催化前≤10%
+        </div>
+      </div>
+
+      <div class="scheme-card">
+        <div class="scheme-label">短线 · 不长期持有</div>
+        <div class="scheme-name">方案C：事件驱动</div>
+        <div class="scheme-desc">只做催化事件博弈，不博弈长期反转。仓位控制在5%以内。</div>
+        <div class="scheme-action" style="font-size:13px; line-height:1.65;">
+          <strong>触发条件：</strong><br>
+          ① MWN105海外临床数据读出<br>
+          ② 民为生物新一轮BD传闻<br>
+          ③ 医美销售超预期纪要流出<br>
+          ④ 禁止提前埋伏赌消息
+        </div>
+      </div>
+    </div>
+
+    <h3>方案A 情景应对表（稳健型核心）</h3>
+    <div class="table-wrap">
+    <table class="f4 scn">
+      <thead>
+        <tr><th>情景</th><th>中报假设</th><th>操作</th><th>后续跟踪</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A-1<br><span class="tag tag-buy">超预期</span></td>
+          <td>医美收入高增（+50%以上）<br>器械扣非环比改善<br>费用率可控</td>
+          <td>建仓5-8%底仓<br>不一次性打满<br>设止损于MA55</td>
+          <td>跟踪Q3医美持续放量<br>等MWN105海外临床读出</td>
+        </tr>
+        <tr>
+          <td>A-2<br><span class="tag tag-hold">符合预期</span></td>
+          <td>医美稳健增长<br>器械无惊喜无暴雷<br>费用率持平</td>
+          <td>不急于加仓<br>继续观望<br>等下一催化</td>
+          <td>等①MWN105海外数据读出<br>②医美连续两季度验证</td>
+        </tr>
+        <tr>
+          <td>A-3<br><span class="tag tag-sell">低于预期</span></td>
+          <td>医美不及预期<br>器械继续走弱<br>费用率恶化</td>
+          <td>放弃短期介入<br>等待基本面拐点<br>不做左侧</td>
+          <td>下一观察窗口：Q3三季报<br>（2026年10-11月）</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- 四、催化剂日历 -->
+<div class="section">
+  <div class="card">
+    <h2>四、关键催化剂日历</h2>
+    <div class="table-wrap">
+    <table class="f4 cal2">
+      <thead>
+        <tr><th>时间窗口</th><th>催化事件</th><th>影响权重</th><th>预期与解读</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026-08-22</td>
+          <td>2026半年报披露</td>
+          <td>★★★★★</td>
+          <td><strong>第一校验窗口</strong>。核心盯医美收入增速+器械扣非环比+费用率。若超预期是建仓信号，若平淡则继续等待。</td>
+        </tr>
+        <tr>
+          <td>2026Q3</td>
+          <td>MWN105海外临床数据读出</td>
+          <td>★★★★</td>
+          <td>GIP/GLP-1双靶减重数据。若数据优异可能触发新一轮BD预期，但注意"买预期卖事实"。</td>
+        </tr>
+        <tr>
+          <td>2026H2</td>
+          <td>重组肉毒毒素Ⅲ期启动</td>
+          <td>★★★</td>
+          <td>8月重庆基地环评受理，先建厂后报产，产业化节奏快于预期。但Ⅲ期临床仍需12-18个月。</td>
+        </tr>
+        <tr>
+          <td>2026-10/11</td>
+          <td>2026三季报</td>
+          <td>★★★★</td>
+          <td>方案A的第二观察窗口。若中报平淡，Q3需同时看到医美持续放量+器械环比修复。</td>
+        </tr>
+        <tr>
+          <td>2026H2</td>
+          <td>PDRN/肉毒素获批进展</td>
+          <td>★★★</td>
+          <td>医美管线获批将打开新增量空间。PDRN（三文鱼针）国内尚无合规竞品。</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- 五、验证清单 -->
+<div class="section">
+  <div class="card">
+    <h2>五、买入前后验证清单</h2>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-icon">✅</div>
+        <div style="font-size:13px; line-height:1.65;">
+          <strong>医美板块连续两季度收入加速</strong><br>
+          非单季度脉冲，验证渠道拓展与复购率
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✅</div>
+        <div style="font-size:13px; line-height:1.65;">
+          <strong>心血管器械不再持续同比下滑</strong><br>
+          扣非端出现环比修复信号
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✅</div>
+        <div style="font-size:13px; line-height:1.65;">
+          <strong>费用率没有持续恶化</strong><br>
+          财务费用+销售费用率稳定或下降
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">➕</div>
+        <div style="font-size:13px; line-height:1.65;">
+          <strong>MWN105海外临床读出积极数据</strong><br>
+          加分项，弹性来源，不能单独作为买入理由
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">➕</div>
+        <div style="font-size:13px; line-height:1.65;">
+          <strong>医美新品获批落地</strong><br>
+          PDRN/肉毒素获批 = 新增量逻辑
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">❌</div>
+        <div style="font-size:13px; line-height:1.65;">
+          <strong>出现以下情况 → 回避/减仓</strong><br>
+          医美放量远低预期 / 核心GLP-1管线临床延后 / 新一轮集采冲击器械
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 六、2025年行情教训 -->
+<div class="section">
+  <div class="card">
+    <h2>六、2025年行情教训迁移</h2>
+    <div class="step amber">
+      <div class="step-title">2025年6-11月复盘</div>
+      <div class="step-body">
+        6-8月市场提前博弈BD预期 → 股价先涨；10月底BD落地 → 利好兑现冲高回落。典型"买预期卖事实"。
+      </div>
+    </div>
+    <div class="step red">
+      <div class="step-title">本次禁区</div>
+      <div class="step-body">
+        <strong>不要提前把GLP-1远期BD想象折算进当前估值。</strong>MWN105海外临床尚未读出关键数据，MWN110刚获批国内临床，距离商业化至少3-5年。必须在财报或临床实锤后才逐步加码，而非提前押注。
+      </div>
+    </div>
+    <div class="step green">
+      <div class="step-title">纪律底线</div>
+      <div class="step-body">
+        传闻阶段若介入→上涨后主动止盈；公告落地→谨防"买预期卖事实"，不恋战。参照上一轮BD交易纪律。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 风险清单 -->
+<div class="section">
+  <div class="card">
+    <h2>七、风险清单（买入前必读）</h2>
+    <div class="table-wrap">
+    <table class="f2">
+      <thead>
+        <tr><th>风险项</th><th>具体内容</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>商誉减值风险</td>
+          <td>商誉36.2亿占总资产比例高，若被收购标的业绩不及预期存在减值可能</td>
+        </tr>
+        <tr>
+          <td>大股东质押</td>
+          <td>大股东持续股权质押，若股价持续低迷存在被动减持/平仓风险</td>
+        </tr>
+        <tr>
+          <td>创新药临床失败</td>
+          <td>MWN105/MWN110均处早期临床，失败概率客观存在</td>
+        </tr>
+        <tr>
+          <td>集采扩面</td>
+          <td>新一轮器械集采若覆盖冠脉支架续标或其他品类，将对器械端造成新的降价冲击</td>
+        </tr>
+        <tr>
+          <td>医美渠道不及预期</td>
+          <td>医美竞争加剧（华东医药、爱美客、四环医药等），悦雅颜/赛乐提渠道拓展存在不确定性</td>
+        </tr>
+        <tr>
+          <td>资金占用机会成本</td>
+          <td>若采用方案B左侧布局，可能面临2-4个月震荡磨底，资金被锁定无法参与其他机会</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="caution-box">
+      <strong>⚠️ 关键警示</strong><br>
+      ① 乐普医疗近60日主力净流入仍为负（-651.66万），短期反弹（11.01→13.05）更多是技术性修复而非资金面持续流入驱动<br>
+      ② 2026Q1扣非净利仍同比-28.5%，基本面拐点尚未确认，当前PE-TTM 28.97并不便宜<br>
+      ③ 商誉36.2亿+大股东质押+创新药管线不确定性，三重风险叠加，不适合风险偏好低的投资者
+    </div>
+  </div>
+</div>
+
+<!-- 数据溯源 -->
+<div class="source-note">
+  <strong>数据溯源与版本</strong><br>
+  数据来源：Wind 金融数据（★★★ 高置信度）<br>
+  行情快照：2026-08-12 09:44:24 CST · 财务数据：2026Q1最新报告期<br>
+  技术指标：MACD/RSI/KDJ/MA均线 基于Wind日K计算<br>
+  新闻数据：Wind 财经新闻，2026-07-15 至 2026-08-10<br>
+  报告版本：V1.0 · 生成时间：2026-08-12<br><br>
+  <strong>⚠️ 免责声明：</strong>本报告仅供投研参考，不构成任何投资建议。报告中的情景分析、价位区间、操作方案均为逻辑推演，不代表对未来股价的任何预测或承诺。股市有风险，投资需谨慎。任何投资决策应当基于投资者自身的独立判断，并承担相应风险。
+</div>
+
+</div>
+
+<script>
+// K线走势图
+(function() {
+  var dom = document.getElementById('chart-kline');
+  var chart = echarts.init(dom);
+
+  var dates = [
+    '4/1','4/7','4/13','4/17','4/22','4/28','5/6','5/12','5/18','5/22',
+    '5/28','6/3','6/9','6/15','6/22','6/26','7/2','7/8','7/14','7/20',
+    '7/24','7/30','8/5','8/11'
+  ];
+  var prices = [
+    16.63,15.94,16.09,16.13,16.21,14.05,14.25,14.24,13.07,12.83,
+    12.26,12.22,11.58,11.78,11.65,11.37,12.50,12.19,12.61,13.08,
+    12.11,13.05,12.95,13.03
+  ];
+  var ma20 = [];
+  var ma55 = [];
+  var ma120 = [];
+  for (var i = 0; i < prices.length; i++) {
+    var sum20 = 0, cnt20 = 0;
+    var sum55 = 0, cnt55 = 0;
+    var sum120 = 0, cnt120 = 0;
+    for (var j = Math.max(0, i - 19); j <= i; j++) { sum20 += prices[j]; cnt20++; }
+    for (var j = Math.max(0, i - 54); j <= i; j++) { sum55 += prices[j]; cnt55++; }
+    for (var j = Math.max(0, i - 119); j <= i; j++) { sum120 += prices[j]; cnt120++; }
+    ma20.push(+(sum20 / cnt20).toFixed(2));
+    ma55.push(cnt55 > 10 ? +(sum55 / cnt55).toFixed(2) : null);
+    ma120.push(cnt120 > 20 ? +(sum120 / cnt120).toFixed(2) : null);
+  }
+
+  // Mark the areas
+  var markLines = {
+    silent: true,
+    symbol: 'none',
+    lineStyle: { type: 'dashed', width: 1 },
+    data: [
+      { yAxis: 12.36, name: 'MA55≈12.36', lineStyle: { color: '#f9ab00' }, label: { formatter: 'MA55 12.36', position: 'end', fontSize: 10, color: '#f9ab00' } },
+      { yAxis: 14.22, name: 'MA120≈14.22', lineStyle: { color: '#ea4335' }, label: { formatter: 'MA120 14.22', position: 'end', fontSize: 10, color: '#ea4335' } }
+    ]
+  };
+
+  var option = {
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'axis' },
+    grid: { left: 48, right: 48, top: 30, bottom: 30 },
+    xAxis: {
+      type: 'category', data: dates, boundaryGap: false,
+      axisLabel: { fontSize: 10, color: '#5f6368' },
+      axisLine: { lineStyle: { color: '#dadce0' } }
+    },
+    yAxis: {
+      type: 'value', scale: false,
+      min: 10.5, max: 17.5,
+      axisLabel: { fontSize: 10, color: '#5f6368' },
+      splitLine: { lineStyle: { color: '#f0f0f0' } }
+    },
+    series: [
+      {
+        name: '收盘价', type: 'line', data: prices,
+        smooth: true, symbol: 'none',
+        lineStyle: { width: 2, color: '#1a73e8' },
+        areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(26,115,232,0.15)' },
+          { offset: 1, color: 'rgba(26,115,232,0.01)' }
+        ]) },
+        markLine: markLines
+      },
+      {
+        name: 'MA20', type: 'line', data: ma20,
+        smooth: true, symbol: 'none',
+        lineStyle: { width: 1, color: '#f9ab00', type: 'dashed' }
+      },
+      {
+        name: 'MA55', type: 'line', data: ma55,
+        smooth: true, symbol: 'none',
+        lineStyle: { width: 1.5, color: '#ea4335' }
+      }
+    ]
+  };
+  chart.setOption(option);
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+</script>
+
+</body>
+</html>
