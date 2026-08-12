@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W32周三盘前简报 | 2026-08-12</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{--bg:#f5f7fa;--card:#ffffff;--text:#1a1a2e;--muted:#5a5a6e;--border:#dde3ec;--up:#ff3b3b;--down:#1ed890;--accent:#2b6cb0;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.65}
+  .wrap{max-width:1120px;margin:0 auto;padding:16px}
+  .hero{background:linear-gradient(135deg,#1a1a2e 0%,#2d3748 100%);border-radius:10px;padding:20px 22px;color:#fff;margin-bottom:14px}
+  .hero h1{font-size:17px;font-weight:700;margin-bottom:8px}
+  .hero .summary{font-size:13px;color:#c8d0e0;line-height:1.7}
+  .hero .summary b{color:#fff}
+  .card{background:var(--card);border-radius:8px;padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .section-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--accent);display:inline-block}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:8px 10px;vertical-align:top;overflow:hidden}
+  th{font-size:12px;font-weight:700;color:#d0d8e6;background:rgba(155,165,185,.06)}
+  td{color:var(--text)}
+  tbody tr:nth-child(even){background:rgba(0,0,0,.015)}
+  .up,.pos{color:var(--up);font-weight:700;white-space:nowrap}
+  .down,.neg{color:var(--down);font-weight:700;white-space:nowrap}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+  .tag-red{background:#fff0f0;color:var(--up)}
+  .tag-green{background:#f0fff5;color:var(--down)}
+  .tag-blue{background:#f0f5ff;color:#2b6cb0}
+  .tag-gray{background:#f5f5f5;color:#666}
+  .muted{color:var(--muted);font-size:12px}
+  .note{background:#fffbeb;border-left:3px solid #f6ad55;padding:10px 14px;border-radius:0 6px 6px 0;font-size:12.5px;color:#744210;margin-top:10px}
+  .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .metric{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+  .metric:last-child{border-bottom:none}
+  .metric .label{color:var(--muted);font-size:12px}
+  .metric .value{font-size:13px;font-weight:700}
+  @media(max-width:640px){body{font-size:13px}.wrap{padding:10px}.cols{grid-template-columns:1fr}.hero h1{font-size:15px}table{font-size:11.5px}th,td{padding:6px}}
+  /* f5.us: 美股映射链 14/18/14/18/36 */
+  table.f5.us{table-layout:fixed}
+  table.f5.us th:nth-child(1),table.f5.us td:nth-child(1){width:14%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  table.f5.us th:nth-child(2),table.f5.us td:nth-child(2){width:18%;text-align:right}
+  table.f5.us th:nth-child(3),table.f5.us td:nth-child(3){width:14%;text-align:right}
+  table.f5.us th:nth-child(4),table.f5.us td:nth-child(4){width:18%;text-align:right}
+  table.f5.us th:nth-child(5),table.f5.us td:nth-child(5){width:36%;text-align:left}
+  /* f4.lum: Lumentum财报 16/22/22/40 */
+  table.f4.lum{table-layout:fixed}
+  table.f4.lum th:nth-child(1),table.f4.lum td:nth-child(1){width:16%;text-align:left}
+  table.f4.lum th:nth-child(2),table.f4.lum td:nth-child(2){width:22%;text-align:right}
+  table.f4.lum th:nth-child(3),table.f4.lum td:nth-child(3){width:22%;text-align:right}
+  table.f4.lum th:nth-child(4),table.f4.lum td:nth-child(4){width:40%;text-align:left}
+  /* f3.cal: 事件日历 14/30/56 */
+  table.f3.cal{table-layout:fixed}
+  table.f3.cal th:nth-child(1),table.f3.cal td:nth-child(1){width:14%;text-align:center;white-space:nowrap}
+  table.f3.cal th:nth-child(2),table.f3.cal td:nth-child(2){width:30%;text-align:left}
+  table.f3.cal th:nth-child(3),table.f3.cal td:nth-child(3){width:56%;text-align:left}
+  /* f4.map: 持仓映射 18/16/14/52 */
+  table.f4.map{table-layout:fixed}
+  table.f4.map th:nth-child(1),table.f4.map td:nth-child(1){width:18%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  table.f4.map th:nth-child(2),table.f4.map td:nth-child(2){width:16%;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  table.f4.map th:nth-child(3),table.f4.map td:nth-child(3){width:14%;text-align:center}
+  table.f4.map th:nth-child(4),table.f4.map td:nth-child(4){width:52%;text-align:left}
+  /* f3.cpi: CPI预期 25/25/50 */
+  table.f3.cpi{table-layout:fixed}
+  table.f3.cpi th:nth-child(1),table.f3.cpi td:nth-child(1){width:25%;text-align:left}
+  table.f3.cpi th:nth-child(2),table.f3.cpi td:nth-child(2){width:25%;text-align:center}
+  table.f3.cpi th:nth-child(3),table.f3.cpi td:nth-child(3){width:50%;text-align:left}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>W32 周三盘前简报 | 2026-08-12</h1>
+  <div class="summary">
+    <b>Lumentum财报大超预期，Q1指引营收$12.3-12.8亿（超预期8%），光通信链修复确认。</b>
+    美股光通信由跌转涨（COHR+1%、Lumentum盘后由跌转涨），存储芯片普涨（SK海力士+4.7%）。
+    但今晚美国7月CPI（20:30）是全局定价锚，9月加息概率51.2%，CPI前市场大概率缩量震荡。
+    今日策略：汇绿生态受益Lumentum映射大概率修复；澜起受益存储情绪修复+MRVL+1.8%；罗博中性；星环/软通受中概股-2.94%情绪压制。
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">一、美股映射链收盘（8/11周二）</div>
+  <div class="table-wrap">
+  <table class="f5 us">
+    <thead>
+      <tr><th>标的</th><th>收盘价</th><th>日涨跌</th><th>5日涨跌</th><th>映射持仓</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>NVDA</b></td><td>$217.50</td><td class="neg">-0.02%</td><td class="pos">+11.54%</td><td>罗博特科 / 澜起</td></tr>
+      <tr><td><b>MRVL</b></td><td>$212.31</td><td class="pos">+1.80%</td><td class="pos">+18.41%</td><td>澜起 / 罗博特科</td></tr>
+      <tr><td><b>COHR</b></td><td>$383.11</td><td class="pos">+1.05%</td><td class="pos">+14.49%</td><td>汇绿生态</td></tr>
+      <tr><td><b>LITE</b></td><td>$897.90</td><td class="pos">+0.87%</td><td class="pos">+6.95%</td><td>汇绿生态</td></tr>
+      <tr><td><b>AAOI</b></td><td>$142.32</td><td class="pos">+1.14%</td><td class="pos">+13.14%</td><td>光模块情绪</td></tr>
+      <tr><td><b>CRDO</b></td><td>$128.45</td><td class="pos">+3.23%</td><td class="pos">+8.90%</td><td>光模块情绪</td></tr>
+      <tr><td>SK海力士</td><td>—</td><td class="pos">+4.70%</td><td class="neg">-3.20%</td><td>存储情绪 / 澜起</td></tr>
+      <tr><td>纳指</td><td>26,445</td><td class="neg">-0.60%</td><td class="pos">+4.59%</td><td>大盘</td></tr>
+      <tr><td>费半</td><td>—</td><td class="pos">+0.87%</td><td class="pos">+5.30%</td><td>半导体情绪</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="muted">数据来源：新浪财经/东方财富/财联社，置信度★★★</div>
+  <div style="margin-top:10px"><b>关键区分：</b>昨夜美股三大指数收跌，但芯片股逆势走强（费半+0.87%），光通信由跌转涨，存储普涨。这是"AI硬件链资金并未撤离、只是在内部轮动"的信号。</div>
+</div>
+
+<div class="card">
+  <div class="section-title">二、Lumentum财报拆解（盘后发布）</div>
+  <div class="table-wrap">
+  <table class="f4 lum">
+    <thead>
+      <tr><th>指标</th><th>Q4实际</th><th>市场预期</th><th>信号</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>营收</td><td><b>$10.10亿</b></td><td>$9.88亿</td><td><span class="tag tag-red">超预期+2.2%</span> 同比+109%</td></tr>
+      <tr><td>调整后EPS</td><td><b>$3.23</b></td><td>$2.97</td><td><span class="tag tag-red">超预期+8.8%</span> 同比+267%</td></tr>
+      <tr><td>毛利率</td><td><b>50.4%</b></td><td>—</td><td>非GAAP口径，盈利能力跃升</td></tr>
+      <tr><td>经营利润率</td><td><b>36.6%</b></td><td>—</td><td>接近40%，规模效应显现</td></tr>
+      <tr><td>组件业务收入</td><td>—</td><td>—</td><td>同比+103%</td></tr>
+      <tr><td>系统业务收入</td><td>—</td><td>—</td><td>同比+123%</td></tr>
+      <tr><td><b>Q1营收指引</b></td><td><b>$12.3-12.8亿</b></td><td>$11.5亿</td><td><span class="tag tag-red">超预期+8%</span> 继续加速</td></tr>
+      <tr><td><b>Q1 EPS指引</b></td><td><b>$4.05-4.35</b></td><td>$3.58</td><td><span class="tag tag-red">超预期+16%</span></td></tr>
+      <tr><td><b>Q1经营利润率</b></td><td><b>~40%</b></td><td>—</td><td>进一步上行</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="margin-top:8px"><b>CEO关键表态：</b>超高功率CPO激光器需求增长、ELS模块获得首批订单、NPO业务推进——光学技术正开始向机架内连接渗透。</div>
+  <div style="margin-top:6px"><b>盘后股价：</b>由跌逾4%快速转涨超5%，巨震后收涨。说明机构对指引上修反应积极，短期获利盘兑现后买盘跟进。</div>
+  <div class="muted">数据来源：每经/新浪财经/同花顺，置信度★★★</div>
+</div>
+
+<div class="card">
+  <div class="section-title">三、今晚美国7月CPI前瞻（20:30）</div>
+  <div class="table-wrap">
+  <table class="f3 cpi">
+    <thead>
+      <tr><th>指标</th><th>市场预期</th><th>信号</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>整体CPI环比</td><td>+0.1%</td><td>前值-0.4%，油价回升推升环比</td></tr>
+      <tr><td>整体CPI同比</td><td>+3.4%</td><td>前值+3.5%，高基数下小幅回落</td></tr>
+      <tr><td>核心CPI环比</td><td>+0.2%</td><td>前值0%，6月异常偏低，7月反弹</td></tr>
+      <tr><td>核心CPI同比</td><td>+2.5%</td><td>前值+2.6%，持续回落</td></tr>
+      <tr><td>高盛预测</td><td>整体+0.05% / 核心+0.19%</td><td>略低于市场共识，若兑现=利好</td></tr>
+      <tr><td>9月加息概率</td><td>51.2%</td><td>CME美联储观察，五五开</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="margin-top:8px"><b>三种情景对持仓的影响：</b></div>
+  <div class="table-wrap">
+  <table class="f3 cpi">
+    <thead>
+      <tr><th>情景</th><th>数据表现</th><th>对持仓影响</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>偏冷</td><td>整体环比≤0%<br>核心环比≤0.15%</td><td>加息概率降至40%以下，成长股估值修复，汇绿/澜起/罗博普涨</td></tr>
+      <tr><td>基准</td><td>整体环比+0.1%<br>核心环比+0.2%</td><td>符合预期，市场震荡，CPI落地后"利空出尽"反弹</td></tr>
+      <tr><td>偏热</td><td>整体环比≥+0.2%<br>核心环比≥+0.25%</td><td>加息概率升至60%+，高估值科技股承压，北向流出</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="muted">数据来源：Market Watch/CME/高盛/中金，置信度★★★</div>
+</div>
+
+<div class="card">
+  <div class="section-title">四、今日事件日历</div>
+  <div class="table-wrap">
+  <table class="f3 cal">
+    <thead>
+      <tr><th>时间</th><th>事件</th><th>持仓映射</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>09:30</td><td>A股开盘</td><td>汇绿修复力度=光通信映射验证</td></tr>
+      <tr><td>09:30</td><td>创业板指/科创50方向</td><td>科创50守1680=科技调整深度锚</td></tr>
+      <tr><td>全天</td><td>存储/MLCC板块回购催化</td><td>佰维存储2-2.5亿回购、江波龙7.2亿贷款回购</td></tr>
+      <tr><td>20:30</td><td><b>美国7月CPI</b></td><td><span class="tag tag-red">全局定价锚</span> 加息预期重定价</td></tr>
+      <tr><td>盘后</td><td>Coherent财报（Q4）</td><td><span class="tag tag-blue">汇绿映射</span> 连续第二夜验证</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">五、持仓今日映射</div>
+  <div class="table-wrap">
+  <table class="f4 map">
+    <thead>
+      <tr><th>持仓</th><th>映射标的</th><th>影响</th><th>逻辑</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>汇绿生态</b></td><td>COHR / LITE</td><td><span class="tag tag-red">强利好</span></td><td>Lumentum超预期+Q1指引上修，光通信链修复确认。但昨晚美股光通信已由跌转涨，今日若高开需防获利兑现</td></tr>
+      <tr><td><b>澜起科技</b></td><td>MRVL / SK海力士</td><td><span class="tag tag-red">利好</span></td><td>MRVL+1.8%+存储普涨（SK海力士+4.7%），存储情绪修复。澜起昨日被误杀，今日有修复空间</td></tr>
+      <tr><td><b>罗博特科</b></td><td>NVDA / MRVL</td><td><span class="tag tag-blue">中性偏多</span></td><td>NVDA-0.02%平收，费半+0.87%。AI硬件链资金未撤离，罗博昨日做T浮盈可继续持有</td></tr>
+      <tr><td>星环科技</td><td>AI软件 / 中概</td><td><span class="tag tag-green">偏空</span></td><td>中概股金龙指数-2.94%，AI应用情绪承压。但星环是数据平台（非纯SaaS），传导力度有限</td></tr>
+      <tr><td>软通动力</td><td>AI服务 / 中概</td><td><span class="tag tag-green">偏空</span></td><td>同上，中概情绪传导。软通项目制服务受美股SaaS估值下修影响更小</td></tr>
+      <tr><td>三祥新材</td><td>固态电池</td><td><span class="tag tag-gray">中性</span></td><td>无直接映射，固态电池板块独立运作</td></tr>
+      <tr><td>泰和新材</td><td>化工 / 油价</td><td><span class="tag tag-gray">中性</span></td><td>WTI $83.2(+1.3%)，油价维持80中高位，成本端两面性</td></tr>
+      <tr><td>华峰化学</td><td>化工 / 油价</td><td><span class="tag tag-gray">中性</span></td><td>同上</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">六、今日操作要点</div>
+  <div style="line-height:1.9">
+    <b>1. 汇绿生态（001267）</b> — 今日核心变量<br>
+    昨日-7.38%后，Lumentum超预期是最大修复催化。但需注意：美股光通信昨夜已反弹（COHR+1%、Lumentum+0.87%），今日若高开超3%需防追高资金兑现。<span class="pos">理想走势：低开或平开→缓步修复→收盘收复41元。</span><br><br>
+
+    <b>2. 澜起科技（688008）</b> — 修复窗口<br>
+    昨日低开高走几乎平收，存储情绪今日大概率修复（SK海力士+4.7%）。MRVL+1.8%也是正面信号。<span class="pos">目标：站稳210元，向214-215冲击。</span>老潘500股做T仓位，目标212-215区间卖出。<br><br>
+
+    <b>3. 罗博特科（300757）</b> — 持有做T仓位<br>
+    昨日484.63买入200股做T，收盘浮盈。今日目标卖490-494。费城半导体+0.87%是正面环境，但NVDA平收限制上行空间。<br><br>
+
+    <b>4. 星环/软通</b> — 回避情绪冲击<br>
+    中概股大跌对AI应用情绪有压制，今日若低开不急于补仓，等CPI落地后再评估。<br><br>
+
+    <b>5. 全局风控</b><br>
+    今晚CPI是本周最大不确定性，CPI前不建议大幅调仓。做T仓位必须在收盘前完成反向操作，不留隔夜赌CPI。<br>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">七、宏观信号</div>
+  <div class="cols">
+    <div>
+      <div class="metric"><span class="label">上证指数</span><span class="value">3934.08</span></div>
+      <div class="metric"><span class="label">科创50</span><span class="value">1709.50</span></div>
+      <div class="metric"><span class="label">创业板指</span><span class="value">3549.16</span></div>
+    </div>
+    <div>
+      <div class="metric"><span class="label">WTI原油</span><span class="value">$83.20 <span class="pos">+1.30%</span></span></div>
+      <div class="metric"><span class="label">美元指数</span><span class="value">99.83</span></div>
+      <div class="metric"><span class="label">中概金龙指数</span><span class="value"><span class="neg">-2.94%</span></span></div>
+    </div>
+  </div>
+  <div class="note">
+    <b>市场预判：</b>CPI前夜观望情绪浓厚，今日大概率低开后窄幅震荡，沪指运行区间3900-3950。板块轮动为主，医药/MLCC/存储承接资金，科技链等待CPI落地后方向选择。开盘30分钟成交额若低于3500亿=增量资金观望，全天缩量震荡。
+  </div>
+</div>
+
+<div class="card" style="background:#f8f9fa;border:1px solid var(--border)">
+  <div style="font-size:12px;color:#666;line-height:1.8">
+    <b>风险提示：</b>以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力独立判断。波浪理论计数具有主观性，CPI数据可能偏离预期引发剧烈波动，做T交易需严格执行止损纪律。
+  </div>
+</div>
+
+</div>
+</body>
+</html>
