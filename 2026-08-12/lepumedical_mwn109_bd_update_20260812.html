@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乐普医疗 | MWN109 BD价值推演与操作计划更新</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --border: #e0e0e0;
+  --text: #202124;
+  --text-secondary: #5f6368;
+  --up: #ff3b3b;
+  --down: #1ed890;
+  --blue: #1a73e8;
+  --green: #34a853;
+  --amber: #f9ab00;
+  --red: #ea4335;
+  --tag-bg: #e8f0fe;
+  --tag-text: #1a73e8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65;
+  padding: 24px 16px 60px;
+}
+.container { max-width: 1120px; margin: 0 auto; }
+
+.hero {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; margin-bottom: 24px;
+}
+.hero .title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.hero h1 { font-size: 22px; font-weight: 700; }
+.hero .badge {
+  font-size: 12px; padding: 2px 10px; border-radius: 12px; font-weight: 600;
+  background: #fce8e6; color: #c5221f;
+}
+.hero .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
+.hero .verdict {
+  background: #e8f0fe; border-left: 4px solid var(--blue); border-radius: 4px;
+  padding: 14px 18px; margin-top: 12px; font-size: 14px; line-height: 1.75;
+}
+.hero .verdict strong { color: #1a73e8; }
+
+.metric-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 0;
+}
+.metric-card {
+  background: #f8f9fa; border-radius: 8px; padding: 14px 16px; text-align: center;
+}
+.metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.metric-card .value { font-size: 20px; font-weight: 700; }
+.metric-card .sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px 28px; margin-bottom: 16px;
+}
+.card h2 {
+  font-size: 17px; font-weight: 700; margin-bottom: 16px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.card h3 { font-size: 15px; font-weight: 700; margin: 18px 0 10px; }
+.card h4 { font-size: 14px; font-weight: 600; color: var(--text-secondary); margin: 12px 0 6px; }
+.card p, .card li { font-size: 14px; line-height: 1.75; }
+.card ul, .card ol { padding-left: 20px; margin: 8px 0; }
+.card li { margin-bottom: 4px; }
+
+.tag {
+  display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px;
+  font-weight: 600; margin-right: 4px;
+}
+.tag-buy { background: #fce8e6; color: #c5221f; }
+.tag-hold { background: #fef7e0; color: #e37400; }
+.tag-info { background: #e8f0fe; color: #1a73e8; }
+.tag-fire { background: #fce8e6; color: #c5221f; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  font-size: 13px; padding: 10px 12px; text-align: left; word-break: break-word;
+  overflow-wrap: anywhere; border-bottom: 1px solid var(--border); vertical-align: top; overflow: hidden;
+}
+th { font-size: 12px; font-weight: 700; color: var(--text-secondary); background: #f8f9fa; text-align: center; }
+tbody tr:nth-child(even) { background: rgba(0,0,0,0.015); }
+td { font-variant-numeric: tabular-nums; }
+
+table.f5 { table-layout: fixed; }
+table.f5 th:nth-child(1), table.f5 td:nth-child(1) { width: 16%; }
+table.f5 th:nth-child(2), table.f5 td:nth-child(2) { width: 14%; }
+table.f5 th:nth-child(3), table.f5 td:nth-child(3) { width: 18%; }
+table.f5 th:nth-child(4), table.f5 td:nth-child(4) { width: 24%; }
+table.f5 th:nth-child(5), table.f5 td:nth-child(5) { width: 28%; }
+
+table.f4 { table-layout: fixed; }
+table.f4 th:nth-child(1), table.f4 td:nth-child(1) { width: 14%; }
+table.f4 th:nth-child(2), table.f4 td:nth-child(2) { width: 18%; }
+table.f4 th:nth-child(3), table.f4 td:nth-child(3) { width: 14%; }
+table.f4 th:nth-child(4), table.f4 td:nth-child(4) { width: 54%; }
+
+table.f4.bd { table-layout: fixed; }
+table.f4.bd th:nth-child(1), table.f4.bd td:nth-child(1) { width: 18%; }
+table.f4.bd th:nth-child(2), table.f4.bd td:nth-child(2) { width: 18%; }
+table.f4.bd th:nth-child(3), table.f4.bd td:nth-child(3) { width: 34%; }
+table.f4.bd th:nth-child(4), table.f4.bd td:nth-child(4) { width: 30%; }
+
+table.f3 { table-layout: fixed; }
+table.f3 th:nth-child(1), table.f3 td:nth-child(1) { width: 22%; }
+table.f3 th:nth-child(2), table.f3 td:nth-child(2) { width: 18%; }
+table.f3 th:nth-child(3), table.f3 td:nth-child(3) { width: 60%; }
+
+table.f2 { table-layout: fixed; }
+table.f2 th:nth-child(1), table.f2 td:nth-child(1) { width: 28%; }
+table.f2 th:nth-child(2), table.f2 td:nth-child(2) { width: 72%; }
+
+.pos, .up { color: var(--up); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.neg, .down { color: var(--down); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+table.f5 th:nth-child(1), table.f5 td:nth-child(1) { text-align: left; }
+table.f5 th:nth-child(2), table.f5 td:nth-child(2) { text-align: left; }
+table.f5 th:nth-child(3), table.f5 td:nth-child(3) { text-align: right; }
+table.f5 th:nth-child(4), table.f5 td:nth-child(4) { text-align: right; }
+table.f5 th:nth-child(5), table.f5 td:nth-child(5) { text-align: left; }
+
+table.f4 th:nth-child(1), table.f4 td:nth-child(1) { text-align: left; }
+table.f4 th:nth-child(2), table.f4 td:nth-child(2) { text-align: right; }
+table.f4 th:nth-child(3), table.f4 td:nth-child(3) { text-align: center; }
+table.f4 th:nth-child(4), table.f4 td:nth-child(4) { text-align: left; }
+
+table.f4.bd th:nth-child(1), table.f4.bd td:nth-child(1) { text-align: left; }
+table.f4.bd th:nth-child(2), table.f4.bd td:nth-child(2) { text-align: right; }
+table.f4.bd th:nth-child(3), table.f4.bd td:nth-child(3) { text-align: center; }
+table.f4.bd th:nth-child(4), table.f4.bd td:nth-child(4) { text-align: left; }
+
+table.f3 th:nth-child(1), table.f3 td:nth-child(1) { text-align: left; }
+table.f3 th:nth-child(2), table.f3 td:nth-child(2) { text-align: right; }
+table.f3 th:nth-child(3), table.f3 td:nth-child(3) { text-align: left; }
+
+table.f2 th:nth-child(1), table.f2 td:nth-child(1) { text-align: left; }
+table.f2 th:nth-child(2), table.f2 td:nth-child(2) { text-align: left; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0; }
+.sc-card {
+  border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+}
+.sc-card .sc-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+.sc-card .sc-price { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.sc-card .sc-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+.sc-card.highlight { border-color: var(--blue); background: #f8fbff; }
+
+.timeline { margin: 14px 0; }
+.tl-item {
+  display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--border);
+  align-items: flex-start;
+}
+.tl-date {
+  font-size: 12px; font-weight: 700; min-width: 90px; color: var(--blue); padding-top: 2px;
+}
+.tl-content { font-size: 13px; line-height: 1.7; flex: 1; }
+
+.caution-box {
+  background: #fef7e0; border: 1px solid #f9ab00; border-radius: 8px;
+  padding: 14px 18px; margin: 16px 0; font-size: 13px; line-height: 1.7;
+}
+
+.source-note { font-size: 12px; color: var(--text-secondary); margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); line-height: 1.8; }
+
+@media (max-width: 640px) {
+  body { font-size: 13px; padding: 12px 8px 40px; }
+  .hero { padding: 18px 16px; }
+  .hero h1 { font-size: 18px; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .card { padding: 16px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="title-row">
+    <h1>乐普医疗 · MWN109 BD价值推演</h1>
+    <span class="badge">核心催化剂更新</span>
+  </div>
+  <div class="meta">聚焦民为生物GLP-1三靶点管线 · 数据截至2026-08-12 10:00 · 紧跟前文介入方案</div>
+
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="label">MWN109定位</div>
+      <div class="value">全球唯一</div>
+      <div class="sub">注射+口服 双剂型 三靶点</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">当前阶段</div>
+      <div class="value">II期</div>
+      <div class="sub">注射II低剂量完成·口服II 8周</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">最近可比BD</div>
+      <div class="value">UBT251</div>
+      <div class="sub">联邦→诺和 $2亿首付/$20亿总额</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">甘李BD（8/10）</div>
+      <div class="value">€7.26亿</div>
+      <div class="sub">单靶点双周制剂→涨停</div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <strong>核心判断：MWN109是乐普医疗当前最重要的估值重估催化剂，其BD价值远超市场当前定价。</strong><br>
+    全球唯一注射+口服双剂型三靶点GLP-1，澳洲I期白人数据已完成（口服待揭盲），国内II期低剂量组已完成。可比交易锚点：联邦UBT251（同三靶点、II期）获$2亿首付 → 对MWN109保守估值$1.5-2亿首付、总额$15-20亿；若口服澳洲数据揭盲优异+多买家竞价，乐观情景首付可达$5-8亿。甘李单靶点刚于8/10签下€7.26亿欧洲授权即涨停，市场对GLP-1 BD高度敏感。2026年8月下旬至Q4是MWN109催化剂密集窗口。
+  </div>
+</div>
+
+<!-- 一、管线全景 -->
+<div class="card">
+  <h2>一、MWN109管线全景：临床进展与数据亮点</h2>
+
+  <h3>1.1 药物基本信息</h3>
+  <div class="table-wrap">
+  <table class="f2">
+    <thead><tr><th>项目</th><th>详情</th></tr></thead>
+    <tbody>
+      <tr><td>药物代码</td><td>MWN109（注射液+口服片剂）</td></tr>
+      <tr><td>靶点机制</td><td>GLP-1R / GIPR / GCGR 三靶点激动剂（合成多肽）</td></tr>
+      <tr><td>原研方</td><td>上海民为生物技术有限公司（乐普医疗控股55%）</td></tr>
+      <tr><td>全球最高阶段</td><td>Phase II（中国+澳大利亚双线推进）</td></tr>
+      <tr><td>适应症</td><td>2型糖尿病 · 肥胖/超重 · MASH（代谢相关脂肪性肝炎）</td></tr>
+      <tr><td>核心差异化</td><td>全球唯一同时布局注射+口服双剂型的三靶点GLP-1，技术壁垒领先国内3-5年</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>1.2 临床进度全景（截至2026年8月）</h3>
+  <div class="table-wrap">
+  <table class="f5">
+    <thead>
+      <tr><th>管线</th><th>地域</th><th>当前阶段</th><th>关键里程碑</th><th>状态</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>注射剂 减重</td><td>中国</td><td>II期</td><td>低剂量组已完成</td>
+        <td><span class="tag tag-info">完成</span> 等待数据读出</td>
+      </tr>
+      <tr>
+        <td>注射剂 减重</td><td>澳洲</td><td>I期完成</td><td>白人族群数据与国内一致</td>
+        <td><span class="tag tag-info">已确认</span> FDA可接受</td>
+      </tr>
+      <tr>
+        <td>注射剂 减重</td><td>中国</td><td>III期准备中</td><td>预计2026Q4进入III期</td>
+        <td><span class="tag tag-hold">进行中</span> 申请准备</td>
+      </tr>
+      <tr>
+        <td>口服片 减重</td><td>中国</td><td>II期</td><td>减重II期已到8周；维持II期已到4周</td>
+        <td><span class="tag tag-info">进行中</span></td>
+      </tr>
+      <tr>
+        <td>口服片 减重</td><td>澳洲</td><td>I期完成</td>
+        <td>数据待揭盲 <span class="tag tag-fire" style="font-size:10px;">近端催化剂</span></td>
+        <td><span class="tag tag-hold">待揭盲</span> 随时可能公布</td>
+      </tr>
+      <tr>
+        <td>口服片 减重</td><td>中国</td><td>III期准备中</td><td>预计2027Q1进入III期</td>
+        <td><span class="tag tag-hold">规划中</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>1.3 关键临床数据摘要</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>指标</th><th>注射剂（Ib期）</th><th>口服片（I期）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>给药周期</td><td>14周（含滴定）</td><td>4周（含滴定）</td>
+      </tr>
+      <tr>
+        <td>剂量范围</td><td>3.0~9.0mg</td><td>7.5/15/30/45mg</td>
+      </tr>
+      <tr>
+        <td>最大减重幅度</td><td><strong>16.67%</strong></td>
+        <td>4.18% / 5.72% / 6.99% / <strong>7.82%</strong></td>
+      </tr>
+      <tr>
+        <td>vs 同类对比</td>
+        <td>优于同类同期数据</td>
+        <td>优于同类同期数据</td>
+      </tr>
+      <tr>
+        <td>剂量关系</td>
+        <td>—</td>
+        <td>明确的剂量效应关系</td>
+      </tr>
+      <tr>
+        <td>不良反应</td>
+        <td colspan="2">胃肠道反应为主，退出率远低于同类三靶点药物</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">数据来源：乐普医疗公司公告/互动易回复 ★★★ | 注意：I期样本量有限（n≈30-50），II期大样本数据是真正的验证节点</p>
+</div>
+
+<!-- 二、BD可比交易 -->
+<div class="card">
+  <h2>二、GLP-1 BD可比交易对标</h2>
+
+  <h3>2.1 核心可比交易表</h3>
+  <div class="table-wrap">
+  <table class="f5">
+    <thead>
+      <tr><th>交易方</th><th>资产</th><th>首付款</th><th>总里程碑</th><th>对比MWN109</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>联邦→诺和诺德<br>2025.03</td>
+        <td>UBT251<br>三靶点注射</td>
+        <td>$2.0亿</td>
+        <td>$18亿<br>总额$20亿</td>
+        <td><strong>最直接可比</strong>：同三靶点+II期<br>MWN109多口服剂型+澳洲数据</td>
+      </tr>
+      <tr>
+        <td>甘李→Menarini<br><span class="tag tag-fire">2026.08.10</span></td>
+        <td>博凡格鲁肽<br>单靶点双周</td>
+        <td>€0.62亿</td>
+        <td>€6.64亿<br>总额€7.26亿</td>
+        <td>单靶点+仅欧洲权益<br>MWN109多靶点价值应显著更高<br><strong>公告日涨停，市场极度敏感</strong></td>
+      </tr>
+      <tr>
+        <td>石药→阿斯利康<br>2026.01</td>
+        <td>GLP-1+AI平台</td>
+        <td>$12亿</td>
+        <td>$173亿<br>总额$185亿</td>
+        <td>打包多资产+平台交易<br>单管线不可比</td>
+      </tr>
+      <tr>
+        <td>乐普→SideraBio<br>2025.10</td>
+        <td>MWN105<br>siRNA</td>
+        <td>$0.35亿</td>
+        <td>$10.1亿<br>+9.99%股权</td>
+        <td><strong>同公司兄弟管线</strong><br>MWN109价值远高于MWN105</td>
+      </tr>
+      <tr>
+        <td>信达→健之佳<br>2025.09</td>
+        <td>玛仕度肽<br>已上市</td>
+        <td>未披露</td>
+        <td>未披露</td>
+        <td>零售渠道合作，非BD授权</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>2.2 MWN109 vs UBT251 差异化对比</h3>
+  <div class="table-wrap">
+  <table class="f4 bd">
+    <thead><tr><th>维度</th><th>MWN109</th><th>UBT251（对标）</th><th>MWN109溢价/折价</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>靶点</td>
+        <td>GLP-1/GIP/GCG</td>
+        <td>GLP-1/GIP/GCG</td>
+        <td>持平</td>
+      </tr>
+      <tr>
+        <td>剂型</td>
+        <td><strong>注射+口服双剂型</strong></td>
+        <td>仅注射</td>
+        <td><span class="up">显著溢价</span></td>
+      </tr>
+      <tr>
+        <td>海外数据</td>
+        <td><strong>澳洲白人I期完成</strong></td>
+        <td>尚未披露国际临床</td>
+        <td><span class="up">溢价</span></td>
+      </tr>
+      <tr>
+        <td>减重数据（Ib期）</td>
+        <td>14周 <strong>16.67%</strong></td>
+        <td>12周 15.1%</td>
+        <td><span class="up">小幅溢价</span></td>
+      </tr>
+      <tr>
+        <td>BD时阶段</td>
+        <td>II期推进中</td>
+        <td>II期（BD达成时）</td>
+        <td>持平</td>
+      </tr>
+      <tr>
+        <td>买断区域</td>
+        <td>待定</td>
+        <td>全球（除大中华区）</td>
+        <td>取决于谈判条款</td>
+      </tr>
+      <tr>
+        <td>不良反应退出率</td>
+        <td><strong>显著低于同类</strong></td>
+        <td>与同类一致</td>
+        <td><span class="up">溢价</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">
+    ★★★ 结论：MWN109在核心维度（口服剂型+海外数据+安全性）上显著优于UBT251，理论上BD首付款和总额应至少与UBT251（$2亿首付/$20亿总额）持平或明显溢价。
+  </p>
+</div>
+
+<!-- 三、BD估值三情景 -->
+<div class="card">
+  <h2>三、MWN109 BD估值三情景推演</h2>
+
+  <div class="scenario-grid">
+    <div class="sc-card">
+      <div class="sc-label">保守情景（UBT251平价）</div>
+      <div class="sc-price" style="color:var(--amber);">$1.5-2亿 首付</div>
+      <div class="sc-detail">
+        假设：II期数据与UBT251持平，无双买家竞价<br>
+        总额：$15-20亿<br>
+        <strong>触发条件：</strong>II期数据达标但无特别惊喜，口服澳洲数据平稳<br>
+        对应乐普权益价值(55%)：首付约$0.8-1.1亿 ≈ <strong>6-8亿人民币</strong>
+      </div>
+    </div>
+
+    <div class="sc-card highlight">
+      <div class="sc-label">基准情景（差异化溢价）</div>
+      <div class="sc-price" style="color:var(--blue);">$3-5亿 首付</div>
+      <div class="sc-detail">
+        假设：口服II期数据优异+澳洲口服揭盲积极，1-2家竞价<br>
+        总额：$25-40亿<br>
+        <strong>触发条件：</strong>口服减重数据验证差异化+安全性优异+澳洲数据支持全球开发<br>
+        对应乐普权益价值(55%)：首付约$1.65-2.75亿 ≈ <strong>12-20亿人民币</strong>
+      </div>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-label">乐观情景（多买家竞价）</div>
+      <div class="sc-price" style="color:var(--up);">$5-8亿 首付</div>
+      <div class="sc-detail">
+        假设：II期数据超预期+多买家（诺和/阿斯利康/辉瑞）激烈竞价<br>
+        总额：$50-80亿<br>
+        <strong>触发条件：</strong>口服数据远超预期+买家FOMO+竞标溢价<br>
+        对应乐普权益价值(55%)：首付约$2.75-4.4亿 ≈ <strong>20-32亿人民币</strong>
+      </div>
+    </div>
+  </div>
+
+  <h3>对乐普市值的影响测算</h3>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>情景</th><th>BD首付(乐普55%)</th><th>对应当前市值(240亿)</th><th>潜在市值增量</th></tr></thead>
+    <tbody>
+      <tr><td>保守</td><td>~7亿人民币</td><td>约+3%</td><td>有限，主要验证BD能力、打开后续管线估值</td></tr>
+      <tr><td>基准</td><td>~16亿人民币</td><td>约+7%</td><td>显著，确认MWN109全球价值，带动管线重估</td></tr>
+      <tr><td>乐观</td><td>~26亿人民币</td><td>约+11%</td><td>重大重估，民为生物隐性价值释放，可比创新药企估值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">
+    注：上表仅计算首付款一次性影响。若计入总里程碑+销售分成折现（DCF），MWN109管线价值可能达50-150亿人民币（乐观折现），显著改变乐普估值锚。<br>
+    参照：甘李单靶点欧洲授权€7.26亿（约57亿人民币）触发涨停—MWN109若有全球授权，价值至少数倍于此。
+  </p>
+</div>
+
+<!-- 四、潜在买家 -->
+<div class="card">
+  <h2>四、潜在买家图谱</h2>
+  <div class="table-wrap">
+  <table class="f4 bd">
+    <thead><tr><th>潜在买家</th><th>合作基础</th><th>战略动机</th><th>可能性评估</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>诺和诺德</strong></td>
+        <td>已投资民为生物</td>
+        <td>补强三靶点口服短板，巩固代谢药王座；已拿下联邦UBT251（注射），口服三靶点是缺失拼图</td>
+        <td>★★★★★<br>最高概率<br><span style="font-size:11px;color:var(--text-secondary);">但CEO 8/5称"无重大交易计划"</span></td>
+      </tr>
+      <tr>
+        <td><strong>阿斯利康</strong></td>
+        <td>与乐普深度合作</td>
+        <td>石药$185亿大单后继续加码GLP-1管线；布局代谢+心血管协同</td>
+        <td>★★★★<br>高概率</td>
+      </tr>
+      <tr>
+        <td><strong>辉瑞</strong></td>
+        <td>裁撤自研GLP-1</td>
+        <td>自研口服减肥药管线全部终止，急需外部引进；CEO明确表示寻求BD</td>
+        <td>★★★★<br>高概率</td>
+      </tr>
+      <tr>
+        <td><strong>礼来</strong></td>
+        <td>自有Retatrutide（三靶点注射）</td>
+        <td>收购口服三靶点可补充剂型矩阵，防御诺和</td>
+        <td>★★★<br>中等</td>
+      </tr>
+      <tr>
+        <td><strong>默沙东</strong></td>
+        <td>从翰森引进GLP-1</td>
+        <td>持续布局代谢赛道，三靶点差异化需求</td>
+        <td>★★★<br>中等</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- 五、催化剂时间线 -->
+<div class="card">
+  <h2>五、催化剂时间线与关键节点</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date"><span class="tag tag-fire">近期</span> 8月</div>
+      <div class="tl-content">
+        <strong>MWN109澳洲口服I期数据揭盲</strong> — 数据已收集，揭盲时点不确定但随时可能公告。白人族群数据对FDA路径和BD谈判至关重要。若数据与国内一致=重大正面催化。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">8月22日</div>
+      <div class="tl-content">
+        <strong>2026半年报披露</strong> — 关注：①医美收入增速验证 ②器械扣非恢复情况 ③MWN109临床进展更新 ④是否有BD谈判进展披露。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026Q4</div>
+      <div class="tl-content">
+        <strong>MWN109注射剂国内III期申请/启动</strong> — III期启动=管线正式进入确证性临床阶段，BD谈判地位大幅提升。是BD谈判的天然时间锚。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026H2</div>
+      <div class="tl-content">
+        <strong>MWN109 II期完整数据读出/学术发表</strong> — II期大样本（注射n≈209+、口服n≈240）数据是BD定价的核心依据。可能在医学会议（如ADA/EASD）上发布。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2027Q1</div>
+      <div class="tl-content">
+        <strong>MWN109口服片剂III期启动</strong> — 口服双剂型III期启动将进一步拉开与竞争管线的差距。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">持续</div>
+      <div class="tl-content">
+        <strong>BD谈判传闻</strong> — 诺和诺德/阿斯利康/辉瑞任何一方的接触传闻都可能触发股价脉冲。参照甘李8/10 BD公告即涨停，市场对GLP-1 BD高度敏感。
+      </div>
+    </div>
+  </div>
+
+  <div class="caution-box">
+    <strong>⚠️ 催化剂窗口关键判断</strong><br>
+    2026年Q3-Q4是MWN109催化剂最密集的窗口：澳洲口服揭盲 + II期数据读出 + III期启动 + 中报。如果乐普要在二级市场实现BD预期重估，<strong>大概率发生在这个窗口期内</strong>。但需注意：诺和诺德CEO 8月5日明确表示"没有重大交易计划"，这可能推迟但不会消除BD逻辑——因为其他买家（阿斯利康/辉瑞）仍在积极寻找标的。
+  </div>
+</div>
+
+<!-- 六、更新的操作计划 -->
+<div class="card">
+  <h2>六、基于MWN109 BD逻辑的操作计划更新</h2>
+
+  <h3>与原方案（WAIT→等中报）的关键差异</h3>
+  <div class="table-wrap">
+  <table class="f3">
+    <thead><tr><th>维度</th><th>原方案（上午报告）</th><th>更新方案（纳入MWN109 BD）</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>估值逻辑</td>
+        <td>主业+医美+GLP-1</td>
+        <td>MWN109 BD为核心重估催化剂，可比交易锚定明确</td>
+      </tr>
+      <tr>
+        <td>操作节奏</td>
+        <td>纯等8/22中报，超预期才建仓</td>
+        <td><strong>增加"事件前试探观察仓"选项</strong>，博弈澳洲口服揭盲/BD传闻</td>
+      </tr>
+      <tr>
+        <td>仓位建议</td>
+        <td>超预期→建5-8%</td>
+        <td>基准不变，但<strong>若有BD传闻/澳洲数据揭盲正面</strong>，可提前至3-4%试探仓</td>
+      </tr>
+      <tr>
+        <td>下行保护</td>
+        <td>MA55(12.36)止损</td>
+        <td>不变，但<strong>若BD逻辑被证伪（如口服数据不佳）</strong>，应立即离场</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>更新后的三档操作建议</h3>
+  <div class="table-wrap">
+  <table class="f4">
+    <thead><tr><th>信号</th><th>触发条件</th><th>仓位</th><th>操作</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-buy">提前介入</span></td>
+        <td>澳洲口服数据正面 / BD传闻可信</td>
+        <td>3-4%</td>
+        <td>试探仓，快进快出思维。若股价对BD传闻已有明显涨幅(5-8%)，不追高。</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-buy">建仓窗口</span></td>
+        <td>8/22中报超预期 OR II期数据读出优异</td>
+        <td>5-8%</td>
+        <td>基本面里程碑确认后建主仓位。优先选回调时加仓。</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-buy">加仓窗口</span></td>
+        <td>BD正式公告落地(首付≥$1.5亿)</td>
+        <td>+3-5%</td>
+        <td className="pos">BD落地后若股价冲高回落（参照MWN105模式），可在回踩均线时加仓。总仓位≤12%。</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-hold">观望</span></td>
+        <td>澳洲口服数据平淡 / 中报不及预期 / 诺和CEO言论压制</td>
+        <td>0%</td>
+        <td>维持WAIT。证明BD逻辑的催化剂未出现前不介入。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>情景推演：如果MWN109 BD发生</h3>
+  <div class="table-wrap">
+  <table class="f4 bd">
+    <thead><tr><th>BD情景</th><th>首付规模</th><th>乐普股价反应推演</th><th>操作建议</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>保守</td><td>$1.5-2亿</td>
+        <td>短期脉冲5-10%后回落（市场已有部分预期）</td>
+        <td>脉冲后不追，等回踩MA20再考虑</td>
+      </tr>
+      <tr>
+        <td>基准</td><td>$3-5亿</td>
+        <td>涨停或接近涨停（参照甘李8/10模式），后续分化</td>
+        <td>涨停打开后若回踩充分，可加仓至8-10%</td>
+      </tr>
+      <tr>
+        <td>乐观</td><td>$5-8亿</td>
+        <td>连续涨停+板块联动，市值重估30-50%</td>
+        <td>首日涨停持有，次日观察量能；分批兑现部分利润</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="caution-box">
+    <strong>⚠️ 操作纪律红线</strong><br>
+    ① <strong>不被BD故事绑架仓位</strong>：MWN109 BD是概率事件（II期尚未完成），不是确定性事件。即使有3-4%试探仓，也不代表"一定会BD"。<br>
+    ② <strong>区分传闻与实锤</strong>：传闻阶段的上涨是减仓信号，不是加仓信号（参照2025年MWN105教训）。<br>
+    ③ <strong>主业仍是安全垫</strong>：乐普主业（器械+药品+医美）年利润约10亿（2025年9.6亿），给予15-20x PE=150-200亿市值安全边际。现价240亿中约40-90亿是创新药/BD期权定价——这就是你的上行空间也是你的下行风险。
+  </div>
+</div>
+
+<!-- 七、风险清单 -->
+<div class="card">
+  <h2>七、MWN109 BD专项风险清单</h2>
+  <div class="table-wrap">
+  <table class="f2">
+    <thead><tr><th>风险项</th><th>影响</th></tr></thead>
+    <tbody>
+      <tr><td>II期大样本数据不及Ib期</td><td>Ib期n≈30-50，II期n≈200+。大样本下减重效果和安全性可能回归均值。若II期数据不如Ib期亮眼，BD溢价将大幅压缩。</td></tr>
+      <tr><td>诺和诺德CEO言论压制</td><td>8月5日明确"无重大交易计划"。若诺和诺德不参与竞价，将减少一个核心买家，BD溢价下降。但阿斯利康/辉瑞仍在积极寻找标的。</td></tr>
+      <tr><td>澳洲口服数据不及预期</td><td>口服多肽生物利用度是技术难点。若澳洲白人数据与国内不一致或减重效果打折，将严重削弱口服差异化叙事。</td></tr>
+      <tr><td>BD谈判周期长</td><td>MWN101（MWN109前身）因数据不及预期终止，证明公司有砍管线的纪律。若MWN109 II期数据不达预期，存在终止或推迟III期的可能。</td></tr>
+      <tr><td>竞争格局加速变化</td><td>礼来Retatrutide（三靶点）已在III期；石药/联邦等多个三靶点管线推进中。若MWN109进度落后于竞品，BD窗口可能收窄。</td></tr>
+      <tr><td>民为生物持股稀释</td><td>乐普持股55%，若民为生物独立融资（如腾讯已入股），乐普权益可能被稀释。BD收益不能直接换算为55%×总金额。</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="source-note">
+  <strong>数据溯源与版本</strong><br>
+  临床数据：乐普医疗公司公告/互动易回复/同花顺i问财 ★★★<br>
+  BD可比交易：各公司公告/医药魔方/智慧芽/丁香园Insight ★★★<br>
+  市场分析：雪球/东方财富/格隆汇 公开信息（非一手数据，仅供参考）★★<br>
+  管线分析：PatSnap Synapse MWN-109 Due Diligence Report (2026-08-03) ★★★<br>
+  报告版本：V1.0 · 生成时间：2026-08-12 10:00 · 紧跟前文《乐普医疗介入方案》<br><br>
+  <strong>⚠️ 免责声明：</strong>本报告仅供投研参考，不构成任何投资建议。报告中的BD估值情景、买家分析、股价推演均为基于公开信息的逻辑推演，不代表对未来事件的任何预测或承诺。MWN109处于临床II期，BD交易存在重大不确定性。创新药研发具有高失败率。股市有风险，投资需谨慎。任何投资决策应当基于投资者自身的独立判断，并承担相应风险。
+</div>
+
+</div>
+</body>
+</html>
