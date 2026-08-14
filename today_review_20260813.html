@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日复盘 2026-08-13</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--text:#1f2937;--muted:#5a5a6e;--soft:#f2f4f8;--line:#e2e5eb;--accent:#4285F4;
+  --pos:#ff3b3b;--neg:#1ed890;--up:#ff3b3b;--down:#1ed890;
+  --label-blue:#4285F4;--label-yellow:#FBBC05;--label-red:#EA4335;--label-green:#34A853;
+  --shadow:0 1px 3px rgba(0,0,0,.06);--radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px}
+h1{font-size:20px;color:var(--text);margin-bottom:6px}
+h2{font-size:15px;color:var(--accent);margin:16px 0 10px;border-left:3px solid var(--accent);padding-left:10px}
+h3{font-size:14px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:13.5px;color:var(--text)}
+.summary{background:var(--soft);border-radius:6px;padding:12px 14px;font-size:13px;color:var(--muted);margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{font-weight:600;color:var(--muted);background:rgba(155,165,185,.06);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(155,165,185,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(66,133,244,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-yellow{color:#b38600;background:rgba(251,188,5,.12);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-red{color:#c5221f;background:rgba(234,67,53,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-green{color:#137333;background:rgba(52,168,83,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.pos,.up{color:var(--pos)}
+.neg,.down{color:var(--neg)}
+.small{font-size:12px;color:var(--muted)}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px}
+.metric-val{font-size:18px;font-weight:700}
+.metric-label{font-size:12px;color:var(--muted)}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:17px}h2{font-size:14px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:16px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center}
+.chart{width:100%;height:320px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>今日复盘 · 2026-08-13（周四）</h1>
+  <p class="small">数据时点：Wind 万得 收盘数据 · 版式：Google Insight V1 · 置信度 ★★★</p>
+  <div class="summary">
+    <strong>核心结论（结论前置）：</strong>今日是「放量冲高回落」的派发型阴线。四大指数盘中均创近期新高后集体回落收跌，长上影阴线 + 放量约 18.5%，是典型的<b>1浪3末期 / 顶部序列钝化</b>信号。老潘上午"一指数高7、四指数高8、1浪3末期、收盘是关键"的判断，被收盘数据完整验证。科技主线（光模块/AI硬件）高开冲高即兑现，与盘前预案（罗博520+ T出 / 汇绿44+减 / 澜起220+ T出）盘中全部命中。明日（8-14）是变盘确认日：若不能快速收复长上影、继续缩量阴跌，则确认1浪4调整开启；操作上<b>降仓位、守利润、不追高</b>，反弹是减仓机会而非加仓点。
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、指数收盘全景</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val down">3926.96</div><div class="metric-label">上证指数 -0.50%</div></div>
+    <div class="metric-item"><div class="metric-val down">14289.44</div><div class="metric-label">深证成指 -0.87%</div></div>
+    <div class="metric-item"><div class="metric-val down">3586.04</div><div class="metric-label">创业板指 -0.45%</div></div>
+    <div class="metric-item"><div class="metric-val down">1717.75</div><div class="metric-label">科创50 -1.11%</div></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">指数</th>
+          <th class="num">今收</th>
+          <th class="num">涨跌%</th>
+          <th class="num">盘中最高</th>
+          <th class="num">盘中最低</th>
+          <th class="num">成交额(亿)</th>
+          <th class="txt">形态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>上证指数</strong></td><td class="num">3926.96</td><td class="num pct down">-0.50%</td><td class="num">3968.48</td><td class="num">3924.64</td><td class="num">11642</td><td class="txt">创新高后收长上影阴线</td></tr>
+        <tr><td class="name"><strong>深证成指</strong></td><td class="num">14289.44</td><td class="num pct down">-0.87%</td><td class="num">14584.30</td><td class="num">14289.01</td><td class="num">13867</td><td class="txt">冲高回落，收近全天最低</td></tr>
+        <tr><td class="name"><strong>创业板指</strong></td><td class="num">3586.04</td><td class="num pct down">-0.45%</td><td class="num">3681.80</td><td class="num">3585.27</td><td class="num">6615</td><td class="txt">长上影，尾盘走弱</td></tr>
+        <tr><td class="name"><strong>科创50</strong></td><td class="num">1717.75</td><td class="num pct down">-1.11%</td><td class="num">1782.78</td><td class="num">1715.34</td><td class="num">1257</td><td class="txt">跌幅最大，半导体领跌</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">两市合计成交约 2.55 万亿元，较 8-12（约 2.15 万亿）放量约 18.5%。<b>放量收阴 = 上方抛压兑现</b>，非良性换手。</p>
+</div>
+
+<div class="card">
+  <h2>二、指数近5日走势</h2>
+  <div class="chart" id="idxChart"></div>
+  <p class="note">上证近5日：3940.04 → 3966.59 → 3934.09 → 3946.68 → 3926.96。8-13 冲高 3968.48 后失守，收出带长上影的阴线，重心下移。</p>
+</div>
+
+<div class="card">
+  <h2>三、持仓实盘复盘</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">标的</th>
+          <th class="num">昨收</th>
+          <th class="num">今收</th>
+          <th class="num">涨跌%</th>
+          <th class="num">盘中最高</th>
+          <th class="num">换手%</th>
+          <th class="txt">盘面特征</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>罗博特科</strong> 300757</td><td class="num">515.83</td><td class="num">507.54</td><td class="num pct down">-1.61%</td><td class="num">534.00</td><td class="num">4.60</td><td class="txt">冲高534后回落，520+ T出命中</td></tr>
+        <tr><td class="name"><strong>汇绿生态</strong> 001267</td><td class="num">41.38</td><td class="num">41.59</td><td class="num pct up">+0.51%</td><td class="num">43.40</td><td class="num">11.02</td><td class="txt">高开冲43.4回落，天量换手，44未触及</td></tr>
+        <tr><td class="name"><strong>澜起科技</strong> 688008</td><td class="num">215.43</td><td class="num">210.22</td><td class="num pct down">-2.42%</td><td class="num">225.30</td><td class="num">4.17</td><td class="txt">冲225.3后大幅回落，220+ T出命中</td></tr>
+        <tr><td class="name"><strong>星环科技</strong> 688031</td><td class="num">112.76</td><td class="num">112.29</td><td class="num pct down">-0.42%</td><td class="num">123.05</td><td class="num">10.28</td><td class="txt">冲123后回落，宽幅震荡</td></tr>
+        <tr><td class="name"><strong>软通动力</strong> 301236</td><td class="num">40.07</td><td class="num">39.37</td><td class="num pct down">-1.75%</td><td class="num">40.60</td><td class="num">3.39</td><td class="txt">阴跌，无独立行情</td></tr>
+        <tr><td class="name"><strong>三祥新材</strong> 603663</td><td class="num">41.31</td><td class="num">39.86</td><td class="num pct down">-3.51%</td><td class="num">42.31</td><td class="num">4.27</td><td class="txt">持仓跌幅最大，冲高回落</td></tr>
+        <tr><td class="name"><strong>泰和新材</strong> 002254</td><td class="num">12.79</td><td class="num">12.46</td><td class="num pct down">-2.58%</td><td class="num">12.90</td><td class="num">2.54</td><td class="txt">化工回调，跌破12.5短支撑</td></tr>
+        <tr><td class="name"><strong>华峰化学</strong> 002064</td><td class="num">11.53</td><td class="num">11.27</td><td class="num pct down">-2.25%</td><td class="num">11.63</td><td class="num">0.76</td><td class="txt">缩量阴跌，弱势</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>个股点评（双面拆解）</h3>
+  <p><strong>罗博特科（300757）— HOLD，冲高兑现正确</strong>：美股 NVDA/MRVL 大涨带动高开，盘中冲 534 元后大幅回落，收 507.54 元（-1.61%）。盘前"520+ T出"预案命中。利好：光电封装/自动化扩产逻辑未变，仍处主升趋势。风险：单日长上影 + 高位放量，短期需防回踩 490—500 区。55 日线（约 470—480）是中期趋势分水岭，不破不改多头。</p>
+  <p><strong>汇绿生态（001267）— HOLD，关注 41 元承接</strong>：高开 43.22 冲 43.40 后回落，收 41.59 元（+0.51%），换手 11.02% 天量。COHR/LITE 暴涨的映射在 A 股早盘兑现后即回落。利好：光模块转型 + 六层递进逻辑仍在。风险：天量长上影，若明日失守 41 元，短线获利盘涌出；41 元是关键承接位。</p>
+  <p><strong>澜起科技（688008）— HOLD，底仓不动</strong>：冲 225.30 后收 210.22 元（-2.42%），长上影 + 天量。MRVL 映射的弹性兑现。这是长线底仓，逻辑（AI 互联内存接口芯片）未变，不因单日波动动摇。风险：短期超买，210 元附近看承接，200 元是强支撑。</p>
+</div>
+
+<div class="card">
+  <h2>四、波浪与顶部序列判断</h2>
+  <p><strong>结论：1浪3末期被收盘数据验证，顶部序列钝化确认。</strong></p>
+  <p>老潘上午的原话"一指数高7、四指数高8，白天不重要，收盘是关键，浪形更倾向1浪3末期"，今日收盘给出了明确答案：</p>
+  <ul style="margin-left:20px;font-size:13.5px;line-height:1.9">
+    <li><b>收盘未站稳压力区</b>：上证盘中最高 3968.48（突破前高 3967.59），但收盘 3926.96，收在压力区下方，冲高回落。</li>
+    <li><b>长上影阴线</b>：四大指数全部收长上影，盘中新高但尾盘失守，是典型的"假突破/派发"形态。</li>
+    <li><b>放量约18.5%</b>：量能放大但价格收阴，说明上方抛压沉重，资金在兑现而非吸筹。</li>
+    <li><b>顶部序列推进</b>：高7/高8 未见钝化解除，反而随冲高回落强化了短期见顶风险。</li>
+  </ul>
+  <p><strong>波浪定位</strong>：当前更符合"1浪内部3浪末段"而非"新的大级别3浪确认启动"。明日（8-14）是确认日——</p>
+  <ul style="margin-left:20px;font-size:13.5px;line-height:1.9">
+    <li><b>若明日低开或冲高不能收复今日上影</b>：确认 1浪4 调整开启，回撤目标参考上证 3900 / 3850。</li>
+    <li><b>若明日放量反包今日阴线并站稳 3967</b>：才需上调对 3浪延伸的权重，但概率较低。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>五、明日（8-14）操作框架</h2>
+  <p><strong>总基调：降仓位、守利润、不追高。反弹是减仓机会，不是加仓点。</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">动作</th><th class="txt">对象与条件</th><th class="txt">风控点位</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><span class="tag-yellow">减仓</span></td><td class="txt">罗博特科：若反弹至 520+ 未放量突破，继续 T 出；汇绿：反弹 43+ 或失守 41 减 1/3</td><td class="txt">罗博跌破 500 减，汇绿跌破 41 减</td></tr>
+        <tr><td class="name"><span class="tag-blue">持有</span></td><td class="txt">澜起科技底仓不动；星环科技、软通动力持股观望</td><td class="txt">澜起 200 为强支撑，跌破再评估</td></tr>
+        <tr><td class="name"><span class="tag-green">观察</span></td><td class="txt">三祥新材、泰和新材、华峰化学：化工/锆材回调，不急于补仓</td><td class="txt">三祥 38 支撑，泰和 12.2 支撑</td></tr>
+        <tr><td class="name"><span class="tag-red">不动</span></td><td class="txt">大盘确认 1浪4 前，不新增仓位；保留现金等回调</td><td class="txt">上证 3900 / 3850 为回撤观察位</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：Wind/万得（收盘数据，2026-08-13）· 仅供参考，不构成投资建议 · 市场有风险，决策需谨慎，风险自担
+</div>
+
+</div>
+<script>
+(function(){
+  var idx=echarts.init(document.getElementById('idxChart'));
+  idx.setOption({
+    backgroundColor:'transparent',
+    tooltip:{trigger:'axis'},
+    grid:{left:50,right:20,top:30,bottom:30},
+    xAxis:{type:'category',data:['8-07','8-10','8-11','8-12','8-13'],axisLine:{lineStyle:{color:'#c9c9d4'}}},
+    yAxis:{type:'value',scale:true,axisLine:{lineStyle:{color:'#c9c9d4'}},splitLine:{lineStyle:{color:'#eee'}}},
+    series:[{
+      name:'上证指数',type:'line',data:[3940.04,3966.59,3934.09,3946.68,3926.96],
+      smooth:true,lineStyle:{color:'#4285F4',width:2.5},
+      itemStyle:{color:'#4285F4'},
+      areaStyle:{color:'rgba(66,133,244,.10)'}
+    },{
+      name:'深证成指',type:'line',data:[14311.01,14316.96,14259.44,14414.43,14289.44],
+      smooth:true,lineStyle:{color:'#34A853',width:2},itemStyle:{color:'#34A853'}
+    },{
+      name:'创业板指',type:'line',data:[3563.12,3537.21,3549.16,3602.08,3586.04],
+      smooth:true,lineStyle:{color:'#FBBC05',width:2},itemStyle:{color:'#FBBC05'}
+    },{
+      name:'科创50',type:'line',data:[1744.02,1737.77,1709.50,1736.99,1717.75],
+      smooth:true,lineStyle:{color:'#EA4335',width:2},itemStyle:{color:'#EA4335'}
+    }]
+  });
+  window.addEventListener('resize',function(){idx.resize();});
+})();
+</script>
+</body>
+</html>

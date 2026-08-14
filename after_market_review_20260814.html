@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘 2026-08-14：缩量震荡，持仓分化，汇绿中报落地</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart-box{height:340px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;text-align:center}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.chart-box{height:280px}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">盘后复盘 · 2026-08-14 周五</span>
+    <h1>缩量震荡，持仓分化，汇绿中报落地</h1>
+    <p>上证 3927 点缩量十字星，创业板领涨 +1.12%；三祥新材 +5.57% 一枝独秀，澜起、星环、泰和、罗博收红，汇绿中报落地微跌 -0.29%。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#summary">核心结论</a>
+    <a href="#market">大盘状态</a>
+    <a href="#holding">持仓表现</a>
+    <a href="#huilv">汇绿中报</a>
+    <a href="#action">明日计划</a>
+  </nav>
+
+  <div class="card" id="summary">
+    <div class="summary">
+      <strong>一句话结论：</strong>今日是"中报落地 + 缩量分化"的一天。大盘缩量震荡（两市成交 2.14 万亿），结构性分化明显——半导体/算力方向（三祥 +5.57%、星环 +1.54%、罗博 +1.67%）强于化工和消费（华峰 -1.24%、软通 -0.89%）。<strong>核心矛盾转向汇绿中报：利润 -27.8% + 现金流 -203% 是明牌利空，但股价仅微跌 -0.29%，说明市场已把利空消化大半，后续看重组与三季报。</strong>持仓策略不变：持有为主，波段 T 降成本，加仓等"重组落地 + 现金流企稳"信号。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">3927.18</div><div class="label">上证指数</div><div class="detail">+0.01% 十字星</div></div>
+      <div class="metric"><div class="value">3626.30</div><div class="label">创业板指</div><div class="detail green">+1.12%</div></div>
+      <div class="metric"><div class="value">2.14万亿</div><div class="label">两市成交额</div><div class="detail">缩量</div></div>
+      <div class="metric"><div class="value">+5.57%</div><div class="label">三祥新材</div><div class="detail green">持仓领涨</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="market">
+    <h2 class="section-title">一、大盘状态：缩量十字星，等待方向选择</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>成交额</th><th>特征</th></tr></thead>
+        <tbody>
+          <tr><td>上证指数</td><td>3927.18</td><td class="green">+0.01%</td><td>9904 亿</td><td>缩量十字星，多空平衡</td></tr>
+          <tr><td>深证成指</td><td>14354.31</td><td class="green">+0.45%</td><td>1.15 万亿</td><td>中小盘更强</td></tr>
+          <tr><td>创业板指</td><td>3626.30</td><td class="green">+1.12%</td><td>5534 亿</td><td>领涨，科技成长占优</td></tr>
+          <tr><td>科创50</td><td>1717.68</td><td class="green">+0.00%</td><td>989 亿</td><td>平盘，半导体休整</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>盘面判断</strong>：上证 3927 点收十字星，昨日（8/13）放量冲高回落后，今日缩量企稳，<strong>多空在 3927-3967 区间拉锯</strong>。创业板 +1.12% 强于主板，说明资金偏好科技成长方向，但量能萎缩（2.14 万亿 vs 昨日 2.55 万亿）表明追高意愿不足。<strong>短线处于"1浪3末期"的震荡消化阶段，方向选择看下周一。</strong></p>
+  </div>
+
+  <div class="card" id="holding">
+    <h2 class="section-title">二、持仓表现：三祥领涨，化工走弱</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>标的</th><th>收盘</th><th>涨跌幅</th><th>换手率</th><th>主力净流入(当日)</th><th>特征</th></tr></thead>
+        <tbody>
+          <tr><td><strong>三祥新材</strong></td><td>42.08</td><td class="red">+5.57%</td><td>6.01%</td><td class="red">+1.41亿</td><td>放量上攻，题材+资金双驱动</td></tr>
+          <tr><td><strong>罗博特科</strong></td><td>516.00</td><td class="red">+1.67%</td><td>2.96%</td><td class="red">+0.29亿</td><td>企稳反弹，T仓浮盈扩大</td></tr>
+          <tr><td><strong>星环科技-U</strong></td><td>114.02</td><td class="red">+1.54%</td><td>5.62%</td><td>—</td><td>反弹，筹码活跃</td></tr>
+          <tr><td><strong>泰和新材</strong></td><td>12.75</td><td class="red">+2.33%</td><td>2.69%</td><td class="red">+0.44亿</td><td>化工反弹，资金回流</td></tr>
+          <tr><td><strong>澜起科技</strong></td><td>211.91</td><td class="red">+0.80%</td><td>2.74%</td><td class="green">-5.52亿</td><td>红盘但主力流出，警惕</td></tr>
+          <tr><td><strong>汇绿生态</strong></td><td>41.47</td><td class="green">-0.29%</td><td>6.81%</td><td class="green">-0.77亿</td><td>中报落地，微跌消化利空</td></tr>
+          <tr><td><strong>软通动力</strong></td><td>39.02</td><td class="green">-0.89%</td><td>3.03%</td><td class="green">-0.58亿</td><td>回踩，观察38.45支撑</td></tr>
+          <tr><td><strong>华峰化学</strong></td><td>11.13</td><td class="green">-1.24%</td><td>0.52%</td><td class="green">-0.11亿</td><td>弱势，缩量阴跌</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-box" id="chart-hold"></div>
+
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>三祥新材 +5.57%：题材 + 资金双驱动，但注意估值</strong>
+        <p>今日放量上攻（换手 6.01%、主力净流入 1.41 亿），是持仓最强。但 PE(TTM) 已达 177 倍，是"题材驱动 + 杠杆资金"型拉升，非业绩兑现。你的成本 21.25 元、浮盈近 +100%，<strong>这是兑现部分浮盈的窗口，不是加仓点</strong>。站稳 42 之上看 45，破 40 减仓。</p>
+      </div>
+      <div class="signal warn">
+        <strong>澜起科技红盘但主力流出 5.52 亿</strong>
+        <p>澜起 +0.80% 收红，但当日主力净流出 5.52 亿、近 5 日累计流出 14.45 亿，是持仓里资金面最弱的一只。<strong>红盘 + 主力流出 = 高位派发信号</strong>。底仓不动，但短期不加仓，警惕回踩 210 元支撑。</p>
+      </div>
+      <div class="signal good">
+        <strong>罗博特科 +1.67%：T 仓浮盈扩大</strong>
+        <p>罗博收 516 元，你的 200 股 T 仓（成本 508.72）浮盈约 +1.4%。按既定纪律，目标 525-537 兑现、破 502 止损。明日若冲高可分批兑现 T 仓。</p>
+      </div>
+      <div class="signal">
+        <strong>软通动力 -0.89%：回踩 38.45 支撑</strong>
+        <p>软通收 39.02 元，仍在 38.45 支撑上方。跌破 38.45 预警锁盈，未破则持有。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="huilv">
+    <h2 class="section-title">三、汇绿生态中报落地：利空兑现，市场反应温和</h2>
+    <p>今日汇绿收盘 41.47 元（-0.29%），在"利润 -27.8% + 现金流 -203%"的明牌利空下，仅微跌，<strong>说明市场已提前消化了中报利空，股价对坏消息的敏感度下降</strong>。这是"利空出尽"的初步信号，但需下周走势确认。</p>
+    <div class="signal-list">
+      <div class="signal">
+        <strong>中报核心（详见深度解读 V1.1）</strong>
+        <p>营收 +49%、光模块 +203%、三巨头客户（索尔思应收超 Coherent）；但现金流 -4.77 亿、17.38 亿担保或有负债、存货跌价 +207%。</p>
+      </div>
+      <div class="signal warn">
+        <strong>你的决策已定：持有 + 波段 T + 目标 608 亿</strong>
+        <p>底仓一股不卖（逻辑未破），波段 T 降成本，加仓等"重组落地 + 现金流企稳"两个信号。巴蒂立场：支持持有，但对"现在加仓"保留意见，建议等验证点之后再加。</p>
+      </div>
+      <div class="signal">
+        <strong>下周一观察点</strong>
+        <p>① 中报利空后首个完整交易日的市场定价；② 38 元支撑能否守住；③ 若低开高走 = 利空出尽确认，若低开低走 = 还有下探空间。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="action">
+    <h2 class="section-title">四、下周一（8/17）操作计划</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>标的</th><th>动作</th><th>触发条件</th></tr></thead>
+        <tbody>
+          <tr><td><strong>罗博特科</strong></td><td>T仓分批兑现</td><td>冲高 525-537 兑现，破 502 止损</td></tr>
+          <tr><td><strong>三祥新材</strong></td><td>观察，可部分兑现</td><td>站稳 42 看 45，破 40 减仓</td></tr>
+          <tr><td><strong>汇绿生态</strong></td><td>持有，看市场定价</td><td>38 元支撑，低开高走确认利空出尽</td></tr>
+          <tr><td><strong>澜起科技</strong></td><td>底仓不动，警惕派发</td><td>210 元支撑，主力持续流出则减</td></tr>
+          <tr><td><strong>软通动力</strong></td><td>持有，盯支撑</td><td>跌破 38.45 预警锁盈</td></tr>
+          <tr><td><strong>星环/泰和/华峰</strong></td><td>持有观察</td><td>无重大变化不动</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <strong>周末总纪律：</strong>周五缩量十字星，多空平衡，下周一看方向选择。<strong>不追高、不恐慌，持仓为主，波段 T 降成本，加仓等明确信号。</strong>重点盯：① 大盘 3927-3967 区间突破方向；② 汇绿中报后市场定价；③ 澜起主力资金是否持续流出。
+    </div>
+  </div>
+
+  <p class="footer">数据来源：Wind（2026-08-14 收盘）。免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</div>
+
+<script>
+const chart = echarts.init(document.getElementById('chart-hold'));
+chart.setOption({
+  title:{text:'持仓今日涨跌幅（%）',left:'center',textStyle:{fontSize:14,color:'#392076'}},
+  tooltip:{trigger:'axis'},
+  grid:{left:60,right:30,top:45,bottom:40},
+  xAxis:{type:'category',data:['三祥','泰和','罗博','星环','澜起','汇绿','软通','华峰'],axisLabel:{fontSize:10}},
+  yAxis:{type:'value',name:'%',axisLabel:{fontSize:10}},
+  series:[{
+    type:'bar',
+    data:[
+      {value:5.57,itemStyle:{color:'#e54b4b'}},
+      {value:2.33,itemStyle:{color:'#e54b4b'}},
+      {value:1.67,itemStyle:{color:'#e54b4b'}},
+      {value:1.54,itemStyle:{color:'#e54b4b'}},
+      {value:0.80,itemStyle:{color:'#e54b4b'}},
+      {value:-0.29,itemStyle:{color:'#18a66a'}},
+      {value:-0.89,itemStyle:{color:'#18a66a'}},
+      {value:-1.24,itemStyle:{color:'#18a66a'}}
+    ],
+    label:{show:true,position:'top',fontSize:11}
+  }]
+});
+window.addEventListener('resize',()=>{chart.resize();});
+</script>
+</body>
+</html>

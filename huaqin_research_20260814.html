@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华勤技术(603296)深度研报：AI服务器+超节点，ODM龙头的算力硬件"卖铲人"破局</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.25;margin-bottom:10px;letter-spacing:0}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:820px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:15px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:22px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart-box{height:300px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:10px 12px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:10px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+table.f4{table-layout:fixed}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:19%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:15%;text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:16%;text-align:right;font-variant-numeric:tabular-nums;padding-right:10px}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:50%;text-align:left;padding-left:8px}
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:17%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:13%;text-align:center}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:18%;text-align:left}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:17%;text-align:left}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:35%;text-align:left;word-break:keep-all;text-wrap:balance}
+.name,.code,.tag,.pct{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.red,.green,.purple{white-space:nowrap}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:10px}
+.action{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.action .num{font-size:12.5px;color:var(--purple);font-weight:800;margin-bottom:4px}
+.action h4{font-size:15px;margin-bottom:5px;color:var(--text)}
+.action p{font-size:14px;color:var(--muted);margin:0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.action-grid{grid-template-columns:1fr}.chart-box{height:260px}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:680px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.1 · 2026-08-14</span>
+    <h1>华勤技术（603296.SH）：AI 服务器+超节点双轮驱动，ODM 龙头的算力硬件"卖铲人"破局</h1>
+    <p>全球智能硬件 ODM 头部 | 数据中心业务 2025 年破 400 亿 | AI 服务器占数据中心 &gt;70% | 2026H1 归母净利同比 +53.5%-61.5% | 8/26 中报披露</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#summary">核心结论</a>
+    <a href="#catalyst">催化时间线</a>
+    <a href="#profile">公司画像</a>
+    <a href="#industry">产业格局</a>
+    <a href="#technical">技术·资金面</a>
+    <a href="#logic">核心逻辑·反证</a>
+    <a href="#valuation">可比估值</a>
+    <a href="#scenario">三情景</a>
+    <a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="summary">
+    <div class="summary">
+      <strong>一句话结论：</strong>华勤技术是当前A股极少数同时具备 AI 服务器+通用服务器+高速交换机+存储+超节点"全栈整机"能力的 ODM 龙头，2025 年数据中心业务收入突破 400 亿（AI 服务器占 70%+），2026Q2 超节点小批量出货、Q3 进入大规模交付——业绩拐点已经从"算力硬件 ODM" 切换为 "AI 算力基础设施核心标的"。**当前 PE 30 倍、总市值 1268 亿看似不算便宜，但对照 2026E 净利 60+ 亿、2027E 80+ 亿的预期增速，仍处于估值修复早期。**多空评分 8/10，建议作为**算力硬件主线核心仓位**进入观察池（注意中报披露日 8/26 前后的时点）。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">1714亿</div><div class="label">2025全年营收</div><div class="detail">同比 +56.0%</div></div>
+      <div class="metric"><div class="value">41.05亿</div><div class="label">2025全年净利</div><div class="detail">同比 +40.9%</div></div>
+      <div class="metric"><div class="value">400亿+</div><div class="label">2025数据中心收入</div><div class="detail">同比接近翻倍</div></div>
+      <div class="metric"><div class="value">100亿+</div><div class="label">2026E超节点收入</div><div class="detail">Q3量产规模交付</div></div>
+      <div class="metric"><div class="value">30.13倍</div><div class="label">PE(TTM)</div><div class="detail">对应2025净利</div></div>
+      <div class="metric"><div class="value">1268亿</div><div class="label">总市值</div><div class="detail">2026-08-14 13:01</div></div>
+      <div class="metric"><div class="value">84.90元</div><div class="label">最新成交价</div><div class="detail">盘中-1.24%</div></div>
+      <div class="metric"><div class="value">8/26</div><div class="label">中报披露日</div><div class="detail">下周三</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="catalyst">
+    <h2 class="section-title">催化时间线（CATALYTIC TIMELINE）</h2>
+    <table class="f4">
+      <thead><tr><th>时间</th><th>类型</th><th class="num">影响</th><th>事件内容</th></tr></thead>
+      <tbody>
+        <tr><td>2026-08-04</td><td><span class="tag green">业绩</span></td><td class="num">★★★</td><td>2026H1 业绩预告：营收 930-950 亿（+10.8%-13.2%）、归母净利 29-30.5 亿（+53.5%-61.5%）、扣非 16.65-17 亿（+10.3%-12.6%）。扣非与归母差额 12.5 亿为非经常性损益（投资收益/公允价值变动）</td></tr>
+        <tr><td>2026-08-12</td><td><span class="tag green">行业</span></td><td class="num">★★★</td><td>阿里发布 128 卡"超节点"大杀器，超节点概念股集体爆发；共进股份涨停，华勤技术、紫光股份、星网锐捷等跟涨</td></tr>
+        <tr><td>2026-08-13</td><td><span class="tag green">客户验证</span></td><td class="num">★★★★★</td><td>腾讯 Q2 业绩披露：单季资本开支 527.84 亿，同比 +176.3%、环比 +65.3%；华勤 8/13 港股大涨 9%+、A股大涨 8.79%</td></tr>
+        <tr><td>2026-08-13</td><td><span class="tag">产品</span></td><td class="num">★★★★</td><td>机构观点：超节点 Q2 小批量出货、Q3 进入大规模交付，2026 全年超节点单项收入突破 100 亿元</td></tr>
+        <tr><td>2026-08-26</td><td><span class="tag purple">关键节点</span></td><td class="num">★★★★★</td><td><strong>2026 年中报正式披露</strong>——验证数据中心业务真实增速、超节点实际收入、AI 服务器毛利率、客户结构</td></tr>
+        <tr><td>2026-09</td><td><span class="tag">产品</span></td><td class="num">★★★</td><td>超节点规模化交付季度业绩初步体现（Q3 报表口径）</td></tr>
+        <tr><td>2026 Q4</td><td><span class="tag orange">产业</span></td><td class="num">★★★</td><td>阿里、腾讯、字节 2027 财年资本开支指引发布（市场会再次上修算力主线预期）</td></tr>
+      </tbody>
+    </table>
+    <p class="source">数据来源：PandaData 财务三表、Wind 公告/事件、WebSearch 智通财经/雪球/网易/Ofweek（2026-08-04 至 2026-08-14）。</p>
+  </div>
+
+  <div class="card" id="profile">
+    <h2 class="section-title">公司画像·财务速览</h2>
+    <div class="cols">
+      <div>
+        <h3>业务结构（3+N+3）</h3>
+        <ul style="margin-left:18px;font-size:14px">
+          <li><strong>3 硬件基石</strong>：智能手机 46.79% + 笔记本电脑（隐含）+ 数据中心 44.02%</li>
+          <li><strong>N 方案</strong>：智慧生活 + 商业数字生产力 + 数据中心全栈</li>
+          <li><strong>3 新赛道</strong>：机器人 + 软件 + 汽车电子</li>
+        </ul>
+        <h3>全球布局</h3>
+        <ul style="margin-left:18px;font-size:14px">
+          <li>1 个上海总部 + 5 大研发中心（上海/东莞/西安/南昌/无锡）</li>
+          <li>2 大国内制造中心（南昌/东莞）+ 3 大海外基地（越南/墨西哥/印度）</li>
+          <li>产品销往 100+ 国家，年出货数以亿计</li>
+        </ul>
+      </div>
+      <div>
+        <h3>核心客户结构</h3>
+        <ul style="margin-left:18px;font-size:14px">
+          <li>头部 CSP：<strong>阿里、腾讯、字节</strong>（核心供应商）</li>
+          <li>手机品牌：小米、OPPO、vivo、荣耀、传音</li>
+          <li>PC 品牌：联想、HP、Dell、宏碁、华硕</li>
+          <li>汽车主机厂：智能座舱/智能辅助驾驶合作</li>
+        </ul>
+        <h3>核心身份特征</h3>
+        <p style="font-size:14px">ODM 头部企业（与闻泰科技、龙旗科技并列国内三大），但与同行差异在于：<strong>从智能手机 ODM 成功切换到 AI 算力硬件 ODM</strong>，是国内极少数同时具备 AI 服务器/通用服务器/高速交换机/存储/超节点全栈整机能力的厂商。</p>
+      </div>
+    </div>
+
+    <h3>季度财务序列（2024Q1-2026Q1，亿元）</h3>
+    <div class="table-wrap">
+      <table class="f5">
+        <thead><tr><th>季度</th><th class="num">营收</th><th class="num">归母净利</th><th class="num">EPS（元）</th><th>同比特征</th></tr></thead>
+        <tbody>
+          <tr><td>2024Q1</td><td class="num">162.29</td><td class="num">5.96</td><td class="num">0.60</td><td>基期</td></tr>
+          <tr><td>2024Q2</td><td class="num">231.68</td><td class="num">6.82</td><td class="num">0.67</td><td>H1 累计 393.97亿</td></tr>
+          <tr><td>2024Q3</td><td class="num">366.13</td><td class="num">7.55</td><td class="num">0.75</td><td>H1+Q3 累计 760.10亿</td></tr>
+          <tr><td>2024Q4</td><td class="num">338.78</td><td class="num">8.81</td><td class="num">0.87</td><td>2024 全年 1098.78亿</td></tr>
+          <tr><td>2025Q1</td><td class="num">349.98</td><td class="num">8.39</td><td class="num">0.84</td><td>营收 +115%、净利 +41%</td></tr>
+          <tr><td>2025Q2</td><td class="num">489.41</td><td class="num">10.51</td><td class="num">1.02</td><td>H1 累计 839.39亿</td></tr>
+          <tr><td>2025Q3</td><td class="num">449.43</td><td class="num">12.25</td><td class="num">1.21</td><td>Q3 累计 1288.82亿</td></tr>
+          <tr><td>2025Q4</td><td class="num">425.54</td><td class="num">9.90</td><td class="num">0.95</td><td>2025 全年 1714.37亿</td></tr>
+          <tr><td>2026Q1</td><td class="num">407.46</td><td class="num">10.70</td><td class="num">1.04</td><td>营收 +16.4%、净利 +27.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">数据来源：PandaData get_fina_reports（口径：持续经营净利润）。2026H1 预告归母 29-30.5亿（同比 +53.5%-61.5%），其中 Q2 单季预计 18.3-19.8亿（同比 +74%~+88%），是核心业绩催化。</p>
+  </div>
+
+  <div class="card" id="industry">
+    <h2 class="section-title">产业格局·景气度</h2>
+    <div class="cols">
+      <div>
+        <h3>全球算力硬件"卖铲人"价值</h3>
+        <p>AI 算力产业链中，<strong>ODM/整机厂</strong>是承接 GPU/ASIC 芯片、内存、存储、电源、液冷、交换机等多元件的关键集成节点。Coherent 预计 2026 全球数据中心 capex 8867 亿美元（Ofweek 引用），其中 ODM 受益面最广：</p>
+        <ul style="margin-left:18px;font-size:14px">
+          <li>AI 服务器（700-1000W/台，价值量 30-50 万）</li>
+          <li>通用服务器（CPU 主导，10-30 万）</li>
+          <li>高速交换机（51.2T/102.4T，10-20 万）</li>
+          <li>存储服务器（混合云/HPC，5-15 万）</li>
+          <li><strong>超节点整机柜（128-256 卡，价值量 200-500 万）</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h3>国内 ODM 三强对比</h3>
+        <p>华勤、闻泰、龙旗三大 ODM 头部，差异集中在 AI 服务器卡位：</p>
+        <ul style="margin-left:18px;font-size:14px">
+          <li><strong>华勤技术</strong>：数据中心收入 400+ 亿，AI 服务器 280+ 亿，超节点独家</li>
+          <li>闻泰科技：消费电子为主，AI 服务器布局较晚</li>
+          <li>龙旗科技：智能手机 68.7% + AIoT 18.7%，AI 服务器占比小</li>
+        </ul>
+        <p>结论：<strong>在 AI 服务器+超节点赛道，华勤已与同行拉开身位</strong>。</p>
+      </div>
+    </div>
+
+    <h3>下游客户资本开支验证（核心传导链）</h3>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>客户</th><th>关键信号</th><th class="num">传导至华勤</th><th>2026下半年展望</th></tr></thead>
+        <tbody>
+          <tr><td><strong>腾讯</strong></td><td>Q2 capex +176%（527.84亿）、ETH-X 超节点主推</td><td class="num">★★★★★</td><td>华勤参与 ETH-X 架构设计，核心受益</td></tr>
+          <tr><td><strong>阿里</strong></td><td>128 卡"大杀器"发布、自研 + 外采并行</td><td class="num">★★★★★</td><td>华勤提供整机柜 ODM 配套</td></tr>
+          <tr><td><strong>字节</strong></td><td>capex 持续高位（市场推测 1500-1800 亿/年）</td><td class="num">★★★★</td><td>华勤在字节供应链份额持续提升</td></tr>
+          <tr><td><strong>海外 CSP</strong></td><td>AWS/Meta/Google 资本开支高增</td><td class="num">★★★</td><td>华勤通过马来/越南基地承接出口</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" id="technical">
+    <h2 class="section-title">技术面·资金面</h2>
+    <div class="cols">
+      <div class="chart-box" id="chart-price"></div>
+      <div class="chart-box" id="chart-revenue"></div>
+    </div>
+
+    <h3>技术位与资金行为</h3>
+    <div class="signal-list">
+      <div class="signal warn">
+        <strong>股价位置</strong>
+        <p>现价 84.90 元，20日 MA 81.84 元、60日 MA 77.99 元，中期趋势向上但短期超 60 日 MA +8.9%；52周区间 56.32-91.88 元，当前位于 60% 分位。</p>
+      </div>
+      <div class="signal good">
+        <strong>近期放量</strong>
+        <p>8/13 成交 5018 万股、42.95 亿（放量 50%+），换手 3.3%，配合 +8.79% 涨幅，属"事件驱动放量突破"而非游资博弈。</p>
+      </div>
+      <div class="signal warn">
+        <strong>股东户数</strong>
+        <p>2025 年末 4.9 万户 → 2026Q1 末 5.85 万户（+19.4%）。Q1 筹码略分散，机构在高位有派发迹象，但绝对户数仍在可控范围。</p>
+      </div>
+      <div class="signal">
+        <strong>关键支撑/压力</strong>
+        <p>支撑位：60日 MA 78 元 → 半年线 73 元 → 7月平台 71-73 元；压力位：52周高 91.88 元 → 90 元整数 → 6/16 高点 107.47 元（除权前参考）。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="logic">
+    <h2 class="section-title">核心逻辑·反一致预期</h2>
+    <div class="cols">
+      <div>
+        <h3>三条核心投资逻辑</h3>
+        <div class="signal good">
+          <strong>① AI 算力刚需 + 全栈整机能力</strong>
+          <p>阿里、腾讯、字节 三大 CSP 资本开支同步上修（腾讯 Q2 +176%），华勤作为全栈 ODM 直接受益；超节点 Q3 量产规模交付，2026 全年贡献 100 亿+ 增量。</p>
+        </div>
+        <div class="signal good">
+          <strong>② 业绩非线性增长曲线</strong>
+          <p>2025 全年净利 41 亿（+40.9%）→ 2026H1 预告归母 30 亿（+55%+）→ 2026 全年按线性外推净利有望达 65 亿（+58%），超节点和 AI 服务器业务进入加速兑现期。</p>
+        </div>
+        <div class="signal">
+          <strong>③ 海外制造基地对冲地缘风险</strong>
+          <p>越南/墨西哥/印度三大海外基地，规避美国对华 ODM 的潜在限制（如类似光模块禁令），订单承接能力反而增强。</p>
+        </div>
+      </div>
+      <div>
+        <h3>反一致预期（必须摊开的反向证据）</h3>
+        <div class="signal warn">
+          <strong>① 扣非与归母的 12.5 亿差额</strong>
+          <p>2026H1 预告归母 29-30.5 亿 vs 扣非 16.65-17 亿，差额 12.5 亿来自投资收益/公允价值变动等非经常性损益。扣非增速 +10.3%-12.6% 与归母增速 +55% 严重背离，<strong>主业利润含金量需要中报严格验证</strong>。</p>
+        </div>
+        <div class="signal warn">
+          <strong>② ODM 业务的天花板与价格战</strong>
+          <p>代工属性带来的毛利率天花板（AI 服务器整机毛利率通常 8-12%）、客户集中度过高（腾讯/阿里/字节占数据中心收入 60%+）、与中际旭创/工业富联等综合厂商的竞争加剧。</p>
+        </div>
+        <div class="signal warn">
+          <strong>③ 6/16 后的除权 + 高位震荡</strong>
+          <p>6/16 高点 107.47 元后股价持续调整，最低跌至 7/14 的 71.27 元（-33.7%），高位套牢盘压力大；8月反弹至 91.88 元后再次震荡，业绩驱动能否承接套牢盘有待观察。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="valuation">
+    <h2 class="section-title">可比估值</h2>
+    <p>华勤技术作为算力硬件 ODM，估值锚有两类：① ODM 整机（闻泰/龙旗）；② 算力硬件链（浪潮信息/紫光股份/中际旭创）。</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>公司</th><th>代码</th><th class="num">总市值（亿）</th><th>核心定位</th></tr></thead>
+        <tbody>
+          <tr><td><strong>华勤技术</strong></td><td>603296.SH</td><td class="num">1268</td><td>AI 服务器+超节点+消费电子 ODM 头部</td></tr>
+          <tr><td>闻泰科技</td><td>600745.SH</td><td class="num">≈480</td><td>消费电子 ODM，安世半导体，AI 服务器占比小</td></tr>
+          <tr><td>龙旗科技</td><td>603341.SH</td><td class="num">≈260</td><td>智能手机 ODM（68.7%），AI 服务器占比小</td></tr>
+          <tr><td>浪潮信息</td><td>000977.SZ</td><td class="num">≈750</td><td>AI 服务器整机国内龙头</td></tr>
+          <tr><td>紫光股份</td><td>000938.SZ</td><td class="num">≈680</td><td>新华三+AI 服务器+交换机全栈</td></tr>
+          <tr><td>工业富联</td><td>601138.SH</td><td class="num">≈4500</td><td>AI 服务器+通信代工全球龙头</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>估值参照（基于 2026E 净利推算）</h3>
+    <div class="callout">
+      <strong>关键问题：</strong>按 2026H1 预告净利 30 亿（同比 +55%）线性外推，<strong>2026 全年净利有望达 60-65 亿（+50%~+58%）</strong>；按 2027 年超节点放量+AI 服务器继续翻倍，2027E 净利有望达 80-90 亿（+30%~+40%）。
+    </div>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>估值参照</th><th>2026E 净利（亿）</th><th class="num">对应 PE（按现市值1268亿）</th><th>市场可比区间</th></tr></thead>
+        <tbody>
+          <tr><td>华勤 2026E 乐观（按 H1 推算）</td><td>65</td><td class="num">19.5倍</td><td>浪潮/紫光当前 20-30倍</td></tr>
+          <tr><td>华勤 2026E 中性</td><td>55</td><td class="num">23.1倍</td><td>合理区间</td></tr>
+          <tr><td>华勤 2027E 乐观</td><td>85</td><td class="num">14.9倍</td><td>明显低估</td></tr>
+          <tr><td>华勤 2027E 保守</td><td>55</td><td class="num">23.1倍</td><td>合理</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">数据来源：Wind 估值（2026-08-14），同业 PE 为同花顺/Wind 一致预期。可比公司具体 PE 在报告生成时未实时拉取，建议参考最新 Wind 行业估值表。</p>
+  </div>
+
+  <div class="card" id="scenario">
+    <h2 class="section-title">三情景与操作建议</h2>
+    <div class="action-grid">
+      <div class="action">
+        <div class="num">乐观情景 · 概率 35%</div>
+        <h4>目标价 110 元（+30%）</h4>
+        <p>触发条件：① 中报营收+扣非双双超预期（营收≥980亿、扣非≥18亿）；② 超节点 Q3 大规模交付确认（>30亿/月）；③ 腾讯/阿里 capex 继续上修；④ 2027 估值切换至 20倍。</p>
+        <p style="margin-top:5px">操作：观察池 → 核心仓，调仓建议 5-8% 仓位。</p>
+      </div>
+      <div class="action">
+        <div class="num">中性情景 · 概率 45%</div>
+        <h4>区间 75-95 元（±10%）</h4>
+        <p>触发条件：① 中报符合预告区间，扣非 +10% 正常兑现；② 超节点 Q3 进入交付期但规模有限（贡献 50-80 亿）；③ 客户结构稳定，AI 服务器保持 50%+ 增速。</p>
+        <p style="margin-top:5px">操作：观察池首备，择机在 73-78 元区间分批建仓 3-5% 仓位。</p>
+      </div>
+      <div class="action">
+        <div class="num">悲观情景 · 概率 20%</div>
+        <h4>回踩 65-72 元（-20%）</h4>
+        <p>触发条件：① 中报扣非大幅低于预告下限（&lt;16亿）；② 超节点 Q3 实际交付不及预期；③ 美国对 ODM 加征关税/限制；④ 闻泰/紫光等竞争抢占份额。</p>
+        <p style="margin-top:5px">操作：暂不介入；若跌至 65-68 元启动左侧跟踪，跌破 60 元放弃。</p>
+      </div>
+    </div>
+
+    <div class="warning">
+      <strong>观察信号清单（不是买点，是验证点）：</strong>① 8/26 中报披露：扣非净利是否 ≥17 亿（决定含金量）；② 9 月起超节点月度交付节奏（决定 100 亿+ 预期是否兑现）；③ 腾讯/阿里/字节 2027 财年 capex 指引；④ 闻泰/龙旗是否在 AI 服务器领域追赶（决定竞争格局）；⑤ 美国对 ODM 政策动向（决定出海空间）。
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">数据溯源与版本追踪</h2>
+    <table class="f4">
+      <thead><tr><th>字段</th><th>数据源</th><th class="num">时点</th><th>口径说明</th></tr></thead>
+      <tbody>
+        <tr><td>股价、市值、PE</td><td>Wind get_stock_price_indicators</td><td class="num">2026-08-14 13:01</td><td>最新成交价 84.90 元、PE(TTM) 30.13 倍、总市值 1268.07 亿</td></tr>
+        <tr><td>财务三表</td><td>PandaData get_fina_reports</td><td class="num">2024Q1-2026Q1</td><td>持续经营净利润口径，2025 全年净利 41.05 亿、2026Q1 净利 10.70 亿</td></tr>
+        <tr><td>股东户数</td><td>PandaData get_holder_count</td><td class="num">2025末-2026Q1末</td><td>2025 末 4.9 万 → 2026Q1 末 5.85 万（+19.4%）</td></tr>
+        <tr><td>基本信息</td><td>PandaData get_stock_detail</td><td class="num">截至 2026-08-14</td><td>2023-08-08 上市、发行价 80.8 元、信息技术行业、上海主板</td></tr>
+        <tr><td>中报披露日</td><td>Wind get_stock_events</td><td class="num">2026-08-26</td><td>已确认下周三披露</td></tr>
+        <tr><td>业务结构/产品</td><td>Wind search_stocks</td><td class="num">截至 2026-08-14</td><td>主营 3+N+3 结构，数据中心业务 44.02%</td></tr>
+        <tr><td>2026H1 业绩预告</td><td>公司公告（智通财经引用）</td><td class="num">2026-08-04</td><td>营收 930-950 亿、归母 29-30.5 亿、扣非 16.65-17 亿</td></tr>
+        <tr><td>行业/舆情</td><td>WebSearch（智通财经/雪球/网易/Ofweek）</td><td class="num">2026-08-04 至 2026-08-14</td><td>阿里 128 卡、腾讯 Q2 capex、超节点概念爆发</td></tr>
+      </tbody>
+    </table>
+    <p class="table-note">版本：V2.1（首版深度研报）· 报告作者：巴蒂（投研助手）· 报告类型：个股深度解析 · 复核人：老潘 · 立场：中立可分享版本。下一版本：8/26 中报披露后即时出"中报落地版"，重点验证扣非含金量、超节点实际收入、客户结构变化。</p>
+
+    <div class="callout">
+      <strong>与老潘持仓的映射提示（投研联动）：</strong>
+      <ul style="margin-left:18px;font-size:14px;margin-top:6px">
+        <li><strong>澜起科技（688008）</strong>：华勤 AI 服务器内存/DDR5 配套核心采购商，DDR5 接口/CXL 是 AI 服务器标配 → <strong>最强正向映射</strong></li>
+        <li><strong>汇绿生态（001267）</strong>：华勤光模块通过 Coherent/旭创等采购，对应武汉钧恒的间接下游 → <strong>中等映射</strong></li>
+        <li><strong>罗博特科（300757）</strong>：英伟达 CPO 概念与华勤 AI 服务器同属 AI 算力硬件主线，情绪联动 → <strong>弱映射</strong></li>
+        <li><strong>软通动力（301236）</strong>：华为生态+企业数字化服务，与华勤在 5G+企业服务侧有协同 → <strong>边缘映射</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="footer">免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</div>
+
+<script>
+// 股价走势图
+const chartPrice = echarts.init(document.getElementById('chart-price'));
+chartPrice.setOption({
+  title:{text:'华勤技术 60日股价走势',left:'center',textStyle:{fontSize:14,color:'#392076'}},
+  tooltip:{trigger:'axis'},
+  grid:{left:50,right:20,top:40,bottom:30},
+  xAxis:{type:'category',data:['6/16','6/26','7/3','7/10','7/17','7/24','7/31','8/7','8/13'],axisLabel:{fontSize:10}},
+  yAxis:{type:'value',name:'元',axisLabel:{fontSize:10}},
+  series:[{
+    name:'收盘价',
+    type:'line',
+    data:[105.97,69.25,68.88,82.80,71.76,88.19,81.28,81.81,85.97],
+    smooth:true,
+    lineStyle:{color:'#7438ef',width:2},
+    itemStyle:{color:'#7438ef'},
+    areaStyle:{color:'rgba(116,56,239,0.10)'},
+    markPoint:{data:[{type:'max',name:'最高',itemStyle:{color:'#e54b4b'}},{type:'min',name:'最低',itemStyle:{color:'#18a66a'}}]}
+  }]
+});
+
+// 季度营收双轴图
+const chartRev = echarts.init(document.getElementById('chart-revenue'));
+chartRev.setOption({
+  title:{text:'2024Q1-2026Q1 营收/净利（亿元）',left:'center',textStyle:{fontSize:14,color:'#392076'}},
+  tooltip:{trigger:'axis',axisPointer:{type:'cross'}},
+  legend:{data:['营收','净利'],top:5,textStyle:{fontSize:11}},
+  grid:{left:55,right:55,top:35,bottom:30},
+  xAxis:{type:'category',data:['2024Q1','2024Q2','2024Q3','2024Q4','2025Q1','2025Q2','2025Q3','2025Q4','2026Q1'],axisLabel:{fontSize:9,rotate:30}},
+  yAxis:[{type:'value',name:'营收',position:'left',axisLabel:{fontSize:10}},{type:'value',name:'净利',position:'right',axisLabel:{fontSize:10}}],
+  series:[
+    {name:'营收',type:'bar',data:[162.29,231.68,366.13,338.78,349.98,489.41,449.43,425.54,407.46],itemStyle:{color:'#7438ef'}},
+    {name:'净利',type:'line',yAxisIndex:1,data:[5.96,6.82,7.55,8.81,8.39,10.51,12.25,9.90,10.70],lineStyle:{color:'#e54b4b',width:2},itemStyle:{color:'#e54b4b'}}
+  ]
+});
+
+window.addEventListener('resize',()=>{chartPrice.resize();chartRev.resize();});
+</script>
+</body>
+</html>

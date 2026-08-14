@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汇绿生态利润情景测算：10-25亿利润对应的PE、估值与股价</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart-box{height:360px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;text-align:center}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.verdict{border-left:3px solid var(--red);background:#fff5f5;padding:14px 16px;border-radius:0 7px 7px 0;margin:12px 0}
+.verdict strong{color:var(--red)}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.chart-box{height:280px}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">估值测算 · 2026-08-14</span>
+    <h1>汇绿生态利润情景测算：10 / 15 / 20 / 25 亿对应的 PE、估值与股价</h1>
+    <p>现价 41.47 元 · 市值 325.54 亿 · 总股本 7.85 亿股（重组后约 9.18 亿股）· 关键前提：这四档利润是"远期愿景"，不是"明年现实"。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#premise">测算前提</a>
+    <a href="#pe">静态PE</a>
+    <a href="#price">股价推演</a>
+    <a href="#reverse">反推现价</a>
+    <a href="#gap">利润时点矛盾</a>
+    <a href="#conclusion">结论</a>
+  </nav>
+
+  <div class="card" id="premise">
+    <h2 class="section-title">一、测算前提：三个必须锁定的基准</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">41.47元</div><div class="label">现价</div><div class="detail">2026-08-14收盘</div></div>
+      <div class="metric"><div class="value">325.54亿</div><div class="label">当前市值</div><div class="detail">PE(TTM) 391.7倍</div></div>
+      <div class="metric"><div class="value">7.85亿</div><div class="label">当前总股本</div><div class="detail">重组前</div></div>
+      <div class="metric"><div class="value">9.18亿</div><div class="label">重组后总股本</div><div class="detail">含购买资产+配套募资</div></div>
+    </div>
+    <div class="warning">
+      <strong>关键前提一：股本会摊薄。</strong>重组收购钧恒 49% 股权，发行股份约 1.07 亿股 + 配套募资 8.45 亿（约再增发 0.26 亿股），重组后总股本从 7.85 亿增至约 <strong>9.18 亿股</strong>。这意味着同样利润下，EPS 会被稀释约 15%。测算必须用重组后股本，否则会高估股价。
+    </div>
+    <div class="warning">
+      <strong>关键前提二：利润口径是"归母净利润"。</strong>重组落地后，钧恒 49% 少数股东损益消除、100% 并表，归母净利会一次性增厚。所以"10-25 亿"这个量级，本质上是"钧恒 100% 并表后 + 未来放量"的远期归母利润。
+    </div>
+  </div>
+
+  <div class="card" id="pe">
+    <h2 class="section-title">二、静态 PE：股价不变时的市盈率</h2>
+    <p>假设股价锁在 41.47 元（市值 325.54 亿），四档利润对应的 PE：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>明年利润</th><th>对应 PE</th><th>估值定性（代工属性）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>10 亿</strong></td><td class="purple">32.6 倍</td><td>偏贵（代工 20-25 倍才合理）</td></tr>
+          <tr><td><strong>15 亿</strong></td><td class="purple">21.7 倍</td><td>合理区间</td></tr>
+          <tr><td><strong>20 亿</strong></td><td class="purple">16.3 倍</td><td>偏低，便宜</td></tr>
+          <tr><td><strong>25 亿</strong></td><td class="purple">13.0 倍</td><td>明显低估</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">参照系：光模块代工/组装类公司，合理 PE 通常在 20-30 倍；一线龙头（中际旭创）约 30-40 倍。汇绿作为二线代工，20-25 倍是合理锚。</p>
+  </div>
+
+  <div class="card" id="price">
+    <h2 class="section-title">三、股价推演：不同 PE × 不同利润</h2>
+    <p>用<strong>重组后股本 9.18 亿股</strong>计算 EPS（更严谨），对应目标股价：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>利润情景</th><th>EPS（重组后）</th><th>20倍PE</th><th>30倍PE</th><th>40倍PE</th><th>50倍PE</th></tr></thead>
+        <tbody>
+          <tr><td><strong>10 亿</strong></td><td>1.09 元</td><td>22 元</td><td>33 元</td><td>44 元</td><td>54 元</td></tr>
+          <tr><td><strong>15 亿</strong></td><td>1.63 元</td><td>33 元</td><td>49 元</td><td>65 元</td><td>82 元</td></tr>
+          <tr><td><strong>20 亿</strong></td><td>2.18 元</td><td>44 元</td><td>65 元</td><td>87 元</td><td>109 元</td></tr>
+          <tr><td><strong>25 亿</strong></td><td>2.72 元</td><td>54 元</td><td>82 元</td><td>109 元</td><td>136 元</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">现价 41.47 元用红线标出位置：只有"10 亿利润 + 40 倍 PE"或"15 亿利润 + 30 倍 PE"及以上，现价才是"合理甚至低估"。若利润只有 10 亿、只给代工该有的 20 倍 PE，目标价仅 22 元，反而低于现价。</p>
+    <div class="chart-box" id="chart-price"></div>
+  </div>
+
+  <div class="card" id="reverse">
+    <h2 class="section-title">四、反推：现价 41.47 元已经隐含了什么预期</h2>
+    <p>这一步才是测算的真正价值——不是看"未来能涨到多少"，而是看"现在的价格已经把未来多少利润透支了"。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>若给这个 PE</th><th>现价隐含的利润</th><th>相对业绩承诺的倍数</th></tr></thead>
+        <tbody>
+          <tr><td>20 倍（代工合理）</td><td>16.3 亿</td><td>2027承诺2.32亿的 7 倍</td></tr>
+          <tr><td>25 倍（二线偏乐观）</td><td>13.0 亿</td><td>2027承诺的 5.6 倍</td></tr>
+          <tr><td>30 倍（一线龙头水平）</td><td>10.8 亿</td><td>2027承诺的 4.7 倍</td></tr>
+          <tr><td>40 倍（题材泡沫）</td><td>8.1 亿</td><td>2027承诺的 3.5 倍</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      <strong>结论：现价 41.47 元、市值 325.54 亿，即便按 40 倍 PE（题材泡沫级），也已经隐含了 8.1 亿利润——是钧恒 2027 年业绩承诺（2.32 亿）的 3.5 倍。</strong>这意味着市场不是按"承诺兑现"定价，而是按"承诺大幅超额 + 高估值"定价。
+    </div>
+  </div>
+
+  <div class="card" id="gap">
+    <h2 class="section-title">五、核心矛盾：这四档利润是"远期愿景"，不是"明年现实"</h2>
+    <p>老潘，这是测算里最需要你正视的一点——你说的"明年利润 10-25 亿"，跟公司自己的业绩承诺严重脱节：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>时点</th><th>钧恒业绩承诺</th><th>你设想的利润</th><th>差距</th></tr></thead>
+        <tbody>
+          <tr><td>2026 年</td><td>1.83 亿</td><td>—</td><td>—</td></tr>
+          <tr><td>2027 年（"明年"）</td><td>2.32 亿</td><td>10-25 亿</td><td class="red">4.3-10.8 倍</td></tr>
+          <tr><td>2028 年</td><td>2.92 亿</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>即使钧恒 2027 年业绩承诺<b>超额 100%</b>（做到 4.64 亿），加上园林业务基本归零，上市公司归母也就 4-5 亿——**距离"10 亿"这个最低档，还差一倍**。</p>
+    <div class="callout">
+      <strong>那么 10-25 亿利润什么时候才现实？</strong>按钧恒产能爬坡（750 万只 2027 年）+ 1.6T 放量（2027 下半年规模商用）+ 三巨头订单兑现的节奏，<strong>10 亿归母大概率是 2028-2029 年的图景，20-25 亿是 2029-2030 年的图景</strong>。这是"三年后到五年后"的远期利润，不是"明年"。
+    </div>
+  </div>
+
+  <div class="card" id="conclusion">
+    <h2 class="section-title">六、结论</h2>
+    <div class="verdict">
+      <strong>核心判断：你设想的 10-25 亿利润，如果把它当"明年（2027）现实"，那是在用远期愿景给自己壮胆；如果把它当"2028-2030 远期目标"，那现价 41.47 元已经把其中相当一部分提前透支了。</strong>
+    </div>
+    <div class="signal-list">
+      <div class="signal">
+        <strong>三个层次的理解：</strong>
+        <p>① <strong>乐观兑现（2027 做到 5 亿）</strong>：给 30 倍 PE，目标价约 16 元——现价 41.47 元仍然高估 2.5 倍。</p>
+        <p>② <strong>远期愿景（2029 做到 10 亿）</strong>：给 30 倍 PE，目标价约 33 元——现价 41.47 元依然略高。</p>
+        <p>③ <strong>极致乐观（2030 做到 20 亿）</strong>：给 30 倍 PE，目标价约 65 元——但这是 4 年后、且要利润翻 8 倍以上。</p>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>给老潘的一句话：</strong>这个测算反过来证明了现价的昂贵——<strong>要让你 48.09 元的成本解套，需要汇绿在"明年"就兑现 15 亿利润（对应 30 倍 PE 目标价 49 元），而这需要钧恒把 2027 年 2.32 亿的业绩承诺超额 6.5 倍。</strong>这不是不可能，但它是"赌未来三年"的定价，不是"估值合理"的定价。你的持仓，本质是在为"三巨头放量 + 1.6T 爆发 + 重组超额"这一长串小概率同时发生而持有，而不是在持有"便宜的好公司"。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">附：测算参数说明</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>参数</th><th>取值</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>现价</td><td>41.47 元</td><td>2026-08-14 收盘</td></tr>
+          <tr><td>当前总股本</td><td>7.85 亿股</td><td>重组前</td></tr>
+          <tr><td>重组后总股本</td><td>约 9.18 亿股</td><td>购买资产增发 1.07 亿 + 配套募资约 0.26 亿</td></tr>
+          <tr><td>当前市值</td><td>325.54 亿</td><td>现价 × 当前股本</td></tr>
+          <tr><td>PE(TTM)</td><td>391.66 倍</td><td>Wind</td></tr>
+          <tr><td>合理 PE 锚</td><td>20-30 倍</td><td>二线代工 20-25 倍、一线龙头 30-40 倍</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">数据来源：Wind（现价/市值/PE，2026-08-14收盘）、中报（股本、业绩承诺）。配套募资增发股数按 8.45 亿、发行价约 33 元估算，实际以公告为准。测算为情景推演，非预测。</p>
+  </div>
+
+  <p class="footer">免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</div>
+
+<script>
+const chart = echarts.init(document.getElementById('chart-price'));
+const profits = ['10亿','15亿','20亿','25亿'];
+const pe20 = [22,33,44,54];
+const pe30 = [33,49,65,82];
+const pe40 = [44,65,87,109];
+chart.setOption({
+  title:{text:'不同利润情景下的目标股价（重组后股本9.18亿股）',left:'center',textStyle:{fontSize:14,color:'#392076'}},
+  tooltip:{trigger:'axis'},
+  legend:{data:['20倍PE','30倍PE','40倍PE'],top:30,textStyle:{fontSize:11}},
+  grid:{left:50,right:20,top:60,bottom:30},
+  xAxis:{type:'category',data:profits},
+  yAxis:{type:'value',name:'元'},
+  series:[
+    {name:'20倍PE',type:'line',data:pe20,smooth:true,lineStyle:{color:'#18a66a',width:2},itemStyle:{color:'#18a66a'}},
+    {name:'30倍PE',type:'line',data:pe30,smooth:true,lineStyle:{color:'#7438ef',width:2},itemStyle:{color:'#7438ef'}},
+    {name:'40倍PE',type:'line',data:pe40,smooth:true,lineStyle:{color:'#e54b4b',width:2},itemStyle:{color:'#e54b4b'}},
+    {name:'现价',type:'line',data:[41.47,41.47,41.47,41.47],lineStyle:{type:'dashed',color:'#f28b30',width:2},itemStyle:{color:'#f28b30'},symbol:'none',markLine:{data:[{yAxis:41.47,name:'现价41.47元'}],lineStyle:{color:'#f28b30',type:'dashed'}}}
+  ]
+});
+window.addEventListener('resize',()=>{chart.resize();});
+</script>
+</body>
+</html>

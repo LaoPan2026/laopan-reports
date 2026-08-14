@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<title>天岳先进 688234 深度研报</title>
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--text:#1f2937;--muted:#5a5a6e;--soft:#f2f4f8;--line:#e2e5eb;--accent:#4285F4;
+  --pos:#ff3b3b;--neg:#1ed890;--up:#ff3b3b;--down:#1ed890;
+  --label-blue:#4285F4;--label-yellow:#FBBC05;--label-red:#EA4335;--label-green:#34A853;
+  --shadow:0 1px 3px rgba(0,0,0,.06);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px}
+h1{font-size:20px;color:var(--text);margin-bottom:6px}
+h2{font-size:15px;color:var(--accent);margin:16px 0 10px;border-left:3px solid var(--accent);padding-left:10px}
+h3{font-size:14px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:13.5px;color:var(--text)}
+.summary{background:var(--soft);border-radius:6px;padding:12px 14px;font-size:13px;color:var(--muted);margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{font-weight:600;color:var(--muted);background:rgba(155,165,185,.06);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(155,165,185,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(66,133,244,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-yellow{color:#b38600;background:rgba(251,188,5,.12);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-red{color:#c5221f;background:rgba(234,67,53,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-green{color:#137333;background:rgba(52,168,83,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.pos,.up{color:var(--pos)}
+.neg,.down{color:var(--neg)}
+.small{font-size:12px;color:var(--muted)}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px}
+.metric-val{font-size:18px;font-weight:700}
+.metric-label{font-size:12px;color:var(--muted)}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:17px}h2{font-size:14px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:16px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center}
+.rating{display:inline-flex;align-items:center;gap:6px;margin:10px 0;padding:8px 14px;border-radius:6px;background:rgba(52,168,83,.08)}
+.rating strong{font-size:16px;color:#137333}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 标题区 -->
+<div class="card">
+  <h1>天岳先进 688234 深度研报</h1>
+  <p class="small">2026-08-13 · 版式：Google Insight V1 · 数据时点：2026年8月</p>
+  <div class="summary">
+    <strong>核心判断：</strong>天岳先进的产业逻辑成立：8英寸放量、结构性涨价和AI电源是成长驱动。但按2026-08-12收盘价110.36元、总市值534.83亿元重算，现价已经不便宜，基本接近券商基准价值中枢。当前不再给出BUY，评级调整为<span class="tag-yellow">观察/等待回调</span>：先等Q3业绩证明利润能否上修，或等待股价回到90元附近再评估。
+  </div>
+  <div class="rating"><strong>多空评分：5.5 / 10</strong> <span class="small">—— 产业景气强，但现价对应2027E PE约162x，预期收益不足以覆盖业绩验证风险</span></div>
+</div>
+
+<!-- 一、公司画像与财务速览 -->
+<div class="card">
+  <h2>一、公司画像与财务速览</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val">110.36元</div><div class="metric-label">收盘价（8/12）</div></div>
+    <div class="metric-item"><div class="metric-val">688234</div><div class="metric-label">股票代码</div></div>
+    <div class="metric-item"><div class="metric-val">科创板</div><div class="metric-label">上市板</div></div>
+    <div class="metric-item"><div class="metric-val">534.83亿</div><div class="metric-label">总市值（8/12）</div></div>
+    <div class="metric-item"><div class="metric-val">全球第2</div><div class="metric-label">SiC衬底市占率</div></div>
+    <div class="metric-item"><div class="metric-val">51%</div><div class="metric-label">8英寸市占率</div></div>
+  </div>
+  <p><strong>主营业务：</strong>碳化硅（SiC）单晶衬底材料，覆盖6英寸、8英寸和12英寸导电型/半绝缘型衬底。下游应用包括新能源车功率器件、AI服务器电源、光伏逆变器、5G射频等。</p>
+  <p><strong>竞争地位：</strong>全球少数实现8英寸SiC衬底量产的企业，2024年全球首推12英寸SiC衬底。A+H双上市（688234.SH / 02631.HK），两市唯一SiC衬底A+H公司。</p>
+  <h3>财务核心指标（拐点验证中）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="center">指标</th><th class="num">2024A</th><th class="num">2025A</th><th class="num">2026E</th><th class="num">2027E</th><th class="num">2028E</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>营业收入（亿元）</strong></td><td class="num">14.74</td><td class="num">14.65</td><td class="num">20.8</td><td class="num">26.8</td><td class="num">31.4</td></tr>
+        <tr><td class="name"><strong>营收同比</strong></td><td class="num">—</td><td class="num neg">-0.6%</td><td class="num pos">+42%</td><td class="num pos">+29%</td><td class="num pos">+17%</td></tr>
+        <tr><td class="name"><strong>归母净利润（亿元）</strong></td><td class="num">0.66</td><td class="num neg">-2.09</td><td class="num">0.77</td><td class="num">3.54</td><td class="num">5.36</td></tr>
+        <tr><td class="name"><strong>毛利率</strong></td><td class="num">—</td><td class="num">~15%</td><td class="num">~20%</td><td class="num">~28%</td><td class="num">~32%</td></tr>
+        <tr><td class="name"><strong>PE（按8/12市值）</strong></td><td class="num">—</td><td class="num">亏损</td><td class="num">~695x</td><td class="num">~151x</td><td class="num">~100x</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：2026-2028E数据综合东吴证券、天风证券一致预期。按8月12日总市值534.83亿元、总股本4.85亿股重算远期PE；毛利率为估算值，2026Q1已修复至接近20%。来源：东吴证券研报2026.08、天风证券研报2026.04 ★★★</p>
+</div>
+
+<!-- 二、产业格局与景气度 -->
+<div class="card">
+  <h2>二、产业格局与景气度</h2>
+  <h3>2.1 行业空间：SiC衬底是能源变革与AI基建的"核心基石"</h3>
+  <p>根据弗若斯特沙利文统计和预测，2024年全球碳化硅衬底市场规模达<strong>88亿元</strong>，预计2030年增至<strong>585亿元</strong>，复合年增长率<strong>37.1%</strong>。驱动因素：</p>
+  <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+    <li><strong>新能源车：</strong>800V高压平台渗透率提升，SiC MOSFET替代IGBT是大趋势</li>
+    <li><strong>AI数据中心电源：</strong>NVIDIA Rubin架构推动800VDC高压直流供电，SiC功率器件需求激增</li>
+    <li><strong>先进封装（长期期权）：</strong>12英寸SiC在CoWoS等先进封装中的应用，预计2030年市场300亿+</li>
+    <li><strong>5G/射频/光学：</strong>半绝缘型衬底需求稳定增长</li>
+  </ul>
+  <h3>2.2 竞争格局：高度集中，天岳稳居全球头部</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">竞争要素</th><th class="txt">天岳先进</th><th class="txt">Wolfspeed（美国）</th><th class="txt">Coherent（美国）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>综合市占率</strong></td><td class="txt">~28%（全球第2）</td><td class="txt">~30%（全球第1）</td><td class="txt">~15%</td></tr>
+        <tr><td class="name"><strong>8英寸量产</strong></td><td class="txt"><span class="tag-green">已量产</span></td><td class="txt">已量产</td><td class="txt">推进中</td></tr>
+        <tr><td class="name"><strong>12英寸</strong></td><td class="txt"><span class="tag-green">2024全球首推</span></td><td class="txt">研发中</td><td class="txt">研发中</td></tr>
+        <tr><td class="name"><strong>核心客户</strong></td><td class="txt">英飞凌、芯联集成、中车、博世</td><td class="txt">通用汽车、德尔福</td><td class="txt">意法半导体</td></tr>
+        <tr><td class="name"><strong>A股稀缺性</strong></td><td class="txt"><span class="tag-green">唯一SiC衬底A+H</span></td><td class="txt">美股</td><td class="txt">美股</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>关键判断：</strong>天岳在8英寸和12英寸大尺寸化领域建立了先发技术优势，且是A股唯一纯正SiC衬底标的，稀缺性明确。来源：弗若斯特沙利文、公司公告 ★★★</p>
+</div>
+
+<!-- 三、核心成长驱动与催化时间线 -->
+<div class="card">
+  <h2>三、核心成长驱动与催化时间线</h2>
+  <h3>3.1 三大成长引擎</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">引擎</th><th class="txt">逻辑</th><th class="txt">时间窗口</th><th class="center">置信度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name"><strong>8英寸放量</strong></td>
+          <td class="txt">8英寸供需明显供小于求，收入占比已从0%提升至~45%。英飞凌订单翻倍，芯联集成接近独供（80-90%份额），中车月出货3000+片</td>
+          <td class="txt">2026全年</td>
+          <td class="center"><span class="tag-green">高</span></td>
+        </tr>
+        <tr>
+          <td class="name"><strong>结构性涨价</strong></td>
+          <td class="txt">已对新增订单和急单提出小双位数结构性涨价，反映行业底部确认和龙头定价能力增强</td>
+          <td class="txt">2026H2</td>
+          <td class="center"><span class="tag-green">高</span></td>
+        </tr>
+        <tr>
+          <td class="name"><strong>AI电源拉动</strong></td>
+          <td class="txt">NVIDIA Rubin出货→英飞凌SiC器件订单↑→天岳衬底拉货。Q3为验证窗口</td>
+          <td class="txt">2026Q3-2027</td>
+          <td class="center"><span class="tag-yellow">中高</span></td>
+        </tr>
+        <tr>
+          <td class="name"><strong>临港产能释放</strong></td>
+          <td class="txt">临港基地2026年底规划产能96万片/年，实际产出有望高于规划</td>
+          <td class="txt">2026H2-2027</td>
+          <td class="center"><span class="tag-green">高</span></td>
+        </tr>
+        <tr>
+          <td class="name"><strong>12英寸先进封装</strong></td>
+          <td class="txt">12英寸SiC在CoWoS等先进封装中的应用，预计2030年市场300亿+。目前台厂已在找衬底厂投钱研发</td>
+          <td class="txt">2028-2030</td>
+          <td class="center"><span class="tag-yellow">中</span></td>
+        </tr>
+        <tr>
+          <td class="name"><strong>InP新品类</strong></td>
+          <td class="txt">磷化铟新品类初步研发，还未到送样阶段，空间待验证</td>
+          <td class="txt">2027+</td>
+          <td class="center"><span class="tag-red">低</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>3.2 催化时间线</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="center">时间</th><th class="txt">催化事件</th><th class="center">影响权重</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="center">2026Q2</td><td class="txt">业绩拐点确认——毛利率修复至~20%，8英寸收入占比~45%</td><td class="center"><span class="tag-green">已兑现</span></td></tr>
+        <tr><td class="center">2026Q3</td><td class="txt">AI服务器电源对SiC器件/衬底拉货更加明显（Rubin出货验证）</td><td class="center"><span class="tag-yellow">待验证</span></td></tr>
+        <tr><td class="center">2026年底</td><td class="txt">临港基地产能爬坡至96万片/年规划</td><td class="center"><span class="tag-yellow">待验证</span></td></tr>
+        <tr><td class="center">2027H1</td><td class="txt">中功率嵌入式激光器(120-150mW)新增量蓝海——Lumentum管理层提及</td><td class="center"><span class="tag-yellow">远期</span></td></tr>
+        <tr><td class="center">2027-2028</td><td class="txt">12英寸SiC先进封装初步商业化</td><td class="center"><span class="tag-red">远期期权</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 四、估值分析与股价预测 -->
+<div class="card">
+  <h2>四、估值分析与股价预测</h2>
+  <h3>4.1 当前估值水平</h3>
+  <p>天岳当前处于<strong>盈利拐点期</strong>，静态PE失真，须用远期PE和PS双锚定：</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">估值方法</th><th class="num">2026E</th><th class="num">2027E</th><th class="num">2028E</th><th class="txt">判断</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>PE（按8/12市值）</strong></td><td class="num">~695x</td><td class="num">~151x</td><td class="num">~100x</td><td class="txt">2026年仍极高，2027年仍需高增长消化</td></tr>
+        <tr><td class="name"><strong>PS（按8/12市值）</strong></td><td class="num">~25.7x</td><td class="num">~19.9x</td><td class="num">~17.0x</td><td class="txt">相对同行明显偏高，包含稀缺性与成长溢价</td></tr>
+        <tr><td class="name"><strong>PB</strong></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="txt">重资产模式，PB参考意义有限</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>4.2 可比估值对标</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">可比公司</th><th class="txt">业务</th><th class="num">2027E PE</th><th class="num">PS</th><th class="txt">备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>天岳先进</strong></td><td class="txt">SiC衬底</td><td class="num">~151x</td><td class="num">~19.9x</td><td class="txt">A股唯一纯正标的，但稀缺溢价已较充分</td></tr>
+        <tr><td class="name"><strong>Wolfspeed</strong></td><td class="txt">SiC衬底+器件</td><td class="num">亏损</td><td class="num">~8x</td><td class="txt">美股，亏损扩大中</td></tr>
+        <tr><td class="name"><strong>Coherent</strong></td><td class="txt">SiC衬底+光器件</td><td class="num">~25x</td><td class="num">~2x</td><td class="txt">多元化业务，PE被拉低</td></tr>
+        <tr><td class="name"><strong>沪硅产业</strong></td><td class="txt">硅片</td><td class="num">~80x</td><td class="num">~6x</td><td class="txt">A股半导体材料对标</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：可比公司PE为大致估算，口径可能不一致，仅供参考。来源：Wind、券商研报 ★★</p>
+  <h3>4.3 三级情景与股价预测</h3>
+  <p>基于东吴证券和天风证券盈利预测，取中间值作为基准情景：</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">情景</th><th class="txt">假设</th><th class="num">2027E EPS</th><th class="num">目标PE</th><th class="num">目标价</th><th class="num">较现价空间</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name"><strong>乐观</strong> <span class="tag-green">概率25%</span></td>
+          <td class="txt">8英寸超预期放量+AI电源需求爆发+毛利率修复至30%+</td>
+          <td class="num">0.85元</td><td class="num">200x</td><td class="num">170元</td><td class="num pos">+54%</td>
+        </tr>
+        <tr>
+          <td class="name"><strong>基准</strong> <span class="tag-blue">概率50%</span></td>
+          <td class="txt">8英寸稳步放量+毛利率修复至28%+临港产能如期爬坡</td>
+          <td class="num">0.73元</td><td class="num">160x</td><td class="num">117元</td><td class="num pos">+6%</td>
+        </tr>
+        <tr>
+          <td class="name"><strong>悲观</strong> <span class="tag-red">概率25%</span></td>
+          <td class="txt">8英寸放量不及预期+6英寸价格再下行+产能爬坡慢</td>
+          <td class="num">0.50元</td><td class="num">120x</td><td class="num">60元</td><td class="num neg">-46%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>巴蒂判断：</strong>基准情景概率最高，但基准目标价仅117元，较8月12日收盘110.36元上行约6%，不足以覆盖科创板高波动与业绩验证风险。乐观情景170元必须建立在2027年利润上修至5亿元以上、或12英寸/AI电源出现超预期订单的基础上，不能作为当前基本盘。12英寸先进封装和InP是远期期权，当前不应提前全额定价。</p>
+  <p class="note">注：目标价基于盈利预测和PE假设推导，不构成投资建议。当前股价为估算值，请以实际交易价格为准。来源：东吴证券、天风证券、弗若斯特沙利文 ★★★</p>
+</div>
+
+<!-- 五、核心逻辑与风险 -->
+<div class="card">
+  <h2>五、核心逻辑与硬性风险</h2>
+  <h3>5.1 做多逻辑（5条）</h3>
+  <ol style="margin:8px 0 8px 20px;font-size:13.5px">
+    <li><strong>产业趋势确定：</strong>SiC衬底2030年市场规模585亿元，CAGR 37%，AI电源是新增量</li>
+    <li><strong>盈利拐点已现：</strong>2026Q1毛利率修复至~20%，8英寸收入占比~45%，经营性利润转正可期</li>
+    <li><strong>龙头定价能力增强：</strong>已对小双位数新增订单结构性涨价，行业从价格战转向价值战</li>
+    <li><strong>核心客户绑死：</strong>英飞凌订单翻倍、芯联集成接近独供（80-90%）、中车稳定出货</li>
+    <li><strong>A股稀缺性：</strong>两市唯一纯正SiC衬底A+H标的，无直接对标竞争者</li>
+  </ol>
+  <h3>5.2 硬性风险（5条）</h3>
+  <ol style="margin:8px 0 8px 20px;font-size:13.5px">
+    <li><strong>8英寸放量不及预期：</strong>若核心客户（英飞凌/芯联集成）订单兑现慢于预期，毛利率修复中断</li>
+    <li><strong>6英寸价格再下行：</strong>虽然Q1已企稳，但若行业竞争加剧，6英寸价格可能再次下探拖累整体盈利</li>
+    <li><strong>产能爬坡不及预期：</strong>临港/济南/马来西亚三地产能释放若慢于计划，错失需求窗口</li>
+    <li><strong>估值高企的脆弱性：</strong>按8月12日总市值重算，2026E PE约695x、2027E PE约151x；若业绩 miss，股价可能面临戴维斯双杀</li>
+    <li><strong>国际政策与出口管制：</strong>SiC属半导体材料，若中美关系紧张导致出口受限，海外客户订单受影响</li>
+  </ol>
+  <h3>5.3 反一致预期审查</h3>
+  <p><strong>市场共识：</strong>8英寸放量+毛利率修复=2026年盈利拐点，Q3是验证窗口。</p>
+  <p><strong>巴蒂的独立判断：</strong>共识基本正确，但市场对"AI电源拉动"的定价可能过于乐观。Rubin出货对天岳的传导链是：Rubin→英飞凌SiC器件→天岳衬底，中间有2-3个环节，实际拉货节奏可能慢于市场预期。更可靠的催化剂是<strong>8英寸本身的供不应求+结构性涨价</strong>，而不是AI电源的"故事"。</p>
+</div>
+
+<!-- 六、技术面与资金面 -->
+<div class="card">
+  <h2>六、技术面与资金面</h2>
+  <p>由于Wind数据接口暂未能获取实时技术指标，以下为定性判断：</p>
+  <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+    <li><strong>趋势：</strong>天岳先进2025年以来随SiC板块深度调整，当前股价处于历史低位区间，市值基本跌完AI电源和先进封装的高预期</li>
+    <li><strong>量能：</strong>2026Q1业绩拐点后，成交量温和放大，资金开始左侧布局</li>
+    <li><strong>支撑/压力：</strong>下方支撑位参考前期低点（约100-110元区间），上方第一压力位为前期平台（约140-150元区间）</li>
+    <li><strong>55日线：</strong>需突破并站稳55日线方能确认中期趋势反转</li>
+  </ul>
+  <p class="note">注：精确技术数据待Wind接口恢复后补充校准。来源：价格行为定性分析 ★★</p>
+</div>
+
+<!-- 七、投资建议 -->
+<div class="card">
+  <h2>七、投资建议</h2>
+  <p><span class="tag-yellow">观察</span> <span class="tag-red">暂不追高</span></p>
+  <p><strong>评级修正：</strong>产业逻辑继续成立，但估值已经从“低位布局”切换为“业绩验证交易”。按8月12日收盘价110.36元，基准目标价117元，上行空间约6%；当前风险收益比不支持直接买入。</p>
+  <p><strong>执行条件：</strong></p>
+  <ul style="margin:8px 0 8px 20px;font-size:13.5px">
+    <li><strong>价格条件：</strong>回落至90元附近（约-18%）再评估，或回到100元以下形成分批观察区</li>
+    <li><strong>业绩条件：</strong>Q3确认8英寸收入占比继续提升、毛利率达到22%附近、经营性利润转正</li>
+    <li><strong>趋势条件：</strong>重新站稳55日线且放量，确认中期趋势反转后再考虑右侧介入</li>
+  </ul>
+  <p><strong>风险纪律：</strong>若8英寸收入占比未继续提升、毛利率回落至15%以下、或核心客户订单出现砍单信号，直接取消建仓计划。技术位仅作辅助：110-114元为短线压力区，100元附近为第一支撑，90元附近为更有吸引力的估值观察区。</p>
+  <p><strong>对老潘组合的映射：</strong>天岳先进与罗博/澜起/汇绿属于AI硬件不同环节，逻辑互补，但不能因为“产业链稀缺”就给它当前估值免责。若后续建仓，优先从现金中划拨，并设定总仓位上限，不能挤压澜起和汇绿进入前三的既定计划。</p>
+</div>
+
+<!-- 八、数据溯源与版本追踪 -->
+<div class="card">
+  <h2>八、数据溯源与版本追踪</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">数据点</th><th class="txt">来源</th><th class="center">置信度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name"><strong>8英寸市占率51%</strong></td><td class="txt">东吴证券研报 2026.08</td><td class="center">★★★</td></tr>
+        <tr><td class="name"><strong>2026-2028营收/净利预测</strong></td><td class="txt">东吴证券、天风证券一致预期</td><td class="center">★★★</td></tr>
+        <tr><td class="name"><strong>2030年SiC衬底市场规模585亿</strong></td><td class="txt">弗若斯特沙利文</td><td class="center">★★★</td></tr>
+        <tr><td class="name"><strong>英飞凌订单翻倍、芯联集成80-90%份额</strong></td><td class="txt">东吴证券研报 2026.08</td><td class="center">★★★</td></tr>
+        <tr><td class="name"><strong>结构性涨价、毛利率修复</strong></td><td class="txt">东吴证券研报、公司调研纪要</td><td class="center">★★★</td></tr>
+        <tr><td class="name"><strong>Rubin出货→SiC衬底拉货</strong></td><td class="txt">卖方推荐逻辑、产业链验证</td><td class="center">★★</td></tr>
+        <tr><td class="name"><strong>12英寸SiC先进封装300亿+市场</strong></td><td class="txt">卖方推荐逻辑、远期预测</td><td class="center">★★</td></tr>
+        <tr><td class="name"><strong>目标价推导</strong></td><td class="txt">巴蒂基于券商预测独立推导</td><td class="center">★★</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">报告版本：v1.1（估值重算版） · 生成时间：2026-08-13 · 行情数据时点：2026-08-12收盘 · 下次更新触发：Q3财报发布后或重大产能/订单公告</p>
+</div>
+
+<div class="footer">
+  数据来源：Wind/万得、东吴证券、天风证券、弗若斯特沙利文、公开市场信息 · 仅供参考，不构成投资建议 · 风险自担
+</div>
+
+</div>
+</body>
+</html>

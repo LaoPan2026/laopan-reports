@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘前简报 2026-08-14</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--text:#1f2937;--muted:#5a5a6e;--soft:#f2f4f8;--line:#e2e5eb;--accent:#4285F4;
+  --pos:#ff3b3b;--neg:#1ed890;--up:#ff3b3b;--down:#1ed890;
+  --label-blue:#4285F4;--label-yellow:#FBBC05;--label-red:#EA4335;--label-green:#34A853;
+  --shadow:0 1px 3px rgba(0,0,0,.06);--radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:17px;color:var(--accent);margin:16px 0 10px;border-left:3px solid var(--accent);padding-left:10px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-radius:6px;padding:12px 14px;font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.7}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:600;color:var(--muted);background:rgba(155,165,185,.06);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(155,165,185,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(66,133,244,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-yellow{color:#b38600;background:rgba(251,188,5,.12);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-red{color:#c5221f;background:rgba(234,67,53,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-green{color:#137333;background:rgba(52,168,83,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.pos,.up{color:var(--pos);font-weight:600}
+.neg,.down{color:var(--neg);font-weight:600}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px}
+.metric-val{font-size:20px;font-weight:700}
+.metric-label{font-size:13px;color:var(--muted)}
+.chart-box{width:100%;height:340px;margin:6px 0}
+.callout{border-left:3px solid var(--accent);background:var(--soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0}
+.callout.warn{border-left-color:var(--label-yellow)}
+.callout.good{border-left-color:var(--label-green)}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}.chart-box{height:280px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>盘前简报 · 2026年8月14日（周五）</h1>
+  <p class="small">数据时点：Wind 盘中 10:43 · 版式：Google Insight V1</p>
+  <div class="summary">
+    <strong>结论先行：</strong>开盘后创业板领涨（+1.18%）、上证仍弱（-0.12%），呈<strong>科技修复、权重分化</strong>格局。持仓中<strong>三祥新材（603663）放量领涨 +6.15%</strong>为今日最强异动，驱动是锆材料+固态电池+人形机器人三重概念叠加、融资连续6日净买入；<strong>罗博特科（300757）+2.45%</strong>靠光电子封测设备+CPO/OCS概念跟涨。弱势端在软通动力（-1.47%，跌破5日/10日线）、华峰化学（-0.62%）。<strong>策略：不追高，三祥观察能否站稳42元、罗博200股T仓借势兑现，软通破20日线38.45需警惕。</strong>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、大盘盘中状态（10:43）</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val neg">3922.24</div><div class="metric-label">上证指数 -0.12%</div></div>
+    <div class="metric-item"><div class="metric-val pos">14352.44</div><div class="metric-label">深证成指 +0.44%</div></div>
+    <div class="metric-item"><div class="metric-val pos">3628.22</div><div class="metric-label">创业板指 +1.18%</div></div>
+    <div class="metric-item"><div class="metric-val pos">1720.58</div><div class="metric-label">科创50 +0.16%</div></div>
+  </div>
+  <p>结构上<strong>创业板＞深成指＞科创50＞上证</strong>，成长风格占优、权重蓝筹拖后腿。这与昨日（8/13）"放量普跌、超4300只下跌"后的修复路径一致——资金从高位权重切向超跌科技与题材，但上证仍未收复5日线（约3927），说明<strong>反弹是结构性的，不是全面转强</strong>。上证上方3960-3980套牢盘沉重，短线定性为<strong>震荡修复、高低切换</strong>。</p>
+</div>
+
+<div class="card">
+  <h2>二、持仓逐只映射（真实业务 + 今日异动 + 技术位）</h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th class="name">标的</th>
+        <th class="txt">真实业务（已核实）</th>
+        <th class="num">现价</th>
+        <th class="num">涨跌%</th>
+        <th class="num">量比</th>
+        <th class="txt">技术位置 / 操作要点</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name"><strong>罗博特科</strong><br><span class="small">300757</span></td>
+        <td class="txt">光电子及半导体封测设备46% + 光伏设备46%；含CPO/OCS光电路交换机概念</td>
+        <td class="num">520.00</td>
+        <td class="num pct pos">+2.45%</td>
+        <td class="num">1.06</td>
+        <td class="txt">站上5日线502，KDJ 84超买、MACD刚转负(-0.07)。200股T仓(成本508.72)已浮盈，<strong>目标525-537兑现、破502止损</strong>；800股底仓不动。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>澜起科技</strong><br><span class="small">688008</span></td>
+        <td class="txt">内存接口芯片（DDR5），AI服务器内存互联</td>
+        <td class="num">213.95</td>
+        <td class="num pct pos">+1.77%</td>
+        <td class="num">1.19</td>
+        <td class="txt">站上20日线209.15，RSI 49中性、MACD-8.56仍空头，属弱修复。长线底仓不动，不加不减。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>泰和新材</strong><br><span class="small">002254</span></td>
+        <td class="txt">氨纶+芳纶（化工新材料）</td>
+        <td class="num">12.75</td>
+        <td class="num pct pos">+2.33%</td>
+        <td class="num">1.53</td>
+        <td class="txt">量比1.53温和放量，站上20日线。B+级观察仓，看能否站稳12.7上方确认修复。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>汇绿生态</strong><br><span class="small">001267</span></td>
+        <td class="txt">园林工程基本盘 + 武汉钧恒光模块/AOC（光通信）</td>
+        <td class="num">41.41</td>
+        <td class="num pct neg">-0.43%</td>
+        <td class="num">1.17</td>
+        <td class="txt">昨跌后今日企稳，现价仍在10日线37.33、20日线34.50上方，趋势未破。光模块逻辑不涉及医疗，纯看光通信景气。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>星环科技-U</strong><br><span class="small">688031</span></td>
+        <td class="txt">大数据基础软件（分布式数据库），算力底座</td>
+        <td class="num">112.80</td>
+        <td class="num pct pos">+0.45%</td>
+        <td class="num">1.47</td>
+        <td class="txt">MACD+2.66唯一正值、KDJ 78，短线多头结构尚可，但估值高（PB 16.9），只看不追。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>软通动力</strong><br><span class="small">301236</span></td>
+        <td class="txt">IT服务/华为生态（云+AI渗透）</td>
+        <td class="num">38.79</td>
+        <td class="num pct neg">-1.47%</td>
+        <td class="num">1.24</td>
+        <td class="txt">跌破5日线40.58、10日线40.16，逼近20日线38.45。<strong>跌破38.45转弱预警</strong>，浮盈大（+400%+）可部分兑现锁盈。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>华峰化学</strong><br><span class="small">002064</span></td>
+        <td class="txt">氨纶/己二酸（化工）</td>
+        <td class="num">11.20</td>
+        <td class="num pct neg">-0.62%</td>
+        <td class="num">0.80</td>
+        <td class="txt">量比0.80缩量阴跌，弱势整理，无催化前不动。</td>
+      </tr>
+      <tr>
+        <td class="name"><strong>三祥新材</strong><br><span class="small">603663</span></td>
+        <td class="txt">锆系列产品83.6%（电熔锆/纳米氧化锆/金属锆），固态电池+人形机器人概念</td>
+        <td class="num">42.31</td>
+        <td class="num pct pos">+6.15%</td>
+        <td class="num">2.29</td>
+        <td class="txt">放量领涨、量比2.29，KDJ 80高位但MACD-2.65仍空头，属超跌反弹+题材驱动。<strong>不追高，观察能否放量站稳42元</strong>。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">业务口径来源：Wind 公司档案（罗博特科/三祥新材/汇绿生态 2026-08-14 核实）；澜起/泰和/星环/软通/华峰为既往持仓认知。行情来源：Wind 盘中 2026-08-14 10:43。</p>
+</div>
+
+<div class="card">
+  <h2>三、持仓今日涨跌幅（红涨绿跌）</h2>
+  <div id="chart1" class="chart-box"></div>
+  <p class="note">数据：Wind 盘中 2026-08-14 10:43。三祥新材 +6.15% 一枝独秀，软通动力、华峰化学领跌。</p>
+</div>
+
+<div class="card">
+  <h2>四、异动专题：三祥新材 +6.15% 归因</h2>
+  <p><strong>定性：题材驱动 + 杠杆资金配合，非业绩兑现型拉升。</strong>三个可核实的证据链：</p>
+  <p>1. <strong>概念属性</strong>（Wind 公司档案）：主营锆系列产品占83.61%，概念板块同时挂「固态电池」「人形机器人」「锆产业」「小金属」——氧化锆是固态电池电解质候选材料，也是人形机器人精密结构件潜在用料，多重题材在同一只小盘股上共振。</p>
+  <p>2. <strong>杠杆资金先行</strong>（Wind 8/14 报道）：融资余额连续6日净买入，累计净买入6784.81万元，当前融资余额5.58亿元、占流通市值2.36%。融资盘提前潜伏，是今日放量拉升的燃料。</p>
+  <p>3. <strong>技术形态</strong>（Wind 8/13 收盘）：MACD仍为-2.65（空头）、KDJ-K 80.49（高位），典型<strong>超跌反抽 + 情绪脉冲</strong>，而非趋势性主升。这类拉升的持续性取决于题材是否扩散、量能能否维持。</p>
+  <div class="callout warn"><strong>风险提示：</strong>高位题材 + 小盘 + 融资盘集中的组合，一旦题材退潮或量能萎缩，回撤速度同样快。今日不追高，仅在放量站稳42元且题材继续发酵的前提下才考虑加仓。</div>
+</div>
+
+<div class="card">
+  <h2>五、技术面关键位（持仓风控一览）</h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th class="name">标的</th>
+        <th class="num">现价</th>
+        <th class="num">5日线</th>
+        <th class="num">20日线</th>
+        <th class="txt">关键支撑 / 压力</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="name">罗博特科</td><td class="num">520.00</td><td class="num">502.07</td><td class="num">441.05</td><td class="txt">T仓止盈525-537 / 止损502；底仓看473十日线</td></tr>
+      <tr><td class="name">澜起科技</td><td class="num">213.95</td><td class="num">210.96</td><td class="num">209.15</td><td class="txt">站稳20日线209则修复延续，跌破207回踩</td></tr>
+      <tr><td class="name">汇绿生态</td><td class="num">41.41</td><td class="num">41.63</td><td class="num">34.50</td><td class="txt">短线压力41.6前高，强支撑37.3十日线</td></tr>
+      <tr><td class="name">星环科技</td><td class="num">112.80</td><td class="num">113.51</td><td class="num">97.37</td><td class="txt">压力113.5，回踩108.8十日线观察</td></tr>
+      <tr><td class="name">软通动力</td><td class="num">38.79</td><td class="num">40.58</td><td class="num">38.45</td><td class="txt">破38.45转弱，反抽40.6五日线是减仓位</td></tr>
+      <tr><td class="name">三祥新材</td><td class="num">42.31</td><td class="num">40.49</td><td class="num">38.58</td><td class="txt">站稳42看续涨，破40.5五日线即降温</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">均线为 Wind 2026-08-13 收盘口径，现价为 08-14 10:43 盘中价。</p>
+</div>
+
+<div class="card">
+  <h2>六、三情景推演</h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th class="txt">情景</th><th class="txt">触发条件</th><th class="txt">组合应对</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="txt"><span class="tag-green">乐观</span> 科技修复扩散</td>
+        <td class="txt">创业板站稳3600、上证收复5日线3927，成交维持2.5万亿+</td>
+        <td class="txt">罗博T仓借势兑现，三祥/星环持有待涨，不加新仓追高</td>
+      </tr>
+      <tr>
+        <td class="txt"><span class="tag-blue">中性</span> 震荡分化</td>
+        <td class="txt">上证3920-3960区间震荡，题材轮动无主线</td>
+        <td class="txt">底仓不动，仓位5-6成，周五留现金过周末</td>
+      </tr>
+      <tr>
+        <td class="txt"><span class="tag-red">悲观</span> 反弹证伪</td>
+        <td class="txt">上证跌破3900，软通破38.45、汇绿破37.3共振走弱</td>
+        <td class="txt">软通部分锁盈，三祥落袋，罗博T仓止损，总仓位降至4成</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>七、今日操作纪律（条件化）</h2>
+  <div class="callout good"><strong>不追高、只兑现：</strong>今日三祥+6.15%、罗博+2.45%是反弹兑现窗口，不是加仓窗口。高开冲高一律不追，只做"到价即执行"的纪律单。</div>
+  <p>1. 罗博特科 200股T仓：525-537分批兑现，破502止损（今日可卖，T+1正常节奏）。<br>2. 三祥新材：不追，放量站稳42且题材持续才考虑，否则持有观察。<br>3. 软通动力：跌破38.45减仓锁盈，反抽40.6减仓。<br>4. 澜起/汇绿/星环/泰和/华峰：底仓不动，不加不减。<br>5. 总仓位5-6成，周五控仓留现金过周末，等收盘确认今日反弹成色。</p>
+</div>
+
+<div class="footer">
+  数据来源：Wind/万得（行情、公司档案、技术指标、融资融券）· 时点：2026-08-14 盘中10:43，均线为08-13收盘口径<br>
+  仅供投研参考，不构成投资建议 · 市场有风险，投资需谨慎 · 风险自担
+</div>
+
+</div>
+<script>
+echarts.init(document.getElementById('chart1')).setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '8%', right: '5%', top: '10%', bottom: '8%', containLabel: true },
+  xAxis: { type: 'category', data: ['三祥新材','罗博特科','泰和新材','澜起科技','星环科技','华峰化学','汇绿生态','软通动力'] },
+  yAxis: { type: 'value', name: '涨跌幅%', axisLabel: { formatter: '{value}%' } },
+  series: [{
+    type: 'bar',
+    data: [6.15, 2.45, 2.33, 1.77, 0.45, -0.62, -0.43, -1.47],
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 11 },
+    itemStyle: { color: function(p){ return p.value >= 0 ? '#ff3b3b' : '#1ed890'; } },
+    barMaxWidth: 38
+  }]
+});
+</script>
+</body>
+</html>

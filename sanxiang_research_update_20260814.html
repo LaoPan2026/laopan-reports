@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三祥新材深度研报更新 · 2026-08-14</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.25;margin-bottom:10px;letter-spacing:0}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:820px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:15px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:22px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart-box{height:320px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:10px 12px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.risk{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:10px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+table.f4{table-layout:fixed}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:24%;text-align:left;word-break:keep-all}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:20%;text-align:left;word-break:keep-all;text-wrap:balance}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:30%;text-align:left;word-break:keep-all;text-wrap:balance}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:26%;text-align:right;font-variant-numeric:tabular-nums}
+table.f3{table-layout:fixed}
+table.f3 th,table.f3 td{text-align:left;word-break:keep-all;text-wrap:balance}
+.name,.code,.tag,.pct{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.red,.green,.purple{white-space:nowrap}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:10px}
+.action{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.action .num{font-size:12.5px;color:var(--purple);font-weight:800;margin-bottom:4px}
+.action h4{font-size:15px;margin-bottom:5px;color:var(--text)}
+.action p{font-size:14px;color:var(--muted);margin:0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.action-grid{grid-template-columns:1fr}.chart-box{height:260px}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="hero">
+  <div class="eyebrow">DEEP RESEARCH · 三祥新材 603663.SH · 2026-08-14</div>
+  <h1>三祥新材：业绩在兑现，估值在透支</h1>
+  <p>结合 PandaData 结构化数据（财务三表 / 日线 / 融资融券 / 股东）与最新舆情，重做一遍三祥新材的研报更新。核心问题是：市场买的是"锆材料景气"，还是"固态电池+半导体的题材叙事"？</p>
+</header>
+<nav class="nav">
+  <a href="#conclusion">结论前置</a><a href="#biz">业务与财务</a><a href="#curve">三条成长曲线</a><a href="#tech">技术资金</a><a href="#logic">逻辑与反证</a><a href="#val">估值</a><a href="#scene">三情景</a><a href="#action">持仓操作</a><a href="#source">数据溯源</a>
+</nav>
+
+<section class="card" id="conclusion">
+  <h2 class="section-title">结论前置</h2>
+  <div class="summary"><strong>一句话结论：</strong>三祥新材的基本面确实在改善——2026Q1净利润同比+289%、5月起锆系产品全系提价8%、核级海绵锆满产满销，Q2单季净利预告同比+129%~207%。<strong>但当前 175 倍 PE(TTM)、18 倍 PB 的估值，已经把未来两到三年的成长一次性定价了。</strong>8月这波上涨是"题材+杠杆"驱动（8/6龙虎榜主力净卖出3.33亿、近20日主力净流出2.18亿、公司自查无应披露未披露事项），不是业绩兑现型上涨。<strong>对你而言，这不是加仓窗口，而是兑现部分浮盈的窗口。</strong></div>
+  <div class="metric-grid">
+    <div class="metric"><div class="value">41.66元</div><div class="label">最新价（Wind 8/14 11:17盘中）</div><div class="detail">当日+4.52%</div></div>
+    <div class="metric"><div class="value">175倍</div><div class="label">市盈率 TTM</div><div class="detail">市净率 18.2倍，双重透支</div></div>
+    <div class="metric"><div class="value">247亿</div><div class="label">总市值</div><div class="detail">流通市值 247亿</div></div>
+    <div class="metric"><div class="value">+289%</div><div class="label">2026Q1净利同比</div><div class="detail">4172万，持续经营口径</div></div>
+  </div>
+  <div class="callout">
+    <h3>多空评分（1-10，越高越看多）</h3>
+    <p><strong>基本面：7.5</strong>（业绩加速、提价、满产满销，是真实兑现）</p>
+    <p><strong>估值面：2.5</strong>（175倍PE + 18倍PB，题材情绪顶部特征）</p>
+    <p><strong>资金面：3.0</strong>（当日主力流入，但龙虎榜与近20日呈净流出，主力在派发）</p>
+    <p><strong>综合：约4.5 / 10</strong> —— 逻辑未破、可持有，但性价比已很低，不加仓。</p>
+  </div>
+  <p class="source">数据来源：行情与估值——Wind（2026-08-14 盘中）；财务——PandaData get_fina_reports（报告期截至2026Q1）；龙虎榜与主力资金——公开媒体（2026-08-06，非一手，需核实原文）。</p>
+</section>
+
+<section class="card" id="biz">
+  <h2 class="section-title">公司画像 · 财务速览</h2>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th style="width:22%">项目</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><strong>主营业务</strong></td><td>锆系制品、铸造改性材料等工业新材料；主要产品为电熔氧化锆、海绵锆、氧氯化锆、纳米氧化锆及特种陶瓷。</td></tr>
+        <tr><td><strong>上市信息</strong></td><td>2016-08-01 主板上市，发行价 5.28 元；注册地福建宁德寿宁县；Wind 行业分类"原材料"。</td></tr>
+        <tr><td><strong>股权结构</strong></td><td>前三大股东合计约53%：日本永翔贸易 20.12%（外资）、宁德汇阜 17.14%（质押581万股）、宁德汇和 15.91%；另有 AGC 工业陶瓷 2.01%（日资）。</td></tr>
+        <tr><td><strong>股本变动</strong></td><td>2025年度分配方案"每10股派1元转增4股"，2026年7月实施（7/17除权），总股本扩至约5.94亿股。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>营收与净利润（年度 + 最新季度）</h3>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th style="width:20%">报告期</th><th style="width:26%">营业收入</th><th style="width:28%">净利润（持续经营）</th><th style="width:26%">净利同比</th></tr></thead>
+      <tbody>
+        <tr><td>2024全年</td><td>10.54亿</td><td>6763万</td><td>—</td></tr>
+        <tr><td>2025全年</td><td>11.66亿</td><td>1.23亿</td><td class="red">+82.2%</td></tr>
+        <tr><td>2026Q1</td><td>2.64亿</td><td>4172万</td><td class="red">+288.7%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">口径说明：净利润为 PandaData「持续经营净利润」口径（三祥新材少数股东损益极小，近似归母净利润）；营收 2025 全年同比 +10.6%，2026Q1 同比 +14.3%。数据来源：PandaData get_fina_reports（报告期截至 2026Q1，2026Q2 半年报尚未披露）。</p>
+  <div class="cols">
+    <div id="finChart" class="chart-box"></div>
+    <div class="callout">
+      <h3>财务的四个关键点</h3>
+      <p><strong>① 净利增速远快于营收：</strong>2025营收+10.6%但净利+82.2%，说明增长来自毛利率改善和高附加值产品（核级海绵锆、纳米锆）占比提升，而非单纯放量。</p>
+      <p><strong>② 2024Q4曾单季亏损：</strong>2024年四季度净利为负，2025年起逐季修复，反映锆价与产能利用率的周期反转。</p>
+      <p><strong>③ 提价是边际增量：</strong>2026年5月起电熔氧化锆、工业级海绵锆全系提价约8%，是Q2业绩预告高增的直接来源。</p>
+      <p><strong>④ 基数仍低：</strong>年利润仅1.2亿量级，247亿市值意味着市场在为"未来"而非"当下"定价。</p>
+    </div>
+  </div>
+  <p class="source">数据来源：PandaData get_fina_reports；Q2单季预告来自7月15日网传研报（非一手，需核实原文）。</p>
+</section>
+
+<section class="card" id="curve">
+  <h2 class="section-title">三条成长曲线：哪条在兑现，哪条在讲故事</h2>
+  <div class="table-wrap">
+    <table class="f4">
+      <thead><tr><th class="name">成长曲线</th><th>兑现阶段</th><th>关键事实</th><th class="num">估值含义</th></tr></thead>
+      <tbody>
+        <tr><td class="name"><strong>核级海绵锆</strong></td><td><span class="tag green">已兑现</span></td><td>3500吨工业级海绵锆满产满销，5月起全系提价8%；核电/军工需求驱动</td><td class="num">当期利润，确定性最高</td></tr>
+        <tr><td class="name"><strong>半导体锆铪</strong></td><td><span class="tag">送样中</span></td><td>锆铪分离产线产出4N级氧氯化铪/锆，铪用于存储/CPU/GPU，已向半导体客户送样</td><td class="num">期权价值，未成规模</td></tr>
+        <tr><td class="name"><strong>固态电池电解质</strong></td><td><span class="tag orange">验证期</span></td><td>规划10万吨氧氯化锆+2000吨纳米氧化锆，向清陶能源供货（成熟量产产品）</td><td class="num">题材属性，收入占比极小</td></tr>
+        <tr><td class="name"><strong>军工材料</strong></td><td><span class="tag">间接</span></td><td>高纯氧化锆、液态金属、泡沫陶瓷可应用于军工领域</td><td class="num">定性利好，难量化</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">关键判断：市场给三祥新材的高估值，定价的是「固态电池+半导体自主可控」的<strong>期权价值</strong>，而非当前已兑现的锆材料景气。四条曲线里，只有核级海绵锆在真实贡献利润，其余三条仍在"送样/验证/概念"阶段。数据来源：PandaData、Wind 公司档案、公开互动易与异动解析（2026-08，非一手需核实原文）。</p>
+  <div class="cols">
+    <div id="priceChart" class="chart-box"></div>
+    <div class="callout">
+      <h3>股价结构：一波题材脉冲后的高位震荡</h3>
+      <p><strong>6月主升浪：</strong>6/1的59.5元一路冲至6/24的105.9元，一月翻倍，是"固态电池+半导体"题材叠加锆材料提价的合力。</p>
+      <p><strong>7月回落 + 除权：</strong>冲高后回落，7/17实施10转4派1除权，除权后中枢从60+元降至40元一线。</p>
+      <p><strong>8月二次脉冲：</strong>8/4-8/6三日涨20%触发异动公告，8/5涨停；当前41.66元在60日均线48.96元<strong>下方</strong>，上方套牢盘密集（筹码平均成本48.32元）。</p>
+    </div>
+  </div>
+  <p class="source">股价序列来源：PandaData get_stock_daily（2026-06-01 至 2026-08-13，53个交易日）；图中7/17为除权除息日（10转4派1），存在价格跳空，属正常现象。</p>
+</section>
+
+<section class="card" id="tech">
+  <h2 class="section-title">技术面 · 资金面</h2>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th style="width:24%">指标</th><th style="width:30%">数值（Wind 8/13）</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>5日均线</td><td>40.49元</td><td>现价站上5日线，短线企稳</td></tr>
+        <tr><td>20日 / 60日均线</td><td>38.58 / 48.96元</td><td>现价在20日线上、60日线下，中期仍处压力区</td></tr>
+        <tr><td>MACD</td><td>DIFF -2.65 / DEA -3.68 / 柱 +2.07</td><td class="red">0轴下方金叉，属弱势区反弹</td></tr>
+        <tr><td>KDJ / RSI</td><td>KDJ 80.49 / RSI 49.25</td><td>KDJ超买、RSI中性，短线偏热</td></tr>
+        <tr><td>布林带</td><td>上轨75.47 / 中轨46.20 / 下轨16.92</td><td>现价贴近中轨下方运行</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>资金面：当日流入 vs 中期派发，指向背离</h3>
+  <div class="signal-list">
+    <div class="signal good"><strong>当日主力净流入 1.45亿（Wind 8/14盘中）</strong><p>近5日净流入5675万、近10日净流入1.04亿，短线资金确有回流。</p></div>
+    <div class="signal risk"><strong>8/6 龙虎榜主力净卖出 3.33亿</strong><p>8/6当日买入总计4.56亿、卖出总计7.89亿，机构/游资在高位集中派发。</p></div>
+    <div class="signal risk"><strong>近20日主力净流出 2.18亿</strong><p>把时间拉长，主力资金整体是净流出的，"当日流入"尚未扭转中期派发趋势。</p></div>
+    <div class="signal warn"><strong>融资余额 5.58亿（PandaData 8/13）</strong><p>较6月初的6.59亿下降约15%；8/10起连续4日回升约1900万，杠杆资金在反弹中回流，但尚未回到前期高位。</p></div>
+  </div>
+  <p class="source">数据来源：技术指标与资金流——Wind（2026-08-13 收盘 / 2026-08-14 盘中）；龙虎榜与主力净流出——公开媒体（2026-08-06，非一手需核实原文）；融资融券——PandaData get_margin（截至 2026-08-13）。</p>
+</section>
+
+<section class="card" id="logic">
+  <h2 class="section-title">核心逻辑与风险（含反一致预期）</h2>
+  <h3>多头逻辑（成立，但需区分"已定价"与"未定价"）</h3>
+  <div class="signal-list">
+    <div class="signal good"><strong>逻辑一：锆材料提价周期 + 核级海绵锆放量</strong><p>5月起全系提价8%、3500吨海绵锆满产满销，这是2025净利+82%、2026Q1净利+289%的真实来源。这是业绩驱动的硬逻辑，仍在兑现。</p></div>
+    <div class="signal good"><strong>逻辑二：半导体锆铪材料国产替代</strong><p>锆铪分离产线已能稳定产出4N级氧氯化铪/锆，铪是存储、CPU、GPU关键材料，外部限制倒逼国产替代。这是中长期期权，方向正确但尚未放量。</p></div>
+    <div class="signal warn"><strong>逻辑三：固态电池电解质卡位</strong><p>锆基氯化物在卤化物固态电解质中已验证，向清陶能源供货。但这是"成熟产品的延伸应用"，短期不贡献利润，弹性被题材情绪放大。</p></div>
+  </div>
+  <h3>反一致预期（市场没充分定价的风险）</h3>
+  <div class="warning"><strong>核心反证：8月这波上涨的归因可能是错的。</strong>市场把8/4-8/6的三连涨解读为"固态电池+半导体"新逻辑启动，但Q2业绩预告7/15就已公布，7月中下旬股价还在跌；真正催化8月脉冲的是<strong>半导体板块情绪</strong>（修订后的《集成电路布图设计保护条例》），叠加8/5涨停的杠杆资金。公司8/6异动公告自查"无应披露而未披露事项"，等于官方否认了"新基本面催化"。若情绪退潮，这波涨幅缺乏业绩支撑的部分会回吐。</div>
+  <div class="warning"><strong>周期股估值陷阱：</strong>三祥新材本质是"锆材料周期 + 提价"驱动的周期成长股，不是稳定成长股。175倍PE的静态横比没有意义——周期高点的高PE，往往对应的是"利润刚起来、市场已把未来几年的峰值利润提前折现"的顶部区域。更该看的是 PB 分位（当前18倍PB已远超材料股1-3倍的常态中枢）和提价持续性。</div>
+  <div class="signal-list">
+    <div class="signal risk"><strong>风险一：主力高位派发</strong><p>8/6龙虎榜净卖出3.33亿 + 近20日净流出2.18亿，筹码平均成本48.32元高于现价，上方套牢盘是反弹的实质压制。</p></div>
+    <div class="signal risk"><strong>风险二：估值透支</strong><p>175倍PE + 18倍PB，一旦Q2半年报增速不及"+129%~207%"的高预告，杀估值会非常剧烈。</p></div>
+    <div class="signal warn"><strong>风险三：题材退潮</strong><p>固态电池、半导体两大题材若阶段性退潮，缺乏当期利润支撑的"期权估值"会最先被压缩。</p></div>
+    <div class="signal warn"><strong>风险四：股东质押与减持</strong><p>第二大股东宁德汇阜质押581万股；自然人张静2026Q1减持（4.32%→2.97%）；股东户数由22937增至23728户，筹码趋于分散。</p></div>
+  </div>
+  <p class="source">数据来源：异动公告2026-029号（公司一手，2026-08-06）；股东户数与前十大股东——PandaData（截至2026-03-31）；其余为公开媒体与互动易（非一手，需核实原文）。</p>
+</section>
+
+<section class="card" id="val">
+  <h2 class="section-title">估值：当前股价已经包含了什么</h2>
+  <div class="callout">
+    <h3>估值拆解</h3>
+    <p><strong>当前：</strong>247亿市值 / 2025年净利润1.23亿 ≈ 静态PE 201倍；PE(TTM) 175倍；PB 18.2倍。</p>
+    <p><strong>市场隐含预期：</strong>若按"周期成长股合理PB 4-6倍"给，对应合理市值约55-83亿；当前247亿市值，隐含的是"锆材料景气持续3年以上 + 固态电池/半导体期权兑现"的双重乐观。</p>
+    <p><strong>业绩要追平估值：</strong>即便2026全年净利做到2.5-3亿（下半年延续Q2预告的高增），动态PE仍高达82-99倍，依然昂贵。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th style="width:30%">情景</th><th style="width:24%">2026全年净利假设</th><th style="width:22%">隐含动态PE</th><th>判断</th></tr></thead>
+      <tbody>
+        <tr><td>乐观（超预期）</td><td>3.2亿</td><td>77倍</td><td>仍偏贵，需持续高增验证</td></tr>
+        <tr><td>中性（预告兑现）</td><td>2.6亿</td><td>95倍</td><td>估值透支明显</td></tr>
+        <tr><td>悲观（增速回落）</td><td>1.8亿</td><td>137倍</td><td>严重透支，杀估值风险大</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">净利假设为基于2026Q1实际（4172万）+ Q2预告区间（0.32-0.43亿）+ 下半年线性外推的<strong>估算</strong>，非预测指引；动态PE = 247亿市值 ÷ 年度净利。数据来源：PandaData财务 + 网传研报预告（需核实原文）。</p>
+</section>
+
+<section class="card" id="scene">
+  <h2 class="section-title">三级情景（对应你的持仓）</h2>
+  <div class="action-grid">
+    <div class="action">
+      <div class="num">情景一 · 基准</div>
+      <h4>震荡消化，回踩20日线</h4>
+      <p>题材情绪退潮、业绩兑现但不足以推高估值。股价在38-45元区间震荡，用时间消化175倍PE。<strong>应对：底仓持有，不加仓，等待Q2半年报验证。</strong></p>
+    </div>
+    <div class="action">
+      <div class="num">情景二 · 乐观</div>
+      <h4>半年报超预期 + 题材延续</h4>
+      <p>Q2净利超预告上限（0.43亿+），固态电池/半导体订单落地，股价放量突破60日线48.96元并站稳。<strong>应对：底仓继续持有，但突破后反而要警惕情绪见顶，逢高分批兑现。</strong></p>
+    </div>
+    <div class="action">
+      <div class="num">情景三 · 悲观</div>
+      <h4>半年报不及预期 + 题材退潮</h4>
+      <p>Q2净利低于预告下限，主力派发加剧，股价跌破20日线38.58元、失守8/5涨停启动位37.26元。<strong>应对：这对应"逻辑走弱"，需要重新评估是否减仓，而非机械止损。</strong></p>
+    </div>
+  </div>
+  <p class="source">情景为条件化推演，非点位预测。核心验证变量：① 8月底披露的2026半年报营收/净利能否延续+129%~207%的增速；② 锆系提价是否延续；③ 半导体锆铪订单是否从"送样"走向"规模供货"。</p>
+</section>
+
+<section class="card" id="action">
+  <h2 class="section-title">持仓操作（条件化，非指令）</h2>
+  <div class="summary"><strong>你的持仓现状：</strong>成本 21.2474 元 / 3820 股 / 现价 41.66 元，<strong>浮盈约 +96%</strong>，组合权重约 7.48%。这是一笔深度盈利的仓位，安全垫极厚。</div>
+  <div class="signal-list">
+    <div class="signal good"><strong>核心矛盾：逻辑没破，但估值透支。</strong><p>锆材料提价周期 + 核级海绵锆放量的核心逻辑仍在兑现，按你的"只看逻辑、不做技术止损"原则，<strong>不必因为K线回撤就割肉</strong>。但175倍PE + 主力高位派发，意味着这个位置继续加仓的性价比极低。</p></div>
+    <div class="signal warn"><strong>兑现浮盈的窗口，而非加仓的窗口。</strong><p>浮盈96%的前提下，可以考虑在题材脉冲的高位<strong>分批兑现1/3到1/2</strong>，把浮盈落袋一部分，剩余底仓以"锆材料景气 + 半年报验证"为锚继续持有。这不是看空逻辑，而是对"估值透支 + 主力派发"的主动风险管理。</p></div>
+    <div class="signal warn"><strong>真正的减仓信号（逻辑层面，非技术止损）：</strong><p>① 半年报净利增速明显低于预告下限（+129%）；② 锆系产品提价无法延续或转为降价；③ 半导体锆铪"送样"长期无法转化为"规模订单"。以上任一条出现，才是重新评估持仓的核心依据。</p></div>
+  </div>
+  <p class="source">持仓数据为老潘提供的最新口径（2026-08-13 截图）。操作建议为条件化框架，不构成投资指令。</p>
+</section>
+
+<section class="card" id="source">
+  <h2 class="section-title">数据溯源与版本追踪</h2>
+  <div class="table-wrap">
+    <table class="f3">
+      <thead><tr><th style="width:22%">数据项</th><th style="width:22%">来源</th><th style="width:18%">时点</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>行情快照 / 估值</td><td>Wind</td><td>2026-08-14 11:17</td><td>盘中实时，含PE/PB/市值/主力资金</td></tr>
+        <tr><td>技术指标</td><td>Wind</td><td>2026-08-13</td><td>MACD/KDJ/RSI/布林/均线</td></tr>
+        <tr><td>财务三表</td><td>PandaData</td><td>截至2026Q1</td><td>营收/净利/现金流（持续经营口径）</td></tr>
+        <tr><td>日线 / 融资融券</td><td>PandaData</td><td>2026-06-01~08-13</td><td>53个交易日；融资余额5.58亿</td></tr>
+        <tr><td>股东户数 / 前十大</td><td>PandaData</td><td>截至2026-03-31</td><td>户数+3.45%；北向加仓、张静减持</td></tr>
+        <tr><td>异动公告</td><td>公司公告 2026-029</td><td>2026-08-06</td><td>一手来源，自查无应披露未披露事项</td></tr>
+        <tr><td>异动解析 / 业绩预告</td><td>韭研公社/搜狐/新浪</td><td>2026-08-05~06</td><td>非一手，需核实原文</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">版本：V2.1 深度研报 · V1紫色皮肤。数据核对：Wind 与 PandaData 双源交叉验证行情与财务；龙虎榜、业绩预告等为公开媒体转述，已标注"需核实原文"，不与公司公告同等采信。</p>
+</section>
+
+<div class="footer">
+  <p>生成于 2026-08-14 · 巴蒂投研助手 · 仅供老潘内部研究使用</p>
+</div>
+</div>
+
+<script>
+(function(){
+  var finEl = document.getElementById('finChart');
+  if(finEl){
+    echarts.init(finEl).setOption({
+      tooltip:{trigger:'axis'},
+      legend:{data:['单季营收(亿)','单季净利(万元)']},
+      grid:{left:48,right:48,top:40,bottom:30},
+      xAxis:{type:'category',data:['24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26Q1']},
+      yAxis:[
+        {type:'value',name:'营收(亿)'},
+        {type:'value',name:'净利(万元)'}
+      ],
+      series:[
+        {name:'单季营收(亿)',type:'bar',barMaxWidth:22,itemStyle:{color:'#8b5cf6'},data:[2.56,3.51,2.43,2.04,2.31,3.31,2.96,3.08,2.64]},
+        {name:'单季净利(万元)',type:'line',yAxisIndex:1,itemStyle:{color:'#e54b4b'},data:[2250,4710,1023,-1220,1073,3444,3216,4593,4172]}
+      ]
+    });
+  }
+  var priceEl = document.getElementById('priceChart');
+  if(priceEl){
+    var d=['06-01','06-02','06-03','06-04','06-05','06-08','06-09','06-10','06-11','06-12','06-15','06-16','06-17','06-18','06-22','06-23','06-24','06-25','06-26','06-29','06-30','07-01','07-02','07-03','07-06','07-07','07-08','07-09','07-10','07-13','07-14','07-15','07-16','07-17','07-20','07-21','07-22','07-23','07-24','07-27','07-28','07-29','07-30','07-31','08-03','08-04','08-05','08-06','08-07','08-10','08-11','08-12','08-13'];
+    var c=[59.53,61.79,67.97,66.90,65.27,63.45,69.80,74.79,74.39,72.60,75.44,82.98,79.54,87.49,96.24,101.07,103.81,100.48,94.53,95.98,96.30,94.02,89.60,85.79,81.54,80.68,76.23,79.63,73.98,70.99,72.79,68.61,63.50,41.81,38.18,42.00,42.06,41.04,38.70,40.66,37.99,37.00,33.67,33.70,31.96,33.87,37.26,39.31,40.12,40.69,40.45,41.31,39.86];
+    echarts.init(priceEl).setOption({
+      tooltip:{trigger:'axis'},
+      grid:{left:48,right:24,top:40,bottom:30},
+      xAxis:{type:'category',data:d,axisLabel:{rotate:45,fontSize:10}},
+      yAxis:{type:'value',name:'收盘价(元)',scale:true},
+      series:[{
+        name:'收盘价',type:'line',smooth:false,showSymbol:false,itemStyle:{color:'#7438ef'},areaStyle:{color:'rgba(116,56,239,0.08)'},
+        markLine:{symbol:'none',label:{formatter:'7/17除权(10转4派1)',position:'insideEndTop',fontSize:10,color:'#f28b30'},lineStyle:{color:'#f28b30',type:'dashed'},data:[{xAxis:'07-17'}]},
+        data:c
+      }]
+    });
+  }
+})();
+</script>
+</body>
+</html>

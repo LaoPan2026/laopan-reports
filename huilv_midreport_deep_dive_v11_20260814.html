@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汇绿生态中报深度解读 V1.1：三巨头客户与信用输血真相</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart-box{height:320px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+table.f4{table-layout:fixed}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:21%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:19%;text-align:right;font-variant-numeric:tabular-nums;padding-right:10px}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:19%;text-align:right;font-variant-numeric:tabular-nums;padding-right:10px}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:41%;text-align:left;padding-left:8px;word-break:keep-all;text-wrap:balance}
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:20%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:17%;text-align:right;font-variant-numeric:tabular-nums}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:17%;text-align:right;font-variant-numeric:tabular-nums}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:20%;text-align:left}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:26%;text-align:left;word-break:keep-all;text-wrap:balance}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.verdict{border-left:3px solid var(--red);background:#fff5f5;padding:14px 16px;border-radius:0 7px 7px 0;margin:12px 0}
+.verdict strong{color:var(--red)}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.chart-box{height:260px}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:680px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">中报深度解读 · V1.1 · 2026-08-14</span>
+    <h1>汇绿生态 2026 中报：三巨头客户结构 + 信用输血真相</h1>
+    <p>V1.1 关键修订：客户从"Coherent 单核"修正为"Coherent + 索尔思 + Lumentum 三巨头"；借款从"无抵押授信"纠偏为"母公司保证担保输血"；新增 17.38 亿担保或有负债、母公司亏损分红、筹码重新集中三个洞察。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#verdict">核心判断</a>
+    <a href="#customer">客户结构真相</a>
+    <a href="#boss">决策者画像</a>
+    <a href="#product">产品结构</a>
+    <a href="#four">四个数字之谜</a>
+    <a href="#cashflow">现金流压力</a>
+    <a href="#contingent">担保或有负债</a>
+    <a href="#dividend">分红之谜</a>
+    <a href="#chip">筹码结构</a>
+    <a href="#future">下半年在干什么</a>
+    <a href="#decision">走还是留</a>
+    <a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="verdict">
+    <div class="summary">
+      <strong>一句话结论（V1.1 修订）：</strong>这份中报的真相，是决策者李晓明用"上市公司信用 + 现金流 + 短期利润"三样东西，去换"光模块三巨头客户 + 1.6T 量产 + 重组并表"三个未来期权。<strong>方向没错（All-in 光模块，客户从单核升级为三巨头），但代价在累积（现金流 -4.77 亿、17.38 亿担保或有负债、存货跌价 +207%），当前是"逻辑更扎实但财务更紧绷"的临界点。</strong>结论维持：<strong>不割肉、不加仓，等"重组落地 + 现金流企稳"两个验证点。</strong>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">10.37亿</div><div class="label">H1营收</div><div class="detail">+49.01%</div></div>
+      <div class="metric"><div class="value red">-27.79%</div><div class="label">H1归母净利</div><div class="detail">2708.96万</div></div>
+      <div class="metric"><div class="value red">-4.77亿</div><div class="label">经营现金流</div><div class="detail">同比 -203%</div></div>
+      <div class="metric"><div class="value">+202.83%</div><div class="label">光模块收入</div><div class="detail">6.55亿</div></div>
+      <div class="metric"><div class="value red">+405.84%</div><div class="label">预付账款</div><div class="detail">0.93→4.73亿</div></div>
+      <div class="metric"><div class="value red">+85.06%</div><div class="label">短期借款</div><div class="detail">7.09→13.13亿</div></div>
+      <div class="metric"><div class="value red">17.38亿</div><div class="label">担保余额</div><div class="detail">或有负债</div></div>
+      <div class="metric"><div class="value">7.66万</div><div class="label">股东户数(7/20)</div><div class="detail">峰值-23%</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="customer">
+    <h2 class="section-title">一、客户结构真相（V1.1 新增）：从"Coherent 单核"到"三巨头"</h2>
+    <p>这是本轮讨论最重要的修正。市场普遍把汇绿定位成"Coherent 单一深度绑定"，但中报附注 + 交叉验证揭示的真实结构，是三家巨头。</p>
+
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>客户</th><th>最终客户</th><th>订单/状态</th><th>证据强度</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Coherent</strong></td><td>英伟达/北美云厂</td><td>800G + 1.6T，200万只量级，JDM 深度绑定</td><td><span class="tag green">已量产</span></td></tr>
+          <tr><td><strong>索尔思</strong>（东山精密）</td><td>Meta/Oracle/微软/AWS</td><td>800G 代工，Oracle 100-130万只，应收 2.90亿</td><td><span class="tag green">已落地</span></td></tr>
+          <tr><td><strong>Lumentum</strong>（CloudLight）</td><td>谷歌</td><td>800G 代工，合作产能 150万只+，审厂中</td><td><span class="tag orange">待落地</span></td></tr>
+          <tr><td>新华三、金山云</td><td>国内</td><td>光模块/AOC 存量客户</td><td><span class="tag blue">存量</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>核心证据链（层层递进）</h3>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>证据一：应收款结构，索尔思排在 Coherent 前面</strong>
+        <p>中报附注"应收账款+合同资产前五名"：<strong>索尔思及关联公司 2.90 亿（12.88%），超过 Coherent 1.61 亿（7.18%）</strong>。这是最硬的证据——索尔思当期从钧恒采购的光模块金额，已经超过 Coherent，是事实上的第一大客户。</p>
+      </div>
+      <div class="signal good">
+        <strong>证据二：索尔思的 Oracle 订单</strong>
+        <p>索尔思 2026 年 800G 订单约 550-600 万只（Meta 300 万 + Oracle 100-130 万 + 微软 150 万 + AWS 几十万），但自己 Q1 实际 800G 出货才 30 余万只，<strong>产能缺口巨大，必须把模块组装外溢给钧恒代工</strong>。这坐实了"索尔思找汇绿交付 Oracle 订单"。</p>
+      </div>
+      <div class="signal good">
+        <strong>证据三：Lumentum 审厂待落地</strong>
+        <p>Lumentum 旗下 CloudLight 的谷歌订单大增，利用汇绿马来西亚工厂代工，合作产能 150 万只+，审厂中。Lumentum 是"上游激光器供应商 + 下游模块客户"双重身份，落地后间接绑定谷歌。</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>客户结构修正的净影响：</strong>三巨头背后是<strong>英伟达/Meta/Oracle/微软/AWS/谷歌全北美算力集群</strong>。利好：客户集中度风险显著下降，单一客户依赖的担忧被稀释。隐忧：三巨头全是"代工"，议价权仍是软肋，且东山精密整合索尔思后（3500 万只产能规划）可能收回代工订单。
+    </div>
+  </div>
+
+  <div class="card" id="boss">
+    <h2 class="section-title">二、决策者画像：李晓明是"资本运作老手 + 机会主义转型者"</h2>
+    <p>判断一个人，不能看他说什么，要看他把钱押在哪里、以及他如何用上市公司的各种工具。</p>
+    <div class="signal-list">
+      <div class="signal">
+        <strong>① 敢赌：园林跨界 All-in 光模块</strong>
+        <p>公司前身是"华信股份"（破产重整壳），李晓明接盘后靠园林市政立足。2024 年 6 月 1.95 亿收购钧恒 30%，一路增资到 51% 并表，2025 年 7 月启动剩余 49%（11.27 亿）。两年内把身家押到光模块。</p>
+      </div>
+      <div class="signal warn">
+        <strong>② 敢加杠杆：用上市公司信用给子公司输血</strong>
+        <p>短期借款 +6.03 亿（+85%），其中 9.93 亿是"保证借款"——保证人就是汇绿上市公司自己，给钧恒、园林、湖北钧恒提供连带责任担保。<strong>这是"母公司信用 → 子公司产能"的信用传导。</strong></p>
+      </div>
+      <div class="signal warn">
+        <strong>③ 敢锁料：预付暴增 406%</strong>
+        <p>预付 0.93→4.73 亿，饱和锁料，用现金换 Coherent + 索尔思多客户订单的交付确定性。</p>
+      </div>
+      <div class="signal">
+        <strong>④ 重市值形象：母公司亏损仍分红</strong>
+        <p>母公司当期亏损 -1271 万，仍动用历史未分配利润 4773 万分红 1570 万。这是"质量回报双提升"的监管姿态 + 安抚暴增散户 + 为重组争取股东支持，暴露了李晓明"重市值、重形象"的资本运作底色。</p>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>画像总结：</strong>李晓明是"顺周期重仓型"决策者，且是"资本市场老手"——深知怎么用担保、分红、重组等工具维持市值和股东信心。<strong>景气上行期能放大弹性，但下行期高杠杆 + 高存货 + 高预付 + 高担保会成为四重反噬。</strong>
+    </div>
+  </div>
+
+  <div class="card" id="product">
+    <h2 class="section-title">三、产品结构：光模块取代 AOC，最被忽视的质变</h2>
+    <p>中报分产品数据揭示：钧恒主力产品正从低毛利 AOC 切换到高毛利光模块。</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>产品</th><th>H1收入</th><th>同比</th><th>毛利率变化</th></tr></thead>
+        <tbody>
+          <tr><td><strong>光模块</strong></td><td class="num">6.55亿</td><td class="num green">+202.83%</td><td>21.64%（+3.5pct）</td></tr>
+          <tr><td>AOC</td><td class="num">2.53亿</td><td class="num red">-5.99%</td><td>16.18%（-1.36pct）</td></tr>
+          <tr><td>光引擎</td><td class="num">0.10亿</td><td class="num red">-57.29%</td><td>17.39%（-17.07pct）</td></tr>
+          <tr><td>园林工程</td><td class="num">0.66亿</td><td class="num red">-47.02%</td><td>12.86%（-9.93pct）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>境外收入占比 61.56%，毛利率 22.56%（+5.55pct）</strong>
+        <p>光模块放量主要来自境外（Coherent + 索尔思链），境外毛利率显著高于境内。绑定北美 AI 算力红利的逻辑是真的在兑现。</p>
+      </div>
+      <div class="signal warn">
+        <strong>但光引擎 -57%、毛利率 -17pct</strong>
+        <p>光引擎（硅光核心部件）大幅萎缩，说明 1.6T/CPO 前沿布局还在送样验证期，没有形成规模收入。市场炒的 CPO 故事，财务上还看不到影子。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="four">
+    <h2 class="section-title">四、四个数字之谜：顺着附注挖真相</h2>
+
+    <h3>谜题一：为什么贷款增加几个亿？（V1.1 纠偏）</h3>
+    <p>短期借款 7.09→13.13 亿（+6.03 亿），结构拆解：</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>借款类型</th><th>期初</th><th>期末</th><th>经营含义</th></tr></thead>
+        <tbody>
+          <tr><td><strong>保证借款</strong></td><td class="num">6.50亿</td><td class="num">9.93亿</td><td>+3.43亿，母公司给子公司连带责任担保</td></tr>
+          <tr><td>信用借款</td><td class="num">0</td><td class="num">3.10亿</td><td>新增，银行纯信用授信</td></tr>
+          <tr><td>质押借款</td><td class="num">0.59亿</td><td class="num">0.10亿</td><td>-0.49亿，收缩</td></tr>
+          <tr><td>长期借款</td><td class="num">3.22亿</td><td class="num">2.89亿</td><td>-0.33亿，正常还款</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warning">
+      <strong>V1.1 纠偏：不是"无抵押授信"。</strong>13.13 亿短期借款里，<strong>真正"无抵押信用"的只有 3.10 亿（23.6%）</strong>，剩下 9.93 亿（75.6%）是"保证借款"——保证人就是汇绿上市公司自己（给钧恒、园林、湖北钧恒做连带责任担保）。银行信的是"上市公司担保 + 资产 + 实控人兜底"（偿债能力），不是深度认可光模块业务（成长逻辑）。同时存在<strong>短借长投错配</strong>：长期借款降、短期借款暴增，用一年期债务投中长期产能。
+    </div>
+
+    <h3>谜题二：为什么存货增加这么多？</h3>
+    <p>存货 7.16→11.27 亿（+4.11 亿），拆到明细：</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>存货分类</th><th>期初账面</th><th>期末账面</th><th>经营含义</th></tr></thead>
+        <tbody>
+          <tr><td><strong>原材料</strong></td><td class="num">1.41亿</td><td class="num">3.40亿</td><td>+1.99亿，锁光芯片/DSP</td></tr>
+          <tr><td><strong>在产品</strong></td><td class="num">1.35亿</td><td class="num">2.68亿</td><td>+1.33亿，产线在产爬坡</td></tr>
+          <tr><td>库存商品</td><td class="num">1.85亿</td><td class="num">2.67亿</td><td>+0.82亿，备货待交付</td></tr>
+          <tr><td>消耗性生物资产</td><td class="num">2.23亿</td><td class="num">2.24亿</td><td>苗木老底子，基本没动</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-box" id="chart-stock" style="margin-top:12px"></div>
+    <div class="warning">
+      <strong>关键：存货跌价准备本期计提 3032 万（+207%），其中库存商品计提 2341 万。</strong>说明<strong>备的货在跌价</strong>——不是原材料（锁价有合同），而是产成品（光模块成品价格往下走）。这印证了"二线代工议价权弱、价格战压力"。
+    </div>
+
+    <h3>谜题三：为什么预付暴增 406%？（V1.1 修正归属）</h3>
+    <p>预付 0.93→4.73 亿（+3.79 亿）。账龄 99.92% 在 1 年以内（全是当期新增锁料）。前五名预付对象合计 4.55 亿、占 96.23%。</p>
+    <div class="callout">
+      <strong>V1.1 修正：预付锁料服务的不是 Coherent 一家，而是"Coherent + 索尔思"双客户（加潜在的 Lumentum）的合计产能。</strong>H1 光电子直接材料 6.81 亿，预付 4.73 亿相当于半年材料采购额的约 56%，对应未来 2-3 个季度的物料锁定。如果只有 Coherent 一家 200 万只订单，锁不了这么多料。光芯片（EML/DFB）、DSP 全行业紧缺、交付周期拉到 6 个月，二线代工不预付就拿不到料。
+    </div>
+
+    <h3>谜题四：为什么应收账款增加？</h3>
+    <p>应收账款 13.43→14.86 亿（+1.43 亿），占总资产 27.3%。原因：光电子业务规模增长，但下游账期没缩短；叠加园林"先垫资后收款"的历史包袱（合同资产 5.80 亿）。公司实际上是<strong>"上游预付 + 下游赊销"两头受压</strong>——这正是经营现金流为负的根源。</p>
+  </div>
+
+  <div class="card" id="cashflow">
+    <h2 class="section-title">五、现金流三重压力：最硬的警报</h2>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>现金流项目</th><th>H1金额</th><th>同比</th><th>经营含义</th></tr></thead>
+        <tbody>
+          <tr><td>经营活动现金流</td><td class="num red">-4.77亿</td><td class="num red">-203%</td><td>预付锁料+备货，主业造血为负</td></tr>
+          <tr><td>投资活动现金流</td><td class="num red">-1.66亿</td><td class="num red">-568%</td><td>固定资产扩产</td></tr>
+          <tr><td>筹资活动现金流</td><td class="num green">+5.50亿</td><td class="num green">+590%</td><td>靠借款续命</td></tr>
+          <tr><td><strong>现金净增加额</strong></td><td class="num red">-0.99亿</td><td class="num">—</td><td>货币资金 5.46→4.63亿</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      <strong>这个结构说明：</strong>公司主业不造血（经营 -4.77 亿），扩张靠输血（筹资 +5.50 亿）。<strong>公司在用借来的钱维持增长。</strong>成长期制造企业常见，但致命的是：如果光模块需求下半年不及预期，或 Coherent/索尔思账期继续拉长，筹资端一旦收紧，经营端就断血。财务费用暴增 169.90%（汇兑 + 利息）就是高杠杆的直接代价。
+    </div>
+  </div>
+
+  <div class="card" id="contingent">
+    <h2 class="section-title">六、担保或有负债（V1.1 新增）：17.38 亿悬在头上</h2>
+    <p>这是本轮讨论挖出的、之前被忽视的风险点。</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>担保对象</th><th>担保余额</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>武汉钧恒</strong></td><td class="num">约 9.6亿</td><td>汇绿给光模块子公司担保（多笔合计）</td></tr>
+          <tr><td>汇绿园林</td><td class="num">约 2.8亿</td><td>给园林子公司担保</td></tr>
+          <tr><td>湖北钧恒</td><td class="num">0.6亿</td><td>给钧恒子公司担保</td></tr>
+          <tr><td>马来钧恒</td><td class="num">0（额度5000万）</td><td>待落地</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warning">
+      <strong>核心判断：钧恒的扩张，高度依赖上市公司本体的信用背书。</strong>那 9.93 亿"保证借款"，本质是"母公司信用 → 子公司产能"的信用传导。这带来两个含义：<strong>正面</strong>——实控人李晓明确实 All-in 光模块，愿意用上市公司主体信用给钧恒兜底；<strong>反面</strong>——如果钧恒光模块业务出问题（订单落空、存货跌价、现金流继续恶化），风险会通过担保链传导回上市公司本体，届时银行抽贷，整个盘子承压。<strong>17.38 亿担保余额，就是悬在上市公司头上的或有负债。</strong>
+    </div>
+  </div>
+
+  <div class="card" id="dividend">
+    <h2 class="section-title">七、分红之谜（V1.1 新增）：现金流紧张为何还分红？</h2>
+    <p>这是本轮讨论提出的好问题——现金流 -4.77 亿还分红，看着违和。拆开看就清楚了。</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>项目</th><th>金额</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>分红总额</td><td class="num">1570万</td><td>每10股派0.2元</td></tr>
+          <tr><td>经营现金流缺口</td><td class="num red">-4.77亿</td><td>分红的30倍</td></tr>
+          <tr><td>母公司净利润</td><td class="num red">-1271万</td><td>母公司层面亏损</td></tr>
+          <tr><td>母公司未分配利润</td><td class="num">4773万</td><td>历史积累，分红来源</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <strong>真相：</strong>分红的 1570 万，是<strong>母公司用历史未分配利润 4773 万</strong>分的，不是光模块子公司（钧恒）的钱。光模块利润在钧恒账上，母公司本部（园林 + 总部费用）当期亏损 -1271 万。<strong>这是"用母公司历史家底分红"，跟钧恒扩产锁料花的钱不在同一个口袋。</strong>1570 万仅占现金流缺口的 3.3%，不会造成流动资金短缺。
+    </div>
+    <p><strong>动机（三个）</strong>：① 响应"质量回报双提升"监管倡导，维持"连续分红"形象；② 安抚暴增的散户（股东户数 +132%）；③ 为重组过会争取中小股东支持。</p>
+    <div class="warning">
+      <strong>值得玩味的信号：</strong>母公司当期亏损 -1271 万，却还要分红 1570 万——这暴露了李晓明"重市值形象"的性格底色，跟"用上市公司信用给子公司担保输血 17.38 亿"是同一类动作。他深知怎么用上市公司的工具维持市值和股东信心。这类操盘手景气上行期激进讲市值，下行期也可能为"维持体面"而掩盖问题。
+    </div>
+  </div>
+
+  <div class="card" id="chip">
+    <h2 class="section-title">八、筹码结构（V1.1 修正）：从"分散预警"到"重新集中"</h2>
+    <p>结合老潘提供的 7/20 股东户数数据，完整轨迹如下：</p>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>时点</th><th>股东户数</th><th>环比</th><th>解读</th></tr></thead>
+        <tbody>
+          <tr><td>2026 年初</td><td class="num">4.29万</td><td class="num">—</td><td>起点</td></tr>
+          <tr><td>3/31</td><td class="num">5.85万</td><td class="num">+36%</td><td>稳步增加</td></tr>
+          <tr><td><strong>6/18（峰值）</strong></td><td class="num red">9.96万</td><td class="num red">+132%</td><td>散户蜂拥接盘</td></tr>
+          <tr><td>6/30</td><td class="num">9.39万</td><td class="num">-5.7%</td><td>开始回落</td></tr>
+          <tr><td><strong>7/20</strong></td><td class="num green">7.66万</td><td class="num green">峰值-23%</td><td>筹码重新集中</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>V1.1 修正：筹码从"持续分散"转为"重新集中"</strong>
+        <p>股东户数 6/18 冲到 9.96 万后一路回落，7/20 已降到 7.66 万（自峰值 -23%）。6 月追高的散户在 6 月底-7 月中股价回落时割肉离场，筹码向主力集中，是典型"洗盘"特征。<strong>这修正了之前的"筹码分散预警"。</strong></p>
+      </div>
+      <div class="signal warn">
+        <strong>两个"但是"</strong>
+        <p>① 7.66 万仍是年初 4.29 万的 1.78 倍，还有大量散户在场，筹码集中度未回到底部；② 7/20 是 8 月三连板之前的数据，8 月冲高过程中大概率又有新散户追进，最新户数可能又回升，需等下次披露确认。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="future">
+    <h2 class="section-title">九、下半年和明年，决策者在干什么</h2>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>① 扩产：鄂州二期 300 万只 + 马来西亚基地</strong>
+        <p>固定资产半年 +99%，为 Coherent/索尔思/Lumentum 三巨头订单扩产能。马来西亚基地为规避地缘风险 + 承接 Lumentum（谷歌）海外订单。</p>
+      </div>
+      <div class="signal">
+        <strong>② 锁料保供：为三巨头多客户备料</strong>
+        <p>预付 +406%、原材料 +141%，锁光芯片/DSP，押注三巨头订单持续兑现。</p>
+      </div>
+      <div class="signal">
+        <strong>③ 1.6T 量产冲刺</strong>
+        <p>1.6T 硅光模块送样认证阶段，2026 下半年-2027 规模商用。</p>
+      </div>
+      <div class="signal">
+        <strong>④ 推进重组收购钧恒剩余 49%</strong>
+        <p>作价 11.27 亿，深交所审核中（5/27 恢复）。最大利润催化——落地后少数股东损益消除，归母净利增厚约 50%。</p>
+      </div>
+      <div class="signal warn">
+        <strong>⑤ 决策者没有给出"未来展望"文字</strong>
+        <p>中报"管理层讨论与分析"只有业务描述和风险提示，没有独立的"未来展望/经营计划"章节。决策者倾向用资产投入说话，不用文字承诺。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="decision">
+    <h2 class="section-title">十、走还是留：给老潘的明确判断</h2>
+    <div class="verdict">
+      <strong>结论（V1.1 维持）：不恐慌割肉（逻辑更扎实了），但坚决不加仓（财务结构更紧绷了）。持仓等待两个验证点，任何一个破位就减仓。</strong>
+    </div>
+
+    <h3>支持"留"的逻辑（V1.1 强化）</h3>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>① 客户从单核升级为三巨头</strong>
+        <p>Coherent + 索尔思（应收超 Coherent）+ Lumentum（审厂中），背后是英伟达/Meta/Oracle/微软/AWS/谷歌全北美算力集群。集中度风险下降，逻辑更扎实。</p>
+      </div>
+      <div class="signal good">
+        <strong>② 营收加速 + 产品结构升级</strong>
+        <p>H1 营收 +49%、Q2 单季 +68%，光模块收入 +203% 且毛利率 +3.5pct。钧恒单体 H1 净利 5349 万（盈利）。</p>
+      </div>
+      <div class="signal good">
+        <strong>③ 筹码重新集中</strong>
+        <p>股东户数从峰值 9.96 万回落到 7.66 万，主力在收集，支撑"不割肉"。</p>
+      </div>
+      <div class="signal good">
+        <strong>④ 重组是最大利润拐点</strong>
+        <p>49% 股权收购落地后，少数股东损益消除，归母净利一次性增厚约 50%。</p>
+      </div>
+    </div>
+
+    <h3>必须警惕的"走"的信号（V1.1 强化）</h3>
+    <div class="signal-list">
+      <div class="signal red">
+        <strong>① 现金流 -4.77 亿 + 17.38 亿担保或有负债</strong>
+        <p>主业不造血靠借款续命，且扩张依赖母公司信用担保背书。一旦光模块证伪，风险反噬整个上市公司。</p>
+      </div>
+      <div class="signal red">
+        <strong>② 短借长投 + 存货跌价 + 汇兑损失三重侵蚀</strong>
+        <p>一年期债务投中长期产能；存货跌价 +207%（产成品在跌价）；财务费用 +170%（汇兑 + 利息）。</p>
+      </div>
+      <div class="signal warn">
+        <strong>③ 388 倍 PE 容错率极低</strong>
+        <p>市场已把"重组 + 三年业绩承诺"提前定价，任何瑕疵都被放大。</p>
+      </div>
+      <div class="signal warn">
+        <strong>④ 三巨头全是代工 + 客户方产能自给风险</strong>
+        <p>东山精密整合索尔思后 3500 万只产能规划，可能收回代工订单；Lumentum 自建产能；这是 2027 年的悬顶变量。</p>
+      </div>
+    </div>
+
+    <h3>操作纪律（明确）</h3>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>情景</th><th>触发条件</th><th>操作</th><th>依据</th></tr></thead>
+        <tbody>
+          <tr><td><strong>持仓观察</strong></td><td>重组正常推进 + 现金流 Q3 环比改善</td><td>持有不动</td><td>逻辑未破</td></tr>
+          <tr><td><strong>减仓一半</strong></td><td>重组被暂缓/终止，或三巨头订单份额下降</td><td>减 50% 锁损</td><td>核心逻辑破</td></tr>
+          <tr><td><strong>全部止盈/止损</strong></td><td>现金流 Q3 继续恶化 + 存货跌价继续扩大</td><td>清仓</td><td>财务结构崩</td></tr>
+          <tr><td><strong>加仓（唯一条件）</strong></td><td>重组落地 + 现金流转正 + 1.6T 规模出货三条件齐备</td><td>才考虑加</td><td>业绩拐点确认</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <strong>给老潘的一句话：</strong>你成本 48.09 元、浮亏约 13.5%。这份中报证明的是——<strong>决策者的方向（All-in 光模块 + 三巨头客户）没错，但他的打法（高杠杆 + 激进锁料 + 信用担保输血）把财务结构推到了临界点</strong>。所以不是"逻辑崩了要跑"，也不是"业绩兑现了要加"，而是"逻辑更扎实、结构更紧绷、等验证"。真正的生死线不是利润数字，是<strong>重组能否落地 + 现金流能否在三季度企稳</strong>。这两条线，我会在 10 月底三季报出来时帮你盯死。
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">十一、数据溯源</h2>
+    <div class="table-wrap">
+      <table class="f4">
+        <thead><tr><th>数据</th><th>来源</th><th>口径</th><th>置信度</th></tr></thead>
+        <tbody>
+          <tr><td>H1营收/净利/现金流</td><td>中报第二节主要会计数据</td><td>合并报表</td><td>★★★★★</td></tr>
+          <tr><td>分产品收入/毛利率</td><td>中报第三节主营业务分析</td><td>分产品</td><td>★★★★★</td></tr>
+          <tr><td>应收前五名（索尔思/Coherent）</td><td>中报附注应收账款</td><td>期末余额</td><td>★★★★★</td></tr>
+          <tr><td>存货分类+跌价</td><td>中报附注存货</td><td>账面价值</td><td>★★★★★</td></tr>
+          <tr><td>借款结构（保证/信用/质押）</td><td>中报附注短期借款</td><td>期末余额</td><td>★★★★★</td></tr>
+          <tr><td>担保余额</td><td>中报"重大担保"</td><td>对子公司担保</td><td>★★★★★</td></tr>
+          <tr><td>母公司净利/未分配利润</td><td>中报"利润分配预案"</td><td>母公司报表</td><td>★★★★★</td></tr>
+          <tr><td>索尔思订单结构</td><td>行家说/券商纪要</td><td>公开调研</td><td>★★★★</td></tr>
+          <tr><td>Lumentum 审厂</td><td>中信通信6/23研报+东吴</td><td>卖方研报</td><td>★★★</td></tr>
+          <tr><td>股东户数(7/20)</td><td>老潘提供公开资料</td><td>户数</td><td>★★★</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">本报告基于汇绿生态《2026年半年度报告》全文（深交所披露，184页）逐项拆解，结合多源交叉验证。版本 V1.1 · 数据时点 2026-06-30 报告期末 · 2026-08-14 解读。V1.0→V1.1 新增：客户结构三巨头、借款结构纠偏、担保或有负债、分红之谜、筹码结构修正五个模块。</p>
+  </div>
+
+  <p class="footer">免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</div>
+
+<script>
+const p1 = echarts.init(document.getElementById('chart-stock'));
+p1.setOption({
+  title:{text:'存货结构（亿元）',left:'center',textStyle:{fontSize:14,color:'#392076'}},
+  tooltip:{trigger:'axis'},
+  legend:{data:['期初','期末'],top:28,textStyle:{fontSize:11}},
+  grid:{left:50,right:20,top:55,bottom:30},
+  xAxis:{type:'category',data:['原材料','在产品','库存商品','苗木']},
+  yAxis:{type:'value',name:'亿元'},
+  series:[
+    {name:'期初',type:'bar',data:[1.41,1.35,1.85,2.23],itemStyle:{color:'#a5a8c9'}},
+    {name:'期末',type:'bar',data:[3.40,2.68,2.67,2.24],itemStyle:{color:'#7438ef'}}
+  ]
+});
+window.addEventListener('resize',()=>{p1.resize();});
+</script>
+</body>
+</html>

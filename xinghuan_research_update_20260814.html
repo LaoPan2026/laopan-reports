@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星环科技-U 研报更新 2026-08-14</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--text:#1f2937;--muted:#5a5a6e;--soft:#f2f4f8;--line:#e2e5eb;--accent:#4285F4;
+  --pos:#ff3b3b;--neg:#1ed890;--up:#ff3b3b;--down:#1ed890;
+  --label-blue:#4285F4;--label-yellow:#FBBC05;--label-red:#EA4335;--label-green:#34A853;
+  --shadow:0 1px 3px rgba(0,0,0,.06);--radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:17px;color:var(--accent);margin:16px 0 10px;border-left:3px solid var(--accent);padding-left:10px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-radius:6px;padding:12px 14px;font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.7}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:600;color:var(--muted);background:rgba(155,165,185,.06);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(155,165,185,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(66,133,244,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-yellow{color:#b38600;background:rgba(251,188,5,.12);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-red{color:#c5221f;background:rgba(234,67,53,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.tag-green{color:#137333;background:rgba(52,168,83,.08);padding:2px 8px;border-radius:4px;font-size:12px}
+.pos,.up{color:var(--pos);font-weight:600}
+.neg,.down{color:var(--neg);font-weight:600}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px}
+.metric-val{font-size:20px;font-weight:700}
+.metric-label{font-size:13px;color:var(--muted)}
+.chart-box{width:100%;height:340px;margin:6px 0}
+.callout{border-left:3px solid var(--accent);background:var(--soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0}
+.callout.warn{border-left-color:var(--label-yellow)}
+.callout.good{border-left-color:var(--label-green)}
+.callout.bad{border-left-color:var(--label-red)}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}.chart-box{height:280px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>星环科技-U（688031.SH）研报更新</h1>
+  <p class="small">数据源：PandaData（财务三表 / 日线 / 融资融券 / 股东户数 / 前十大股东）+ Wind（行情 / 技术指标）· 时点：2026-08-14</p>
+  <div class="summary">
+    <strong>结论先行（更新）：</strong>基本面边际改善是真的——<strong>2026Q1营收0.81亿（同比+26%）、净亏损0.56亿（同比收窄33%）</strong>；但当前112.8元对应136.6亿市值、PS约30倍，估值已透支成长。更关键的信号是<strong>股东户数3月末暴增63%（12,184→19,866户）</strong>，筹码大幅分散，叠加广发系公募一季度退出前十——这是典型的"散户进场、机构派发"结构。<strong>判断：负成本持仓持有不动（安全垫厚），但此位置不加仓；短期是AI题材+杠杆资金驱动的反弹，不是营收兑现型上涨。</strong>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、本次更新要点（PandaData 首跑结果）</h2>
+  <p>这是首次用 PandaData 数据网关完整跑通星环科技研报。三个接口组合产出了此前 Wind 未覆盖的增量信息：</p>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th class="txt">更新维度</th><th class="txt">PandaData 增量发现</th><th class="txt">投研含义</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="txt"><strong>股东户数</strong></td><td class="txt">3月末 19,866 户，较 2 月末 12,184 户暴增 63%；户均持股 9,942→6,097 股</td><td class="txt">筹码大幅分散，散户进场、主力派发的预警信号</td></tr>
+      <tr><td class="txt"><strong>前十大股东</strong></td><td class="txt">广发系基金（成长启航/小盘成长/中小盘精选）2025年底重仓，2026Q1 已退出前十；香港中央结算（北向）新进 1.03%</td><td class="txt">公募减持、北向新进，机构结构在换手</td></tr>
+      <tr><td class="txt"><strong>融资融券</strong></td><td class="txt">融资余额 7/1 的10.47亿 → 7/24 最低8.71亿（去杠杆）→ 8/13 回升9.01亿</td><td class="txt">杠杆资金温和回流，8/13 融资买入放量2.13亿</td></tr>
+      <tr><td class="txt"><strong>财务三表</strong></td><td class="txt">2026Q1 营收0.81亿（+26%）、净亏0.56亿（收窄33%）；2025全年营收4.48亿、净亏2.45亿</td><td class="txt">营收加速、亏损收窄，基本面边际改善</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">数据来源：PandaData get_holder_count / get_top_holders / get_margin / get_fina_reports，查询时点 2026-08-14。</p>
+</div>
+
+<div class="card">
+  <h2>二、公司画像 · 财务速览</h2>
+  <p>星环科技（688031.SH），科创板，2022-10-18 上市，发行价 47.34 元，信息技术行业（Wind 行业：大数据基础软件）。主营业务为分布式数据库、大数据平台、AI 基础设施软件，是国内少数对标 Cloudera/Databricks 的国产大数据基础软件厂商。创始人孙元浩持股 9.22%（2026-03-31）。</p>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th class="txt">指标</th><th class="num">2025Q1</th><th class="num">2025全年</th><th class="num">2026Q1</th><th class="txt">同比变化</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="txt">营业收入</td><td class="num">0.64亿</td><td class="num">4.48亿</td><td class="num">0.81亿</td><td class="txt pos">+26%</td></tr>
+      <tr><td class="txt">归母/持续经营净利</td><td class="num neg">-0.84亿</td><td class="num neg">-2.45亿</td><td class="num neg">-0.56亿</td><td class="txt pos">亏损收窄33%</td></tr>
+      <tr><td class="txt">基本每股收益</td><td class="num">—</td><td class="num">—</td><td class="num">-1.18元</td><td class="txt">仍亏损</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout good"><strong>基本面结论：</strong>营收连续加速、亏损同比收窄，指向"国产大数据软件在信创 + AI 基础设施需求下的订单兑现"。但注意——<strong>仍在持续亏损，PS 而非 PE 才是正确估值锚</strong>。</div>
+  <p class="note">来源：PandaData get_fina_reports（2025q1~2026q2 报告期）。2026Q2 半年报尚未披露（预计 8 月底）。</p>
+</div>
+
+<div class="card">
+  <h2>三、关键变化：股东户数暴增 63% 是核心预警</h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th class="txt">截止日期</th><th class="num">股东户数</th><th class="num">户均持股（股）</th><th class="txt">环比变化</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="txt">2025-12-31</td><td class="num">12,042</td><td class="num">10,059</td><td class="txt">—</td></tr>
+      <tr><td class="txt">2026-02-28</td><td class="num">12,184</td><td class="num">9,942</td><td class="txt">+1.2%</td></tr>
+      <tr><td class="txt">2026-03-31</td><td class="num pos">19,866</td><td class="num neg">6,097</td><td class="txt pos">+63%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout bad"><strong>风险提示：</strong>一个月内股东户数暴增 63%、户均持股骤降 39%，是典型的"高位放量、筹码向散户集中"结构。历史上这类筹码形态往往对应阶段性顶部区域，后续若量能萎缩、题材退潮，回撤速度会明显加快。这是本次更新最重要的新增风险信号。</div>
+  <p class="note">来源：PandaData get_holder_count，2026-03-31 为最新披露时点。</p>
+</div>
+
+<div class="card">
+  <h2>四、技术面 · 资金面</h2>
+  <p>近 32 个交易日走势呈典型 <strong>V 型反弹后高位震荡</strong>：7/1 的118.01 → 7/30 最低80.27（-32%）→ 8/5 反弹118.07（7/31 +12.6%、8/5 +13.2%）→ 8/13 回落112.29。当前 112.80 站上 10 日线（108.84）但略低于 5 日线（113.51），MACD +2.66 为持仓组合中唯一正值（多头），KDJ-K 78 偏高。</p>
+  <div id="chart1" class="chart-box"></div>
+  <p class="note">数据：PandaData get_stock_daily（2026-07-01 ~ 2026-08-13 收盘价）；技术指标为 Wind 08-13 收盘口径。</p>
+</div>
+
+<div class="card">
+  <h2>五、估值：PS 约 30 倍，透支未来两年成长</h2>
+  <p>星环科技持续亏损，PE 失效，须用 PS 估值。当前市值约 136.6 亿元，对应 2025 年营收 4.48 亿的静态 PS 约 30.5 倍；即便 2026 年营收按 +30% 高增到 5.8 亿，前瞻 PS 仍约 23.5 倍。作为对照，成长期 SaaS/基础软件公司在营收 20%-30% 增速下，PS 合理中枢通常在 8-15 倍。<strong>当前估值隐含的是"营收 50%+ 复合增长 + 扭亏时间表大幅提前"的乐观预期，而这尚未被 Q1 数据验证。</strong></p>
+  <div class="callout warn"><strong>估值判断：</strong>股价里已经定价了"AI 基础设施国产替代"的强 β，但还没兑现"营收高速增长"的 α。当前位置是赚题材情绪的钱，不是赚业绩的钱。</div>
+</div>
+
+<div class="card">
+  <h2>六、核心逻辑与风险（含反一致预期）</h2>
+  <p><strong>多头逻辑（成立但已被部分定价）：</strong>① 国产大数据/AI 平台在信创政策下的替代空间；② 营收连续加速 + 亏损收窄的兑现趋势；③ 负成本持仓的天然安全垫。</p>
+  <p><strong>反一致预期（本报告新增）：</strong>市场把星环当"AI 算力受益标的"交易，但它的真实业务是<b>基础软件</b>，AI 订单向报表的传导链条长、兑现慢。Q1 营收 0.81 亿的体量，撑不起 136.6 亿市值的 AI 叙事——<b>这是一只"软件公司被当算力股炒"的标的</b>。真正的风险不是技术面回撤，而是 Q2 半年报营收若不能延续 25%+ 增速，估值和情绪会双杀。</p>
+  <p><strong>硬性风险清单：</strong>① 股东户数暴增 63%（筹码分散）；② PS 超 30 倍（估值透支）；③ 持续亏损、扭亏无明确时间表；④ 公募一季度减持；⑤ 题材退潮时的高波动（单日振幅常超 10%）。</p>
+</div>
+
+<div class="card">
+  <h2>七、三级情景</h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th class="txt">情景</th><th class="txt">触发条件</th><th class="txt">组合应对</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="txt"><span class="tag-green">乐观</span> 订单兑现</td><td class="txt">Q2 半年报营收延续 +25% 以上、信创大单落地，站稳 115 上方</td><td class="txt">负成本底仓继续持有，可等 Q2 财报确认后再评估</td></tr>
+      <tr><td class="txt"><span class="tag-blue">中性</span> 高位震荡</td><td class="txt">112-118 区间震荡，题材反复、量能萎缩</td><td class="txt">持有不动，不加不减，等财报验证</td></tr>
+      <tr><td class="txt"><span class="tag-red">悲观</span> 筹码出清</td><td class="txt">跌破 10 日线 108.84 后失守 20 日线 97.37，量价齐跌</td><td class="txt">负成本持仓可部分兑现锁盈，重新评估 AI 叙事是否证伪</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>八、操作结论</h2>
+  <div class="callout"><strong>一句话本质：</strong>买星环科技，本质是买"国产大数据/AI 基础软件在信创浪潮下的卡位"，但当前 112.8 元买的更多是 AI 题材 β，不是营收兑现 α。</div>
+  <p><strong>短期（T+1 至 T+5）：</strong>持有，不加仓。技术上是反弹兑现窗口，非加仓窗口。跌破 108.84 减、跌破 97.37 重新评估。</p>
+  <p><strong>中期（1-3 个月）：</strong>等 8 月底 Q2 半年报。核心验证变量只有一个——<b>营收能否延续 25%+ 增速</b>。增速兑现则题材转基本面，增速失速则估值情绪双杀。</p>
+  <p><strong>长期（3-12 个月）：</strong>看扭亏时间表与信创订单的持续落地。负成本持仓给了充分的时间安全垫，但需警惕"软件公司被当算力股炒"的预期差在财报季集中修正。</p>
+</div>
+
+<div class="footer">
+  数据来源：PandaData（财务三表 / 日线 / 融资融券 / 股东户数 / 前十大股东）+ Wind（行情 / 技术指标）· 时点 2026-08-14<br>
+  仅供投研参考，不构成投资建议 · 市场有风险，投资需谨慎 · 风险自担
+</div>
+
+</div>
+<script>
+echarts.init(document.getElementById('chart1')).setOption({
+  tooltip: { trigger: 'axis' },
+  grid: { left: '8%', right: '5%', top: '8%', bottom: '10%', containLabel: true },
+  xAxis: { type: 'category', boundaryGap: false, data: ['7/1','7/2','7/3','7/6','7/7','7/8','7/9','7/10','7/13','7/14','7/15','7/16','7/17','7/20','7/21','7/22','7/23','7/24','7/27','7/28','7/29','7/30','7/31','8/3','8/4','8/5','8/6','8/7','8/10','8/11','8/12','8/13'] },
+  yAxis: { type: 'value', name: '收盘价(元)', scale: true },
+  series: [{
+    type: 'line', name: '收盘价', smooth: false, symbol: 'none',
+    data: [118.01,110.66,106.53,101.29,99.30,102.36,103.85,108.06,100.55,102.07,100.42,98.26,88.23,85.79,90.12,88.00,87.10,84.60,87.80,84.76,82.25,80.33,90.42,93.60,104.28,118.07,114.45,115.40,113.11,114.00,112.76,112.29],
+    lineStyle: { color: '#4285F4', width: 2 },
+    itemStyle: { color: '#4285F4' },
+    areaStyle: { color: 'rgba(66,133,244,0.08)' },
+    markPoint: { data: [
+      { type: 'min', name: '低点' },
+      { type: 'max', name: '高点' }
+    ] }
+  }]
+});
+</script>
+</body>
+</html>
