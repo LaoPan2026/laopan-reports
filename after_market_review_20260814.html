@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>盘后复盘 2026-08-14：缩量震荡，持仓分化，汇绿中报落地</title>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <style>
 :root{
   --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
@@ -123,7 +122,6 @@ tbody tr:nth-child(even){background:#fcfcff}
         </tbody>
       </table>
     </div>
-    <div class="chart-box" id="chart-hold"></div>
 
     <div class="signal-list">
       <div class="signal good">
@@ -187,30 +185,5 @@ tbody tr:nth-child(even){background:#fcfcff}
   <p class="footer">数据来源：Wind（2026-08-14 收盘）。免责声明：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
 </div>
 
-<script>
-const chart = echarts.init(document.getElementById('chart-hold'));
-chart.setOption({
-  title:{text:'持仓今日涨跌幅（%）',left:'center',textStyle:{fontSize:14,color:'#392076'}},
-  tooltip:{trigger:'axis'},
-  grid:{left:60,right:30,top:45,bottom:40},
-  xAxis:{type:'category',data:['三祥','泰和','罗博','星环','澜起','汇绿','软通','华峰'],axisLabel:{fontSize:10}},
-  yAxis:{type:'value',name:'%',axisLabel:{fontSize:10}},
-  series:[{
-    type:'bar',
-    data:[
-      {value:5.57,itemStyle:{color:'#e54b4b'}},
-      {value:2.33,itemStyle:{color:'#e54b4b'}},
-      {value:1.67,itemStyle:{color:'#e54b4b'}},
-      {value:1.54,itemStyle:{color:'#e54b4b'}},
-      {value:0.80,itemStyle:{color:'#e54b4b'}},
-      {value:-0.29,itemStyle:{color:'#18a66a'}},
-      {value:-0.89,itemStyle:{color:'#18a66a'}},
-      {value:-1.24,itemStyle:{color:'#18a66a'}}
-    ],
-    label:{show:true,position:'top',fontSize:11}
-  }]
-});
-window.addEventListener('resize',()=>{chart.resize();});
-</script>
 </body>
 </html>
