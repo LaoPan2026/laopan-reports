@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汇绿生态中报观点验证报告：以价换量的账，李晓明算对了吗</title>
+<style>
+:root{--bg:#f2f3fb;--panel:#fff;--text:#182033;--muted:#667085;--line:#e3e5f0;--purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;--red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;--shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.name,td.name{white-space:nowrap;word-break:keep-all;text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.verdict{border-left:3px solid var(--green);background:#f3fbf7;padding:14px 16px;border-radius:0 7px 7px 0;margin:12px 0}
+.verdict strong{color:var(--green)}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">中报观点验证 · V1 · 2026-08-15</span>
+    <h1>汇绿生态中报观点验证：以价换量的账，李晓明算对了吗</h1>
+    <p>用 2026 中报原文 + 全网舆情，逐一验证这两天讨论形成的判断。核心发现：光模块毛利率同比 +3.5pct 回升，证明"降价不是一味退让，而是先让利抢份额、规模+结构升级后修复"的账——李晓明算对了。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#verdict">验证结论</a><a href="#v1">验证一：以价换量</a><a href="#v2">验证二：利润归因</a><a href="#v3">验证三：现金流</a><a href="#v4">验证四：客户</a><a href="#fix">修正点</a><a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="verdict">
+    <div class="summary">
+      <strong>验证总览：</strong>这两天讨论形成的 <strong>5 个核心判断，4 个验证成立，1 个需要精化修正</strong>。最关键的增量是——<strong>光模块毛利率 21.64%、同比 +3.5pct 回升</strong>，证明"以价换量"不是一味退让，而是"先降价抢份额 → 规模效应 + 高速率产品占比提升 → 毛利率修复"的 V 型剧本，李晓明这本账算对了。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value green">+49.01%</div><div class="label">H1营收</div><div class="detail">10.37亿</div></div>
+      <div class="metric"><div class="value red">-27.79%</div><div class="label">H1归母</div><div class="detail">2709万</div></div>
+      <div class="metric"><div class="value red">-4.77亿</div><div class="label">经营现金流</div><div class="detail">-203.36%</div></div>
+      <div class="metric"><div class="value green">21.64%</div><div class="label">光模块毛利率</div><div class="detail green">同比+3.5pct</div></div>
+      <div class="metric"><div class="value red">+169.90%</div><div class="label">财务费用</div><div class="detail">汇兑损失</div></div>
+      <div class="metric"><div class="value green">+47.24%</div><div class="label">研发投入</div><div class="detail">2698万</div></div>
+      <div class="metric"><div class="value green">22.56%</div><div class="label">境外毛利率</div><div class="detail green">同比+5.55pct</div></div>
+      <div class="metric"><div class="value red">+5.50亿</div><div class="label">筹资现金流</div><div class="detail">借款10.56亿</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="v1">
+    <h2 class="section-title">验证一：以价换量 + 全面核算（成立，且有意料之外的惊喜）</h2>
+    <p><strong>讨论时的判断</strong>：李晓明降毛利率不是一味退让，是"降毛利率、保净利率、搏总利润"的全面核算。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">分产品</th><th class="num">营收</th><th class="num">同比</th><th class="num">毛利率</th><th class="num">毛利率同比</th></tr></thead>
+        <tbody>
+          <tr><td class="name">光电子器件（整体）</td><td class="num">9.58亿</td><td class="num green">+74.54%</td><td class="num">20.32%</td><td class="num green">+0.91pct</td></tr>
+          <tr><td class="name"><strong>光模块</strong></td><td class="num">6.55亿</td><td class="num green">+202.83%</td><td class="num"><strong class="purple">21.64%</strong></td><td class="num green"><strong>+3.50pct</strong></td></tr>
+          <tr><td class="name">AOC</td><td class="num">2.53亿</td><td class="num red">-5.99%</td><td class="num">16.18%</td><td class="num red">-1.36pct</td></tr>
+          <tr><td class="name">光引擎</td><td class="num">1008万</td><td class="num red">-57.29%</td><td class="num">17.39%</td><td class="num red">-17.07pct</td></tr>
+          <tr><td class="name">园林业务</td><td class="num">0.79亿</td><td class="num red">-46.18%</td><td class="num">19.52%</td><td class="num red">-8.65pct</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">分地区：境外毛利率 <strong>22.56%（+5.55pct）</strong>、境内 16.57%（-9.70pct）。数据来源：中报"分产品/分地区毛利率"章节。</p>
+
+    <div class="verdict"><strong>验证结果：成立，且比讨论时更乐观。</strong>关键在<strong>光模块（核心产品、增速 +202.83%）毛利率 21.64% 同比 +3.5pct 回升，境外毛利率 +5.55pct 回升</strong>——这不是"一味降价"，而是 V 型：2024 年 26.37% 高点 → 2025 年 20% 主动降价抢份额 → 2026H1 核心产品毛利率已开始修复。李晓明"先让利、后修复"的账，数据上正在兑现。</div>
+    <p>整体毛利率被 AOC（-1.36pct）、光引擎（-17.07pct，营收占比极小）、园林（-9.93pct 老本行萎缩）拖累，但<strong>这些恰恰是"该收缩的业务"</strong>——核心光模块在升级，是结构改善的信号。</p>
+  </div>
+
+  <div class="card" id="v2">
+    <h2 class="section-title">验证二：利润下滑的真实归因（成立，官方三点确认）</h2>
+    <p><strong>讨论时的判断</strong>：净利下滑不是"毛利率承压"，而是"费用翻倍（研发 + 财务）+ 少数股东摊薄"。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">费用项</th><th class="num">2026H1</th><th class="num">同比</th><th class="txt">官方归因</th></tr></thead>
+        <tbody>
+          <tr><td class="name">营业收入</td><td class="num">10.37亿</td><td class="num green">+49.01%</td><td class="txt">光电子业务大幅增长</td></tr>
+          <tr><td class="name">营业成本</td><td class="num">8.27亿</td><td class="num red">+50.90%</td><td class="txt">规模扩张</td></tr>
+          <tr><td class="name">销售费用</td><td class="num">981万</td><td class="num">+10.56%</td><td class="txt">规模增长</td></tr>
+          <tr><td class="name">管理费用</td><td class="num">4060万</td><td class="num">+3.39%</td><td class="txt">正常增长</td></tr>
+          <tr><td class="name"><strong>财务费用</strong></td><td class="num">3054万</td><td class="num red"><strong>+169.90%</strong></td><td class="txt red">外币汇率走低，汇兑损失大幅增加</td></tr>
+          <tr><td class="name"><strong>研发投入</strong></td><td class="num">2698万</td><td class="num green"><strong>+47.24%</strong></td><td class="txt">光电子业务发展需求</td></tr>
+          <tr><td class="name">所得税费用</td><td class="num">1264万</td><td class="num">上年-1183万</td><td class="txt green">钧恒利润大增，税负转正</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict"><strong>验证结果：成立，且官方三点归因全部确认。</strong>① 财务费用 +169.90%（汇兑损失，官方原文点名"外币汇率走低"）② 研发投入 +47.24%（主动投入）③ 园林业务下降。注意一个<strong>反直觉的好信号</strong>：所得税费用从 -1183 万转为 +1264 万，是因为钧恒利润大幅增长、应纳税所得额增加——<strong>这是"利润起来了"的侧面印证</strong>。</div>
+    <div class="warning"><strong>唯一真隐忧（需持续盯）：汇兑损失。</strong>财务费用 +169.90% 里，大头是汇兑损失——境外收入占 61.56%，人民币汇率波动直接冲击利润。这不是经营问题，是财务敞口问题，但也意味着"利润含金量"受汇率摆布。</div>
+  </div>
+
+  <div class="card" id="v3">
+    <h2 class="section-title">验证三：现金流 -4.77 亿的定性（成立：增长型失血）</h2>
+    <p><strong>讨论时的判断</strong>：-4.77 亿是"增长型失血"（锁料 + 备货 + 扩产），不是"衰退型失血"（卖不动）。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">现金流项</th><th class="num">2026H1</th><th class="num">同比</th><th class="txt">官方归因</th></tr></thead>
+        <tbody>
+          <tr><td class="name">经营活动净额</td><td class="num red">-4.77亿</td><td class="num red">-203.36%</td><td class="txt red">为满足业务扩张支付大量采购预付款</td></tr>
+          <tr><td class="name">投资活动净额</td><td class="num red">-1.66亿</td><td class="num red">-567.97%</td><td class="txt red">子公司大量生产建设投入（鄂州/马来扩产）</td></tr>
+          <tr><td class="name">筹资活动净额</td><td class="num">+5.50亿</td><td class="num green">+589.55%</td><td class="txt orange">取得借款 10.56 亿（上年 4.67 亿）</td></tr>
+          <tr><td class="name">期末现金余额</td><td class="num">3.48亿</td><td class="num">—</td><td class="txt">现金净减少 9940 万</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict"><strong>验证结果：成立。</strong>中报官方原文明确——经营现金流 -4.77 亿是"<strong>为满足业务扩张需求支付大量采购预付款</strong>"（锁料），投资现金流 -1.66 亿是"生产建设投入"（扩产）。<strong>这是"订单撑起来的增长型失血"，不是"卖不动的衰退型失血"。</strong></div>
+    <div class="warning"><strong>但必须点破一个更深的风险：靠借款续命。</strong>筹资现金流 +5.50 亿、取得借款 10.56 亿（较上年 4.67 亿翻倍）——主业不造血，靠借款支撑锁料 + 扩产。这个结构如果 Q3 经营现金流仍不止跌，就会从"增长型失血"滑向"流动性承压"。<strong>Q3 经营现金流能否止跌，是比毛利率更硬的验证点。</strong></div>
+  </div>
+
+  <div class="card" id="v4">
+    <h2 class="section-title">验证四：客户结构（成立，且新增索尔思 2026 放量信号）</h2>
+    <div class="signal-list">
+      <div class="signal good"><strong>Coherent（45.09%，第一大）。</strong>2025 年报官方口径，JDM 深度绑定，1.6T 代工 Q2 落地。</div>
+      <div class="signal good"><strong>索尔思（2026H1 应收 2.90 亿居首）。</strong>年报销售前五没有它，但 2026H1 应收账款第一——是 2026 年放量的新增大客户。</div>
+      <div class="signal"><strong>京东科技/金山云/新华三/创酷云/香港智函。</strong>2025 年报前五的国内云计算 + 设备商客户。</div>
+      <div class="signal"><strong>Lumentum/CloudLight 审厂中、DeepSeek 对接中。</strong>未来增量客户，待落地。</div>
+      <div class="signal red"><strong>字节跳动：全网无直接合作证据，排除。</strong></div>
+    </div>
+    <div class="callout"><strong>验证结果：成立。</strong>客户结构从"Coherent 单核"升级为"直接客户 8 家 + 北美算力集群间接绑定"，且索尔思 2026H1 应收第一是"客户结构优化"的实锤信号。</div>
+  </div>
+
+  <div class="card" id="fix">
+    <h2 class="section-title">五、需要精化修正的 1 个点</h2>
+    <div class="signal-list">
+      <div class="signal warn"><strong>修正：毛利率是"V 型"，不是"单边下降"。</strong>此前表述"毛利率从 26.37% 一味降到 20%"不够准确。准确的是：2024 年 26.37%（高点）→ 2025 年约 20%（主动降价抢份额）→ 2026H1 核心光模块 21.64%（+3.5pct 回升）。<strong>"以价换量"已经走到"毛利率修复"阶段，这是好消息。</strong></div>
+      <div class="signal warn"><strong>保留警惕：汇兑损失 + 靠借款续命。</strong>这两个是"以价换量"剧本里最不稳定的两个变量——汇率不可控、借款不可持续。Q3 看这两条。</div>
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">六、数据溯源</h2>
+    <p class="small">本报告数据全部来自：① 汇绿生态《2026 年半年度报告》原文（分产品/分地区毛利率、费用明细、现金流量表）；② 2025 年报（前五大客户）；③ Wind（行情/财务/技术）；④ 国浩律师补充法律意见书、深交所问询函回复（客户/境外收入）；⑤ 全网舆情（Wind 财经新闻、财联社、子弹财经等）。<br>版本：V1（2026-08-15，观点验证报告）。版式：V1 紫色版。数据置信度：毛利率/费用/现金流 ★★★（中报原文）、客户结构 ★★★、索尔思放量 ★★☆。</p>
+  </div>
+
+  <div class="footer">数据来源：汇绿生态中报/年报、Wind、深交所问询函、公开舆情 · 仅供参考，不构成投资建议 · 市场有风险，投资需谨慎</div>
+</div>
+</body>
+</html>

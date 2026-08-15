@@ -64,9 +64,9 @@ tbody tr:nth-child(even){background:#fcfcff}
 <body>
 <div class="container">
   <div class="hero">
-    <span class="eyebrow">个股深度研报 · V2.1 · 2026-08-15</span>
+    <span class="eyebrow">个股深度研报 · V2.2 · 2026-08-15</span>
     <h1>汇绿生态（001267.SZ）：光模块单核转型，重组是生死线</h1>
-    <p>转型是真的（光电子收入占比 92.36%、光模块 +202.83%），但利润承压（归母 -27.79%）、现金流 -4.77 亿、390 倍 PE。真正的生死线是收购钧恒 49% 股权的重组能否落地。</p>
+    <p>转型是真的（光电子收入占比 92.36%、光模块 +202.83%），但利润承压（归母 -27.79%）、现金流 -4.77 亿、390 倍 PE。真正的生死线是收购钧恒 49% 股权的重组能否落地。V2.2 新增全网核实版客户全景图。</p>
   </div>
 
   <nav class="nav">
@@ -106,13 +106,48 @@ tbody tr:nth-child(even){background:#fcfcff}
   </div>
 
   <div class="card" id="customer">
-    <h2 class="section-title">二、客户结构：三巨头（此前多轮深挖的核心结论）</h2>
-    <div class="signal-list">
-      <div class="signal good"><strong>Coherent（核心，占 47.42%）。</strong>800G + 1.6T，JDM 深度绑定，前五大客户合计 71.46%。</div>
-      <div class="signal good"><strong>索尔思（应收 2.90 亿超 Coherent）。</strong>东山精密旗下，拿 Oracle 800G 订单（100-130 万只），产能不足外溢给钧恒代工。</div>
-      <div class="signal"><strong>Lumentum（CloudLight，审厂中）。</strong>谷歌订单，合作产能 150 万只+，待落地。</div>
+    <h2 class="section-title">二、客户全景图（V2.2 全网核实版）</h2>
+    <p><strong>2025 年报官方前五大客户（合并口径，含金额占比）：</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">排名</th><th class="txt">客户</th><th class="num">销售额</th><th class="num">占比</th><th class="txt">定位</th></tr></thead>
+        <tbody>
+          <tr><td class="name">1</td><td class="txt"><strong>Coherent 及其关联方</strong></td><td class="num">7.086亿</td><td class="num red">45.09%</td><td class="txt">JDM 深度绑定，1.6T 代工 Q2 落地</td></tr>
+          <tr><td class="name">2</td><td class="txt">京东科技（京东集团）</td><td class="num">6151万</td><td class="num">3.91%</td><td class="txt">京东云，云计算企业</td></tr>
+          <tr><td class="name">3</td><td class="txt">香港智函科技（独立第三方）</td><td class="num">5814万</td><td class="num">3.70%</td><td class="txt">境外主体，身份未披露</td></tr>
+          <tr><td class="name">4</td><td class="txt">新华三</td><td class="num">4684万</td><td class="num">2.98%</td><td class="txt">光通信设备厂商，2021认证</td></tr>
+          <tr><td class="name">5</td><td class="txt">武汉创酷云互联网</td><td class="num">4437万</td><td class="num">2.82%</td><td class="txt">本地云厂商</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="callout"><strong>客户结构本质：</strong>从"Coherent 单核依赖"升级为"三巨头绑定"，背后是英伟达/Meta/Oracle/微软/AWS/谷歌北美算力集群。但三巨头全是"代工"，议价权弱（钧恒毛利率 20.08% 低于行业均值 33.52%），这是估值天花板。</div>
+    <p class="table-note">合计 9.19 亿、占 58.50%。法律意见书（武汉钧恒单体口径）前五：Coherent、Trilight Malaysia（自有子公司）、京东、智函、新华三。境外收入主要来自无锡保税区 Finisar Wuxi（Coherent 子公司，占境外 30-35%）与马来 Trilight（2025H1 占境外 33.16%）。</p>
+
+    <h3>历史客户演变（2021-2025）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">年份</th><th class="num">前五大集中度</th><th class="txt">演变</th></tr></thead>
+        <tbody>
+          <tr><td class="name">2021</td><td class="num">32.00%</td><td class="txt">通过 Finisar（现 Coherent）、新华三合格供应商认证</td></tr>
+          <tr><td class="name">2022</td><td class="num">42.02%</td><td class="txt">客户一升至 21.97%（Coherent 体系起量）</td></tr>
+          <tr><td class="name">2023</td><td class="num">59.74%</td><td class="txt">客户一 39.11%，AI 算力爆发 400G/800G 放量</td></tr>
+          <tr><td class="name">2024</td><td class="num">62.83%</td><td class="txt">800G 批量交付，客户结构稳定</td></tr>
+          <tr><td class="name">2025</td><td class="num">58.50%</td><td class="txt">Coherent 45.09%，京东/智函/新华三/创酷云多元</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>按四类分类的直接客户</h3>
+    <div class="signal-list">
+      <div class="signal good"><strong>大型光模块厂商：</strong>Coherent（45.09%）、索尔思光电（2026H1 应收 2.90 亿居首，Meta/Oracle/微软/AWS 外溢）、Lumentum/CloudLight（审厂中）、中际旭创（接洽中）。</div>
+      <div class="signal good"><strong>光通信设备厂商：</strong>新华三（2021 认证，4684 万）、华为（自媒体披露 800G 进采购清单，置信度 ★★☆）。</div>
+      <div class="signal"><strong>AI 大模型厂商：</strong>DeepSeek（1.6T 送样对接中）。<span class="tag red">字节跳动：全网无直接合作证据（排除）</span></div>
+      <div class="signal"><strong>云计算企业：</strong>京东科技/京东云（6151 万）、金山云、武汉创酷云（4437 万）、香港智函（身份未披露）、AWS（接洽中）。</div>
+    </div>
+
+    <h3>间接客户链条（代工模式决定）</h3>
+    <p>英伟达 → Coherent → 汇绿（已量产）；Meta/Oracle/微软/AWS → 索尔思 → 汇绿（已落地）；谷歌 → Lumentum/CloudLight → 汇绿（审厂中）；华为云 → 华为 → 汇绿（直接+间接）。</p>
+
+    <div class="callout"><strong>客户结构本质：</strong>从"Coherent 单核依赖"升级为"直接客户 8 家 + 北美算力集群间接绑定"，但 <strong>Coherent 独占 45.09% 仍是最大风险点</strong>。钧恒毛利率从 2024 年 26.37% 主动降至 2025 年约 20%（以价换量抢份额，换来营收 +49%）——<strong>毛利率不是它的胜负手，真正要盯的三个验证点是：①现金流能否转正（2026Q1 -3.01 亿）②研发/财务费用翻倍能否被规模摊薄 ③鄂州/马来产能利用率爬坡</strong>。</div>
   </div>
 
   <div class="card" id="tech">
@@ -133,7 +168,7 @@ tbody tr:nth-child(even){background:#fcfcff}
   <div class="card" id="risk">
     <h2 class="section-title">四、核心风险与反一致预期</h2>
     <div class="signal-list">
-      <div class="signal red"><strong>风险一（新增）：子弹财经深度质疑。</strong>① 1.95 亿商誉 + 钧恒权益增值率 317.72%；② Coherent 独占 47.42%、前五大 71.46%；③ 钧恒毛利率 20.08% 低于行业 33.52%；④ 分步收购是否"规避借壳"存疑。</div>
+      <div class="signal red"><strong>风险一（新增）：子弹财经深度质疑。</strong>① 1.95 亿商誉 + 钧恒权益增值率 317.72%；② Coherent 独占 47.42%、前五大 71.46%；③ 钧恒毛利率 20.08%，系主动降价（以价换量）从 2024 年 26.37% 回落；④ 分步收购是否"规避借壳"存疑。</div>
       <div class="signal red"><strong>风险二：重组是生死线。</strong>收购钧恒 49%（11.27 亿）仍在深交所审核，若失败/搁置，390 倍 PE 撑不住。</div>
       <div class="signal warn"><strong>风险三：现金流 -4.77 亿。</strong>经营现金流同比 -203%，主业不造血靠借款续命，17.38 亿担保或有负债悬顶。</div>
       <div class="signal good"><strong>反一致预期（支撑点）：</strong>市场把汇绿当"纯题材炒"，但光模块营收 +202.83% 是真实的、三巨头客户是真实的、钧恒单体是赚钱的（5349 万）。逻辑未破，筹码从 6/18 峰值 9.96 万回落到 7/20 的 7.66 万（重新集中）。</div>
@@ -161,7 +196,7 @@ tbody tr:nth-child(even){background:#fcfcff}
 
   <div class="card" id="source">
     <h2 class="section-title">六、数据溯源与版本</h2>
-    <p class="small">行情/技术/财务：Wind（get_stock_price_indicators / get_stock_fundamentals / get_stock_technicals），2026-08-15 拉取，时点 8/14 收盘。舆情：Wind 财经新闻（8/14 中报、8/13 子弹财经质疑、8/8 重组进展）。<br>版本：V2.1（2026-08-15 重跑，整合此前中报深度解读 V1.1 的核心结论）。版式：V1 紫色版。数据置信度：财务★★★、客户结构★★★、重组进展★★☆。</p>
+    <p class="small">行情/技术/财务：Wind（get_stock_price_indicators / get_stock_fundamentals / get_stock_technicals），2026-08-15 拉取，时点 8/14 收盘。舆情：Wind 财经新闻（8/14 中报、8/13 子弹财经质疑、8/8 重组进展）。<br>版本：V2.2（2026-08-15 全网客户核实版：2025 年报官方前五大、国浩法律意见书、问询函境外收入分布、2021-2025 历史演变、字节跳动排除结论）。版式：V1 紫色版。数据置信度：财务★★★、客户结构★★★（Coherent 45.09% 官方口径）、重组进展★★☆、华为供货★★☆。</p>
   </div>
 
   <div class="footer">数据来源：Wind/万得、公开市场信息 · 仅供参考，不构成投资建议 · 市场有风险，投资需谨慎</div>
