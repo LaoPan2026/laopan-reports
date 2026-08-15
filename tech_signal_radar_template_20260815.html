@@ -47,13 +47,13 @@ tbody tr:nth-child(even){background:#fcfcff}
 <body>
 <div class="container">
   <div class="hero">
-    <span class="eyebrow">每日复盘固定模块 · 模板 V1.0 · 2026-08-15</span>
+    <span class="eyebrow">每日复盘固定模块 · 模板 V1.1 · 2026-08-15</span>
     <h1>技术信号雷达：短线形态分析（每日盘后复盘用）</h1>
-    <p>双级别定位（周线定方向 + 日线定节奏）+ 量价确认 + 形态识别 + 信号分级 + 操作建议。每次盘后复盘按此模板扫描 8 只持仓，只对"明确触发/接近触发"的标的展开分析，无信号标"持有观察"。</p>
+    <p>核心原则：<strong>事前预警优先于事后验证</strong>——信号在当日即可识别（天量滞涨/死叉/绿柱缩短/接近零轴），复盘的职责是"在信号出现的当日给出未来 1-3 日预判 + 触发后操作预案"，而不是行情走完再解释。</p>
   </div>
 
   <nav class="nav">
-    <a href="#five">五要素</a><a href="#rules">触发规则</a><a href="#scan">扫描表</a><a href="#example">泰和示例</a><a href="#discipline">边界纪律</a><a href="#usage">使用说明</a>
+    <a href="#five">五要素</a><a href="#rules">触发规则</a><a href="#scan">扫描表</a><a href="#example">泰和示例</a><a href="#foresight">事前预警示范</a><a href="#discipline">边界纪律</a><a href="#usage">使用说明</a>
   </nav>
 
   <div class="card" id="five">
@@ -67,6 +67,7 @@ tbody tr:nth-child(even){background:#fcfcff}
           <tr><td class="txt"><strong>③ 形态识别</strong></td><td class="txt">金叉/死叉、顶背离/底背离、天量长上影、十字星、突破/跌破关键位</td><td class="txt">K 线形态</td></tr>
           <tr><td class="txt"><strong>④ 信号分级</strong></td><td class="txt"><span class="tag green">明确触发</span> / <span class="tag orange">接近触发（附预计交易日）</span> / <span class="tag blue">无信号</span></td><td class="txt">按触发规则判定</td></tr>
           <tr><td class="txt"><strong>⑤ 操作建议</strong></td><td class="txt">仅明确信号时给（仓位比例 + 价格位），无信号标"持有观察"，不强行给单</td><td class="txt">触发规则表</td></tr>
+          <tr><td class="txt"><strong>⑥ 前瞻预判（新增）</strong></td><td class="txt"><strong>未来 1-3 日信号预判 + 触发后操作预案</strong>：明日若不能收复今日高点则确认顶部减 1/3；绿柱连续 2 日缩短 + 价格不创新低则底部成立准备低吸；明日金叉则试仓 1/3</td><td class="txt">当日可得信号的外推</td></tr>
         </tbody>
       </table>
     </div>
@@ -125,20 +126,39 @@ tbody tr:nth-child(even){background:#fcfcff}
     <div class="warning"><strong>级别错配提醒：</strong>泰和当前是"日线金叉 + 周线死叉柱"的组合，本质是反弹修复而非反转启动。加仓必须分批（1/3 制）并留后手，不能因日线转正就一把梭。</div>
   </div>
 
+  <div class="card" id="foresight">
+    <h2 class="section-title">五、事前预警示范：泰和 6-7 月复盘（如果当时每天有雷达，会这样提示）</h2>
+    <p>这是本模板最重要的模块——<strong>证明信号在当日可得、预警可以前置</strong>。以下按泰和 2026 年 6-7 月真实走势，还原"当天的复盘该给出什么前瞻提示"：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">日期</th><th class="txt">当日信号（实盘可得）</th><th class="txt">当日复盘应给出的前瞻提示</th><th class="txt">事后验证</th></tr></thead>
+        <tbody>
+          <tr><td class="txt">6/26</td><td class="txt">天量 174 亿 + 长上影（冲 22.19 收 19.35）</td><td class="txt"><strong>明日若不能收复今日高点 22.19，确认顶部，减 1/3</strong>；放量滞涨是主力派发特征</td><td class="txt green">6/29 未能收复，开跌</td></tr>
+          <tr><td class="txt">6/29</td><td class="txt">MACD 红转绿（-0.005），收 17.97</td><td class="txt"><strong>死叉确认，再减 1/3</strong>；跌破 20 日线（约 17.9）则机动仓全部减出</td><td class="txt green">7 月一路跌至 11</td></tr>
+          <tr><td class="txt">7/20</td><td class="txt">最低 11.00，MACD 绿柱 -1.175 未缩短</td><td class="txt"><strong>未见底信号，不加仓</strong>；等绿柱连续 2 日缩短 + 价格不创新低</td><td class="txt green">7/21-24 绿柱仍在放大</td></tr>
+          <tr><td class="txt">7/27</td><td class="txt">绿柱首日缩短（-0.454），价格未破 7/20 低点</td><td class="txt"><strong>底部成立第一条件满足，准备低吸</strong>；次日继续缩短且站稳 20 日线则试仓</td><td class="txt green">7/28-31 绿柱持续缩短</td></tr>
+          <tr><td class="txt">7/30</td><td class="txt">绿柱 -0.122 接近零轴，收 11.13</td><td class="txt"><strong>明日金叉则试仓 1/3（11.1-11.5 区间）</strong>；周线 DIF 0.64 守零轴，级别共振成立</td><td class="txt green">8/3 金叉，买入后 +14.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">这 5 天的提示全部基于"当日已出现的信号"外推，不需要任何后见之明——6/26 减仓、7/30 加仓，当时就该给出来。这就是"事前预警"与"事后复盘"的区别。</p>
+  </div>
+
   <div class="card" id="discipline">
-    <h2 class="section-title">五、边界纪律（不可逾越）</h2>
+    <h2 class="section-title">六、边界纪律（不可逾越）</h2>
     <div class="signal-list" style="display:grid;gap:9px">
-      <div class="callout"><strong>① 技术只调波段仓位，不清仓。</strong>技术信号（MACD/量价/形态）只决定"机动仓的高抛低吸节奏"，底仓去留只由逻辑变化决定——与"不做技术止损"铁律完全兼容。</div>
-      <div class="callout"><strong>② 单指标孤证不作数。</strong>至少叠加量能 + 均线位置 + K 线形态三重确认，避免 6/23 那种"假红转绿"洗盘信号。</div>
-      <div class="callout"><strong>③ 结合基本面日历。</strong>业绩预告/中报披露等事件前后，技术信号让位于事件驱动；右侧确认（利空出尽后）胜率更高。</div>
-      <div class="callout"><strong>④ 不强行给单。</strong>无明确信号时标"持有观察"，宁可少做不错做。</div>
+      <div class="callout"><strong>① 事前预警优先于事后验证（核心）。</strong>每次复盘必须给出"未来 1-3 日信号预判 + 触发后操作预案"，禁止只报"今日信号"不预判、更禁止行情走完再解释。</div>
+      <div class="callout"><strong>② 技术只调波段仓位，不清仓。</strong>技术信号（MACD/量价/形态）只决定"机动仓的高抛低吸节奏"，底仓去留只由逻辑变化决定——与"不做技术止损"铁律完全兼容。</div>
+      <div class="callout"><strong>③ 单指标孤证不作数。</strong>至少叠加量能 + 均线位置 + K 线形态三重确认，避免 6/23 那种"假红转绿"洗盘信号。</div>
+      <div class="callout"><strong>④ 结合基本面日历。</strong>业绩预告/中报披露等事件前后，技术信号让位于事件驱动；右侧确认（利空出尽后）胜率更高。</div>
+      <div class="callout"><strong>⑤ 不强行给单。</strong>无明确信号时标"持有观察"，宁可少做不错做。</div>
     </div>
   </div>
 
   <div class="card" id="usage">
-    <h2 class="section-title">六、使用说明</h2>
-    <p class="small">① 数据源：日线用 PandaData get_stock_daily（落盘后 Python 提取聚合周线），技术指标用 Wind get_stock_technicals / get_stock_price_indicators；② MACD 参数统一 (12,26,9)，柱值 = 2×(DIF-DEA)（同花顺口径）；③ 每日 15:00 收盘后，先跑扫描表，再对"明确触发/接近触发"标的展开；④ 模板存于 outputs/tech_signal_radar_template_20260815.html，每日复盘引用本模板结构。</p>
-    <p class="source">版本：V1.0（2026-08-15 老潘确认新增每日复盘模块，泰和 MACD 波段复盘沉淀）。版式：V1 紫色版。数据置信度：泰和示例★★★（PandaData 实测 MACD），其余持仓待每日扫描补全。</p>
+    <h2 class="section-title">七、使用说明</h2>
+    <p class="small">① 数据源：日线用 PandaData get_stock_daily（落盘后 Python 提取聚合周线），技术指标用 Wind get_stock_technicals / get_stock_price_indicators；② MACD 参数统一 (12,26,9)，柱值 = 2×(DIF-DEA)（同花顺口径）；③ 每日 15:00 收盘后，先跑扫描表，再对"明确触发/接近触发"标的展开，<strong>最后必须输出"明日/未来 3 日预判 + 操作预案"</strong>；④ 模板存于 outputs/tech_signal_radar_template_20260815.html，每日复盘引用本模板结构。</p>
+    <p class="source">版本：V1.1（2026-08-15 升级：新增"事前预警"原则 + 五要素第⑥项"前瞻预判" + 泰和 6-7 月事前预警示范模块）。版式：V1 紫色版。数据置信度：泰和示范★★★（PandaData 实测 MACD + 成交量），其余持仓待每日扫描补全。</p>
   </div>
 
   <div class="footer">数据来源：PandaData/Wind · 模板仅供复盘使用，不构成投资建议 · 市场有风险，投资需谨慎</div>
