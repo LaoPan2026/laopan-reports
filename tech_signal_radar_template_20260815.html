@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术信号雷达 · 每日复盘模块模板（V1.0）</title>
+<style>
+:root{--bg:#f2f3fb;--panel:#fff;--text:#182033;--muted:#667085;--line:#e3e5f0;--purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;--red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;--shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.name,td.name{white-space:nowrap;word-break:keep-all;text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.verdict{border-left:3px solid var(--red);background:#fff5f5;padding:14px 16px;border-radius:0 7px 7px 0;margin:12px 0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">每日复盘固定模块 · 模板 V1.0 · 2026-08-15</span>
+    <h1>技术信号雷达：短线形态分析（每日盘后复盘用）</h1>
+    <p>双级别定位（周线定方向 + 日线定节奏）+ 量价确认 + 形态识别 + 信号分级 + 操作建议。每次盘后复盘按此模板扫描 8 只持仓，只对"明确触发/接近触发"的标的展开分析，无信号标"持有观察"。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#five">五要素</a><a href="#rules">触发规则</a><a href="#scan">扫描表</a><a href="#example">泰和示例</a><a href="#discipline">边界纪律</a><a href="#usage">使用说明</a>
+  </nav>
+
+  <div class="card" id="five">
+    <h2 class="section-title">一、模块五要素（每日扫描规范）</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">要素</th><th class="txt">内容</th><th class="txt">数据来源</th></tr></thead>
+        <tbody>
+          <tr><td class="txt"><strong>① 双级别定位</strong></td><td class="txt">周线 MACD：DIF/DEA 在零轴上/下、金叉/死叉、柱体状态（定方向）<br>日线 MACD：DIF 位置、柱体状态、距零轴距离（定节奏）</td><td class="txt">日线聚合周线 + MACD(12,26,9) 自算</td></tr>
+          <tr><td class="txt"><strong>② 量价确认</strong></td><td class="txt">量能：放量/缩量/天量滞涨；价格位置：20 日线/60 日线上方或下方</td><td class="txt">Wind 行情 + 日线成交量</td></tr>
+          <tr><td class="txt"><strong>③ 形态识别</strong></td><td class="txt">金叉/死叉、顶背离/底背离、天量长上影、十字星、突破/跌破关键位</td><td class="txt">K 线形态</td></tr>
+          <tr><td class="txt"><strong>④ 信号分级</strong></td><td class="txt"><span class="tag green">明确触发</span> / <span class="tag orange">接近触发（附预计交易日）</span> / <span class="tag blue">无信号</span></td><td class="txt">按触发规则判定</td></tr>
+          <tr><td class="txt"><strong>⑤ 操作建议</strong></td><td class="txt">仅明确信号时给（仓位比例 + 价格位），无信号标"持有观察"，不强行给单</td><td class="txt">触发规则表</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" id="rules">
+    <h2 class="section-title">二、信号 → 操作触发规则（泰和复盘沉淀）</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">类型</th><th class="txt">信号</th><th class="txt">操作</th><th class="txt">优先级/说明</th></tr></thead>
+        <tbody>
+          <tr><td class="txt" rowspan="3"><span class="tag red">卖出类</span></td><td class="txt"><strong>天量滞涨 + 长上影</strong></td><td class="txt">减 1/3</td><td class="txt">比 MACD 死叉早 2-4 天，优先信号</td></tr>
+          <tr><td class="txt"><strong>MACD 死叉</strong>（日线）</td><td class="txt">再减 1/3</td><td class="txt">滞后确认，与①分两步走</td></tr>
+          <tr><td class="txt"><strong>放量跌破 20 日线</strong></td><td class="txt">机动仓减出</td><td class="txt">趋势转弱信号</td></tr>
+          <tr><td class="txt" rowspan="3"><span class="tag green">买入类</span></td><td class="txt"><strong>日线 DIF 转正 + 周线 DIF 守零轴</strong></td><td class="txt">第一笔试仓 1/3</td><td class="txt">双级别共振第一步</td></tr>
+          <tr><td class="txt"><strong>放量站上 60 日线</strong></td><td class="txt">第二笔 1/3</td><td class="txt">趋势确认</td></tr>
+          <tr><td class="txt"><strong>周线 MACD 柱翻红</strong>（周线金叉）</td><td class="txt">第三笔 1/3</td><td class="txt">双级别彻底共振</td></tr>
+          <tr><td class="txt" rowspan="2"><span class="tag orange">警示</span></td><td class="txt"><strong>日线金叉 + 周线死叉</strong></td><td class="txt">不加仓</td><td class="txt">级别错配 = 反弹非反转</td></tr>
+          <tr><td class="txt"><strong>周线 DIF 跌破零轴</strong></td><td class="txt">技术加仓计划作废</td><td class="txt">中期结构破坏，回到逻辑评估</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" id="scan">
+    <h2 class="section-title">三、每日扫描表（8 只持仓 · 示例：2026-08-14 收盘）</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">持仓</th><th class="txt">周线级别</th><th class="txt">日线级别</th><th class="txt">量价</th><th class="txt">信号分级</th><th class="txt">操作建议</th></tr></thead>
+        <tbody>
+          <tr><td class="name"><strong>泰和新材</strong></td><td class="txt">DIF +0.31 零轴上，柱绿（高位回踩）</td><td class="txt">DIF -0.35 水下爬升，柱红金叉</td><td class="txt">站上 20 日线，60 日线下</td><td class="txt"><span class="tag orange">接近触发</span></td><td class="txt">日线 DIF 转正（预计 8/21 前后）→ 试仓 1/3</td></tr>
+          <tr><td class="name">罗博特科</td><td class="txt">—</td><td class="txt">KDJ 84 超买，MACD 金叉</td><td class="txt">60 日线下方</td><td class="txt"><span class="tag blue">观察</span></td><td class="txt">T 仓按纪律 525-537 兑现/破 502 止损</td></tr>
+          <tr><td class="name">澜起科技</td><td class="txt">—</td><td class="txt">—</td><td class="txt">—</td><td class="txt"><span class="tag blue">观察</span></td><td class="txt">主力净流出 5.52 亿，红盘派发警惕</td></tr>
+          <tr><td class="name">汇绿生态</td><td class="txt">—</td><td class="txt">—</td><td class="txt">60 日线下方</td><td class="txt"><span class="tag blue">观察</span></td><td class="txt">中报后看 38 支撑、低开高走确认</td></tr>
+          <tr><td class="name">其余 4 只</td><td class="txt">—</td><td class="txt">—</td><td class="txt">—</td><td class="txt"><span class="tag blue">待扫描</span></td><td class="txt">每日按五要素补全</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">说明：扫描表每只一行，紧凑呈现；仅有信号的标的在下方展开详细分析。示例行数据以 2026-08-14 收盘为准，每日复盘时更新。</p>
+  </div>
+
+  <div class="card" id="example">
+    <h2 class="section-title">四、泰和新材完整示例（展开分析范本）</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">维度</th><th class="txt">状态（2026-08-14）</th><th class="txt">解读</th></tr></thead>
+        <tbody>
+          <tr><td class="txt"><strong>周线方向</strong></td><td class="txt">DIF +0.31 / DEA +0.77，双线零轴上；MACD 柱 -0.93（绿 4 周）</td><td class="txt">中期多头未破，但动能衰减 = 高位回踩</td></tr>
+          <tr><td class="txt"><strong>日线节奏</strong></td><td class="txt">DIF -0.35 / DEA -0.62，柱 +0.56（红）；DIF 从 -1.40 爬升</td><td class="txt">水下向零轴靠近，短周期由空转多</td></tr>
+          <tr><td class="txt"><strong>量价</strong></td><td class="txt">8/14 收 12.75（+2.33%），近 5 日主力净流入 7012 万</td><td class="txt">站上 20 日线（12.13），60 日线（14.56）压制</td></tr>
+          <tr><td class="txt"><strong>信号分级</strong></td><td class="txt"><span class="tag orange">接近触发</span></td><td class="txt">日线 DIF 距转正约 0.35，日均上行 0.067 → 预计 8/21 前后</td></tr>
+          <tr><td class="txt"><strong>操作建议</strong></td><td class="txt">DIF 转正当日试仓 1/3（现价附近）</td><td class="txt">站上 60 日线加 1/3；周线柱翻红加 1/3；周 DIF 破零轴则作废</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warning"><strong>级别错配提醒：</strong>泰和当前是"日线金叉 + 周线死叉柱"的组合，本质是反弹修复而非反转启动。加仓必须分批（1/3 制）并留后手，不能因日线转正就一把梭。</div>
+  </div>
+
+  <div class="card" id="discipline">
+    <h2 class="section-title">五、边界纪律（不可逾越）</h2>
+    <div class="signal-list" style="display:grid;gap:9px">
+      <div class="callout"><strong>① 技术只调波段仓位，不清仓。</strong>技术信号（MACD/量价/形态）只决定"机动仓的高抛低吸节奏"，底仓去留只由逻辑变化决定——与"不做技术止损"铁律完全兼容。</div>
+      <div class="callout"><strong>② 单指标孤证不作数。</strong>至少叠加量能 + 均线位置 + K 线形态三重确认，避免 6/23 那种"假红转绿"洗盘信号。</div>
+      <div class="callout"><strong>③ 结合基本面日历。</strong>业绩预告/中报披露等事件前后，技术信号让位于事件驱动；右侧确认（利空出尽后）胜率更高。</div>
+      <div class="callout"><strong>④ 不强行给单。</strong>无明确信号时标"持有观察"，宁可少做不错做。</div>
+    </div>
+  </div>
+
+  <div class="card" id="usage">
+    <h2 class="section-title">六、使用说明</h2>
+    <p class="small">① 数据源：日线用 PandaData get_stock_daily（落盘后 Python 提取聚合周线），技术指标用 Wind get_stock_technicals / get_stock_price_indicators；② MACD 参数统一 (12,26,9)，柱值 = 2×(DIF-DEA)（同花顺口径）；③ 每日 15:00 收盘后，先跑扫描表，再对"明确触发/接近触发"标的展开；④ 模板存于 outputs/tech_signal_radar_template_20260815.html，每日复盘引用本模板结构。</p>
+    <p class="source">版本：V1.0（2026-08-15 老潘确认新增每日复盘模块，泰和 MACD 波段复盘沉淀）。版式：V1 紫色版。数据置信度：泰和示例★★★（PandaData 实测 MACD），其余持仓待每日扫描补全。</p>
+  </div>
+
+  <div class="footer">数据来源：PandaData/Wind · 模板仅供复盘使用，不构成投资建议 · 市场有风险，投资需谨慎</div>
+</div>
+</body>
+</html>
