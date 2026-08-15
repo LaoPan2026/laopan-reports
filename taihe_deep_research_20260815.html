@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泰和新材深度研报：芳纶光缆成长主线，氨纶周期底部反转</title>
+<style>
+:root{--bg:#f2f3fb;--panel:#fff;--text:#182033;--muted:#667085;--line:#e3e5f0;--purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;--red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;--shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.name,td.name{white-space:nowrap;word-break:keep-all;text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:10px}
+.action{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.action .num{font-size:12.5px;color:var(--purple);font-weight:800;margin-bottom:4px}
+.action h4{font-size:15px;margin-bottom:5px;color:var(--text)}
+.action p{font-size:14px;color:var(--muted);margin:0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.action-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.1 · 2026-08-15</span>
+    <h1>泰和新材（002254.SZ）：芳纶光缆成长主线 + 氨纶周期底部反转</h1>
+    <p>双主业：对位芳纶（光缆领域国内份额 60-70%，AI 算力驱动）是成长主线；氨纶（全球第五）是周期反转。PE 237 倍是利润谷底的假象，真正的锚是 PB 1.55 倍 + 利润拐点。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#verdict">结论</a><a href="#profile">公司画像</a><a href="#logic">双轮逻辑</a><a href="#tech">技术资金</a><a href="#risk">风险反证</a><a href="#scenario">三情景</a><a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="verdict">
+    <div class="summary">
+      <strong>一句话结论：</strong>泰和新材是"芳纶（成长）+ 氨纶（周期）"双轮，2026H1 归母预增 78.87%-168.30%、扣非预增 754%-1082%，是周期底部反转的实锤。但 <strong>PE 237 倍是利润谷底的假象，不是贵——PB 仅 1.55 倍</strong>，这符合"周期股看 PB 分位 + 产能利用率 + 价格方向"的铁律。综合评分 <strong class="purple">7/10</strong>：周期反转确认，但弹性取决于氨纶价格持续性（看 9-10 月）。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">12.75</div><div class="label">现价(8/14)</div><div class="detail">+2.33%</div></div>
+      <div class="metric"><div class="value">108.57亿</div><div class="label">总市值</div><div class="detail">52周区间9.19-21.5</div></div>
+      <div class="metric"><div class="value">237.5x</div><div class="label">PE(TTM)</div><div class="detail">利润谷底假象</div></div>
+      <div class="metric"><div class="value">1.55x</div><div class="label">PB(LF)</div><div class="detail">低位</div></div>
+      <div class="metric"><div class="value">35.95亿</div><div class="label">2025营收</div><div class="detail red">-8.51%</div></div>
+      <div class="metric"><div class="value red">-79.95%</div><div class="label">2025归母同比</div><div class="detail">4146万</div></div>
+      <div class="metric"><div class="value green">+175.3%</div><div class="label">2026Q1归母同比</div><div class="detail">1579万</div></div>
+      <div class="metric"><div class="value green">+78%~168%</div><div class="label">2026H1预告</div><div class="detail">扣非+754%~1082%</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="profile">
+    <h2 class="section-title">一、公司画像与财务速览</h2>
+    <p><strong>业务结构（Wind 档案）</strong>：安全防护/信息技术/新能源材料 <span class="tag blue">61.59%</span> + 先进纺织品 37.1%。董事长宋西全，2008 年上市，山东省国资控股。国内首家实现间位芳纶、对位芳纶、芳纶纸全品类生产的企业。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">报告期</th><th class="num">营收</th><th class="num">同比</th><th class="num">归母净利</th><th class="num">同比</th><th class="num">毛利率</th></tr></thead>
+        <tbody>
+          <tr><td class="name">2025 全年</td><td class="num">35.95亿</td><td class="num red">-8.51%</td><td class="num">4146万</td><td class="num red">-79.95%</td><td class="num">16.58%</td></tr>
+          <tr><td class="name">2026 Q1</td><td class="num">10.51亿</td><td class="num red">-0.61%</td><td class="num">1579万</td><td class="num green">+175.33%</td><td class="num">18.31%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">周期底部特征：2025 年利润暴跌 -80%（氨纶行业产能过剩 + 价格低位），2026Q1 低基数反弹 +175%。这是"利润谷底高 PE、低 PB"的典型周期股形态。数据来源：Wind get_stock_fundamentals，2026-08-15 拉取。</p>
+    <div class="warning"><strong>周期股铁律提醒：</strong>泰和当前 PE 237 倍不能用成长股逻辑看——利润在谷底，PE 虚高。真正该看的是 <strong>PB 1.55 倍（低位）+ 产能利用率（氨纶七八成→明年八九成）+ 价格方向（氨纶 Q2 环比 +18.39%、对位芳纶已从底部回升）</strong>。</div>
+  </div>
+
+  <div class="card" id="logic">
+    <h2 class="section-title">二、双轮驱动逻辑</h2>
+    <div class="signal-list">
+      <div class="signal good"><strong>成长主线：对位芳纶（光缆 AI 算力驱动）。</strong>对位芳纶是光缆核心增强材料，AI 算力建设驱动光纤光缆需求爆发。泰和对位芳纶在光缆领域应用占 40-50%，<strong>国内份额 60-70%</strong>，量、收入、利润均上升，价格较去年底改善。</div>
+      <div class="signal good"><strong>周期反转：氨纶大幅减亏。</strong>2026 年氨纶行业供需拐点，Q2 均价环比 +18.39%，落后产能出清 + 技改降本，氨纶板块大幅减亏。技改年底完成，明年开工率有望提升至八九成。</div>
+      <div class="signal"><strong>高端卡位：芳纶三品类全球前列。</strong>间位芳纶、芳纶纸全球第二，对位芳纶全球第三。防护（间位）+ 防弹/橡胶（对位）附加值高，是压舱石。</div>
+    </div>
+    <div class="callout"><strong>逻辑本质：</strong>泰和是"周期反转 + 成长叠加"的标的——氨纶提供周期弹性（价格反转），对位芳纶提供成长确定性（AI 光缆需求）。但氨纶是弱周期品种，价格持续性要看 9-10 月旺季，这是最大的不确定性。</div>
+  </div>
+
+  <div class="card" id="tech">
+    <h2 class="section-title">三、技术面与资金面（8/14 收盘）</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="value green">+2.49%</div><div class="label">近20日涨跌</div><div class="detail">相对大盘+1.34%</div></div>
+      <div class="metric"><div class="value green">MACD金叉</div><div class="label">DIFF -0.34</div><div class="detail">DEA -0.62，刚金叉</div></div>
+      <div class="metric"><div class="value red">86.08</div><div class="label">KDJ</div><div class="detail">超买区</div></div>
+      <div class="metric"><div class="value">64.89</div><div class="label">RSI</div><div class="detail">偏强</div></div>
+      <div class="metric"><div class="value">12.13</div><div class="label">20日线</div><div class="detail">现价在上方</div></div>
+      <div class="metric"><div class="value red">14.56</div><div class="label">60日线</div><div class="detail">现价在下方，中期压力</div></div>
+      <div class="metric"><div class="value green">+7012万</div><div class="label">近5日主力净流入</div><div class="detail">当日+4354万</div></div>
+      <div class="metric"><div class="value">13.82</div><div class="label">布林上轨</div><div class="detail">下轨10.44</div></div>
+    </div>
+    <p class="table-note">形态：MACD 刚金叉 + 主力净流入，但 KDJ 已超买（86）、现价仍卡在 60 日线（14.56）下方，短期有回踩需求。中期趋势分水岭看 60 日线能否收复。</p>
+  </div>
+
+  <div class="card" id="risk">
+    <h2 class="section-title">四、核心风险与反一致预期</h2>
+    <div class="signal-list">
+      <div class="signal warn"><strong>风险一：氨纶价格持续性不确定。</strong>公司明确"价格看 9-10 月旺季"，今年扭亏"说不好"。氨纶是弱周期品种，供给出清进度决定反转高度。</div>
+      <div class="signal warn"><strong>风险二：芳纶出口比例低，海外溢价难吃到。</strong>对位芳纶出口仅约 20%，海外现货价 2122 万元/吨 vs 国内长协价偏低，海内外价差大但公司出口布局刚起步。</div>
+      <div class="signal red"><strong>风险三：纤维电池/隔膜等新业务贡献基本为零。</strong>隔膜去年亏几百万，纤维电池"应用场景偏少"，绿色印染"无大突破"——新故事短期难兑现。</div>
+      <div class="signal good"><strong>反一致预期（支撑点）：</strong>市场把它当"纯氨纶周期股"，但忽视了<strong>对位芳纶在 AI 光缆的成长属性</strong>——光缆已成为对位芳纶第一大应用场景，份额 60-70% 是隐形冠军。</div>
+    </div>
+  </div>
+
+  <div class="card" id="scenario">
+    <h2 class="section-title">五、三级情景与操作</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">情景</th><th class="txt">触发条件</th><th class="num">目标</th><th class="txt">操作</th></tr></thead>
+        <tbody>
+          <tr><td class="txt"><strong>乐观(30%)</strong></td><td class="txt">氨纶旺季涨价 + 芳纶光缆放量</td><td class="num green">15-16元</td><td class="txt">持有</td></tr>
+          <tr><td class="txt"><strong>中性(50%)</strong></td><td class="txt">氨纶价格平稳，芳纶稳步增长</td><td class="num">12-14元</td><td class="txt">底仓持有</td></tr>
+          <tr><td class="txt"><strong>悲观(20%)</strong></td><td class="txt">氨纶价格再度走弱</td><td class="num red">10-11元</td><td class="txt">破11.85观察</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="action-grid">
+      <div class="action"><div class="num">底仓 20000 股</div><h4>持有等反转</h4><p>成本 13.35 元浮亏约 4.5%，周期反转确认，逻辑未破。</p></div>
+      <div class="action"><div class="num">验证点</div><h4>9-10月氨纶价格</h4><p>氨纶旺季价格能否延续，是决定周期反转高度的核心变量。</p></div>
+      <div class="action"><div class="num">加仓</div><h4>不追高</h4><p>KDJ 已超买，等回踩 60 日线下方或氨纶价格二次确认再动。</p></div>
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">六、数据溯源与版本</h2>
+    <p class="small">行情/技术/财务：Wind（get_stock_price_indicators / get_stock_fundamentals / get_stock_technicals），2026-08-15 拉取，时点 8/14 收盘。舆情：Wind 财经新闻（7/17 投资者关系活动、7/16 半年度业绩预告）。<br>版本：V2.1（2026-08-15 重跑）。版式：V1 紫色版。数据置信度：财务★★★、芳纶光缆逻辑★★★、氨纶价格★★☆。</p>
+  </div>
+
+  <div class="footer">数据来源：Wind/万得、公开市场信息 · 仅供参考，不构成投资建议 · 市场有风险，投资需谨慎</div>
+</div>
+</body>
+</html>

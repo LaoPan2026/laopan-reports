@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星环科技深度研报：AI基础设施，亏损收窄与高估值的博弈</title>
+<style>
+:root{--bg:#f2f3fb;--panel:#fff;--text:#182033;--muted:#667085;--line:#e3e5f0;--purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;--red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;--shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.name,td.name{white-space:nowrap;word-break:keep-all;text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:10px}
+.action{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.action .num{font-size:12.5px;color:var(--purple);font-weight:800;margin-bottom:4px}
+.action h4{font-size:15px;margin-bottom:5px;color:var(--text)}
+.action p{font-size:14px;color:var(--muted);margin:0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.action-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.1 · 2026-08-15</span>
+    <h1>星环科技-U（688031.SH）：AI 基础设施，亏损收窄与高估值的博弈</h1>
+    <p>企业级 AI 基础设施核心服务商，营收加速（Q1 +26%）+ 亏损收窄（Q1 -33%）是边际改善；但 PB 17 倍、PS 约 30 倍，估值已透支。你的负成本持仓安全垫极厚。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#verdict">结论</a><a href="#profile">公司画像</a><a href="#logic">改善逻辑</a><a href="#tech">技术资金</a><a href="#risk">风险反证</a><a href="#scenario">三情景</a><a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="verdict">
+    <div class="summary">
+      <strong>一句话结论：</strong>星环科技是企业级 AI 基础设施（大数据平台 + 分布式数据库 + AI 平台）核心服务商，2026Q1 营收 0.81 亿（+26%）、亏损收窄 33%，边际改善是真的。但 <strong>PB 17 倍、PS 约 30 倍、持续亏损</strong>，估值已透支。对你而言这是 <strong class="purple">负成本持仓（-59.88 元）、浮盈 +371 万</strong>，安全垫极厚。综合评分 <strong class="purple">6.5/10</strong>：负成本持有不动，但此位置绝不加仓，核心验证是 8 月底中报营收能否延续 25%+ 增速。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">114.02</div><div class="label">现价(8/14)</div><div class="detail green">+1.54%</div></div>
+      <div class="metric"><div class="value">138.12亿</div><div class="label">总市值</div><div class="detail">52周区间49.6-264.9</div></div>
+      <div class="metric"><div class="value red">-63.5x</div><div class="label">PE(TTM)</div><div class="detail">负值，亏损</div></div>
+      <div class="metric"><div class="value red">17.13x</div><div class="label">PB(LF)</div><div class="detail">高</div></div>
+      <div class="metric"><div class="value">4.48亿</div><div class="label">2025营收</div><div class="detail green">+20.47%</div></div>
+      <div class="metric"><div class="value">-2.45亿</div><div class="label">2025归母</div><div class="detail green">收窄28.79%</div></div>
+      <div class="metric"><div class="value">0.81亿</div><div class="label">2026Q1营收</div><div class="detail green">+26.24%</div></div>
+      <div class="metric"><div class="value green">-33.11%</div><div class="label">2026Q1亏损收窄</div><div class="detail">-5600万</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="profile">
+    <h2 class="section-title">一、公司画像与财务速览</h2>
+    <p><strong>业务结构（Wind 档案）</strong>：软件产品授权及配套服务 <span class="tag blue">47.27%</span> + 技术服务 21.56% + 应用与解决方案 15.54%。董事长孙元浩，2022 年科创板上市。连续五年蝉联 IDC 中国大数据平台市场份额第一的专业厂商。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">报告期</th><th class="num">营收</th><th class="num">同比</th><th class="num">归母净利</th><th class="num">同比</th><th class="num">毛利率</th></tr></thead>
+        <tbody>
+          <tr><td class="name">2025 全年</td><td class="num">4.48亿</td><td class="num green">+20.47%</td><td class="num red">-2.45亿</td><td class="num green">收窄28.79%</td><td class="num">54.14%</td></tr>
+          <tr><td class="name">2026 Q1</td><td class="num">0.81亿</td><td class="num green">+26.24%</td><td class="num red">-5600万</td><td class="num green">收窄33.11%</td><td class="num">40.45%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">边际改善：营收加速（+20%→+26%）+ 亏损收窄（28.79%→33.11%），毛利率 54%（高毛利软件）。但"投入期"特征明显——研发费用前置，利润未兑现。数据来源：Wind get_stock_fundamentals，2026-08-15 拉取。</p>
+  </div>
+
+  <div class="card" id="logic">
+    <h2 class="section-title">二、改善逻辑：AI 基础设施的卖铲人</h2>
+    <div class="signal-list">
+      <div class="signal good"><strong>卡位：企业级 AI 基础设施。</strong>大数据平台 TDH + 分布式数据库 ArgoDB + AI 平台（LLMOps/MLOps）+ 知识平台 TKH，覆盖数据全生命周期，服务超 1600 家客户。</div>
+      <div class="signal good"><strong>边际改善：亏损收窄 + 营收加速。</strong>2026Q1 营收 +26%、亏损收窄 33%，是"投入期"向"收获期"过渡的信号。</div>
+      <div class="signal"><strong>生成式 AI 数据基础设施。</strong>2025 年被 IDC 评为中国面向生成式 AI 的数据基础设施领导者，是国产替代 + AI 双重受益标的。</div>
+    </div>
+    <div class="callout"><strong>逻辑本质：</strong>星环是"AI 数据基础设施卖铲人"，卡位稀缺，但商业模式决定它处于"投入期"（研发费用高、持续亏损）。负成本持仓让它成为你组合里"最不需要焦虑"的一只——但"不焦虑"不等于"该加仓"，因为 PB 17 倍已经把 AI 预期提前定价。</div>
+  </div>
+
+  <div class="card" id="tech">
+    <h2 class="section-title">三、技术面与资金面（8/14 收盘）</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="value green">+34.78%</div><div class="label">近20日涨跌</div><div class="detail">相对大盘+31.81%</div></div>
+      <div class="metric"><div class="value green">MACD金叉</div><div class="label">DIFF 3.03</div><div class="detail">DEA 0.11，零轴上方</div></div>
+      <div class="metric"><div class="value">74.96</div><div class="label">KDJ</div><div class="detail">偏高</div></div>
+      <div class="metric"><div class="value">68.80</div><div class="label">RSI</div><div class="detail">偏强</div></div>
+      <div class="metric"><div class="value">98.66</div><div class="label">20日线</div><div class="detail">现价在上方</div></div>
+      <div class="metric"><div class="value">111.77</div><div class="label">60日线</div><div class="detail">现价在上方，转强</div></div>
+      <div class="metric"><div class="value green">+4554万</div><div class="label">近5日主力净流入</div><div class="detail">当日+1249万</div></div>
+      <div class="metric"><div class="value">9.01亿</div><div class="label">融资余额</div><div class="detail">占流通市值6.63%</div></div>
+    </div>
+    <p class="table-note">形态：近 20 日 +34.78%、MACD 金叉、站上 60 日线，是 8 只持仓里短线最强势的之一；融资余额 9.01 亿（8/13 净买入 6872 万）显示杠杆资金回流。但 KDJ 74.96 偏高，短线有回踩需求。注意：股东户数 3 月末曾暴增 63%，筹码分散是隐忧。</p>
+  </div>
+
+  <div class="card" id="risk">
+    <h2 class="section-title">四、核心风险与反一致预期</h2>
+    <div class="signal-list">
+      <div class="signal red"><strong>风险一：估值透支。</strong>PB 17 倍、PS 约 30 倍（138 亿市值 vs 4.5 亿营收），持续亏损，定价的是"AI 放量"的远期期权。</div>
+      <div class="signal warn"><strong>风险二：筹码分散。</strong>股东户数 3 月末暴增 63%（12184→19866 户），广发系公募一季度退出前十、北向新进——机构在换手，散户在接盘。</div>
+      <div class="signal warn"><strong>风险三：持续亏损的现金流压力。</strong>2026Q1 经营现金流 -5932 万，亏损未见止血，若中报营收增速放缓，估值支撑会松动。</div>
+      <div class="signal good"><strong>反一致预期（支撑点）：</strong>你成本 -59.88 元（负成本）、浮盈 +371 万，安全垫厚到可以"让 AI 逻辑慢慢兑现"。这是"投入期"标的的正确持有姿势——不因短期波动焦虑，也不在高估时加仓。</div>
+    </div>
+  </div>
+
+  <div class="card" id="scenario">
+    <h2 class="section-title">五、三级情景与操作</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">情景</th><th class="txt">触发条件</th><th class="num">目标</th><th class="txt">操作</th></tr></thead>
+        <tbody>
+          <tr><td class="txt"><strong>乐观(30%)</strong></td><td class="txt">中报营收 +25% 以上 + AI 订单落地</td><td class="num green">130-150元</td><td class="txt">持有</td></tr>
+          <tr><td class="txt"><strong>中性(45%)</strong></td><td class="txt">营收增速维持，亏损继续收窄</td><td class="num">100-120元</td><td class="txt">底仓持有</td></tr>
+          <tr><td class="txt"><strong>悲观(25%)</strong></td><td class="txt">中报营收增速下滑 + AI 退潮</td><td class="num red">90-100元</td><td class="txt">跌破97.37重估</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="action-grid">
+      <div class="action"><div class="num">底仓 2158 股</div><h4>负成本持有</h4><p>成本 -59.88 元，浮盈 +371 万，逻辑未破长持，不焦虑。</p></div>
+      <div class="action"><div class="num">预警线</div><h4>97.37</h4><p>跌破 20 日线（98.66）或 97.37 重新评估，但负成本不必恐慌。</p></div>
+      <div class="action"><div class="num">加仓</div><h4>绝不动</h4><p>PB 17 倍 + 持续亏损，此位置加仓是把安全垫摊薄。</p></div>
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">六、数据溯源与版本</h2>
+    <p class="small">行情/技术/财务：Wind（get_stock_price_indicators / get_stock_fundamentals / get_stock_technicals），2026-08-15 拉取，时点 8/14 收盘。舆情：Wind 财经新闻（8/13 融资净买入、8/12 融资数据）。<br>版本：V2.1（2026-08-15 重跑，PandaData 已断改用 Wind）。版式：V1 紫色版。数据置信度：财务★★★、AI 卡位★★★、中报兑现★★☆。</p>
+  </div>
+
+  <div class="footer">数据来源：Wind/万得、公开市场信息 · 仅供参考，不构成投资建议 · 市场有风险，投资需谨慎</div>
+</div>
+</body>
+</html>

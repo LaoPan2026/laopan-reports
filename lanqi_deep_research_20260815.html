@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澜起科技深度研报：内存接口全球龙头，CXL生态重构与韩国调查的博弈</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.name,td.name{white-space:nowrap;word-break:keep-all;text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.verdict{border-left:3px solid var(--red);background:#fff5f5;padding:14px 16px;border-radius:0 7px 7px 0;margin:12px 0}
+.verdict strong{color:var(--red)}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:10px}
+.action{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.action .num{font-size:12.5px;color:var(--purple);font-weight:800;margin-bottom:4px}
+.action h4{font-size:15px;margin-bottom:5px;color:var(--text)}
+.action p{font-size:14px;color:var(--muted);margin:0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.action-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.1 · 2026-08-15</span>
+    <h1>澜起科技（688008.SH）：内存接口全球龙头，CXL 生态重构与韩国调查的博弈</h1>
+    <p>基本面最扎实的持仓：DDR5 迭代 + CXL 生态重构双轮驱动。但 7/15 韩国反垄断突袭调查 + 韩国客户依赖 50%+，是新出现的悬顶之剑，必须重点盯防。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#verdict">结论</a><a href="#profile">公司画像</a><a href="#engine">三大引擎</a><a href="#tech">技术资金</a><a href="#risk">风险反证</a><a href="#scenario">三情景</a><a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="verdict">
+    <div class="summary">
+      <strong>一句话结论：</strong>澜起科技是内存接口芯片全球第一（36.8% 份额），2025 营收 54.56 亿（+49.9%）、归母 22.36 亿（+58.8%）、毛利率 70%，基本面是 8 只持仓里最扎实的"卖铲人"。但 <strong>7/15 韩国反垄断突袭调查（价格操纵嫌疑）+ 韩国客户占收入 50%+</strong> 是新出现的实质风险，叠加 8/14 主力单日净流出 5.52 亿。综合评分 <strong class="purple">8.5/10</strong>：底仓坚定持有，但短期资金面转弱需警惕，韩国调查进展是唯一需要重新评估的信号。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">211.91</div><div class="label">现价(8/14)</div><div class="detail">+0.80%</div></div>
+      <div class="metric"><div class="value">2611.92亿</div><div class="label">总市值</div><div class="detail">52周区间88-332</div></div>
+      <div class="metric"><div class="value">101x</div><div class="label">PE(TTM)</div><div class="detail">成长股溢价</div></div>
+      <div class="metric"><div class="value">12.83x</div><div class="label">PB(LF)</div><div class="detail">轻资产</div></div>
+      <div class="metric"><div class="value">54.56亿</div><div class="label">2025营收</div><div class="detail green">+49.94%</div></div>
+      <div class="metric"><div class="value">22.36亿</div><div class="label">2025归母</div><div class="detail green">+58.84%</div></div>
+      <div class="metric"><div class="value">14.61亿</div><div class="label">2026Q1营收</div><div class="detail green">+19.51%</div></div>
+      <div class="metric"><div class="value">69.79%</div><div class="label">2026Q1毛利率</div><div class="detail green">环比提升</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="profile">
+    <h2 class="section-title">一、公司画像与财务速览</h2>
+    <p><strong>业务结构（Wind 档案）</strong>：内存接口芯片 <span class="tag blue">94.18%</span> + 津逮服务器平台 5.65%。董事长杨崇和，2019 年科创板首批上市。全球存储接口芯片市占率 <strong>36.8%，全球第一</strong>（弗若斯特沙利文，2024 口径），是 CPU 与存储器之间"信号连接与管理"的卖铲人。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">报告期</th><th class="num">营收</th><th class="num">同比</th><th class="num">归母净利</th><th class="num">同比</th><th class="num">毛利率</th></tr></thead>
+        <tbody>
+          <tr><td class="name">2025 全年</td><td class="num">54.56亿</td><td class="num green">+49.94%</td><td class="num">22.36亿</td><td class="num green">+58.84%</td><td class="num">62.23%</td></tr>
+          <tr><td class="name">2026 Q1</td><td class="num">14.61亿</td><td class="num green">+19.51%</td><td class="num">8.47亿</td><td class="num green">+64.72%</td><td class="num">69.79%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">关键特征：毛利率从 62% 升到 69.8%（产品结构升级），资产负债率仅 6.38%（典型轻资产 fabless），ROE 18.38%。2026Q1 营收增速放缓到 +19.5% 但净利增速 +64.7%——"量稳价升"的高质量增长。数据来源：Wind get_stock_fundamentals，2026-08-15 拉取。</p>
+  </div>
+
+  <div class="card" id="engine">
+    <h2 class="section-title">二、三大增长引擎</h2>
+    <div class="signal-list">
+      <div class="signal good"><strong>引擎一：DDR5 迭代量价齐升。</strong>第三/四代 RCD 出货占比已超 50%，第五代批量出货、第六代（9200MT/s）已送样，并启动 DDR6 第一代研发。花旗指出"新一代产品快速替代旧产品"，这是基本盘。</div>
+      <div class="signal good"><strong>引擎二：CXL 生态重构（历史性机遇）。</strong>2026/7/20 三星、SK 海力士、美光全面叫停 CXL 控制器自研，转向采购专业芯片公司。澜起 8/7 率先试产 CXL 3.2 MXC 芯片，已导入三星/SK 海力士下一代 CXL 产品。Yole 预测全球 CXL 市场 2026 年 21 亿美元 → 2028 年 160 亿美元。</div>
+      <div class="signal good"><strong>引擎三：AI 运力芯片第二曲线。</strong>MRCD/MDB（MRDIMM）、PCIe Retimer、CKD 收入显著攀升，PCIe 7.0 Retimer 与 Switch 计划 2026 流片。从"内存互联"向"全方位互联"拓展。</div>
+    </div>
+    <div class="callout"><strong>逻辑本质：</strong>澜起是 AI 服务器"卖铲人"的标配——无论 GPU/ASIC，DDR5 接口 + CXL 扩展都是刚需。云端算力 + 边缘 AI（如 LG 人形机器人 Jetson Thor 的 LPDDR5X 配套）双重扩张，成长天花板比单一下游更高。</div>
+  </div>
+
+  <div class="card" id="tech">
+    <h2 class="section-title">三、技术面与资金面（8/14 收盘）</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="value red">-9.14%</div><div class="label">近20日涨跌</div><div class="detail">相对大盘-12.10%</div></div>
+      <div class="metric"><div class="value">MACD金叉</div><div class="label">DIFF -7.86</div><div class="detail">DEA -9.97，零轴下方</div></div>
+      <div class="metric"><div class="value">59.57</div><div class="label">KDJ</div><div class="detail">中性</div></div>
+      <div class="metric"><div class="value">51.52</div><div class="label">RSI</div><div class="detail">中性</div></div>
+      <div class="metric"><div class="value">210.59</div><div class="label">20日线</div><div class="detail">现价在其上沿</div></div>
+      <div class="metric"><div class="value red">241.34</div><div class="label">60日线</div><div class="detail">现价在下方，中期弱</div></div>
+      <div class="metric"><div class="value red">-5.52亿</div><div class="label">当日主力净流入</div><div class="detail">红盘派发</div></div>
+      <div class="metric"><div class="value red">-14.45亿</div><div class="label">近5日主力净流入</div><div class="detail">持续流出</div></div>
+    </div>
+    <p class="table-note">形态：7/16 韩国调查引发暴跌后，股价在 200-215 区间震荡修复，现价回到 20 日线附近但仍在 60 日线（241）下方。MACD 零轴下金叉是企稳信号，但主力近 5 日净流出 14.45 亿、8/14 红盘派发 5.52 亿，是短期资金面的明确警示。</p>
+  </div>
+
+  <div class="card" id="risk">
+    <h2 class="section-title">四、核心风险与反一致预期</h2>
+    <div class="signal-list">
+      <div class="signal red"><strong>风险一（新增，最重）：韩国反垄断调查。</strong>7/15 韩国检方以价格操纵嫌疑突袭搜查澜起、瑞萨、Rambus 在韩办公室，7/16 港股暴跌 23%、A 股跌 16.44%。公司称合规经营、配合调查，但结果未明。</div>
+      <div class="signal warn"><strong>风险二：韩国客户依赖 50%+。</strong>2025 年 54.56 亿收入中，韩国客户 29.25 亿（占 50%+）。若调查导致三星/SK 海力士调整采购，是实质业绩冲击。</div>
+      <div class="signal warn"><strong>风险三：估值不便宜 + 资金派发。</strong>PE 101 倍，叠加近 5 日主力净流出 14.45 亿，短期情绪面偏弱。</div>
+      <div class="signal good"><strong>反一致预期（支撑点）：</strong>花旗 7/19 研报认为市场"过度关注短期扰动，低估长期产业升级"，维持买入、目标价 245 元（较现价 +33%）。2026Q2 业绩大超预期、利润创历史新高是基本面底牌。</div>
+    </div>
+  </div>
+
+  <div class="card" id="scenario">
+    <h2 class="section-title">五、三级情景与操作</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">情景</th><th class="txt">触发条件</th><th class="num">目标</th><th class="txt">操作</th></tr></thead>
+        <tbody>
+          <tr><td class="txt"><strong>乐观(35%)</strong></td><td class="txt">韩国调查无事 + CXL 放量 + 中报超预期</td><td class="num green">240-260元</td><td class="txt">持有，可小幅加</td></tr>
+          <tr><td class="txt"><strong>中性(45%)</strong></td><td class="txt">调查悬而未决，DDR5 稳步放量</td><td class="num">205-230元</td><td class="txt">底仓持有不动</td></tr>
+          <tr><td class="txt"><strong>悲观(20%)</strong></td><td class="txt">调查处罚落地 + 韩国客户砍单</td><td class="num red">180-195元</td><td class="txt">跌破190重新评估</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="action-grid">
+      <div class="action"><div class="num">底仓 1239 股</div><h4>坚定持有</h4><p>内存接口全球第一，基本面最扎实，逻辑未破不动。</p></div>
+      <div class="action"><div class="num">资金面</div><h4>警惕派发</h4><p>主力近 5 日净流出 14.45 亿，红盘派发，不追高。</p></div>
+      <div class="action"><div class="num">唯一生死线</div><h4>韩国调查</h4><p>调查结论 + 三星/SK 海力士采购是否调整，是唯一需重估的信号。</p></div>
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">六、数据溯源与版本</h2>
+    <p class="small">行情/技术/财务：Wind（get_stock_price_indicators / get_stock_fundamentals / get_stock_technicals），2026-08-15 拉取，时点 8/14 收盘。舆情：Wind 财经新闻（8/7 CXL 3.2 MXC 试产、7/20 三大存储厂叫停 CXL 自研、7/16 韩国调查、7/21 花旗研报）。<br>版本：V2.1（2026-08-15 重跑，新增韩国反垄断调查风险）。版式：V1 紫色版。数据置信度：财务★★★、CXL 生态★★★、韩国调查进展★★☆。</p>
+  </div>
+
+  <div class="footer">数据来源：Wind/万得、公开市场信息 · 仅供参考，不构成投资建议 · 市场有风险，投资需谨慎</div>
+</div>
+</body>
+</html>

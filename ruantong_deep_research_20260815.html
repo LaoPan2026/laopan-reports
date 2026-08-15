@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软通动力深度研报：华为生态核心，但盈利质量是硬伤</title>
+<style>
+:root{--bg:#f2f3fb;--panel:#fff;--text:#182033;--muted:#667085;--line:#e3e5f0;--purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;--red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;--shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.3;margin-bottom:10px}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:16px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:20px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:11px 13px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.name,td.name{white-space:nowrap;word-break:keep-all;text-align:left}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}.tag.blue{color:#2b5fb3;background:#e8f0ff}
+.red{color:var(--red);font-weight:700}.green{color:var(--green);font-weight:700}.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:10px}
+.action{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.action .num{font-size:12.5px;color:var(--purple);font-weight:800;margin-bottom:4px}
+.action h4{font-size:15px;margin-bottom:5px;color:var(--text)}
+.action p{font-size:14px;color:var(--muted);margin:0}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.action-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.1 · 2026-08-15</span>
+    <h1>软通动力（301236.SZ）：华为生态核心，但盈利质量是硬伤</h1>
+    <p>华为云深度绑定（天璇 AgentOS、AIPL 基线伙伴），成长叙事很足；但 2026Q1 转亏 -3.5 亿、经营现金流 -34.42 亿，是"增收不增利 + 现金流恶化"的典型。</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#verdict">结论</a><a href="#profile">公司画像</a><a href="#logic">生态逻辑</a><a href="#tech">技术资金</a><a href="#risk">风险反证</a><a href="#scenario">三情景</a><a href="#source">数据溯源</a>
+  </nav>
+
+  <div class="card" id="verdict">
+    <div class="summary">
+      <strong>一句话结论：</strong>软通动力是华为生态最核心的软件集成商（天璇 AgentOS、连续 5 季领跑华为云总经销商），AI 生态叙事充分。但 <strong>盈利质量是硬伤——2025 净利率仅 0.51%，2026Q1 转亏 -3.5 亿，经营现金流 -34.42 亿</strong>，是典型的"增收不增利 + 现金流失血"。综合评分 <strong class="purple">5.5/10</strong>：负成本持仓可持有，但这不是一只"靠利润说话"的票，是"靠华为生态预期"的票。
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">39.02</div><div class="label">现价(8/14)</div><div class="detail red">-0.89%</div></div>
+      <div class="metric"><div class="value">403.93亿</div><div class="label">总市值</div><div class="detail">52周区间32.8-65.4</div></div>
+      <div class="metric"><div class="value red">749x</div><div class="label">PE(TTM)</div><div class="detail">利润极薄</div></div>
+      <div class="metric"><div class="value">3.04x</div><div class="label">PB(LF)</div><div class="detail">偏高</div></div>
+      <div class="metric"><div class="value">350.90亿</div><div class="label">2025营收</div><div class="detail green">+12.05%</div></div>
+      <div class="metric"><div class="value">0.51%</div><div class="label">2025净利率</div><div class="detail red">极薄</div></div>
+      <div class="metric"><div class="value red">-3.50亿</div><div class="label">2026Q1归母</div><div class="detail red">转亏-67%</div></div>
+      <div class="metric"><div class="value red">-34.42亿</div><div class="label">2026Q1经营现金流</div><div class="detail">大幅失血</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="profile">
+    <h2 class="section-title">一、公司画像与财务速览</h2>
+    <p><strong>业务结构（Wind 档案）</strong>：软件与数字技术服务 <span class="tag blue">54.03%</span> + 计算产品与智能电子 45.05%。董事长刘天文，2022 年创业板上市。华为生态核心伙伴（鸿蒙、鲲鹏、盘古大模型首批合作伙伴）。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="name">报告期</th><th class="num">营收</th><th class="num">同比</th><th class="num">归母净利</th><th class="num">净利率</th><th class="num">经营现金流</th></tr></thead>
+        <tbody>
+          <tr><td class="name">2025 全年</td><td class="num">350.90亿</td><td class="num green">+12.05%</td><td class="num">2.06亿</td><td class="num red">0.51%</td><td class="num red">-2.42亿</td></tr>
+          <tr><td class="name">2026 Q1</td><td class="num">81.17亿</td><td class="num green">+15.79%</td><td class="num red">-3.50亿</td><td class="num red">-4.57%</td><td class="num red">-34.42亿</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">核心矛盾：营收持续增长（350 亿→81 亿/季），但净利率只有 0.5%，2026Q1 直接转亏，经营现金流 -34.42 亿（应收账款/存货占用）。这是"规模很大、利润很薄、现金失血"的集成商典型。数据来源：Wind get_stock_fundamentals，2026-08-15 拉取。</p>
+  </div>
+
+  <div class="card" id="logic">
+    <h2 class="section-title">二、生态逻辑：华为 AI 的核心棋子</h2>
+    <div class="signal-list">
+      <div class="signal good"><strong>华为云深度绑定。</strong>连续 5 个季度领跑华为云全国型总经销商商业市场，基于华为云 openJiuwen 打造软通天璇 AgentOS（企业级智能体操作系统），是华为 Agentic AI 落地的核心载体。</div>
+      <div class="signal good"><strong>AIPL 基线伙伴 + 盘古/昇腾首批。</strong>8/7 加入华为 AIPL 基线伙伴计划，是盘古大模型首批合作伙伴、昇腾 AI 大模型联合创新伙伴。</div>
+      <div class="signal"><strong>全栈智能战略。</strong>"软硬一体、全栈智能"，从算力底座（鲲鹏/昇腾）到智能体应用全链路布局。</div>
+    </div>
+    <div class="callout"><strong>逻辑本质：</strong>软通的价值不在当期利润（几乎不赚钱），而在"华为 AI 生态的稀缺卡位"——它是华为把 AI 技术落到千行百业的关键集成商。但集成商模式的天花板是"规模大、利润薄、现金流差"，这是商业模式决定的，不是经营能力问题。</div>
+  </div>
+
+  <div class="card" id="tech">
+    <h2 class="section-title">三、技术面与资金面（8/14 收盘）</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="value green">+11.49%</div><div class="label">近20日涨跌</div><div class="detail">相对大盘+8.52%</div></div>
+      <div class="metric"><div class="value green">MACD金叉</div><div class="label">DIFF 0.29</div><div class="detail">DEA 0.10，零轴上方</div></div>
+      <div class="metric"><div class="value">46.75</div><div class="label">KDJ</div><div class="detail">中性</div></div>
+      <div class="metric"><div class="value">43.04</div><div class="label">RSI</div><div class="detail">中性</div></div>
+      <div class="metric"><div class="value">38.53</div><div class="label">20日线</div><div class="detail">现价在上方</div></div>
+      <div class="metric"><div class="value">39.53</div><div class="label">60日线</div><div class="detail">现价贴近，争夺</div></div>
+      <div class="metric"><div class="value red">-2.86亿</div><div class="label">近5日主力净流入</div><div class="detail">当日-5836万</div></div>
+      <div class="metric"><div class="value">43.56</div><div class="label">布林上轨</div><div class="detail">下轨34.21</div></div>
+    </div>
+    <p class="table-note">形态：MACD 零轴上方金叉 + 站上 20 日线，中期偏多；但主力近 5 日净流出 2.86 亿，现价在 60 日线（39.53）附近反复争夺，方向未明。</p>
+  </div>
+
+  <div class="card" id="risk">
+    <h2 class="section-title">四、核心风险与反一致预期</h2>
+    <div class="signal-list">
+      <div class="signal red"><strong>风险一：盈利质量差 + 现金流失血。</strong>净利率 0.5%、2026Q1 转亏、经营现金流 -34.42 亿——这是集成商模式的硬伤，规模越大现金流压力越大。</div>
+      <div class="signal warn"><strong>风险二：华为依赖 + 限售解禁。</strong>深度绑定华为是双刃剑，且概念标签里有"限售解禁/即将解禁/减持/股票质押"，供给端有压力。</div>
+      <div class="signal warn"><strong>风险三：估值贵。</strong>PE 749 倍、PB 3 倍，定价的是"华为 AI 生态预期"而非当期利润，情绪退潮时回撤大。</div>
+      <div class="signal good"><strong>反一致预期（支撑点）：</strong>你成本 7.36 元、浮盈 +430%，是负成本级持仓（安全垫极厚）。华为 Agentic AI 从"技术"走向"商业变现"若能兑现，集成商逻辑会重估。</div>
+    </div>
+  </div>
+
+  <div class="card" id="scenario">
+    <h2 class="section-title">五、三级情景与操作</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="txt">情景</th><th class="txt">触发条件</th><th class="num">目标</th><th class="txt">操作</th></tr></thead>
+        <tbody>
+          <tr><td class="txt"><strong>乐观(30%)</strong></td><td class="txt">华为 Agentic AI 商业化兑现</td><td class="num green">45-50元</td><td class="txt">持有</td></tr>
+          <tr><td class="txt"><strong>中性(45%)</strong></td><td class="txt">生态叙事维持，业绩平淡</td><td class="num">37-42元</td><td class="txt">底仓持有</td></tr>
+          <tr><td class="txt"><strong>悲观(25%)</strong></td><td class="txt">华为链情绪退潮 + 解禁压力</td><td class="num red">33-36元</td><td class="txt">破38.45锁盈</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="action-grid">
+      <div class="action"><div class="num">底仓 5000 股</div><h4>负成本持有</h4><p>成本 7.36 元，安全垫极厚，逻辑未破可长持。</p></div>
+      <div class="action"><div class="num">预警线</div><h4>38.45</h4><p>破 38.45（20日线附近）锁盈，保住浮盈。</p></div>
+      <div class="action"><div class="num">加仓</div><h4>不建议</h4><p>盈利质量差 + 主力流出，无加仓理由。</p></div>
+    </div>
+  </div>
+
+  <div class="card" id="source">
+    <h2 class="section-title">六、数据溯源与版本</h2>
+    <p class="small">行情/技术/财务：Wind（get_stock_price_indicators / get_stock_fundamentals / get_stock_technicals），2026-08-15 拉取，时点 8/14 收盘。舆情：Wind 财经新闻（7/27 天璇 AgentOS、8/12 AIPL 基线伙伴）。<br>版本：V2.1（2026-08-15 重跑）。版式：V1 紫色版。数据置信度：财务★★★、华为生态★★★、商业化兑现★★☆。</p>
+  </div>
+
+  <div class="footer">数据来源：Wind/万得、公开市场信息 · 仅供参考，不构成投资建议 · 市场有风险，投资需谨慎</div>
+</div>
+</body>
+</html>
