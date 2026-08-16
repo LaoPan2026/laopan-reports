@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>央企科技重组票池研判：谁最可能走出"重组大牛"？（2026-08-16）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.25;margin-bottom:10px;letter-spacing:0}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:15px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:22px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .value.red{color:var(--red)}
+.metric .value.green{color:var(--green)}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:10px 12px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:10px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+table.f5t{table-layout:fixed}
+table.f5t th:nth-child(1),table.f5t td:nth-child(1){width:15%;text-align:left}
+table.f5t th:nth-child(2),table.f5t td:nth-child(2){width:11%;text-align:left}
+table.f5t th:nth-child(3),table.f5t td:nth-child(3){width:40%;text-align:left}
+table.f5t th:nth-child(4),table.f5t td:nth-child(4){width:14%;text-align:center}
+table.f5t th:nth-child(5),table.f5t td:nth-child(5){width:20%;text-align:left}
+table.f3t{table-layout:fixed}
+table.f3t th:nth-child(1),table.f3t td:nth-child(1){width:20%;text-align:left}
+table.f3t th:nth-child(2),table.f3t td:nth-child(2){width:40%;text-align:left}
+table.f3t th:nth-child(3),table.f3t td:nth-child(3){width:40%;text-align:left}
+table.f3d{table-layout:fixed}
+table.f3d th:nth-child(1),table.f3d td:nth-child(1){width:34%;text-align:left}
+table.f3d th:nth-child(2),table.f3d td:nth-child(2){width:38%;text-align:left}
+table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:28%;text-align:left}
+.name,.code,.tag{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.name{font-weight:600}
+.code{color:var(--muted);font-size:12px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.purple{color:var(--purple);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.danger{border-left:3px solid var(--red);background:#fff6f6;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:12px}
+.quad{border:1px solid var(--line);border-radius:9px;padding:14px 15px;background:#fff}
+.quad h4{font-size:14.5px;margin-bottom:5px;color:var(--text)}
+.quad .qx{font-size:12px;color:var(--muted);margin-bottom:6px}
+.quad p{font-size:13px;color:var(--muted);margin:0}
+.quad.hot{border:2px solid var(--purple);background:var(--purple-soft)}
+.quad.hot h4{color:var(--purple-deep)}
+.quad.danger{border:2px solid var(--red);background:#fff6f6}
+.quad.danger h4{color:var(--red)}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px;line-height:1.7}
+.verdict{display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#f0eaff,#fbf9ff);border:1px solid #ddd2ff;border-radius:10px;padding:16px 18px;margin:12px 0}
+.verdict .vbadge{flex:0 0 auto;background:var(--purple);color:#fff;font-size:13px;font-weight:800;border-radius:6px;padding:6px 11px;white-space:nowrap}
+.verdict p{font-size:14.5px;margin:0;color:#3b3760}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.quad-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}.verdict{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">主题投研 · 央企并购重组 · 2026-08-16</span>
+    <h1>央企科技重组票池研判：9 只候选，谁最可能走出"重组大牛"？</h1>
+    <p>票池透视：9 只候选中 7 只为"中国电子 CEC + 中国电科 CETC + 中国信科 + 中科院系"央企科技平台 ｜ 首选电科网安（002268），赔率高但属"画饼期" ｜ 警惕中国长城（000066）"认知差"陷阱</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#summary">核心结论</a>
+    <a href="#pool">票池透视</a>
+    <a href="#compare">候选对比</a>
+    <a href="#pick">首选解析</a>
+    <a href="#alt">备选与证伪</a>
+    <a href="#risk">风险提醒</a>
+    <a href="#style">打法区分</a>
+    <a href="#source">数据溯源</a>
+  </nav>
+
+  <!-- 01 核心结论 -->
+  <div class="card" id="summary">
+    <div class="summary">
+      <strong>一句话结论：</strong>这张名单不是随机组合，本质是一个<strong>"央企科技重组"主题票池</strong>。在 9 只候选里，<strong>最有"重组大牛相"的是电科网安（002268）</strong>——集团证券化率差距最大、网安唯一整合平台、管理层已现换血前置信号；但它当前是<strong>亏损 + 无正式预案的"画饼期"标的</strong>，属高赔率、高胜率不确定的博弈。若追求确定性，深桑达A（000032）已有交叉持股实锤；而题材最正的中国长城（000066）已被官方否认重组，是最大的认知差陷阱。
+    </div>
+    <div class="verdict">
+      <div class="vbadge">首选研判</div>
+      <p><strong>电科网安（002268）</strong>= 爆发力/赔率最高的重组预期标的；<strong>深桑达A（000032）</strong>= 确定性更高的温和备选。二者分别对应"事件驱动"与"实锤渐进"两种打法，须用不同纪律对待，<strong>不可用做业绩兑现股的耐心去拿画饼期重组票</strong>。</p>
+    </div>
+  </div>
+
+  <!-- 02 票池透视 -->
+  <div class="card" id="pool">
+    <h2 class="section-title">票池透视：一张"央企科技重组"主题名单</h2>
+    <p>9 只标的并非随机，而是高度集中于四大央企科技系。当前正处"央企并购重组 + 信创/算力/数据要素国产化"的政策风口，这是理解整张名单的总钥匙。</p>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">9 只</div><div class="label">候选标的</div><div class="detail">老潘提供的研报名单</div></div>
+      <div class="metric"><div class="value">7 家</div><div class="label">央企科技系</div><div class="detail">CEC / CETC / 信科 / 中科院</div></div>
+      <div class="metric"><div class="value">3 大</div><div class="label">政策风口</div><div class="detail">信创 · 算力 · 数据要素</div></div>
+      <div class="metric"><div class="value green">33→80%</div><div class="label">CETC 证券化空间</div><div class="detail">现状约33%→十五五目标80%</div></div>
+    </div>
+    <div class="callout">
+      <strong>关键背景（政策面）：</strong>国务院国资委持续推动央企战略性专业化重组整合，2026 年 3 月发布《关于推动国有企业并购重组的指导意见》并建立容错免责机制。中国电科（CETC）当前资产证券化率仅约 <strong>33%-35%</strong>，距"十五五"80% 目标差距巨大，是 2026 年资产注入预期最密集的央企之一。<span class="source">（来源：公开政策文件及券商研报，截至 2026-08，证券化率为研报口径，需核实）</span>
+    </div>
+  </div>
+
+  <!-- 03 候选对比 -->
+  <div class="card" id="compare">
+    <h2 class="section-title">候选对比：按重组证据链强弱排序</h2>
+    <p>按"重组潜力从强到弱、从候选到排除"排序。<strong>阶段</strong>一栏套用"投入期 / 画饼期"框架：<span class="tag green">投入期</span>=已有实锤动作；<span class="tag orange">画饼期</span>=仅有预期、无硬证据链；<span class="tag red">证伪/排除</span>=官方否认或主题不搭。</p>
+    <div class="table-wrap">
+    <table class="f5t">
+      <tr><th>标的（代码）</th><th>央企系</th><th>重组证据链（最新进展）</th><th>阶段</th><th>赔率 / 胜率判断</th></tr>
+      <tr>
+        <td><span class="name">电科网安</span> <span class="code">002268</span></td>
+        <td>中国电科</td>
+        <td>网安唯一整合平台；2026/2 管理层换血（30所体系进驻）；集团证券化率仅约33%</td>
+        <td><span class="tag orange">画饼期</span></td>
+        <td><span class="purple">赔率高 · 胜率中（首选）</span></td>
+      </tr>
+      <tr>
+        <td><span class="name">深桑达A</span> <span class="code">000032</span></td>
+        <td>中国电子</td>
+        <td>CETC 交叉持股 2025/12/31 已过户（持3.01%）；中国电子云增资评估约59亿；数据要素平台</td>
+        <td><span class="tag green">投入期偏实</span></td>
+        <td>确定性较高（备选）</td>
+      </tr>
+      <tr>
+        <td><span class="name">中电港</span> <span class="code">001287</span></td>
+        <td>中国电子</td>
+        <td>次新元器件分销平台；目前无明确资产注入预案</td>
+        <td><span class="tag orange">画饼期</span></td>
+        <td>中低</td>
+      </tr>
+      <tr>
+        <td><span class="name">东方中科</span> <span class="code">002819</span></td>
+        <td>中科院</td>
+        <td>测试测量小平台；无明确注入预案</td>
+        <td><span class="tag orange">画饼期</span></td>
+        <td>中低</td>
+      </tr>
+      <tr>
+        <td><span class="name">烽火通信</span> <span class="code">600498</span></td>
+        <td>中国信科</td>
+        <td>光通信设备主业；体量大、重组弹性小</td>
+        <td>—</td>
+        <td>低</td>
+      </tr>
+      <tr>
+        <td><span class="name">中国长城</span> <span class="code">000066</span></td>
+        <td>中国电子</td>
+        <td>2026/5 官方明确澄清"实控人及控股股东未筹划重组"</td>
+        <td><span class="tag red">短期证伪</span></td>
+        <td>排除</td>
+      </tr>
+      <tr>
+        <td><span class="name">太极集团</span> <span class="code">600129</span></td>
+        <td>国药系</td>
+        <td>中药主业（藿香正气等）；与科技重组主题不搭（注意：非信创的"太极股份002368"）</td>
+        <td><span class="tag red">主题不搭</span></td>
+        <td>排除</td>
+      </tr>
+      <tr>
+        <td><span class="name">中国移动</span> <span class="code">600941</span></td>
+        <td>运营商</td>
+        <td>体量近万亿，重组弹性极小</td>
+        <td>—</td>
+        <td>排除</td>
+      </tr>
+      <tr>
+        <td><span class="name">中国联通</span> <span class="code">600050</span></td>
+        <td>运营商</td>
+        <td>体量大，重组弹性极小</td>
+        <td>—</td>
+        <td>排除</td>
+      </tr>
+    </table>
+    </div>
+    <p class="table-note">注：标的按"重组潜力从强到弱、候选到排除"排序。"阶段"为投入期/画饼期框架判定。证据链中"已落地"项（深桑达交叉持股、中国长城澄清）为公司公告口径；"注入预期/证券化率"为券商研报及市场预期口径，需以公司正式公告为准。</p>
+  </div>
+
+  <!-- 04 首选解析 -->
+  <div class="card" id="pick">
+    <h2 class="section-title">首选解析：电科网安（002268）三条硬逻辑</h2>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">~33%</div><div class="label">CETC 证券化率现状</div><div class="detail">军工央企中偏低</div></div>
+      <div class="metric"><div class="value green">80%</div><div class="label">十五五证券化目标</div><div class="detail">注入空间巨大</div></div>
+      <div class="metric"><div class="value">~3000亿</div><div class="label">集团网安资产规模</div><div class="detail">市场预期口径</div></div>
+      <div class="metric"><div class="value red">-2.14亿</div><div class="label">2025前三季净利</div><div class="detail">亏损·画饼期风险</div></div>
+    </div>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>① 集团证券化率差距最大</strong>
+        <p>中国电科当前资产证券化率仅约 33%-35%，而"十五五"目标 80%，差距在所有央企中最大，2026 年资产注入预期最密集。</p>
+      </div>
+      <div class="signal good">
+        <strong>② 定位最清晰——网安唯一整合平台</strong>
+        <p>被明确为 CETC 网络安全板块唯一整合平台，市场预期分批注入 30所 / 33所 / 网安研究院等资产（合计年收入 50亿+、净利 8亿+，集团网安资产总盘子约 3000 亿）。"唯一平台 + 大集团小上市"是重组大牛的经典配方。</p>
+      </div>
+      <div class="signal warn">
+        <strong>③ 已现前置信号——管理层换血</strong>
+        <p>2026 年 2 月管理层大换血，30 所体系高管（童炜等）进驻，市场普遍解读为资产注入的人事前置动作。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 备选与证伪 -->
+  <div class="card" id="alt">
+    <h2 class="section-title">备选与证伪：两种确定性，两种结局</h2>
+    <div class="quad-grid">
+      <div class="quad hot">
+        <h4>深桑达A（000032）· 确定性备选</h4>
+        <div class="qx">中国电子 CEC 系 · 云数 / 数据要素平台</div>
+        <p><strong>已有实锤动作：</strong>与中国电科交叉持股已于 2025/12/31 完成过户（CETC 合计持股 3.01%，公司公告 2026/1/6）；2026/6 对中国电子云增资（评估约 59.26 亿元）。逻辑是"渐进式整合"（增资 + 剥离非核心 + 协同），比电科网安的"一次性大注入"更温和、更实，但爆发力可能不及。</p>
+      </div>
+      <div class="quad danger">
+        <h4>中国长城（000066）· 认知差陷阱</h4>
+        <div class="qx">中国电子 CEC 系 · 信创核心（飞腾CPU+麒麟OS）</div>
+        <p><strong>题材最正，官方却已否认：</strong>2026 年 5 月公司公告明确澄清"实际控制人中国电子、控股股东中电有限未筹划关于公司的资产重组、收购、发行股份等重大事项"。这是最大的认知差——<strong>题材越正、散户越盼，集团越不动</strong>。</p>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>参照系——什么叫"已落地的重组"：</strong>中国电科十三所平台中瓷电子（003031，不在本名单）2026/4/29 公告以 3.98 亿元收购雄安太芯电子 100% 股权，2026/6/16 已实施完成并设置 2026-2028 业绩对赌。那才是"投入期"实锤重组的样子——<strong>电科网安离这一步，还差一份正式重组预案</strong>。
+    </div>
+  </div>
+
+  <!-- 06 风险提醒 -->
+  <div class="card" id="risk">
+    <h2 class="section-title">风险提醒：三条必须讲清楚的"冷水"</h2>
+    <div class="danger">
+      <strong>① "画饼期"陷阱——恰好踩中硬证据链红线。</strong>电科网安 2025 前三季亏损 2.14 亿、无正式重组预案，所有注入仍停留在"预期"，没有"订单→营收→利润"的硬证据链。重组预期恰恰最难用硬证据证明，这是高赔率博弈，不是业绩兑现的路子。
+    </div>
+    <div class="warning">
+      <strong>② 认知差——真正的预期在冷门处。</strong>市场最期待的信创龙头（中国长城）官方已否认，真正的重组预期集中在相对冷门的中国电科系（电科网安）。不要用"题材正不正"来判断重组概率。
+    </div>
+    <div class="warning">
+      <strong>③ 落地与否存重大不确定性。</strong>涉军涉密资产（30所、33所等）注入需剥离非核心资产并穿透式审批，实际推进可能大幅延迟甚至变卦。截至 2026-08，除个别标的（如中瓷电子）外，多数"资产注入"仍无正式预案/时间表。
+    </div>
+  </div>
+
+  <!-- 07 打法区分 -->
+  <div class="card" id="style">
+    <h2 class="section-title">打法区分：主题市 ≠ 业绩市，别用错纪律</h2>
+    <p>这张重组票池是"事件驱动 / 主题市"，和持仓的"景气成长 / 业绩市"（汇绿、泰和、罗博等）是两套打法、两套纪律，切不可混用。</p>
+    <div class="table-wrap">
+    <table class="f3t">
+      <tr><th>维度</th><th>主题市（央企重组）</th><th>业绩市（景气成长）</th></tr>
+      <tr><td>核心驱动</td><td>政策催化 + 资产注入预期</td><td>业绩兑现（订单→营收→利润）</td></tr>
+      <tr><td>证据链</td><td>难证伪也难证实（易陷画饼）</td><td>硬证据链可逐季验证</td></tr>
+      <tr><td>仓位纪律</td><td>观察仓 + 严格止损</td><td>底仓 + 波段仓位调节</td></tr>
+      <tr><td>持仓心态</td><td>事件驱动、讲时效、见好就收</td><td>逻辑驱动、看长做长、容忍回撤</td></tr>
+      <tr><td>代表标的</td><td>电科网安等央企重组平台</td><td>汇绿生态 / 泰和新材 / 罗博特科</td></tr>
+    </table>
+    </div>
+    <p class="table-note">核心提醒：别用做业绩兑现股的耐心去拿画饼期重组票，也别用赌重组的心态去给业绩股定价。</p>
+  </div>
+
+  <!-- 08 数据溯源 -->
+  <div class="card" id="source">
+    <h2 class="section-title">数据溯源与免责声明</h2>
+    <div class="table-wrap">
+    <table class="f3d">
+      <tr><th>关键数据</th><th>来源 / 时点</th><th>来源分级</th></tr>
+      <tr><td>深桑达A交叉持股落地（CETC持3.01%）</td><td>公司公告 · 2026-01-06</td><td>一手（公司公告）</td></tr>
+      <tr><td>中国长城澄清未筹划重组</td><td>公司公告 · 2026-05</td><td>一手（公司公告）</td></tr>
+      <tr><td>中瓷电子收购雄安太芯完成</td><td>公司公告 · 2026-04-29 / 2026-06-16</td><td>一手（公司公告）</td></tr>
+      <tr><td>电科网安2025前三季亏2.14亿、2026/2管理层换血</td><td>公司财报 / 公告 · 2025Q3 / 2026-02</td><td>一手（财报/公告）</td></tr>
+      <tr><td>CETC证券化率约33-35%、网安资产约3000亿、注入清单</td><td>券商研报 / 市场预期 · 2026-08</td><td>非一手（需核实原文）</td></tr>
+      <tr><td>央企并购重组政策（2026/3指导意见等）</td><td>国务院国资委 · 2026</td><td>一手（政策文件）</td></tr>
+    </table>
+    </div>
+    <p class="source">说明：本报告基于截至 2026-08-16 的公开信息整理。凡标注"预期 / 需核实"的内容均为券商研报或市场预期口径，未经公司正式公告证实，存在重大不确定性；具体请以各公司公告及交易所披露为准。</p>
+  </div>
+
+  <div class="footer">
+    <strong>免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。<br>
+    报告类型：主题投研 · 央企并购重组专题 ｜ 2026-08-16
+  </div>
+</div>
+</body>
+</html>
