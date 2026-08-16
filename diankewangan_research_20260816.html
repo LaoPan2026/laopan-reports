@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电科网安(002268)深度研报：网安唯一平台的证券化期权（2026-08-16）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.25;margin-bottom:10px;letter-spacing:0}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:15px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:22px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .value.red{color:var(--red)}
+.metric .value.green{color:var(--green)}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:10px 12px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:10px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+table.f3t{table-layout:fixed}
+table.f3t th:nth-child(1),table.f3t td:nth-child(1){width:20%;text-align:left}
+table.f3t th:nth-child(2),table.f3t td:nth-child(2){width:40%;text-align:left}
+table.f3t th:nth-child(3),table.f3t td:nth-child(3){width:40%;text-align:left}
+table.f4r{table-layout:fixed}
+table.f4r th:nth-child(1),table.f4r td:nth-child(1){width:16%;text-align:left}
+table.f4r th:nth-child(2),table.f4r td:nth-child(2){width:28%;text-align:left}
+table.f4r th:nth-child(3),table.f4r td:nth-child(3){width:28%;text-align:left}
+table.f4r th:nth-child(4),table.f4r td:nth-child(4){width:28%;text-align:left}
+table.f4q{table-layout:fixed}
+table.f4q th:nth-child(1),table.f4q td:nth-child(1){width:18%;text-align:left}
+table.f4q th:nth-child(2),table.f4q td:nth-child(2){width:14%;text-align:right}
+table.f4q th:nth-child(3),table.f4q td:nth-child(3){width:14%;text-align:right}
+table.f4q th:nth-child(4),table.f4q td:nth-child(4){width:54%;text-align:left}
+table.f3r{table-layout:fixed}
+table.f3r th:nth-child(1),table.f3r td:nth-child(1){width:22%;text-align:left}
+table.f3r th:nth-child(2),table.f3r td:nth-child(2){width:24%;text-align:left}
+table.f3r th:nth-child(3),table.f3r td:nth-child(3){width:54%;text-align:left}
+.name,.code,.tag{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.name{font-weight:600}
+.code{color:var(--muted);font-size:12px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.purple{color:var(--purple);font-weight:700}
+.red{color:var(--red);font-weight:700}
+.green{color:var(--green);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.danger{border-left:3px solid var(--red);background:#fff6f6;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:12px}
+.quad{border:1px solid var(--line);border-radius:9px;padding:14px 15px;background:#fff}
+.quad h4{font-size:14.5px;margin-bottom:5px;color:var(--text)}
+.quad .qx{font-size:12px;color:var(--muted);margin-bottom:6px}
+.quad p{font-size:13px;color:var(--muted);margin:0}
+.quad.hot{border:2px solid var(--purple);background:var(--purple-soft)}
+.quad.hot h4{color:var(--purple-deep)}
+.quad.danger{border:2px solid var(--red);background:#fff6f6}
+.quad.danger h4{color:var(--red)}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px;line-height:1.7}
+.verdict{display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#f0eaff,#fbf9ff);border:1px solid #ddd2ff;border-radius:10px;padding:16px 18px;margin:12px 0}
+.verdict .vbadge{flex:0 0 auto;background:var(--purple);color:#fff;font-size:13px;font-weight:800;border-radius:6px;padding:6px 11px;white-space:nowrap}
+.verdict p{font-size:14.5px;margin:0;color:#3b3760}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.quad-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}.verdict{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.0 画饼期定价版 · 2026-08-16</span>
+    <h1>电科网安（002268.SZ）：中国电科网安"唯一平台"的证券化期权，画饼期的清醒定价</h1>
+    <p>中国电科网安唯一上市平台 ｜ 2025 营收 22.68 亿连年下滑、2026H1 预亏 1.6-1.72 亿 ｜ 重组预期 = 期权而非兑现 ｜ PB 2.19 倍为"注入想象"付费</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#summary">核心结论</a>
+    <a href="#essence">一句话本质</a>
+    <a href="#everify">利润真伪</a>
+    <a href="#quadrant">估值定位</a>
+    <a href="#stage">投入期/画饼期</a>
+    <a href="#restruct">重组预期拆解</a>
+    <a href="#radar">技术信号雷达</a>
+    <a href="#forecast">事前预判</a>
+    <a href="#risk">风险</a>
+    <a href="#source">数据溯源</a>
+  </nav>
+
+  <!-- 01 核心结论 -->
+  <div class="card" id="summary">
+    <div class="summary">
+      <strong>一句话结论：</strong>电科网安是一只<strong>"高赔率、低胜率"的期权型标的</strong>——买它本质是买"中国电科网络安全资产证券化"的行权，而不是买它当前亏损中的网络安全生意。当前 <strong>PB 2.19 倍、总市值 119.83 亿</strong>已包含较高重组预期，而传统业务仍在下滑、2026H1 继续预亏、新业务"尚未产生收入"，是标准的<strong>"画饼期"</strong>。技术面日线红柱缩短 + 周线深零轴下，是反弹非反转。定位：<strong>观察仓 + 等重组预案这一右侧信号，不构成当下买入点</strong>。
+    </div>
+    <div class="verdict">
+      <div class="vbadge">评级研判</div>
+      <p><strong>无明确买入评级，建议"观察仓 + 事件驱动纪律"：</strong>赌的是 2026 下半年重组预案落地 + 量子/卫星安全放量，这是"政策驱动 + 故事驱动"的期权；不是"业绩兑现"的底仓股。若用做汇绿/泰和的耐心去拿它，会踩中"画饼期"陷阱。真正右侧信号 = 正式重组预案公告。</p>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">14.17</div><div class="label">收盘价（8/14）</div><div class="detail">YTD -30.9%</div></div>
+      <div class="metric"><div class="value">119.83亿</div><div class="label">总市值</div><div class="detail">PB(LF) 2.19倍</div></div>
+      <div class="metric"><div class="value red">-1.6~-1.72亿</div><div class="label">2026H1 归母净利预告</div><div class="detail">继续亏损</div></div>
+      <div class="metric"><div class="value green">3.14亿</div><div class="label">2025 经营现金流</div><div class="detail">+166% 四年首转正</div></div>
+    </div>
+  </div>
+
+  <!-- 02 一句话本质 -->
+  <div class="card" id="essence">
+    <h2 class="section-title">一句话本质：买的是"期权"，不是"生意"</h2>
+    <div class="callout">
+      <strong>买电科网安，本质上买的是：</strong>"中国电科网络安全资产证券化"这个期权的行权，以及量子安全 / 卫星互联网安全 / 抗量子密码的国家队卡位——<strong>而不是买它当前（亏损中、营收连年下滑的）网络安全生意</strong>。
+    </div>
+    <p>这句话能逼出两条可证伪的判断：①若重组落地，注入资产年净利市场预期 8 亿+，按 30 倍 PE 对应 240 亿增量，市值可看 360 亿+（+200%）；②若重组落空，仅剩亏损的传统业务，市值大概率回落到净资产附近（55 亿，-54%）。<strong>这是一个"向上翻倍、向下腰斩"的不对称期权，但行权权（重组）完全不在公司自己手里，而在集团和国资委手里。</strong></p>
+  </div>
+
+  <!-- 03 利润真伪 -->
+  <div class="card" id="everify">
+    <h2 class="section-title">利润真伪：E 是负的，且在恶化</h2>
+    <p>按"先验 E 真假 → 再判 E 方向"的次序拆解，电科网安的 E 很扎眼——<strong>它不是"利润小"，是"利润为负且在下滑"</strong>。</p>
+    <div class="table-wrap">
+    <table class="f4q">
+      <tr><th>报告期</th><th>营收(亿)</th><th>归母净利(亿)</th><th>关键特征</th></tr>
+      <tr><td>2022 年报</td><td>34.38</td><td>—</td><td>历史营收峰值</td></tr>
+      <tr><td>2023 年报</td><td>30.73</td><td>—</td><td>营收开始下滑</td></tr>
+      <tr><td>2024 年报</td><td>24.67</td><td>1.58</td><td>营收 -19.71%</td></tr>
+      <tr><td>2025 年报</td><td>22.68</td><td>0.58</td><td>营收 -8.08%、归母 -63.55%、扣非仅 0.33 亿</td></tr>
+      <tr><td>2026 Q1</td><td>0.96</td><td class="red">-1.56</td><td>营收 -38.63%、转亏</td></tr>
+      <tr><td>2026 H1（预告）</td><td>—</td><td class="red">-1.6~-1.72</td><td>7/14 预告，继续亏损</td></tr>
+    </table>
+    </div>
+    <p class="table-note">数据来源：公司 2022-2025 年报、2026 一季报、2026H1 业绩预告（2026-07-14）。营收连续四年下滑，2026 上半年继续亏损，E 的方向向下。</p>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>E 的唯一点亮项：经营现金流转正</strong>
+        <p>2025 年经营现金流净额 3.14 亿元（同比 +166%），四年内首次转正，净利润现金含量高（554%），说明回款质量改善。但这是 2025 年报口径，2026Q1 经营现金流已重新转负（-4.07 亿），需看中报能否延续。</p>
+      </div>
+      <div class="signal warn">
+        <strong>E 的结构性变化：网安反超密码，但总量在缩</strong>
+        <p>2025 年网络安全业务 11.76 亿（+26.18%，占比 51.86%）首次超过密码（10.36 亿，-27.19%）成第一大收入；但总营收仍 -8.08%。是"此消彼长"而非"增量扩张"，传统密码业务在快速萎缩。</p>
+      </div>
+      <div class="signal red">
+        <strong>E 的硬伤：财务费用之外的真实下滑</strong>
+        <p>公司归因"行业传统业务萎缩 + 客户预算收缩 + 同质化低价竞争"，这不是一次性因素，而是行业性、结构性的。新业务（量子/车联网/卫星/智慧医院）官方明确"收入贡献低或尚未产生收入"——<strong>画饼期特征明显</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 估值定位 -->
+  <div class="card" id="quadrant">
+    <h2 class="section-title">估值定位：亏损公司如何定价？PB 2.19 = 净资产 + 重组期权</h2>
+    <p>电科网安当前亏损，传统 PE 四象限失效（PE 无意义）。<strong>亏损/微利公司只能用 PB 定价</strong>：市值 119.83 亿 ÷ 归母净资产约 54.97 亿 = <strong>PB 2.19 倍</strong>。这 2.19 倍 PB 里，净资产只值 1 倍，另外 <strong>1.19 倍（约 65 亿市值）就是市场为"重组期权 + 量子/卫星故事"支付的溢价</strong>。</p>
+    <div class="quad-grid">
+      <div class="quad danger">
+        <h4>若重组落空（悲观路径）</h4>
+        <div class="qx">仅剩亏损的传统网安业务</div>
+        <p>营收连年下滑 + 持续亏损，PB 应向 1 倍净资产收敛，市值或回落至 55 亿附近，对应股价约 6.5 元（-54%）。当前 2.19 倍 PB 没有安全边际。</p>
+      </div>
+      <div class="quad hot">
+        <h4>若重组落地（乐观路径）</h4>
+        <div class="qx">注入资产年净利市场预期 8 亿+</div>
+        <p>按 30 倍 PE 对应约 240 亿增量市值，叠加现有资产，总市值可看 360 亿+（+200%）。这是"证券化期权"的行权收益。</p>
+      </div>
+    </div>
+    <div class="warning">
+      <strong>关键判断：</strong>PB 2.19 倍对一家亏损、营收下滑的网安公司而言<strong>不便宜</strong>——它已经为"重组期权"付了不低的费。股价里既包含了"注入 8 亿利润"的部分想象，却没有为"注入落空、涉密资产不上市、注入规模缩水"这些风险折价。<strong>赔率看似高（+200% / -54%），但胜率（重组确定性）远低于市场渲染。</strong>
+    </div>
+  </div>
+
+  <!-- 05 投入期/画饼期 -->
+  <div class="card" id="stage">
+    <h2 class="section-title">投入期 / 画饼期判定：这是"画饼期"，且比投入期更危险</h2>
+    <div class="table-wrap">
+    <table class="f3t">
+      <tr><th>维度</th><th>投入期（好）</th><th>电科网安现状</th></tr>
+      <tr><td>营收/订单</td><td>已兑现、在增长（罗博订单25亿、汇绿+203%）</td><td class="red">营收连年下滑（-8%~-24%）</td></tr>
+      <tr><td>利润</td><td>暂被费用/折旧吃掉，方向向上</td><td class="red">亏损且恶化，2026H1 预亏</td></tr>
+      <tr><td>新业务</td><td>已产生收入、在放量</td><td class="red">"尚未产生收入"（官方口径）</td></tr>
+      <tr><td>核心叙事</td><td>有硬证据链（订单→营收→利润）</td><td class="red">只有重组"预期"+ 概念</td></tr>
+    </table>
+    </div>
+    <div class="danger">
+      <strong>它比一般"画饼期"更危险的一点：</strong>电科网安不是"从 0 到 1 的投入期"，而是<strong>"传统业务（密码）快速萎缩 + 新业务（量子/车联网/卫星）尚未兑现"的双重夹击</strong>。投入期的公司至少有增长的基本盘，而它的基本盘正在塌陷，全靠"重组预期"这个外生变量撑着估值——<strong>一旦重组预期落空或推迟，没有业绩底可以接</strong>。
+    </div>
+  </div>
+
+  <!-- 06 重组预期拆解 -->
+  <div class="card" id="restruct">
+    <h2 class="section-title">重组预期拆解：事实与预期的分界线（本报告核心）</h2>
+    <p>这是全市场对电科网安分歧最大的地方。必须把<strong>"官方已确认的事实"</strong>和<strong>"市场渲染的预期"</strong>严格切开——后者往往被夸大数倍。</p>
+    <h3>✅ 官方已确认的事实（有据可查）</h3>
+    <div class="signal-list">
+      <div class="signal good"><strong>① 唯一平台定位</strong><p>公司是中国电科网络安全板块唯一上市平台 / 资本运作载体，集团明确支持做大做强并逐步解决同业竞争。</p></div>
+      <div class="signal good"><strong>② 已启动资产梳理</strong><p>公司 2025 年披露，已启动对电科 30所、15所、29所等相关网安资产的梳理与评估（实质性前置工作）。</p></div>
+      <div class="signal good"><strong>③ 制度空间已备</strong><p>已修订公司章程，为发行股份购买资产、无偿划转、配套募资预留空间；2026 年 2 月管理层完成集团化调整。</p></div>
+    </div>
+    <h3>⚠️ 官方审慎口径（关键）</h3>
+    <div class="warning">
+      <strong>公司从未确认具体方案/时间表：</strong>深交所互动易多次回复均为"如有相关计划措施，将严格按照法律法规履行信息披露义务"。<strong>"已启动资产梳理" ≠ "已确定注入方案"</strong>，两者之间隔着正式预案、标的评估、交易对价、审批等多个未落地环节。
+    </div>
+    <h3>❌ 市场渲染的预期（未经公司确认，需警惕）</h3>
+    <div class="table-wrap">
+    <table class="f3r">
+      <tr><th>市场渲染</th><th>口径来源</th><th>现实约束</th></tr>
+      <tr><td>"3000 亿网安资产注入"</td><td>财富号/雪球/股吧</td><td>涉密资产（30所/33所核心）绝不会上市，可注入的多为民用产品线，规模或远小于渲染值</td></tr>
+      <tr><td>"注入后净利 8 亿+、市值千亿"</td><td>自媒体"目标价200元"</td><td>无券商正式研报背书；东吴证券预测 2026-2028 归母仅 0.92/1.41/1.92 亿（不含注入）</td></tr>
+      <tr><td>"2026 下半年出预案、2027 完成"</td><td>市场推测</td><td>无任何官方时间表；涉军资产注入需剥离+穿透审批，可大幅延迟</td></tr>
+    </table>
+    </div>
+    <p class="table-note">关键提示：截至 2026-08，尚无任何经公司公告确认的重组方案、标的资产、交易对价或时间表。资产注入目前属于"政策预期 + 市场题材"，须以公司正式公告为准。</p>
+  </div>
+
+  <!-- 07 技术信号雷达 -->
+  <div class="card" id="radar">
+    <h2 class="section-title">技术信号雷达：反弹非反转的背离预警</h2>
+    <div class="table-wrap">
+    <table class="f4r">
+      <tr><th>级别</th><th>MACD 状态（8/14）</th><th>量价确认</th><th>判定</th></tr>
+      <tr><td>日线</td><td>DIF 0.069 / DEA 0.038 / 红柱 0.063</td><td>量比 0.72 缩量、价在 20日线(14.36)下方</td><td><span class="tag orange">红柱缩短·动能衰竭</span></td></tr>
+      <tr><td>周线</td><td>DIF -0.957 / DEA -1.071 / 红柱 0.228</td><td>现价 14.17 受 120日线(15.68)压制</td><td><span class="tag red">DIF 深零轴下·弱势</span></td></tr>
+    </table>
+    </div>
+    <div class="signal-list">
+      <div class="signal red">
+        <strong>背离预警：日线红柱持续缩短（0.56→0.06）</strong>
+        <p>7 月中旬日线红柱 0.56，到 8/14 已缩至 0.06，DIF 上穿零轴但动能衰竭——这是"上攻乏力"的典型背离，接近触发"红柱转绿"的减仓信号。</p>
+      </div>
+      <div class="signal warn">
+        <strong>级别错配：日线零轴上 + 周线深零轴下</strong>
+        <p>日线 DIF 刚站上零轴（0.069），但周线 DIF 仍在 -0.957 的深零轴下方。按"日金叉 + 周死叉 = 反弹非反转"的纪律，当前是<strong>超跌反弹，不是趋势反转</strong>，不构成中线买入。</p>
+      </div>
+      <div class="signal">
+        <strong>资金面：20 日净流入但当日转流出</strong>
+        <p>近 20 日主力净流入 1.09 亿（低位有资金收集），但 8/14 当日转净流出 -109.8 万，量比仅 0.72 缩量——资金在低位试探，未形成放量上攻合力。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 事前预判 -->
+  <div class="card" id="forecast">
+    <h2 class="section-title">事前预判：未来 1-3 日 + 操作预案</h2>
+    <div class="table-wrap">
+    <table class="f3t">
+      <tr><th>情景</th><th>盘面特征</th><th>操作预案</th></tr>
+      <tr><td>偏多</td><td>放量站上 20日线 14.36、日线红柱重新放大</td><td>仍不算中线买点，仅可小仓试反弹，快进快出</td></tr>
+      <tr><td>中性</td><td>缩量在 13.9-14.4 区间震荡</td><td>持有观察，不追、不接，等重组信号</td></tr>
+      <tr><td>偏空</td><td>日线红柱转绿、跌破 60日线 14.01</td><td>反弹夭折，观察 12.08 前低支撑</td></tr>
+    </table>
+    </div>
+    <div class="warning">
+      <strong>核心纪律：</strong>电科网安是"事件驱动"标的，<strong>真正的右侧信号不是 K 线，而是"正式重组预案公告"</strong>。技术面只能帮你选"投机时点"，不能帮你判断"该不该重仓"。在预案落地前，任何技术金叉都是"反弹"，不是"反转"。
+    </div>
+  </div>
+
+  <!-- 09 风险 -->
+  <div class="card" id="risk">
+    <h2 class="section-title">风险：三条足以推翻逻辑的"冷水"</h2>
+    <div class="danger">
+      <strong>① 重组预期落空/推迟——最大风险。</strong>官方从未确认方案和时间表，"已启动梳理"离"正式预案"还有数步。涉军涉密资产不会上市，可注入规模或远小于"3000 亿"渲染。若重组迟迟不落地，估值没有业绩底可接。
+    </div>
+    <div class="danger">
+      <strong>② 传统业务加速萎缩。</strong>密码业务 -27%、数据安全 -50%、总营收连年下滑，2026H1 继续预亏。新业务（量子/车联网/卫星）"尚未产生收入"，短期无第二增长曲线托底。
+    </div>
+    <div class="warning">
+      <strong>③ 估值已透支预期。</strong>PB 2.19 倍对亏损公司不便宜，股价已为"注入 8 亿利润"付了部分溢价，却未为"落空/缩水"折价。安全边际不足。
+    </div>
+  </div>
+
+  <!-- 10 数据溯源 -->
+  <div class="card" id="source">
+    <h2 class="section-title">数据溯源与免责声明</h2>
+    <div class="table-wrap">
+    <table class="f3t">
+      <tr><th>关键数据</th><th>来源 / 时点</th><th>来源分级</th></tr>
+      <tr><td>2022-2025 年报、2026Q1 财务数据</td><td>公司财报 · 2026-04-18</td><td>一手（财报）</td></tr>
+      <tr><td>2026H1 预亏 1.6-1.72 亿</td><td>公司业绩预告 · 2026-07-14</td><td>一手（公告）</td></tr>
+      <tr><td>唯一平台/已启动资产梳理/管理层换血</td><td>公司公告 · 2025-2026</td><td>一手（公告）</td></tr>
+      <tr><td>收盘 14.17、PB 2.19、市值 119.83 亿</td><td>Wind / 行情 · 2026-08-14</td><td>一手（行情）</td></tr>
+      <tr><td>东吴证券盈利预测 2026-2028</td><td>东吴证券研报 · 2026-04-30</td><td>非一手（需核实）</td></tr>
+      <tr><td>"3000亿/目标价200元/8亿利润"等</td><td>财富号/雪球/股吧 · 2026</td><td>非一手（市场渲染，需警惕）</td></tr>
+    </table>
+    </div>
+    <p class="source">说明：本报告基于截至 2026-08-16 的公开信息。凡标注"预期/渲染"的内容均为市场口径，未经公司公告证实，存在重大不确定性；具体请以公司公告及交易所披露为准。</p>
+  </div>
+
+  <div class="footer">
+    <strong>免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。<br>
+    报告类型：个股深度研报 ｜ 电科网安（002268.SZ） ｜ 2026-08-16
+  </div>
+</div>
+</body>
+</html>
