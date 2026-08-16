@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>和而泰(002402)深度研报：被概念退潮错杀的业绩拐点股（2026-08-16）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f2f3fb;--panel:#ffffff;--text:#182033;--muted:#667085;--line:#e3e5f0;
+  --purple:#7438ef;--purple-2:#8b5cf6;--purple-soft:#f0eaff;--purple-deep:#392076;
+  --red:#e54b4b;--green:#18a66a;--orange:#f28b30;--blue:#4c7df0;
+  --shadow:0 2px 10px rgba(48,38,104,.08);--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:var(--purple-deep);color:#fff;border-radius:10px 10px 0 0;padding:28px 30px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-90px;top:-120px}
+.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.24);border-radius:4px;padding:4px 9px;font-size:11px;letter-spacing:1.2px;color:#ddd2ff;margin-bottom:15px}
+.hero h1{font-size:25px;line-height:1.25;margin-bottom:10px;letter-spacing:0}
+.hero p{color:#ddd2ff;font-size:15px;margin:0;max-width:860px}
+.nav{display:flex;gap:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;position:sticky;top:0;z-index:5}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:11px 13px;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--purple);border-bottom-color:var(--purple)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-top:14px}
+.summary{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 16px;color:#3b3760;margin-bottom:16px;border-radius:0 8px 8px 0}
+.section-title{font-size:20px;line-height:1.25;margin:4px 0 12px;color:var(--text);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:4px;height:22px;background:var(--purple);display:inline-block;border-radius:2px}
+h3{font-size:15px;color:var(--purple-deep);margin:17px 0 8px}
+p{font-size:15px;margin-bottom:11px}
+.small,.source{font-size:12.5px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.metric{border:1px solid var(--line);background:#fbfbff;border-radius:8px;padding:12px 13px;min-width:0}
+.metric .value{font-size:22px;font-weight:800;color:var(--purple);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .value.red{color:var(--red)}
+.metric .value.green{color:var(--green)}
+.metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+.metric .detail{font-size:12px;color:#8a87a0;margin-top:2px}
+.signal-list{display:grid;gap:9px;margin-top:10px}
+.signal{border:1px solid var(--line);border-left:3px solid var(--purple);border-radius:7px;padding:10px 12px;background:#fff}
+.signal strong{color:var(--purple-deep)}
+.signal.warn{border-left-color:var(--orange)}
+.signal.good{border-left-color:var(--green)}
+.signal.red{border-left-color:var(--red)}
+.signal p{margin:3px 0 0;font-size:14px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;margin:9px 0;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:10px 11px;vertical-align:top;overflow:hidden;word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+th{font-weight:700;color:#535870;background:#f7f7fc;white-space:nowrap}
+tbody tr:nth-child(even){background:#fcfcff}
+.table-note{font-size:12.5px;color:var(--muted);margin-top:7px}
+table.f4q{table-layout:fixed}
+table.f4q th:nth-child(1),table.f4q td:nth-child(1){width:18%;text-align:left}
+table.f4q th:nth-child(2),table.f4q td:nth-child(2){width:14%;text-align:right}
+table.f4q th:nth-child(3),table.f4q td:nth-child(3){width:14%;text-align:right}
+table.f4q th:nth-child(4),table.f4q td:nth-child(4){width:54%;text-align:left}
+table.f4r{table-layout:fixed}
+table.f4r th:nth-child(1),table.f4r td:nth-child(1){width:16%;text-align:left}
+table.f4r th:nth-child(2),table.f4r td:nth-child(2){width:28%;text-align:left}
+table.f4r th:nth-child(3),table.f4r td:nth-child(3){width:28%;text-align:left}
+table.f4r th:nth-child(4),table.f4r td:nth-child(4){width:28%;text-align:left}
+table.f3t{table-layout:fixed}
+table.f3t th:nth-child(1),table.f3t td:nth-child(1){width:20%;text-align:left}
+table.f3t th:nth-child(2),table.f3t td:nth-child(2){width:40%;text-align:left}
+table.f3t th:nth-child(3),table.f3t td:nth-child(3){width:40%;text-align:left}
+table.f3s{table-layout:fixed}
+table.f3s th:nth-child(1),table.f3s td:nth-child(1){width:24%;text-align:left}
+table.f3s th:nth-child(2),table.f3s td:nth-child(2){width:16%;text-align:left}
+table.f3s th:nth-child(3),table.f3s td:nth-child(3){width:60%;text-align:left}
+.name,.code,.tag{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.name{font-weight:600}
+.code{color:var(--muted);font-size:12px}
+.tag{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;color:var(--purple);background:#eee9ff;white-space:nowrap}
+.tag.green{color:#087a4b;background:#e6f7ee}.tag.orange{color:#a45a0b;background:#fff0df}.tag.red{color:#b52d2d;background:#ffe8e8}
+.purple{color:var(--purple);font-weight:700}
+.red{color:var(--red);font-weight:700}
+.green{color:var(--green);font-weight:700}
+.callout{background:#fbf9ff;border:1px solid #ddd2ff;border-radius:8px;padding:14px 16px;margin:10px 0}
+.callout strong{color:var(--purple)}
+.warning{border-left:3px solid var(--orange);background:#fffaf4;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.danger{border-left:3px solid var(--red);background:#fff6f6;padding:12px 14px;border-radius:0 7px 7px 0;margin:9px 0}
+.quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:12px}
+.quad{border:1px solid var(--line);border-radius:9px;padding:14px 15px;background:#fff}
+.quad h4{font-size:14.5px;margin-bottom:5px;color:var(--text)}
+.quad .qx{font-size:12px;color:var(--muted);margin-bottom:6px}
+.quad p{font-size:13px;color:var(--muted);margin:0}
+.quad.hot{border:2px solid var(--purple);background:var(--purple-soft)}
+.quad.hot h4{color:var(--purple-deep)}
+.quad.danger{border:2px solid var(--red);background:#fff6f6}
+.quad.danger h4{color:var(--red)}
+.footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 8px 8px;line-height:1.7}
+.verdict{display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#f0eaff,#fbf9ff);border:1px solid #ddd2ff;border-radius:10px;padding:16px 18px;margin:12px 0}
+.verdict .vbadge{flex:0 0 auto;background:var(--purple);color:#fff;font-size:13px;font-weight:800;border-radius:6px;padding:6px 11px;white-space:nowrap}
+.verdict p{font-size:14.5px;margin:0;color:#3b3760}
+@media(max-width:760px){body{padding:9px}.hero{padding:22px 18px}.hero h1{font-size:21px}.nav{padding:0 5px}.nav a{font-size:13px;padding:9px 7px}.card{padding:16px 14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.quad-grid{grid-template-columns:1fr}table{font-size:13px}th,td{padding:8px 7px}.table-wrap table{min-width:640px}.verdict{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="eyebrow">个股深度研报 · V2.0 拐点研判版 · 2026-08-16</span>
+    <h1>和而泰（002402.SZ）：被"摩尔线程概念退潮"错杀的业绩拐点股</h1>
+    <p>智能控制器全球龙头 ｜ 2025 归母 +82.12% 拐点已立、汽车电子百亿订单 ｜ PE 29.4 倍处历史最低分位 ｜ 8/19 中报是裁决点</p>
+  </div>
+
+  <nav class="nav">
+    <a href="#summary">核心结论</a>
+    <a href="#essence">一句话本质</a>
+    <a href="#everify">利润真伪</a>
+    <a href="#quadrant">估值定位</a>
+    <a href="#stage">投入期/画饼期</a>
+    <a href="#logic">三条核心逻辑</a>
+    <a href="#gap">预期差</a>
+    <a href="#radar">技术信号雷达</a>
+    <a href="#forecast">事前预判</a>
+    <a href="#risk">风险</a>
+    <a href="#source">数据溯源</a>
+  </nav>
+
+  <!-- 01 核心结论 -->
+  <div class="card" id="summary">
+    <div class="summary">
+      <strong>一句话结论：</strong>和而泰是<strong>"低 PE（历史最低分位）× 利润向上（拐点确认）"的错杀/拐点候选</strong>——2025 年归母 +82.12%、汽车电子在手百亿订单、铖昌芯片扭亏，基本面已兑现拐点；但股价因"摩尔线程概念退潮 + 实控人减持"从 60.51 元暴跌 65% 至 21.14 元，PE(TTM) 仅 29.4 倍、处历史最低分位。<strong>这是你框架里"低PE×利润向上=错杀/拐点（最佳买点）"象限的候选，但须 8/19 中报验证"剔除汇兑后主业高增长"是否延续。</strong>
+    </div>
+    <div class="verdict">
+      <div class="vbadge">评级研判</div>
+      <p><strong>接近触发买入、待中报右侧确认：</strong>技术面日线 MACD 零轴下金叉 + 红柱放大（底部修复），但周线仍深零轴下（级别未共振）。<strong>真正的右侧信号 = 8/19 中报确认「剔除汇兑后主业 +40% 以上 + 汽车电子放量」</strong>。在此之前，是"错杀候选"而非"已确认拐点"，宜观察仓、等中报，不宜重仓押注。</p>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="value">21.14</div><div class="label">收盘价（8/14）</div><div class="detail">YTD -45.68%</div></div>
+      <div class="metric"><div class="value green">29.4倍</div><div class="label">PE(TTM)</div><div class="detail">历史最低分位(0%)</div></div>
+      <div class="metric"><div class="value green">+82.12%</div><div class="label">2025 归母净利增速</div><div class="detail">6.63 亿·拐点已立</div></div>
+      <div class="metric"><div class="value">~100亿</div><div class="label">汽车电子在手订单</div><div class="detail">6-8 年交付周期</div></div>
+    </div>
+  </div>
+
+  <!-- 02 一句话本质 -->
+  <div class="card" id="essence">
+    <h2 class="section-title">一句话本质：买的是"错杀的拐点"，不是"概念的余温"</h2>
+    <div class="callout">
+      <strong>买和而泰，本质上买的是：</strong>"智能控制器全球龙头的汽车电子第二曲线兑现 + 铖昌毫米波芯片反转"——一个被"摩尔线程概念退潮"错杀到 PE 历史最低分位的基本面拐点股。
+    </div>
+    <p>这句话的关键在于区分两层：市场在 2025 年 9 月用"摩尔线程天使投资"把它炒到 60.51 元（市值 561 亿），那是<strong>画饼</strong>；但公司 2025 年的利润 +82%、汽车电子百亿订单、铖昌扭亏，是<strong>实打实的兑现</strong>。现在股价跌回 21.14 元，市值 195 亿，市场情绪已经从"概念狂热"切换到了"概念退潮的惯性杀跌"——<strong>而基本面的拐点，反而在这个过程中被证成了</strong>。</p>
+  </div>
+
+  <!-- 03 利润真伪 -->
+  <div class="card" id="everify">
+    <h2 class="section-title">利润真伪：E 是真的，拐点已立，但 Q1 被汇兑"遮住了"</h2>
+    <div class="table-wrap">
+    <table class="f4q">
+      <tr><th>报告期</th><th>营收(亿)</th><th>归母净利(亿)</th><th>关键特征</th></tr>
+      <tr><td>2023 年报</td><td>75.07</td><td>3.31</td><td>毛利率 19.58%</td></tr>
+      <tr><td>2024 年报</td><td>96.59</td><td>3.64</td><td>营收 +29%、利润 +10%</td></tr>
+      <tr><td>2025 年报</td><td>107.22</td><td class="green">6.63</td><td>营收 +11%、归母 <strong>+82.12%</strong>、扣非 +85.82%</td></tr>
+      <tr><td>2026 Q1</td><td>28.15</td><td>1.70</td><td>归母仅 +0.34%，被汇兑拖累</td></tr>
+    </table>
+    </div>
+    <p class="table-note">数据来源：公司 2023-2025 年报、2026 一季报（2026-04-28 披露）。2025 年利润增速（+82%）远高于营收增速（+11%），是典型的"利润率拐点"。</p>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>E 的真：2025 拐点已立，且有硬证据</strong>
+        <p>归母 6.63 亿（+82.12%）、扣非 6.36 亿（+85.82%），扣非增速高于归母说明增长靠主业而非非经常损益；毛利率 20.03%（+1.76pct）；经营现金流 5.27 亿、自由现金流 1.11 亿，利润含金量实。</p>
+      </div>
+      <div class="signal warn">
+        <strong>E 的"障眼法"：2026Q1 归母仅 +0.34% 被汇兑遮住</strong>
+        <p>2026Q1 归母 1.70 亿（+0.34%）、扣非 +1.71%，表面近乎零增长。但公司披露：<strong>剔除汇兑影响后，智能控制器主业归母 +47.59%、扣非 +64.60%</strong>。人民币升值导致海外收入（占 65.73%）的汇兑损失，是 Q1 利润被"吃掉"的主因，而非主业失速。</p>
+      </div>
+      <div class="signal">
+        <strong>E 的结构：家电基本盘 + 汽车电子 + 芯片三线</strong>
+        <p>2025 年家电控制器 68.63 亿（+12.62%，稳）、汽车电子 9.41 亿（+15.28%，第二曲线）、T/R 芯片 4.05 亿（+91.28%，反转）。铖昌科技 2025 归母 1.17 亿扭亏，是利润 +82% 的重要贡献。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 估值定位 -->
+  <div class="card" id="quadrant">
+    <h2 class="section-title">估值定位：PE 29.4 倍·历史最低分位，是"错杀"还是"价值陷阱"？</h2>
+    <p>这是本报告最关键的一问。按你的四象限框架，和而泰当前处于哪个象限，取决于 2026 年 E 的方向：</p>
+    <div class="quad-grid">
+      <div class="quad hot">
+        <h4>若 2026 利润兑现（乐观路径）</h4>
+        <div class="qx">一致预期 2026 归母 8.3-8.7 亿</div>
+        <p>按 8.5 亿净利、当前市值 195 亿，对应 <strong>2026E PE 约 23 倍</strong>。利润向上 + 低 PE = <strong>"错杀/拐点（最佳买点）"象限</strong>。华泰目标价 48.95 元（+131%）、中金 34 元（+61%）。</p>
+      </div>
+      <div class="quad danger">
+        <h4>若 2026 利润被汇兑/原材料拖累（悲观路径）</h4>
+        <div class="qx">Q1 归母 +0.34% 的延续</div>
+        <p>若人民币持续升值 + 原材料涨价，主业高增长被持续"吃掉"，利润增速放缓甚至转弱，则 PE 29.4 倍不是"错杀"而是"价值陷阱"，低 PE 对应的就是"利润向下"。</p>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>PE 历史分位 0（历史最低）：</strong>当前 PE(TTM) 29.4 倍处于上市以来历史最低分位（Wind 口径分位数 0）。这意味着市场已经把"摩尔线程概念"的溢价全部挤掉，甚至挤到了历史最低估值——<strong>这是"错杀"的必要条件，但还不是充分条件</strong>。充分条件是 8/19 中报证明"剔除汇兑后主业仍高增长"。
+    </div>
+  </div>
+
+  <!-- 05 投入期/画饼期 -->
+  <div class="card" id="stage">
+    <h2 class="section-title">投入期 / 画饼期：这是"投入期"，与上一份电科网安正好相反</h2>
+    <div class="table-wrap">
+    <table class="f3t">
+      <tr><th>维度</th><th>投入期（好）特征</th><th>和而泰现状</th></tr>
+      <tr><td>营收/订单</td><td>已兑现、在增长</td><td class="green">营收 +11%、汽车电子百亿订单已落地</td></tr>
+      <tr><td>利润</td><td>拐点向上</td><td class="green">2025 归母 +82.12%</td></tr>
+      <tr><td>新业务</td><td>已产生收入、在放量</td><td class="green">汽车电子 9.41 亿(+15.28%)、铖昌扭亏</td></tr>
+      <tr><td>核心叙事</td><td>有硬证据链（订单→营收→利润）</td><td class="green">百亿订单 → 营收 +11% → 利润 +82% 依次兑现</td></tr>
+    </table>
+    </div>
+    <div class="callout">
+      <strong>对照上一份电科网安（画饼期）：</strong>电科网安是"营收下滑 + 重组预期 + 新业务尚未产生收入"；和而泰是"营收增长 + 订单兑现 + 利润拐点 + 新业务已放量"。<strong>同一个框架，一个判"危险"，一个判"好"</strong>——差别就在"硬证据链"是否兑现。和而泰的汽车电子百亿订单是合同先行于利润的实证，属于"投入期"的优质形态。
+    </div>
+  </div>
+
+  <!-- 06 三条核心逻辑 -->
+  <div class="card" id="logic">
+    <h2 class="section-title">三条核心逻辑（每条都落到影响路径）</h2>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>① 家电基本盘：全球龙头的稳健压舱石</strong>
+        <p>家电控制器 68.63 亿（占 64%）、+12.62%，客户覆盖博西、海尔、海信、小米、伊莱克斯、西门子。全球 22 个区域布局，份额持续提升，是收入稳健增长 + 现金流的来源。</p>
+      </div>
+      <div class="signal good">
+        <strong>② 汽车电子：百亿订单的第二增长曲线（核心弹性）</strong>
+        <p>在手订单约百亿级、交付周期 6-8 年，客户含比亚迪、蔚来、理想、沃尔沃、赛力斯及博格华纳、尼得科等 Tier1。自研 HOD 离手检测、座舱域控、能量管理起量，<strong>从二级供应商向座舱域控一级供应商升级，单车价值量跳升</strong>。青岛基地 2026/7 竣工、柳州基地签约，产能匹配订单释放。</p>
+      </div>
+      <div class="signal good">
+        <strong>③ 铖昌科技：毫米波 T/R 芯片反转 + 分拆上市</strong>
+        <p>持股约 46.37% 的铖昌科技（001270）主营相控阵 T/R 芯片，卡位低轨卫星（星网批量供货）、77GHz 车载毫米波，毛利率 60%+。2025 归母 1.17 亿扭亏，分拆深主板上市 2026/4 获证监会通过（拟募 5.09 亿），独立融资平台打开估值弹性。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 预期差 -->
+  <div class="card" id="gap">
+    <h2 class="section-title">市场共识与预期差：情绪在杀"概念"，基本面在走"拐点"</h2>
+    <div class="table-wrap">
+    <table class="f3s">
+      <tr><th>市场共识</th><th>性质</th><th>事实检验</th></tr>
+      <tr><td>"摩尔线程概念股，退潮该跌"</td><td>情绪层</td><td>天使轮投资占比极小，主业已不依赖该概念</td></tr>
+      <tr><td>"实控人减持，不看好"</td><td>情绪层</td><td>减持是事实，但与经营拐点无关</td></tr>
+      <tr><td>"2026Q1 利润零增长，失速"</td><td>认知层</td><td>剔除汇兑主业 +47.59%，是汇兑遮住而非失速</td></tr>
+      <tr><td>"汽车电子还在讲故事"</td><td>认知层</td><td>百亿订单 + 9.41 亿收入已兑现，非画饼</td></tr>
+    </table>
+    </div>
+    <div class="warning">
+      <strong>真正的预期差：</strong>市场还在用"摩尔线程概念退潮"的惯性杀跌看它，PE 压到历史最低；但公司的利润拐点（+82%）、汽车电子百亿订单、铖昌扭亏，已经在 2025 年报里兑现。这个"情绪错杀 vs 基本面拐点"的剪刀差，就是潜在的预期差。<strong>但注意——预期差要兑现，前提是 8/19 中报继续验证，否则"错杀"会变成"合理的杀"。</strong>
+    </div>
+  </div>
+
+  <!-- 08 技术信号雷达 -->
+  <div class="card" id="radar">
+    <h2 class="section-title">技术信号雷达：底部修复，但级别未共振</h2>
+    <div class="table-wrap">
+    <table class="f4r">
+      <tr><th>级别</th><th>MACD 状态（8/14）</th><th>量价确认</th><th>判定</th></tr>
+      <tr><td>日线</td><td>DIF -0.516 / DEA -0.862 / 红柱 0.691</td><td>价在 20日线(20.64)上方、60日线(23.78)下方</td><td><span class="tag orange">零轴下金叉·红柱放大（修复）</span></td></tr>
+      <tr><td>周线</td><td>DIF -3.731 / DEA -3.625 / 绿柱 -0.213</td><td>缩量(量比 0.86)、120日线(27.77)压制</td><td><span class="tag red">深零轴下·绿柱缩短（企稳）</span></td></tr>
+    </table>
+    </div>
+    <div class="signal-list">
+      <div class="signal good">
+        <strong>日线：零轴下方金叉 + 红柱持续放大</strong>
+        <p>日线 MACD 从 8/4 转红柱（0.15）一路放大到 8/14 的 0.69，DIF 从 -1.55 回升到 -0.52，正在向零轴靠拢。这是"底部修复"信号，接近触发你的"日线 DIF 转正"第一笔试仓规则。</p>
+      </div>
+      <div class="signal warn">
+        <strong>周线：深零轴下，但绿柱在缩短</strong>
+        <p>周线 DIF -3.73 仍深在零轴下方，但 MACD 绿柱从 -0.67 缩短到 -0.21，是"弱势中的企稳"信号。<strong>级别错配仍在：日线修复 + 周线弱势 = 反弹非反转</strong>，还不构成双级别共振买入。</p>
+      </div>
+      <div class="signal">
+        <strong>资金面：20 日净流入但 5 日转流出</strong>
+        <p>近 20 日主力净流入 2.68 亿（低位有资金收集），但近 5 日净流出 -4170 万、8/14 当日净流出 -367 万——资金在低位反复，未形成合力上攻。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 事前预判 -->
+  <div class="card" id="forecast">
+    <h2 class="section-title">事前预判：8/19 中报是裁决点</h2>
+    <div class="table-wrap">
+    <table class="f3t">
+      <tr><th>情景</th><th>触发条件</th><th>操作预案</th></tr>
+      <tr><td>偏多</td><td>中报剔除汇兑主业 +40% 以上 + 汽车电子放量确认</td><td>右侧确认，可试仓第一笔 1/3（关注日线 DIF 转正配合）</td></tr>
+      <tr><td>中性</td><td>中报主业 +20-40%、汇兑仍有拖累</td><td>持有观察，等汇率企稳 + 汽车电子交付加速</td></tr>
+      <tr><td>偏空</td><td>主业增速放缓 + 汽车电子交付不及预期</td><td>"错杀"变"合理杀"，回避或减仓</td></tr>
+    </table>
+    </div>
+    <div class="warning">
+      <strong>核心纪律：</strong>和而泰的右侧信号有两个——① 8/19 中报确认"剔除汇兑后主业高增长"；② 技术面日线 DIF 转正（当前 -0.52，接近但未到）。<strong>两个信号共振才是"错杀→拐点"的确认，单一信号不构成重仓理由。</strong>8/19 中报前，是"错杀候选"，不是"已确认拐点"。
+    </div>
+  </div>
+
+  <!-- 10 风险 -->
+  <div class="card" id="risk">
+    <h2 class="section-title">风险：三条必须盯紧的变量</h2>
+    <div class="danger">
+      <strong>① 汇率波动（Q1 利润 +0.34% 的直接原因）。</strong>海外收入占 65.73%，人民币升值直接产生汇兑损失、压低利润。若人民币持续升值，主业高增长会被持续"吃掉"，"错杀"逻辑受挫。
+    </div>
+    <div class="warning">
+      <strong>② 客户集中度 + 原材料涨价。</strong>前五大客户销售占比接近 50%，客户集中度高；原材料成本占比约 86%，上游电子元器件/原材料涨价直接挤压毛利。
+    </div>
+    <div class="warning">
+      <strong>③ 实控人减持 + 概念退潮余波。</strong>实控人刘建伟减持是事实，叠加摩尔线程概念退潮，短期情绪面仍有压制；汽车电子订单交付节奏受整车销售节奏影响。
+    </div>
+  </div>
+
+  <!-- 11 数据溯源 -->
+  <div class="card" id="source">
+    <h2 class="section-title">数据溯源与免责声明</h2>
+    <div class="table-wrap">
+    <table class="f3s">
+      <tr><th>关键数据</th><th>来源 / 时点</th><th>来源分级</th></tr>
+      <tr><td>2023-2025 年报、2026Q1 财务数据</td><td>公司财报 · 2026-04-28</td><td>一手（财报）</td></tr>
+      <tr><td>汽车电子百亿订单、铖昌扭亏、分拆过会</td><td>公司公告 / 调研 · 2026-05 / 2026-04</td><td>一手（公告）</td></tr>
+      <tr><td>收盘 21.14、PE 29.4 倍、历史分位 0</td><td>Wind / 行情 · 2026-08-14</td><td>一手（行情）</td></tr>
+      <tr><td>华泰目标价 48.95、中金 34 元、一致预期 8.3-8.7 亿</td><td>券商研报 · 2026-04</td><td>非一手（需核实）</td></tr>
+    </table>
+    </div>
+    <p class="source">说明：本报告基于截至 2026-08-16 的公开信息。券商目标价与一致预期为研报口径，非公司承诺；具体请以公司公告及交易所披露为准。和而泰 2026 中报预约 8/19 披露，为下一步关键验证点。</p>
+  </div>
+
+  <div class="footer">
+    <strong>免责声明</strong>：以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。<br>
+    报告类型：个股深度研报 ｜ 和而泰（002402.SZ） ｜ 2026-08-16
+  </div>
+</div>
+</body>
+</html>
