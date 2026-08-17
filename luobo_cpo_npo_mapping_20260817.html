@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>罗博特科 CPO/NPO 映射解读 2026-08-17</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:28px;line-height:1.3}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:19px}
+.hero p{margin:6px 0}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.callout.green{background:#eaf7ed;border-color:#bfe7c7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:20px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted);margin-top:2px}
+.up{color:var(--up);white-space:nowrap}
+.down{color:var(--down);white-space:nowrap}
+.flat{color:var(--muted);white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+td.nowrap,th.nowrap{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* OE出货量表 4列 */
+table.oe{table-layout:fixed}
+table.oe th:nth-child(1),table.oe td:nth-child(1){width:32%}
+table.oe th:nth-child(2),table.oe td:nth-child(2){width:20%}
+table.oe th:nth-child(3),table.oe td:nth-child(3){width:20%}
+table.oe th:nth-child(4),table.oe td:nth-child(4){width:28%}
+table.oe th:nth-child(2),table.oe td:nth-child(2),
+table.oe th:nth-child(3),table.oe td:nth-child(3){text-align:right}
+
+/* 信号对应表 3列 */
+table.sig{table-layout:fixed}
+table.sig th:nth-child(1),table.sig td:nth-child(1){width:44%}
+table.sig th:nth-child(2),table.sig td:nth-child(2){width:18%}
+table.sig th:nth-child(3),table.sig td:nth-child(3){width:38%}
+
+/* 数据核源表 3列（全文本列） */
+table.src{table-layout:fixed}
+table.src th:nth-child(1),table.src td:nth-child(1){width:44%}
+table.src th:nth-child(2),table.src td:nth-child(2){width:22%}
+table.src th:nth-child(3),table.src td:nth-child(3){width:34%}
+table.src th,table.src td{text-align:left}
+
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+
+@media(max-width:640px){
+  body{font-size:13px}
+  main{padding:16px 12px 30px}
+  .title{font-size:21px}
+  .grid{grid-template-columns:1fr;gap:8px}
+  .cols{grid-template-columns:1fr}
+  table{font-size:11px}
+  th,td{padding:6px 5px}
+  th{font-size:10px}
+  .table-wrap table{min-width:520px}
+}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">RESEARCH NOTE · 2026-08-17</div>
+  <h1 class="title">广发香港 CPO/NPO 报告解读：罗博特科是一阶直接受益者</h1>
+  <p class="subtitle">来源：GF Securities (Hong Kong)《CPO/NPO Accelerates, Architectures and OE Forecast》2026-08-17｜投研助手出品</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-blue">核心结论</span>报告证实 CPO/NPO 从"远期故事"进入"2027 年量产出货"，罗博特科（ficonTEC）是 CPO 设备环节的一阶直接受益者。</h2>
+    <p>广发证券（香港）8/17 报告的核心增量：① 英伟达 Spectrum-X CPO 交换机（Scale-out）已进入量产；② 台积电大幅扩充 CPO 测试检测设备产能；③ OE（光引擎）出货量预测 2027 年 1100 万、2028 年 4000 万。这三点全部指向罗博特科——其收购的德国 ficonTEC 是台积电、英伟达的光电子封装测试设备供应商。</p>
+    <div class="callout green"><strong>一句话定位：</strong>罗博特科 = ficonTEC，客户是英伟达、台积电、博通、中际旭创、康宁等全球头部；CPO 量产 → 台积电扩产测试产能 → 采购 ficonTEC 设备 → 罗博直接受益。这是一阶直接映射，不是二阶间接卖铲。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">OE 出货量 2027E</div><div class="value">1100 万</div><div class="note">Scale-up NPO 合计</div></div>
+    <div class="metric"><div class="label">OE 出货量 2028E</div><div class="value">4000 万</div><div class="note">同比近 4 倍</div></div>
+    <div class="metric"><div class="label">罗博客户地位</div><div class="value">一阶直接</div><div class="note">台积电/英伟达客户</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>一、报告核心事实与 OE 出货量预测</h2><span class="source">来源：GF Securities (Hong Kong)，2026-08-17</span></div>
+    <p><span class="tag tag-green">量产确认</span>英伟达 8/14 官方宣布 Spectrum-X CPO 交换机（Scale-out）进入量产，维持 2026/2027 年 1.5万/10万台预测。</p>
+    <p><span class="tag tag-yellow">架构判断</span>Scale-up 端，NVL576 预计采用 9-18-9 托盘设计（每 switch tray 装 4 ASIC、每 ASIC 配 4 OE），但 0.75U 高度存在机械挑战，可能回退 10-9-8；报告认为托盘配置变化不影响 OE 数量。</p>
+    <div class="table-wrap"><table class="oe">
+      <thead><tr><th class="nowrap">OE 出货量预测（Scale-up NPO）</th><th class="num">2027E</th><th class="num">2028E</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>英伟达 3.2T NPO</b></td><td class="num">600万</td><td class="num">1900万</td><td>NVL576 平台</td></tr>
+        <tr><td><b>AWS 6.4T NPO</b></td><td class="num">500万</td><td class="num">1200万</td><td>Trainium 4，2H27 起</td></tr>
+        <tr><td><b>其他 CSP NPO</b></td><td class="num">—</td><td class="num">900万</td><td>2028 年放量</td></tr>
+        <tr><td><b>合计 Scale-up NPO OE</b></td><td class="num"><b>1100万</b></td><td class="num"><b>4000万</b></td><td>2028 年近 4 倍增长</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>二、报告三处关键信号与罗博的逐句对应</h2><span class="source">报告原文 → 罗博实情</span></div>
+    <div class="table-wrap"><table class="sig">
+      <thead><tr><th class="nowrap">报告原文信号</th><th>罗博对应</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>"TSMC has substantially expanded its CPO testing and inspection equipment footprint, notably adding Insertion 2/3 capacity"</td><td><span class="tag tag-green">直接订单来源</span></td><td>台积电扩充 CPO 测试检测设备产能，正是 ficonTEC 的高精度对准/耦合/测试设备需求来源。罗博 4/10 互动平台已确认"台积电系 ficonTEC 客户"。</td></tr>
+        <tr><td>"key suppliers such as FAU, shuffle box, and system assembly have been progressing well"</td><td><span class="tag tag-green">FAU 订单</span></td><td>FAU（光纤阵列）正是罗博 7/27 公告那笔 1.29 亿元订单的标的——"用于光纤阵列 FAU 等光学元器件量产的自动化制造设备"。</td></tr>
+        <tr><td>OE 出货量 2027E/2028E = 11m/40m</td><td><span class="tag tag-green">需求放大器</span></td><td>光引擎（OE）封装测试设备总需求随 OE 出货量近 4 倍增长而放大，ficonTEC 是核心设备商。</td></tr>
+        <tr><td>（报告未直接点名罗博）</td><td><span class="tag tag-yellow">覆盖范围所致</span></td><td>报告推荐的是器件端（LITE/MRVL/SMTC/TSEM/Browave），未提设备商——因罗博是 A 股标的，不在广发香港覆盖范围内，非"设备端不重要"。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>三、客户关系证据链（Wind 公告口径 ★★★）</h2><span class="source">罗博特科互动平台 / 公告</span></div>
+    <div class="cols">
+      <div>
+        <p><span class="tag tag-blue">英伟达</span><b>核心客户之一</b>（2026-03-05 互动平台确认）。</p>
+        <p><span class="tag tag-blue">台积电</span><b>客户</b>（2026-04-10 互动平台确认）。</p>
+        <p><span class="tag tag-blue">共同开发</span>罗博与英伟达、台积电<b>共同开发双面晶圆测试产品（CPO 光引擎，一面光一面电，全球首发）</b>，A 股第一家公告拿到 CPO 相关产品订单的公司（2026-07-14）。</p>
+      </div>
+      <div>
+        <p><span class="tag tag-green">客户名单</span>英伟达、台积电、博通、中际旭创、康宁、英特尔、思科等全球头部；全球前十光模块厂商全是其客户。</p>
+        <p><span class="tag tag-green">业绩印证</span>2025 年报：光电子及半导体封测设备收入 43.9 亿元，与光伏设备 43.3 亿平分秋色，海外收入占比近 70%。</p>
+        <p><span class="tag tag-green">产能布局</span>在台湾设基地工作站围绕台积电服务；德国、爱沙尼亚、中国多地扩产，计划增设新基地。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>四、受益链条与投资判断</h2><span class="source">逻辑链：从 CPO 量产到罗博订单</span></div>
+    <div class="callout green"><strong>完整受益链条：</strong>英伟达/台积电主导 CPO → 台积电扩产 CPO 测试检测设备（Insertion 2/3）→ 采购 ficonTEC 高精度对准/耦合/测试设备 → 罗博特科直接受益（一阶）。</div>
+    <div class="cols">
+      <div>
+        <p><span class="tag tag-green">利好逻辑</span>① CPO/NPO 量产时间表（2027）比市场预期更早，设备资本开支上行确定性增强；② OE 出货量 2027→2028 近 4 倍，对应设备端需求放大；③ 罗博与英伟达/台积电共同开发的 CPO 双面测试设备是"全球首发"，技术卡位领先。</p>
+      </div>
+      <div>
+        <p><span class="tag tag-red">风险</span>① 报告三风险：AI 需求放缓、供给约束、竞争；② 罗博年初 +127%、20日 +42%，短期过热，追高风险大；③ OE 出货量为机构预测值，兑现存在不确定性；④ 设备端订单兑现节奏晚于器件端（第一波红利在 LITE/MRVL 等器件）。</p>
+      </div>
+    </div>
+    <p style="font-size:13px;margin:10px 0 0"><b>操作定位：</b>这份报告强化了罗博"投入期·已确认"的产业底座（设备订单 25 亿近端可兑现），但属"逻辑加分项"而非"加仓触发点"。纪律不变：HOLD，不追高，等回踩确认；OE 出货量是验证罗博订单兑现的前瞻指标，长期跟踪。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>五、数据核源</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="src">
+      <thead><tr><th class="nowrap">数据项</th><th>来源</th><th>时点</th></tr></thead>
+      <tbody>
+        <tr><td>CPO/NPO 报告原文与 OE 预测</td><td>GF Securities (Hong Kong) 研报</td><td>8/17 研报</td></tr>
+        <tr><td>英伟达系 ficonTEC 核心客户</td><td>罗博特科互动平台</td><td>3/5 互动平台</td></tr>
+        <tr><td>台积电系 ficonTEC 客户</td><td>罗博特科互动平台</td><td>4/10 互动平台</td></tr>
+        <tr><td>CPO 双面测试设备（共同开发）</td><td>公开解读</td><td>7/14 解读</td></tr>
+        <tr><td>FAU 1.29 亿订单</td><td>罗博特科公告</td><td>7/27 公告</td></tr>
+        <tr><td>光电子封测设备收入 43.9 亿</td><td>2025 年报</td><td>2025 年报</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card risk"><strong>投资风险提示：</strong>本报告基于广发证券（香港）公开研报与罗博特科公开公告整理，仅供研究参考，不构成任何投资建议。OE 出货量为机构预测值，存在兑现不确定性；罗博特科现价已计入部分乐观预期。市场有风险，投资需谨慎，决策请结合个人风险承受能力独立判断。过往表现不预示未来收益。</section>
+  <p class="foot">数据说明：研报原文为英文，关键数据已转译并标注来源；客户关系信息以罗博特科互动平台/公告口径为准。本报告聚焦罗博特科（300757）的 CPO/NPO 设备映射。</p>
+
+</main>
+</body>
+</html>
