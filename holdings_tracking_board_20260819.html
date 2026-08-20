@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>持仓跟踪看板 2026-08-19</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1160px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:27px;line-height:1.3}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:19px}
+.hero p{margin:7px 0}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:4px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+table.board{table-layout:fixed}
+table.board th:nth-child(1),table.board td:nth-child(1){width:12%}
+table.board th:nth-child(2),table.board td:nth-child(2){width:18%}
+table.board th:nth-child(3),table.board td:nth-child(3){width:34%}
+table.board th:nth-child(4),table.board td:nth-child(4){width:22%}
+table.board th:nth-child(5),table.board td:nth-child(5){width:14%}
+table.hard{table-layout:fixed}
+table.hard th:nth-child(1),table.hard td:nth-child(1){width:14%}
+table.hard th:nth-child(2),table.hard td:nth-child(2){width:26%}
+table.hard th:nth-child(3),table.hard td:nth-child(3){width:14%}
+table.hard th:nth-child(4),table.hard td:nth-child(4){width:46%}
+table.check{table-layout:fixed}
+table.check th:nth-child(1),table.check td:nth-child(1){width:24%}
+table.check th:nth-child(2),table.check td:nth-child(2){width:40%}
+table.check th:nth-child(3),table.check td:nth-child(3){width:36%}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.dot-g{background:var(--siggreen)}
+.dot-y{background:var(--yellow)}
+.dot-r{background:var(--sigred)}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.step{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px}
+.step .n{font-size:12px;color:var(--blue);font-weight:700}
+.step .t{font-size:13px;font-weight:700;margin-top:2px}
+.step .d{font-size:12px;color:var(--muted);margin-top:3px}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:21px}.grid3{grid-template-columns:1fr}.table-wrap table{min-width:640px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">HOLDINGS TRACKING BOARD · 2026-08-19（周三）</div>
+  <h1 class="title">持仓跟踪看板：8 只持仓验证点巡检基座（每日复盘 / 盘前简报通用）</h1>
+  <p class="subtitle">数据口径：Wind 万得 / Pandadata（美股映射）｜8/19 收盘｜本看板为「验证点体系」，非荐股，不构成投资建议</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-blue">机制说明</span>本看板回答三个问题：每只持仓<strong>验证什么</strong>（逻辑兑现的证据）、<strong>盯什么</strong>（硬开关/失效条件）、<strong>多久看一次</strong>（监控频率）。</h2>
+    <p>使用方法：每日复盘 + 盘前简报固定执行「验证点巡检」——对每只持仓的验证点逐一核对最新公告/价格/订单/行业数据，<strong>有更新则更新状态，无更新则标注「无更新」</strong>，不编造、不遗漏、不含糊。</p>
+    <div class="callout"><b>巡检四问</b>：① 该标的的验证点是否仍是最核心的关键点（有无失效/新增/需替换）？② 最核心验证点今天有没有新信息？③ 状态从「验证中」向「已确认」推进了还是后退了？④ 硬开关有没有触发？——四个问题的答案就是当日对该标的的操作结论。</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>01 八只持仓 · 验证点总表</h2><span class="source">来源：公司公告 / 研报 / Wind · 8/19 收盘 · 状态灯随每日巡检更新</span></div>
+    <div class="table-wrap"><table class="board">
+      <thead><tr><th>标的</th><th>卡位/确定性</th><th>验证点（跟踪什么）</th><th>硬开关 / 失效条件</th><th>监控频率</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>罗博特科</b><br>300757.SZ</td>
+          <td><span class="tag tag-green">已确认</span><br>CPO/光电子<br>封装测试设备<br>一阶受益</td>
+          <td>① 客户 I 耦合设备订单<br>累计 3067 万美元<br>② 订单滚动：3月F 8.5亿<br>→7月H 1.29亿→8/19 1.09亿<br>③ 台积电 CPO 扩产<br>（Insertion 2/3）<br>④ 光电子收入占比 43.9 亿<br>（vs 光伏 43.3 亿）</td>
+          <td>CPO 订单兑现<br>连续两季无<br>新增重大订单</td>
+          <td><b>每日</b><br>订单公告<br>+ 每周扩产</td>
+        </tr>
+        <tr>
+          <td><b>澜起科技</b><br>688008.SH</td>
+          <td><span class="tag tag-green">已确认</span><br>DDR5/内存接口芯片龙头</td>
+          <td>① DDR5 渗透率<br>+ MRDIMM 放量<br>② 存储合约价走势<br>③ 韩国反垄断调查进展<br>④ HBM/CoWoS 扩产传导<br>⑤ <b>HBM 替代叙事软信号</b><br>（Cerebras/Groq 放量、<br>苹果引入中国供应商、<br>云厂商去 HBM 架构）</td>
+          <td>硬开关：存储合约价掉头<br>下行 / 韩国调查不利<br>软信号：替代叙事主流化<br>→ 估值先于基本面见顶</td>
+          <td><b>每日</b><br>MRVL 映射<br>+ 每周合约价</td>
+        </tr>
+        <tr>
+          <td><b>汇绿生态</b><br>001267.SZ</td>
+          <td><span class="tag tag-yellow">验证中</span><br>光模块代工（钧恒）转型</td>
+          <td>① <b>Q3 现金流（钥匙）</b><br>② 毛利率守住 20% 一线<br>③ 客户订单：COHR 51.91%<br>/ LITE 谷歌代工 / 甲骨文<br>④ 高速光模块收入占比<br>（H1 6.55 亿 +202.8%）</td>
+          <td>Q3 现金流继续大幅恶化<br>/ 核心客户砍单</td>
+          <td><b>每日</b><br>COHR/LITE<br>+ 季报验证</td>
+        </tr>
+        <tr>
+          <td><b>三祥新材</b><br>603663.SH</td>
+          <td><span class="tag tag-blue">拐点</span><br>锆铪分离<br>铪第二曲线</td>
+          <td>① 铪 8月底-9月如期投产<br>② 半导体级 5N 量产认证<br>③ 中芯/长存/长鑫<br>送样→正式订单<br>④ 铪价持续性<br>（海外 12508–14000 美元/kg）</td>
+          <td>铪投产延期超 6 个月<br>/ 海外铪价跌破<br>12000 美元/kg</td>
+          <td><b>每周</b><br>投产+铪价<br>+ 订单事件</td>
+        </tr>
+        <tr>
+          <td><b>星环科技</b><br>688031.SH</td>          <td><span class="tag tag-gray">利润仓</span><br>AI 大数据<br>（负成本）</td>
+          <td>① 大模型/信创订单落地<br>② 亏损收窄进度<br>③ 科创 50 β 跟随</td>
+          <td>无独立硬开关<br>（负成本，节奏自定）</td>
+          <td><b>每周</b><br>+ 财报窗口</td>
+        </tr>
+        <tr>
+          <td><b>软通动力</b><br>301236.SZ</td>
+          <td><span class="tag tag-gray">弱映射</span><br>信创/AI 服务</td>
+          <td>① 信创订单<br>（国产 OS 替换驱动）<br>② 华为生态绑定<br>（欧拉/鸿蒙）<br>③ 麒麟/统信/中软联动</td>
+          <td>信创落地低于预期<br>（间接受益，若龙头走强<br>软通不动=弱信号）</td>
+          <td><b>每周</b><br>+ 信创事件</td>
+        </tr>
+        <tr>
+          <td><b>泰和新材</b><br>002254.SZ</td>
+          <td><span class="tag tag-gray">防御</span><br>氨纶/芳纶</td>
+          <td>① 氨纶价差修复<br>② 对位芳纶需求<br>（光通信+军工）<br>③ 利润 10 亿+<br>（市值 455.7 亿前提）</td>
+          <td>氨纶价差继续恶化<br>/ 利润兑现路径证伪</td>
+          <td><b>每周</b>（价格）</td>
+        </tr>
+        <tr>
+          <td><b>华峰化学</b><br>002064.SZ</td>
+          <td><span class="tag tag-gray">防御</span><br>氨纶/己二酸/PA66</td>
+          <td>① 氨纶价差<br>② 己二酸/PA66 价格<br>③ 周期位置<br>（对冲价值验证）</td>
+          <td>化工周期下行<br>（价格跌破成本线）</td>
+          <td><b>每周</b>（价格）</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">确定性分级沿用「确定性→仓位分层」框架：画饼期（不入仓）→ 投入期·验证中（小仓位试仓）→ 投入期·已确认（标准仓位）→ 拐点确认（可加仓）。当前：罗博/澜起=已确认，汇绿=验证中，三祥=拐点，星环=利润仓，软通/泰和/华峰=防御/弱映射。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 全局硬开关（跨持仓 · 优先级最高）</h2><span class="source">任一触发即评估降科技仓位</span></div>
+    <div class="table-wrap"><table class="hard">
+      <thead><tr><th>硬开关</th><th>内容</th><th>当前状态</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>美债 10 年期</b><br>5%</td><td>收益率突破 5%<br>（2007 年以来最高）</td><td><span class="dot dot-y"></span>未触发<br>10Y 4.71%<br>盘中触 4.75%</td><td>接近警戒线，未破 5% 前是压制而非抽水；周四凌晨美联储纪要定方向。</td></tr>
+        <tr><td><b>CSP 资本开支</b></td><td>四大云厂商<br>AI 资本开支指引</td><td><span class="dot dot-g"></span>未触发<br>仍处高位</td><td>全球 AI 硬件链总需求的总闸，当前未现下修信号。</td></tr>
+        <tr><td><b>存储合约价</b></td><td>DRAM/NAND 合约价趋势</td><td><span class="dot dot-g"></span>未触发</td><td>澜起硬开关，当前仍处上行/紧平衡。附加<b>软信号</b>（8/20 补）：Cathie Wood/Ben Thompson "HBM 替代论"——Cerebras/Groq 出货放量、苹果引入中国存储供应商、云厂商宣布去 HBM 架构，任一主流化则板块估值先于基本面见顶。</td></tr>
+        <tr><td><b>日元套利</b></td><td>日元升值引发套利平仓</td><td><span class="dot dot-g"></span>未触发</td><td>8 月初曾引发全球流动性收缩，当前未复发。</td></tr>
+        <tr><td><b>Q3 现金流</b></td><td>汇绿 2026Q3 经营现金流</td><td><span class="dot dot-y"></span>待验证</td><td>10 月底披露，是汇绿「中报隐藏实力」假设的验证钥匙。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 美股映射链（每日盘前巡检）</h2><span class="source">数据源：Pandadata 港美股接口（已纳入协议）</span></div>
+    <div class="table-wrap"><table class="check">
+      <thead><tr><th>持仓 → 映射</th><th>传导逻辑</th><th>巡检要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博 → NVDA / MRVL</b><br>（+ COHR/LITE 光器件链）</td><td>英伟达/台积电主导 CPO<br>→ 采购 ficonTEC 设备</td><td>NVDA 财报指引<br>MRVL 目标价变化<br>CPO 交换机出货</td></tr>
+        <tr><td><b>澜起 → MRVL</b></td><td>内存接口/互联芯片同链</td><td>MRVL 股价/一致预期<br>投行评级变化</td></tr>
+        <tr><td><b>汇绿 → COHR / LITE</b></td><td>光模块第一大客户<br>COHR 51.91%</td><td>COHR 财报/指引<br>光互连链涨跌<br>泵源/光器件订单</td></tr>
+        <tr><td><b>三祥 → 存储 β</b></td><td>铪用于存储/逻辑高K介质<br>随存储板块波动</td><td>存储链涨跌<br>（SK海力士/美光）<br>铪价独立数据</td></tr>
+        <tr><td><b>软通 → 信创链</b></td><td>国产 OS 替换政策受益</td><td>麒麟/统信/中国软件/中国长城相对强度</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 每日巡检流程（固化步骤）</h2><span class="source">每轮盘前简报 + 每日复盘固定执行</span></div>
+    <div class="grid3">
+      <div class="step"><div class="n">STEP 1 · 拉数</div><div class="t">全持仓 + 大盘 + 映射</div><div class="d">Wind 拉 8 只持仓行情/技术/资金 + 大盘四指数；Pandadata 拉美股映射链（MRVL/COHR/LITE/NVDA）+ 美债宏观。确认时点 ≥ 当前才许开口。</div></div>
+      <div class="step"><div class="n">STEP 2 · 校准</div><div class="t">先问验证点是否最核心</div><div class="d">先自问：当前列的验证点是否仍是最核心的关键点？有无已失效/需新增/需替换？先校准要害，再查信息，防刻舟求剑。</div></div>
+      <div class="step"><div class="n">STEP 3 · 巡检</div><div class="t">逐标的核对验证点</div><div class="d">对照 01 表逐只过：今天有无新公告/新订单/价格异动？有 → 更新状态；无 → 标注「无更新」。四问：最核心？新信息？推进还是后退？硬开关触发？</div></div>
+      <div class="step"><div class="n">STEP 4 · 结论</div><div class="t">每标的给四档结论</div><div class="d">BUY / HOLD / SELL / WAIT 四选一，落到具体点位与条件，拒绝模糊措辞。硬开关触发则明确提示降仓评估。</div></div>
+      <div class="step"><div class="n">STEP 5 · 存档</div><div class="t">更新看板 + 日志</div><div class="d">看板状态灯随巡检更新（有变化才改）；工作区日志追加当日巡检记录；关键事件（公告/订单/硬开关）进用户级 MEMORY.md。</div></div>
+      <div class="step"><div class="n">STEP 6 · 交付</div><div class="t">HTML + 口头结论</div><div class="d">简报/复盘 HTML 走 V4 版式 + QC 全绿后交付；口头结论先结论后证据，标注数据时点与置信度。</div></div>
+      <div class="step"><div class="n">STEP 7 · 自检</div><div class="t">孤行字 + 数据时点</div><div class="d">交付前逐行核验无孤行字（<5 字符即视觉孤行）；核对数据时点是否最新，禁止沿用对话早前旧价（8/19 午盘教训）。</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 本周待验证事件日历</h2><span class="source">8/20–8/21</span></div>
+    <div class="table-wrap"><table class="check">
+      <thead><tr><th>时间</th><th>事件</th><th>影响标的 / 验证点</th></tr></thead>
+      <tbody>
+        <tr><td><b>8/20 凌晨 2:00</b></td><td>美联储 7 月会议纪要</td><td>全局：决定美债方向<br>回落=修复 / 冲 5%=压制</td></tr>
+        <tr><td><b>8/25</b></td><td>胜蓝股份中报（观察池）</td><td>观察池：超节点/液冷<br>收入占比验证（非持仓）</td></tr>
+        <tr><td><b>8/29</b></td><td>华海清科中报（观察池）</td><td>观察池：利润增速能否追平收入<br>（毛利下滑+研发+离子注入亏损）</td></tr>
+        <tr><td><b>8月底–9月</b></td><td>三祥铪投产（关键）</td><td>三祥：投产是否如期<br>→ 纯度/客户/价格三数据</td></tr>
+        <tr><td><b>10 月底</b></td><td>汇绿 Q3 财报</td><td>汇绿：Q3 现金流验证钥匙</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 数据核源与版本</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="check">
+      <thead><tr><th>数据项</th><th>来源</th><th>置信度</th></tr></thead>
+      <tbody>
+        <tr><td>持仓行情/技术指标<br>（8/19 收盘）</td><td>Wind 万得快照</td><td>★★★</td></tr>
+        <tr><td>美股映射链行情/一致预期</td><td>Pandadata 港美股接口<br>（协议升级后主用）</td><td>★★★</td></tr>
+        <tr><td>罗博订单<br>（客户 F/H/I、ficonTEC）</td><td>公司公告 + 研报交叉核验</td><td>★★★</td></tr>
+        <tr><td>三祥铪投产<br>/纯度/客户/价格</td><td>浙商研报 + 阿格斯<br>+ 行业测算</td><td>★★（部分为卖方口径）</td></tr>
+        <tr><td>硬开关<br>（美债/CSP/合约价/日元）</td><td>Wind + Pandadata + 财经媒体</td><td>★★★</td></tr>
+      </tbody>
+    </table></div>
+    <p class="foot">版本：v1.0（2026-08-19 建立）｜本看板为持仓验证点体系基座，随每日巡检更新，不构成投资建议。</p>
+  </section>
+
+  <section class="card risk">
+    <div class="section-title"><h2>风险提示</h2></div>
+    <p style="font-size:12px;margin:0;color:var(--muted)">本看板所有内容基于公开数据、公司公告、券商研报与行业测算，仅供投研跟踪参考，不构成任何投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </section>
+
+</main>
+</body>
+</html>

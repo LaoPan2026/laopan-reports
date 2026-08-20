@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘后复盘 2026-08-19</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:29px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:21px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+table.theme{table-layout:fixed}
+table.theme th:nth-child(1),table.theme td:nth-child(1){width:16%}
+table.theme th:nth-child(2),table.theme td:nth-child(2){width:28%}
+table.theme th:nth-child(3),table.theme td:nth-child(3){width:18%}
+table.theme th:nth-child(4),table.theme td:nth-child(4){width:38%}
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:13%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:10%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:9%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:9%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:13%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:18%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:28%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4){text-align:right}
+table.tech{table-layout:fixed}
+table.tech th:nth-child(1),table.tech td:nth-child(1){width:15%}
+table.tech th:nth-child(2),table.tech td:nth-child(2){width:19%}
+table.tech th:nth-child(3),table.tech td:nth-child(3){width:11%}
+table.tech th:nth-child(4),table.tech td:nth-child(4){width:11%}
+table.tech th:nth-child(5),table.tech td:nth-child(5){width:44%}
+table.tech th:nth-child(2),table.tech td:nth-child(2),
+table.tech th:nth-child(3),table.tech td:nth-child(3),
+table.tech th:nth-child(4),table.tech td:nth-child(4){text-align:right}
+table.switch{table-layout:fixed}
+table.switch th:nth-child(1),table.switch td:nth-child(1){width:20%}
+table.switch th:nth-child(2),table.switch td:nth-child(2){width:30%}
+table.switch th:nth-child(3),table.switch td:nth-child(3){width:14%}
+table.switch th:nth-child(4),table.switch td:nth-child(4){width:36%}
+table.cal{table-layout:fixed}
+table.cal th:nth-child(1),table.cal td:nth-child(1){width:22%}
+table.cal th:nth-child(2),table.cal td:nth-child(2){width:40%}
+table.cal th:nth-child(3),table.cal td:nth-child(3){width:38%}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:22px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric .value{font-size:18px}table{font-size:11px}th,td{padding:6px 5px}th{font-size:10px}.table-wrap table{min-width:560px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">DAILY REVIEW · 2026-08-19（周三）</div>
+  <h1 class="title">盘后复盘：放量暴跌、5000股下跌、130股跌停——科技全灭、防御扛旗，8月最大单日跌幅</h1>
+  <p class="subtitle">数据口径：Wind 万得（置信度 ★★★）｜8/19 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-red">核心判断</span>今天单边放量重挫——上证 -2.40% 收 3894.42（8月最大单日跌幅、破 3900）、创业板 -6.26%、科创50 -6.89% 领跌，两市 2.51 万亿放量 1103 亿、超 5000 股下跌、130 股跌停。<b>这是"杀成长、买防御"的极端分化日：科技全灭，只有化工华峰逆势红盘；除华峰外，7 只持仓全部跌破 55 日线。</b></h2>
+    <p>驱动是隔夜美债长端飙升（30 年期 5.32% 创 2007 年新高）+ 费城半导体跌超 6% + 日韩股市重挫传导，叠加 A 股科创综指 8 月一度涨 15.65% 的高位兑现。主力资金单日净流出 781.6 亿（上证口径），大资金趋势性撤离科技。</p>
+    <div class="actionline">今日操作结论：HOLD 底仓不动，不抄底、不割肉。汇绿波段 T 终止（36.63 破防守线 38.81、缺口回补）；除华峰（化工防御）外科技持仓全部破 55 日线，中期趋势转弱，等企稳信号。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value down">3894.42 <small>-2.40%</small></div><div class="note">8月最大单日跌幅 · 破3900</div></div>
+    <div class="metric"><div class="label">科创50</div><div class="value down">1667.52 <small>-6.89%</small></div><div class="note">领跌 · 科技重灾区</div></div>
+    <div class="metric"><div class="label">主力资金</div><div class="value down">-781.6亿</div><div class="note">上证口径 · 大资金撤离</div></div>
+    <div class="metric"><div class="label">成交额</div><div class="value flat">2.51万亿</div><div class="note">放量1103亿 · 下跌放量</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>01 今日关键事实（客观事件）</h2><span class="source">来源：Wind / Neodata / 财联社</span></div>
+    <p style="font-size:13px;margin:0">① <b>8月最大单日跌幅</b>：上证 -2.40% 收 3894.42（破 3900）、深成 -5.01%、创业板 -6.26%、科创50 -6.89%，单边低开低走、午后跌幅扩大。全市场上涨 449 家、下跌 5069 家、跌停 130 家，上涨占比仅 8%。</p>
+    <p style="font-size:13px;margin:8px 0 0">② <b>隔夜美债长端飙升是总闸</b>：30 年期美债盘中 5.32%（2007 年以来新高）、10 年期 4.75%（2025 年 1 月以来新高），压制全球高估值成长资产。</p>
+    <p style="font-size:13px;margin:8px 0 0">③ <b>海外科技股重挫传导</b>：费城半导体隔夜跌超 6%，韩国 KOSPI -5.80%、SK 海力士跌近 10%、三星跌超 8%。</p>
+    <p style="font-size:13px;margin:8px 0 0">④ <b>防御逆势、科技全灭</b>：焦炭 +7.56%、厨卫电器 +4.56%、银行三大类 +1.7%~1.9%；通信 -7.95%、电子 -7.77%、半导体 -7.57%，机器人/CPO/存储/MLCC/玻璃基板全线领跌。</p>
+    <p style="font-size:13px;margin:8px 0 0">⑤ <b>宇树上市分流 + 高位连板退潮</b>：宇树首日高开 629% 报 1100 元；爱丽家居、一鸣食品发风险提示，压制高位接力。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 大盘结构：钱怎么流（流入 + 流出）</h2><span class="source">来源：Wind 主力资金流向 · 双面呈现</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>方向</th><th>板块/标的</th><th>资金信号</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>流入·防御</b></td><td>贵金属、煤炭、风电设备、银行</td><td>主力抢筹避险</td><td>大资金切向红利/低波防御，是今天唯一有承接的方向。</td></tr>
+        <tr><td><b>流入·题材</b></td><td>商业航天（朱雀三号回收）、粮食（3连板）</td><td>局部活跃</td><td>事件驱动短线资金，非主线。</td></tr>
+        <tr><td><b>流出·通信</b></td><td>通信 -7.95%，主力净流出居前</td><td>🔴 重灾区</td><td>光模块/CPO 是资金撤退主战场，隔夜 COHR/MRVL 暴跌直接传导。</td></tr>
+        <tr><td><b>流出·电子/半导体</b></td><td>电子 -7.77%、半导体 -7.57%</td><td>🔴 重灾区</td><td>存储/元件/MLCC/玻璃基板全线退潮，高位科技集体兑现。</td></tr>
+        <tr><td><b>流出·成长</b></td><td>机器人、算力硬件、创新药</td><td>🔴 全线退潮</td><td>宇树上市分流 + 高位连板退潮，题材资金加速离场。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">本质：<b>主力净流出 781.6 亿、超大单主导，散户净流入接盘</b>——大资金借下跌离场，不是恐慌踩踏，是"卖科技、买防御"的趋势性切换。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 持仓复盘：七跌一涨，唯一红盘是化工防御</h2><span class="source">来源：Wind，8/19 收盘 · 按涨跌幅排序 · 确定性→仓位分层框架</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th>标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th class="num">20日</th><th>确定性层级</th><th>今日信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num">483.01</td><td class="num down">-11.62%</td><td class="num up">+14.81%</td><td><span class="tag tag-green">已确认</span></td><td>主力净流出5.64亿</td><td>破500+破55日线，只守不追。</td></tr>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num">41.28</td><td class="num down">-10.01%</td><td class="num down">-1.85%</td><td><span class="tag tag-blue">拐点</span></td><td>收最低价</td><td>独立逻辑被情绪杀，不补。</td></tr>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num">36.63</td><td class="num down">-9.76%</td><td class="num up">+15.62%</td><td><span class="tag tag-yellow">验证中</span></td><td>缩量·KDJ J9.93超卖</td><td>破38.81，波段T终止，底仓不动。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num">200.00</td><td class="num down">-8.26%</td><td class="num down">-10.14%</td><td><span class="tag tag-green">已确认</span></td><td>主力净流出13.21亿</td><td>主力撤最猛，底仓不动，加仓等。</td></tr>
+        <tr><td><b>星环科技-U</b> 688031</td><td class="num">107.00</td><td class="num down">-7.36%</td><td class="num up">+21.59%</td><td><span class="tag tag-blue">利润仓</span></td><td>主力净流入1700万</td><td>负成本利润仓，随科创50。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num">37.29</td><td class="num down">-6.54%</td><td class="num flat">-0.96%</td><td><span class="tag tag-gray">弱映射</span></td><td>KDJ J-2.96极超卖</td><td>极度超卖，持有不割。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num">12.13</td><td class="num down">-5.31%</td><td class="num up">+6.97%</td><td><span class="tag tag-gray">防御</span></td><td>跟随大盘</td><td>芳纶成长属性被带，持有。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num">11.40</td><td class="num up">+1.60%</td><td class="num flat">+0.88%</td><td><span class="tag tag-gray">防御</span></td><td>主力净流入3943万</td><td>唯一红盘+站上55日线，防御扛旗。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0"><b>关键信号：除华峰外，7 只持仓全部跌破 55 日线（中期分水岭）</b>。华峰 +1.60% 放量+主力净流入，再次验证"化工对冲科技回撤"的配置价值。多只持仓 KDJ J 值已入极超卖区（软通 -2.96、星环 6.30、汇绿 9.93），短期有超跌反抽需求，但中期趋势已转弱。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 五节点 / 硬开关巡检</h2><span class="source">硬开关：逻辑变化的卖出触发条件</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th>持仓</th><th>硬开关/验证点</th><th>状态</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿生态</b></td><td>波段T防守线38.81 / Q3现金流</td><td>🔴 波段破位</td><td>36.63 破防守线、缺口回补，波段 T 逻辑终止；但光模块转型逻辑未破，底仓继续持有，Q3 现金流仍是验证钥匙。</td></tr>
+        <tr><td><b>澜起科技</b></td><td>存储合约价 / 韩国调查</td><td>🔴 破位</td><td>200.00 破 20 日线、主力净流出 13.21 亿最猛；韩国调查+估值未消化，底仓不动、加仓等企稳。</td></tr>
+        <tr><td><b>罗博特科</b></td><td>CPO 设备订单兑现</td><td>🟡 破位未变逻辑</td><td>-11.62% 破 55 日线（533.97），CPO 一阶逻辑不变，属情绪杀+资金流出，只守不追。</td></tr>
+        <tr><td><b>三祥新材</b></td><td>固态电池排产</td><td>🟡 情绪杀</td><td>-10.01% 收最低，独立锆材逻辑被大盘情绪带崩，非基本面恶化，不补等企稳。</td></tr>
+        <tr><td><b>华峰化学</b></td><td>氨纶价差</td><td>🟢 正常</td><td>唯一逆势红盘+主力净流入，化工防御属性凸显，持有。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 技术信号雷达（关键标的）</h2><span class="source">来源：Wind 技术指标 · 8/19 收盘 · 55日线为中期分水岭</span></div>
+    <div class="table-wrap"><table class="tech">
+      <thead><tr><th>标的</th><th class="num">现价/55日线</th><th class="num">KDJ</th><th class="num">J值</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>华峰化学</b></td><td class="num">11.40 / 10.61</td><td class="num up">39.8</td><td class="num">18.0</td><td><span class="tag tag-green">唯一站上</span>+7.4% 站上 55 日线，主力净流入，防御扛旗。</td></tr>
+        <tr><td><b>星环科技</b></td><td class="num">107.00 / 111.13</td><td class="num up">45.6</td><td class="num">6.30</td><td><span class="tag tag-yellow">破位超卖</span>-3.7% 破 55 日线，J 值 6.30 极超卖，利润仓持有。</td></tr>
+        <tr><td><b>软通动力</b></td><td class="num">37.29 / 39.53</td><td class="num up">25.5</td><td class="num down">-2.96</td><td><span class="tag tag-yellow">极度超卖</span>-5.7% 破 55 日线，J 值负值极超卖，短期有反抽但趋势弱。</td></tr>
+        <tr><td><b>澜起科技</b></td><td class="num">200.00 / 238.27</td><td class="num up">48.8</td><td class="num">28.8</td><td><span class="tag tag-red">破位+主力撤</span>-16% 深破 55 日线，主力净流出 13.21 亿，加仓坚决等。</td></tr>
+        <tr><td><b>罗博特科</b></td><td class="num">483.01 / 533.97</td><td class="num up">65.2</td><td class="num">37.4</td><td><span class="tag tag-red">破位转弱</span>-9.5% 破 55 日线，KDJ 高位回落，只守不追。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">55 日线口径为 Wind 60 日均线近似。除华峰外全部破位，中期趋势转弱；但软通/星环/汇绿 J 值已入极超卖区，短期超跌反抽概率上升。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 新增变量</h2><span class="source">风险监控</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th>变量</th><th>内容</th><th>方向</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td><b>美债长端飙升</b></td><td>30年期 5.32%（2007 新高）、10年期 4.75%</td><td>🔴 核心利空</td><td>全球定价之锚抬升，是本轮下跌总闸。周四凌晨美联储纪要定方向。</td></tr>
+        <tr><td><b>日韩股市重挫</b></td><td>韩国 KOSPI -5.80%、SK海力士跌近10%</td><td>🔴 情绪传导</td><td>亚太科技共振下跌，强化"降科技仓位"交易逻辑。</td></tr>
+        <tr><td><b>宇树科技上市</b></td><td>首日高开629%报1100元，市值4449亿</td><td>🟡 分流</td><td>资金聚焦新股，分流机器人概念存量资金。</td></tr>
+        <tr><td><b>高位连板退潮</b></td><td>爱丽家居、一鸣食品发风险提示</td><td>🔴 情绪降温</td><td>压制短线接力，题材投机情绪退潮。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>07 看大做小：操作建议</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面 · 55日线为中期分水岭</span></div>
+    <p style="font-size:14px;margin:0"><b>HOLD 底仓不动，不抄底、不割肉。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">1. <b>汇绿（波段T终止）</b>：36.63 破防守线 38.81、缺口回补，波段 T 逻辑终止，机动仓放弃/止损。<b>底仓 5900 股不动</b>——卖出理由是逻辑破/基本面恶化，不是技术破位；今天 -9.76% 是情绪杀，光模块转型逻辑和 Q3 现金流验证钥匙没变。</p>
+    <p style="font-size:13px;margin:4px 0 0">2. <b>澜起/罗博/三祥</b>：科技破位+主力流出，<b>只守不追、不抢反弹</b>，等企稳信号（缩量止跌 + 主力资金流出收窄）。</p>
+    <p style="font-size:13px;margin:4px 0 0">3. <b>华峰</b>：唯一红盘+主力净流入，防御属性兑现，<b>持有但别追高</b>（防御仓定位是"扛"，不是"追涨"）。</p>
+    <p style="font-size:13px;margin:4px 0 0">4. <b>星环/软通/泰和</b>：无独立信号，持有不动；软通/星环已极超卖，不在地板割。</p>
+    <p style="font-size:13px;margin:8px 0 0">大环境提醒：这是<b>外生变量（美债）驱动的情绪杀，不是产业逻辑证伪</b>。但除华峰外全部破 55 日线，中期趋势转弱是事实——底仓拿住，机动仓别急着抄，等两个信号：① 美债 10 年期掉头回落；② 主力资金净流出收窄。在此之前，不进攻。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>08 明日日历</h2><span class="source">为明天做准备</span></div>
+    <div class="table-wrap"><table class="cal">
+      <thead><tr><th>关注项</th><th>具体内容</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>美联储纪要</b></td><td>北京时间周四凌晨 2:00 公布 7 月会议纪要</td><td>决定美债方向，明日最大变量</td></tr>
+        <tr><td><b>美债收益率</b></td><td>10年期 4.75% 是否回落 / 继续冲 5%</td><td>回落=成长修复窗口，冲高=继续压制</td></tr>
+        <tr><td><b>超跌反抽</b></td><td>软通/星环/汇绿 J 值极超卖，能否缩量止跌</td><td>反抽是减仓机会，不是抄底信号</td></tr>
+        <tr><td><b>上证支撑</b></td><td>今日低点 3879 能否守住</td><td>守不住则继续下探</td></tr>
+        <tr><td><b>主力资金</b></td><td>净流出 781 亿后是否收窄</td><td>流出收窄=企稳前兆</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>09 数据核源矩阵</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th>数据项</th><th>来源</th><th>置信度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>大盘指数收盘</td><td>Wind 快照（8/19 收盘）</td><td>★★★</td><td>上证/深成/创业板/科创50 收盘价与涨跌幅</td></tr>
+        <tr><td>持仓行情/技术指标</td><td>Wind 快照（8/19 收盘）</td><td>★★★</td><td>收盘价/涨跌幅/量比/主力净流入/KDJ/RSI/均线</td></tr>
+        <tr><td>涨跌家数/板块/资金</td><td>Neodata 市场宽度（8/19）</td><td>★★★</td><td>涨跌停家数/板块涨跌排行/主力资金流向</td></tr>
+        <tr><td>消息面/事件</td><td>财联社/每经/巨丰（8/19）</td><td>需核实原文</td><td>美债/日韩股市/宇树上市/连板退潮等非一手</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <p class="foot">数据说明：行情与资金为 8/19 收盘快照；55 日线口径为 Wind 60 日均线近似。本报告不含涨跌幅柱状图（表格已列，避免重复可视化）。数据来源：万得 Wind 金融数据服务（置信度 ★★★）、Neodata 市场宽度、财联社/每经消息面。</p>
+  <p class="foot risk">⚠️ 风险提示：以上为个人研究观点，仅供参考，不构成投资建议。隔夜美债/美股波动不必然等于 A 股次日走势；除华峰外持仓已破 55 日线，中期趋势转弱，反抽不等于反转。市场有风险，投资需谨慎。</p>
+
+</main>
+</body>
+</html>

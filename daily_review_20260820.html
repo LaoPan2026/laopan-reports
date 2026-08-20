@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘后复盘 2026-08-20</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:27px;line-height:1.3}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:19px}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:20px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:4px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+table.theme{table-layout:fixed}
+table.theme th:nth-child(1),table.theme td:nth-child(1){width:16%}
+table.theme th:nth-child(2),table.theme td:nth-child(2){width:28%}
+table.theme th:nth-child(3),table.theme td:nth-child(3){width:18%}
+table.theme th:nth-child(4),table.theme td:nth-child(4){width:38%}
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:14%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:10%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:10%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:9%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:12%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:17%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:28%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4),
+table.hold th:nth-child(5),table.hold td:nth-child(5){text-align:right}
+table.switch{table-layout:fixed}
+table.switch th:nth-child(1),table.switch td:nth-child(1){width:20%}
+table.switch th:nth-child(2),table.switch td:nth-child(2){width:30%}
+table.switch th:nth-child(3),table.switch td:nth-child(3){width:12%}
+table.switch th:nth-child(4),table.switch td:nth-child(4){width:38%}
+table.inspect{table-layout:fixed}
+table.inspect th:nth-child(1),table.inspect td:nth-child(1){width:14%}
+table.inspect th:nth-child(2),table.inspect td:nth-child(2){width:24%}
+table.inspect th:nth-child(3),table.inspect td:nth-child(3){width:38%}
+table.inspect th:nth-child(4),table.inspect td:nth-child(4){width:24%}
+table.cal{table-layout:fixed}
+table.cal th:nth-child(1),table.cal td:nth-child(1){width:22%}
+table.cal th:nth-child(2),table.cal td:nth-child(2){width:40%}
+table.cal th:nth-child(3),table.cal td:nth-child(3){width:38%}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:21px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric .value{font-size:17px}.table-wrap table{min-width:600px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">DAILY REVIEW · 2026-08-20（周四）</div>
+  <h1 class="title">盘后复盘：缩量反弹企稳日——医药暴涨（mRNA 疫苗突破）虹吸资金，科技分化：罗博/华峰领涨反抽、澜起/星环微跌</h1>
+  <p class="subtitle">数据口径：Wind 万得 + Neodata ★★★｜8/20 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-green">核心判断</span>昨日暴跌后的缩量企稳日：三大指数温和收涨、但成交缩量 4317 亿，医药（mRNA 癌症疫苗突破）成为绝对主线虹吸资金，科技仅结构性反抽。<b>罗博 +4.16%、华峰 +3.60% 领涨持仓，但澜起/星环/三祥仍微跌——反抽兑现但力度弱，不构成趋势反转。</b></h2>
+    <p>隔夜美债回落 + 美联储纪要落地缓和压制，A 股如期止跌企稳。但今日主角是医药不是科技——Moderna 与默沙东 mRNA 个性化癌症疫苗 III 期成功，Moderna 暴涨 177%，点燃 A 股疫苗/创新药涨停潮（生物制品 +7.85%、医疗服务 +4.24%），主力资金大幅流入医药，虹吸科技资金。</p>
+    <div class="actionline">今日操作结论：HOLD 底仓不动，反抽已兑现但缩量+医药虹吸，科技反抽力度弱——不加仓、不追涨。澜起虽微跌但 MRVL 谷歌 ASIC 逻辑未变，继续等企稳；罗博反抽至 500 上方按计划减机动仓。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value up">3903.72 <small>+0.24%</small></div><div class="note">缩量企稳 · 收3900上方</div></div>
+    <div class="metric"><div class="label">成交额</div><div class="value flat">2.08万亿</div><div class="note">缩量4317亿 · 18日连破2万亿</div></div>
+    <div class="metric"><div class="label">涨停/跌停</div><div class="value flat">84 / 13</div><div class="note">上涨4096家 · 情绪偏高</div></div>
+    <div class="metric"><div class="label">沪深300主力</div><div class="value down">-73.65亿</div><div class="note">超大单流出59亿 · 散户接</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>01 今日关键事实（客观事件）</h2><span class="source">来源：Wind / Neodata / 财联社</span></div>
+    <p style="font-size:13px;margin:0">① <b>缩量企稳日</b>：上证 3903.72（+0.24%）、深成 13972.78（+0.59%）、创业板 3495.59（+0.64%）、科创50 1652.97（<b>-0.87% 唯一收跌</b>）。两市成交 <b>2.08 万亿，缩量 4317 亿</b>——反弹无量，力度存疑。</p>
+    <p style="font-size:13px;margin:8px 0 0">② <b>医药成绝对主线</b>：Moderna 与默沙东 mRNA 个性化癌症疫苗 III 期成功（全球首个），Moderna 单日 +177%。A 股生物制品 +7.85%、医疗服务 +4.24%、医疗器械 +4.27%，<b>20cm 涨停 18 只为医药概念</b>，疫苗 ETF 涨停。</p>
+    <p style="font-size:13px;margin:8px 0 0">③ <b>资金结构分化</b>：沪深300 主力净流出 73.65 亿（超大单 -59 亿），但医药获主力大幅加仓（医疗服务 +38.7 亿、生物制品 +33.1 亿、化学制药 +27.7 亿）——<b>资金从科技切向医药，虹吸效应明显</b>。</p>
+    <p style="font-size:13px;margin:8px 0 0">④ <b>市场宽度尚可</b>：上涨 4096 家 / 下跌 1347 家，涨停 84 家 / 跌停 13 家，上涨占比 73%——指数温和但结构高度集中于医药。</p>
+    <p style="font-size:13px;margin:8px 0 0">⑤ <b>机构观点转暖</b>：国泰海通称"稳市力量阻断尾部风险、金秋行情"；申万宏源强调"AI 链四步走、超跌反弹优先算力链"；东方证券称沪指在 20/30 日线交汇处、大幅下挫概率不大。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 大盘结构：钱怎么流（流入 + 流出）</h2><span class="source">来源：Neodata 主力资金 · 双面呈现</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>方向</th><th>板块/标的</th><th>资金信号</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>流入·医药</b></td><td>医疗服务 +38.7亿、生物制品 +33.1亿、化学制药 +27.7亿</td><td>🟢 主力大幅加仓</td><td>mRNA 疫苗突破引爆，医药成当日资金主攻方向，虹吸全市场。</td></tr>
+        <tr><td><b>流入·贵金属</b></td><td>贵金属 +5.50%（山东黄金 +8.59%）</td><td>🟢 避险+涨价</td><td>美元指数破 99 + 地缘，贵金属继续走强。</td></tr>
+        <tr><td><b>流出·科技</b></td><td>科创50 -0.87%，半导体/CPO 资金流出</td><td>🔴 虹吸失血</td><td>医药虹吸下科技资金流出，光互连链（COHR/LITE 隔夜续跌）延续弱势。</td></tr>
+        <tr><td><b>流出·主力整体</b></td><td>沪深300 主力 -73.65 亿，超大单 -59 亿</td><td>🔴 机构偏流出</td><td>主力整体仍偏流出、散户承接——反弹缺机构资金确认。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">本质：<b>医药虹吸 + 缩量反弹 = 存量博弈下的结构切换</b>。指数企稳是真的，但资金并未回到科技——今日的反弹靠的是医药主线，不是科技修复。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 持仓复盘：六涨两跌，反抽力度弱</h2><span class="source">来源：Wind，8/20 收盘 · 按涨跌幅排序</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th>标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th class="num">20日</th><th>当日主力</th><th>技术信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num">503.11</td><td class="num up">+4.16%</td><td class="num up">+22.13%</td><td class="num up">+2.09亿</td><td>反抽至 500 上方</td><td>客户I订单+MRVL 双支撑，反抽到 500-510 按计划减机动仓。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num">11.81</td><td class="num up">+3.60%</td><td class="num up">+11.21%</td><td class="num up">+0.27亿</td><td>放量上攻</td><td>化工防御转进攻，两日连涨，持有不追高。</td></tr>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num">37.01</td><td class="num up">+1.04%</td><td class="num up">+19.39%</td><td class="num down">-0.10亿</td><td>低位企稳</td><td>缩量止跌迹象初现，底仓不动，机动仓仍等右侧。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num">12.18</td><td class="num up">+0.41%</td><td class="num up">+9.24%</td><td class="num up">+0.02亿</td><td>跟随大盘</td><td>化工防御属性延续，持有。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num">37.36</td><td class="num up">+0.19%</td><td class="num up">+6.74%</td><td class="num down">-0.10亿</td><td>缩量企稳</td><td>极超卖后反抽无力，资金未回，持有不追。</td></tr>
+        <tr><td><b>星环科技</b> 688031</td><td class="num">106.35</td><td class="num down">-0.61%</td><td class="num up">+22.10%</td><td class="num up">+0.06亿</td><td>科创50 拖累</td><td>利润仓，主力仍小幅流入，持有。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num">199.11</td><td class="num down">-0.44%</td><td class="num down">-11.54%</td><td class="num down">-0.41亿</td><td>缩量微跌</td><td>MRVL 谷歌 ASIC 利好未传导，资金未回，底仓等企稳。</td></tr>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num">40.76</td><td class="num down">-1.26%</td><td class="num down">-0.68%</td><td class="num down">-0.27亿</td><td>冲高回落</td><td>铪投产临近但未到催化时点，不补等企稳。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0"><b>关键信号：反抽兑现但分化</b>——罗博（+4.16%）因订单+MRVL 双利好领涨，华峰（+3.60%）延续防御转强；但澜起（MRVL 利好未传导）、星环/三祥仍收跌。<b>科技反抽无普涨，资金虹吸在医药，底仓不动是正确姿势。</b></p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 持仓验证点动态巡检（四问 · 8/19 机制固化后首次执行）</h2><span class="source">四问：①验证点是否最核心？②有无新信息？③推进还是后退？④硬开关触发？</span></div>
+    <div class="table-wrap"><table class="inspect">
+      <thead><tr><th>标的</th><th>① 验证点校准</th><th>② 新信息 / ③ 推进状态</th><th>④ 硬开关</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b></td><td>CPO 订单兑现<br>仍最核心 ✅</td><td>客户I订单实锤（8/19 1.09亿）<br>今日反抽 +4.16% 至 503<br><span class="tag tag-green">向「已确认」推进</span></td><td>未触发<br>（订单持续落地）</td></tr>
+        <tr><td><b>澜起科技</b></td><td>存储合约价 / 韩国调查<br>/ MRVL 映射 仍最核心 ✅</td><td>MRVL 谷歌 ASIC +9.85%<br>但 A 股未传导，缩量微跌<br><span class="tag tag-yellow">利好待传导 · 停滞</span></td><td>未触发<br>（合约价仍上行）</td></tr>
+        <tr><td><b>汇绿生态</b></td><td>Q3 现金流 / 毛利率<br>仍最核心 ✅（波段T已失效移除）</td><td>COHR/LITE 隔夜续跌承压<br>今日缩量企稳 +1.04% 至 37.01<br><span class="tag tag-yellow">企稳观察 · 未回防守线</span></td><td>未触发<br>（Q3 未到验证窗口）</td></tr>
+        <tr><td><b>三祥新材</b></td><td>铪投产（8月底-9月）<br>仍最核心 ✅</td><td>无新增公告<br>投产窗口临近，冲高回落 -1.26%<br><span class="tag tag-yellow">等待催化</span></td><td>未触发<br>（投产未延期）</td></tr>
+        <tr><td><b>华峰化学</b></td><td>氨纶价差 / 周期对冲<br>仍最核心 ✅</td><td>两日连涨 +3.60% 放量<br>防御价值持续兑现<br><span class="tag tag-green">验证推进</span></td><td>未触发<br>（周期未下行）</td></tr>
+        <tr><td><b>软通动力</b></td><td>信创订单 / 华为生态<br>仍最核心 ✅</td><td>无新增<br>极超卖后反抽无力 +0.19%<br><span class="tag tag-yellow">持平</span></td><td>未触发</td></tr>
+        <tr><td><b>星环科技</b></td><td>亏损收窄 / 科创50 β<br>仍最核心 ✅</td><td>主力小幅净流入 600 万<br>跟随科创50 微跌 -0.61%<br><span class="tag tag-yellow">持平</span></td><td>无独立硬开关<br>（利润仓）</td></tr>
+        <tr><td><b>泰和新材</b></td><td>氨纶价差 / 芳纶<br>仍最核心 ✅</td><td>无新增<br>跟随大盘 +0.41%<br><span class="tag tag-yellow">持平</span></td><td>未触发</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>巡检结论</b>：8 只持仓验证点均仍为最核心关键点（无失效/无新增/无替换）✅；有新信息 5 只（罗博订单、澜起 MRVL 映射、汇绿 COHR/LITE、华峰放量、星环主力流入），无更新 3 只（三祥/软通/泰和）✅ 标注「无更新」；推进 2 只（罗博/华峰）、停滞 1 只（澜起）、等待/持平 5 只；硬开关 0 触发 ✅。<b>——今日是"验证点动态巡检"机制固化后首次完整执行。</b></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 技术信号雷达（关键标的）</h2><span class="source">来源：Wind 技术指标 · 8/20 收盘 · 55日线为中期分水岭</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th>标的</th><th class="num">现价</th><th class="num">涨跌幅</th><th class="num">量比</th><th>技术状态</th><th>关键位</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b></td><td class="num">503.11</td><td class="num up">+4.16%</td><td class="num">1.08</td><td>反抽修复</td><td>500/510 压力</td><td>收复 500 整数关，但量比仅 1.08 反抽无量，500-510 减机动。</td></tr>
+        <tr><td><b>华峰化学</b></td><td class="num">11.81</td><td class="num up">+3.60%</td><td class="num">1.55</td><td>放量上攻</td><td>11.98 日内高</td><td>量比 1.55 放量，站上短均线，防御转强信号明确。</td></tr>
+        <tr><td><b>汇绿生态</b></td><td class="num">37.01</td><td class="num up">+1.04%</td><td class="num">0.62</td><td>缩量企稳</td><td>38.81 防守线</td><td>量比 0.62 缩量，止跌迹象初现但未回防守线，底仓持有。</td></tr>
+        <tr><td><b>澜起科技</b></td><td class="num">199.11</td><td class="num down">-0.44%</td><td class="num">0.59</td><td>缩量阴跌</td><td>200 整数关</td><td>量比 0.59 极度缩量，200 下方磨底，等放量收复 205 信号。</td></tr>
+        <tr><td><b>三祥新材</b></td><td class="num">40.76</td><td class="num down">-1.26%</td><td class="num">0.80</td><td>冲高回落</td><td>40.30 日内低</td><td>42.47 冲高回落，上方套牢盘重，等铪投产催化。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 新增变量</h2><span class="source">风险监控</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th>变量</th><th>内容</th><th>方向</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td><b>mRNA 癌症疫苗突破</b></td><td>Moderna/默沙东 III 期成功，Moderna +177%</td><td>🟡 医药虹吸</td><td>短期资金从科技切向医药，虹吸科技资金；若医药行情持续，科技修复延后。</td></tr>
+        <tr><td><b>缩量反弹</b></td><td>成交 2.08 万亿，缩量 4317 亿</td><td>🔴 力度存疑</td><td>反弹无量=反抽而非反转，科技反抽缺资金确认，警惕二次探底。</td></tr>
+        <tr><td><b>MRVL 谷歌 ASIC</b></td><td>谷歌定制芯片合作（隔夜 +9.85%）</td><td>🟢 逻辑强化</td><td>AI 算力需求增量背书，澜起/罗博逻辑受益，但 A 股传导滞后。</td></tr>
+        <tr><td><b>融资余额下降</b></td><td>昨日融资余额 26328 亿（-1.11%）</td><td>🟡 杠杆收缩</td><td>杠杆资金做多情绪一般，反弹缺杠杆资金助推。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>07 看大做小：操作建议</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面 · 55日线为中期分水岭</span></div>
+    <p style="font-size:14px;margin:0"><b>HOLD 底仓不动，反抽已兑现但缩量+医药虹吸，不追不加。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">1. <b>罗博（唯一可动）</b>：503.11 反抽至 500-510 区间，按计划<b>减机动仓</b>（8/19 定的纪律）；底仓持有，客户 I 订单+MRVL 逻辑未变。</p>
+    <p style="font-size:13px;margin:4px 0 0">2. <b>澜起（等传导）</b>：199.11 缩量微跌，MRVL 谷歌 ASIC 利好未传导——<b>加仓信号 = 放量收复 205</b>，在此之前底仓不动。</p>
+    <p style="font-size:13px;margin:4px 0 0">3. <b>汇绿（企稳观察）</b>：37.01 缩量止跌初现，但未回 38.81 防守线——波段 T 不重启，底仓不动等右侧信号。</p>
+    <p style="font-size:13px;margin:4px 0 0">4. <b>华峰（防御转强）</b>：两日连涨 + 放量，防御价值兑现，<b>持有不追高</b>（不因两天反弹改变防御仓定位）。</p>
+    <p style="font-size:13px;margin:4px 0 0">5. <b>三祥/软通/星环/泰和</b>：无独立信号，持有不动；三祥等铪投产催化，软通/星环不地板割。</p>
+    <p style="font-size:13px;margin:8px 0 0">大环境提醒：<b>企稳是真的，但"缩量 + 医药虹吸 + 主力净流出"说明反弹是存量切换而非增量进场</b>。科技修复需要两个信号：① 医药虹吸减弱（医药行情降温）；② 科技放量（量比回升）。在此之前，科技仓只做结构优化（罗博减机动），不新增。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>08 明日日历</h2><span class="source">为明天做准备</span></div>
+    <div class="table-wrap"><table class="cal">
+      <thead><tr><th>关注项</th><th>具体内容</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>医药虹吸延续性</b></td><td>mRNA 疫苗行情能否延续（涨停潮 18 只 20cm）</td><td>若医药降温=资金回流科技，若延续=科技继续失血</td></tr>
+        <tr><td><b>科技放量信号</b></td><td>罗博/澜起量比能否回升（今日均 &lt;1.1）</td><td>放量反抽=反抽升级，缩量=二次探底风险</td></tr>
+        <tr><td><b>美债 10 年期</b></td><td>4.65% 能否稳住 / 继续回落</td><td>稳住=压制解除，回升=再压科技估值</td></tr>
+        <tr><td><b>三祥铪投产</b></td><td>8月底-9月投产窗口临近</td><td>投产公告=硬催化，跟踪公告与调研</td></tr>
+        <tr><td><b>上证 3900 关</b></td><td>今日收 3903，能否站稳</td><td>站稳=企稳确认，失守=回补 8/19 缺口</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>09 数据核源矩阵</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th>数据项</th><th>来源</th><th>置信度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>大盘指数收盘</td><td>Wind 快照（8/20 收盘）</td><td>★★★</td><td>上证/深成/创业板/科创50 收盘价与涨跌幅</td></tr>
+        <tr><td>持仓行情/技术指标</td><td>Wind 快照（8/20 收盘）</td><td>★★★</td><td>收盘价/涨跌幅/量比/主力净流入/高低点</td></tr>
+        <tr><td>涨跌家数/板块/资金流向</td><td>Neodata（8/20 收盘）</td><td>★★★</td><td>涨停84/跌停13、板块主力净流入、医药虹吸</td></tr>
+        <tr><td>mRNA 疫苗突破</td><td>财联社/21世纪经济报道</td><td>★★★</td><td>Moderna +177%、III 期成功</td></tr>
+        <tr><td>机构观点</td><td>东方证券/国泰海通/申万宏源</td><td>★★★</td><td>金秋行情/AI 链四步走/缩量反弹</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card risk">
+    <div class="section-title"><h2>风险提示</h2></div>
+    <p style="font-size:12px;margin:0;color:var(--muted)">本复盘基于公开数据、公司公告与市场信息交叉核验（数据截至 2026-08-20 收盘），仅供投研参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </section>
+
+</main>
+</body>
+</html>

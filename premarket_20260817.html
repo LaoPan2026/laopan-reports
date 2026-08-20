@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前简报 2026-08-17</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:30px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:6px 0}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:22px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap}
+.down{color:var(--down);white-space:nowrap}
+.flat{color:var(--muted);white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+td.nowrap,th.nowrap{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 持仓映射表 6列 */
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:18%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:12%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:10%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:11%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:11%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:38%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4),
+table.hold th:nth-child(5),table.hold td:nth-child(5){text-align:right}
+table.hold th:nth-child(6),table.hold td:nth-child(6){text-align:left}
+
+/* 美股映射表 5列 */
+table.usmap{table-layout:fixed}
+table.usmap th:nth-child(1),table.usmap td:nth-child(1){width:20%}
+table.usmap th:nth-child(2),table.usmap td:nth-child(2){width:12%}
+table.usmap th:nth-child(3),table.usmap td:nth-child(3){width:10%}
+table.usmap th:nth-child(4),table.usmap td:nth-child(4){width:18%}
+table.usmap th:nth-child(5),table.usmap td:nth-child(5){width:40%}
+table.usmap th:nth-child(2),table.usmap td:nth-child(2),
+table.usmap th:nth-child(3),table.usmap td:nth-child(3){text-align:right}
+table.usmap th:nth-child(4),table.usmap td:nth-child(4){text-align:left}
+table.usmap th:nth-child(5),table.usmap td:nth-child(5){text-align:left}
+
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+
+@media(max-width:640px){
+  body{font-size:13px}
+  main{padding:16px 12px 30px}
+  .title{font-size:22px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .metric .value{font-size:18px}
+  .cols{grid-template-columns:1fr}
+  table{font-size:11px}
+  th,td{padding:6px 5px}
+  th{font-size:10px}
+  .table-wrap table{min-width:560px}
+}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">PRE-MARKET BRIEFING · 2026-08-17（周一）</div>
+  <h1 class="title">盘前简报：光模块隔夜再加速，汇绿明天中报是关键验证点</h1>
+  <p class="subtitle">数据口径：Wind 万得（置信度 ★★★）｜美股为 8/14 收盘，A股为 8/14 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-blue">核心判断</span>隔夜主线锁定光模块/光通信，AI 算力大票反而滞涨——行情在细分里集中，不是全面普涨。</h2>
+    <p><b>Lumentum（LITE）财报超预期</b>是隔夜最强催化：第四财季营收同比 <span class="up">+109%</span> 至 10.1 亿美元、毛利率 50.4%、下季营收指引中值 12.5 亿美元全面超预期；大摩随后把目标价从 900 上调至 <b>1000 美元</b>。隔夜 LITE 再涨 <span class="up">+5.19%</span> 收 926.14 美元，Coherent（COHR）微跌 <span class="down">-0.43%</span>，而 NVDA、MRVL 分别仅 <span class="down">-0.06%</span>、<span class="down">-0.07%</span>——资金明显涌向光通信细分，未带动算力大票同步走强。</p>
+    <div class="callout"><strong>对老潘的直接含义：</strong>① 汇绿生态（001267）——COHR/LITE 光模块代工直接映射，2026 半年报已于 8/14 周五盘后披露（非 8/18）：营收 10.37 亿(<span class="up">+49%</span>)、归母净利 2709 万(<span class="down">-27.8%</span>)、经营现金流 <span class="down">-4.77 亿</span>；周末研讨已确认：光模块（钧恒）毛利率 V 型回升、李晓明"以价换量+费用摊薄"总利润 +81% 整本账成立、Q3 现金流验证窗口已放宽，S 级逻辑维持 HOLD，8/17 逆势波动属市场对中报的短期反应而非逻辑破坏；② 罗博特科（300757）——光模块设备间接受益，但年初 <span class="up">+124.98%</span>、20日 <span class="up">+40.68%</span> 短期过热，不追高；③ 三祥新材（603663）上周五 <span class="up">+2.45%</span> 为持仓最强，锆材/固态电池逻辑独立于 AI 链。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value flat">3927.18 <small>+0.01%</small></div><div class="note">8/14 收盘</div></div>
+    <div class="metric"><div class="label">深证成指</div><div class="value up">14354.31 <small>+0.45%</small></div><div class="note">8/14 收盘</div></div>
+    <div class="metric"><div class="label">创业板指</div><div class="value up">3626.30 <small>+1.12%</small></div><div class="note">8/14 收盘</div></div>
+    <div class="metric"><div class="label">LITE（隔夜）</div><div class="value up">926.14 <small>+5.19%</small></div><div class="note">光通信龙头 · 财报超预期</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>一、隔夜美股：光通信独强，算力大票滞涨</h2><span class="source">来源：Wind，8/14 美股收盘</span></div>
+    <div class="table-wrap"><table class="usmap">
+      <thead><tr><th class="nowrap">标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th>映射 A 股</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lumentum</b></td><td class="num nowrap">926.14</td><td class="num up">+5.19%</td><td>汇绿生态（代工）</td><td>Q4营收+109%、毛利率50.4%、指引超预期，1.6T/CPO/ELS 需求加速，大摩目标价升至1000美元——光模块代工链最强正面催化。</td></tr>
+        <tr><td><b>Coherent</b></td><td class="num nowrap">325.83</td><td class="num down">-0.43%</td><td>汇绿生态（第一大客户）</td><td>前期已受 LITE 带动大涨，隔夜小幅休整；相干/光器件需求仍在，属强势整理而非走弱。</td></tr>
+        <tr><td><b>英伟达</b></td><td class="num nowrap">225.16</td><td class="num down">-0.06%</td><td>罗博特科（设备）</td><td>算力大票隔夜横盘，未见新的向上动能，对罗博映射偏中性。</td></tr>
+        <tr><td><b>Marvell</b></td><td class="num nowrap">222.02</td><td class="num down">-0.07%</td><td>澜起科技（互连）</td><td>互连芯片方向隔夜微跌，对澜起中性；重点仍看存储合约价与 CSP Capex。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>二、持仓全景：涨跌互现，三祥最强、汇绿回调</h2><span class="source">来源：Wind，8/14 A股收盘 · 按当日涨跌幅排序</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th class="nowrap">标的</th><th class="num">现价</th><th class="num">涨跌幅</th><th class="num">20日</th><th class="num">年初至今</th><th>映射与解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num nowrap">43.11</td><td class="num up">+2.45%</td><td class="num up">+12.91%</td><td class="num up">+70.99%</td><td>持仓最强，锆材料/固态电池逻辑独立于 AI 链，量价配合良好，继续持有。</td></tr>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num nowrap">524.88</td><td class="num up">+1.72%</td><td class="num up">+40.68%</td><td class="num up">+124.98%</td><td>光模块设备间接受益；但短期涨幅过大、20日+40%，NVDA/MRVL 隔夜滞涨，不追高、守55日线。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num nowrap">213.00</td><td class="num up">+0.51%</td><td class="num up">+12.35%</td><td class="num up">+81.16%</td><td>MRVL 隔夜微跌映射中性；长线底仓不动，加仓窗口仍等回踩确认。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num nowrap">39.06</td><td class="num up">+0.10%</td><td class="num up">+1.93%</td><td class="num down">-17.55%</td><td>浮盈标的，年初仍为负、20日走平，弹性偏弱，继续跟踪。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num nowrap">11.14</td><td class="num up">+0.09%</td><td class="num up">+8.90%</td><td class="num up">+2.29%</td><td>周期对冲底仓，走势平稳，维持。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num nowrap">12.75</td><td class="num flat">0.00%</td><td class="num up">+15.91%</td><td class="num up">+27.42%</td><td>横盘，PB 锚 HOLD 等拐点验证，不加仓。</td></tr>
+        <tr><td><b>星环科技-U</b> 688031</td><td class="num nowrap">112.47</td><td class="num down">-1.36%</td><td class="num up">+31.10%</td><td class="num up">+3.96%</td><td>20日+31%后高位回调，负成本利润仓，兑现节奏自定。</td></tr>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num nowrap">40.13</td><td class="num down">-3.23%</td><td class="num up">+27.68%</td><td class="num up">+83.40%</td><td>2026半年报 8/14 盘后已披露：营收 10.37 亿(<span class="up">+49%</span>)、归母净利 2709 万(<span class="down">-27.8%</span>)、经营现金流 <span class="down">-4.77 亿</span>。周末研讨结论：钧恒毛利率 V 型回升、以价换量总利润 +81%、Q3 现金流窗口放宽，S 级 HOLD 维持。8/17 波动属中报后短期反应，非逻辑破坏。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>三、今日核心催化：Lumentum 财报背后的产业信号</h2><span class="source">来源：Wind 财经新闻 · 财联社/智通财经</span></div>
+    <div class="cols">
+      <div>
+        <p><span class="tag tag-green">确定性强</span><b>光互联是 AI 数据中心刚需。</b>Lumentum 第四财季营收同比 +109%、毛利率 50.4%、营业利润率 36.6%，且 CEO 明确"1.6T 高速光模块 + 高功率激光器加速采用"是增长引擎，CPO/ELS 高功率激光器需求上升。</p>
+        <p><span class="tag tag-green">订单落地</span><b>Q1 指引 12.5 亿美元中值</b>，比原定目标提前逾一个季度实现，说明下游 Hyperscaler（英伟达、谷歌）光链路采购在加速兑现——这是"订单→营收"证据链的正面案例。</p>
+      </div>
+      <div>
+        <p><span class="tag tag-yellow">需注意</span><b>LITE 估值已高。</b>过去 12 个月累涨超 600%、年初 +122%，大摩评级仍为"持股观望"，暗示超预期已被相当程度定价；NPO 正式合同落地仍需数个季度。</p>
+        <p><span class="tag tag-red">映射边界</span><b>A 股光模块与美股不完全同步。</b>中际旭创、新易盛上周五走弱，说明 A 股端已出现"易中天"分化，汇绿的上涨不靠美股单日映射，而是中报业绩兑现质量——这是当前的核心矛盾。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>四、今日观察清单与操作纪律</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面 · 55日线为中期分水岭</span></div>
+    <div class="cols">
+      <div>
+        <p><span class="tag tag-blue">第一变量</span><b>汇绿中报落地后的跟踪（8/14 盘后已披露，周末已研讨）。</b>核心结论已定：营收 10.37 亿(+49%)兑现营收端，钧恒毛利率 V 型回升 + 以价换量总利润 +81% 支撑"投入期"判断，Q3 现金流验证窗口已放宽。后续跟踪：① 光电子分部毛利率能否维持回升趋势；② 客户结构（Coherent/Lumentum/谷歌）兑现度；③ CPO/NPO 代工订单增量；④ 重组审核进展。若 Q3 现金流仍无改善且毛利率回落，再下调"投入期"评级。</p>
+        <p><span class="tag tag-yellow">第二变量</span><b>光模块板块能否承接隔夜催化。</b>看中际旭创、新易盛、天孚通信今日能否止跌转强，若 A 股光模块整体弱于隔夜美股映射，说明内部分歧未消化。</p>
+      </div>
+      <div>
+        <p><span class="tag tag-red">第三变量</span><b>罗博特科短期过热风险。</b>20日 +40.68%、年初 +124.98%，若今日冲高乏力或放量滞涨，注意 55 日线（约 400 元上方）的中期分水岭意义，不因单日情绪追高。</p>
+        <p><span class="tag tag-green">执行纪律</span><b>HOLD 为主。</b>持仓不因隔夜情绪冲动调仓；汇绿等中报数据落地后再定去留；新增仓位只留给回踩确认的低相关方向（半导体设备/材料），不在光模块高位追入。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card risk"><strong>投资风险提示：</strong>本报告基于 Wind 万得公开数据与财经资讯整理，仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎。文中个股分析基于 2026-08-14 收盘数据，隔夜美股映射存在时滞，A 股今日实际走势可能与此前的映射逻辑背离。任何投资决策请结合个人风险承受能力独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</section>
+  <p class="foot">数据说明：美股（NVDA/MRVL/COHR/LITE）为 8/14 收盘行情；A 股指数与 8 只持仓为 8/14 收盘行情；催化事件源自 Wind 财经新闻（Lumentum 财报及大摩目标价）。涨跌幅为 Wind 快照口径，换手率字段因收盘后快照返回空值未列示。数据来源于万得 Wind 金融数据服务。</p>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前简报 2026-08-19</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:29px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:7px 0}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:21px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+table.usmap{table-layout:fixed}
+table.usmap th:nth-child(1),table.usmap td:nth-child(1){width:18%}
+table.usmap th:nth-child(2),table.usmap td:nth-child(2){width:12%}
+table.usmap th:nth-child(3),table.usmap td:nth-child(3){width:10%}
+table.usmap th:nth-child(4),table.usmap td:nth-child(4){width:18%}
+table.usmap th:nth-child(5),table.usmap td:nth-child(5){width:42%}
+table.usmap th:nth-child(2),table.usmap td:nth-child(2),
+table.usmap th:nth-child(3),table.usmap td:nth-child(3){text-align:right}
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:14%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:10%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:9%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:9%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:13%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:16%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:29%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4){text-align:right}
+table.bandt{table-layout:fixed}
+table.bandt th:nth-child(1),table.bandt td:nth-child(1){width:12%}
+table.bandt th:nth-child(2),table.bandt td:nth-child(2){width:16%}
+table.bandt th:nth-child(3),table.bandt td:nth-child(3){width:36%}
+table.bandt th:nth-child(4),table.bandt td:nth-child(4){width:36%}
+table.bandt th:nth-child(2),table.bandt td:nth-child(2){text-align:right}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:22px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric .value{font-size:18px}table{font-size:11px}th,td{padding:6px 5px}th{font-size:10px}.table-wrap table{min-width:560px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">PRE-MARKET BRIEFING · 2026-08-19（周三）</div>
+  <h1 class="title">盘前简报：隔夜光互连链全线暴跌，今日科技低开，汇绿测试 38.81 防守线</h1>
+  <p class="subtitle">数据口径：Wind 万得（置信度 ★★★）｜美股为 8/18 收盘，A股为 8/19 开盘实时</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-red">核心判断</span>隔夜资金从光互连链集中撤离——COHR 暴跌 12.75%、MRVL 暴跌 7.82%、LITE 暴跌 9.87%，与昨日「光互连全线大涨」完全反转。驱动是长端美债收益率飙升（30 年期 5.29% 创 2007 年新高）＋ AI 债务融资风险被重定价＋高位获利回吐。这是<b>估值/情绪杀跌，不是产业需求崩塌</b>，但今日 A 股科技已全线低开，最要紧的是<b>汇绿已跌破买点区、正在测试 38.81 防守线</b>——这是波段 T 的生死线。</h2>
+    <p>隔夜光互连链集体重挫（<b>COHR <span class="down">-12.75%</span>、MRVL <span class="down">-7.82%</span>、LITE <span class="down">-9.87%</span>、NVDA <span class="down">-2.34%</span></b>），费城半导体指数单日重挫约 4.98%。三大驱动：① 30 年期美债盘中触及 5.3371%（2007 年以来新高）、10 年期触及 4.75%（2025 年 1 月以来新高），高估值成长股对贴现率高度敏感；② 高盛数据显示今年 AI 债券供给已达 4890 亿美元、远超 2025 全年 3220 亿，「新债王」冈拉克警告英伟达牵头超 5000 亿美元 AI 基建融资或为见顶信号；③ 前期涨幅巨大、交易拥挤，瑞银下调 MRVL 目标价点燃止盈。</p>
+    <div class="callout"><strong>对老潘的直接含义：</strong>① <b>汇绿生态</b>——隔夜 COHR（第一大客户，占收入 47.42%）暴跌 12.75% 是直接利空，今日已低开至 38.83（-4.34%），<b>跌破买点区 39.6-40，正在测试防守线 38.81</b>。跌破 38.81 = 波段逻辑破、机动仓止损不补不扛；若 38.81 附近缩量止跌并重新站回 39.6，才谈低吸。底仓 5900 股不动；② <b>澜起科技</b>——MRVL -7.82% 直接映射，今日已低开 208.52（-4.35%），跌破 210，底仓不动、加仓继续等；③ <b>罗博特科</b>——NVDA -2.34% + CPO 情绪杀，今日 -5.34%，一阶逻辑不变但短期只守不追。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">纳指（隔夜）</div><div class="value down">26289.71 <small>-1.33%</small></div><div class="note">三连跌 · 费半 -4.98%</div></div>
+    <div class="metric"><div class="label">COHR（隔夜）</div><div class="value down">306.43 <small>-12.75%</small></div><div class="note">汇绿第一大客户</div></div>
+    <div class="metric"><div class="label">MRVL（隔夜）</div><div class="value down">216.00 <small>-7.82%</small></div><div class="note">澜起映射 · 瑞银下调目标价</div></div>
+    <div class="metric"><div class="label">10年/30年美债</div><div class="value">4.71% / 5.29%</div><div class="note">30年创2007年新高</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>一、隔夜美股映射链：光互连全线重挫，情绪从「多光互连」急转为「杀估值」</h2><span class="source">来源：Wind，8/18 美股收盘</span></div>
+    <div class="table-wrap"><table class="usmap">
+      <thead><tr><th>标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th>映射 A 股</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>Coherent</b></td><td class="num">306.43</td><td class="num down">-12.75%</td><td>汇绿生态（第一大客户）</td><td>财报后单日暴跌，高位获利回吐。直接利空传导汇绿，今日汇绿已低开测试防守线。</td></tr>
+        <tr><td><b>Marvell</b></td><td class="num">216.00</td><td class="num down">-7.82%</td><td>澜起科技（互连）</td><td>瑞银下调目标价 + 高位回吐，映射澜起内存接口方向，隔夜承压明显。</td></tr>
+        <tr><td><b>Lumentum</b></td><td class="num">873.31</td><td class="num down">-9.87%</td><td>汇绿生态（代工）</td><td>1.6T 高估值回吐，光模块代工链隔夜普跌，情绪杀为主。</td></tr>
+        <tr><td><b>英伟达</b></td><td class="num">219.74</td><td class="num down">-2.34%</td><td>罗博特科（设备）</td><td>相对抗跌，但 CPO 设备短期跟随 AI 链情绪；Spectrum-X 量产逻辑不变。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">隔夜结构：昨日「做多光互连」交易今日遭遇「美债收益率飙升 + AI 债务风险重定价」双杀，资金从高估值 AI 硬件转向能源（标普能源指数 +1.8% 创 3 月新高）、医疗等防御板块。这是<b>估值与情绪层面的杀跌</b>，HBM 紧缺、云厂商资本开支高位等产业现实仍在。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>二、持仓全景（8/19 开盘，含确定性层级）</h2><span class="source">来源：Wind · 开盘实时数据</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th>标的</th><th class="num">现价</th><th class="num">涨跌幅</th><th class="num">20日</th><th>确定性层级</th><th>隔夜映射</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num">38.83</td><td class="num down">-4.34%</td><td class="num up">+21.31%</td><td><span class="tag tag-yellow">验证中</span></td><td>COHR -12.75%</td><td>测试 38.81，破位止损，企稳低吸。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num">208.52</td><td class="num down">-4.35%</td><td class="num down">-6.32%</td><td><span class="tag tag-green">已确认</span></td><td>MRVL -7.82%</td><td>底仓不动，加仓等回踩。</td></tr>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num">517.35</td><td class="num down">-5.34%</td><td class="num up">+19.48%</td><td><span class="tag tag-green">已确认</span></td><td>NVDA -2.34%</td><td>CPO 逻辑不变，只守不追。</td></tr>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num">43.90</td><td class="num down">-4.29%</td><td class="num up">+4.37%</td><td><span class="tag tag-blue">拐点</span></td><td>与 AI 链无关</td><td>随大盘回踩，持有。</td></tr>
+        <tr><td><b>星环科技-U</b> 688031</td><td class="num">111.78</td><td class="num down">-3.22%</td><td class="num up">+27.02%</td><td><span class="tag tag-blue">利润仓</span></td><td>科创50 承压</td><td>随科创 50 波动。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num">38.64</td><td class="num down">-3.16%</td><td class="num down">-1.53%</td><td><span class="tag tag-blue">弱映射</span></td><td>—</td><td>跟随大盘，持有。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num">12.55</td><td class="num down">-2.03%</td><td class="num up">+12.86%</td><td><span class="tag tag-blue">防御</span></td><td>—</td><td>跌幅最浅，持有。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num">11.27</td><td class="num up">+0.45%</td><td class="num up">+2.08%</td><td><span class="tag tag-blue">防御</span></td><td>—</td><td>逆势翻红，持有。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>三、汇绿波段 T：今日是生死线之战（重点）</h2><span class="source">来源：Wind 技术指标 · 8/19 开盘实时</span></div>
+    <div class="table-wrap"><table class="bandt">
+      <thead><tr><th>锚点</th><th class="num">价位</th><th>依据</th><th>纪律动作</th></tr></thead>
+      <tbody>
+        <tr><td><b>防守线</b></td><td class="num">38.81</td><td>缺口下沿（缺口完全回补）</td><td>跌破 = 波段逻辑破，机动仓止损，不补不扛</td></tr>
+        <tr><td><b>买点区</b></td><td class="num">39.6 — 40</td><td>缺口上沿 39.59 + 8/17 低点 39.98 + 10 日线 39.78</td><td>缩量止跌时波段机动仓接（约 30 万）</td></tr>
+        <tr><td><b>卖点区</b></td><td class="num">44.45 — 45.29</td><td>55 日线 44.45 + 前高 45.29</td><td>冲高滞涨时波段机动仓减（底仓不动）</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13px;margin:12px 0 0"><b>今日关键变量</b>：隔夜 COHR -12.75% 暴跌，汇绿今日直接低开 38.83，<b>已跌破买点区 39.6-40，正在测试防守线 38.81</b>。三种情形应对：</p>
+    <p style="font-size:13px;margin:6px 0 0">① <b>跌破 38.81 且不收回</b> → 波段逻辑破，机动仓止损，不补不扛，本周放弃汇绿波段 T；② <b>38.81 附近缩量止跌、重新站回 39.6</b> → 这是比买点区更深的低吸位，但须等站稳 39.6 再动，不接下跌途中的刀；③ <b>低开后快速拉回、量能放大</b> → 情绪杀被承接，底仓继续持有，波段机动仓仍等 39.6-40 区间。三纪律不变：分开记账 / 预设价位到位执行 / 突破认错。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>四、今日操作结论</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面</span></div>
+    <p style="font-size:14px;margin:0"><b>HOLD 为主，不恐慌杀跌；汇绿盯 38.81 防守线，破位止损、企稳低吸。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">1. <b>汇绿</b>：今日是波段 T 生死线之战。跌破 38.81 = 机动仓止损认错；38.81 缩量止跌并站回 39.6 = 低吸机会。底仓 5900 股纹丝不动。</p>
+    <p style="font-size:13px;margin:4px 0 0">2. <b>澜起</b>：MRVL 暴跌传导，已跌破 210，底仓不动，加仓继续等（韩国调查 + 估值未消化，不抢反弹）。</p>
+    <p style="font-size:13px;margin:4px 0 0">3. <b>罗博</b>：CPO 一阶逻辑不变，短期情绪杀 -5.34%，只守不追，不因回调恐慌减仓。</p>
+    <p style="font-size:13px;margin:4px 0 0">4. <b>其余持仓</b>（三祥/星环/软通/泰和/华峰）：跟随大盘回踩，无独立信号，持有不动。</p>
+    <p style="font-size:13px;margin:8px 0 0">今日盯三点：① 汇绿 38.81 能否守住（波段 T 生死线）；② 科技低开后能否承接（若低开低走则隔夜利空兑现为趋势，若低开拉回则情绪杀见底）；③ 美债 10 年期是否继续上冲（4.75% 是关键，破 5% 触发 AI 资金链收缩）。</p>
+  </section>
+
+  <p class="foot">数据说明：美股为 8/18 收盘、A股为 8/19 开盘实时（约 9:30）；隔夜光互连暴跌主因=美债收益率飙升 + AI 债务风险重定价 + 高位获利回吐，属估值/情绪杀跌非产业崩塌。数据来源：万得 Wind 金融数据服务（置信度 ★★★）。</p>
+  <p class="foot risk">⚠️ 风险提示：以上为个人研究观点，仅供参考，不构成投资建议。隔夜美股暴跌不必然等于 A 股当日下跌；汇绿波段 T 属短线博弈，跌破 38.81 止损是纪律不是预测；AI 硬件短期波动显著放大，注意仓位与情绪管理。市场有风险，投资需谨慎。</p>
+
+</main>
+</body>
+</html>

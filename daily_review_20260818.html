@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘后复盘 2026-08-18</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:30px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:6px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:14px;font-weight:700}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:22px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap}
+.down{color:var(--down);white-space:nowrap}
+.flat{color:var(--muted);white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+td.nowrap,th.nowrap{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 持仓全景 7列（含确定性层级） */
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:14%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:10%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:9%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:9%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:13%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:22%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:23%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4),
+table.hold th:nth-child(5),table.hold td:nth-child(5){text-align:right}
+table.hold th:nth-child(6),table.hold td:nth-child(6){text-align:center}
+table.hold th:nth-child(7),table.hold td:nth-child(7){text-align:left}
+
+/* 大盘结构 4列 */
+table.theme{table-layout:fixed}
+table.theme th:nth-child(1),table.theme td:nth-child(1){width:20%}
+table.theme th:nth-child(2),table.theme td:nth-child(2){width:28%}
+table.theme th:nth-child(3),table.theme td:nth-child(3){width:20%}
+table.theme th:nth-child(4),table.theme td:nth-child(4){width:32%}
+
+/* 技术雷达 5列 */
+table.tech{table-layout:fixed}
+table.tech th:nth-child(1),table.tech td:nth-child(1){width:16%}
+table.tech th:nth-child(2),table.tech td:nth-child(2){width:20%}
+table.tech th:nth-child(3),table.tech td:nth-child(3){width:11%}
+table.tech th:nth-child(4),table.tech td:nth-child(4){width:14%}
+table.tech th:nth-child(5),table.tech td:nth-child(5){width:39%}
+table.tech th:nth-child(2),table.tech td:nth-child(2),
+table.tech th:nth-child(3),table.tech td:nth-child(3),
+table.tech th:nth-child(4),table.tech td:nth-child(4){text-align:right}
+table.tech th:nth-child(5),table.tech td:nth-child(5){text-align:left}
+
+/* 硬开关/数据核源 4列 */
+table.switch{table-layout:fixed}
+table.switch th:nth-child(1),table.switch td:nth-child(1){width:22%}
+table.switch th:nth-child(2),table.switch td:nth-child(2){width:28%}
+table.switch th:nth-child(3),table.switch td:nth-child(3){width:12%}
+table.switch th:nth-child(4),table.switch td:nth-child(4){width:38%}
+
+/* 明日日历 */
+table.cal{table-layout:fixed}
+table.cal th:nth-child(1),table.cal td:nth-child(1){width:22%}
+table.cal th:nth-child(2),table.cal td:nth-child(2){width:40%}
+table.cal th:nth-child(3),table.cal td:nth-child(3){width:38%}
+
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+
+@media(max-width:640px){
+  body{font-size:13px}
+  main{padding:16px 12px 30px}
+  .title{font-size:22px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .metric .value{font-size:18px}
+  table{font-size:11px}
+  th,td{padding:6px 5px}
+  th{font-size:10px}
+  .table-wrap table{min-width:560px}
+}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">DAILY REVIEW · 2026-08-18（周二）</div>
+  <h1 class="title">盘后复盘：V型反弹收红，但科技硬件资金撤退——"指数稳、个股散"的一天</h1>
+  <p class="subtitle">数据口径：Wind 万得（置信度 ★★★）｜8/18 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-blue">核心判断</span>今天走了个 V 型——上午高开低走（昨日"FCC 豁免传闻"落空），下午权重 + 农业 + 半导体设备拉回，上证 +0.19% 收 3990.30、站回 55 日线（3972）。但全市场 3200+ 只下跌，主力净流出 368 亿、硬件设备净流出 183.75 亿（中际旭创 -27.81 亿）——<b>指数是拉回来了，钱的底色是"从科技硬件撤退"。</b></h2>
+    <p>盘面结构：上涨靠<b>农业（涨停潮）、半导体设备（逆市、ETF 连涨 3 天）、油气/煤炭/银行（防御）</b>；下跌靠<b>锂电池、AI 应用、算力租赁、PCB、创新药、金融科技、商业航天</b>。资金从科技流向消费（食品饮料 +29 亿）与防御——典型的"高低切换"。</p>
+    <div class="actionline">今日操作结论：HOLD 为主。汇绿波段 T 首日最低 39.85 缩量踩买点区上沿、但未确认企稳，等回踩 39.6-40 缩量不破 39.85 再低吸；罗博（+2.92%）、三祥（+2.71%）逆势强但 KDJ 超买不追；其余持仓不动。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value up">3990.30 <small>+0.19%</small></div><div class="note">V型反弹 · 站回55日线</div></div>
+    <div class="metric"><div class="label">创业板指</div><div class="value down">3705.56 <small>-0.92%</small></div><div class="note">成长偏弱</div></div>
+    <div class="metric"><div class="label">主力资金</div><div class="value down">-368亿</div><div class="note">硬件设备流出183.75亿</div></div>
+    <div class="metric"><div class="label">成交额</div><div class="value flat">2.42万亿</div><div class="note">较上日放量133亿</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>01 今日关键事实（客观事件）</h2><span class="source">来源：Wind</span></div>
+    <p style="font-size:13px;margin:0">① <b>上证 V 型反弹</b>：上午跌破 55 日线（3972）至 3966 附近，下午权重 + 农业 + 半导体设备拉回，收 3990.30（+0.19%），站回 55 日线上方；但全市场 <b>3200+ 只下跌</b>，深成 -0.56%、创业板 -0.92%，赚钱效应集中在少数板块。</p>
+    <p style="font-size:13px;margin:8px 0 0">② <b>昨日光模块大涨的驱动"FCC 豁免传闻"今日落空</b>：光模块/通信设备高开低走，<b>中际旭创单日主力净流出 27.81 亿居全市场之首</b>，硬件设备板块整体净流出 183.75 亿。</p>
+    <p style="font-size:13px;margin:8px 0 0">③ <b>磷化铟涨价主线持续</b>：Q4 涨幅超 10% 创历史最大单次涨幅，基板已"三连涨"，概念股反复活跃（有研新材、云南锗业、三安光电涨幅靠前）。</p>
+    <p style="font-size:13px;margin:8px 0 0">④ <b>农业股涨停潮</b>（厄尔尼诺/粮食危机预期）+ <b>半导体设备逆市走强</b>（ETF 连涨 3 天、近 30 日吸金 74 亿）。</p>
+    <p style="font-size:13px;margin:8px 0 0">⑤ <b>主力资金净流出 368 亿</b>，超 80 股涨停但 3200+ 股下跌——存量博弈下的极致分化。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 大盘结构：钱怎么流（流入 + 流出）</h2><span class="source">来源：Wind 主力资金流向</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th class="nowrap">方向</th><th>板块/标的</th><th>资金信号</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>流入·消费</b></td><td>食品饮料 +29.25 亿（居首）</td><td>茅台等超跌消费回流</td><td>资金从高位科技切向低位消费/防御，典型的"高低切换"防守动作。</td></tr>
+        <tr><td><b>流入·防御/制造</b></td><td>机械 +13.93 亿、房地产 +5.07 亿；油气/煤炭/银行走强</td><td>防御属性凸显</td><td>主力避险，流向低估值、高股息方向。</td></tr>
+        <tr><td><b>流入·硬科技</b></td><td>半导体设备（逆市）、农业涨停潮、磷化铟</td><td>结构性强</td><td>半导体设备 ETF 连涨 3 天、近 30 日吸金 74 亿——资金聚焦国产替代硬逻辑，非全面。</td></tr>
+        <tr><td><b>流出·硬件设备</b></td><td><b>-183.75 亿（全市场最大）</b>，中际旭创 -27.81 亿居首</td><td>🔴 重灾区</td><td>光模块/PCB/通信设备是今天资金撤退主战场，昨日传闻驱动的大涨被兑现。</td></tr>
+        <tr><td><b>流出·半导体</b></td><td>-41.19 亿</td><td>🔴 获利兑现</td><td>昨天领涨的半导体今天被抽血，与设备逆势形成"设备强、芯片弱"的结构。</td></tr>
+        <tr><td><b>流出·有色/题材</b></td><td>有色金属 -46.50 亿；锂电池、AI应用、算力租赁、PCB、创新药、金融科技、商业航天</td><td>🔴 全线退潮</td><td>昨天跟涨的题材今天集体兑现，没有真实催化的方向资金加速离场。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">本质：<b>指数靠权重/防御拉回，但主力在"卖科技买消费"</b>——这不是增量牛市，是存量资金的高低切换。昨天透支的光模块、今天被兑现，钱没走，只是换了方向。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 持仓复盘：三涨五跌，逆势的是"硬逻辑"</h2><span class="source">来源：Wind，8/18 收盘 · 按当日涨跌幅排序 · 确定性→仓位分层框架</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th class="nowrap">标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th class="num">20日</th><th class="nowrap">确定性层级</th><th>今日信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num nowrap">546.51</td><td class="num up">+2.92%</td><td class="num up">+24.21%</td><td><span class="tag tag-green">已确认</span></td><td>磷化铟/设备扩产共振</td><td>创阶段新高、站上55日线527.94，但KDJ 90严重超买，不追。</td></tr>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num nowrap">45.87</td><td class="num up">+2.71%</td><td class="num up">+9.21%</td><td><span class="tag tag-blue">拐点</span></td><td>固态电池独立逻辑</td><td>逆势强，但55日线49.74仍是压力、MACD空头，突破前不加。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num nowrap">39.90</td><td class="num up">+2.20%</td><td class="num up">+3.69%</td><td><span class="tag tag-gray">弱映射</span></td><td>午后从-3.43%拉回+2.20%</td><td>日内振幅约6%，午后翻红有承接，但趋势仍弱，跟踪。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num nowrap">12.81</td><td class="num down">-1.39%</td><td class="num up">+13.16%</td><td><span class="tag tag-gray">防御</span></td><td>跟随大盘</td><td>弹性最弱，正常持有，无独立信号。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num nowrap">218.00</td><td class="num down">-2.84%</td><td class="num flat">-0.54%</td><td><span class="tag tag-green">已确认</span></td><td>半导体净流出拖累</td><td>昨天+5.88%后回吐，MACD仍空头、55日线237.94未站上，底仓不动。</td></tr>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num nowrap">40.59</td><td class="num down">-3.27%</td><td class="num up">+22.41%</td><td><span class="tag tag-yellow">验证中</span></td><td>硬件设备重灾跟随</td><td>波段T首日：最低39.85缩量踩买点区上沿，收40.59未确认企稳，等回踩。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num nowrap">11.22</td><td class="num down">-3.53%</td><td class="num up">+7.06%</td><td><span class="tag tag-gray">防御</span></td><td>跟随回调</td><td>周期化工，无独立催化，持有。</td></tr>
+        <tr><td><b>星环科技-U</b> 688031</td><td class="num nowrap">115.50</td><td class="num down">-4.42%</td><td class="num up">+28.16%</td><td><span class="tag tag-blue">利润仓</span></td><td>AI应用走弱拖累</td><td>领跌但未破55日线110.52，负成本利润仓，兑现节奏自定。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 五节点 / 五大硬开关巡检</h2><span class="source">硬开关：逻辑变化的卖出触发条件</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th class="nowrap">持仓</th><th>硬开关/验证点</th><th>状态</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿生态</b></td><td>Q3 现金流 / 光模块毛利率</td><td>🔴 新增关注</td><td>磷化铟涨价（Q4 再涨 10%+）成为新的成本挤压变量——若 Q3 毛利率因原材料续跌，验证加码；Q3 现金流仍是"隐藏实力"钥匙。</td></tr>
+        <tr><td><b>澜起科技</b></td><td>存储合约价 / MRDIMM 放量</td><td>🟡 观察</td><td>今日 MACD 仍空头（-5.38），55日线 237.94 未站上，加仓窗口未到，等回踩确认。</td></tr>
+        <tr><td><b>罗博特科</b></td><td>CPO 设备订单兑现</td><td>🟢 正常</td><td>磷化铟供不应求→激光器/光芯片扩产→ficonTEC 设备，逻辑顺；但 KDJ 90 超买，追高风险。</td></tr>
+        <tr><td><b>三祥新材</b></td><td>固态电池排产</td><td>🟢 正常</td><td>独立逻辑，与 AI 链无关，今日逆势强，55日线突破前不加。</td></tr>
+        <tr><td><b>软通/星环</b></td><td>AI 应用景气</td><td>🟡 分化</td><td>软通午后翻红有承接、星环-4.42%但未破位，AI 应用方向今天整体走弱，跟踪。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 技术信号雷达（关键标的）</h2><span class="source">来源：Wind 技术指标 · 8/18 收盘 · 55日线为中期分水岭</span></div>
+    <div class="table-wrap"><table class="tech">
+      <thead><tr><th class="nowrap">标的</th><th class="num">现价 / 55日线</th><th class="num">KDJ</th><th class="num">MACD</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b></td><td class="num nowrap">546.51 / 527.94</td><td class="num up">90.0</td><td class="num up">+11.00</td><td><span class="tag tag-yellow">强势超买</span>站上55日线+3.5%、MACD强多头，但KDJ 90严重超买，短线不追、等回踩。</td></tr>
+        <tr><td><b>星环科技</b></td><td class="num nowrap">115.50 / 110.52</td><td class="num up">68.3</td><td class="num up">+3.97</td><td><span class="tag tag-green">未破位</span>-4.42%回调但仍在55日线上方+4.5%、MACD多头，属高位洗盘，利润仓持有。</td></tr>
+        <tr><td><b>汇绿生态</b></td><td class="num nowrap">40.59 / 44.21</td><td class="num up">68.9</td><td class="num up">+0.20</td><td><span class="tag tag-yellow">回踩未破位</span>MACD仍多头但价在5日线41.40下方-1.9%；买点区39.6-40上沿39.85已缩量试探，等回踩确认。</td></tr>
+        <tr><td><b>澜起科技</b></td><td class="num nowrap">218.00 / 237.94</td><td class="num up">69.7</td><td class="num down">-5.38</td><td><span class="tag tag-yellow">修复未反转</span>站回5日线215.99但55日线下方-8.4%、MACD空头，属超跌修复，需站上238确认。</td></tr>
+        <tr><td><b>三祥新材</b></td><td class="num nowrap">45.87 / 49.74</td><td class="num up">86.3</td><td class="num down">-1.15</td><td><span class="tag tag-yellow">反弹受压</span>放量+2.71%但55日线下方-7.8%、MACD空头、KDJ 86超买，突破49.74才确认转强。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 新增变量</h2><span class="source">风险监控</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th class="nowrap">变量</th><th>内容</th><th>方向</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td><b>磷化铟涨价</b></td><td>Q4 涨幅超 10% 创历史最大，基板"三连涨"，供不应求（缺口70%+）</td><td>🔴 双面</td><td>确认光互连需求爆发（罗博扩产利好）；但对汇绿是<b>成本端利空</b>——光芯片涨价能否转嫁给客户，是 Q3 毛利率新增变量。</td></tr>
+        <tr><td><b>FCC 豁免传闻落空</b></td><td>昨日光模块大涨驱动未证实</td><td>🔴 利空</td><td>光模块高开低走、中际旭创净流出 27.81 亿居首——传闻溢价的兑现，短期压制光模块链（含汇绿）。</td></tr>
+        <tr><td><b>硬件设备净流出 183.75 亿</b></td><td>全市场主力净流出 368 亿，硬件设备占一半</td><td>🔴 警惕</td><td>科技硬件是今天资金撤退主战场，与昨日"科技全线大涨"形成反转——存量博弈下轮动极快。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>07 看大做小：操作建议</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面 · 55日线为中期分水岭</span></div>
+    <p style="font-size:14px;margin:0"><b>HOLD 为主，不追高、不抄底。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">1. <b>汇绿（波段T首日）</b>：今日最低 39.85 缩量（量比 0.94）踩进买点区 39.6-40 上沿、收盘 40.59——<b>低吸窗口已露头但未确认</b>。等回踩 39.6-40 且不破 39.85 的缩量企稳信号再低吸机动仓；底仓 5900 股不动；防守线 38.81。</p>
+    <p style="font-size:13px;margin:4px 0 0">2. <b>罗博/三祥</b>：今日逆势强（硬逻辑），但 KDJ 分别 90/86 超买，<b>不追</b>，等回踩 55 日线确认。</p>
+    <p style="font-size:13px;margin:4px 0 0">3. <b>澜起</b>：底仓不动，55 日线 237.94 未站上前不加仓。</p>
+    <p style="font-size:13px;margin:4px 0 0">4. <b>星环/软通/华峰/泰和</b>：无独立信号，持有不动。</p>
+    <p style="font-size:13px;margin:8px 0 0">大环境提醒：主力 368 亿净流出 + 硬件设备 183.75 亿撤退，<b>短期科技硬件进入"获利兑现期"</b>，别在普跌日里抢反弹；等资金流向企稳（净流出收窄、光模块止跌）再谈进攻。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>08 明日日历</h2><span class="source">为明天做准备</span></div>
+    <div class="table-wrap"><table class="cal">
+      <thead><tr><th class="nowrap">关注项</th><th>具体内容</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿波段T</b></td><td>回踩 39.6-40 且不破 39.85、缩量企稳 = 低吸信号；放量破 39.6 = 等 38.81 防守线</td><td>挂单即纪律，到位执行不撤单</td></tr>
+        <tr><td><b>上证方向</b></td><td>站回 55 日线 3972；上方 3980-4040 密集压力区（233日线3992/89日线4024/144日线4039）</td><td>3972 是短线多空分水岭</td></tr>
+        <tr><td><b>磷化铟主线</b></td><td>涨价逻辑持续性（云南锗业/有研新材）；对汇绿成本端的传导</td><td>跟踪，不追高；观察材料股能否持续</td></tr>
+        <tr><td><b>光模块风向标</b></td><td>中际旭创 -27.81 亿流出后的走势；FCC 传闻是否再起</td><td>汇绿的板块情绪锚</td></tr>
+        <tr><td><b>轮动持续性</b></td><td>农业/半导体设备/防御能否延续；科技硬件资金流出是否收窄</td><td>资金流向企稳前，不加仓科技</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>09 数据核源矩阵</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="switch">
+      <thead><tr><th class="nowrap">数据项</th><th>数值</th><th>来源</th><th>时点</th></tr></thead>
+      <tbody>
+        <tr><td>指数收盘（上证/深成/创业板/科创50）</td><td>3990.30 / 14622.50 / 3705.56 / 1790.87</td><td>Wind 行情</td><td>8/18 收盘</td></tr>
+        <tr><td>持仓 8 只收盘</td><td>罗博546.51 / 三祥45.87 / 软通39.90 / 泰和12.81 / 澜起218.00 / 汇绿40.59 / 华峰11.22 / 星环115.50</td><td>Wind 行情</td><td>8/18 收盘</td></tr>
+        <tr><td>主力资金流向</td><td>净流出 368.07 亿；硬件设备 -183.75 亿、半导体 -41.19 亿；食品饮料 +29.25 亿</td><td>Wind 资金流向</td><td>8/18 全天</td></tr>
+        <tr><td>磷化铟涨价</td><td>Q4 涨幅超 10% 创历史最大；4 英寸衬底 6500 元/片（较年初+50%）</td><td>台媒/有色网</td><td>8/17-8/18</td></tr>
+        <tr><td>汇绿波段T锚点</td><td>买点 39.6-40（缺口上沿39.59+10日线39.78共振）/ 卖点 44.45-45.29 / 防守 38.81</td><td>Wind 技术指标（5日线41.40/10日线39.78/55日线44.21）</td><td>8/18 收盘</td></tr>
+        <tr><td>汇绿今日分时</td><td>高开42.41 / 最高42.48 / 最低39.85 / 收40.59；量比 0.94 缩量</td><td>Wind 行情</td><td>8/18</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <p class="foot">数据说明：均为 8/18 收盘或全天口径；磷化铟数据为台媒/上海有色网公开口径转引；均线为 Wind 快照值，具有滞后性。数据来源：万得 Wind 金融数据服务（置信度 ★★★）。</p>
+  <p class="foot risk">⚠️ 风险提示：以上为个人研究观点，仅供参考，不构成投资建议。今日为存量资金高低切换，主力大幅净流出，短期科技硬件进入获利兑现期；磷化铟涨价对汇绿成本端的挤压、FCC 传闻未证实，均存在不确定性；波段 T 属短线博弈，有踏空与套牢双向风险。市场有风险，投资需谨慎。</p>
+
+</main>
+</body>
+</html>

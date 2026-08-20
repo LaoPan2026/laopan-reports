@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前简报 2026-08-18</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:30px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:6px 0}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:22px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap}
+.down{color:var(--down);white-space:nowrap}
+.flat{color:var(--muted);white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+td.nowrap,th.nowrap{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 美股映射表 5列 */
+table.usmap{table-layout:fixed}
+table.usmap th:nth-child(1),table.usmap td:nth-child(1){width:20%}
+table.usmap th:nth-child(2),table.usmap td:nth-child(2){width:12%}
+table.usmap th:nth-child(3),table.usmap td:nth-child(3){width:10%}
+table.usmap th:nth-child(4),table.usmap td:nth-child(4){width:18%}
+table.usmap th:nth-child(5),table.usmap td:nth-child(5){width:40%}
+table.usmap th:nth-child(2),table.usmap td:nth-child(2),
+table.usmap th:nth-child(3),table.usmap td:nth-child(3){text-align:right}
+
+/* 持仓全景表 7列（含确定性层级） */
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:14%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:10%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:11%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:10%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:13%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:15%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:27%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4){text-align:right}
+
+/* 波段T锚点表 4列 */
+table.bandt{table-layout:fixed}
+table.bandt th:nth-child(1),table.bandt td:nth-child(1){width:12%}
+table.bandt th:nth-child(2),table.bandt td:nth-child(2){width:16%}
+table.bandt th:nth-child(3),table.bandt td:nth-child(3){width:36%}
+table.bandt th:nth-child(4),table.bandt td:nth-child(4){width:36%}
+table.bandt th:nth-child(2),table.bandt td:nth-child(2){text-align:right}
+
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+
+@media(max-width:640px){
+  body{font-size:13px}
+  main{padding:16px 12px 30px}
+  .title{font-size:22px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .metric .value{font-size:18px}
+  table{font-size:11px}
+  th,td{padding:6px 5px}
+  th{font-size:10px}
+  .table-wrap table{min-width:560px}
+}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">PRE-MARKET BRIEFING · 2026-08-18（周二）</div>
+  <h1 class="title">盘前简报：隔夜光互连链全线大涨，汇绿波段T首日「冲高是卖点不是买点」</h1>
+  <p class="subtitle">数据口径：Wind 万得（置信度 ★★★）｜美股为 8/17 收盘，A股为 8/17 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-blue">核心判断</span>隔夜资金在算力链内部「从 GPU 切向光互连」——MRVL、COHR、LITE 全线大涨，NVDA 反而微跌。这对你持仓是正面共振，但今日最要紧的是汇绿波段 T 第一天：<b>高开冲高到卖点区（44.45-45.29）是波段减仓的机会，不是追高的理由。</b></h2>
+    <p>隔夜光互连链集体走强（<b>MRVL <span class="up">+5.54%</span>、COHR <span class="up">+7.79%</span>、LITE <span class="up">+4.62%</span></b>），核心驱动有三：① Coherent 财报亮眼，全年营收突破 <b>71 亿美元创历史新高</b>，数据中心+通信业务贡献 79% 收入；② 产业链订单能见度高，多家公司订单已排至 2027-2028 年；③ 市场关注点正从「算力」转向「互联效率」，英伟达 Spectrum-X 硅光交换机全面量产、CPO 加速商业化。</p>
+    <div class="callout"><strong>对老潘的直接含义：</strong>① <b>汇绿生态</b>——隔夜最大受益者之一，<b>Coherent 是钧恒第一大客户（占其收入 47.42%）</b>，COHR 大涨 +7.79% 是直接正面催化；但今天是波段 T 首日，隔夜催化若推动高开，<b>冲到 44.45-45.29 卖点区就是波段机动仓的「高抛」机会，买点区 39.6-40 反而因高开而更远</b>——纪律是「预设锚点、到位执行、不追高」；② <b>澜起科技</b>——MRVL +5.54% 直接映射，昨日已 +5.88% 放量 113 亿，今日若高开同样不追，底仓不动、加仓仍等回踩；③ <b>罗博特科</b>——CPO 加速商业化（Spectrum-X 量产）对 ficonTEC 设备是一阶利好，但年初 +127.60% 过热，只守不追。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value up">3982.65 <small>+1.41%</small></div><div class="note">8/17 收盘 · 站上55日线</div></div>
+    <div class="metric"><div class="label">科创50</div><div class="value up">1788.85 <small>+4.14%</small></div><div class="note">8/17 收盘 · 半导体主攻</div></div>
+    <div class="metric"><div class="label">COHR（隔夜）</div><div class="value up">351.22 <small>+7.79%</small></div><div class="note">汇绿第一大客户</div></div>
+    <div class="metric"><div class="label">MRVL（隔夜）</div><div class="value up">234.33 <small>+5.54%</small></div><div class="note">澜起映射 · 互连芯片</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>一、隔夜美股映射链：光互连独强，GPU 滞涨</h2><span class="source">来源：Wind，8/17 美股收盘</span></div>
+    <div class="table-wrap"><table class="usmap">
+      <thead><tr><th class="nowrap">标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th>映射 A 股</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>Coherent</b></td><td class="num nowrap">351.22</td><td class="num up">+7.79%</td><td>汇绿生态（第一大客户）</td><td>全年营收 71 亿美元创新高，数据中心+通信占 79%；订单排至 2027-2028。是汇绿代工链最直接的正面信号。</td></tr>
+        <tr><td><b>Marvell</b></td><td class="num nowrap">234.33</td><td class="num up">+5.54%</td><td>澜起科技（互连）</td><td>AI 互连/DSP 需求强劲，映射澜起内存接口+PCIe Retimer 逻辑，是存储互连方向的正向催化。</td></tr>
+        <tr><td><b>Lumentum</b></td><td class="num nowrap">968.90</td><td class="num up">+4.62%</td><td>汇绿生态（代工）</td><td>财报超预期后继续走强，CPO/ELS 高功率激光器+1.6T 需求加速，光模块代工链景气延续。</td></tr>
+        <tr><td><b>英伟达</b></td><td class="num nowrap">225.01</td><td class="num down">-0.07%</td><td>罗博特科（设备）</td><td>GPU 大票滞涨，资金转向光互连；但 Spectrum-X 硅光交换机量产对 CPO 设备（ficonTEC）仍是隐性一阶利好。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">隔夜结构：<b>「做空存储、多光互连」交易延续</b>——资金从 GPU/HBM 单点算力转向「机架间/机架内光互连」的价值量重构。这条主线与你持仓的澜起（互连）、汇绿（代工）、罗博（CPO 设备）方向一致。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>二、持仓全景（8/17 收盘，含确定性层级）</h2><span class="source">来源：Wind · 确定性层级依据「确定性→仓位分层」铁律</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th class="nowrap">标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th class="num">20日</th><th class="nowrap">确定性层级</th><th>隔夜映射信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num nowrap">41.96</td><td class="num up">+1.18%</td><td class="num up">+33.50%</td><td><span class="tag tag-yellow">验证中</span></td><td>COHR +7.79% / LITE +4.62%</td><td>波段T首日：高开冲 44.45-45.29 是卖点、不追高；买点 39.6-40 因高开更远，到位再动。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num nowrap">224.37</td><td class="num up">+5.88%</td><td class="num up">+18.35%</td><td><span class="tag tag-green">已确认</span></td><td>MRVL +5.54%</td><td>底仓不动；昨日已放量 113 亿，今日高开不追，加仓仍等回踩（不回 238 前不加）。</td></tr>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num nowrap">531.00</td><td class="num up">+2.91%</td><td class="num up">+42.32%</td><td><span class="tag tag-green">已确认</span></td><td>CPO 商业化加速</td><td>一阶受益但年初 +127.60% 过热，只守不追，等回踩 55 日线（528.84）确认。</td></tr>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num nowrap">44.66</td><td class="num up">+6.13%</td><td class="num up">+16.97%</td><td><span class="tag tag-blue">拐点</span></td><td>与 AI 链无关</td><td>锆材/固态电池独立逻辑，放量但仍在 55 日线（49.68）下方，突破前不加。</td></tr>
+        <tr><td><b>星环科技-U</b> 688031</td><td class="num nowrap">120.84</td><td class="num up">+5.98%</td><td class="num up">+40.86%</td><td><span class="tag tag-blue">利润仓</span></td><td>科创50 领涨受益</td><td>负成本利润仓，兑现节奏自定，随科创50 波动。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num nowrap">11.63</td><td class="num up">+4.49%</td><td class="num up">+13.69%</td><td><span class="tag tag-blue">防御</span></td><td>—</td><td>化工周期，跟随大盘，无独立催化，持有不动。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num nowrap">12.99</td><td class="num up">+1.88%</td><td class="num up">+18.09%</td><td><span class="tag tag-blue">防御</span></td><td>—</td><td>B+ 评级，弹性最弱，正常持有。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num nowrap">39.04</td><td class="num up">+0.05%</td><td class="num up">+1.88%</td><td><span class="tag tag-blue">弱映射</span></td><td>—</td><td>普涨日几乎平盘，年初 -17.59%，弹性未起，跟踪不动作。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>三、汇绿波段 T：首日执行锚点（重点）</h2><span class="source">来源：Wind 技术指标 · 8/17 收盘 · 均线为动态值</span></div>
+    <div class="table-wrap"><table class="bandt">
+      <thead><tr><th class="nowrap">锚点</th><th class="num">价位</th><th>依据</th><th>纪律动作</th></tr></thead>
+      <tbody>
+        <tr><td><b>卖点区</b></td><td class="num nowrap">44.45 — 45.29</td><td>55日线 44.45 + 前高 45.29</td><td>冲高滞涨时，波段机动仓减（底仓 5900 股不动）</td></tr>
+        <tr><td><b>买点区</b></td><td class="num nowrap">39.6 — 40</td><td>缺口上沿 39.59 + 8/17低点 39.98 + 10日线 39.78 共振</td><td>缩量止跌时，波段机动仓接（约 30 万）</td></tr>
+        <tr><td><b>防守线</b></td><td class="num nowrap">38.81</td><td>缺口下沿（缺口完全回补）</td><td>跌破 = 波段逻辑破，机动仓止损，不补不扛</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13px;margin:12px 0 0"><b>均线现状（8/17 收盘）</b>：5日线 41.19、10日线 39.78、20日线 35.35、55日线 44.45。昨收 41.96 已站上 5 日线。</p>
+    <p style="font-size:13px;margin:8px 0 0"><b>今日关键变量</b>：隔夜 COHR +7.79%、LITE +4.62% 大涨，汇绿今日大概率高开。三种情形应对：</p>
+    <p style="font-size:13px;margin:6px 0 0">① <b>高开冲高至 44.45-45.29</b> → 波段机动仓按计划减（高抛），不贪更高、不撤单；② <b>高开后回落、量能萎缩</b> → 买点区 39.6-40 不追，等回到区间缩量止跌再低吸；③ <b>直接放量突破 45.29</b> → 认踏空，放弃波段，底仓仍持有享受趋势。三纪律不变：分开记账 / 预设价位到位执行 / 突破认错。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>四、汇绿存货跌价：昨日待办核查结论</h2><span class="source">来源：Wind 公告与研报口径</span></div>
+    <p style="font-size:13px;margin:0"><b>结论：计提对象大概率是「园林遗留资产」，不是高速光模块原材料——支持「良性清理历史包袱」，不支持「真雷」。但附注分项仍需中报全文最终确认。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">三条证据链：</p>
+    <p style="font-size:13px;margin:4px 0 0">① 中报「资产减值 -3032 万」明确由<b>「存货跌价准备 + 合同资产减值准备」</b>两部分构成，而「合同资产减值」正是园林工程（垫资、完工未结算）的典型特征——汇绿 2024 年度就曾对「应收款项、合同资产」计提减值 2165 万，是园林业务的常规动作；</p>
+    <p style="font-size:13px;margin:4px 0 0">② 存货跌价准备 4689.95 万是<b>累计余额</b>（计提比例约 4%），绝对值相对 11.27 亿存货很小，且管理层归因是「存货原值增加、对应计提增加」——即「备货多→按比例多提」的机械计提，非「料不值钱」的主动砍价；</p>
+    <p style="font-size:13px;margin:4px 0 0">③ 关键佐证：5/20 机构调研原话「已对光模块核心原材料<b>有效备货、当前储备没有短缺</b>」——光模块原材料供不应求、订单排至 2027，这类料计提跌价在会计逻辑上说不通。</p>
+    <p style="font-size:13px;margin:10px 0 0"><b>因此</b>：「存货减值 + 备货并存」的拧巴组合，本质更可能是「一边清理园林旧包袱、一边为光模块扩产备料」——前者压利润（可能是有意为之，配合重组/定增做低基准），后者押未来。这与你「隐藏实力」假设同向，但仍属<b>「存疑级」信号</b>，验证钥匙不变：<b>Q3 现金流</b>是否改善 + 中报附注计提对象明细。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>五、今日操作结论</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面</span></div>
+    <p style="font-size:14px;margin:0"><b>HOLD 为主，不追高。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">1. <b>汇绿</b>：波段 T 首日，高开冲高到 44.45-45.29 是「高抛」机会；不追高，买点 39.6-40 到位再低吸。底仓 5900 股纹丝不动。</p>
+    <p style="font-size:13px;margin:4px 0 0">2. <b>澜起</b>：MRVL 大涨+昨日放量，底仓不动，加仓仍等回踩（55 日线 238.19 未站上前不加）。</p>
+    <p style="font-size:13px;margin:4px 0 0">3. <b>罗博</b>：CPO 商业化加速是长期利好，但短期过热，只守不追。</p>
+    <p style="font-size:13px;margin:4px 0 0">4. <b>其余持仓</b>（三祥/星环/华峰/泰和/软通）：无独立信号，持有不动。</p>
+    <p style="font-size:13px;margin:8px 0 0">今日盯三点：① 光模块链高开后能否承接（量能是否延续，若高开低走则隔夜催化只兑现为情绪）；② 汇绿是否冲 44.45-45.29 卖点区；③ 存储主线经昨日大涨后的分化。</p>
+  </section>
+
+  <p class="foot">数据说明：美股为 8/17 收盘、A股为 8/17 收盘（今日盘前）；汇绿中报口径为 8/14 盘后披露；均线为 Wind 快照值，具有滞后性。数据来源：万得 Wind 金融数据服务（置信度 ★★★）。</p>
+  <p class="foot risk">⚠️ 风险提示：以上为个人研究观点，仅供参考，不构成投资建议。隔夜美股涨跌不必然映射 A 股当日走势；汇绿「隐藏实力」为待验证假设，Q3 现金流与存货附注明细是验证钥匙；波段 T 属短线博弈，存在踏空与套牢双向风险。市场有风险，投资需谨慎。</p>
+
+</main>
+</body>
+</html>

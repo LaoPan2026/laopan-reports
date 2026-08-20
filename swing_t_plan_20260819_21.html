@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>波段T执行规划 2026-08-19至2026-08-21</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.65}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:29px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.warnline{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:11px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:21px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+.nowrap{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:14%;text-align:center}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:15%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:13%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:42%;text-align:left}
+table.f4{table-layout:fixed}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:17%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:18%;text-align:center}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:23%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:42%;text-align:left}
+table.f3{table-layout:fixed}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:24%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:23%;text-align:right}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:53%;text-align:left}
+.small{font-size:12px;color:var(--muted)}
+.rule{border-left:3px solid var(--blue);padding-left:12px;margin:10px 0}
+.footer{font-size:12px;color:var(--muted);margin-top:18px;padding:0 4px}
+@media (max-width:640px){body{font-size:13px}main{padding:20px 12px 38px}.title{font-size:23px}.card{padding:15px;margin-top:12px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:10px}.metric .value{font-size:18px}.cols{grid-template-columns:1fr;gap:0}table{font-size:12px}.table-wrap table{min-width:520px}th,td{padding:8px 7px}.hero h2{font-size:18px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">WAVEBAND T · EXECUTION PLAN</div>
+<h1 class="title">明日至本周余下三个交易日：波段T规划</h1>
+<p class="subtitle">覆盖交易日：2026-08-19（周三）至 2026-08-21（周五）｜行情数据截至 2026-08-18 收盘</p>
+
+<section class="card hero">
+<h2>结论先行：首选汇绿生态（001267.SZ），罗博特科（300757.SZ）只做强势高抛低吸备选</h2>
+<p><span class="tag tag-blue">首选：汇绿生态 001267.SZ</span><span class="tag tag-yellow">备选：罗博特科 300757.SZ</span><span class="tag tag-gray">第三备选：软通动力 301236.SZ</span></p>
+<p>不是因为汇绿最强，而是它的波段T区间已经预先定义、当前收盘价仍贴近买点区，且底仓与机动仓可以分开记账。罗博特科波动最大，但已经处于阶段高位加速段；只能利用已有底仓做滚动T，不能把“强”误当成“适合追买”。</p>
+<div class="actionline">明日总原则：只做“到价 + 量价确认”的T，不做开盘追价；若三只候选都没有触发条件，空过一天，不强行交易。</div>
+<div class="warnline">市场状态：震荡切换档，不是进攻档。8月18日上涨2,121家、下跌3,292家，两市成交约2.40万亿元；指数没有全面转弱，但广度明显偏弱，科技硬件出现高位分化。来源：Neodata市场宽度、Wind/WeStock行情，2026-08-18，置信度★★★。</div>
+</section>
+
+<section class="grid">
+<div class="metric"><div class="label">首选标的</div><div class="value">汇绿 001267</div><div class="note">条件式BUY，不追价</div></div>
+<div class="metric"><div class="label">首选买入区</div><div class="value">¥39.60–40.00</div><div class="note">机动仓分批</div></div>
+<div class="metric"><div class="label">首选防守线</div><div class="value down">¥38.81</div><div class="note">跌破不补不扛</div></div>
+<div class="metric"><div class="label">机动资金口径</div><div class="value">约¥30万</div><div class="note">底仓5,900股不动</div></div>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>一、候选优先级：按“可执行T机会”排序</h2><span class="source">排序依据：区间清晰度、波动率、趋势状态、资金一致性</span></div>
+<div class="table-wrap"><table class="f5">
+<thead><tr><th>标的</th><th>结论</th><th>8/18收盘</th><th>量比</th><th>为什么排在这里</th></tr></thead>
+<tbody>
+<tr><td>汇绿生态<br>001267.SZ</td><td><span class="tag tag-blue">首选</span></td><td class="num">¥40.59<br><span class="down">-3.27%</span></td><td class="num">0.67</td><td>既有明确T锚点：买39.60–40.00、卖44.45–45.29、防守38.81；收盘仍在买点区上方不远。缺点是当日及5日资金偏弱，必须等企稳。</td></tr>
+<tr><td>罗博特科<br>300757.SZ</td><td><span class="tag tag-yellow">备选</span></td><td class="num">¥546.51<br><span class="up">+2.92%</span></td><td class="num">1.22</td><td>当日上涨、主力净流入为正、振幅4.90%，T空间足；但KDJ约90、RSI6约76.6，已属高位超买，适合冲高卖、回踩接，不适合新增追买。</td></tr>
+<tr><td>软通动力<br>301236.SZ</td><td><span class="tag tag-gray">第三备选</span></td><td class="num">¥39.90<br><span class="up">+2.20%</span></td><td class="num">2.04</td><td>波动足、当日资金转正，但5日主力净流出约2.25亿元，基本面估值与盈利质量弱于前两者；只在回踩38.6–39.0并出现承接时考虑。</td></tr>
+<tr><td>三祥新材<br>603663.SH</td><td><span class="tag tag-red">不优先</span></td><td class="num">¥45.87<br><span class="up">+2.71%</span></td><td class="num">1.55</td><td>波动和题材都够，但10日涨幅约35.43%、RSI6约77，且两数据源对当日主力流向出现方向冲突；不把它作为本周首个T对象。</td></tr>
+<tr><td>澜起科技<br>688008.SH</td><td><span class="tag tag-gray">不做T</span></td><td class="num">¥218.00<br><span class="down">-2.84%</span></td><td class="num">1.05</td><td>逻辑硬，但Wind口径近20日主力净流出约61.67亿元、当日净流出约15.02亿元；同时面临韩国调查变量。当前更适合等信号，不适合为了T硬做。</td></tr>
+<tr><td>星环科技-U<br>688031.SH</td><td><span class="tag tag-gray">不做T</span></td><td class="num">¥115.50<br><span class="down">-4.42%</span></td><td class="num">0.88</td><td>当日下跌、主力净流出，短线承接未重新证明；先观察115附近能否稳定，反弹也不宜贸然加机动仓。</td></tr>
+<tr><td>华峰化学<br>002064.SZ</td><td><span class="tag tag-gray">守仓</span></td><td class="num">¥11.22<br><span class="down">-3.53%</span></td><td class="num">1.27</td><td>估值和业绩相对扎实，但当日振幅与换手不支持高效率波段T；做T收益/机会成本不划算。</td></tr>
+<tr><td>泰和新材<br>002254.SZ</td><td><span class="tag tag-gray">守仓</span></td><td class="num">¥12.81<br><span class="down">-1.39%</span></td><td class="num">0.88</td><td>业绩修复逻辑仍在，但短期波动不足、资金参与度偏低；不作为本周机动仓首选。</td></tr>
+</tbody></table></div>
+<p class="source">行情、量比、涨跌幅：Wind/WeStock，2026-08-18收盘，置信度★★★。技术指标：WeStock technical，2026-08-18，置信度★★★。资金流向优先采用Wind；不同平台口径可能有差异，本文只把方向一致的结果作为强依据。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>二、首选执行单：汇绿生态 001267.SZ</h2><span class="source">底仓与机动仓分开记账</span></div>
+<div class="rule"><strong>当前判断：WAIT → 触发后条件式BUY。</strong> 8月18日高开42.41元，最高42.48元，最低39.85元，收40.59元；量比0.67，说明回落过程没有形成明显放量砸盘，但主力资金方向偏弱，不能仅凭“到了区间”就满额买入。</div>
+<div class="table-wrap"><table class="f4">
+<thead><tr><th>触发条件</th><th>动作</th><th>价格/仓位</th><th>执行含义</th></tr></thead>
+<tbody>
+<tr><td>回踩买点区<br>且缩量止跌</td><td><span class="tag tag-blue">BUY 1/3</span></td><td class="num">¥39.60–40.00<br>约¥10万</td><td>以39.85附近不再创新低、分钟级出现止跌承接为最低确认条件；不接放量下杀。</td></tr>
+<tr><td>重新收复40.59并站稳</td><td><span class="tag tag-blue">BUY 1/3</span></td><td class="num">约¥10万</td><td>收复8月18日收盘价且量能改善，说明买点区承接有效；若只是冲高回落，不加。</td></tr>
+<tr><td>突破42.48并保持强承接</td><td><span class="tag tag-gray">可不加</span></td><td class="num">最多余下1/3</td><td>三日窗口不追突破。只有板块同步转强、个股放量站稳，才考虑补齐；否则把现金留给回踩。</td></tr>
+<tr><td>反弹至前高<br>压力区</td><td><span class="tag tag-green">SELL/T</span></td><td class="num">¥44.45–45.29</td><td>55日线与前高压力区，机动仓分批卖出；底仓5,900股不因波段T计划改变。</td></tr>
+<tr><td>跌破波段防守线</td><td><span class="tag tag-red">SELL/STOP</span></td><td class="num">¥38.81</td><td>机动仓止损，不补仓、不摊平；跌破后本周放弃汇绿波段T，等待重新构筑。</td></tr>
+</tbody></table></div>
+<p class="small">汇绿的机动仓最大约30万元，但不要求三日内全部用完；第一天最多投入约1/3。该方案延续既定锚点：买39.60–40.00、卖44.45–45.29、防守38.81。中报已于8月14日盘后披露，Q3现金流与光模块毛利率是基本面验证点；本周交易只按价格与量价执行，不把待验证假设当成追买理由。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>三、备选执行单：罗博特科 300757.SZ</h2><span class="source">只允许已有底仓滚动T</span></div>
+<p><strong>当前判断：HOLD，不新增追买。</strong> 8月18日收盘546.51元、最高552元、最低526元，涨幅2.92%，成交额约40.65亿元，主力净流入方向在Wind与WeStock口径下均为正；但KDJ J值约97、RSI6约76.6，股价靠近布林上轨561.19元，属于强趋势中的高位加速/超买段。</p>
+<div class="table-wrap"><table class="f3">
+<thead><tr><th>场景</th><th>价位</th><th>动作</th></tr></thead>
+<tbody>
+<tr><td>冲高但不能有效突破</td><td class="num">¥552–561</td><td>已有底仓可分批卖出机动部分；若放量滞涨、长上影，不等更高价。</td></tr>
+<tr><td>强势回踩</td><td class="num">¥523–530</td><td>只在缩量止跌、重新站回5日线附近时低吸；5日均线约523.38元，跌破后不接。</td></tr>
+<tr><td>放量跌破短线生命线</td><td class="num">低于¥523</td><td>暂停波段T，不把回撤解释成“洗盘”；罗博一阶CPO设备逻辑不变，但短线技术位置已高。</td></tr>
+</tbody></table></div>
+<p class="small">罗博特科的基本面逻辑仍是ficonTEC在CPO光引擎封装测试设备环节的一阶直接受益者；但“逻辑正确”不等于“当前价格适合追买”。本周优先利用已有仓位做高抛低吸，不建议从汇绿机动资金中再开一个同方向高位追涨仓。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>四、三日节奏：只看三个开关</h2><span class="source">2026-08-19至2026-08-21</span></div>
+<div class="table-wrap"><table class="f3">
+<thead><tr><th>交易日</th><th>重点动作</th><th>必须观察的验证信号</th></tr></thead>
+<tbody>
+<tr><td class="nowrap">8月19日</td><td>等汇绿回踩，不追开盘；罗博冲高先看卖点。</td><td>汇绿39.60–40.00是否缩量止跌；上证55日线3972附近是否能守住；科技硬件资金是否继续流出。</td></tr>
+<tr><td class="nowrap">8月20日</td><td>若汇绿已触发，按反弹强弱分批卖；若未触发，不补做。</td><td>汇绿能否收复40.59并稳定；罗博是否仍有资金流入但出现高位滞涨；三祥资金流向是否消除数据分歧。</td></tr>
+<tr><td class="nowrap">8月21日</td><td>本周T计划收口，<br>未到卖点不强行兑现。</td><td>汇绿是否接近44.45–45.29；若仍弱于40且破38.81，结束波段假设；不以周末前必须交易为理由下单。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>五、最终操作排序</h2><span class="source">明确档位</span></div>
+<p><span class="tag tag-blue">1 汇绿生态：条件式BUY</span> 只在39.60–40.00缩量止跌后买机动仓；底仓不动。</p>
+<p><span class="tag tag-yellow">2 罗博特科：HOLD / 冲高SELL、回踩再BUY</span> 只做已有底仓滚动，不新增追涨仓。</p>
+<p><span class="tag tag-gray">3 软通动力：WAIT</span> 仅在38.6–39.0出现承接、且资金不再连续流出时作为备选；否则不做。</p>
+<p><span class="tag tag-red">其余持仓：HOLD，不为做T而做T</span> 澜起、星环先等结构信号；三祥暂避高位和数据冲突；华峰、泰和波动效率不足。</p>
+<div class="warnline"><strong>一句话执行纪律：</strong>明天优先等汇绿39.60–40.00的“缩量止跌”，而不是等一个更低的数字；没有企稳就不买，跌破38.81就认错。罗博只卖高、接回踩，不追涨。</div>
+</section>
+
+<p class="footer">数据溯源：Wind金融数据（行情及资金流向，2026-08-18收盘，置信度★★★）；WeStock数据（技术指标、量比及交叉核验，2026-08-18，置信度★★★）；Neodata市场宽度与板块综述（2026-08-18，非一手来源，需核实原文）。本报告未使用无信息增量的涨跌幅柱状图。涉及资金流向时，因不同平台算法口径可能存在差异，优先采信方向一致结果，方向冲突标记为不确定性。</p>
+<p class="footer"><strong>免责声明：</strong>以上内容基于公开数据和量化分析，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</main>
+</body>
+</html>

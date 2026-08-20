@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>华海清科深度研报 2026-08-18</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.65}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:28px;line-height:1.25}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:20px}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.warnline{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:11px 14px;margin-top:10px;font-size:13px}
+.riskline{background:#ffebe8;border:1px solid #ffc5be;border-radius:8px;padding:11px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:21px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:5px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+.chart-box{width:100%;height:360px;margin-top:8px}
+.small{font-size:12px;color:var(--muted)}
+.footer{font-size:12px;color:var(--muted);margin-top:18px;padding:0 4px}
+table.f4{table-layout:fixed}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:18%;text-align:left}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:20%;text-align:right}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:20%;text-align:right}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:42%;text-align:left}
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:15%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:15%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:15%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:15%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:40%;text-align:left}
+table.f6{table-layout:fixed}
+table.f6 th:nth-child(1),table.f6 td:nth-child(1){width:14%;text-align:left}
+table.f6 th:nth-child(2),table.f6 td:nth-child(2){width:14%;text-align:right}
+table.f6 th:nth-child(3),table.f6 td:nth-child(3){width:13%;text-align:right}
+table.f6 th:nth-child(4),table.f6 td:nth-child(4){width:15%;text-align:right}
+table.f6 th:nth-child(5),table.f6 td:nth-child(5){width:21%;text-align:right}
+table.f6 th:nth-child(6),table.f6 td:nth-child(6){width:23%;text-align:right}
+table.f3{table-layout:fixed}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:26%;text-align:left}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:32%;text-align:left}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:42%;text-align:left}
+table.f3.gain th:nth-child(2),table.f3.gain td:nth-child(2),
+table.f3.gain th:nth-child(3),table.f3.gain td:nth-child(3){text-align:right}
+@media (max-width:640px){body{font-size:13px}main{padding:20px 12px 38px}.title{font-size:23px}.card{padding:15px;margin-top:12px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric{padding:10px}.metric .value{font-size:18px}.table-wrap table{min-width:560px}th,td{padding:8px 7px}.hero h2{font-size:18px}.chart-box{height:280px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">DEEP RESEARCH · 688120.SH</div>
+<h1 class="title">华海清科深度研报：介入时机与收益推演</h1>
+<p class="subtitle">数据截至 2026-08-18 收盘｜来源：Wind、WeStock、公司公告、券商研报</p>
+
+<section class="card hero">
+<h2>结论先行：当前价 288.68 元是 WAIT，不是 BUY；介入区间 200–260 元分批，止损 193 元下方</h2>
+<p><span class="tag tag-red">当前判断：WAIT（等回调）</span><span class="tag tag-yellow">介入区 200–260 元</span><span class="tag tag-gray">止损 &lt;193.67 元（MA120）</span></p>
+<p>华海清科是国产 CMP 设备绝对龙头，逻辑硬、订单饱满（在手 74.81 亿，+30%），是"好公司"。但当前 288.68 元的估值已经透支了 2027 年业绩——动态 PE 约 102 倍（2026E），半导体设备板块估值分位已到 93% 以上。**"好公司"和"好价格"是两回事，现在缺的是价格。**</p>
+<div class="actionline">核心动作：不追高，把华海清科放进"分批低吸观察池"。第一档 255–260 元试仓，第二档 220–240 元主仓，第三档 195–205 元黄金坑加仓；跌破 193.67 元（120日线）止损，不补不扛。</div>
+<div class="riskline">关键风险：当前价买入的赔率是负期望——即使业绩如期兑现，2027 年中性情景仍可能 -6%；只有等回调到合理估值，才有"赚业绩钱"的正赔率。</div>
+</section>
+
+<section class="grid">
+<div class="metric"><div class="label">现价 / 涨跌</div><div class="value">288.68 <span class="up">+4.05%</span></div><div class="note">总市值 1433 亿</div></div>
+<div class="metric"><div class="label">PE(TTM) / PE(预测)</div><div class="value">130.5 / 102.3</div><div class="note">Wind 口径</div></div>
+<div class="metric"><div class="label">在手订单</div><div class="value">74.81 亿</div><div class="note">2026-05 末，+30.02%</div></div>
+<div class="metric"><div class="label">YTD 涨幅</div><div class="value up">+169.5%</div><div class="note">52周 78.53–374.85</div></div>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>一句话本质：买华海清科，本质是买什么</h2></div>
+<p><strong>买的是"国产 CMP 设备国产替代 + 晶圆厂扩产周期里，唯一规模化量产的卖铲人"。</strong></p>
+<p>更精确：买的是三件事——①CMP 设备国产化率从 37% 继续向上（进口比例已从 2022 年 89% 降至 2025 年 63%）；②晶圆再生、离子注入、减薄三大第二曲线的平台化兑现；③HBM/先进封装对 CMP 工艺步骤的增量需求（逻辑芯片 7nm 需 30+ 道 CMP）。</p>
+<p>这条逻辑的<strong>可证伪点</strong>只有一个：<strong>利润增速能否追平收入增速</strong>。2025 年营收 +36.46%，但归母净利只 +5.89%；2026Q1 同样（营收 +31.66%，净利 +5.95%）。这是当前所有分歧的根源。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>一、竞争格局：全球第三、国产绝对龙头</h2><span class="source">来源：东海/国海证券、公司公告，2026</span></div>
+<div class="table-wrap"><table class="f4">
+<thead><tr><th>厂商</th><th>全球市占</th><th>中国地位</th><th>关键特征</th></tr></thead>
+<tbody>
+<tr><td>应用材料 AMAT</td><td class="num">~40%+（第一）</td><td class="num">进口主导</td><td>先进制程（14nm以下）近乎统治力，全球CMP天花板</td></tr>
+<tr><td>荏原 Ebara</td><td class="num">~30%（第二）</td><td class="num">进口主导</td><td>精密机械+流体控制，亚洲主力</td></tr>
+<tr><td>华海清科</td><td class="num">~8–15%（第三）</td><td class="num">国产出货 90%+</td><td>国内唯一12吋规模化量产；国内整体市占约25–30%；已切入HBM/先进封装基线设备</td></tr>
+<tr><td>晶亦精微</td><td class="num">极小</td><td class="num">国产第二</td><td>8吋为主，12吋尚在小批量验证</td></tr>
+</tbody></table></div>
+<p class="small">注：华海清科"国产设备出货 90%+"与"国内整体市占 25–30%"是两个口径——前者是国产替代份额，后者是含进口的国内总盘占比，不可混为一谈。来源：东海证券、中研网，2026，需核实原文。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>二、财务趋势与核心矛盾</h2><span class="source">来源：公司年报/季报、机构一致预期，2026-08-18</span></div>
+<div id="finChart" class="chart-box"></div>
+<p><strong>核心矛盾：收入高增、利润停滞。</strong> 2025 年营收 46.48 亿（+36.46%），归母净利 10.84 亿仅 +5.89%；2026Q1 营收 12.01 亿（+31.66%）、归母 2.47 亿（+5.95%）。主因：①毛利率由 2025 年约 44% 降至 2026Q1 的 42.31%；②研发费用 +40.63%；③离子注入子公司"芯嵛"仍处爬坡期（2025 年亏损约 0.49 亿）拖累。扣非口径稍好（2025 +12.69%），主业韧性仍在。</p>
+<p class="small">盈利预测采用机构一致预期（东吴/方正/同花顺均值）：2026E 归母净利约 15 亿、2027E 约 20 亿、2028E 约 27 亿。营收预测取中性口径。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>三、订单与产能：订单饱满，产能是瓶颈</h2><span class="source">来源：公司定增问询回复，2026-06</span></div>
+<div class="table-wrap"><table class="f5">
+<thead><tr><th>产品线</th><th>在手订单</th><th>现有产能</th><th>扩产后</th><th>看点</th></tr></thead>
+<tbody>
+<tr><td>CMP 设备</td><td class="num">63.27亿<br>307台</td><td class="num">300台/年</td><td class="num">400台+/年</td><td>国产绝对主力，先进制程订单占比提升</td></tr>
+<tr><td>磨划(减薄)</td><td class="num">6.03亿<br>39台</td><td class="num">72台/年</td><td class="num">120台+/年</td><td>国产减薄市占仅次于Disco/东京精密</td></tr>
+<tr><td>离子注入</td><td class="num">5.21亿<br>24台</td><td class="num">36台/年</td><td class="num">120台+/年</td><td>意向订单90台+，国产化率不足5–20%</td></tr>
+<tr><td>晶圆再生</td><td class="num">1.48亿<br>150万片+</td><td class="num">20万片/月</td><td class="num">40万片/月</td><td>已满产，暂不接新单</td></tr>
+<tr><td>耗材维保</td><td class="num">2.80亿<br>(+86%)</td><td class="num">—</td><td class="num">—</td><td>存量设备保有量提升的经常性收入</td></tr>
+</tbody></table></div>
+<p class="small">天津、北京两大基地厂区利用率长期超 90%，产能已无法保障在手订单交付，预计 2026Q4 月均出货超 60 台（2025 年月均约 33 台）。公司已推进 37.95 亿元定增（2026-08 获证监会注册批复）扩产。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>四、估值：已透支 2027 年业绩</h2><span class="source">来源：Wind、WeStock，2026-08-18</span></div>
+<div class="table-wrap"><table class="f4">
+<thead><tr><th>口径</th><th>净利假设</th><th>对应PE</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>当前市值</td><td class="num">1433亿</td><td class="num">—</td><td>总股本 4.96 亿股</td></tr>
+<tr><td>PE(TTM)</td><td class="num">10.84亿(2025)</td><td class="num">130.5倍</td><td>历史中高位</td></tr>
+<tr><td>PE(预测)</td><td class="num">15亿(2026E)</td><td class="num">102.3倍</td><td>Wind预测口径</td></tr>
+<tr><td>PE(2027E)</td><td class="num">20亿</td><td class="num">71.6倍</td><td>一致预期</td></tr>
+<tr><td>PE(2028E)</td><td class="num">27亿</td><td class="num">53倍</td><td>一致预期</td></tr>
+</tbody></table></div>
+<p><strong>估值结论：</strong>半导体设备龙头在成长期的合理动态 PE 中枢约 40–70 倍，牛市乐观 80–100 倍。当前 102 倍（2026E）已处于"给未来 2 年业绩定价"的透支区。机构一致目标价 229.86 元，<strong>已低于现价 288.68 元约 20%</strong>（目标价多基于 4–6 月股价，存在滞后，但方向明确）。板块估值分位：PE 135.4 倍（历史分位 93.69%）、PB 14.05 倍（分位 99.39%）。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>五、介入时机与价位（分批方案）</h2><span class="source">技术面：Wind，2026-08-18 收盘</span></div>
+<div class="table-wrap"><table class="f4">
+<thead><tr><th>档位</th><th>价位</th><th>技术依据</th><th>动作</th></tr></thead>
+<tbody>
+<tr><td><span class="tag tag-yellow">第一档·试仓</span></td><td class="num">255–260元</td><td class="num">回踩 MA20(260.93)+<br>布林中轨(262.28)</td><td>试错仓 10–20%（缩量企稳接）</td></tr>
+<tr><td><span class="tag tag-blue">第二档·主仓</span></td><td class="num">220–240元</td><td class="num">2027E 55–60倍 +<br>MA60(247)下方</td><td>主仓 30–40%（中报 8/29 后加）</td></tr>
+<tr><td><span class="tag tag-green">第三档·黄金坑</span></td><td class="num">195–205元</td><td class="num">2027E 48–51倍 +<br>MA120(193.67)附近</td><td>加仓 20–30%（真安全边际）</td></tr>
+<tr><td><span class="tag tag-red">止损</span></td><td class="num">&lt;193.67元</td><td class="num">跌破 120日线，<br>中期趋势破位</td><td>全部止损 不补不扛</td></tr>
+</tbody></table></div>
+<p class="small">技术面现状：现价 288.68 站上所有均线（MA5 273.17 / MA20 260.93 / MA60 247.18），多头排列；但 KDJ J 值 111.92、RSI6 73.34 已超买，且贴近布林上轨 299.96，短线追高性价比差。10 日涨幅 +26.55%，短期涨幅已大。20 日主力净流入 +16.85 亿，资金面偏强，但这是"高位强势"，不是"低位买点"。</p>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>六、收益推演：赔率是当前最大的问题</h2><span class="source">三情景，基于机构一致预期净利 + 估值倍数假设</span></div>
+<div class="table-wrap"><table class="f6">
+<thead><tr><th>情景</th><th>2028E净利</th><th>估值</th><th>目标价</th><th>合理价230买入</th><th>现价288.68买入</th></tr></thead>
+<tbody>
+<tr><td><span class="tag tag-green">乐观</span></td><td class="num">30亿</td><td class="num">60倍</td><td class="num">363元</td><td class="num"><span class="up">+58%</span></td><td class="num"><span class="up">+26%</span></td></tr>
+<tr><td><span class="tag tag-gray">中性</span></td><td class="num">27亿</td><td class="num">50倍</td><td class="num">272元</td><td class="num"><span class="up">+18%</span></td><td class="num"><span class="down">-6%</span></td></tr>
+<tr><td><span class="tag tag-red">悲观</span></td><td class="num">22亿</td><td class="num">40倍</td><td class="num">177元</td><td class="num"><span class="down">-23%</span></td><td class="num"><span class="down">-39%</span></td></tr>
+</tbody></table></div>
+<p><strong>推演结论（这是本报告最关键的一张表）：</strong></p>
+<div class="table-wrap"><table class="f3 gain">
+<thead><tr><th>买入价</th><th>乐观收益</th><th>中性收益 / 悲观收益</th></tr></thead>
+<tbody>
+<tr><td>合理价 230 元</td><td><span class="up">+58%</span></td><td><span class="up">+18%</span> / <span class="down">-23%</span></td></tr>
+<tr><td>现价 288.68 元</td><td><span class="up">+26%</span></td><td><span class="down">-6%</span> / <span class="down">-39%</span></td></tr>
+</tbody></table></div>
+<p><strong>核心判断：</strong></p>
+<ul>
+<li><strong>现价买入赔率差</strong>：288.68 元买入，即使业绩如期兑现到 2028 年，中性情景仍 -6%；只有乐观情景（净利 30 亿 + 60 倍估值）才 +26%。这是"用 102 倍动态 PE 买确定性"，赔率是负期望。</li>
+<li><strong>合理价买入赔率正</strong>：230 元买入，中性 +18%、乐观 +58%、悲观 -23%，期望为正。</li>
+<li><strong>估值消化需要 2 年</strong>：当前估值要到 2028 年业绩落地才"消化完"，2027 年验证点（净利 20 亿）时，若估值只回到 55 倍，股价仍只有 222 元。所以<strong>这个位置不是"等一两个季度"的问题，是"等估值回归"的问题。</strong></li>
+</ul>
+</section>
+
+<section class="card">
+<div class="section-title"><h2>七、风险（短期 / 中期分开）</h2></div>
+<div class="table-wrap"><table class="f3">
+<thead><tr><th>期限</th><th>风险</th><th>影响</th></tr></thead>
+<tbody>
+<tr><td>短期</td><td>8/29 中报利润增速不及预期</td><td>若 Q2 净利仍个位数增长，杀估值压力大</td></tr>
+<tr><td>短期</td><td>KDJ/RSI 超买 + 贴近布林上轨</td><td>技术面回调需求，追高易被套</td></tr>
+<tr><td>中期</td><td>37.95亿定增摊薄 + 产能爬坡</td><td>股本扩张、折旧增加压制利润</td></tr>
+<tr><td>中期</td><td>先进制程(7/5nm)验证不确定性</td><td>与AMAT/荏原仍有代差</td></tr>
+<tr><td>中期</td><td>板块估值历史极高分位(93%+)</td><td>半导体设备整体杀估值时，龙头也难独善</td></tr>
+</tbody></table></div>
+</section>
+
+<p class="footer">数据溯源：Wind 金融数据（行情、估值、技术指标，2026-08-18 收盘，置信度★★★）；WeStock 数据（PB、资金流向交叉核验，2026-08-18，置信度★★★）；公司公告/定增问询回复（在手订单、产能、股本结构，2026-06，一手来源）；券商研报（竞争格局、盈利预测、目标价，东吴/方正/国海/东海/华泰等，2026，非一手来源，需核实原文）。收益推演中的目标价与收益率为模型测算，非预测承诺。</p>
+<p class="footer"><strong>免责声明：</strong>以上内容基于公开数据、公司公告与券商研报交叉核验，仅供参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+</main>
+
+<script>
+(function(){
+  var el = document.getElementById('finChart');
+  if(!el) return;
+  var chart = echarts.init(el);
+  chart.setOption({
+    tooltip: { trigger: 'axis' },
+    legend: { data: ['营收(亿)', '归母净利(亿)'] },
+    xAxis: { type: 'category', data: ['2024A','2025A','2026E','2027E','2028E'] },
+    yAxis: [
+      { type: 'value', name: '营收(亿)' },
+      { type: 'value', name: '净利(亿)' }
+    ],
+    series: [
+      { name: '营收(亿)', type: 'bar', barMaxWidth: 36, data: [34.06, 46.48, 58.78, 75.00, 91.00], itemStyle: { color: '#4285F4' } },
+      { name: '归母净利(亿)', type: 'line', yAxisIndex: 1, data: [10.23, 10.84, 15.00, 20.00, 27.00], itemStyle: { color: '#EA4335' }, symbolSize: 7 }
+    ]
+  });
+  window.addEventListener('resize', function(){ chart.resize(); });
+})();
+</script>
+</body>
+</html>
