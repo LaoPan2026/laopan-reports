@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘后复盘 2026-08-21</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:27px;line-height:1.3}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:19px}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:20px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:4px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+table.theme{table-layout:fixed}
+table.theme th:nth-child(1),table.theme td:nth-child(1){width:16%}
+table.theme th:nth-child(2),table.theme td:nth-child(2){width:28%}
+table.theme th:nth-child(3),table.theme td:nth-child(3){width:18%}
+table.theme th:nth-child(4),table.theme td:nth-child(4){width:38%}
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:13%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:9%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:9%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:9%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:12%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:18%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:30%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4),
+table.hold th:nth-child(5),table.hold td:nth-child(5){text-align:right}
+table.inspect{table-layout:fixed}
+table.inspect th:nth-child(1),table.inspect td:nth-child(1){width:14%}
+table.inspect th:nth-child(2),table.inspect td:nth-child(2){width:24%}
+table.inspect th:nth-child(3),table.inspect td:nth-child(3){width:38%}
+table.inspect th:nth-child(4),table.inspect td:nth-child(4){width:24%}
+table.tech{table-layout:fixed}
+table.tech th:nth-child(1),table.tech td:nth-child(1){width:16%}
+table.tech th:nth-child(2),table.tech td:nth-child(2){width:14%}
+table.tech th:nth-child(3),table.tech td:nth-child(3){width:9%}
+table.tech th:nth-child(4),table.tech td:nth-child(4){width:9%}
+table.tech th:nth-child(5),table.tech td:nth-child(5){width:52%}
+table.tech th:nth-child(2),table.tech td:nth-child(2),
+table.tech th:nth-child(3),table.tech td:nth-child(3),
+table.tech th:nth-child(4),table.tech td:nth-child(4){text-align:right}
+table.cal{table-layout:fixed}
+table.cal th:nth-child(1),table.cal td:nth-child(1){width:22%}
+table.cal th:nth-child(2),table.cal td:nth-child(2){width:40%}
+table.cal th:nth-child(3),table.cal td:nth-child(3){width:38%}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:21px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric .value{font-size:17px}.table-wrap table{min-width:600px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">DAILY REVIEW · 2026-08-21（周五）</div>
+  <h1 class="title">盘后复盘：缩量阳线收官——三祥 +5.77% 领涨、汇绿主力净流入、澜起收复 200；本周整体收阴（-0.63%），算力链与资源线轮动</h1>
+  <p class="subtitle">数据口径：Wind + Neodata ★★★｜8/21 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-green">核心判断</span>缩量反弹日：三大指数收红（沪指 +0.04%、创业板 +1.43% 领涨）、但成交 1.879 万亿跌破 2 万亿关口、个股跌多涨少（涨 2505/跌 2862）。<b>持仓亮点：三祥 +5.77% 领涨（铪涨价逻辑催化）、汇绿 +1.24% 主力净流入 0.69 亿（底分型盘中突破未收盘确认）、澜起 +0.72% 收复 200 关口；华峰 -0.93% 回调（两日连涨后正常消化）。</b></h2>
+    <p>本周（8/17-8/21）整体收阴：周一开 3930.10 → 周五收 3905.20，累计 -0.63%。期间经历 8/18 冲高 3994 → 8/19 暴跌 3894 → 缩量修复，属于"冲高回落洗盘"周。今日主线=算力硬件（CPO 主力净流入 117 亿）+ 资源线（贵金属 +4.64%、锂矿 +4.60%）轮动，农业/医药兑现回调。</p>
+    <div class="actionline">今日操作结论：HOLD 底仓不动。三祥大涨后不追高（铪投产公告才是加仓点）；汇绿底分型待收盘确认（明日站上 37.97 才成立）；澜起收复 200 但量能不足（0.515 量比）仍需放量确认；华峰回调不慌（基本面+重组逻辑未变）。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value up">3905.20 <small>+0.04%</small></div><div class="note">本周累计 -0.63%（阴线）</div></div>
+    <div class="metric"><div class="label">成交额</div><div class="value flat">1.879万亿</div><div class="note">缩量2001亿 · 跌破2万亿</div></div>
+    <div class="metric"><div class="label">涨停/跌停</div><div class="value flat">58 / 15</div><div class="note">涨2505跌2862 · 占比45%</div></div>
+    <div class="metric"><div class="label">沪深300主力</div><div class="value up">+138.5亿</div><div class="note">通信设备 +89亿回流</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>01 今日关键事实（客观事件）</h2><span class="source">来源：Wind / Neodata / 财联社</span></div>
+    <p style="font-size:13px;margin:0">① <b>缩量阳线</b>：沪指 3905.20（+0.04%）、深成 14094.17（+0.87%）、创业板 3545.58（+1.43% 领涨）、科创50 1653.56（+0.04%）。两市成交 <b>1.879 万亿，缩量 2001 亿，跌破 2 万亿关口</b>——量价配合偏弱。</p>
+    <p style="font-size:13px;margin:8px 0 0">② <b>个股跌多涨少</b>：涨 2505 家（涨停 58）、跌 2862 家（跌停 15），上涨占比 45%——"赚指数不赚个股"的结构性行情。</p>
+    <p style="font-size:13px;margin:8px 0 0">③ <b>主线=算力硬件 + 资源线</b>：CPO 概念主力净流入 117.1 亿、芯片 108.5 亿；贵金属 +4.64%、能源金属（锂矿）+4.60%、通信设备 +2.98%。农业集体调整，医药兑现回调（哈药股份反复跌停）。</p>
+    <p style="font-size:13px;margin:8px 0 0">④ <b>财政政策再确认</b>：廖岷国新办发布会"及时谋划出台务实管用的增量政策"，财政金融协同促内需（拓宽贴息、增加经办、提高额度）；8 月 LPR 持平（连续 15 个月不变）。</p>
+    <p style="font-size:13px;margin:8px 0 0">⑤ <b>产业消息</b>：功率半导体第三波调价（现货涨 10-15%，10 月落地）；阿里云 AI 产品收入连续 12 季三位数增长；三星推超 100 万亿韩元股东回报。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 大盘结构：钱怎么流（流入 + 流出）</h2><span class="source">来源：Neodata 主力资金 · 双面呈现</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>方向</th><th>板块/标的</th><th>资金信号</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>流入·算力</b></td><td>CPO 主力 +117.1亿、芯片 +108.5亿、通信设备 +89亿</td><td>🟢 大幅回流</td><td>算力硬件主力大幅回流，Vera Rubin 部署 + 功率半导体涨价共振，通信设备 5 日净流出转为当日回流。</td></tr>
+        <tr><td><b>流入·资源</b></td><td>贵金属 +4.64%、锂矿 +4.60%、工业金属 +44.4亿</td><td>🟢 避险+涨价</td><td>美元指数走弱 + 地缘 + 锂矿供需改善，资源线成为避险+涨价双逻辑主线。</td></tr>
+        <tr><td><b>流出·农业</b></td><td>农林牧渔集体调整</td><td>🔴 退潮</td><td>前期避险资金流出，种业/养殖回调。</td></tr>
+        <tr><td><b>流出·医药兑现</b></td><td>医疗服务/化学制药回落</td><td>🔴 高位兑现</td><td>哈药股份反复跌停引发医药情绪退潮，资金从医药切向算力/资源。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">本质：<b>缩量下的存量博弈轮动</b>——资金从医药/农业切向算力硬件+资源线。沪深300 主力净流入 138.5 亿是当日亮点，但成交缩量 2001 亿说明增量资金未进场，仍是存量腾挪。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 持仓复盘：三祥领涨，六涨两跌</h2><span class="source">来源：Wind，8/21 收盘 · 按涨跌幅排序</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th>标的</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th class="num">量比</th><th class="num">当日主力</th><th>技术信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num">43.11</td><td class="num up">+5.77%</td><td class="num">0.68</td><td class="num up">+1.41亿</td><td>放量大涨</td><td>铪涨价逻辑+华鑫/浙商研报催化，主力 +1.41 亿；<b>不追高，等投产公告</b>。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num">12.40</td><td class="num up">+1.81%</td><td class="num">0.83</td><td class="num up">+0.28亿</td><td>跟随化工</td><td>化工反弹，主力流入，持有。</td></tr>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num">37.47</td><td class="num up">+1.24%</td><td class="num">0.67</td><td class="num up">+0.69亿</td><td>底分型盘中突破</td><td>主力净流入 0.69 亿（近期少见），盘中触 38.68 突破 37.97 但收盘 37.47 未确认；<b>明日站上 37.97 底分型成立</b>。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num">200.55</td><td class="num up">+0.72%</td><td class="num">0.52</td><td class="num down">-0.28亿</td><td>收复200关口</td><td>MRVL 谷歌 ASIC 映射下收复 200，但量比 0.52 极度缩量；<b>放量收复 205 才算传导确认</b>。</td></tr>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num">504.60</td><td class="num up">+0.30%</td><td class="num">0.80</td><td class="num up">+0.32亿</td><td>500上方企稳</td><td>站上 500 整数关，SK海力士 CPO 论文支撑；反抽到 500-510 减机动仓纪律不变。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num">37.18</td><td class="num down">-0.48%</td><td class="num">0.45</td><td class="num up">+0.02亿</td><td>缩量微跌</td><td>信创弱映射，无独立信号，持有。</td></tr>
+        <tr><td><b>星环科技</b> 688031</td><td class="num">105.53</td><td class="num down">-0.77%</td><td class="num">0.55</td><td class="num down">-0.02亿</td><td>随科创50</td><td>利润仓，无独立信号，持有。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num">11.70</td><td class="num down">-0.93%</td><td class="num">0.72</td><td class="num down">-0.22亿</td><td>两日连涨后回调</td><td>双券商买入+重组期权逻辑未变，回调是正常消化，<b>持有不慌</b>。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0"><b>关键信号：三祥放量大涨（+1.41 亿主力）是今日最大亮点</b>——铪投产临近+两家券商共振催化；汇绿主力净流入 0.69 亿是破位以来首次明显流入，底分型形态已成（待收盘确认）；澜起收复 200 但量能不足，映射传导仍待确认。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 持仓验证点动态巡检（四问）</h2><span class="source">四问：①验证点是否最核心？②有无新信息？③推进还是后退？④硬开关触发？</span></div>
+    <div class="table-wrap"><table class="inspect">
+      <thead><tr><th>标的</th><th>① 验证点校准</th><th>② 新信息 / ③ 推进状态</th><th>④ 硬开关</th></tr></thead>
+      <tbody>
+        <tr><td><b>三祥新材</b></td><td>铪投产/铪价/订单<br>仍最核心 ✅</td><td>华鑫+浙商双研报共振<br>今日 +5.77%、主力 +1.41 亿<br><span class="tag tag-green">推进 · 投产窗口临近</span></td><td>未触发<br>（投产未延期）</td></tr>
+        <tr><td><b>汇绿生态</b></td><td>Q3 现金流/毛利率<br>仍最核心 ✅</td><td>主力净流入 0.69 亿<br>底分型盘中突破 37.97<br><span class="tag tag-yellow">企稳观察 · 待收盘确认</span></td><td>未触发<br>（Q3 未到窗口）</td></tr>
+        <tr><td><b>澜起科技</b></td><td>MRVL 映射/合约价<br>仍最核心 ✅</td><td>MRVL 两日连涨映射累积<br>收复 200 但量比 0.52<br><span class="tag tag-yellow">收复关口 · 量能未确认</span></td><td>未触发<br>（合约价仍上行）</td></tr>
+        <tr><td><b>罗博特科</b></td><td>CPO 订单兑现<br>仍最核心 ✅</td><td>SK海力士 CPO 论文已计入<br>今日站上 500 整数关<br><span class="tag tag-green">逻辑强化 · 持有</span></td><td>未触发<br>（订单持续落地）</td></tr>
+        <tr><td><b>华峰化学</b></td><td>氨纶价差/重组<br>仍最核心 ✅</td><td>双券商买入+重组推进<br>今日 -0.93% 正常回调<br><span class="tag tag-yellow">回调消化 · 逻辑未变</span></td><td>未触发<br>（周期未下行）</td></tr>
+        <tr><td><b>软通/星环/泰和</b></td><td>信创/亏损收窄/价差<br>仍最核心 ✅</td><td>泰和 +1.81% 化工反弹<br>软通/星环无独立信号<br><span class="tag tag-yellow">持平</span></td><td>未触发</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>巡检结论</b>：8 只验证点均仍核心 ✅；<b>今日有新信息 4 只</b>（三祥双研报+放量大涨、汇绿主力流入+底分型、澜起收复200、罗博站上500），无更新 3 只（软通/星环/泰和标注「无更新」，华峰为回调非新信息）；推进 2 只（三祥/罗博）、企稳观察 2 只（汇绿/澜起）、回调 1 只（华峰）；硬开关 0 触发 ✅。<b>今日巡检重点：汇绿底分型收盘未确认（37.47 &lt; 37.97），明日是关键验证日。</b></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 技术信号雷达（关键标的）</h2><span class="source">来源：Wind 技术指标 · 8/21 收盘 · 55日线为中期分水岭</span></div>
+    <div class="table-wrap"><table class="tech">
+      <thead><tr><th>标的</th><th class="num">现价/60日线</th><th class="num">KDJ J</th><th class="num">量比</th><th>信号解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>三祥新材</b></td><td class="num">43.11 / 49.09</td><td class="num">20.11</td><td class="num">0.68</td><td>放量大涨站上 43，<br>仍低于 60 日线；J 低位，<br>反弹初期。</td></tr>
+        <tr><td><b>汇绿生态</b></td><td class="num">37.47 / 44.24</td><td class="num down">-2.60</td><td class="num">0.67</td><td>底分型形态已成<br>（8/20 低点三根最低），<br>盘中破 37.97 未收盘确认。</td></tr>
+        <tr><td><b>澜起科技</b></td><td class="num">200.55 / 236.17</td><td class="num down">-3.40</td><td class="num">0.52</td><td>收复 200 关口，<br>量比 0.52 极度缩量；<br>反弹需放量确认。</td></tr>
+        <tr><td><b>罗博特科</b></td><td class="num">504.60 / 529.38</td><td class="num">20.28</td><td class="num">0.80</td><td>站上 500 整数关，<br>60 日线 529 上方套牢；<br>缩量反抽，减机动纪律不变。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">55 日线口径为 Wind 60 日均线近似。多只持仓 J 值仍处低位（超卖区），短期有修复需求，但全部缩量（量比 &lt;1）——<b>反抽缺量能，不追高。</b></p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 新增变量</h2><span class="source">风险监控</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>变量</th><th>内容</th><th>方向</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td><b>三祥双研报催化</b></td><td>华鑫（7/2）+浙商（8/15）共振看好铪</td><td>🟢 利好</td><td>铪涨价逻辑获两券商盖章，投产窗口（8月底-9月）临近，但研报预测分歧大（2028 年 6.9-10.3 亿），验证点在投产+订单。</td></tr>
+        <tr><td><b>功率半导体涨价</b></td><td>第三波调价 10-15%（10 月落地）</td><td>🟢 产业景气</td><td>半导体链景气传导，利好算力链情绪，间接利好罗博/澜起。</td></tr>
+        <tr><td><b>财政增量政策</b></td><td>廖岷"及时谋划出台"增量政策</td><td>🟡 预期管理</td><td>政策底再确认，但"及时谋划"=预期非落地，利好顺周期（华峰/泰和），不改科技定性。</td></tr>
+        <tr><td><b>成交跌破 2 万亿</b></td><td>1.879 万亿，缩量 2001 亿</td><td>🔴 量能不足</td><td>反抽缺量=存量博弈，指数强个股弱，警惕"无量反弹"后二次探底。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>07 看大做小：操作建议</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面 · 55日线为中期分水岭</span></div>
+    <p style="font-size:14px;margin:0"><b>HOLD 底仓不动，不追高、不杀跌。本周收阴（-0.63%）验证"冲高回落洗盘"，下周看 3879-3900 企稳+放量。</b></p>
+    <p style="font-size:13px;margin:8px 0 0">1. <b>三祥（今日领涨，但不追）</b>：43.11 +5.77% 双研报催化，<b>加仓点仍是铪投产+首批订单公告</b>（看板验证点），不是研报喊买入。底仓浮盈厚，拿住。</p>
+    <p style="font-size:13px;margin:4px 0 0">2. <b>汇绿（明日关键验证）</b>：37.47 收盘未站上 37.97，底分型待确认；主力 +0.69 亿流入是积极信号。<b>明日收盘站上 37.97=底分型成立</b>，再谈企稳；否则继续等。</p>
+    <p style="font-size:13px;margin:4px 0 0">3. <b>澜起（收复 200 但量不足）</b>：MRVL 谷歌 ASIC 映射累积，收复 200 关口；<b>放量收复 205=传导确认</b>，量比 0.52 说明资金未跟进，底仓不动。</p>
+    <p style="font-size:13px;margin:4px 0 0">4. <b>罗博（站上 500）</b>：逻辑最硬（客户I订单+SK海力士论文），站上 500 整数关；反抽至 500-510 减机动仓纪律不变。</p>
+    <p style="font-size:13px;margin:4px 0 0">5. <b>华峰（回调不慌）</b>：-0.93% 是两日连涨（+3.60%）后的正常消化，双券商买入+重组期权未变，持有。</p>
+    <p style="font-size:13px;margin:8px 0 0">大环境提醒：<b>本周缩量收阴（-0.63%），市场在等两个东西——① 美债 10 年期方向（4.70% 仍高位）；② 财政增量政策落地（"及时谋划"未兑现）</b>。科技仓在放量确认前不加仓，资源/顺周期是本周资金主线但非你的持仓重点，守住科技底仓+化工对冲的结构。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>08 下周日历</h2><span class="source">为下周做准备</span></div>
+    <div class="table-wrap"><table class="cal">
+      <thead><tr><th>关注项</th><th>具体内容</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿底分型确认</b></td><td>8/20 低点 35.92 + 今日盘中破 37.97</td><td>下周一收盘站上 37.97=底分型成立，企稳信号</td></tr>
+        <tr><td><b>三祥铪投产</b></td><td>8 月底-9 月投产窗口</td><td>投产公告=硬催化，跟踪公告+调研</td></tr>
+        <tr><td><b>美债 10 年期</b></td><td>4.70% 高位，能否回落</td><td>回落=成长修复窗口，冲 5%=再压估值</td></tr>
+        <tr><td><b>财政增量政策</b></td><td>"及时谋划"何时落地</td><td>落地=顺周期脉冲，科技资金或分流</td></tr>
+        <tr><td><b>澜起传导</b></td><td>MRVL 两日 +15% 映射累积</td><td>放量收复 205=传导确认，底仓不动</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>09 数据核源矩阵</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>数据项</th><th>来源</th><th>置信度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>大盘指数收盘</td><td>Wind 快照（8/21 收盘）</td><td>★★★</td><td>沪指/深成/创业板/科创50 收盘价与涨跌幅</td></tr>
+        <tr><td>持仓行情/技术指标</td><td>Wind 快照（8/21 收盘）</td><td>★★★</td><td>收盘价/涨跌幅/量比/主力净流入/KDJ/均线</td></tr>
+        <tr><td>涨跌家数/板块/资金流向</td><td>Neodata（8/21 收盘）</td><td>★★★</td><td>涨停58/跌停15、CPO 净流入 117 亿、板块主力</td></tr>
+        <tr><td>三祥双研报</td><td>华鑫证券（7/2）+浙商证券（8/15）</td><td>★★★</td><td>铪涨价逻辑、盈利预测（2028 年 6.9-10.3 亿）</td></tr>
+        <tr><td>财政政策/LPR</td><td>财联社/新华社</td><td>★★★</td><td>廖岷"及时谋划"、8 月 LPR 持平</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card risk">
+    <div class="section-title"><h2>风险提示</h2></div>
+    <p style="font-size:12px;margin:0;color:var(--muted)">本复盘基于公开数据、公司公告与市场信息交叉核验（数据截至 2026-08-21 收盘），仅供投研参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </section>
+
+</main>
+</body>
+</html>

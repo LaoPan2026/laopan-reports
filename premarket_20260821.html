@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘前简报 2026-08-21</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:27px;line-height:1.3}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:19px}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:20px;font-weight:750;margin-top:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:4px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+table.ovn{table-layout:fixed}
+table.ovn th:nth-child(1),table.ovn td:nth-child(1){width:16%}
+table.ovn th:nth-child(2),table.ovn td:nth-child(2){width:22%}
+table.ovn th:nth-child(3),table.ovn td:nth-child(3){width:14%}
+table.ovn th:nth-child(4),table.ovn td:nth-child(4){width:48%}
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:13%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:9%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:9%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:11%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:13%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:45%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4){text-align:right}
+table.map{table-layout:fixed}
+table.map th:nth-child(1),table.map td:nth-child(1){width:16%}
+table.map th:nth-child(2),table.map td:nth-child(2){width:14%}
+table.map th:nth-child(3),table.map td:nth-child(3){width:14%}
+table.map th:nth-child(4),table.map td:nth-child(4){width:56%}
+table.map th:nth-child(2),table.map td:nth-child(2){text-align:right}
+table.inspect{table-layout:fixed}
+table.inspect th:nth-child(1),table.inspect td:nth-child(1){width:14%}
+table.inspect th:nth-child(2),table.inspect td:nth-child(2){width:24%}
+table.inspect th:nth-child(3),table.inspect td:nth-child(3){width:38%}
+table.inspect th:nth-child(4),table.inspect td:nth-child(4){width:24%}
+table.act{table-layout:fixed}
+table.act th:nth-child(1),table.act td:nth-child(1){width:14%}
+table.act th:nth-child(2),table.act td:nth-child(2){width:40%}
+table.act th:nth-child(3),table.act td:nth-child(3){width:46%}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:21px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric .value{font-size:17px}.table-wrap table{min-width:620px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">PRE-MARKET BRIEFING · 2026-08-21（周五）</div>
+  <h1 class="title">盘前简报：映射链三喜（COHR/LITE 反弹 + MRVL 续涨 + SK海力士 CPO 论文）vs 外压（美股收跌 + 美债重回高位）——今日震荡拉锯、股指交割日波动加剧</h1>
+  <p class="subtitle">数据口径：Wind + Pandadata/WeStock ★★★｜8/21 08:48 盘前</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-yellow">核心判断</span>隔夜映射链三喜一忧：<b>COHR +0.89%、LITE +6.24%（汇绿映射转正）、MRVL +5.79%（澜起映射累积）、SK海力士发 CPO 论文（罗博逻辑强化）</b>；但美股三大指数集体收跌、美债 30 年期重回 5.25% 高位——外压仍在。<b>A 股今日大概率震荡拉锯（股指交割日波动加剧），存量博弈下科技修复看映射传导，医药/政策线继续分流资金。</b></h2>
+    <p>财政部回购利好仅一个交易日即消退（摩根大通质疑可信度），美债长端重回高位压制成长估值；但存储/光互连链隔夜逆势反弹（费半 +0.53%、美光 +3.97%），SK 海力士发 CPO 论文（光互连扩展到内存接口）为算力链注入新催化。国内政策组合拳（发改委民企座谈 + 国新办 10 点财政发布会 + 上海沪八条）提供托底。</p>
+    <div class="actionline">今日操作：HOLD 为主。映射转正给汇绿/澜起修复预期，但 A 股传导待验证；罗博反抽至 500-510 仍按纪律减机动仓；华峰持有（双券商买入+重组期权）；股指交割日不追高不杀跌。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">MRVL（澜起映射）</div><div class="value up">+5.79%</div><div class="note">谷歌ASIC持续 · 两日累涨</div></div>
+    <div class="metric"><div class="label">LITE（汇绿映射）</div><div class="value up">+6.24%</div><div class="note">光通信领涨 · 逆势反弹</div></div>
+    <div class="metric"><div class="label">COHR（汇绿映射）</div><div class="value up">+0.89%</div><div class="note">止跌转正 · 5日仍-11.4%</div></div>
+    <div class="metric"><div class="label">30年美债</div><div class="value up">5.25%</div><div class="note">重回高位 · 10Y 4.70%</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>01 隔夜美股与美债（8/20 收盘）</h2><span class="source">来源：WeStock/Pandadata + 财经媒体 ★★★</span></div>
+    <div class="table-wrap"><table class="ovn">
+      <thead><tr><th>变量</th><th>最新</th><th>方向</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>美股三大指数</b></td><td>道指 52759.21<br>-1.32%；标普 -0.87%<br>纳指 -1.00%</td><td><span class="tag tag-red">收跌</span></td><td>财政部回购利好消退、沃尔玛业绩不及预期（-9.15%）拖累；美债收益率反弹压制。</td></tr>
+        <tr><td><b>美债收益率</b></td><td>10Y 约 4.70%<br>30Y 约 5.25%</td><td><span class="tag tag-red">重回高位</span></td><td>回购"救市"仅持续一个交易日即消退，摩根大通质疑可信度；10 年期期限溢价创 12 年新高。</td></tr>
+        <tr><td><b>存储/光互连</b></td><td>费半 +0.53%<br>美光 +3.97%、希捷 +2.12%</td><td><span class="tag tag-green">逆势反弹</span></td><td>SK海力士 40 万亿韩元回购 + 三星拟 100 万亿韩元股东回报 + 美光 100 亿美元实验室——存储链获真金白银背书。</td></tr>
+        <tr><td><b>油价/金价</b></td><td>布油 93.24（+1.77%）<br>COMEX 金 4575（+0.66%）</td><td><span class="tag tag-yellow">地缘升</span></td><td>美伊局势升温（贝森特威胁制裁），通胀担忧加剧，压制成长估值。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 美股映射链：三喜一忧（关键变化）</h2><span class="source">来源：WeStock ★★★ · 8/20 收盘</span></div>
+    <div class="table-wrap"><table class="map">
+      <thead><tr><th>映射标的</th><th class="num">收盘/涨跌</th><th>方向</th><th>对 A 股持仓的传导</th></tr></thead>
+      <tbody>
+        <tr><td><b>MRVL</b><br>（澜起/罗博映射）</td><td class="num">251.01<br><span class="up">+5.79%</span></td><td><span class="tag tag-green">两日连涨</span></td><td>谷歌 AI 芯片合作持续发酵（谷歌获认股权证可认购近 5900 万股），两日累涨超 15%——<b>澜起映射修复信号继续累积</b>，但 A 股昨未传导（量比 0.59），今日看能否补涨。</td></tr>
+        <tr><td><b>LITE</b><br>（汇绿映射）</td><td class="num">879.28<br><span class="up">+6.24%</span></td><td><span class="tag tag-green">领涨反弹</span></td><td>光通信板块领涨股，止住连跌——<b>汇绿映射转正</b>，但 5 日仍 -0.13%，确认反弹还需连续站稳。</td></tr>
+        <tr><td><b>COHR</b><br>（汇绿映射）</td><td class="num">290.03<br><span class="up">+0.89%</span></td><td><span class="tag tag-green">止跌转正</span></td><td>结束两日大跌（前日 -6.19%），5 日 -11.4% 仍深跌——企稳首日，汇绿（第一大客户）映射压力边际缓解。</td></tr>
+        <tr><td><b>NVDA</b><br>（罗博映射）</td><td class="num">216.85<br><span class="down">-0.33%</span></td><td><span class="tag tag-yellow">微跌抗跌</span></td><td>大型科技股普跌中相对抗跌；罗博逻辑不依赖 NVDA 单日表现。</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>映射结论</b>：隔夜是<b>光互连链止跌反弹日</b>（COHR/LITE 双转正）——与 8/19-8/20 的连续大跌形成反转。澜起（MRVL 谷歌 ASIC）和汇绿（COHR/LITE 反弹）的映射压力同时边际缓解，今日 A 股这两只的修复预期上升；但<b>传导需要 A 股量能确认</b>，无量反抽仍是减仓窗口。</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 持仓验证点动态巡检（四问 · 盘前版）</h2><span class="source">四问：①验证点是否最核心？②有无新信息？③推进还是后退？④硬开关触发？</span></div>
+    <div class="table-wrap"><table class="inspect">
+      <thead><tr><th>标的</th><th>① 验证点校准</th><th>② 新信息 / ③ 推进状态</th><th>④ 硬开关</th></tr></thead>
+      <tbody>
+        <tr><td><b>罗博特科</b></td><td>CPO 订单兑现<br>仍最核心 ✅</td><td>SK海力士发 CPO 论文<br>（光互连扩展到内存接口）<br><span class="tag tag-green">逻辑再获背书 · 推进</span></td><td>未触发<br>（订单持续落地）</td></tr>
+        <tr><td><b>澜起科技</b></td><td>MRVL 映射 / 合约价<br>仍最核心 ✅</td><td>MRVL 谷歌 ASIC 两日连涨<br>但 A 股昨未传导（量比 0.59）<br><span class="tag tag-yellow">映射累积 · 待传导</span></td><td>未触发<br>（合约价仍上行）</td></tr>
+        <tr><td><b>汇绿生态</b></td><td>Q3 现金流 / 毛利率<br>仍最核心 ✅</td><td>COHR/LITE 双双反弹<br>（LITE +6.24%）映射转正<br><span class="tag tag-green">压力边际缓解</span></td><td>未触发<br>（Q3 未到窗口）</td></tr>
+        <tr><td><b>三祥新材</b></td><td>铪投产（8月底-9月）<br>仍最核心 ✅</td><td>无新增公告<br>投产窗口临近<br><span class="tag tag-yellow">等待催化</span></td><td>未触发<br>（投产未延期）</td></tr>
+        <tr><td><b>华峰化学</b></td><td>氨纶价差 / 重组<br>仍最核心 ✅</td><td>双券商买入 + 重组推进<br>（8/2 进展公告，发行价 8.55 元）<br><span class="tag tag-green">验证推进</span></td><td>未触发<br>（周期未下行）</td></tr>
+        <tr><td><b>软通/星环/泰和</b></td><td>信创/亏损收窄/价差<br>仍最核心 ✅</td><td>无新增<br>跟随大盘<br><span class="tag tag-yellow">持平</span></td><td>未触发</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>巡检结论</b>：8 只持仓验证点均仍核心 ✅；<b>今日新信息 4 只</b>（罗博 SK海力士论文、澜起 MRVL 续涨、汇绿 COHR/LITE 反弹、华峰券商+重组），无更新 3 只（三祥/软通/星环/泰和）标注「无更新」；推进 2 只（罗博/华峰）、映射修复 2 只（澜起/汇绿）；硬开关 0 触发 ✅。</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 今日操作结论（四档明确判断）</h2><span class="source">框架：逻辑变化 &gt; 情绪面 &gt; 技术面</span></div>
+    <div class="table-wrap"><table class="act">
+      <thead><tr><th>标的</th><th>结论</th><th>动作与条件</th></tr></thead>
+      <tbody>
+        <tr><td><b>澜起科技</b></td><td><span class="tag tag-yellow">BUY 观察</span></td><td>MRVL 两日连涨（+9.85%→+5.79%）映射累积，今日若放量收复 205 视为传导确认；底仓不动，不追高。</td></tr>
+        <tr><td><b>汇绿生态</b></td><td><span class="tag tag-yellow">HOLD 观察</span></td><td>COHR/LITE 反弹映射转正，但 A 股 37.01 仍未回 38.81 防守线——观察能否放量收复 38 上方，底仓不动。</td></tr>
+        <tr><td><b>罗博特科</b></td><td><span class="tag tag-yellow">HOLD</span></td><td>SK海力士 CPO 论文强化逻辑，但反抽已至 500-510 区间，<b>按纪律减机动仓</b>；底仓持有。</td></tr>
+        <tr><td><b>华峰化学</b></td><td><span class="tag tag-green">HOLD 持有</span></td><td>双券商买入（西南目标 14.4 元）+ 重组期权（发行价 8.55 元），持有不追高。</td></tr>
+        <tr><td><b>三祥/软通/星环</b></td><td><span class="tag tag-yellow">HOLD</span></td><td>无独立信号，持有；三祥等铪投产催化，软通/星环不地板割。</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>总原则</b>：今日是"映射转正 vs 外压仍存"的拉锯日 + 股指交割日波动加剧。映射修复（澜起/汇绿）给的是<b>观察窗口</b>不是追涨理由——A 股传导需要量能确认，无量反抽仍是调结构机会。外压（美债 30Y 5.25%、油价上行）未解除前，科技仓不加仓。</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 今日关键事件与盘中观察点</h2><span class="source">决定操作执行的条件</span></div>
+    <div class="table-wrap"><table class="ovn">
+      <thead><tr><th>观察项</th><th>内容</th><th>方向</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>财政发布会</b></td><td>上午 10 点，关注增量投资<br>/ 超长期特别国债</td><td>政策托底</td><td>基建/顺周期或有脉冲，科技资金或继续分流</td></tr>
+        <tr><td><b>股指期货交割日</b></td><td>8/21 为交割日</td><td>波动加剧</td><td>尾盘或有异动，不追高不杀跌</td></tr>
+        <tr><td><b>澜起传导</b></td><td>MRVL 两日 +15% 能否带动 A 股放量</td><td>关键验证</td><td>放量收复 205=传导确认；缩量=继续等</td></tr>
+        <tr><td><b>汇绿映射</b></td><td>COHR/LITE 反弹能否延续</td><td>观察</td><td>站稳 38 上方=修复开启；回落=映射未传导</td></tr>
+        <tr><td><b>医药虹吸</b></td><td>昨日医药暴涨（疫苗/创新药）今日能否延续</td><td>分流</td><td>医药延续=科技继续失血；降温=资金回流</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 数据核源矩阵</h2><span class="source">可追溯性</span></div>
+    <div class="table-wrap"><table class="ovn">
+      <thead><tr><th>数据项</th><th>来源</th><th>置信度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>持仓行情/技术指标</td><td>Wind 万得快照（8/20 收盘）</td><td>★★★</td><td>收盘价/涨跌幅/量比/主力净流入/均线/KDJ</td></tr>
+        <tr><td>美股映射（MRVL/COHR/LITE/NVDA）</td><td>WeStock + Pandadata 交叉核验</td><td>★★★</td><td>8/20 美股收盘价与涨跌幅</td></tr>
+        <tr><td>美债收益率/美股指数</td><td>财经媒体（新华社/财联社等）</td><td>★★★</td><td>10Y 4.70%、30Y 5.25%、道指 -1.32%</td></tr>
+        <tr><td>SK海力士 CPO 论文</td><td>《自然·电子学》（8/20 发表）</td><td>★★★</td><td>光互连扩展到内存接口的技术目标</td></tr>
+        <tr><td>华峰重组/券商观点</td><td>公司公告 + 华源/西南研报</td><td>★★★</td><td>发行价 8.55 元、双券商买入</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card risk">
+    <div class="section-title"><h2>风险提示</h2></div>
+    <p style="font-size:12px;margin:0;color:var(--muted)">本简报基于公开数据、公司公告与市场信息交叉核验，仅供投研参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </section>
+
+</main>
+</body>
+</html>
