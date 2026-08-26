@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗博特科中报前瞻重估 · 用未来账判断825亿贵不贵</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f6f8fb; --card:#ffffff; --line:#e6eaf0;
+  --ink:#1a1f2e; --sub:#5a6478; --mut:#8a94a6;
+  --up:#e53935; --down:#16a06a;
+  --accent:#1a73e8; --accent-bg:#e8f0fe;
+  --warn:#b45309; --warn-bg:#fff7ed;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 16px 60px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px;}
+.hero{padding:28px 28px;border-top:4px solid var(--accent);}
+h1{font-size:22px;margin:0 0 6px;letter-spacing:.5px;}
+h2{font-size:17px;margin:0 0 14px;padding-left:10px;border-left:4px solid var(--accent);}
+h3{font-size:14px;margin:18px 0 8px;}
+.sub{color:var(--sub);font-size:13px;margin:0 0 4px;}
+.mut{color:var(--mut);font-size:12px;}
+.concl{background:var(--accent-bg);border:1px solid #c6dafc;border-radius:8px;padding:14px 16px;margin:14px 0 0;font-size:14px;}
+.concl b{color:var(--accent);}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 14px;}
+.metric .k{font-size:12px;color:var(--mut);margin-bottom:6px;}
+.metric .v{font-size:21px;font-weight:800;font-variant-numeric:tabular-nums;}
+.metric .d{font-size:11px;color:var(--sub);margin-top:4px;}
+.up{color:var(--up);font-weight:700;}
+.down{color:var(--down);font-weight:700;}
+.pos{color:var(--up);font-weight:700;}
+.neg{color:var(--down);font-weight:700;}
+.warn{color:var(--warn);font-weight:700;}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:11px;font-weight:700;line-height:1.6;white-space:nowrap;}
+.tag-ok{background:#e6f4ea;color:#188038;}
+.tag-risk{background:#fce8e6;color:#c5221f;}
+.tag-warn{background:var(--warn-bg);color:var(--warn);}
+.tag-blue{background:var(--accent-bg);color:var(--accent);}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{vertical-align:top;overflow:hidden;text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;}
+th{font-size:12px;font-weight:700;color:#3a4558;background:rgba(120,134,156,0.07);white-space:nowrap;}
+tbody tr:nth-child(even){background:rgba(120,134,156,0.03);}
+table.f3{table-layout:fixed;}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:18%;text-align:left;}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:26%;text-align:right;}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:56%;text-align:left;}
+table.f4{table-layout:fixed;}
+table.f4 th:nth-child(1),table.f4 td:nth-child(1){width:22%;text-align:left;}
+table.f4 th:nth-child(2),table.f4 td:nth-child(2){width:20%;text-align:right;}
+table.f4 th:nth-child(3),table.f4 td:nth-child(3){width:20%;text-align:right;}
+table.f4 th:nth-child(4),table.f4 td:nth-child(4){width:38%;text-align:left;}
+table.f2{table-layout:fixed;}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:16%;text-align:left;white-space:nowrap;}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:84%;text-align:left;}
+.chart-box{height:340px;margin:12px 0;}
+ul{margin:8px 0;padding-left:20px;}
+li{margin-bottom:6px;}
+.risk{margin-top:20px;padding:14px 16px;background:#fdf6f6;border:1px solid #f3d9d9;border-radius:8px;font-size:12px;color:#8a4a4a;}
+.foot{margin-top:16px;color:var(--mut);font-size:11px;text-align:center;}
+@media (max-width:640px){
+  body{font-size:13px;}
+  table{font-size:11px;}
+  th,td{padding:6px 6px;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .wrap{padding:12px 8px 40px;}
+  .card{padding:16px 12px;}
+  .metric .v{font-size:18px;}
+  .chart-box{height:260px;}
+  table.f2 th:nth-child(1),table.f2 td:nth-child(1){white-space:normal;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card hero">
+    <h1>罗博特科（300757）中报前瞻重估</h1>
+    <p class="sub">用未来账判断 825 亿贵不贵 · 五关框架 · 数据源 Wind / 中报原文（★★★）· 2026-08-25</p>
+    <div class="concl">
+      <b>结论先行：</b>当期 655 万净利是"拐点前夜的残差"，用它算 PE 没有任何意义。<b>按前瞻算账，825 亿市值对应 2027 年约 20 倍 PE，这是成长股的合理定价，不是泡沫。</b>罗博是"利润曲线正在陡峭上行的真卡位资产"，底仓<b>HOLD</b>，加仓<b>WAIT</b>（等 Q3 验证净利率上台阶）。
+    </div>
+  </div>
+
+  <!-- 核心：前瞻利润曲线 -->
+  <div class="metric-grid">
+    <div class="metric"><div class="k">2026 H1（当期）</div><div class="v">655万</div><div class="d">Q1 -3900万 + Q2 +4500万</div></div>
+    <div class="metric"><div class="k">2026 全年（推算）</div><div class="v">1.0-1.5亿</div><div class="d">保守/中性</div></div>
+    <div class="metric"><div class="k">2027 年（前瞻）</div><div class="v up">3.5-4.5亿</div><div class="d">订单24.52亿兑现</div></div>
+    <div class="metric"><div class="k">2028 年（若CPO爆发）</div><div class="v up">8-10亿</div><div class="d">高盛710亿美元预测兑现</div></div>
+  </div>
+
+  <!-- 第0关：定性 -->
+  <div class="card">
+    <h2>第 0 关 · 定性：这是定价局，不是博弈局</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td><span class="tag tag-blue">定价局</span></td><td>罗博的核心矛盾是"业绩拐点 + 高估值"，靠<b>算未来利润</b>来判断贵贱，不是靠"谁在买谁在卖"。解禁/减持压力当前不显著。</td></tr>
+        <tr><td><span class="tag tag-blue">你的身份</span></td><td>成本 513.89、现价 492.12，浮亏约 -4.2% 的<b>长期底仓持有人</b>（CPO 一阶受益核心持仓），不是要落袋的低成本老股东，也不是短线接盘者。</td></tr>
+        <tr><td><span class="tag tag-blue">最优动作</span></td><td>验证拐点、决定"加仓还是减仓"，而不是"追还是逃"。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第1关：前瞻算账 -->
+  <div class="card">
+    <h2>第 1 关 · 前瞻算账（本次核心，预见性所在）</h2>
+    <div id="curveChart" class="chart-box"></div>
+    <h3>利润曲线：从"残差"到"爆发"，中间只隔两三个季度</h3>
+    <table class="f4">
+      <thead><tr><th>时间点</th><th>归母净利</th><th>前瞻 PE</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>2026 H1</td><td>655万</td><td><span class="neg">千倍级</span></td><td>失真残差，Q1 -3900万 + Q2 +4500万对冲</td></tr>
+        <tr><td>2026 全年</td><td>1.0-1.5亿</td><td>55-82倍</td><td>Q3/Q4 加速交付，全年扭亏兑现</td></tr>
+        <tr><td>2027 年</td><td><span class="pos">3.5-4.5亿</span></td><td><span class="pos">18-24倍</span></td><td>在手订单24.52亿兑现 + 规模效应</td></tr>
+        <tr><td>2028 年</td><td><span class="pos">8-10亿</span></td><td><span class="pos">8-10倍</span></td><td>CPO 按高盛预测爆发，利润弹性释放</td></tr>
+      </tbody>
+    </table>
+    <h3>前瞻账的三个锚（为什么 2027 年能到 3.5-4.5 亿）</h3>
+    <ul>
+      <li><b>拐点锚</b>：Q2 单季 +4500 万（环比 Q1 +8400 万），是 ficonTEC 批量订单开始交付的第一个完整季度——斜率已立。</li>
+      <li><b>订单锚</b>：光电子在手订单 24.52 亿，是 2026 H1 营收 6.08 亿的 <b>4 倍</b>，未来 1-2 年营收的"蓄水池"。</li>
+      <li><b>利润率锚</b>：光电子毛利率 42.91% 还在爬坡，Q2 净利率约 11%，规模效应摊薄费用后有望到 15-18%。</li>
+    </ul>
+    <p class="mut">⚠️ 前瞻值为推算（置信度 ★★），基于在手订单与毛利率趋势，非公司指引。</p>
+  </div>
+
+  <!-- 第2关：利润真假 -->
+  <div class="card">
+    <h2>第 2 关 · 利润真假：这份扭亏是真的，不是纸面</h2>
+    <table class="f3">
+      <thead><tr><th>验证项</th><th>数据</th><th>结论</th></tr></thead>
+      <tbody>
+        <tr><td>扣非净利润</td><td><span class="pos">388万（扭亏）</span></td><td>扣非也转正了（上年 -6283 万）——<b>不是靠非经常收益撑的，是真扭亏</b></td></tr>
+        <tr><td>经营现金流</td><td><span class="pos">+2.33亿</span></td><td>上年 -1534 万，大幅转正——<b>利润有现金同步验证</b></td></tr>
+        <tr><td>毛利率</td><td><span class="pos">42.91%</span></td><td>光电子板块 +8.14pct——<b>议价权提升，不是低毛利冲量</b></td></tr>
+      </tbody>
+    </table>
+    <p class="mut">💡 对比：软通 Q2"扭亏"靠公允价值 +1.31 亿、扣非仍亏、现金流 -39.5 亿；罗博扣非真转正、现金流 +2.33 亿——<b>两者盈利质量天壤之别，罗博的看多逻辑有硬数据支撑。</b></p>
+  </div>
+
+  <!-- 第3关：筹码成本 -->
+  <div class="card">
+    <h2>第 3 关 · 筹码成本：两把双刃剑</h2>
+    <table class="f3">
+      <thead><tr><th>筹码/结构</th><th>数据</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td>港股 IPO</td><td><span class="warn">已收备案通知书</span></td><td>A+H 双平台推进——融资换扩张（利好），但 H 股增发会摊薄 A 股权益 + 短期压制估值（利空），双刃剑</td></tr>
+        <tr><td>商誉</td><td><span class="neg">9.95亿</span></td><td>占净资产 59.8%，是前瞻账最大的"黑天鹅"——CPO 进度不及预期即减值，直接击穿利润</td></tr>
+        <tr><td>并购贷款</td><td>财务费用 <span class="neg">+184.7%</span></td><td>利息 1879 万 + 汇兑损失，跨境并购的持续出血点，靠规模摊薄消化</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第4关：落子 -->
+  <div class="card">
+    <h2>第 4 关 · 落子：底仓 HOLD，加仓 WAIT</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td><span class="tag tag-ok">HOLD</span></td><td><b>底仓不动</b>——前瞻算账后 825 亿对应 2027 年 20 倍 PE，逻辑不仅没破，反而更硬；不因"当期 655 万"的假象错杀</td></tr>
+        <tr><td><span class="tag tag-warn">WAIT</span></td><td><b>492 元不加仓</b>——加仓赌的是"净利率从 11% 上台阶"这个未验证假设，赔率不够；等 Q3 验证后再决定</td></tr>
+      </tbody>
+    </table>
+    <h3>验证开关（Q3 报，10 月底，三看）</h3>
+    <table class="f3">
+      <thead><tr><th>开关</th><th>验证什么</th><th>触发动作</th></tr></thead>
+      <tbody>
+        <tr><td>①净利率</td><td>Q3净利率上台阶</td><td>上台阶→2027 年 20 倍 PE 坐实，可加仓</td></tr>
+        <tr><td>②订单</td><td>订单增至30亿+</td><td>订单续增→成长性确认</td></tr>
+        <tr><td>③减值</td><td>商誉减值干净</td><td>不减值→黑天鹅排除</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="risk">
+    ⚠️ 风险提示：本报告为前瞻性测算，不构成投资建议。前瞻利润（2026-2028）为推算值（★~★★），依赖在手订单交付节奏、净利率提升、CPO 产业化进度三重假设；商誉 9.95 亿减值、港股增发摊薄、汇率波动均为不确定性来源。创业板涨跌停 ±20%。据此操作，风险自负。
+  </div>
+  <div class="foot">巴蒂 · 罗博特科中报前瞻重估 · 五关框架 · 数据源 Wind / 中报原文 · 2026-08-25</div>
+</div>
+
+<script>
+(function(){
+  var chart = echarts.init(document.getElementById('curveChart'));
+  var option = {
+    backgroundColor: 'transparent',
+    grid: {left: 70, right: 30, top: 30, bottom: 40},
+    tooltip: {trigger: 'axis', valueFormatter: function(v){return v + ' 亿';}},
+    xAxis: {type: 'category', data: ['2026 H1', '2026 全年E', '2027 年E', '2028 年E'], axisLabel:{color:'#5a6478'}},
+    yAxis: {type: 'value', name: '归母净利(亿)', nameTextStyle:{color:'#8a94a6'}, axisLabel:{color:'#5a6478'}, splitLine:{lineStyle:{color:'#e6eaf0'}}},
+    series: [{
+      type: 'bar',
+      data: [
+        {value: 0.0655, itemStyle:{color:'#9aa4b8'}},
+        {value: 1.2, itemStyle:{color:'#e53935'}},
+        {value: 4.0, itemStyle:{color:'#e53935'}},
+        {value: 9.0, itemStyle:{color:'#e53935'}}
+      ],
+      label: {show: true, position: 'top', color: '#1a1f2e', formatter: function(p){return p.value + '亿';}},
+      barWidth: '46%'
+    }]
+  };
+  chart.setOption(option);
+  window.addEventListener('resize', function(){chart.resize();});
+})();
+</script>
+</body>
+</html>

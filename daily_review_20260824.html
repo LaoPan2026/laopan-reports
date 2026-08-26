@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盘后复盘 2026-08-24</title>
+<style>
+:root{--blue:#4285F4;--yellow:#FBBC05;--sigred:#EA4335;--siggreen:#34A853;--up:#ff3b3b;--down:#1ed890;--ink:#172033;--muted:#687386;--line:#e6eaf0;--soft:#f6f8fb;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+main{max-width:1120px;margin:0 auto;padding:28px 22px 50px}
+.eyebrow{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.08em}
+.title{margin:4px 0 2px;font-size:26px;line-height:1.35}
+.subtitle{margin:0;color:var(--muted);font-size:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.hero{border-top:4px solid var(--blue)}
+.hero h2{margin:0 0 8px;font-size:18px;line-height:1.5}
+.hero p{margin:7px 0}
+.actionline{background:#eaf7ed;border:1px solid #bfe7c7;border-radius:8px;padding:11px 14px;margin-top:13px;font-size:14px;font-weight:700}
+.callout{background:#fff8e6;border:1px solid #f4df8c;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.metric{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px}
+.metric .label{font-size:12px;color:var(--muted)}
+.metric .value{font-size:19px;font-weight:750;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.metric .note{font-size:11px;color:var(--muted)}
+.up{color:var(--up);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.down{color:var(--down);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.flat{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:4px}
+.tag-blue{color:#1b5fca;background:#eaf2ff;border:1px solid #c9ddff}
+.tag-yellow{color:#8a6400;background:#fff7d7;border:1px solid #f4df8c}
+.tag-red{color:#b3261e;background:#ffebe8;border:1px solid #ffc5be}
+.tag-green{color:#167438;background:#eaf7ed;border:1px solid #bfe7c7}
+.tag-gray{color:#5a6474;background:#f0f2f6;border:1px solid #dfe3ea}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.source{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow:hidden;word-break:break-word;overflow-wrap:anywhere}
+th{color:#5a6474;font-size:12px;font-weight:700;background:var(--soft);white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbfd}
+tr:last-child td{border-bottom:none}
+.num{text-align:right}
+th.num{text-align:right}
+table.hold{table-layout:fixed}
+table.hold th:nth-child(1),table.hold td:nth-child(1){width:13%}
+table.hold th:nth-child(2),table.hold td:nth-child(2){width:9%}
+table.hold th:nth-child(3),table.hold td:nth-child(3){width:9%}
+table.hold th:nth-child(4),table.hold td:nth-child(4){width:7%}
+table.hold th:nth-child(5),table.hold td:nth-child(5){width:12%}
+table.hold th:nth-child(6),table.hold td:nth-child(6){width:18%}
+table.hold th:nth-child(7),table.hold td:nth-child(7){width:32%}
+table.hold th:nth-child(2),table.hold td:nth-child(2),
+table.hold th:nth-child(3),table.hold td:nth-child(3),
+table.hold th:nth-child(4),table.hold td:nth-child(4),
+table.hold th:nth-child(5),table.hold td:nth-child(5){text-align:right}
+table.inspect{table-layout:fixed}
+table.inspect th:nth-child(1),table.inspect td:nth-child(1){width:14%}
+table.inspect th:nth-child(2),table.inspect td:nth-child(2){width:24%}
+table.inspect th:nth-child(3),table.inspect td:nth-child(3){width:38%}
+table.inspect th:nth-child(4),table.inspect td:nth-child(4){width:24%}
+table.chk{table-layout:fixed}
+table.chk th:nth-child(1),table.chk td:nth-child(1){width:32%}
+table.chk th:nth-child(2),table.chk td:nth-child(2){width:44%}
+table.chk th:nth-child(3),table.chk td:nth-child(3){width:24%}
+table.theme{table-layout:fixed}
+table.theme th:nth-child(1),table.theme td:nth-child(1){width:16%}
+table.theme th:nth-child(2),table.theme td:nth-child(2){width:28%}
+table.theme th:nth-child(3),table.theme td:nth-child(3){width:18%}
+table.theme th:nth-child(4),table.theme td:nth-child(4){width:38%}
+table.cal{table-layout:fixed}
+table.cal th:nth-child(1),table.cal td:nth-child(1){width:24%}
+table.cal th:nth-child(2),table.cal td:nth-child(2){width:40%}
+table.cal th:nth-child(3),table.cal td:nth-child(3){width:36%}
+.foot{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.risk{background:#fff5f5;border:1px solid #ffd5d5}
+@media(max-width:640px){body{font-size:13px}main{padding:16px 12px 30px}.title{font-size:20px}.grid{grid-template-columns:repeat(2,1fr);gap:8px}.metric .value{font-size:16px}.table-wrap table{min-width:600px}}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">DAILY REVIEW · 2026-08-24（周一）</div>
+  <h1 class="title">盘后复盘：高开兑现日——光模块三巨头+存储全线主力出逃（中际旭创 -35亿），科技领跌；汇绿 +4.46% 逆势收盘站稳 38.81 是唯一亮点</h1>
+  <p class="subtitle">数据口径：Wind + 新浪 Level2 + 财联社 ★★★｜8/24 收盘</p>
+
+  <section class="card hero">
+    <h2><span class="tag tag-red">核心判断</span>"高开兑现"彻底坐实：周末政策组合拳（国常会通信网+长存IPO+阿里800亿）高开低走，<b>创业板 -3.21%、科创50 -3.10% 领跌</b>，光模块三巨头+存储全线主力净流出（中际旭创 -35亿、兆易创新 -30亿、天孚通信 -29亿），全市场主力净流出 <b>775.9 亿</b>。<b>持仓唯一亮点：汇绿 +4.46% 收 39.14，收盘站稳 38.81 防守线</b>（量比 1.63 放量、主力 +1.89 亿），其余 7 只普跌（澜起 -4.35%、三祥 -3.48%）。</h2>
+    <p>大盘沪指 -0.59% 相对抗跌（上证50 -0.44% 权重护盘），但成长股杀跌明显；全天成交 2.01 万亿<b>放量下跌</b>（较上周五 1.88 万亿放量约 1300 亿），量能性质恶化。盘前判断"高开不追、防兑现"完全兑现。</p>
+    <div class="actionline">今日操作结论：HOLD 为主。汇绿收盘站稳 38.81 是积极信号但需明日确认（今天仅第一天），波段T窗口仍未正式重开；其余科技仓继续等（放量下跌未止跌，不接飞刀）；澜起/三祥/罗博底仓不动，等企稳信号。</div>
+  </section>
+
+  <div class="grid">
+    <div class="metric"><div class="label">上证指数</div><div class="value down">3882.01 <small>-0.59%</small></div><div class="note">相对抗跌 · 权重护盘</div></div>
+    <div class="metric"><div class="label">两市成交额</div><div class="value flat">2.01万亿</div><div class="note">放量1300亿 · 放量下跌</div></div>
+    <div class="metric"><div class="label">涨停/跌停</div><div class="value flat">48 / 14</div><div class="note">涨1421跌3736 · 跌占72%</div></div>
+    <div class="metric"><div class="label">全市场主力</div><div class="value down">-775.9亿</div><div class="note">光模块+存储大幅出逃</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-title"><h2>01 今日关键事实（客观事件）</h2><span class="source">来源：Wind / 新浪 Level2 / 财联社</span></div>
+    <p style="font-size:13px;margin:0">① <b>指数分化</b>：沪指 3882.01（-0.59%）、深成 13794.29（-2.13%）、创业板 3431.89（-3.21% 领跌）、科创50 1602.34（-3.10%）。权重（上证50 -0.44%）护盘，成长股杀跌。</p>
+    <p style="font-size:13px;margin:8px 0 0">② <b>放量下跌</b>：两市成交 2.01 万亿（较上周五 1.88 万亿放量约 1300 亿），但方向向下——量能性质恶化，不是健康放量。</p>
+    <p style="font-size:13px;margin:8px 0 0">③ <b>个股普跌</b>：全市场约 1421 涨 / 3736 跌（下跌占比 72%），涨停 48、跌停 14。</p>
+    <p style="font-size:13px;margin:8px 0 0">④ <b>主线切换</b>：煤炭（焦煤涨价）、固态电池（国际标准立项）、贵金属/有色、数字货币逆势走强；光模块、半导体、PCB、存储杀跌。</p>
+    <p style="font-size:13px;margin:8px 0 0">⑤ <b>利好高开兑现</b>：国常会"适度超前"通信网 + 网信行动计划 + 长存 330 亿 IPO + 阿里 800 亿 AI 配售，多重利好叠加却高开低走——典型的"利好出尽/存量兑现"。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>02 大盘结构：钱怎么流（流入 + 流出）</h2><span class="source">来源：新浪 Level2 + 财联社星矿 · 双面呈现</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>方向</th><th>板块/标的</th><th>资金信号</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><b>流入·防御</b></td><td>煤炭、贵金属、有色、非银、固态电池</td><td><span class="tag tag-green">逆势流入</span></td><td>焦煤涨价 + 固态电池国际标准立项 + 避险，资金切向涨价与防御方向。</td></tr>
+        <tr><td><b>流出·光模块</b></td><td>中际旭创 -35亿、天孚通信 -29亿、新易盛 -15亿</td><td><span class="tag tag-red">大幅出逃</span></td><td>光模块三巨头全线主力净流出——周末利好被机构借机出货，映射兑现。</td></tr>
+        <tr><td><b>流出·存储</b></td><td>兆易创新 -30亿、长鑫科技 -12亿</td><td><span class="tag tag-red">大幅出逃</span></td><td>长存 IPO 利好兑现，存储冲高回落，影子股获利了结。</td></tr>
+        <tr><td><b>流出·半导体</b></td><td>寒武纪 -9亿、长电科技 -9亿、海光 -6亿</td><td><span class="tag tag-red">跟跌</span></td><td>半导体设备/算力芯片同步杀跌，科技链整体退潮。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0">本质：<b>放量下跌的存量兑现</b>——周末政策+产业利好成了机构出货的流动性窗口，全市场主力净流出 775.9 亿，光模块+存储+半导体是重灾区。资金切向煤炭/有色/非银等防御与顺周期，与你"算力成长主线"持仓形成明显风格逆风。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>03 持仓复盘：汇绿独涨，七只普跌</h2><span class="source">来源：Wind，8/24 收盘 · 按涨跌幅排序</span></div>
+    <div class="table-wrap"><table class="hold">
+      <thead><tr><th>标的</th><th class="num">收盘</th><th class="num">涨跌</th><th class="num">量比</th><th class="num">当日主力</th><th>技术信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿生态</b> 001267</td><td class="num">39.14</td><td class="num up">+4.46%</td><td class="num">1.63</td><td class="num up">+1.89亿</td><td>J 18 低位反弹<br>站上MA5/MA20</td><td>放量逆势大涨，<b>收盘站稳 38.81</b>；主力 +1.89 亿；波段T窗口待明日确认。</td></tr>
+        <tr><td><b>软通动力</b> 301236</td><td class="num">36.65</td><td class="num down">-1.43%</td><td class="num">0.49</td><td class="num down">-3615万</td><td>J -9 超卖<br>缩量</td><td>解禁日缩量下跌（量比 0.49），抛压温和，持有。</td></tr>
+        <tr><td><b>罗博特科</b> 300757</td><td class="num">496.40</td><td class="num down">-1.63%</td><td class="num">0.69</td><td class="num down">-1.15亿</td><td>J 12<br>跌破500回踩MA20</td><td>回踩 MA20(474) 上方企稳，CPO 设备逻辑未变；5日主力仍 <span class="up">+5678万</span>。</td></tr>
+        <tr><td><b>泰和新材</b> 002254</td><td class="num">12.13</td><td class="num down">-2.18%</td><td class="num">0.88</td><td class="num up">+115万</td><td>J 6 超卖<br>低位震荡</td><td>随化工走弱，主力微流入，等拐点验证，持有。</td></tr>
+        <tr><td><b>华峰化学</b> 002064</td><td class="num">11.39</td><td class="num down">-2.65%</td><td class="num">0.74</td><td class="num down">-1184万</td><td>J 49 中性<br>回踩MA20</td><td>氨纶/重组逻辑未变，回调持有；5日主力仍 <span class="up">+689万</span>。</td></tr>
+        <tr><td><b>星环科技</b> 688031</td><td class="num">102.19</td><td class="num down">-3.16%</td><td class="num">0.61</td><td class="num down">-296万</td><td>J -11 超卖<br>随科创50</td><td>负成本利润仓，无独立信号，持有不割。</td></tr>
+        <tr><td><b>三祥新材</b> 603663</td><td class="num">41.61</td><td class="num down">-3.48%</td><td class="num">0.90</td><td class="num down">-7100万</td><td>J 10 超卖<br>MA20上方</td><td>铪 9/30 投产未变，主力流出 7100 万；等投产公告，持有。</td></tr>
+        <tr><td><b>澜起科技</b> 688008</td><td class="num">191.83</td><td class="num down">-4.35%</td><td class="num">0.86</td><td class="num down">-7.28亿</td><td>J -7 超卖<br>跌破200关口</td><td>MRVL 传导兑现，5日主力 <span class="down">-36.19亿</span>；底仓不动，等 8/27 财报。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin:10px 0 0"><b>关键信号</b>：汇绿 +4.46% 放量（量比 1.63）逆势独涨是今日唯一亮点，主力 +1.89 亿，收盘站稳 38.81——但波段T纪律要求"站稳 + 1-2 日确认"才重开，今天只是第一天。其余 7 只普跌，澜起 -4.35% 跌破 200 关口（5日主力 -36 亿持续失血）、三祥 -3.48% 领跌科技。</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>04 持仓验证点动态巡检（四问）</h2><span class="source">四问：①验证点是否最核心？②有无新信息？③推进还是后退？④硬开关触发？</span></div>
+    <div class="table-wrap"><table class="inspect">
+      <thead><tr><th>标的</th><th>① 验证点校准</th><th>② 新信息 / ③ 推进状态</th><th>④ 硬开关</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿生态</b></td><td>Q3 现金流/毛利率<br>仍最核心 ✅</td><td>放量 +4.46% 逆势独涨<br>收盘站稳 38.81（量比 1.63）<br><span class="tag tag-green">企稳信号 · 待确认</span></td><td>未触发<br>（波段T明日确认）</td></tr>
+        <tr><td><b>罗博特科</b></td><td>CPO 订单兑现<br>仍最核心 ✅</td><td>回踩 MA20 企稳<br>5日主力仍 +5678 万<br><span class="tag tag-green">逻辑未变 · 缩量回踩</span></td><td>未触发</td></tr>
+        <tr><td><b>澜起科技</b></td><td>8/26 财报四验证点<br>仍最核心 ✅</td><td>跌破 200 关口（191.83）<br>5日主力 -36.19 亿<br><span class="tag tag-red">持续失血 · 等财报</span></td><td>硬开关=<br>8/27 凌晨财报</td></tr>
+        <tr><td><b>三祥新材</b></td><td>铪投产（9/30）<br>仍最核心 ✅</td><td>-3.48% 主力 -7100 万<br>无新增公告<br><span class="tag tag-yellow">等待催化</span></td><td>未触发</td></tr>
+        <tr><td><b>华峰化学</b></td><td>氨纶价差/重组<br>仍最核心 ✅</td><td>-2.65% 回调<br>5日主力仍 +689 万<br><span class="tag tag-yellow">回调消化</span></td><td>未触发</td></tr>
+        <tr><td><b>软通/星环/泰和</b></td><td>信创/亏损收窄/价差<br>仍最核心 ✅</td><td>软通解禁日缩量温和<br>星环/泰和随大盘<br><span class="tag tag-yellow">持平</span></td><td>未触发</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>巡检结论</b>：8 只验证点均仍核心 ✅；<b>今日有新信息 3 只</b>（汇绿放量站稳防守线、澜起破200、罗博回踩MA20），无更新 5 只；推进 1 只（汇绿）、后退 1 只（澜起）、持平 6 只；<b>硬开关 1 个待触发</b>（澜起 → 8/27 凌晨英伟达财报）。</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>05 盘前判断对账（★新增 · 闭环）</h2><span class="source">盘前 8:58 判断 vs 今日实际</span></div>
+    <div class="table-wrap"><table class="chk">
+      <thead><tr><th>盘前判断</th><th>今日实际</th><th>验证</th></tr></thead>
+      <tbody>
+        <tr><td>"通信算力高开不追、防兑现"</td><td>高开低走，光模块三巨头+存储主力净流出超 200 亿（中际旭创 -35亿、兆易创新 -30亿）</td><td><span class="tag tag-green">✅ 正确</span></td></tr>
+        <tr><td>"汇绿机动仓不进场（&lt;38.81 防守线）"</td><td>+4.46% 收 39.14，收盘站稳 38.81，但盘中冲 39.09 回落</td><td><span class="tag tag-yellow">⚠️ 纪律对</span><br>明日确认才重开</td></tr>
+        <tr><td>"软通防解禁不追加"</td><td>-1.43% 缩量（量比 0.49），抛压温和</td><td><span class="tag tag-green">✅ 正确</span></td></tr>
+        <tr><td>"罗博 500-510 减机动仓"</td><td>-1.63% 收 496.40，跌破 500 下方</td><td><span class="tag tag-green">✅ 正确</span></td></tr>
+        <tr><td>"澜起底仓等英伟达财报"</td><td>-4.35% 破 200 关口（191.83），未追是对的</td><td><span class="tag tag-green">✅ 正确</span></td></tr>
+        <tr><td>"量能重返 2 万亿前不加仓"</td><td>放量 2.01 万亿但为下跌放量，未加仓</td><td><span class="tag tag-green">✅ 正确</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>对账结论</b>：6 条判断 <b>5 条 ✅ + 1 条 ⚠️</b>。核心判断（高开兑现、防追高）完全验证；汇绿"不进场"纪律没错（当天收盘才勉强站稳、盘中冲高回落），但逆势独涨说明汇绿有独立资金——<b>明日收盘能否站稳 38.81 是波段T窗口重开的唯一确认点</b>。</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>06 新增变量</h2><span class="source">风险监控</span></div>
+    <div class="table-wrap"><table class="theme">
+      <thead><tr><th>变量</th><th>内容</th><th>方向</th><th>影响</th></tr></thead>
+      <tbody>
+        <tr><td><b>光模块出逃</b></td><td>中际旭创 -35亿、天孚 -29亿、新易盛 -15亿</td><td>🔴 利空</td><td>光模块龙头主力大幅出逃，映射兑现；对汇绿（代工）情绪偏压制，但汇绿今日逆势独立。</td></tr>
+        <tr><td><b>汇绿独立行情</b></td><td>+4.46% 放量站稳 38.81，主力 +1.89亿</td><td>🟢 利好</td><td>光模块杀跌背景下逆势独涨，有独立资金进场，明日确认企稳。</td></tr>
+        <tr><td><b>放量下跌</b></td><td>2.01 万亿，较上周五放量 1300 亿</td><td>🔴 量能恶化</td><td>放量阴线=机构出货窗口，非健康放量，科技链短期承压。</td></tr>
+        <tr><td><b>存储兑现</b></td><td>兆易创新 -30亿、长鑫 -12亿</td><td>🔴 兑现</td><td>长存 IPO 利好兑现，存储冲高回落，澜起受连带情绪压制。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>07 明日预案</h2><span class="source">聚焦明日 · 8/25（周二）</span></div>
+    <div class="table-wrap"><table class="cal">
+      <thead><tr><th>关注项</th><th>具体内容</th><th>应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>汇绿波段T确认</b></td><td>今日收盘站稳 38.81（第一天）</td><td>明日收盘站稳 38.81 + 放量 = 波段T窗口重开；跌破则继续等</td></tr>
+        <tr><td><b>6000亿 MLF 到期</b></td><td>周二 MLF 到期，看央行续作</td><td>缩量续作=资金面收紧；超额续作=流动性宽松，利好成长</td></tr>
+        <tr><td><b>新易盛中报</b></td><td>8/25 披露，补光模块三强利润率</td><td>净利率若低于旭创 46%，印证光模块钱在大头、代工赚辛苦钱</td></tr>
+        <tr><td><b>澜起超跌</b></td><td>J 值 -7 超卖，破 200 关口</td><td>观察能否超跌反弹；8/27 凌晨英伟达财报才是方向锚</td></tr>
+        <tr><td><b>大盘 3880 生命线</b></td><td>今日收 3882.01 勉强守住</td><td>跌破 3880=调整升级；守住则短期底部有效</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><b>明日总原则</b>：科技链放量下跌未止跌，不接飞刀；汇绿是唯一变量（明日波段T确认点）；MLF 续作决定资金面。底仓不动，等汇绿确认 + 英伟达财报两个锚。</div>
+  </section>
+
+  <section class="card risk">
+    <div class="section-title"><h2>风险提示</h2></div>
+    <p style="font-size:12px;margin:0;color:var(--muted)">本复盘基于公开数据、公司公告与市场信息交叉核验（数据截至 2026-08-24 收盘），仅供投研参考，不构成投资建议。市场有风险，投资需谨慎。任何投资决策应结合个人风险承受能力、资金状况和投资目标独立判断，必要时咨询持牌专业机构。过往表现不预示未来收益。</p>
+  </section>
+
+</main>
+</body>
+</html>

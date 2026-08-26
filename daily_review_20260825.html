@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘后复盘 · 2026-08-25</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f6f8fb; --card:#ffffff; --line:#e6eaf0;
+  --ink:#1a1f2e; --sub:#5a6478; --mut:#8a94a6;
+  --up:#e53935; --down:#16a06a;
+  --accent:#1a73e8; --accent-bg:#e8f0fe;
+  --warn:#b45309; --warn-bg:#fff7ed;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 16px 60px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px;}
+.hero{padding:28px 28px;border-top:4px solid var(--accent);}
+h1{font-size:22px;margin:0 0 6px;letter-spacing:.5px;}
+h2{font-size:17px;margin:0 0 14px;padding-left:10px;border-left:4px solid var(--accent);}
+.sub{color:var(--sub);font-size:13px;margin:0 0 4px;}
+.concl{background:var(--accent-bg);border:1px solid #c6dafc;border-radius:8px;padding:14px 16px;margin:14px 0 0;font-size:14px;}
+.concl b{color:var(--accent);}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 14px;}
+.metric .k{font-size:12px;color:var(--mut);margin-bottom:6px;}
+.metric .v{font-size:21px;font-weight:800;font-variant-numeric:tabular-nums;}
+.metric .d{font-size:11px;color:var(--sub);margin-top:4px;}
+.pos{color:var(--up);font-weight:700;}
+.neg{color:var(--down);font-weight:700;}
+.warn{color:var(--warn);font-weight:700;}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:11px;font-weight:700;line-height:1.6;white-space:nowrap;}
+.tag-ok{background:#e6f4ea;color:#188038;}
+.tag-risk{background:#fce8e6;color:#c5221f;}
+.tag-warn{background:var(--warn-bg);color:var(--warn);}
+.tag-blue{background:var(--accent-bg);color:var(--accent);}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{vertical-align:top;overflow:hidden;text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;}
+th{font-size:12px;font-weight:700;color:#3a4558;background:rgba(120,134,156,0.07);white-space:nowrap;}
+tbody tr:nth-child(even){background:rgba(120,134,156,0.03);}
+/* 持仓复盘 7 列 */
+table.f7{table-layout:fixed;}
+table.f7 th:nth-child(1),table.f7 td:nth-child(1){width:12%;text-align:left;}
+table.f7 th:nth-child(2),table.f7 td:nth-child(2){width:11%;text-align:right;}
+table.f7 th:nth-child(3),table.f7 td:nth-child(3){width:10%;text-align:right;}
+table.f7 th:nth-child(4),table.f7 td:nth-child(4){width:8%;text-align:right;}
+table.f7 th:nth-child(5),table.f7 td:nth-child(5){width:13%;text-align:right;}
+table.f7 th:nth-child(6),table.f7 td:nth-child(6){width:18%;text-align:left;}
+table.f7 th:nth-child(7),table.f7 td:nth-child(7){width:28%;text-align:left;}
+/* 对账 3 列 */
+table.f3{table-layout:fixed;}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:34%;text-align:left;}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:46%;text-align:left;}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:20%;text-align:left;}
+table.f2{table-layout:fixed;}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:16%;text-align:left;white-space:nowrap;}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:84%;text-align:left;}
+.risk{margin-top:20px;padding:14px 16px;background:#fdf6f6;border:1px solid #f3d9d9;border-radius:8px;font-size:12px;color:#8a4a4a;}
+.foot{margin-top:16px;color:var(--mut);font-size:11px;text-align:center;}
+@media (max-width:640px){
+  body{font-size:13px;}
+  table{font-size:11px;}
+  th,td{padding:6px 6px;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .wrap{padding:12px 8px 40px;}
+  .card{padding:16px 12px;}
+  .metric .v{font-size:18px;}
+  table.f2 th:nth-child(1),table.f2 td:nth-child(1){white-space:normal;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card hero">
+    <h1>盘后复盘 · 2026-08-25 周二</h1>
+    <p class="sub">v2 对账版 · 数据源 Wind（★★★）· 收盘后</p>
+    <div class="concl">
+      <b>今日结论：低开高走、权重护盘、成长分化。</b>隔夜美股利空只砸了个低开，上证 +0.19% 收红、科创 50 +0.14%，但创业板 -1.00% 最弱。持仓里<b>澜起逆势 +1.35%、主力净流入 3.73 亿</b>是最强信号；汇绿破位 -2.55%、主力流出 9505 万是最大风险点。盘前"防守优先"方向对，但力度偏保守——实际是"主板护盘、半导体抗跌"，不是全面下跌。
+    </div>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="k">上证指数</div><div class="v pos">+0.19%</div><div class="d">成交 8589 亿</div></div>
+    <div class="metric"><div class="k">创业板指</div><div class="v neg">-1.00%</div><div class="d">最弱</div></div>
+    <div class="metric"><div class="k">科创 50</div><div class="v pos">+0.14%</div><div class="d">半导体抗跌</div></div>
+    <div class="metric"><div class="k">两市成交</div><div class="v">1.83万亿</div><div class="d">放量承接</div></div>
+  </div>
+
+  <!-- 01 今日关键事实 -->
+  <div class="card">
+    <h2>01 · 今日关键事实</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td>隔夜美股</td><td>费半 -2.7%、NVDA 七连跌 -2.91%、MRVL -3%、COHR -4.85%、存储全线大跌——利空传导，A 股低开</td></tr>
+        <tr><td>盘面走势</td><td>低开高走：主板权重护盘，上证 +0.19% 收红；科创 50 +0.14%；创业板 -1.00% 最弱；两市放量至 1.83 万亿</td></tr>
+        <tr><td>持仓异动</td><td>澜起逆势 +1.35%（主力 +3.73 亿）、软通 +1.66%（主力 +6059 万）；汇绿 -2.55% 破 38.81 防守线（主力 -9505 万）</td></tr>
+        <tr><td>今晚三份中报</td><td>软通（Q2 纸面扭亏 0.85 亿、扣非仍亏）、罗博（Q2 单季 +4500 万拐点）、泰和（氨纶底部反转）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 02 大盘结构 -->
+  <div class="card">
+    <h2>02 · 大盘结构：钱往哪流</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td><span class="tag tag-ok">流入</span></td><td>半导体/科创（澜起主力 +3.73 亿、星环 +2450 万）——上海"十五五"EDA/算力规划 + 北京 AI4Chip 政策暖风，资金切向半导体设备/材料</td></tr>
+        <tr><td><span class="tag tag-risk">流出</span></td><td>创业板成长（汇绿主力 -9505 万、罗博 -1.17 亿）——光模块/CPO 受隔夜 COHR/MRVL 大跌压制，资金避险</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 03 持仓复盘 -->
+  <div class="card">
+    <h2>03 · 持仓复盘（7 列）</h2>
+    <table class="f7">
+      <thead><tr><th>标的</th><th>收盘</th><th>涨跌</th><th>量比</th><th>主力净流入</th><th>技术信号</th><th>操作要点</th></tr></thead>
+      <tbody>
+        <tr><td>澜起科技</td><td>194.42</td><td><span class="pos">+1.35%</span></td><td>0.67</td><td><span class="pos">+3.73亿</span></td><td>逆势最强，60日线234下方</td><td>英伟达8/27财报前HOLD</td></tr>
+        <tr><td>软通动力</td><td>37.26</td><td><span class="pos">+1.66%</span></td><td>0.67</td><td><span class="pos">+6059万</span></td><td>逆势收红，60日线39.6下方</td><td>今晚中报+明日解禁，冲37.5-40兑现</td></tr>
+        <tr><td>泰和新材</td><td>12.25</td><td><span class="pos">+0.99%</span></td><td>0.77</td><td>-85万</td><td>60日线14.30下方</td><td>氨纶反转逻辑，底仓HOLD</td></tr>
+        <tr><td>星环科技</td><td>101.46</td><td><span class="neg">-0.71%</span></td><td>0.62</td><td><span class="pos">+2450万</span></td><td>60日线110下方</td><td>软件弱势，观察</td></tr>
+        <tr><td>罗博特科</td><td>492.12</td><td><span class="neg">-0.86%</span></td><td>0.75</td><td><span class="neg">-1.17亿</span></td><td>60日线525下方</td><td>今晚中报Q2拐点，HOLD观察</td></tr>
+        <tr><td>三祥新材</td><td>41.20</td><td><span class="neg">-0.99%</span></td><td>0.65</td><td>-1482万</td><td>60日线49下方</td><td>锆材弱势，HOLD</td></tr>
+        <tr><td>华峰化学</td><td>11.20</td><td><span class="neg">-1.67%</span></td><td>0.67</td><td><span class="pos">+1121万</span></td><td>60日线10.70附近</td><td>化工弱势，HOLD</td></tr>
+        <tr><td>汇绿生态</td><td>38.14</td><td><span class="neg">-2.55%</span></td><td>1.03</td><td><span class="neg">-9505万</span></td><td>破38.81防守线</td><td>波段T关闭，机动仓已止损</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 04 验证点四问 -->
+  <div class="card">
+    <h2>04 · 验证点动态巡检（四问）</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td>①澜起</td><td>英伟达 8/27 凌晨财报 = CKD/MRCD/MDB/DDR5 RCD 四验证点；今日逆势 +1.35% 主力抢筹，或为财报前布局</td></tr>
+        <tr><td>②汇绿</td><td>Q3 现金流是"备货→收入→利润"链的验证钥匙；中报光模块 +202.83% 已夯实，等 Q3 现金流回流坐实</td></tr>
+        <tr><td>③罗博</td><td>CPO 订单交付节奏 + 净利率上台阶；今晚中报 Q2 单季 +4500 万拐点确认，Q3 是关键</td></tr>
+        <tr><td>④泰和</td><td>氨纶价差能否持续走扩 + 对位芳纶扩产投产；氨纶底部反转 + 在建转固双引擎待兑现</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 05 盘前判断对账 -->
+  <div class="card">
+    <h2>05 · 盘前判断对账（★闭环关键）</h2>
+    <table class="f3">
+      <thead><tr><th>盘前判断</th><th>今日实际</th><th>验证</th></tr></thead>
+      <tbody>
+        <tr><td>隔夜映射利空、防守优先、不抄底</td><td>低开高走，上证 +0.19% 收红、科创 +0.14%，主板护盘</td><td><span class="tag tag-warn">⚠️ 部分</span></td></tr>
+        <tr><td>汇绿破 38.81 机动仓不进场</td><td>收盘 38.14 -2.55%、主力 -9505 万，破位确认</td><td><span class="tag tag-ok">✅ 正确</span></td></tr>
+        <tr><td>澜起英伟达财报前不动作</td><td>逆势 +1.35%、主力 +3.73 亿，强于预期</td><td><span class="tag tag-warn">⚠️ 部分</span></td></tr>
+        <tr><td>软通 SELL 观察冲 37.5-38 兑现</td><td>软通 +1.66% 收 37.26，未到兑现区</td><td><span class="tag tag-warn">⚠️ 部分</span></td></tr>
+        <tr><td>整体 WAIT 不抄底</td><td>主板护盘、成长分化，非全面下跌</td><td><span class="tag tag-warn">⚠️ 部分</span></td></tr>
+      </tbody>
+    </table>
+    <p class="mut">💡 教训：隔夜美股利空 ≠ A 股全面下跌，权重护盘 + 政策暖风对冲了利空；"防守优先"应细化为"防创业板成长、看主板权重"，而非一刀切。</p>
+  </div>
+
+  <!-- 06 新增变量 -->
+  <div class="card">
+    <h2>06 · 新增变量（风险监控）</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td>今晚中报</td><td>软通（Q2 纸面扭亏、扣非仍亏）+ 罗博（Q2 拐点）+ 泰和（氨纶反转）——三份中报今晚盘后挂网，明日开盘消化</td></tr>
+        <tr><td>明日解禁</td><td>软通 8224.81 万股定增解禁（成本 40.71 套牢盘），与中报双事件对撞</td></tr>
+        <tr><td>英伟达财报</td><td>8/27 凌晨（美东 8/26 盘后）——AI 链方向决定性事件，财报前资金观望</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 07 明日预案 -->
+  <div class="card">
+    <h2>07 · 明日预案</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td><span class="tag tag-warn">软通 SELL</span></td><td>中报+解禁双事件，借反弹 37.5-40 分批兑现，破 36 减仓离场，不追</td></tr>
+        <tr><td><span class="tag tag-blue">罗博 HOLD</span></td><td>今晚中报 Q2 拐点，明日观察市场反应，492 元不追高，等 Q3 验证</td></tr>
+        <tr><td><span class="tag tag-blue">澜起 HOLD</span></td><td>8/27 凌晨英伟达财报 = 验证窗口，明日观望不动作</td></tr>
+        <tr><td><span class="tag tag-blue">汇绿 HOLD</span></td><td>破 38.81，波段 T 关闭，底仓不动，机动仓已止损不补</td></tr>
+        <tr><td><span class="tag tag-blue">泰和 HOLD</span></td><td>氨纶反转 + 对位芳纶扩产逻辑，底仓持有，等氨纶价差验证</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="risk">
+    ⚠️ 风险提示：本复盘不构成投资建议。隔夜美股、英伟达财报、软通解禁、中报业绩均存在不确定性；数据源 Wind，量比/主力资金为盘中快照，可能与收盘口径略有差异；创业板/科创板涨跌停 ±20%，主板 ±10%。据此操作，风险自负。
+  </div>
+  <div class="foot">巴蒂 · 盘后复盘 v2 对账版 · 2026-08-25 · 数据源 Wind（★★★）</div>
+</div>
+</body>
+</html>

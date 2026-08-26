@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软通动力2026中报深度解读</title>
+<style>
+:root {
+  --up: #c62828;
+  --down: #1e8e5a;
+  --warn: #b26a00;
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --border: #e2e6ec;
+  --text: #1f2a3d;
+  --muted: #6b7686;
+  --accent: #1a4f8b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif; font-size: 14px; line-height: 1.65; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 20px 16px 60px; }
+.hero { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 26px 30px; margin-bottom: 18px; }
+.hero h1 { font-size: 23px; font-weight: 800; letter-spacing: 0.5px; }
+.hero .sub { color: var(--muted); font-size: 13px; margin-top: 8px; }
+.hero .badge { display: inline-block; background: #eef3fa; color: var(--accent); border: 1px solid #d3e0f0; border-radius: 20px; padding: 2px 12px; font-size: 12px; font-weight: 600; margin-top: 10px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 18px; }
+.section-title { font-size: 17px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.section-title .no { background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; border-radius: 5px; padding: 1px 8px; }
+.section-desc { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
+.verdict { border: 1px solid var(--accent); background: #f4f8fd; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; }
+.verdict .t { font-size: 15px; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+.verdict .d { font-size: 13px; color: var(--text); line-height: 1.8; }
+.warnbox { border: 1px solid #f0dcb8; background: #fffdf7; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #7a5a20; line-height: 1.8; margin-bottom: 14px; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { vertical-align: top; overflow: hidden; padding: 9px 12px; border-bottom: 1px solid #eef0f4; word-break: break-word; overflow-wrap: anywhere; }
+th { font-size: 12.5px; font-weight: 700; color: #3a4659; background: #f2f5f9; white-space: nowrap; }
+tbody tr:nth-child(even) { background: rgba(26,79,139,0.025); }
+.pos { color: var(--up); font-weight: 700; white-space: nowrap; }
+.neg { color: var(--down); font-weight: 700; white-space: nowrap; }
+.warn { color: var(--warn); font-weight: 600; white-space: nowrap; }
+.flat { white-space: nowrap; }
+
+table.f5.num { table-layout: fixed; }
+table.f5.num th:nth-child(1), table.f5.num td:nth-child(1) { width: 30%; text-align: left; }
+table.f5.num th:nth-child(2), table.f5.num td:nth-child(2) { width: 18%; text-align: right; }
+table.f5.num th:nth-child(3), table.f5.num td:nth-child(3) { width: 18%; text-align: right; }
+table.f5.num th:nth-child(4), table.f5.num td:nth-child(4) { width: 14%; text-align: right; }
+table.f5.num th:nth-child(5), table.f5.num td:nth-child(5) { width: 20%; text-align: left; }
+
+table.f5.biz { table-layout: fixed; }
+table.f5.biz th:nth-child(1), table.f5.biz td:nth-child(1) { width: 24%; text-align: left; }
+table.f5.biz th:nth-child(2), table.f5.biz td:nth-child(2) { width: 18%; text-align: right; }
+table.f5.biz th:nth-child(3), table.f5.biz td:nth-child(3) { width: 14%; text-align: right; }
+table.f5.biz th:nth-child(4), table.f5.biz td:nth-child(4) { width: 14%; text-align: right; }
+table.f5.biz th:nth-child(5), table.f5.biz td:nth-child(5) { width: 30%; text-align: left; }
+
+table.f3.link { table-layout: fixed; }
+table.f3.link th:nth-child(1), table.f3.link td:nth-child(1) { width: 20%; text-align: left; white-space: nowrap; }
+table.f3.link th:nth-child(2), table.f3.link td:nth-child(2) { width: 24%; text-align: left; }
+table.f3.link th:nth-child(3), table.f3.link td:nth-child(3) { width: 56%; text-align: left; }
+
+.footnote { font-size: 12px; color: var(--muted); line-height: 1.8; }
+.risk { border: 1px solid #f0dcb8; background: #fffdf7; border-radius: 8px; padding: 14px 18px; font-size: 12.5px; color: #7a5a20; line-height: 1.8; }
+@media (max-width: 640px) {
+  body { font-size: 13px; }
+  table { font-size: 12px; }
+  th, td { padding: 7px 7px; }
+  .hero h1 { font-size: 19px; }
+  .hero, .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>软通动力 2026 中报深度解读</h1>
+    <div class="sub">数据源：2026年半年度报告PDF全文（★★★，213页）· 生成 2026-08-25 盘后 · 老潘组合投研体系</div>
+    <div class="badge">核心判断：Q2"归母扭亏"是纸面的，扣非仍亏；收入结构向低毛利硬件切换；现金流大幅恶化——弱修复、未反转</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">0</span>核心结论（先看这里）</div>
+    <div class="verdict">
+      <div class="t">1. Q2单季"归母扭亏0.85亿"是表面，扣非口径仍亏损约0.27亿</div>
+      <div class="d">H1归母-2.65亿、扣非-3.87亿。Q2归母+0.85亿（环比+124%）看似扭亏，但拆开看：Q2扣非 ≈ H1扣非(-3.87) − Q1扣非(-3.60) = <b>-0.27亿</b>，仍亏。Q2归母转正主要靠非经常收益（金融资产公允价值变动+1.31亿等）撑起。<b>经营层面尚未真正转正</b>。</div>
+    </div>
+    <div class="verdict">
+      <div class="t">2. 收入结构质变：从"人力外包"变成"AI硬件集成商"</div>
+      <div class="d">计算产品与智能电子（AI服务器/PC）营收94.79亿、占50%+、+40.32%，但毛利率仅7.70%；软件服务（毛利11.62%）营收停滞（+0.56%）。AI相关业务114.35亿占61.46%——但主要是低毛利硬件放量，<b>整体毛利率被稀释至约9.6%（上年10.6%）</b>。</div>
+    </div>
+    <div class="verdict">
+      <div class="t">3. 经营现金流-39.5亿，靠定增33.48亿+借款输血</div>
+      <div class="d">原材料备货（占成本50.02%、+36.89%）吞噬现金——AI服务器业务"低毛利+高垫资"模式的特征。筹资现金流+65.69亿（定增+银行借款）刚好补血。若AI硬件放量不能带来毛利与现金流的实质改善，这个模式的可持续性存疑。</div>
+    </div>
+    <div class="verdict">
+      <div class="t">4. 对老潘的操作含义：+418%浮盈 + 纸面扭亏 + 明日解禁 → SELL兑现优于持有</div>
+      <div class="d">中报"Q2扭亏"会给市场短期情绪一个交代（今日+3%异动或已部分price in），但扣非仍亏+现金流恶化+明天8224万股解禁（成本40.71套牢盘）+CEL Bravo低成本筹码（2.5元）悬顶——<b>利好兑现期+抛压叠加，风险大于机会</b>。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">1</span>数字全景（2026H1）</div>
+    <div class="table-wrap">
+    <table class="f5 num">
+      <thead><tr><th>指标</th><th>2026H1</th><th>上年同期</th><th>同比</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>营业收入</td><td>186.07亿</td><td>157.81亿</td><td><span class="pos">+17.91%</span></td><td>增长提速（Q1+15.8%→H1+17.9%）</td></tr>
+        <tr><td>归母净利润</td><td><span class="neg">-2.65亿</span></td><td>-1.43亿</td><td><span class="neg">-85.6%</span></td><td>亏损扩大，但Q2单季已转正</td></tr>
+        <tr><td>扣非归母净利润</td><td><span class="neg">-3.87亿</span></td><td>-2.67亿</td><td><span class="neg">-45.4%</span></td><td><b>经营层面仍在亏损</b></td></tr>
+        <tr><td>经营活动现金流</td><td><span class="neg">-39.51亿</span></td><td>-4.79亿</td><td><span class="neg">-724.7%</span></td><td>原材料备货大增，现金流恶化</td></tr>
+        <tr><td>毛利率</td><td><span class="warn">约9.6%</span></td><td>约10.6%</td><td><span class="neg">-1.0pct</span></td><td>低毛利硬件稀释</td></tr>
+        <tr><td>基本EPS</td><td>-0.26元</td><td>-0.15元</td><td>-73.3%</td><td>每股亏损扩大</td></tr>
+        <tr><td>总资产 / 净资产</td><td>346.90亿 / 130.93亿</td><td>274.14亿 / 103.86亿</td><td>+26.5% / +26.1%</td><td>定增33.48亿到账推升</td></tr>
+        <tr><td>资产负债率</td><td>61.46%</td><td>—</td><td>—</td><td>负债率偏高</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">2</span>Q2"扭亏"的真相（最关键）</div>
+    <div class="section-desc">表面数字 vs 拆开看的结构</div>
+    <div class="table-wrap">
+    <table class="f5 num">
+      <thead><tr><th>Q2单季</th><th>金额</th><th>环比</th><th>同比</th><th>含金量判断</th></tr></thead>
+      <tbody>
+        <tr><td>营业收入</td><td>104.90亿</td><td><span class="pos">+29.22%</span></td><td><span class="pos">+19.61%</span></td><td>放量真实，Q2收入创单季新高</td></tr>
+        <tr><td>归母净利润</td><td><span class="pos">+0.85亿</span></td><td><span class="pos">+124.36%</span></td><td><span class="pos">+54.71%</span></td><td>表面扭亏</td></tr>
+        <tr><td>扣非净利润（推算）</td><td><span class="neg">约-0.27亿</span></td><td>—</td><td>—</td><td><b>扣非仍亏</b>：H1扣非-3.87亿 − Q1扣非-3.60亿（研报口径）</td></tr>
+        <tr><td>非经常性收益</td><td>H1合计+1.23亿</td><td>—</td><td>—</td><td>金融资产公允价值+1.31亿等撑起</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="warnbox" style="margin-top:12px">
+      <b>⚠️ 结论</b>：Q2的"归母扭亏0.85亿"是<b>纸面扭亏</b>——扣非口径推算仍亏约0.27亿，靠金融资产公允价值变动等非经常收益撑起归母转正。市场若按"扭亏"解读会高估基本面，实质是"亏损收窄至盈亏平衡线附近"。明日解禁盘（成本40.71）若借"扭亏"情绪反弹减亏离场，需警惕冲高回落。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">3</span>收入结构质变（双刃剑）</div>
+    <div class="table-wrap">
+    <table class="f5 biz">
+      <thead><tr><th>业务</th><th>营收</th><th>同比</th><th>毛利率</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>计算产品与智能电子（AI服务器/PC）</td><td>94.79亿</td><td><span class="pos">+40.32%</span></td><td><span class="warn">7.70%</span></td><td><b>营收第一驱动力，占比破50%</b>；低毛利硬件放量，原材料占成本50%</td></tr>
+        <tr><td>软件与数字技术服务</td><td>89.70亿</td><td><span class="warn">+0.56%</span></td><td><span class="neg">11.62%（-2.98pct）</span></td><td>传统主业停滞，毛利率下滑——"软件"属性弱化</td></tr>
+        <tr><td>AI相关业务（合计口径）</td><td>114.35亿</td><td><span class="pos">+46.61%</span></td><td>—</td><td>占营收61.46%，但以硬件集成为主，非高毛利软件</td></tr>
+        <tr><td>分客户：高科技与制造</td><td>58.13亿</td><td><span class="pos">+16.88%</span></td><td>6.97%</td><td>最大客户行业（华为所在）</td></tr>
+        <tr><td>分客户：通讯设备</td><td>42.53亿</td><td><span class="neg">-7.46%</span></td><td>10.29%</td><td>传统通讯客户收缩</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="footnote" style="margin-top:10px">成本结构印证：原材料8.41亿→84.13亿占营业成本50.02%（+36.89%），首次超过职工薪酬（45.85%）——公司从"人力密集型软件外包"切向"硬件集成制造"，商业模式已实质改变。华为（某大型ICT领导企业）为最大客户、收入占比大（重大合同口径）——深度绑定亦是深度依赖。</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">4</span>现金流与资产负债表：扩张的代价</div>
+    <div class="table-wrap">
+    <table class="f5 num">
+      <thead><tr><th>现金流</th><th>2026H1</th><th>上年同期</th><th>同比</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>经营活动现金流</td><td><span class="neg">-39.51亿</span></td><td>-4.79亿</td><td><span class="neg">-724.7%</span></td><td>原材料备货，AI服务器垫资</td></tr>
+        <tr><td>投资活动现金流</td><td>-16.70亿</td><td>-15.46亿</td><td>-8.0%</td><td>资本开支持续</td></tr>
+        <tr><td>筹资活动现金流</td><td><span class="pos">+65.69亿</span></td><td>+4.60亿</td><td>+1328%</td><td>定增33.48亿+借款输血</td></tr>
+        <tr><td>现金净增加额</td><td>+9.21亿</td><td>-16.07亿</td><td>+157%</td><td>靠融资撑住现金</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="warnbox" style="margin-top:12px">
+      <b>⚠️ 模式之问</b>：软件公司做AI服务器=低毛利（7.7%）+高垫资（-39.5亿现金流）+依赖融资（定增33.48亿）。若Q3-Q4 AI硬件持续放量但毛利率/现金流不改善，公司将陷入"增收不增利、扩张靠融资"的循环——这是当前170倍PE估值（市场给的是AI转型期权）最大的证伪点。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">5</span>股东 · 解禁 · 回购联动</div>
+    <div class="section-desc">中报数字与明日8/26解禁的碰撞——今晚中报是减持意愿开关</div>
+    <div class="table-wrap">
+    <table class="f3 link">
+      <thead><tr><th>主体</th><th>关键信息</th><th>与中报的联动</th></tr></thead>
+      <tbody>
+        <tr><td>定增机构（明日解禁）</td><td>8224.81万股·成本40.71</td><td>"Q2扭亏"若推升股价至40.71上方→解套，借反弹减亏离场；若不及预期→浮亏惜售。抛压核心变量</td></tr>
+        <tr><td>CEL Bravo老股东</td><td>成本2.5元·剩约5260万股</td><td>任何反弹都是出货窗口，与中报好坏无关——高位悬顶筹码</td></tr>
+        <tr><td>公司回购</td><td>两轮约615万股·均价37-41.4</td><td>公司在40元下方用真金白银护盘（员工持股用途），与定增成本40.71高度重合——40元附近是多空争夺位</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">6</span>操作结论</div>
+    <div class="verdict">
+      <div class="t">软通动力：SELL观察（+418%浮盈 · 借反弹分批兑现）</div>
+      <div class="d">
+        ① <b>中报定性</b>：弱修复、未反转——Q2纸面扭亏（扣非仍亏）、收入向低毛利硬件切换、现金流-39.5亿靠融资输血；<br>
+        ② <b>明日双事件</b>：8/26中报正式披露+8224万股解禁，今日+3%异动已部分price in"扭亏预期"，利好兑现风险高；<br>
+        ③ <b>操作</b>：若明日冲高37.5-40区间（回购均价39.8、定增成本40.71一带），分批兑现+418%浮盈；跌破36（今日低点36.40下方）则不再等反弹，减仓离场；<br>
+        ④ <b>不追</b>：基本面未到"真扭亏"，170倍PE的AI期权估值+解禁+老股东悬顶，当前位置风险收益比不佳。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk">
+    <b>⚠️ 投资风险提示</b>：本报告不构成投资建议。Q2扣非为推算值（H1扣非−Q1扣非，Q1扣非-3.60亿来自券商研报口径）；中报数据存在后续修正可能；软通AI硬件业务毛利率与现金流改善存在不确定性，若扩张失速或华为订单波动，业绩与股价承压；明日解禁与老股东减持存在抛压风险。据此操作，风险自负。
+  </div>
+
+</div>
+</body>
+</html>

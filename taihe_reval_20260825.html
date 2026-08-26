@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泰和新材中报前瞻重估 · 氨纶反转的期权价值</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f6f8fb; --card:#ffffff; --line:#e6eaf0;
+  --ink:#1a1f2e; --sub:#5a6478; --mut:#8a94a6;
+  --up:#e53935; --down:#16a06a;
+  --accent:#1a73e8; --accent-bg:#e8f0fe;
+  --warn:#b45309; --warn-bg:#fff7ed;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 16px 60px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px;}
+.hero{padding:28px 28px;border-top:4px solid var(--accent);}
+h1{font-size:22px;margin:0 0 6px;letter-spacing:.5px;}
+h2{font-size:17px;margin:0 0 14px;padding-left:10px;border-left:4px solid var(--accent);}
+h3{font-size:14px;margin:18px 0 8px;}
+.sub{color:var(--sub);font-size:13px;margin:0 0 4px;}
+.mut{color:var(--mut);font-size:12px;}
+.concl{background:var(--accent-bg);border:1px solid #c6dafc;border-radius:8px;padding:14px 16px;margin:14px 0 0;font-size:14px;}
+.concl b{color:var(--accent);}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.metric{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 14px;}
+.metric .k{font-size:12px;color:var(--mut);margin-bottom:6px;}
+.metric .v{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;}
+.metric .d{font-size:11px;color:var(--sub);margin-top:4px;}
+.pos{color:var(--up);font-weight:700;}
+.neg{color:var(--down);font-weight:700;}
+.warn{color:var(--warn);font-weight:700;}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:11px;font-weight:700;line-height:1.6;white-space:nowrap;}
+.tag-ok{background:#e6f4ea;color:#188038;}
+.tag-risk{background:#fce8e6;color:#c5221f;}
+.tag-warn{background:var(--warn-bg);color:var(--warn);}
+.tag-blue{background:var(--accent-bg);color:var(--accent);}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{vertical-align:top;overflow:hidden;text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);word-break:break-word;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;}
+th{font-size:12px;font-weight:700;color:#3a4558;background:rgba(120,134,156,0.07);white-space:nowrap;}
+tbody tr:nth-child(even){background:rgba(120,134,156,0.03);}
+table.f3{table-layout:fixed;}
+table.f3 th:nth-child(1),table.f3 td:nth-child(1){width:22%;text-align:left;}
+table.f3 th:nth-child(2),table.f3 td:nth-child(2){width:26%;text-align:right;}
+table.f3 th:nth-child(3),table.f3 td:nth-child(3){width:52%;text-align:left;}
+table.f2{table-layout:fixed;}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:16%;text-align:left;white-space:nowrap;}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:84%;text-align:left;}
+.chart-box{height:320px;margin:12px 0;}
+ul{margin:8px 0;padding-left:20px;}
+li{margin-bottom:6px;}
+.risk{margin-top:20px;padding:14px 16px;background:#fdf6f6;border:1px solid #f3d9d9;border-radius:8px;font-size:12px;color:#8a4a4a;}
+.foot{margin-top:16px;color:var(--mut);font-size:11px;text-align:center;}
+@media (max-width:640px){
+  body{font-size:13px;}
+  table{font-size:11px;}
+  th,td{padding:6px 6px;}
+  .metric-grid{grid-template-columns:repeat(2,1fr);}
+  .wrap{padding:12px 8px 40px;}
+  .card{padding:16px 12px;}
+  .metric .v{font-size:18px;}
+  .chart-box{height:240px;}
+  table.f2 th:nth-child(1),table.f2 td:nth-child(1){white-space:normal;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card hero">
+    <h1>泰和新材（002254）中报前瞻重估</h1>
+    <p class="sub">五关框架 · 数据源 Wind / 中报原文（★★★）· 2026-08-25</p>
+    <div class="concl">
+      <b>结论先行：</b>泰和最大的看点是<b>氨纶底部反转</b>（五年首次，毛利率 +12.20pct 从亏损修复到 5.73%），这才是利润弹性的核心，上次漏掉了。但当期利润成色不足——<b>归母 5525 万里 80% 是政府补助 + 公允价值，扣非仅 1101 万</b>。用前瞻算账，104 亿市值赌的是"氨纶反转 + 芳纶放量"的利润跃迁，PB 1.47 倍是周期底部合理锚。<b>底仓 HOLD，加仓 WAIT。</b>
+    </div>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="k">总市值 / PB</div><div class="v">104.3亿 / 1.47倍</div><div class="d">总股本 8.52 亿股</div></div>
+    <div class="metric"><div class="k">归母净利</div><div class="v pos">5525万</div><div class="d">同比 +135.31%</div></div>
+    <div class="metric"><div class="k">扣非净利</div><div class="v warn">1101万</div><div class="d">扭亏，但仅占归母 20%</div></div>
+    <div class="metric"><div class="k">氨纶毛利率</div><div class="v pos">5.73%</div><div class="d">同比 +12.20pct（底部反转）</div></div>
+  </div>
+
+  <!-- 第0关 -->
+  <div class="card">
+    <h2>第 0 关 · 定性：定价局（周期反转 + 重资产扩张）</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td><span class="tag tag-blue">定价局</span></td><td>泰和没有解禁/减持的短期事件，核心矛盾是"氨纶周期反转 + 芳纶国产替代"的基本面定价，靠算未来利润判断贵贱。</td></tr>
+        <tr><td><span class="tag tag-blue">你的身份</span></td><td>成本 13.35、现价 12.25，浮亏约 -8.2% 的<b>周期股底仓持有人</b>（已从 S 级降级 B+），等拐点验证，不是落袋也不是追涨。</td></tr>
+        <tr><td><span class="tag tag-blue">最优动作</span></td><td>验证"氨纶反转能否持续"，决定"补仓还是减仓"。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第1关 -->
+  <div class="card">
+    <h2>第 1 关 · 前瞻算账：氨纶反转是最大的利润弹性（本次新发现）</h2>
+    <div id="aramidChart" class="chart-box"></div>
+    <h3>两个周期的利润曲线</h3>
+    <table class="f3">
+      <thead><tr><th>业务</th><th>2026 H1 数据</th><th>前瞻判断</th></tr></thead>
+      <tbody>
+        <tr><td>氨纶</td><td>8.69亿 · 毛利 <span class="pos">5.73%</span></td><td>毛利率 +12.20pct、五年首次转正；行业"走出五年亏损、迎底部反转"，价差走扩——<b>泰和利润弹性最大来源</b></td></tr>
+        <tr><td>芳纶</td><td>12.02亿 · 毛利 32.39%</td><td>对位芳纶出口量同比大幅提升，国产替代兑现；但同质化竞争致毛利率 -0.24pct</td></tr>
+      </tbody>
+    </table>
+    <h3>为什么氨纶反转比芳纶更重要</h3>
+    <ul>
+      <li>氨纶营收 8.69 亿（占 41%），但毛利率仅 5.73%——<b>它从"五年亏损"刚爬回盈亏线上方，向上弹性极大</b>；每修复 5pct 毛利率，就多约 4300 万利润。</li>
+      <li>芳纶毛利率 32.39% 已是高位，向上空间有限，靠"量增 + 出口放量"贡献增长，而非利润率提升。</li>
+      <li>中报原文点明"氨纶营业利润得到显著修复"——这是被上版忽略的核心变量。</li>
+    </ul>
+    <p class="mut">⚠️ 前瞻值基于行业"紧平衡"判断（公司引中国化纤信息网），非业绩承诺。</p>
+  </div>
+
+  <!-- 第2关 -->
+  <div class="card">
+    <h2>第 2 关 · 利润真假：归母 +135% 有水分，扣非才是真相</h2>
+    <table class="f3">
+      <thead><tr><th>口径</th><th>数据</th><th>结论</th></tr></thead>
+      <tbody>
+        <tr><td>归母净利</td><td><span class="pos">5525万（+135%）</span></td><td>漂亮数字，但 <b>80% 靠非经常性损益</b>撑着</td></tr>
+        <tr><td>扣非净利</td><td><span class="warn">1101万（扭亏）</span></td><td>经营层面真从 -114.6 万转正，但绝对额很小</td></tr>
+        <tr><td>非经常损益构成</td><td>补助4116万+公允2291万</td><td>政府补助（新材料常态）可能持续，公允价值是一次性浮盈</td></tr>
+      </tbody>
+    </table>
+    <h3>现金流转正的真假（第二个新发现）</h3>
+    <table class="f3">
+      <thead><tr><th>指标</th><th>数据</th><th>真相</th></tr></thead>
+      <tbody>
+        <tr><td>经营现金流</td><td><span class="pos">+7431万（+118%）</span></td><td>从 -4.04 亿转正，是改善</td></tr>
+        <tr><td>应收账款</td><td><span class="warn">+4.40亿（2.49→6.88）</span></td><td>暴增，账龄 99% 在 1 年内（健康无坏账），但占用大量现金</td></tr>
+        <tr><td>综合判断</td><td>—</td><td>现金流转正靠"折旧摊销（固定 61.87 亿）+ 举债"，不是"回款改善"；<b>应收增长是营收增长的正常赊销，不是放宽信用</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 第3关 -->
+  <div class="card">
+    <h2>第 3 关 · 资产结构：举债 13.45 亿是"为产能扩张融资"（第三个新发现）</h2>
+    <table class="f3">
+      <thead><tr><th>科目</th><th>变动</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>长期借款</td><td><span class="warn">+8.93亿（15.25→24.18）</span></td><td>重资产扩张融资——不是经营恶化借钱</td></tr>
+        <tr><td>在建工程→固定资产</td><td>在建 -4.01亿 / 固定 +4.54亿</td><td>产能转固，新产能投产在即</td></tr>
+        <tr><td>短期借款</td><td><span class="warn">+4.52亿</span></td><td>补充营运资金（应收占用）</td></tr>
+      </tbody>
+    </table>
+    <p class="mut">💡 代价：借款 +13.45 亿，未来财务费用将上升，叠加产能转固后的折旧增加，会侵蚀利润——这是"扩产换未来"必须付的代价。</p>
+  </div>
+
+  <!-- 第4关 -->
+  <div class="card">
+    <h2>第 4 关 · 落子：底仓 HOLD，加仓 WAIT</h2>
+    <table class="f2">
+      <tbody>
+        <tr><td><span class="tag tag-ok">HOLD</span></td><td><b>底仓不动</b>——氨纶底部反转 + 对位芳纶出口放量是真信号，PB 1.47 倍在周期底部不贵，错杀没有意义</td></tr>
+        <tr><td><span class="tag tag-warn">WAIT</span></td><td><b>12.25 元不补仓</b>——现价跌破 60 日线（14.30），且"氨纶反转能否持续"未验证；扣非仅 1101 万，利润成色不足</td></tr>
+      </tbody>
+    </table>
+    <h3>验证开关（决定补还是减）</h3>
+    <table class="f3">
+      <thead><tr><th>开关</th><th>验证什么</th><th>触发动作</th></tr></thead>
+      <tbody>
+        <tr><td>①氨纶价格</td><td>氨纶价差持续走扩</td><td>持续走扩→反转坐实，利润弹性兑现，可补仓</td></tr>
+        <tr><td>②扣非</td><td>Q3扣非上台阶</td><td>扣非放量→经营质量真改善</td></tr>
+        <tr><td>③出口</td><td>芳纶出口延续高增</td><td>出口续增→国产替代逻辑强化</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="risk">
+    ⚠️ 风险提示：本报告为前瞻性分析，不构成投资建议。氨纶价格受宏观与终端纺织消费影响，反转持续性存不确定性；扣非利润绝对额小、归母利润含政府补助与公允价值变动；举债扩张带来财务费用上升与折旧压力；应收账款增长占用资金。主板涨跌停 ±10%。据此操作，风险自负。
+  </div>
+  <div class="foot">巴蒂 · 泰和新材中报前瞻重估 · 五关框架 · 数据源 Wind / 中报原文 · 2026-08-25</div>
+</div>
+
+<script>
+(function(){
+  var chart = echarts.init(document.getElementById('aramidChart'));
+  var option = {
+    backgroundColor: 'transparent',
+    grid: {left: 50, right: 30, top: 30, bottom: 35},
+    tooltip: {trigger: 'axis', valueFormatter: function(v){return v + '%';}},
+    xAxis: {type: 'category', data: ['氨纶毛利率', '芳纶毛利率'], axisLabel:{color:'#5a6478'}},
+    yAxis: {type: 'value', name: '毛利率%', nameTextStyle:{color:'#8a94a6'}, axisLabel:{color:'#5a6478'}, splitLine:{lineStyle:{color:'#e6eaf0'}}},
+    series: [
+      {type:'bar', name:'上年同期', data:[-6.47, 32.63], itemStyle:{color:'#9aa4b8'}, barWidth:'26%', label:{show:true, position:'top', color:'#8a94a6', formatter:function(p){return p.value+'%';}}},
+      {type:'bar', name:'2026 H1', data:[5.73, 32.39], itemStyle:{color:'#e53935'}, barWidth:'26%', label:{show:true, position:'top', color:'#1a1f2e', formatter:function(p){return p.value+'%';}}}
+    ],
+    legend:{textStyle:{color:'#5a6478'}, top:0}
+  };
+  chart.setOption(option);
+  window.addEventListener('resize', function(){chart.resize();});
+})();
+</script>
+</body>
+</html>

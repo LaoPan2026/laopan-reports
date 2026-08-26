@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘前简报 · 2026-08-25 周二</title>
+<style>
+:root {
+  --up: #c62828;
+  --down: #1e8e5a;
+  --warn: #b26a00;
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --border: #e2e6ec;
+  --text: #1f2a3d;
+  --muted: #6b7686;
+  --accent: #1a4f8b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif; font-size: 14px; line-height: 1.65; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 20px 16px 60px; }
+.hero { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 26px 30px; margin-bottom: 18px; }
+.hero h1 { font-size: 23px; font-weight: 800; letter-spacing: 0.5px; }
+.hero .sub { color: var(--muted); font-size: 13px; margin-top: 8px; }
+.hero .verdict { margin-top: 14px; border-left: 4px solid var(--accent); background: #f4f8fd; padding: 12px 16px; font-size: 14px; font-weight: 700; line-height: 1.8; }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+.metric { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.metric .k { font-size: 12px; color: var(--muted); font-weight: 600; }
+.metric .v { font-size: 17px; font-weight: 800; margin-top: 4px; }
+.metric .d { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 18px; }
+.section-title { font-size: 17px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.section-title .no { background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; border-radius: 5px; padding: 1px 8px; }
+.section-desc { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { vertical-align: top; overflow: hidden; padding: 9px 12px; border-bottom: 1px solid #eef0f4; word-break: break-word; overflow-wrap: anywhere; }
+th { font-size: 12.5px; font-weight: 700; color: #3a4659; background: #f2f5f9; white-space: nowrap; }
+tbody tr:nth-child(even) { background: rgba(26,79,139,0.025); }
+.pos { color: var(--up); font-weight: 700; white-space: nowrap; }
+.neg { color: var(--down); font-weight: 700; white-space: nowrap; }
+.warn { color: var(--warn); font-weight: 600; white-space: nowrap; }
+.flat { white-space: nowrap; }
+.tag { display: inline-block; border-radius: 4px; padding: 0 7px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.tag.buy { background: #fdeeee; color: var(--up); border: 1px solid #f5c9c9; }
+.tag.hold { background: #eef3fa; color: var(--accent); border: 1px solid #d3e0f0; }
+.tag.sell { background: #e8f6ef; color: var(--down); border: 1px solid #b8e0cd; }
+.tag.wait { background: #f5f6f8; color: #6b7686; border: 1px solid #e2e6ec; }
+
+table.f4.map { table-layout: fixed; }
+table.f4.map th:nth-child(1), table.f4.map td:nth-child(1) { width: 20%; text-align: left; white-space: nowrap; }
+table.f4.map th:nth-child(2), table.f4.map td:nth-child(2) { width: 22%; text-align: right; }
+table.f4.map th:nth-child(3), table.f4.map td:nth-child(3) { width: 14%; text-align: right; }
+table.f4.map th:nth-child(4), table.f4.map td:nth-child(4) { width: 44%; text-align: left; }
+
+table.f4.evt { table-layout: fixed; }
+table.f4.evt th:nth-child(1), table.f4.evt td:nth-child(1) { width: 16%; text-align: left; white-space: nowrap; }
+table.f4.evt th:nth-child(2), table.f4.evt td:nth-child(2) { width: 26%; text-align: left; }
+table.f4.evt th:nth-child(3), table.f4.evt td:nth-child(3) { width: 10%; text-align: center; }
+table.f4.evt th:nth-child(4), table.f4.evt td:nth-child(4) { width: 48%; text-align: left; }
+
+table.f5.hold { table-layout: fixed; }
+table.f5.hold th:nth-child(1), table.f5.hold td:nth-child(1) { width: 14%; text-align: left; white-space: nowrap; }
+table.f5.hold th:nth-child(2), table.f5.hold td:nth-child(2) { width: 12%; text-align: right; }
+table.f5.hold th:nth-child(3), table.f5.hold td:nth-child(3) { width: 14%; text-align: right; }
+table.f5.hold th:nth-child(4), table.f5.hold td:nth-child(4) { width: 38%; text-align: left; }
+table.f5.hold th:nth-child(5), table.f5.hold td:nth-child(5) { width: 22%; text-align: left; }
+
+table.f4.op { table-layout: fixed; }
+table.f4.op th:nth-child(1), table.f4.op td:nth-child(1) { width: 16%; text-align: left; white-space: nowrap; }
+table.f4.op th:nth-child(2), table.f4.op td:nth-child(2) { width: 12%; text-align: center; }
+table.f4.op th:nth-child(3), table.f4.op td:nth-child(3) { width: 20%; text-align: right; }
+table.f4.op th:nth-child(4), table.f4.op td:nth-child(4) { width: 52%; text-align: left; }
+
+.footnote { font-size: 12px; color: var(--muted); line-height: 1.8; }
+.risk { border: 1px solid #f0dcb8; background: #fffdf7; border-radius: 8px; padding: 14px 18px; font-size: 12.5px; color: #7a5a20; line-height: 1.8; }
+@media (max-width: 640px) {
+  body { font-size: 13px; }
+  table { font-size: 12px; }
+  th, td { padding: 7px 7px; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 19px; }
+  .hero, .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>盘前简报 · 2026-08-25 周二</h1>
+    <div class="sub">数据源：Wind（★★★）+ Pandadata/WebSearch（★★★）· 生成 09:23 · 集合竞价参考数据（9:25出开盘价，以实际为准）</div>
+    <div class="verdict">🎯 核心判断：隔夜映射全面利空（费半-2.7%、MRVL跌逾3%、英伟达七连跌、COHR-4.85%、存储全线大跌、黄金创三月新高）→ 今日科技持仓竞价普遍低开，<span style="color:#c62828">汇绿竞价37.80已跌破38.81防守线</span>。英伟达8/27凌晨财报落地前，<b>防守优先：不抄底、不追跌、机动仓不进场</b>。</div>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="k">MRVL 迈威尔（澜起↔）</div><div class="v">229.29</div><div class="d">-3%+ 费半领跌，7日弱势</div></div>
+    <div class="metric"><div class="k">COHR 相干（汇绿↔）</div><div class="v">-4.85%</div><div class="d">费半成份领跌，光通信承压</div></div>
+    <div class="metric"><div class="k">NVDA 英伟达（罗博↔）</div><div class="v">208.48</div><div class="d">-2.91% 七连跌，8/27凌晨财报</div></div>
+    <div class="metric"><div class="k">伦敦金现货</div><div class="v">4680.92</div><div class="d">创近三月新高，避险资金涌入</div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">1</span>隔夜映射（8/24美股收盘 · 北京8/25凌晨）</div>
+    <div class="section-desc">美债"定价之锚"冲击 + AI"幽灵杠杆"担忧 → 全球科技股重估风暴</div>
+    <div class="table-wrap">
+    <table class="f4 map">
+      <thead><tr><th>指数/标的</th><th>收盘</th><th>涨跌</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>纳指 / 标普 / 道指</td><td>25980.19 / 7652.86 / 53417.16</td><td><span class="neg">-0.76%</span> / <span class="neg">-0.28%</span> / <span class="pos">+0.26%</span></td><td>道指连涨2日，科技独弱</td></tr>
+        <tr><td>费城半导体</td><td>-2.7%</td><td><span class="neg">-2.7%</span></td><td>成份股全线下跌，年内涨幅收窄至61.27%</td></tr>
+        <tr><td>MRVL（澜起↔）</td><td>229.29</td><td><span class="neg">-3%+</span></td><td>存储/网络芯片共振下跌</td></tr>
+        <tr><td>NVDA（罗博↔）</td><td>208.48</td><td><span class="neg">-2.91%</span></td><td><b>七连跌</b>（2022年以来最长），8/26盘后财报</td></tr>
+        <tr><td>COHR（汇绿↔）</td><td>-4.85%</td><td><span class="neg">-4.85%</span></td><td>费半成份领跌，光通信板块下挫（Lumentum-4.22%）</td></tr>
+        <tr><td>存储链</td><td>美光-5.83%</td><td><span class="neg">全线大跌</span></td><td>希捷-6.51%/闪迪-6.45%/西数-5.24%/SK海力士-4.92%</td></tr>
+        <tr><td>博通 AVGO</td><td>-2%+</td><td><span class="neg">-2%+</span></td><td>"算力贷"幽灵杠杆担忧：2026年美AI企业债已发2200亿美元，科技债利差89bp</td></tr>
+        <tr><td>美债 10Y / 30Y</td><td>4.696% / 5.225%</td><td><span class="neg">-3.6bp / -4.6bp</span></td><td>收益率回落；财政部或动用近万亿TGA买债回购</td></tr>
+        <tr><td>黄金 / 油价</td><td>4680.92 / 84.98</td><td><span class="pos">+新高</span> / <span class="neg">-2.39%</span></td><td>资金撤AI硬件→避险；美伊制裁油价跌，美油报84.98</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="footnote" style="margin-top:10px">背景链：30Y收益率上周创2007年以来高位 → 财政部拟动用万亿TGA买债救市 → 美债"定价之锚"冲击波传导全球科技股；叠加特朗普对加拿大汽车/钢铁2027年关税提至50%，风险偏好承压。阿里折价配售跌超8%，蔡崇信/吴泳铭增持1.2亿港元护盘。</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">2</span>持仓关注点（8/24收盘 vs 今日竞价）</div>
+    <div class="section-desc">竞价参考（9:23）· 9:25开盘价以实际为准；映射利空全面兑现</div>
+    <div class="table-wrap">
+    <table class="f5 hold">
+      <thead><tr><th>持仓</th><th>8/24收盘</th><th>竞价参考</th><th>今日关键位 / 触发点</th><th>关注逻辑</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿生态</td><td>39.14</td><td>37.80 <span class="neg">-3.42%</span></td><td><b>防守线38.81（已破）</b>；收复38.81=观望延续，破位=波段T窗口关闭</td><td>昨站稳38.81第一天，今竞价即破——光通信隔夜利空兑现，验证防守线有效性</td></tr>
+        <tr><td>澜起科技</td><td>191.83</td><td>186.32 <span class="neg">-2.87%</span></td><td>200关口下方；MRVL-3%传导</td><td>英伟达8/27财报前不动作</td></tr>
+        <tr><td>罗博特科</td><td>496.40</td><td>485.00 <span class="neg">-2.30%</span></td><td>MA20下方；NVDA七连跌压制</td><td>CPO设备逻辑未变，跟跌不跟涨，等英伟达财报后方向</td></tr>
+        <tr><td>三祥新材</td><td>41.61</td><td>40.50 <span class="neg">-2.67%</span></td><td>40整数关</td><td>锆/铪逻辑独立于AI链，跟大盘调整</td></tr>
+        <tr><td>华峰化学</td><td>11.23</td><td>11.23 <span class="neg">-1.40%</span></td><td>11整数关</td><td>化工防御属性，波动最小</td></tr>
+        <tr><td>泰和新材</td><td>12.05</td><td>12.05 <span class="neg">-0.66%</span></td><td>12整数关</td><td>周期底部，跟跌有限</td></tr>
+        <tr><td>星环科技</td><td>102.18</td><td>102.18 <span class="neg">-0.01%</span></td><td>100整数关</td><td>软件与AI链脱敏，相对抗跌</td></tr>
+        <tr><td>软通动力</td><td>36.65</td><td>36.81 <span class="pos">+0.44%</span></td><td>37.5压力（MA20附近）</td><td>逆势红盘，+418%浮盈兑现窗口</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">3</span>今日操作结论（四档 + 触发条件）</div>
+    <div class="section-desc">英伟达财报落地前，整体防守优先——不抄底、不追跌、机动仓不进场</div>
+    <div class="table-wrap">
+    <table class="f4 op">
+      <thead><tr><th>标的</th><th>结论</th><th>当前状态</th><th>盘中触发条件</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿生态</td><td><span class="tag hold">HOLD</span></td><td>竞价破38.81</td><td>若开盘收复38.81→维持观望，等39.6-40买点区缩量止跌；若收盘确认跌破38.81→波段T窗口关闭（机动仓不进场，纪律同8/21）</td></tr>
+        <tr><td>澜起科技</td><td><span class="tag hold">HOLD</span></td><td>186.32</td><td>底仓不动；8/27凌晨英伟达财报=验证点（毛利率守75%/MRCD-MDB放量/CKD定点/CXL），财报前不加减仓</td></tr>
+        <tr><td>罗博特科</td><td><span class="tag hold">HOLD</span></td><td>485.00</td><td>MA20下方不接；英伟达财报后若CPO设备逻辑强化再评估</td></tr>
+        <tr><td>软通动力</td><td><span class="tag sell">SELL观察</span></td><td>36.81逆势+0.44%</td><td>冲高37.5-38分批兑现窗口（+418%浮盈）；回落36下方则暂持，不追高</td></tr>
+        <tr><td>华峰等4只</td><td><span class="tag hold">HOLD</span></td><td>跟跌有限</td><td>均无操作，观察大盘量能与创业板是否止跌</td></tr>
+        <tr><td>整体大盘</td><td><span class="tag wait">WAIT</span></td><td>竞价低开</td><td>开盘30分钟沪市成交≥1800亿+创业板收复关键位→止跌信号；放量2万亿下破→继续观望</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><span class="no">4</span>今日事件</div>
+    <div class="section-desc">流动性落地 + 半导体政策暖风，但市场焦点在英伟达财报</div>
+    <div class="table-wrap">
+    <table class="f4 evt">
+      <thead><tr><th>时间</th><th>事件</th><th>口径</th><th>影响判断</th></tr></thead>
+      <tbody>
+        <tr><td>今日</td><td>央行5000亿MLF操作（1年期）</td><td>★★★</td><td>8月6000亿到期→净回笼1000亿，但买断式逆回购+2000亿，中期流动性仍净投放——组合拳呵护月末资金面，中性偏暖</td></tr>
+        <tr><td>8/27-9/1</td><td>隔夜逆回购≤6000亿/日</td><td>★★★</td><td>对冲政府债缴款高峰+跨月扰动</td></tr>
+        <tr><td>8/27 凌晨5:00</td><td>英伟达FY27Q2财报</td><td>★★★</td><td><b>核心事件</b>：澜起四验证点、罗博CPO设备逻辑、全市场AI链方向——财报前资金观望</td></tr>
+        <tr><td>今日</td><td>上海"十五五"规划：EDA/IP、算力/存储/互联芯片</td><td>★★★</td><td>利好半导体设备/材料国产替代（华海清科/中微方向）</td></tr>
+        <tr><td>今日</td><td>北京AI4Chip计划</td><td>★★★</td><td>AI赋能集成电路，政策暖风</td></tr>
+        <tr><td>今日</td><td>国资委6G推进会</td><td>★★★</td><td>6G主题，光通信/射频方向</td></tr>
+        <tr><td>待确认</td><td>新易盛中报披露</td><td>★★</td><td>若已披露：净利率36%+亮眼，但股价受板块拖累，留意错杀</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="risk">
+    <b>⚠️ 投资风险提示</b>：本简报不构成投资建议。隔夜美股映射利空已反映在竞价，但盘中走势受资金面/情绪主导；英伟达财报（8/27凌晨）存在不及预期风险，可能引发AI链二次调整；汇绿若收盘确认跌破38.81，波段T窗口关闭，请机械执行纪律、不补不扛。数据来源：Wind★★★/证券时报★★★/中国基金报★★★，竞价数据为9:23参考值。据此操作，风险自负。
+  </div>
+
+</div>
+</body>
+</html>
