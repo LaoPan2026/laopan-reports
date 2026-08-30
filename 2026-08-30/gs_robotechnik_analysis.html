@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗博特科（300757）高盛研报深度剖析</title>
+<style>
+:root{
+  --bg:#f3eee6;--card:#fffdf8;--text:#241f19;--muted:#5d564c;--soft:#efe6d9;--line:#e0d6c6;--accent:#b45309;
+  --pos:#e02424;--neg:#0fa968;--up:#e02424;--down:#0fa968;
+  --label-blue:#1a73e8;--label-yellow:#c77409;--label-red:#d93025;--label-green:#188038;
+  --shadow:0 1px 4px rgba(70,50,25,.12);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(180,83,9,.09);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#4d463c;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#4d463c;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#4d463c;background:rgba(180,83,9,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(180,83,9,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(26,115,232,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-yellow{color:#b45309;background:rgba(217,119,6,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-red{color:#b3261e;background:rgba(217,48,37,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-green{color:#137333;background:rgba(24,128,56,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-buy{color:#1a5fb4;background:rgba(26,115,232,.10);border:1px solid #cfe0fb;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#b45309;background:rgba(217,119,6,.10);border:1px solid #f0d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#b3261e;background:rgba(217,48,37,.08);border:1px solid #eebfbc;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#6b5a16;background:rgba(217,119,6,.06);border:1px solid #e5d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid #e4d9c8}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(180,83,9,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(217,48,37,.05);border-left:3px solid #d93025;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(24,128,56,.05);border-left:3px solid #188038;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>罗博特科（300757.SZ）高盛研报深度剖析</h1>
+  <p class="small">2026-08-30 剖析 · 原报告：高盛 2026-08-28 22:31 HKT · 分析师：Allen Chang / Verena Jeng / Yifan Hu · 版式：Google Insight V1</p>
+  <div class="summary">
+    <p><strong>结论</strong>：高盛维持「买入」，目标价 796 元（+48.3%）。本报告经妙想数据逐项核实后，<strong>财务数据全部属实</strong>，但核心增长假设存在订单支撑不足的问题。</p>
+    <p><strong>独立判断</strong>：方向与高盛一致（<span class="tag-buy">BUY</span>），但对组合第一大重仓而言，操作结论是<strong>持有不加仓</strong>——不因看空，而因权重已近 25% 且远期预期已充分定价。</p>
+    <p><strong>核心质疑</strong>：2027E 营收预测 129.6 亿元（+452%），而在手订单 33.86 亿元，<strong>覆盖率约 26%</strong>，全篇最大假设仍缺订单支撑。</p>
+    <p><strong>已修正</strong>：初版曾判断「30 亿元订单无实锤」，经查 2026 年半年报，该项与「25 亿在手订单」均获中报正文印证，已在下表更正。</p>
+    <p><strong>二次修正（基准）</strong>：初版以<strong>上证指数</strong>衡量罗博特科周涨幅，基准选择错误。罗博为创业板个股，应以<strong>创业板指</strong>为主基准、叠加 CPO 概念与半导体设备指数剥离贝塔。校正后超额为 <strong>+5.46 ~ +8.26 pct</strong>（见第六章），α 不缩小反而扩大。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、评级与目标价</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val">796 元</div><div class="metric-label">12个月目标价</div></div>
+    <div class="metric-item"><div class="metric-val">536.70 元</div><div class="metric-label">当前价（8/28收盘）</div></div>
+    <div class="metric-item"><div class="metric-val pos">+48.3%</div><div class="metric-label">隐含上涨空间</div></div>
+    <div class="metric-item"><div class="metric-val">899.6 亿</div><div class="metric-label">总市值</div></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">项目</th><th class="txt">内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">评级</td><td class="txt"><span class="tag-buy">买入</span>（维持，高盛评级体系 1 分档）</td></tr>
+        <tr><td class="name">目标价变动</td><td class="txt">788 元 → 796 元，<strong>仅上调 1%</strong>（5/29 为 788 元）</td></tr>
+        <tr><td class="name">估值方法</td><td class="txt">20.7 倍 2031E 市盈率，按 11.3% 资本化率（COE）折现至 2027E</td></tr>
+        <tr><td class="name">当前估值</td><td class="txt">23 倍 2027E P/E；PB 54.04 倍；PE(TTM) 为负</td></tr>
+        <tr><td class="name">目标价隐含</td><td class="txt">35 倍 2027E P/E（基于 2027–2029E EPS CAGR +50%）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>反常信号：盈利预测大幅上调，目标价几乎没动。</strong>净利润预测上调 294%–723%，而目标价仅从 788 上调至 796（+1%）。这说明远期高增长预期在 5 月已被充分定价，本次业绩超预期带来的增量空间有限。上涨空间已从 5 月的 58.7% 收窄至 48.3%。
+  </div>
+</div>
+
+<div class="card">
+  <h2>二、事实层：高盛核心数据 × 妙想实测核实</h2>
+  <p class="small">数据来源：高盛研报 / 妙想 mx-ds-mcp（东方财富）· 置信度 ★★★</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">核实项</th><th class="txt">高盛数据</th><th class="txt">妙想实测</th><th class="center">结论</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">2025 全年营收</td><td class="txt">9.50 亿元</td><td class="txt">9.498 亿元</td><td class="center"><span class="tag-green">一致</span></td></tr>
+        <tr><td class="name">2025 归母净利润</td><td class="txt">-0.66 亿元</td><td class="txt">-6644 万元</td><td class="center"><span class="tag-green">一致</span></td></tr>
+        <tr><td class="name">2Q26 单季营收</td><td class="txt">4.45 亿元（+193%）</td><td class="txt">4.448 亿元（+192.9%）</td><td class="center"><span class="tag-green">一致</span></td></tr>
+        <tr><td class="name">1Q26 净利润</td><td class="txt">-0.39 亿元</td><td class="txt">推算 -3881 万元</td><td class="center"><span class="tag-green">一致</span></td></tr>
+        <tr><td class="name">光学业务占比</td><td class="txt">1H26 占 82%</td><td class="txt">光电子封测设备 80.24%</td><td class="center"><span class="tag-green">基本一致</span></td></tr>
+        <tr><td class="name">1 亿元光模块订单</td><td class="txt">收到 1 亿元封装设备订单</td><td class="txt">2026-08-19 公告 1.09 亿元</td><td class="center"><span class="tag-green">已实锤</span></td></tr>
+        <tr><td class="name">在手订单</td><td class="txt">光通信设备未履行订单 25 亿元</td><td class="txt">中报：在手未确认订单 <strong>33.86 亿元</strong>（光电子 24.52 亿）</td><td class="center"><span class="tag-green">已实锤</span></td></tr>
+        <tr><td class="name">单一客户 30 亿元订单</td><td class="txt">来自单一客户 30 亿元订单</td><td class="txt">中报：可插拔光模块领域同一集团客户累计约 30 亿元</td><td class="center"><span class="tag-green">中报依据</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>核实小结（2026-08-30 更新）</strong>：高盛引用的<strong>历史财务数据全部准确无误</strong>，这是加分项。经查 2026 年半年报，<strong>「25 亿在手订单」与「30 亿单一客户订单」均获中报印证</strong>——中报披露在手未确认收入订单 33.86 亿元（其中光电子及半导体 24.52 亿元，创历史新高），可插拔光模块领域收到同一集团客户累计约 30 亿元。<strong>更正说明</strong>：初版仅检索单笔合同公告（2026 年披露合计 7.64 亿元）未查中报正文，导致误判为「无实锤」，特此更正。高盛的数据源来自中报而非单笔公告，其严谨性应重新评估。
+  </div>
+</div>
+
+<div class="card">
+  <h2>三、2Q26 业绩拆解（妙想实测）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">指标</th><th class="num">2026中报</th><th class="num">同比</th><th class="txt">解读</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">营业收入</td><td class="num">6.085 亿元</td><td class="num pos">+144.8%</td><td class="txt">其中 2Q26 单季 4.448 亿，环比 +172%</td></tr>
+        <tr><td class="name">归母净利润</td><td class="num">655.7 万元</td><td class="num pos">+119.7%</td><td class="txt">2Q26 单季 4537 万，同比 +733.7%</td></tr>
+        <tr><td class="name">销售毛利率</td><td class="num">41.62%</td><td class="num">—</td><td class="txt">1Q26 约 36.2% → 2Q26 43.6%，持续爬升</td></tr>
+        <tr><td class="name">合同负债</td><td class="num">4.565 亿元</td><td class="num pos">环比 +154%</td><td class="txt">1Q26 为 1.795 亿，<strong>订单景气最强前瞻指标</strong></td></tr>
+        <tr><td class="name">经营现金流净额</td><td class="num">2.326 亿元</td><td class="num pos">由负转正</td><td class="txt">1Q26 为 -799.4 万，<strong>盈利质量显著改善</strong></td></tr>
+        <tr><td class="name">存货</td><td class="num">5.249 亿元</td><td class="num">环比 +12.3%</td><td class="txt">在产订单增加，配套营收放量</td></tr>
+        <tr><td class="name">应收票据及账款</td><td class="num">7.093 亿元</td><td class="num">—</td><td class="txt"><span class="tag-yellow">高于营收</span> 坏账计提 18.13%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">主营构成（1H26）</th><th class="num">收入</th><th class="num">占比</th><th class="num">毛利率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">光电子及半导体封测设备</td><td class="num">4.882 亿元</td><td class="num">80.24%</td><td class="num">42.91%</td></tr>
+        <tr><td class="name">光伏设备及整体解决方案</td><td class="num">8298 万元</td><td class="num">13.64%</td><td class="num">32.62%</td></tr>
+        <tr><td class="name">其他业务</td><td class="num">692.7 万元</td><td class="num">1.14%</td><td class="num">9.72%</td></tr>
+        <tr><td class="name">国外（地区口径）</td><td class="num">4.384 亿元</td><td class="num">72.04%</td><td class="num">38.57%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">光学业务占比 80.24%、海外收入 72.04%——公司已完成从光伏设备商向光学设备商的转型，估值体系切换成立。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">中报补充（2026-08-25 披露）</th><th class="num">数值</th><th class="txt">说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">在手未确认订单</td><td class="num">33.86 亿元</td><td class="txt">其中光电子及半导体 24.52 亿元，创历史新高</td></tr>
+        <tr><td class="name">光电子业务同比</td><td class="num pos">+952.17%</td><td class="txt">营收 4.88 亿元，占主营收入 81.16%</td></tr>
+        <tr><td class="name">光伏业务同比</td><td class="num down">-53.93%</td><td class="txt">营收 8298 万元，主业切换的另一面</td></tr>
+        <tr><td class="name">机构调研</td><td class="num">33 家</td><td class="txt">8/26 接待 Bank of America 等机构调研</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：中报于 2026-08-25 盘后披露，次日（8/26）股价上涨 7.47% 至 528.90 元。</p>
+</div>
+
+<div class="card">
+  <h2>四、作者框架层：高盛的论证逻辑</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">环节</th><th class="txt">高盛论点</th><th class="center">可信度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">业绩验证</td><td class="txt">2Q26 营收超预估 141%、净利超预估 149%，光学业务驱动</td><td class="center"><span class="tag-green">高</span> 已核实</td></tr>
+        <tr><td class="name">转型完成</td><td class="txt">光学业务占 1H26 营收 82%，从光伏股变为光学设备股</td><td class="center"><span class="tag-green">高</span> 已核实</td></tr>
+        <tr><td class="name">需求可见</td><td class="txt">CPO 进入大规模量产、OCS 首批交付、在手订单 25 亿元</td><td class="center"><span class="tag-yellow">中</span> 部分核实</td></tr>
+        <tr><td class="name">盈利上调</td><td class="txt">2026–2030E 净利润 CAGR +114%，2027E 净利上调 723%</td><td class="center"><span class="tag-red">存疑</span> 缺订单支撑</td></tr>
+        <tr><td class="name">估值锚定</td><td class="txt">用 2031E P/E 20.7 倍折现，规避 2027E EPS 暴增的估值失真</td><td class="center"><span class="tag-yellow">方法合理但远期</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>估值方法的关键</strong>：高盛预测 2027E 营收 129.6 亿元（同比 +452%）、EPS 22.94 元。若直接用 2027E P/E 估值会显得荒谬，因此改用<strong>2031E（增速正常化后）20.7 倍 P/E 折现</strong>。方法本身合理，但<strong>把估值锚定在 5 年后的盈利上，意味着持有周期必须极长</strong>，且中间任何一年不及预期都会导致估值坍塌。
+  </div>
+</div>
+
+<div class="card">
+  <h2>五、独立判断：双面拆解</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="txt">利好逻辑（硬证据）</th><th class="txt">硬性风险（硬约束）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="txt"><strong>业绩爆发属实 + 订单获中报印证</strong>：2Q26 营收 +193%、单季净利 4537 万（+733.7%）；在手未确认订单 33.86 亿元，其中光电子 24.52 亿元创历史新高</td>
+          <td class="txt"><strong>光伏业务腰斩</strong>：光伏设备营收 8298 万元，同比 <span class="down">-53.93%</span>，高盛所列下行风险已兑现</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>合同负债 4.565 亿（环比 +154%）</strong>：客户预付款暴增，订单景气的最强前瞻信号</td>
+          <td class="txt"><strong>订单覆盖率仍不足</strong>：33.86 亿在手订单 vs 2027E 营收 129.6 亿，<strong>覆盖率约 26%</strong>（初版按 25 亿算为 19%，已更正）</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>经营现金流 2.326 亿由负转正</strong>：盈利质量改善（对比同业部分标的现金流为大幅负值）</td>
+          <td class="txt"><strong>高盛与市场严重分歧</strong>：高盛 2026E 净利 4.63 亿 vs 市场一致预期 5000 万（差 9.3 倍）</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>毛利率持续爬升</strong>：1Q26 36.2% → 2Q26 43.6% → 目标 2027E 57.3%</td>
+          <td class="txt"><strong>毛利率目标过于激进</strong>：57.3% 已超 Teradyne(34%)、ASMPT(14%)，仅次于垄断型 Advantest(51%)</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>客户结构优质</strong>：纽交所/纳斯达克上市公司（B/F/G/H/I），海外收入占 72.04%</td>
+          <td class="txt"><strong>应收账款质量偏弱</strong>：应收 8.633 亿 &gt; 1H26 营收 6.085 亿，坏账计提 18.13%</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>光学转型已兑现</strong>：光电子封测设备占 80.24%，光伏仅 13.64%</td>
+          <td class="txt"><strong>估值极高</strong>：PB 54.04 倍，PE(TTM) 为负，需持有至 2031 年验证估值锚</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>机构覆盖稀缺</strong>：近 3 个月无机构评级，高盛为新发声，存在预期差</td>
+          <td class="txt"><strong>译文存在失真</strong>：「税收」实为 Revenue 误译、「外形尺寸」实为 FormFactor 误译</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>被误读的两处</strong>：① 报告中「大中华区科技领域并购排名：第 3 位」按高盛体系指的是<strong>评分 3 分 = 被收购概率仅 0–15%</strong>（低概率档），并非「排名第 3 名」的利好，且不纳入目标价计算。② 「上调净收入预期 294%」中的「净收入」对应的是<strong>净利润</strong>行而非营收行，营收上调幅度实为 76%–349%。
+  </div>
+</div>
+
+<div class="card">
+  <h2>六、基准校正与相对收益（2026-08-25 → 08-28 收盘）</h2>
+  <div class="negbox">
+    <strong>首版错误更正</strong>：初稿以<strong>上证指数</strong>为基准衡量罗博特科周涨幅，方法上不成立。罗博特科为创业板个股（300757），且收入结构中光电子及半导体封测设备已占 80.24%，正确做法是<strong>以创业板指为主基准，叠加行业指数（半导体设备申万）与主题指数（CPO 概念）剥离贝塔</strong>。以下为校正后的多基准矩阵。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">基准 / 标的</th>
+          <th class="center">代码</th>
+          <th class="num">08-25 收盘</th>
+          <th class="num">08-28 收盘</th>
+          <th class="num">区间涨跌</th>
+          <th class="num">罗博超额 α</th>
+          <th class="center">基准适用性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name"><strong>罗博特科（标的）</strong></td>
+          <td class="center">300757.SZ</td>
+          <td class="num">492.12</td>
+          <td class="num">536.70</td>
+          <td class="num pos">+9.05%</td>
+          <td class="num">—</td>
+          <td class="center">—</td>
+        </tr>
+        <tr>
+          <td class="name">创业板指</td>
+          <td class="center">399006</td>
+          <td class="num">3397.52</td>
+          <td class="num">3424.40</td>
+          <td class="num pos">+0.79%</td>
+          <td class="num pos">+8.26 pct</td>
+          <td class="center"><span class="tag-red">主基准</span></td>
+        </tr>
+        <tr>
+          <td class="name">深证成指</td>
+          <td class="center">399001</td>
+          <td class="num">13745.87</td>
+          <td class="num">13953.07</td>
+          <td class="num pos">+1.51%</td>
+          <td class="num pos">+7.54 pct</td>
+          <td class="center"><span class="tag-blue">参考</span></td>
+        </tr>
+        <tr>
+          <td class="name">上证指数</td>
+          <td class="center">000001</td>
+          <td class="num">3889.44</td>
+          <td class="num">3952.18</td>
+          <td class="num pos">+1.61%</td>
+          <td class="num pos">+7.44 pct</td>
+          <td class="center"><span class="tag-green">不适用</span></td>
+        </tr>
+        <tr>
+          <td class="name">半导体设备（申万）</td>
+          <td class="center">850818.SWI</td>
+          <td class="num">75435.37</td>
+          <td class="num">77331.89</td>
+          <td class="num pos">+2.51%</td>
+          <td class="num pos">+6.54 pct</td>
+          <td class="center"><span class="tag-red">行业基准</span></td>
+        </tr>
+        <tr>
+          <td class="name">CPO 概念</td>
+          <td class="center">861490.EI</td>
+          <td class="num">7089.85</td>
+          <td class="num">7333.41</td>
+          <td class="num pos">+3.44%</td>
+          <td class="num pos">+5.61 pct</td>
+          <td class="center"><span class="tag-red">主题基准</span></td>
+        </tr>
+        <tr>
+          <td class="name">科创 50</td>
+          <td class="center">000688</td>
+          <td class="num">1604.59</td>
+          <td class="num">1662.15</td>
+          <td class="num pos">+3.59%</td>
+          <td class="num pos">+5.46 pct</td>
+          <td class="center"><span class="tag-blue">参考</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>校正后的三点结论</strong><br>
+    ① <strong>α 不缩小，反而扩大</strong>：正确基准下超额为 <strong>+5.46 至 +8.26 pct</strong>，并非误用上证时的 +7.44 pct 向下修正。上证本周在六大指数中偏强（+1.61%，仅次于科创 50），拿它做基准会混入「大盘蓝筹风格」的贝塔，方向性结论虽未反转，但归因链条是错的。<br>
+    ② <strong>这是个股 α，不是板块贝塔</strong>：罗博跑赢 CPO 概念 5.61 pct、跑赢半导体设备 6.54 pct。若只是 CPO 板块普涨带动，超额应收敛在 1–2 pct 以内。5 pct 以上的超额意味着资金在为<strong>公司自身的边际变化</strong>定价，而非给它所在的赛道定价。<br>
+    ③ <strong>α 集中在单一交易日</strong>：8/25 盘后披露中报（在手订单 33.86 亿、光电子业务 +952.17%），8/26 单日收 <span class="pos">+7.47%</span> 至 528.90 元，同日接待 Bank of America 等 <strong>33 家机构</strong>调研。全周 +9.05% 中约 <strong>82% 由这一天贡献</strong>——典型的「业绩披露驱动型」重定价，而非趋势性资金流入。
+  </div>
+  <div class="posbox">
+    <strong>基准选择三原则（后续报告统一执行）</strong>：① <strong>同市场同板块优先</strong>——创业板个股对创业板指，科创板个股对科创 50，不做跨市场比较；② <strong>叠加行业 + 主题双基准</strong>——当公司收入结构已高度集中于单一业务（如罗博光电子占 80.24%）时，行业指数比宽基指数更能剥离贝塔；③ <strong>α 必须落在 3 pct 以上才算有效</strong>——低于 3 pct 视为噪声，不得据此论证「个股逻辑独立兑现」。
+  </div>
+</div>
+
+<div class="card">
+  <h2>七、持仓关联与操作结论</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">项目</th><th class="txt">内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">组合定位</td><td class="txt">组合第一大重仓，权重约 24.95%（1000 股，成本 513.89 元）</td></tr>
+        <tr><td class="name">当前盈亏</td><td class="txt">按 8/28 收盘 536.70 元计，浮盈约 <span class="pos">+4.4%</span></td></tr>
+        <tr><td class="name">目标价空间</td><td class="txt">796 元 相对成本 513.89 元，空间 <span class="pos">+54.9%</span></td></tr>
+        <tr><td class="name">操作结论</td><td class="txt"><span class="tag-hold">HOLD</span> <strong>持有不加仓</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>操作逻辑</strong>：CPO/OCS 一阶受益的底层逻辑不仅成立，且被 2Q26 业绩、合同负债 +154%、在手订单 33.86 亿（光电子 24.52 亿创历史新高）、现金流转正四重强化。<strong>不加仓的理由不是看空，而是两点</strong>：① 单股权重已近组合 1/4，任何业绩 miss 都会重创组合；② 高盛目标价隐含的 2027E 营收 +452%，当前在手订单覆盖率约 <strong>26%</strong>（33.86 亿 / 2027E 营收 129.54 亿），仍有约 3/4 缺口待新订单填补，而目标价仅上调 1% 说明远期预期已充分定价。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">跟踪项</th><th class="txt">验证标准（关键门槛）</th><th class="center">触发动作</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">3Q26 营收</td><td class="txt">高盛预测 5.50 亿元；低于 5.0 亿即为不及预期</td><td class="center"><span class="tag-yellow">观察</span></td></tr>
+        <tr><td class="name">4Q26 营收</td><td class="txt">高盛预测 11.90 亿元（为 2Q26 的 2.67 倍），<strong>全年最大考验</strong></td><td class="center"><span class="tag-red">核心验证点</span></td></tr>
+        <tr><td class="name">合同负债</td><td class="txt">2Q26 为 4.565 亿，需继续环比增长</td><td class="center"><span class="tag-red">环比下降即预警</span></td></tr>
+        <tr><td class="name">30 亿订单</td><td class="txt"><strong>中报已披露</strong>：可插拔光模块领域同一集团客户累计约 30 亿元。后续看其转化为确认收入的节奏</td><td class="center"><span class="tag-green">已证实</span></td></tr>
+        <tr><td class="name">在手订单</td><td class="txt">中报口径 33.86 亿（光电子 24.52 亿创历史新高），3Q26 报需继续增长</td><td class="center"><span class="tag-red">核心验证点</span></td></tr>
+        <tr><td class="name">毛利率</td><td class="txt">能否从 43.6% 继续向 50%+ 爬升</td><td class="center"><span class="tag-yellow">观察</span></td></tr>
+        <tr><td class="name">新公告</td><td class="txt">CPO/OCS 后续产线订单是否落地</td><td class="center"><span class="tag-yellow">跟踪</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>八、数据溯源</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">数据</th><th class="txt">来源</th><th class="center">置信度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">研报观点/目标价</td><td class="txt">高盛（GS）2026-08-28 研报原文</td><td class="center">★★★</td></tr>
+        <tr><td class="name">财务数据核实</td><td class="txt">妙想 mx-ds-mcp（东方财富）2026-08-30 实测</td><td class="center">★★★</td></tr>
+        <tr><td class="name">合同/订单</td><td class="txt">公司公告（2026-05-06 / 07-20 / 07-27 / 08-19）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">股价/市值/评级</td><td class="txt">妙想实测（2026-08-28 收盘）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">30 亿元订单</td><td class="txt">2026 年半年报（2026-08-25 盘后披露）已载明，高盛引用无误</td><td class="center">★★★</td></tr>
+        <tr><td class="name">在手订单 33.86 亿</td><td class="txt">2026 年半年报原文</td><td class="center">★★★</td></tr>
+        <tr><td class="name">指数/板块收盘价</td><td class="txt">妙想实测（2026-08-25 与 2026-08-28 收盘）</td><td class="center">★★★</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">说明：本报告基于高盛研报译文版剖析。译文存在个别术语误译（Revenue→「税收」、FormFactor→「外形尺寸」），关键决策建议以英文原版及公司公告为准。</p>
+</div>
+
+<div class="footer">
+  数据来源：高盛研报、妙想 mx-ds-mcp（东方财富）、公司公告 · 仅供参考，不构成投资建议 · 风险自担
+</div>
+
+</div>
+</body>
+</html>

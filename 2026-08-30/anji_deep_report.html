@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安集科技（688019）深度研报</title>
+<style>
+:root{
+  --bg:#f3eee6;--card:#fffdf8;--text:#241f19;--muted:#5d564c;--soft:#efe6d9;--line:#e0d6c6;--accent:#b45309;
+  --pos:#e02424;--neg:#0fa968;--up:#e02424;--down:#0fa968;
+  --label-blue:#1a73e8;--label-yellow:#c77409;--label-red:#d93025;--label-green:#188038;
+  --shadow:0 1px 4px rgba(70,50,25,.12);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(180,83,9,.09);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#4d463c;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#4d463c;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#4d463c;background:rgba(180,83,9,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(180,83,9,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(26,115,232,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-yellow{color:#b45309;background:rgba(217,119,6,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-red{color:#b3261e;background:rgba(217,48,37,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-green{color:#137333;background:rgba(24,128,56,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-buy{color:#1a5fb4;background:rgba(26,115,232,.10);border:1px solid #cfe0fb;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#b45309;background:rgba(217,119,6,.10);border:1px solid #f0d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#b3261e;background:rgba(217,48,37,.08);border:1px solid #eebfbc;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#6b5a16;background:rgba(217,119,6,.06);border:1px solid #e5d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid #e4d9c8}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(180,83,9,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(217,48,37,.05);border-left:3px solid #d93025;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(24,128,56,.05);border-left:3px solid #188038;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>安集科技（688019.SH）深度研报</h1>
+  <p class="small">2026-08-30 研判 · 基准时点 2026-08-28 收盘 · 数据源：妙想（东方财富）实测 ★★★ · 版式：Google Insight V1</p>
+  <div class="summary">
+    <p><strong>结论</strong>：<span class="tag-buy">BUY</span>（逢低布局，不追高）。基本面质地是四只材料标的中最干净的，但当前价在 20 日、60 日均线下方，短期偏弱，等回踩再介入。</p>
+    <p><strong>核心事实</strong>：国产 CMP 抛光液唯一龙头（国内市占 50%+、全球前五），4 年营收 CAGR 32.5%、归母 CAGR 37.5%，毛利率稳定 55%+，ROE 25%，现金流健康。</p>
+    <p><strong>估值</strong>：现价 243.2 元、市值 555 亿、PE(TTM) 59 倍；机构目标价 284.7 元（+17%）；2026E PEG 1.21，四只材料标的中估值最低。</p>
+    <p><strong>买卖点</strong>：理想买点 222–235 元（布林中下轨）；第一压力 257 元（60 日线）；第二压力 284.7 元（机构目标）；止损 221 元失守。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、公司全貌</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">项目</th><th class="txt">内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">定位</td><td class="txt">CMP（化学机械抛光）材料国产唯一龙头，国内市占 50%+、全球前五（约 13%）</td></tr>
+        <tr><td class="name">主营结构</td><td class="txt">CMP 抛光液 81.45%（毛利率 58.28%）+ 功能性湿电子化学品 18.08%（毛利率 50%）</td></tr>
+        <tr><td class="name">核心壁垒</td><td class="txt">国内唯一实现 14nm/7nm 先进制程 CMP 抛光液稳定批量供货；HKMG 氧化铈抛光液已通过国内龙头存储厂全流程验证</td></tr>
+        <tr><td class="name">客户结构</td><td class="txt">前五大客户占 75.65%，其中第一大 26.62%、第二大 26.41%（前两大合计 53%，集中度偏高）</td></tr>
+        <tr><td class="name">收入地区</td><td class="txt">中国大陆占 96.49%，海外仅 3.51%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>一句话定性</strong>：安集是一家「高毛利、高 ROE、单一主业聚焦、深度绑定国内晶圆厂」的专精特新龙头。它不追风口，是半导体材料里<b>最像「卖铲人中的卖铲人」</b>——晶圆厂扩产、制程升级，它都稳定受益，但弹性不如设备（华海清科）和靶材（江丰）猛。
+  </div>
+</div>
+
+<div class="card">
+  <h2>二、财务真相：4 年成长的成色验证</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">指标</th>
+          <th class="num">2022</th>
+          <th class="num">2023</th>
+          <th class="num">2024</th>
+          <th class="num">2025</th>
+          <th class="num">26H1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">营收（亿元）</td><td class="num">10.77</td><td class="num">12.38</td><td class="num">18.35</td><td class="num">25.04</td><td class="num">15.26</td></tr>
+        <tr><td class="name">营收增速</td><td class="num pos">+56.8%</td><td class="num pos">+15.0%</td><td class="num pos">+48.2%</td><td class="num pos">+36.5%</td><td class="num pos">+33.7%</td></tr>
+        <tr><td class="name">归母净利（亿元）</td><td class="num">3.01</td><td class="num">4.03</td><td class="num">5.34</td><td class="num">7.84</td><td class="num">5.32</td></tr>
+        <tr><td class="name">归母增速</td><td class="num pos">+141%</td><td class="num pos">+33.6%</td><td class="num pos">+32.5%</td><td class="num pos">+46.9%</td><td class="num pos">+41.6%</td></tr>
+        <tr><td class="name">毛利率</td><td class="num">54.21%</td><td class="num">55.81%</td><td class="num">58.45%</td><td class="num">56.72%</td><td class="num">55.63%</td></tr>
+        <tr><td class="name">ROE（加权）</td><td class="num">22.2%</td><td class="num">21.5%</td><td class="num">22.2%</td><td class="num">25.2%</td><td class="num">—</td></tr>
+        <tr><td class="name">经营现金流（亿）</td><td class="num">2.39</td><td class="num">3.36</td><td class="num">4.93</td><td class="num">4.40</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="posbox">
+    <strong>成色验证（三条都过关）</strong><br>
+    ① <b>增长真实</b>：营收 CAGR 32.5%、归母 CAGR 37.5%，利润增速常年高于营收，说明不是靠降价冲量；<br>
+    ② <b>盈利质量高</b>：毛利率 54–58% 稳定（材料行业能做到 55%+ 的极少），ROE 稳定 21–25%；<br>
+    ③ <b>现金流健康</b>：经营现金流常年为正且跟随利润增长，2025 年 4.40 亿虽略低于净利 7.84 亿，但属正常（材料行业有存货/应收占用）。
+  </div>
+  <div class="negbox">
+    <strong>一处需要盯的瑕疵</strong>：26H1 归母 +41.6%，但<b>扣非只 +19.35%</b>（Q2 单季扣非 +17.44%）。说明今年上半年的利润里，有一部分来自非经常性损益（补贴等）。这不是造假，但意味着<b>主营的增速其实没有表观那么猛</b>，看业绩时要扣非后看。
+  </div>
+</div>
+
+<div class="card">
+  <h2>三、成长逻辑：两个引擎</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">引擎</th><th class="txt">逻辑</th><th class="center">状态</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">CMP 抛光液（81%）</td>
+          <td class="txt">逻辑芯片 250nm→7nm，抛光步骤从几次增至 30 次、抛光液种类从 5 种增至 20 余种；3D NAND 堆叠层数翻倍，CMP 步骤近乎翻倍。制程越先进，消耗量越大</td>
+          <td class="center"><span class="tag-green">主引擎·确定</span></td>
+        </tr>
+        <tr>
+          <td class="name">功能性湿电子化学品（18%）</td>
+          <td class="txt">电镀液、清洗液、刻蚀后清洗等，第二增长曲线，正从 18% 向更高占比扩张，毛利率 50%</td>
+          <td class="center"><span class="tag-yellow">次引擎·培育</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>空间测算（机构一致预期）</strong>：2026E 营收 32.51 亿（+29.8%）、归母 11.08 亿（+41.4%）；2027E 归母 14.02 亿（+26.5%）；2028E 归母 17.2 亿（+22.7%）。<b>未来三年归母翻倍有余（7.84 亿 → 17.2 亿）</b>，这是估值能撑在 50 倍以上的底气。
+  </div>
+</div>
+
+<div class="card">
+  <h2>四、估值测算（三个锚定）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">锚定方法</th><th class="txt">结果</th><th class="center">含义</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">机构目标价</td><td class="txt">284.7 元（综合值），11 家机构评级「买入/增持」</td><td class="center"><span class="pos">+17.1%</span></td></tr>
+        <tr><td class="name">可比对标</td><td class="txt">安集 PE 59 倍 vs 鼎龙 74 / 江丰 84 / 华海清科 113</td><td class="center"><span class="pos">四只最低</span></td></tr>
+        <tr><td class="name">PEG 反算</td><td class="txt">2026E PEG 1.21（PE 50 / 增速 41%）；2027E PEG 1.50</td><td class="center"><span class="tag-yellow">合理中段</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>估值结论</strong>：<b>不便宜，但在成长股里算合理，且是四只材料标的里最便宜的一只。</b><br>
+    · 若按 2026E 归母 11.08 亿 × 55 倍 = 609 亿（对应约 267 元，+10%）；<br>
+    · 若按 2027E 归母 14.02 亿 × 45 倍 = 631 亿（对应约 276 元，+13.5%）。<br>
+    机构目标价 284.7 元对应的隐含估值是 2026E 约 59 倍、2027E 约 46 倍，属于<b>「合理偏乐观」</b>。真正的便宜区在 2026E PE 跌破 45 倍时（约 220 元下方），那才是安全边际足够的位置。
+  </div>
+</div>
+
+<div class="card">
+  <h2>五、双面拆解</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="txt">利好逻辑（3 条）</th><th class="txt">硬性约束（3 条）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="txt"><strong>卡位唯一</strong>：国内唯一 7nm 抛光液稳定供货，认证壁垒 3–5 年，后来者难切</td>
+          <td class="txt"><strong>客户高度集中</strong>：前两大客户占 53%，任一客户订单波动都会显著冲击营收</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>成长确定</strong>：未来三年归母 7.84→17.2 亿翻倍，AI/HBM 拉动材料消耗强度</td>
+          <td class="txt"><strong>扣非增速打折</strong>：26H1 扣非仅 +19%，表观 +41% 含非经常性，主营增速没那么猛</td>
+        </tr>
+        <tr>
+          <td class="txt"><strong>估值相对便宜</strong>：59 倍是四只材料标的最低，PEG 1.21 处合理区</td>
+          <td class="txt"><strong>机构空间有限</strong>：目标价 +17% 不算大，且短期主力 8/28 净流出 9217 万</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>六、买卖点建议（技术面实测）</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val">243.2</div><div class="metric-label">现价（8/28）</div></div>
+    <div class="metric-item"><div class="metric-val">244.8</div><div class="metric-label">20 日线</div></div>
+    <div class="metric-item"><div class="metric-val">257.1</div><div class="metric-label">60 日线（分水岭）</div></div>
+    <div class="metric-item"><div class="metric-val">221.2</div><div class="metric-label">布林下轨</div></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="center">层级</th><th class="name">点位</th><th class="txt">依据</th><th class="center">动作</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="center">理想买点区</td><td class="name">222–235 元</td><td class="txt">布林下轨 221.2 到中轨之间，对应 2026E PE 约 45–48 倍，安全边际足够</td><td class="center"><span class="tag-buy">分批买入</span></td></tr>
+        <tr><td class="center">激进买点</td><td class="name">站稳 245 元</td><td class="txt">放量站上 20 日线，短期趋势转多</td><td class="center"><span class="tag-buy">轻仓试</span></td></tr>
+        <tr><td class="center">第一压力</td><td class="name">257 元</td><td class="txt">60 日线（中期分水岭），也是当前最大套牢成本区</td><td class="center"><span class="tag-yellow">减 1/3</span></td></tr>
+        <tr><td class="center">第二压力</td><td class="name">284.7 元</td><td class="txt">机构综合目标价</td><td class="center"><span class="tag-red">兑现</span></td></tr>
+        <tr><td class="center">止损位</td><td class="name">221 元</td><td class="txt">布林下轨 + 前低，跌破且不能收回则趋势转弱</td><td class="center"><span class="tag-sell">止损</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>技术面现状提示</strong>：现价 243.2 元同时位于<b>20 日线（244.8）和 60 日线（257.1）下方</b>，短期中期趋势都偏弱，主力资金 8/28 净流出 9217 万。这意味着<b>现在不是好的介入点</b>，正确的姿势是「等回踩 222–235 分批买」，而不是在均线下方追高。
+  </div>
+</div>
+
+<div class="card">
+  <h2>七、数据溯源</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">数据</th><th class="txt">来源</th><th class="center">置信度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">财务数据（2022–26H1）</td><td class="txt">妙想 mx-ds-mcp（东方财富）实测</td><td class="center">★★★</td></tr>
+        <tr><td class="name">主营构成/客户/供应商</td><td class="txt">东方财富 F9 深度资料（2025 年报、2026 中报）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">机构评级/目标价/一致预期</td><td class="txt">东方财富一致预期（2026-08-29）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">技术面（均线/布林/资金流）</td><td class="txt">妙想实测（2026-08-28 收盘）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">CMP 工艺数据（抛光步骤/消耗量）</td><td class="txt">行业研报（SEMI/公开资料）</td><td class="center">★★</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">说明：本报告基于 2026-08-28 收盘数据。安集科技当前不在老潘持仓中，为半导体材料赛道的候选研究标的。机构目标价与一致预期为市场观点，非巴蒂预测。</p>
+</div>
+
+<div class="footer">
+  本报告由巴蒂生成 · 数据截至 2026-08-28 收盘 · 仅供研究参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>

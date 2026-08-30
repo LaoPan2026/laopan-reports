@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天赢居 × 徐小明 大盘观点交叉验证（2026-08-30）</title>
+<style>
+:root{
+  --bg:#f3eee6;--card:#fffdf8;--text:#241f19;--muted:#5d564c;--soft:#efe6d9;--line:#e0d6c6;--accent:#b45309;
+  --pos:#e02424;--neg:#0fa968;--up:#e02424;--down:#0fa968;
+  --label-blue:#1a73e8;--label-yellow:#c77409;--label-red:#d93025;--label-green:#188038;
+  --shadow:0 1px 4px rgba(70,50,25,.12);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(180,83,9,.09);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#4d463c;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#4d463c;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#4d463c;background:rgba(180,83,9,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(180,83,9,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(26,115,232,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-yellow{color:#b45309;background:rgba(217,119,6,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-red{color:#b3261e;background:rgba(217,48,37,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-green{color:#137333;background:rgba(24,128,56,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-buy{color:#1a5fb4;background:rgba(26,115,232,.10);border:1px solid #cfe0fb;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#b45309;background:rgba(217,119,6,.10);border:1px solid #f0d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#b3261e;background:rgba(217,48,37,.08);border:1px solid #eebfbc;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#6b5a16;background:rgba(217,119,6,.06);border:1px solid #e5d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid #e4d9c8}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(180,83,9,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(217,48,37,.05);border-left:3px solid #d93025;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(24,128,56,.05);border-left:3px solid #188038;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>天赢居 × 徐小明 大盘观点交叉验证</h1>
+  <p class="small">2026-08-30 研判 · 基准时点：2026-08-28 收盘 · 上证指数 3952.179 · 数据源：妙想（东方财富）实测 · 版式：Google Insight V1</p>
+  <div class="summary">
+    <p><strong>结论</strong>：<span class="tag-wait">WAIT</span> 大盘处于<b>两位老师共同指认的分水岭正下方</b>，不预设立场，等价格事实。</p>
+    <p><strong>数据审计</strong>：天赢居 13 项关键坐标中 <strong>11 项偏差 ≤ 4 点</strong>，周线四条均线偏差全部 <strong>≤ 0.3 点</strong>，二浪低点 3850.86 <strong>零误差</strong>。数据可信度 ★★★，为本次验证中精度最高的一位。</p>
+    <p><strong>核心发现</strong>：徐小明的 3990（顶部钝化）与天赢居的 3994（突破确认）<b>指向同一位置、给出相反操作含义</b>。这不是谁对谁错，而是<b>震荡框架</b>与<b>推动浪框架</b>的根本分歧，需用同一组数据裁决。</p>
+    <p><strong>对天赢居的一处修正</strong>：「科技硬件保留较强中期资金记忆」<b>一半不成立</b>——实测半导体板块在 20 日、60 日双线之下，仅有色维持双线之上。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、天赢居数据精度审计（逐项实测）</h2>
+  <p>天赢居使用<b>斐波那契均线体系</b>（5/8/13/21/34/55/89/144/233），与徐小明的常规体系（5/10/20/60）不同。妙想接口不支持该体系，故拉取原始行情自行计算：日线 262 根、周线 64 根、月线 32 根。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">周期 / 指标</th>
+          <th class="num">天赢居给值</th>
+          <th class="num">妙想实测</th>
+          <th class="num">偏差</th>
+          <th class="center">判定</th>
+          <th class="txt">备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">日线 MA55</td><td class="num">3955</td><td class="num">3954.45</td><td class="num">-0.6</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">现价 3952.18，差 2.3 点未站稳</td></tr>
+        <tr><td class="name">日线 MA89</td><td class="num">4013</td><td class="num">4012.79</td><td class="num">-0.2</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">第二阻力</td></tr>
+        <tr><td class="name">日线 MA144</td><td class="num">4023</td><td class="num">4026.70</td><td class="num">+3.7</td><td class="center"><span class="tag-green">吻合</span></td><td class="txt">天赢居主推的「4023 阻力核心」</td></tr>
+        <tr><td class="name">日线 MA233</td><td class="num">3996</td><td class="num">3995.66</td><td class="num">-0.3</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">长期成本线</td></tr>
+        <tr><td class="name">日线 MA34</td><td class="num">—</td><td class="num">3889.59</td><td class="num">—</td><td class="center"><span class="tag-blue">补充</span></td><td class="txt">天赢居未给，实测为下方次级支撑</td></tr>
+        <tr><td class="name">周线 MA13</td><td class="num">3950</td><td class="num">3950.15</td><td class="num">+0.2</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">周线成本墙下沿</td></tr>
+        <tr><td class="name">周线 MA21</td><td class="num">4004</td><td class="num">4003.74</td><td class="num">-0.3</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">—</td></tr>
+        <tr><td class="name">周线 MA34</td><td class="num">4024</td><td class="num">4023.67</td><td class="num">-0.3</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">周线成本墙上沿</td></tr>
+        <tr><td class="name">周线 MA55</td><td class="num">3964</td><td class="num">3964.26</td><td class="num">+0.3</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">—</td></tr>
+        <tr><td class="name">月线 MA5 / MA8 / MA13</td><td class="num">3980–4030</td><td class="num">4011.91 / 4029.03 / 3983.48</td><td class="num">区间内</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">MA8 触上沿 4030、MA13 触下沿 3980，区间判断完全成立</td></tr>
+        <tr><td class="name">二浪低点 3850.86</td><td class="num">3850.86</td><td class="num">3850.8628</td><td class="num">0</td><td class="center"><span class="tag-green">零误差</span></td><td class="txt">2026-08-25 <b>盘中最低价</b>，精确至分位</td></tr>
+        <tr><td class="name">一浪高点「3999 附近」</td><td class="num">3999</td><td class="num">3994.18</td><td class="num">-4.8</td><td class="center"><span class="tag-yellow">偏差</span></td><td class="txt">8/18 盘中最高价实测 3994.18</td></tr>
+        <tr><td class="name">突破验证位 3994</td><td class="num">3994</td><td class="num">3994.18</td><td class="num">+0.2</td><td class="center"><span class="tag-green">精确</span></td><td class="txt">与 8/18 最高价、妙想压力位 3994.18 三重吻合</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>两处需要向老潘明示的细节</strong><br>
+    ① 天赢居同一段文字中并用了 <b>3999</b>（一浪高点）与 <b>3994</b>（突破验证位）两个数字。实测 8/07–8/28 区间最高价 = <b>3994.18</b>（8/18），因此 <b>3994 是准确的，3999 偏高约 5 点</b>。后续跟踪以 3994 为准。<br>
+    ② 天赢居称「5、8、13、21 日均线重新集中在 3927」。实测四条均线分别为 <b>3918.55 / 3912.01 / 3928.45 / 3912.07</b>，中枢约 <b>3918</b>，跨度 16 点。即：仅 MA13（3928.45）贴近 3927，MA8 与 MA21 均在 3912。<b>说「集中在 3927」偏乐观</b>——3927 一旦失守，下方到 3912 还有 16 点缓冲，支撑带实际是 <b>3912–3928</b>，不是一个点。
+  </div>
+  <div class="posbox">
+    <strong>月线结构验证通过</strong>：天赢居称「6124—3731 长期三角形上边，2024 年 9 月突破」。实测 2024-08 收盘 2842.21 → 2024-09 收盘 3336.50，<span class="pos">单月 +17.39%</span>，与「2024 年 9 月突破」完全吻合；此后 2025-04-07 回踩确认，长期结构改变的表述成立。
+  </div>
+</div>
+
+<div class="card">
+  <h2>二、徐小明 × 天赢居：同一组坐标，相反的定性</h2>
+  <p>这是本次交叉验证<b>最有价值的部分</b>。两位老师看似在说不同的事，但实测后发现他们指认的是<b>同一组位置</b>——然而给出的操作含义完全相反。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">维度</th>
+          <th class="num">徐小明</th>
+          <th class="num">天赢居</th>
+          <th class="num">实测值</th>
+          <th class="center">坐标差</th>
+          <th class="txt">含义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">中长期分水岭</td>
+          <td class="num">60 日线 3958</td>
+          <td class="num">55 日线 3955</td>
+          <td class="num">3954.45 / 3958</td>
+          <td class="center">3.5 点</td>
+          <td class="txt"><b>同一道门</b>。徐说「现价在长期趋势之下」，天说「3955 能否站稳是第一关」</td>
+        </tr>
+        <tr>
+          <td class="name">上方验证位</td>
+          <td class="num">3990（钝化标准）</td>
+          <td class="num">3994（突破确认）</td>
+          <td class="num">3994.18</td>
+          <td class="center">4.2 点</td>
+          <td class="txt"><b>同一道坎，相反解读</b>。详见下方专述</td>
+        </tr>
+        <tr>
+          <td class="name">短期支撑</td>
+          <td class="num">20 日线 3916</td>
+          <td class="num">3927（5/8/13/21 集中区）</td>
+          <td class="num">3912–3928</td>
+          <td class="center">交集</td>
+          <td class="txt">徐的 3916 落在天的 3912–3928 带内，互为印证</td>
+        </tr>
+        <tr>
+          <td class="name">大格局定性</td>
+          <td class="num">3800–4200 宽幅震荡</td>
+          <td class="num">日线第三推动段</td>
+          <td class="num">—</td>
+          <td class="center"><span class="tag-red">分歧</span></td>
+          <td class="txt"><b>根本分歧所在</b>：震荡延续 vs 趋势启动</td>
+        </tr>
+        <tr>
+          <td class="name">短期态度</td>
+          <td class="num">波幅收敛，不宜期待过高</td>
+          <td class="num">临界点，等价格事实</td>
+          <td class="num">—</td>
+          <td class="center"><span class="tag-yellow">趋同</span></td>
+          <td class="txt">两人都要求「先看价格，再下结论」</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>关键冲突：3994 这个位置，两位老师给出相反的操作指令</strong><br>
+    · <b>徐小明（震荡框架）</b>：指数涨到 3990 会触发<b>分钟线顶部钝化</b> → 短线见顶信号 → 含义是<b>防范回落、不宜追高</b>。<br>
+    · <b>天赢居（推动浪框架）</b>：突破 3994 是<b>日线第三浪确认</b> → 趋势升级信号 → 含义是<b>可以顺势加仓</b>。<br>
+    <b>同一价位，一个说减、一个说加。</b>这不是谁算错了——两人的均线坐标都实测无误——而是对大前提的定性不同。
+  </div>
+  <div class="verdict-box">
+    <strong>巴蒂的裁决依据（三条硬标准，用数据而非立场）</strong><br>
+    ① <b>看量能</b>：突破 3994 时若成交额显著放大（对照近期 8500–10100 亿区间，需 ≥ 1.1 万亿），倾向天赢居的推动浪；若缩量突破（&lt; 9000 亿），倾向徐小明的震荡钝化，视为假突破。<br>
+    ② <b>看板块协同</b>：若有色 + 科技硬件<b>同步</b>走强，倾向天赢居；若仅权重护盘、题材轮动补涨（农业/林业/消费），倾向徐小明——天赢居自己也说这些板块「更多承担轮动和补涨」。<br>
+    ③ <b>看回踩</b>：天赢居给出的标准本身就是最好的裁决器——「4023 突破后是否还能回踩不破」。突破后 3 个交易日内不回补缺口，才算确认。
+  </div>
+</div>
+
+<div class="card">
+  <h2>三、对天赢居板块判断的修正（直接影响持仓）</h2>
+  <p>天赢居称「科技硬件和有色仍然保留较强的中期资金记忆……只要科技硬件、有色没有成片破位上升通道的下轨，就没有必要因为一两天轮动而轻易否定原有主线」。<b>这句话需要拆成两半看。</b></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">板块</th>
+          <th class="center">代码</th>
+          <th class="num">08-28 收盘</th>
+          <th class="num">20 日线</th>
+          <th class="num">偏离</th>
+          <th class="num">60 日线</th>
+          <th class="num">偏离</th>
+          <th class="center">中期状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">有色金属（申万）</td>
+          <td class="center">801050.SWI</td>
+          <td class="num">8743.68</td>
+          <td class="num">8468</td>
+          <td class="num pos">+3.26%</td>
+          <td class="num">8297</td>
+          <td class="num pos">+5.39%</td>
+          <td class="center"><span class="tag-red">双线之上</span></td>
+        </tr>
+        <tr>
+          <td class="name">CPO 概念</td>
+          <td class="center">861490.EI</td>
+          <td class="num">7333.41</td>
+          <td class="num">7304</td>
+          <td class="num pos">+0.40%</td>
+          <td class="num">7970</td>
+          <td class="num neg">-7.98%</td>
+          <td class="center"><span class="tag-yellow">短多中弱</span></td>
+        </tr>
+        <tr>
+          <td class="name">半导体（申万）</td>
+          <td class="center">801081.SWI</td>
+          <td class="num">9905.42</td>
+          <td class="num">9931</td>
+          <td class="num neg">-0.26%</td>
+          <td class="num">11010</td>
+          <td class="num neg">-10.03%</td>
+          <td class="center"><span class="tag-green">双线之下</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>修正结论</strong>：<b>有色成立，科技硬件不成立。</b><br>
+    · <b>有色</b>是三者中唯一<b>同时站上 20 日线与 60 日线</b>的板块，中期资金记忆完好，天赢居的判断完全成立。<br>
+    · <b>半导体</b>已跌破 20 日线，且低于 60 日线 <b>10.03%</b>——这不是「没有成片破位」，而是<b>已经破位、且中期趋势明显向下</b>，仅靠短期修复维持在 20 日线附近。<br>
+    · <b>CPO</b> 勉强站上 20 日线 0.40%，但 60 日线仍差 <b>7.98%</b>，属于「短期修复、中期未收复」。<br>
+    因此天赢居设定的第三个反证条件中，「科技硬件出现成片破位」<b>已接近临界而非尚未发生</b>——半导体板块当前就在 20 日线下方。
+  </div>
+</div>
+
+<div class="card">
+  <h2>四、独立发现：均线收敛交叉点 3945（两位老师都未明说）</h2>
+  <p>实测近 5 个交易日的均线移动方向，发现一个两位老师都点到但没算透的现象。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">均线</th>
+          <th class="num">08-24</th>
+          <th class="num">08-25</th>
+          <th class="num">08-26</th>
+          <th class="num">08-27</th>
+          <th class="num">08-28</th>
+          <th class="center">方向</th>
+          <th class="num">日均移动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">5 日 MA</td><td class="num">3915</td><td class="num">3895</td><td class="num">3899</td><td class="num">3909</td><td class="num">3919</td><td class="center"><span class="tag-red">上移</span></td><td class="num">+1.0</td></tr>
+        <tr><td class="name">10 日 MA</td><td class="num">3929</td><td class="num">3925</td><td class="num">3921</td><td class="num">3924</td><td class="num">3927</td><td class="center"><span class="tag-yellow">拐头</span></td><td class="num">-0.5</td></tr>
+        <tr><td class="name">20 日 MA</td><td class="num">3894</td><td class="num">3898</td><td class="num">3902</td><td class="num">3910</td><td class="num">3916</td><td class="center"><span class="tag-red">上移</span></td><td class="num">+5.5</td></tr>
+        <tr><td class="name">60 日 MA</td><td class="num">3967</td><td class="num">3964</td><td class="num">3962</td><td class="num">3960</td><td class="num">3958</td><td class="center"><span class="tag-green">下移</span></td><td class="num">-2.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>20 日线上移、60 日线下移——均线正在收敛。</strong><br>
+    · 两者差距从 8/24 的 <b>73 点</b>收窄至 8/28 的 <b>42 点</b>，收敛速度约 <b>7.8 点/交易日</b>。<br>
+    · 按此速度静态外推，20 日线与 60 日线将在<b>约 5–6 个交易日後</b>交叉，交叉点位约 <b>3945</b>。<br>
+    · <b>关键含义</b>：交叉点 3945 就在现价 3952 下方仅 <b>7 点</b>。若指数在交叉完成前守住 3945，形态上即为标准的「均线粘合後向上发散」，这对天赢居的推动浪框架是<b>加分项</b>；反之若跌破 3945 并在交叉後向下发散，则验证徐小明的震荡回落。<br>
+    <span class="small">注：此为线性静态外推，均线移动速度会随新数据替换而变化，仅作方向性参考，不构成精确预测。</span>
+  </div>
+  <div class="posbox">
+    <strong>这与两位老师的说法是同一个现象的三种表述</strong>：徐小明说「波幅越来越小」→ 布林带宽收窄；天赢居说「成本正在向上迁移」→ 短期均线上移；实测则是<b>短期均线上移 + 长期均线下移 = 收敛</b>。三人（含我）指向同一事实，只是切片角度不同。
+  </div>
+</div>
+
+<div class="card">
+  <h2>五、持仓含义：为什么大盘在分水岭下方，你的持仓还在赚钱</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="name">持仓</th>
+          <th class="center">权重</th>
+          <th class="txt">所属板块</th>
+          <th class="center">板块中期状态</th>
+          <th class="txt">含义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">三祥新材</td>
+          <td class="center">7.48%</td>
+          <td class="txt">锆材 / 新材料（有色属性）</td>
+          <td class="center"><span class="tag-red">双线之上</span></td>
+          <td class="txt"><b>板块顺风</b>，唯一享受贝塔加持的持仓，浮盈 +87% 与此高度相关</td>
+        </tr>
+        <tr>
+          <td class="name">罗博特科</td>
+          <td class="center">24.95%</td>
+          <td class="txt">半导体设备 + CPO</td>
+          <td class="center"><span class="tag-green">双线之下</span></td>
+          <td class="txt"><b>逆板块上涨</b>，纯个股 α 驱动</td>
+        </tr>
+        <tr>
+          <td class="name">澜起科技</td>
+          <td class="center">12.80%</td>
+          <td class="txt">半导体</td>
+          <td class="center"><span class="tag-green">双线之下</span></td>
+          <td class="txt">板块拖累，需靠 DDR5/CKD 自身逻辑支撑</td>
+        </tr>
+        <tr>
+          <td class="name">汇绿生态</td>
+          <td class="center">12.06%</td>
+          <td class="txt">光模块 / CPO</td>
+          <td class="center"><span class="tag-yellow">短多中弱</span></td>
+          <td class="txt">短期修复受益，中期受制于 60 日线</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>与昨日罗博 α 分析形成闭环</strong>：昨天实测罗博特科跑赢 CPO 概念 5.61 pct、跑赢半导体设备 6.54 pct。今天板块数据给出了原因——<b>半导体板块在 20 日、60 日双线之下</b>，也就是说<b>板块整体是拖后腿的</b>，罗博 +9.05% 完全靠中报（在手订单 33.86 亿）驱动。<br>
+    <b>这既是好消息也是风险</b>：好消息是持仓质量高、逻辑独立于板块；风险是<b>个股 α 无法长期脱离板块 β 独自运行</b>——若半导体板块持续在 20 日线下方且加速下行，罗博与澜起的 α 将面临越来越大的逆风。
+  </div>
+  <div class="negbox">
+    <strong>必须正视的结构性风险</strong>：组合中半导体 + CPO 相关持仓（罗博 24.95% + 澜起 12.80% + 汇绿 12.06% + 星环 11.91% + 软通 9.68%）合计约 <b>71.4%</b>，全部落在<b>中期趋势未修复</b>的板块中；而唯一板块顺风的仅三祥新材 <b>7.48%</b>。<b>组合在板块层面是逆风的，当前的盈利几乎全部来自选股 α。</b>
+  </div>
+</div>
+
+<div class="card">
+  <h2>六、操作锚点：三个反证条件的量化落地</h2>
+  <p>天赢居给了三条定性的反证条件。把它翻译成可执行的点位与阈值。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="center">层级</th>
+          <th class="name">位置</th>
+          <th class="num">点位</th>
+          <th class="txt">触发条件</th>
+          <th class="center">触发动作（非交易指令）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center">支撑带下沿</td>
+          <td class="name">日线 MA8 / MA21</td>
+          <td class="num">3912</td>
+          <td class="txt">天赢居「3927 失守且反抽不能收复」的<b>实际量化位</b>——3927 只是带的上沿，3912 才是底线</td>
+          <td class="center"><span class="tag-yellow">触发复查</span></td>
+        </tr>
+        <tr>
+          <td class="center">支撑带上沿</td>
+          <td class="name">日线 MA13</td>
+          <td class="num">3928</td>
+          <td class="txt">天赢居所指 3927 的真实对应均线，跌破为第一预警</td>
+          <td class="center"><span class="tag-yellow">预警</span></td>
+        </tr>
+        <tr>
+          <td class="center">收敛交叉点</td>
+          <td class="name">20 日 × 60 日 MA</td>
+          <td class="num">3945</td>
+          <td class="txt">巴蒂补充。跌破即均线向下发散，趋势判断转负</td>
+          <td class="center"><span class="tag-yellow">观察</span></td>
+        </tr>
+        <tr>
+          <td class="center">第一关</td>
+          <td class="name">日线 MA55 / 徐 60 日线</td>
+          <td class="num">3955</td>
+          <td class="txt"><b>两位老师共同的分水岭</b>。站稳 = 徐小明「长期趋势之上」+ 天赢居「第一阶段完成」</td>
+          <td class="center"><span class="tag-red">核心</span></td>
+        </tr>
+        <tr>
+          <td class="center">第二关</td>
+          <td class="name">8/18 最高价</td>
+          <td class="num">3994</td>
+          <td class="txt">突破 + 成交额 ≥ 1.1 万亿 = 天赢居推动浪；缩量突破 = 徐小明钝化，视为假突破</td>
+          <td class="center"><span class="tag-red">核心</span></td>
+        </tr>
+        <tr>
+          <td class="center">第三关</td>
+          <td class="name">日线 MA144</td>
+          <td class="num">4027</td>
+          <td class="txt">突破後 3 日内回踩不破 = 趋势升级；破位回落 = 假突破</td>
+          <td class="center"><span class="tag-red">核心</span></td>
+        </tr>
+        <tr>
+          <td class="center">板块反证</td>
+          <td class="name">半导体 20 日线</td>
+          <td class="num">9931</td>
+          <td class="txt"><b>已在下方</b>。观察是否加速下行，持续走弱则罗博/澜起 α 逆风加大</td>
+          <td class="center"><span class="tag-yellow">预警</span></td>
+        </tr>
+        <tr>
+          <td class="center">板块反证</td>
+          <td class="name">CPO 20 日线</td>
+          <td class="num">7304</td>
+          <td class="txt">跌破即科技硬件破位扩散至 CPO，汇绿/罗博承压</td>
+          <td class="center"><span class="tag-yellow">预警</span></td>
+        </tr>
+        <tr>
+          <td class="center">板块反证</td>
+          <td class="name">有色 20 日线</td>
+          <td class="num">8468</td>
+          <td class="txt">跌破则唯一完好的主线也失守，三祥新材需重新评估</td>
+          <td class="center"><span class="tag-yellow">触发复查</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>重要说明：本表是「观察触发器」，不是「交易指令」</strong><br>
+    初版曾将 3912、8468 直接标注为「减仓」，<b>这是框架错位，现予更正</b>。按老潘 2026-08-17 确立的执行铁律：<b>技术面只做节奏参考，不进决策主干，禁止「跌破某均线就减仓」的技术止损逻辑。</b><br>
+    因此本表所有点位的正确用法是：<b>触发基本面复查，而非触发买卖动作</b>。以 3912 为例——跌破後应当回答的问题是「持仓的基本面逻辑变了吗？（订单/业绩/供需）」；<b>逻辑没变就不动，逻辑变了才动</b>。技术坐标的作用是指明「什么时候该去看基本面」，不是替你做决定。
+  </div>
+</div>
+
+<div class="card">
+  <h2>七、综合结论</h2>
+  <div class="verdict-box">
+    <strong>大盘：<span class="tag-wait">WAIT</span></strong>——不预设立场，等 3955 与 3994 的价格事实。<br><br>
+    <strong>1. 两位老师的数据都经得起实测。</strong>天赢居 13 项坐标中 11 项偏差 ≤ 4 点，周线四条均线偏差均 ≤ 0.3 点，二浪低点零误差；徐小明上周给出的 3958 / 3990 / 3800–4200 三项坐标亦全部吻合。<b>这不是巧合，是两人都建立在真实数据上的证据。</b><br><br>
+    <strong>2. 分歧不在数据，在框架。</strong>两人指认同一组分水岭（3955）与验证位（3994），但对 3994 给出相反操作含义——徐视为顶部钝化要防回落，天视为突破确认可加仓。<b>裁决靠量能与板块协同，不靠立场。</b><br><br>
+    <strong>3. 「科技硬件保留中期资金记忆」需要打折。</strong>有色双线之上成立，半导体双线之下、CPO 中期差 8%，科技硬件的中期记忆<b>尚未恢复</b>。<br><br>
+    <strong>4. 持仓层面：不因大盘在分水岭下方而减仓。</strong>你组合的盈利来自选股 α 而非板块 β，这个性质不会因为指数在 3955 下方 2.3 点而改变。<b>但要紧盯 9931（半导体 20 日线）</b>——这是决定罗博与澜起 α 能否持续的关键变量，比指数的 3955 对你的组合更直接。
+  </div>
+  <div class="negbox">
+    <strong>反向观点（必须给出）</strong>：如果指数在 3945 均线交叉点下方完成交叉并向下发散，则意味着 7 月以来的调整尚未结束，天赢居的「第三推动段」将证伪，此时徐小明的「向下走 ABC」会占上风。<b>概率上我倾向震荡偏强，但 3945 是这条判断的生死线。</b>
+  </div>
+</div>
+
+<div class="card">
+  <h2>八、数据溯源</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">数据</th><th class="txt">来源</th><th class="center">置信度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">上证日线收盘价 × 262 根</td><td class="txt">妙想 mx-ds-mcp（东方财富）2026-08-30 实测</td><td class="center">★★★</td></tr>
+        <tr><td class="name">上证周线 × 64 根 / 月线 × 32 根</td><td class="txt">妙想 mx-ds-mcp 实测</td><td class="center">★★★</td></tr>
+        <tr><td class="name">斐波那契均线（5/8/13/21/34/55/89/144/233）</td><td class="txt">基于上述原始数据自行计算（妙想不支持该体系）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">常规均线（5/10/20/60）</td><td class="txt">妙想技术指标接口直接返回</td><td class="center">★★★</td></tr>
+        <tr><td class="name">3850.8628 / 3994.1812</td><td class="txt">妙想最低价、区间最高价接口（8/25、8/18）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">板块指数与均线</td><td class="txt">妙想实测（半导体 801081.SWI / CPO 861490.EI / 有色 801050.SWI）</td><td class="center">★★★</td></tr>
+        <tr><td class="name">均线收敛交叉点 3945</td><td class="txt">基于近 5 日移动速度的线性外推</td><td class="center">★★</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">说明：天赢居使用斐波那契均线体系，徐小明使用常规均线体系，两者坐标不可互换。本报告已将两套体系分别实测後再做对照。所有价位基于 2026-08-28 收盘数据，8 月月线尚未收官，月线均线含当前值。</p>
+</div>
+
+<div class="footer">
+  本报告由巴蒂生成 · 数据截至 2026-08-28 收盘 · 仅供研究参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>
