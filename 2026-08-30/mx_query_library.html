@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妙想 MCP 标准问句库</title>
+<style>
+:root{
+  --bg:#f3eee6;--card:#fffdf8;--text:#241f19;--muted:#5d564c;--soft:#efe6d9;--line:#e0d6c6;--accent:#b45309;
+  --pos:#e02424;--neg:#0fa968;--up:#e02424;--down:#0fa968;
+  --label-blue:#1a73e8;--label-yellow:#c77409;--label-red:#d93025;--label-green:#188038;
+  --shadow:0 1px 4px rgba(70,50,25,.12);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(180,83,9,.09);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#4d463c;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#4d463c;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#4d463c;background:rgba(180,83,9,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(180,83,9,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(26,115,232,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-yellow{color:#b45309;background:rgba(217,119,6,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-red{color:#b3261e;background:rgba(217,48,37,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-green{color:#137333;background:rgba(24,128,56,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-buy{color:#1a5fb4;background:rgba(26,115,232,.10);border:1px solid #cfe0fb;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#b45309;background:rgba(217,119,6,.10);border:1px solid #f0d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#b3261e;background:rgba(217,48,37,.08);border:1px solid #eebfbc;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#6b5a16;background:rgba(217,119,6,.06);border:1px solid #e5d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid #e4d9c8}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(180,83,9,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(217,48,37,.05);border-left:3px solid #d93025;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(24,128,56,.05);border-left:3px solid #188038;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>妙想 MCP 标准问句库</h1>
+  <p class="small">2026-08-30 生成 · 数据源：妙想 mx-ds-mcp（东方财富，自然语言查询）· 版式：Google Insight V1</p>
+  <div class="summary">
+    <p><strong>用途</strong>：为盘前简报、盘后复盘、个股分析、选股提供现成问句，直接复制到对话框即可取数，省去每次现想。</p>
+    <p><strong>取数顺序</strong>：妙想（A股主源）→ Pandadata（美股/宏观/期货交叉验证）→ WeStock（快照降级）→ WebSearch（兜底）。</p>
+    <p><strong>覆盖范围</strong>：8 只核心持仓 + 5 只观察池 + 4 只美股映射标的，共 9 大场景。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、标的清单</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="center">代码</th>
+          <th class="name">名称</th>
+          <th class="left">分组</th>
+          <th class="txt">映射 / 定位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="center">300757</td><td class="name">罗博特科</td><td class="left">核心持仓</td><td class="txt">CPO 设备一阶受益 · 映射 NVDA / MRVL</td></tr>
+        <tr><td class="center">688008</td><td class="name">澜起科技</td><td class="left">核心持仓</td><td class="txt">接口芯片 · 映射 MRVL</td></tr>
+        <tr><td class="center">002254</td><td class="name">泰和新材</td><td class="left">核心持仓</td><td class="txt">芳纶 / 化工 · S级核心（HOLD等拐点）</td></tr>
+        <tr><td class="center">001267</td><td class="name">汇绿生态</td><td class="left">核心持仓</td><td class="txt">光模块黑马 · 映射 COHR / LITE</td></tr>
+        <tr><td class="center">688031</td><td class="name">星环科技-U</td><td class="left">核心持仓</td><td class="txt">数据软件 · 负成本（高波动）</td></tr>
+        <tr><td class="center">301236</td><td class="name">软通动力</td><td class="left">核心持仓</td><td class="txt">IT服务 · 浮盈标杆</td></tr>
+        <tr><td class="center">002064</td><td class="name">华峰化学</td><td class="left">核心持仓</td><td class="txt">氨纶 / 化工对冲底仓</td></tr>
+        <tr><td class="center">603663</td><td class="name">三祥新材</td><td class="left">核心持仓</td><td class="txt">锆材 / 固态电池</td></tr>
+        <tr><td class="center">300003</td><td class="name">乐普医疗</td><td class="left">观察池</td><td class="txt">BD弹性 / PDRN / 小核酸管线</td></tr>
+        <tr><td class="center">688120</td><td class="name">华海清科</td><td class="left">观察池</td><td class="txt">半导体设备（CMP）· 新仓首选</td></tr>
+        <tr><td class="center">688409</td><td class="name">富创精密</td><td class="left">观察池</td><td class="txt">半导体零部件</td></tr>
+        <tr><td class="center">688037</td><td class="name">芯源微</td><td class="left">观察池</td><td class="txt">涂胶显影设备</td></tr>
+        <tr><td class="center">688361</td><td class="name">中科飞测</td><td class="left">观察池</td><td class="txt">半导体检测设备</td></tr>
+        <tr><td class="center">MRVL</td><td class="name">Marvell</td><td class="left">美股映射</td><td class="txt">澜起 → MRVL</td></tr>
+        <tr><td class="center">COHR</td><td class="name">Coherent</td><td class="left">美股映射</td><td class="txt">汇绿 → COHR</td></tr>
+        <tr><td class="center">LITE</td><td class="name">Lumentum</td><td class="left">美股映射</td><td class="txt">汇绿 → LITE</td></tr>
+        <tr><td class="center">NVDA</td><td class="name">英伟达</td><td class="left">美股映射</td><td class="txt">罗博 → NVDA</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">持仓口径：华峰化学（002064，氨纶），已确认。</p>
+</div>
+
+<div class="card">
+  <h2>二、行情快照（盘前简报 · 盘后复盘）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">持仓批量快照</td><td class="txt">罗博特科、澜起科技、泰和新材、汇绿生态、星环科技、软通动力、华峰化学、三祥新材 最近5个交易日涨跌幅、换手率、成交额</td></tr>
+        <tr><td class="name">单只追踪</td><td class="txt">汇绿生态 最近10个交易日收盘价、涨跌幅、成交量</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>三、技术面（55日线分水岭）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">关键均线</td><td class="txt">罗博特科、澜起科技、汇绿生态、泰和新材、三祥新材 的现价、55日均线、现价相对55日线的偏离幅度</td></tr>
+        <tr><td class="name">波段T指标</td><td class="txt">汇绿生态 的KDJ、MACD、成交量（39-45元区间波段T买卖点判断）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>四、资金面（主力 · 北向）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">主力资金</td><td class="txt">澜起科技、罗博特科、汇绿生态、三祥新材 今日主力资金净流入、近5日主力资金流向</td></tr>
+        <tr><td class="name">北向/机构</td><td class="txt">星环科技、软通动力 的北向资金持股变化、龙虎榜</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>五、基本面（财务 · 估值 · 量化）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">财务快照</td><td class="txt">澜起科技、汇绿生态、罗博特科 最新报告期营收、归母净利润、毛利率、同比增速</td></tr>
+        <tr><td class="name">估值一致预期</td><td class="txt">罗博特科、澜起科技 的市盈率PE、市净率PB、机构一致预期净利润</td></tr>
+        <tr><td class="name">量化风险</td><td class="txt">星环科技-U、软通动力 的alpha、beta、夏普比率</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>六、事件公告（传闻 vs 实锤）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">定期报告/问询</td><td class="txt">汇绿生态 最新公告（定期报告、重大事项、问询函）</td></tr>
+        <tr><td class="name">并购/股权</td><td class="txt">罗博特科 近期并购重组、股权激励、减持相关公告</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>七、研报评级（券商观点 · 目标价）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">持仓研报</td><td class="txt">澜起科技、罗博特科 最新券商研报评级、目标价、盈利预测</td></tr>
+        <tr><td class="name">观察池研报</td><td class="txt">华海清科、富创精密、芯源微、中科飞测 最新研报观点与投资逻辑</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>八、美股映射（隔夜信号）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">映射行情</td><td class="txt">Marvell(MRVL)、Coherent(COHR)、Lumentum(LITE)、英伟达(NVDA) 最近5个交易日涨跌幅</td></tr>
+        <tr><td class="name">英伟达基本面</td><td class="txt">英伟达 最新财报营收、净利润、下季度业绩指引</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>九、选股器（下半年新仓）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">国产替代</td><td class="txt">半导体设备国产替代方向、市盈率低于50倍、市值大于50亿 的A股</td></tr>
+        <tr><td class="name">条件筛选</td><td class="txt">创业板 市盈率最低的50只股票</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>十、宏观商品（化工上游量价）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">用途</th><th class="txt">妙想问句（复制即用）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">氨纶/芳纶</td><td class="txt">PTA、氨纶、芳纶 最新价格及同比变化（华峰化学、泰和新材上游）</td></tr>
+        <tr><td class="name">锆材</td><td class="txt">锆英砂、氧化锆 最新价格（三祥新材上游）</td></tr>
+        <tr><td class="name">半导体材料</td><td class="txt">多晶硅、硅片、碳酸锂 最新价格与同比</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：妙想 mx-ds-mcp（东方财富）· 仅供参考，不构成投资建议 · 风险自担
+</div>
+
+</div>
+</body>
+</html>

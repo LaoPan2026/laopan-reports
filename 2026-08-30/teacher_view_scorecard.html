@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术派老师观点记分卡</title>
+<style>
+:root{
+  --bg:#f3eee6;--card:#fffdf8;--text:#241f19;--muted:#5d564c;--soft:#efe6d9;--line:#e0d6c6;--accent:#b45309;
+  --pos:#e02424;--neg:#0fa968;--up:#e02424;--down:#0fa968;
+  --label-blue:#1a73e8;--label-yellow:#c77409;--label-red:#d93025;--label-green:#188038;
+  --shadow:0 1px 4px rgba(70,50,25,.12);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(180,83,9,.09);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#4d463c;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#4d463c;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+th{font-weight:700;color:#4d463c;background:rgba(180,83,9,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:rgba(180,83,9,.04)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.left,td.left{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(26,115,232,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-yellow{color:#b45309;background:rgba(217,119,6,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-red{color:#b3261e;background:rgba(217,48,37,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-green{color:#137333;background:rgba(24,128,56,.10);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.tag-buy{color:#1a5fb4;background:rgba(26,115,232,.10);border:1px solid #cfe0fb;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#b45309;background:rgba(217,119,6,.10);border:1px solid #f0d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#b3261e;background:rgba(217,48,37,.08);border:1px solid #eebfbc;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#6b5a16;background:rgba(217,119,6,.06);border:1px solid #e5d9a8;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid #e4d9c8}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12.5px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(180,83,9,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(217,48,37,.05);border-left:3px solid #d93025;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(24,128,56,.05);border-left:3px solid #188038;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>技术派老师观点记分卡</h1>
+  <p class="small">建立于 2026-08-30 · 已录入 3 条（含巴蒂自出 1 条）· 目标：跑满 30 条后输出胜率统计与环境归因</p>
+  <div class="summary">
+    <p><strong>为什么需要这张表</strong>：徐小明与天赢居的坐标实测都极准（周线偏差 ≤0.3 点、二浪低点 3850.86 零误差），这种「准」很容易让人产生错觉——<b>「他们说得准，所以听他们的没错」</b>。</p>
+    <p><strong>但「坐标算得准」和「判断能赚钱」是两回事。</strong>均线点位算得准，是因为均线就是客观数据，任何人拉数据都能算准——这是<b>算术</b>，不是<b>预测力</b>。真正难的是「到了 3994 之后会怎样」，而这个两位老师都没给概率，也没给历史胜率。</p>
+    <p><strong>所以本表区分两个得分</strong>：① <b>精度分</b>=描述现状是否准确；② <b>命中分</b>=预测未来是否兑现。<b>只有命中分能进体系。</b></p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>一、已录入记录</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="center">编号</th>
+          <th class="name">来源</th>
+          <th class="txt">核心观点</th>
+          <th class="txt">关键坐标</th>
+          <th class="txt">待验证命题</th>
+          <th class="center">窗口</th>
+          <th class="center">精度分</th>
+          <th class="center">命中分</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center">001</td>
+          <td class="name">徐小明<br><span class="small">2026-08-30 收录</span></td>
+          <td class="txt">六大指数分化；上证短期趋势之上、长期趋势之下；3800–4200 宽幅震荡；波幅收敛，本周难有大涨跌、不宜期待过高</td>
+          <td class="txt">60 日线 <b>3958</b>（现价在其下 5.8 点）<br>钝化标准 <b>3990</b><br>区间 <b>3800 / 4200</b></td>
+          <td class="txt">① 触及 3990 是否形成分钟线顶部钝化并回落<br>② 3800–4200 区间是否维持<br>③ 波动是否继续收敛<br>④「本周难有大涨跌」是否成立</td>
+          <td class="center">1–2 周</td>
+          <td class="center"><span class="tag-red">高</span><br><span class="small">3958 零偏差<br>3990 vs 实际高点 3994.18（-4.2）</span></td>
+          <td class="center"><span class="tag-yellow">待验证</span></td>
+        </tr>
+        <tr>
+          <td class="center">002</td>
+          <td class="name">天赢居<br><span class="small">2026-08-30 收录</span></td>
+          <td class="txt">长期上升框架仍在，日线第三推动段验证期；4023 附近多周期成本重叠；3927→3955→4023 三阶段决定趋势是否升级；科技硬件 + 有色保留中期资金记忆</td>
+          <td class="txt">支撑带 <b>3912–3928</b><br>第一关 <b>3955</b><br>验证位 <b>3994</b><br>升级位 <b>4027</b></td>
+          <td class="txt">① 3955 能否站稳<br>② 3994 能否突破（配量能 ≥1.1 万亿）<br>③ 4027 突破後回踩是否不破<br>④ 科技硬件是否成片破位</td>
+          <td class="center">2–4 周</td>
+          <td class="center"><span class="tag-red">高</span><br><span class="small">周线四条均线偏差均 ≤0.3 点<br>3850.86 零误差<br>但板块判断<b>部分不成立</b></span></td>
+          <td class="center"><span class="tag-yellow">待验证</span></td>
+        </tr>
+        <tr>
+          <td class="center">003</td>
+          <td class="name">巴蒂（自出）<br><span class="small">2026-08-30 收录</span></td>
+          <td class="txt">20 日线上移 +60 日线下移 = 均线收敛，约 5.4 个交易日后交叉于 <b>3945</b>；守住则向上发散（利多天赢居），跌破後向下发散（利多徐小明）</td>
+          <td class="txt">交叉点 <b>3945</b><br>收敛速度 7.75 点/日<br>现价 3952 距交叉点 7 点</td>
+          <td class="txt">① 是否如期在 3945 附近交叉<br>② 交叉後向上还是向下发散<br>③ 与两位老师的判断谁更准</td>
+          <td class="center">5–6 个交易日<br><span class="small">约 09-07</span></td>
+          <td class="center"><span class="tag-blue">自出</span><br><span class="small">线性静态外推<br>置信度 ★★</span></td>
+          <td class="center"><span class="tag-yellow">待验证</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>为什么要把自己的判断也记进去</strong>：如果只记老师的、不记自己的，就无法回答「我的裁决能力是否优于直接听老师的」这个最该回答的问题。<b>003 号记录是巴蒂的独立判断，同样要接受事后检验</b>——若我的裁决胜率低于老师，那我这个「裁判」角色就该被简化。
+  </div>
+</div>
+
+<div class="card">
+  <h2>二、空白模板（后续录入）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="center">编号</th>
+          <th class="name">来源</th>
+          <th class="txt">核心观点</th>
+          <th class="txt">关键坐标</th>
+          <th class="txt">待验证命题</th>
+          <th class="center">窗口</th>
+          <th class="center">精度分</th>
+          <th class="center">命中分</th>
+          <th class="txt">市场环境</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="center">004</td><td class="name"></td><td class="txt"></td><td class="txt"></td><td class="txt"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="txt"></td></tr>
+        <tr><td class="center">005</td><td class="name"></td><td class="txt"></td><td class="txt"></td><td class="txt"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="txt"></td></tr>
+        <tr><td class="center">006</td><td class="name"></td><td class="txt"></td><td class="txt"></td><td class="txt"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="txt"></td></tr>
+        <tr><td class="center">007</td><td class="name"></td><td class="txt"></td><td class="txt"></td><td class="txt"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="txt"></td></tr>
+        <tr><td class="center">008</td><td class="name"></td><td class="txt"></td><td class="txt"></td><td class="txt"></td><td class="center"></td><td class="center"></td><td class="center"></td><td class="txt"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">「市场环境」栏必填，用于后续归因分析。建议取值：趋势上涨 / 趋势下跌 / 宽幅震荡 / 收敛末端 / 放量突破 / 缩量反弹 / 恐慌下跌。这是记分卡后期价值最大的一栏。</p>
+</div>
+
+<div class="card">
+  <h2>三、统计区（累计後填写）</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val">3</div><div class="metric-label">已录入</div></div>
+    <div class="metric-item"><div class="metric-val">0 / 30</div><div class="metric-label">达统计门槛进度</div></div>
+    <div class="metric-item"><div class="metric-val">—</div><div class="metric-label">徐小明命中率</div></div>
+    <div class="metric-item"><div class="metric-val">—</div><div class="metric-label">天赢居命中率</div></div>
+    <div class="metric-item"><div class="metric-val">—</div><div class="metric-label">巴蒂裁决胜率</div></div>
+  </div>
+  <div class="verdict-box">
+    <strong>跑满 30 条后必须回答的四个问题</strong><br>
+    ① 徐小明在什么市场环境准、什么环境不准？（预期：震荡市强于趋势市）<br>
+    ② 天赢居的「第三推动段」历史兑现率是多少？「成本迁移完整度」三段法的完成率如何？<br>
+    ③ 两人冲突时（如 3990 顶部钝化 vs 3994 突破确认），历史上谁对得多？<br>
+    ④ <b>巴蒂的裁决胜率是否高于直接采纳任一老师？</b>——若否，则应简化裁决环节，直接采用胜率更高者的框架。
+  </div>
+  <div class="posbox">
+    <strong>评等标准（事先约定，避免事后找补）</strong><br>
+    · <b>精度分</b>：高 = 关键坐标偏差 ≤5 点；中 = 5–15 点；低 = &gt;15 点或有明显事实错误<br>
+    · <b>命中分</b>：命中 = 待验证命题在窗口期内全部兑现；部分 = 主要命题兑现；未命中 = 主要命题被证伪；待验证 = 窗口未到<br>
+    · <b>判定窗口</b>：以记录时填写的窗口为准，<b>窗口一到立即判定，不得延后</b>（延后判定等于给自己找台阶）
+  </div>
+</div>
+
+<div class="card">
+  <h2>四、三条护栏：防止「技术分析支撑体系」跑偏</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">护栏</th><th class="txt">内容</th><th class="txt">违反後果</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">一、技术面不进决策主干</td>
+          <td class="txt">按 2026-08-17 执行铁律：技术面（均线/MACD/KDJ/胜算评分）<b>只做节奏参考，禁止「跌破某均线就减仓」的技术止损逻辑</b>。技术坐标的用途是<b>触发基本面复查</b>，不是触发买卖。</td>
+          <td class="txt">把节奏信号当决策信号 → 会被震荡市的正常波动反复扫地出门，且违背「逻辑没变就不动」的核心纪律</td>
+        </tr>
+        <tr>
+          <td class="name">二、精度分不等于命中分</td>
+          <td class="txt">坐标算得准只是算术能力，不代表预测力。<b>只有命中分能进体系</b>，且需跑满 30 条才具统计意义。</td>
+          <td class="txt">被「他说得好准」的错觉带着走，把验证做了 10 次却依然没有任何可统计的结论</td>
+        </tr>
+        <tr>
+          <td class="name">三、体系主干仍是基本面</td>
+          <td class="txt">买不买 = 确定性层级 + 估值锚；拿多久 = 财报/订单/产能验证点；什么时候加 = 技术面提供节奏；<b>什么时候卖 = 逻辑破坏或估值兑现，不是均线破位</b>。</td>
+          <td class="txt">稀释老潘最核心的能力——软通动力 +418%、长鑫 +439.8%、三祥新材 +87% 均来自景气判断 + 基本面验证 + 兑现纪律，<b>没有一笔是靠数浪和均线赚的</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>技术分析的真实价值定位</strong>：提高<b>执行效率</b>（什么时候看、什么时候等、什么时候重点复查），而不是提供<b>买卖理由</b>。放在节奏层是加分，放到决策层是减分。
+  </div>
+</div>
+
+<div class="card">
+  <h2>五、维护规则</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="name">动作</th><th class="txt">触发时机</th><th class="txt">要求</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">录入</td><td class="txt">每次收到老师观点并完成实测后</td><td class="txt">必填「待验证命题」与「验证窗口」，且命题必须<b>可证伪</b>（不能是「可能震荡」这类怎么说都对的表述）</td></tr>
+        <tr><td class="name">判定</td><td class="txt">验证窗口到期的当日或次日</td><td class="txt">窗口一到立即判定，<b>不得延后</b>。同时记录当时的市场环境</td></tr>
+        <tr><td class="name">复盘</td><td class="txt">累计满 10 条 / 满 30 条时</td><td class="txt">输出分环境胜率表，回答第三节的四个问题</td></tr>
+        <tr><td class="name">归档</td><td class="txt">每季度</td><td class="txt">把结论固化进 <code>~/.workbuddy/MEMORY.md</code>，作为后续采用哪位老师框架的默认依据</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">本表与《妙想 MCP 标准问句库》配合使用：问句库解决「怎么取数」，记分卡解决「取来的数怎么变成可统计的经验」。</p>
+</div>
+
+<div class="footer">
+  技术派老师观点记分卡 · 建立于 2026-08-30 · 仅供研究参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>
