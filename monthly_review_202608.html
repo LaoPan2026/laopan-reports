@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8月持仓月度复盘_20260831</title>
+<style>
+:root{
+  --bg:#0a1428;--card:#12233a;--text:#d6e0ef;--muted:#7e8ea3;--soft:#1a2c44;--line:#253a55;--accent:#4d9fff;
+  --pos:#f23645;--neg:#089981;--up:#f23645;--down:#089981;
+  --label-blue:#4d9fff;--label-yellow:#e8a020;--label-red:#f23645;--label-green:#089981;
+  --shadow:0 1px 4px rgba(0,0,0,.4);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(77,159,255,.08);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#b2b5be;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#b2b5be;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#b2b5be;background:rgba(77,159,255,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(77,159,255,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-yellow{color:var(--label-yellow);background:rgba(232,160,32,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-red{color:var(--label-red);background:rgba(242,54,69,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-green{color:var(--label-green);background:rgba(8,153,129,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-buy{color:#5aa7ff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#4d9fff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#f23645;background:rgba(242,54,69,.12);border:1px solid rgba(242,54,69,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#d4a017;background:rgba(232,160,32,.08);border:1px solid rgba(212,160,23,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line)}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+
+/* ==== 8列总览表 ==== */
+table.f8{table-layout:fixed}
+table.f8 th:nth-child(1),table.f8 td:nth-child(1){width:15%;text-align:left}
+table.f8 th:nth-child(2),table.f8 td:nth-child(2){width:12%;text-align:right}
+table.f8 th:nth-child(3),table.f8 td:nth-child(3){width:11%;text-align:right}
+table.f8 th:nth-child(4),table.f8 td:nth-child(4){width:11%;text-align:right}
+table.f8 th:nth-child(5),table.f8 td:nth-child(5){width:11%;text-align:right}
+table.f8 th:nth-child(6),table.f8 td:nth-child(6){width:10%;text-align:right}
+table.f8 th:nth-child(7),table.f8 td:nth-child(7){width:12%;text-align:right}
+table.f8 th:nth-child(8),table.f8 td:nth-child(8){width:18%;text-align:center}
+
+/* ==== 4列基准表 ==== */
+table.f4x{table-layout:fixed}
+table.f4x th:nth-child(1),table.f4x td:nth-child(1){width:28%;text-align:left}
+table.f4x th:nth-child(2),table.f4x td:nth-child(2){width:24%;text-align:right}
+table.f4x th:nth-child(3),table.f4x td:nth-child(3){width:24%;text-align:right}
+table.f4x th:nth-child(4),table.f4x td:nth-child(4){width:24%;text-align:right}
+
+/* ==== 3列：英伟达财报 ==== */
+table.f3a{table-layout:fixed}
+table.f3a th:nth-child(1),table.f3a td:nth-child(1){width:20%;text-align:left}
+table.f3a th:nth-child(2),table.f3a td:nth-child(2){width:42%;text-align:left}
+table.f3a th:nth-child(3),table.f3a td:nth-child(3){width:38%;text-align:left}
+
+/* ==== 3列：调仓回顾 ==== */
+table.f3b{table-layout:fixed}
+table.f3b th:nth-child(1),table.f3b td:nth-child(1){width:18%;text-align:left}
+table.f3b th:nth-child(2),table.f3b td:nth-child(2){width:26%;text-align:left}
+table.f3b th:nth-child(3),table.f3b td:nth-child(3){width:56%;text-align:left}
+
+/* ==== 3列：验证点台账 ==== */
+table.f3c{table-layout:fixed}
+table.f3c th:nth-child(1),table.f3c td:nth-child(1){width:28%;text-align:left}
+table.f3c th:nth-child(2),table.f3c td:nth-child(2){width:12%;text-align:center}
+table.f3c th:nth-child(3),table.f3c td:nth-child(3){width:60%;text-align:left}
+
+/* ==== 3列：9月操作预案 ==== */
+table.f3d{table-layout:fixed}
+table.f3d th:nth-child(1),table.f3d td:nth-child(1){width:18%;text-align:left}
+table.f3d th:nth-child(2),table.f3d td:nth-child(2){width:30%;text-align:left}
+table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
+
+/* ==== 3列：方法论检讨 ==== */
+table.f3e{table-layout:fixed}
+table.f3e th:nth-child(1),table.f3e td:nth-child(1){width:16%;text-align:left}
+table.f3e th:nth-child(2),table.f3e td:nth-child(2){width:44%;text-align:left}
+table.f3e th:nth-child(3),table.f3e td:nth-child(3){width:40%;text-align:left}
+
+/* ==== 2列叙述 ==== */
+table.f2{table-layout:fixed}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:22%;text-align:left}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>8月持仓月度复盘</h1>
+  <p class="small">2026-08-31 盘后 · 深色版 · 数据时点：8/31 收盘</p>
+  <div class="summary">
+    <p><strong>一句话结论：</strong>8月是持仓丰收月——持仓组合加权涨约 <strong>+21.6%</strong>，显著跑赢上证 <strong>+4.02%</strong> 与万得全A <strong>+5.38%</strong>，8只中7只跑赢基准。</p>
+    <p><strong>胜负手：</strong>罗博特科（+37.1%）、汇绿生态（+31.7%）、三祥新材（+30.0%）、星环科技（+23.9%）四只共振，贡献绝大部分超额；拖累项是软通动力（-1.4%）与澜起科技（+0.02%，近乎原地）。</p>
+    <p><strong>核心矛盾：</strong>大涨与「收复55日线」不同步——仅罗博、华峰、星环3只站上55日线，汇绿、三祥、澜起、泰和、软通5只仍在下方，8月涨幅多属超跌反弹而非趋势反转。</p>
+    <p><strong>月度动作：</strong>下半月汇绿加仓3600股、三祥加仓1000股、罗博高位减100股，均为主动调仓，方向正确。</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>① 组合总览</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val pos">+21.6%</div><div class="metric-label">持仓8月加权涨跌</div></div>
+    <div class="metric-item"><div class="metric-val pos">+4.02%</div><div class="metric-label">上证指数</div></div>
+    <div class="metric-item"><div class="metric-val pos">+5.38%</div><div class="metric-label">万得全A</div></div>
+    <div class="metric-item"><div class="metric-val">¥223.4万</div><div class="metric-label">持仓总市值</div></div>
+    <div class="metric-item"><div class="metric-val pos">+58.4万</div><div class="metric-label">账面浮盈</div></div>
+  </div>
+  <div class="table-wrap">
+    <table class="f8">
+      <thead>
+        <tr>
+          <th>名称/代码</th>
+          <th>月涨跌</th>
+          <th>现价</th>
+          <th>55日线</th>
+          <th>偏离</th>
+          <th>市值(万)</th>
+          <th>浮盈率</th>
+          <th>评级</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>罗博特科</strong><br><span class="small">300757</span></td>
+          <td class="pos">+37.10%</td>
+          <td>569.75</td>
+          <td>508.34</td>
+          <td class="pos">+12.08%</td>
+          <td>51.28</td>
+          <td class="pos">+11.74%</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>汇绿生态</strong><br><span class="small">001267</span></td>
+          <td class="pos">+31.72%</td>
+          <td>39.28</td>
+          <td>41.84</td>
+          <td class="neg">-6.12%</td>
+          <td>37.32</td>
+          <td class="neg">-14.03%</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>三祥新材</strong><br><span class="small">603663</span></td>
+          <td class="pos">+30.03%</td>
+          <td>43.82</td>
+          <td>48.66</td>
+          <td class="neg">-9.95%</td>
+          <td>21.12</td>
+          <td class="pos">+74.32%</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>星环科技</strong><br><span class="small">688031</span></td>
+          <td class="pos">+23.87%</td>
+          <td>112.00</td>
+          <td>105.43</td>
+          <td class="pos">+6.23%</td>
+          <td>24.17</td>
+          <td class="pos">负成本</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>泰和新材</strong><br><span class="small">002254</span></td>
+          <td class="pos">+15.18%</td>
+          <td>13.13</td>
+          <td>13.86</td>
+          <td class="neg">-5.27%</td>
+          <td>26.26</td>
+          <td class="neg">-1.65%</td>
+          <td><span class="tag-wait">WAIT</span></td>
+        </tr>
+        <tr>
+          <td><strong>华峰化学</strong><br><span class="small">002064</span></td>
+          <td class="pos">+8.20%</td>
+          <td>11.88</td>
+          <td>10.86</td>
+          <td class="pos">+9.36%</td>
+          <td>19.01</td>
+          <td class="neg">-4.55%</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>澜起科技</strong><br><span class="small">688008</span></td>
+          <td class="pos">+0.02%</td>
+          <td>204.95</td>
+          <td>232.39</td>
+          <td class="neg">-11.81%</td>
+          <td>25.39</td>
+          <td class="neg">-3.17%</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>软通动力</strong><br><span class="small">301236</span></td>
+          <td class="neg">-1.43%</td>
+          <td>37.78</td>
+          <td>38.96</td>
+          <td class="neg">-3.04%</td>
+          <td>18.89</td>
+          <td class="pos">+413.07%</td>
+          <td><span class="tag-hold">HOLD</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：①「偏离」为现价相对55日线偏离率，正=站上（红）、负=跌破（绿）；②星环科技为负成本，浮盈率无意义，标「负成本」；③组合加权涨跌为期末市值权重近似，含月中调仓扰动，非精确净值；④现价=8/31收盘价。</p>
+</div>
+
+<div class="card">
+  <h2>② 市场环境（月线级四件套）</h2>
+  <h3>大盘与板块</h3>
+  <div class="table-wrap">
+    <table class="f4x">
+      <thead>
+        <tr>
+          <th>基准/板块</th>
+          <th>7/31收</th>
+          <th>8/31收</th>
+          <th>8月涨跌</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>上证指数</td><td>3832.26</td><td>3986.30</td><td class="pos">+4.02%</td></tr>
+        <tr><td>万得全A</td><td>6209.50</td><td>6543.42</td><td class="pos">+5.38%</td></tr>
+        <tr><td>半导体指数</td><td>7093.90</td><td>7761.76</td><td class="pos">+9.42%</td></tr>
+        <tr><td>基础化工指数</td><td>7290.46</td><td>7982.07</td><td class="pos">+9.49%</td></tr>
+        <tr><td>中际旭创(光模块)</td><td>902.01</td><td>851.90</td><td class="neg">-5.56%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>关键结构判断：</strong>① 8月全市场普涨，但「AI硬件光模块」与「半导体设备材料」分化——中际旭创逆势跌5.56%，半导体指数+9.42%，资金从光模块龙头切向半导体国产替代；② 化工+9.49%与半导体几乎同步，周期+成长双线并进；③ 上证8/31收3986.30，逼近8/18高点3994，<strong>月线顶背离+水下死叉信号尚未解除</strong>（8/30已标记），3986上方为密集套牢区。
+  </div>
+  <h3>资金量能（8月上下旬成交额对比）</h3>
+  <div class="table-wrap">
+    <table class="f4x">
+      <thead><tr><th>标的</th><th>上旬日均(亿)</th><th>下旬日均(亿)</th><th>量能变化</th></tr></thead>
+      <tbody>
+        <tr><td>罗博特科</td><td>37.61</td><td>35.09</td><td class="neg">-6.7%</td></tr>
+        <tr><td>汇绿生态</td><td>20.15</td><td>14.01</td><td class="neg">-30.5%</td></tr>
+        <tr><td>三祥新材</td><td>10.57</td><td>12.77</td><td class="pos">+20.8%</td></tr>
+        <tr><td>星环科技</td><td>9.96</td><td>5.96</td><td class="neg">-40.1%</td></tr>
+        <tr><td>泰和新材</td><td>2.70</td><td>2.15</td><td class="neg">-20.4%</td></tr>
+        <tr><td>华峰化学</td><td>5.76</td><td>5.11</td><td class="neg">-11.3%</td></tr>
+        <tr><td>澜起科技</td><td>95.59</td><td>81.87</td><td class="neg">-14.4%</td></tr>
+        <tr><td>软通动力</td><td>13.54</td><td>7.71</td><td class="neg">-43.1%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>资金判断：</strong>① 三祥新材是8只中唯一放量上涨的（量能+20.8%），资金真实流入，与9/30铪投产预期契合，也印证了8月下半月的加仓方向；② 软通动力量能-43.1%且逆势下跌，资金流出最明显，是8月最弱信号；③ 澜起成交额95.59亿为组合最大（流动性最好），但缩量-14.4%且几乎不涨，资金观望离场；④ 整体8月下旬普遍缩量，说明8月大涨主要靠上旬放量推升，下旬进入缩量兑现/整理阶段——与「超跌反弹成分偏重」的判断一致。
+  </div>
+  <h3>关键事件：英伟达 8/26 财报（FY27Q2）</h3>
+  <div class="table-wrap">
+    <table class="f3a">
+      <thead><tr><th>指标</th><th>数值</th><th>映射持仓</th></tr></thead>
+      <tbody>
+        <tr><td>营收</td><td>962.21亿美元，同比+106%</td><td>算力总需求，全链条利好</td></tr>
+        <tr><td>数据中心收入</td><td>890.23亿，同比+117%，占92.5%</td><td>澜起(MRCD/MDB)→MRVL</td></tr>
+        <tr><td>下季指引</td><td>1080亿(±2%)，毛利率74%</td><td>超预期，供应仍是瓶颈</td></tr>
+        <tr><td>Vera Rubin</td><td>已全面量产</td><td>罗博(CPO设备)→NVDA</td></tr>
+        <tr><td>Spectrum-6交换机</td><td>支持CPO，抵达全球AI工厂</td><td>汇绿(CPO光引擎)→COHR/LITE</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>映射落地判断：</strong>英伟达业绩「全面超预期+首次提前一年给70%增长指引」，盘后涨7%，是AI硬件链强心针。但<strong>利好未在A股光模块端兑现</strong>——中际旭创8月反跌5.56%，说明光模块前期涨幅已透支、资金在等更硬的订单；相比之下，CPO设备（罗博）与国产半导体（澜起所在环节）是更确定的受益方向。汇绿走「Coherent/Lumentum代工」独立逻辑，与光模块板块beta脱钩，这正是它8月逆板块大涨31.7%的原因。
+  </div>
+</div>
+
+<div class="card">
+  <h2>③ 持仓逐只复盘（8只全量）</h2>
+
+  <h3>罗博特科（300757）｜月涨 +37.10%｜站上55日线 +12.08%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>CPO设备一阶受益者（ficonTEC），台积电扩产CPO测试产能、英伟达Spectrum-6 CPO交换机落地直接催化订单兑现；8月减100股高位兑现，剩余900股成本509.89。</td></tr>
+        <tr><td>硬性约束</td><td>月涨37%后偏离55日线+12%，短期涨幅过大；2025全年营收仅9.5亿、归母净利-6644万，估值完全靠CPO预期支撑，追高风险大。</td></tr>
+        <tr><td>操作锚点</td><td>55日线508元为中期分水岭：站稳则持有，回踩508附近缩量可补；跌破508且放量则降仓，不追高。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>汇绿生态（001267）｜月涨 +31.72%｜跌破55日线 -6.12%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>光模块V型毛利率回升，核心客户Coherent(51.91%)/Lumentum/谷歌代工逻辑成立；8月下半月加仓3600股、成本摊至45.69，走独立行情。</td></tr>
+        <tr><td>硬性约束</td><td>净利率仅2.6%，远低于中际旭创等龙头；现价39.28仍套-14%；55日线41.84、前高42.97双重压制；Q3现金流验证已延后。</td></tr>
+        <tr><td>操作锚点</td><td>41.84(55日线)为第一压力，放量突破看42.97前高；止盈起点逻辑不变(市值608亿/约77元)。跌破38.50(MA10)减波段仓。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>三祥新材（603663）｜月涨 +30.03%｜跌破55日线 -9.95%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>锆材料/固态电池，铪项目9/30投产是确定性催化；中报净利+71.48%；8月下半月加仓1000股(成本抬至25.14)。</td></tr>
+        <tr><td>硬性约束</td><td>5-6月暴涨后7月暴跌，筹码结构待修复；55日线48.66远在头上(-9.95%)，本轮30%涨幅仍属超跌反弹。</td></tr>
+        <tr><td>操作锚点</td><td>48.66(55日线)为中期压力，突破才确认趋势反转；9/30铪投产前持有为主，40元(MA10)跌破则止盈部分。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>星环科技（688031）｜月涨 +23.87%｜站上55日线 +6.23%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>AI数据要素，负成本(-59.88)持仓安全垫极厚，账面浮盈37万；8月+23.87%重新站上55日线。</td></tr>
+        <tr><td>硬性约束</td><td>负成本标的账面浮盈不能反映真实现金收益；月高120.84回落后现价112.00，短期有获利盘。</td></tr>
+        <tr><td>操作锚点</td><td>成本已为负，长线持有为主；105.43(55日线)守住不动，120附近冲高可做波段兑现。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>泰和新材（002254）｜月涨 +15.18%｜跌破55日线 -5.27%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>芳纶，8月+15.18%回血，现价13.13接近成本13.35，浮亏收窄至-1.65%。</td></tr>
+        <tr><td>硬性约束</td><td>S级核心已降级B+，目标市值455.7亿需利润10亿+，PE失真、PB锚定，业绩拐点尚未确认；55日线13.86压制。</td></tr>
+        <tr><td>操作锚点</td><td>WAIT——不加不减，等拐点验证；13.86(55日线)突破前不动作，13.0下方企稳可小仓试探。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>华峰化学（002064）｜月涨 +8.20%｜站上55日线 +9.36%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>氨纶周期对冲底仓，8月+8.20%，是8只中少数站上55日线(+9.36%)的票，趋势健康。</td></tr>
+        <tr><td>硬性约束</td><td>仍套-4.55%(成本12.45)；氨纶价格弹性有限，作为底仓不指望大收益。</td></tr>
+        <tr><td>操作锚点</td><td>HOLD底仓持有；10.86(55日线)守住不动，12.03前高突破可看高一线。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>澜起科技（688008）｜月涨 +0.02%｜跌破55日线 -11.81%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>CKD全球独供+标准牵头，DDR5 RCD/MRCD/MDB产品线完整，MRVL映射；英伟达数据中心+117%是底层利好。</td></tr>
+        <tr><td>硬性约束</td><td>8月AI硬件主线里最弱——英伟达财报强劲次日仍未启动，偏离55日线-11.81%为8只最深；大账户成本211.66已套-3.17%。</td></tr>
+        <tr><td>操作锚点</td><td>长线账户(96.83)底仓不动；大账户短期弱势，232.39(55日线)未收复前不加仓，等放量站上再确认。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>软通动力（301236）｜月涨 -1.43%｜跌破55日线 -3.04%</h3>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>利好逻辑</td><td>华为生态+AI应用，成本7.36，浮盈+413%为组合最大盈利来源，安全垫极厚。</td></tr>
+        <tr><td>硬性约束</td><td>8月唯一逆势下跌(-1.43%)，资金流出；月高42.79回落后现价37.78，趋势转弱。</td></tr>
+        <tr><td>操作锚点</td><td>HOLD——浮盈巨大，38.96(55日线)下方可考虑部分兑现锁定；破36.65(月低)则减仓。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>④ 调仓回顾（8月下半月）</h2>
+  <div class="table-wrap">
+    <table class="f3b">
+      <thead><tr><th>标的</th><th>动作</th><th>复盘点评</th></tr></thead>
+      <tbody>
+        <tr><td>汇绿生态</td><td class="pos">加仓 3600股(5900→9500)</td><td>成本48.09摊至45.69，逢低加仓方向正确，8月+31.7%验证判断</td></tr>
+        <tr><td>三祥新材</td><td class="pos">加仓 1000股(3820→4820)</td><td>成本21.25抬至25.14，高位加仓略激进，依赖9/30铪投产兑现</td></tr>
+        <tr><td>罗博特科</td><td class="neg">减仓 100股(1000→900)</td><td>成本513.89摊至509.89，高位兑现纪律到位，剩余900股保留弹性</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：持仓口径以8/31截图成本表为准（OCR提取核对，罗博900股由总成本458896.68÷成本509.8852反推）。其余5只（星环/泰和/软通/华峰/澜起）数量与成本未变。</p>
+</div>
+
+<div class="card">
+  <h2>⑤ 组合诊断</h2>
+  <div class="table-wrap">
+    <table class="f2">
+      <tbody>
+        <tr><td>集中度</td><td>罗博单核22.95%+汇绿16.70%+泰和11.75%≈前三大51.4%；罗博逼近25%警戒线，单票风险敞口偏高。</td></tr>
+        <tr><td>相关性</td><td>科技/AI+锆材(罗博/汇绿/三祥/星环/软通/澜起)合计约88%，化工(泰和/华峰)约12%；科技beta主导，回撤时对冲不足。</td></tr>
+        <tr><td>55日线健康度</td><td>8只中仅3只站上55日线(罗博/华峰/星环)，5只仍在下方——组合「超跌反弹」成分大于「趋势反转」，需警惕9月震荡反复。</td></tr>
+        <tr><td>映射链</td><td>澜起→MRVL传导弱(澜起8月+0.02%)；罗博→NVDA传导强(CPO设备直接受益)；汇绿→COHR/LITE走独立逻辑，与板块脱钩。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⑥ 跨月验证点台账</h2>
+  <div class="table-wrap">
+    <table class="f3c">
+      <thead><tr><th>验证点</th><th>状态</th><th>9月跟进</th></tr></thead>
+      <tbody>
+        <tr><td>英伟达8/26财报四信号</td><td><span class="tag-green">已兑现</span></td><td>营收/指引/毛利率全面超预期，MRCD/MDB放量待澜起业绩验证</td></tr>
+        <tr><td>三祥铪项目9/30投产</td><td><span class="tag-yellow">待验证</span></td><td>9月末投产落地是关键催化，提前关注公告节奏</td></tr>
+        <tr><td>汇绿Q3现金流</td><td><span class="tag-yellow">窗口延后</span></td><td>已放宽至Q4/明年Q1，9月跟踪重组审核进度</td></tr>
+        <tr><td>罗博港股上市</td><td><span class="tag-yellow">待推进</span></td><td>已二次递表、证监会备案完成，未聆讯未挂牌</td></tr>
+        <tr><td>乐普医疗(300003)观察池</td><td><span class="tag-blue">观察中</span></td><td>BD弹性博弈，左侧11.5/右侧13.2放量站上介入</td></tr>
+        <tr><td>新仓候选(华海清科等)</td><td><span class="tag-blue">待落地</span></td><td>半导体设备材料国产替代，9月择机对比华海清科vs中科飞测</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⑦ 9月操作预案</h2>
+  <div class="table-wrap">
+    <table class="f3d">
+      <thead><tr><th>标的</th><th>9月锚点</th><th>触发动作</th></tr></thead>
+      <tbody>
+        <tr><td>罗博特科</td><td>55日线508 / 月高569.75</td><td>回踩508缩量补仓；跌破508放量降仓；不追高</td></tr>
+        <tr><td>汇绿生态</td><td>41.84压力 / 38.50支撑</td><td>放量突破41.84看42.97；跌破38.50减波段仓</td></tr>
+        <tr><td>三祥新材</td><td>48.66压力 / 40.00支撑</td><td>9/30铪投产前持有；破40止盈部分</td></tr>
+        <tr><td>星环科技</td><td>105.43(55日线) / 120前高</td><td>守住105.43不动；120冲高波段兑现</td></tr>
+        <tr><td>泰和新材</td><td>13.86压力 / 13.00支撑</td><td>WAIT等拐点；突破13.86前不加不减</td></tr>
+        <tr><td>华峰化学</td><td>10.86(55日线) / 12.03前高</td><td>底仓持有；突破12.03看高一线</td></tr>
+        <tr><td>澜起科技</td><td>232.39(55日线)</td><td>未收复前不加仓；长线账户底仓不动</td></tr>
+        <tr><td>软通动力</td><td>38.96(55日线) / 36.65月低</td><td>38.96下方部分兑现；破36.65减仓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="negbox">
+    <strong>大盘风险警示：</strong>上证8/31收3986.30，逼近8/18高点3994，上方密集套牢区压制；月线顶背离+水下死叉信号未解除。若9月放量突破3994则打开上行空间，若3990上方滞涨回落则需降总仓位、收紧止损。持仓组合超跌反弹成分偏高，9月震荡市需以「守55日线、控单票集中度」为第一要务。
+  </div>
+</div>
+
+<div class="card">
+  <h2>⑧ 方法论自我检讨</h2>
+  <div class="table-wrap">
+    <table class="f3e">
+      <thead><tr><th>维度</th><th>8月表现</th><th>迭代落点</th></tr></thead>
+      <tbody>
+        <tr><td>判断正确项</td><td>罗博CPO一阶受益定位(纠正后+37%)、汇绿独立逻辑加仓(+31.7%)、三祥铪催化</td><td>坚持基本面供需与供给端设备优先框架</td></tr>
+        <tr><td>判断失误项</td><td>澜起8月近乎零涨，未提前识别光模块透支、资金切半导体设备的切换</td><td>强化板块内资金轮动的盘中信号跟踪</td></tr>
+        <tr><td>待补短板</td><td>组合88%科技beta，回撤对冲不足；调仓精确净值未建立台账</td><td>9月建立逐笔调仓净值台账，量化真实收益率</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：万得 Wind 金融数据服务（行情/指数/均线，★★★）、英伟达SEC财报及公开新闻（★★★）、持仓截图OCR提取（8/31成本表，需复核）<br>
+  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br>
+  编制：巴蒂 · 2026-08-31 盘后
+</div>
+
+</div>
+</body>
+</html>
