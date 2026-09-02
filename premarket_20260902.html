@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盘前简报 2026-09-02</title>
+<style>
+/* ═══ 藏青蓝(navy)深色体系 —— 老潘 2026-08-31 定稿 · 默认配色 ═══ */
+:root{
+  --bg:#0a1428;--card:#12233a;--text:#d6e0ef;--muted:#7e8ea3;--soft:#1a2c44;--line:#253a55;--accent:#4d9fff;
+  --pos:#f23645;--neg:#089981;--up:#f23645;--down:#089981;
+  --label-blue:#4d9fff;--label-yellow:#e8a020;--label-red:#f23645;--label-green:#089981;
+  --shadow:0 1px 4px rgba(0,0,0,.4);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(77,159,255,.08);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#b2b5be;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#b2b5be;background:rgba(77,159,255,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(77,159,255,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-yellow{color:var(--label-yellow);background:rgba(232,160,32,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-red{color:var(--label-red);background:rgba(242,54,69,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-green{color:var(--label-green);background:rgba(8,153,129,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-buy{color:#5aa7ff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#4d9fff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#f23645;background:rgba(242,54,69,.12);border:1px solid rgba(242,54,69,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#d4a017;background:rgba(232,160,32,.08);border:1px solid rgba(212,160,23,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line)}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+
+/* ═══ 列宽类（每表列数与列宽精确匹配）═══ */
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:18%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:13%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:13%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:13%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:43%;text-align:left}
+
+table.f6{table-layout:fixed}
+table.f6 th:nth-child(1),table.f6 td:nth-child(1){width:17%;text-align:left}
+table.f6 th:nth-child(2),table.f6 td:nth-child(2){width:10%;text-align:right}
+table.f6 th:nth-child(3),table.f6 td:nth-child(3){width:10%;text-align:right}
+table.f6 th:nth-child(4),table.f6 td:nth-child(4){width:14%;text-align:right}
+table.f6 th:nth-child(5),table.f6 td:nth-child(5){width:14%;text-align:right}
+table.f6 th:nth-child(6),table.f6 td:nth-child(6){width:35%;text-align:left}
+
+table.f4x{table-layout:fixed}
+table.f4x th:nth-child(1),table.f4x td:nth-child(1){width:24%;text-align:left}
+table.f4x th:nth-child(2),table.f4x td:nth-child(2){width:22%;text-align:right}
+table.f4x th:nth-child(3),table.f4x td:nth-child(3){width:22%;text-align:right}
+table.f4x th:nth-child(4),table.f4x td:nth-child(4){width:32%;text-align:left}
+
+table.f3a{table-layout:fixed}
+table.f3a th:nth-child(1),table.f3a td:nth-child(1){width:20%;text-align:left}
+table.f3a th:nth-child(2),table.f3a td:nth-child(2){width:42%;text-align:left}
+table.f3a th:nth-child(3),table.f3a td:nth-child(3){width:38%;text-align:left}
+
+table.f3d{table-layout:fixed}
+table.f3d th:nth-child(1),table.f3d td:nth-child(1){width:18%;text-align:left}
+table.f3d th:nth-child(2),table.f3d td:nth-child(2){width:30%;text-align:right}
+table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
+
+table.f4b{table-layout:fixed}
+table.f4b th:nth-child(1),table.f4b td:nth-child(1){width:16%;text-align:right}
+table.f4b th:nth-child(2),table.f4b td:nth-child(2){width:20%;text-align:left}
+table.f4b th:nth-child(3),table.f4b td:nth-child(3){width:14%;text-align:center}
+table.f4b th:nth-child(4),table.f4b td:nth-child(4){width:50%;text-align:left}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ① 标题卡 -->
+<div class="card">
+  <h1>今日盘前简报｜2026-09-02 周三</h1>
+  <p class="small">数据时点：2026-09-02 09:00（A股开盘前）｜编制：巴蒂</p>
+  <div class="summary">
+    <p><strong>一句话结论：</strong>美伊冲突升级＋全球债市20年最猛抛售＋9月加息概率66%压制风险偏好；但A股昨日已提前消化（科创50 -2.19%、电子净流出125亿），A50仅-0.24%，预计低开幅度有限，沪指3970–4000箱体震荡，结构分化。</p>
+    <p><strong>隔夜外围：</strong>美股三连阴（道指-0.79%/纳指-1.03%），费半-2.14%；光通信普跌（LITE -5.01%、MRVL -4.67%、COHR -2.09%）；WTI破91、10Y美债4.80%创2025年1月新高。</p>
+    <p><strong>关键对冲：</strong>戴尔AI服务器指引740亿美元（盘后+10%）、中际旭创40–80亿回购落地、科创板AI应用臻选指数今日发布——AI应用/算力配套方向相对占优。</p>
+    <p><strong>持仓提示：</strong>罗博/澜起/汇绿隔夜映射偏空（NVDA -1.51%、MRVL -4.67%、LITE -5.01%），低开看承接；星环/软通受益AI应用指数催化；三祥昨-4.70%已率先调整。</p>
+  </div>
+</div>
+
+<!-- ② 核心指标 -->
+<div class="card">
+  <h2>核心指标速览</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val neg">-0.79%</div><div class="metric-label">道指 52,766.88</div></div>
+    <div class="metric-item"><div class="metric-val neg">-1.03%</div><div class="metric-label">纳指 26,099.77</div></div>
+    <div class="metric-item"><div class="metric-val neg">-0.71%</div><div class="metric-label">标普500 7,631.47</div></div>
+    <div class="metric-item"><div class="metric-val neg">-2.14%</div><div class="metric-label">费城半导体</div></div>
+    <div class="metric-item"><div class="metric-val neg">-0.24%</div><div class="metric-label">富时A50期货 14,693</div></div>
+  </div>
+  <div class="verdict-box">
+    <strong>今日定调：低开震荡、结构分化。</strong>外围三重压制（美伊冲突→油价、全球债市→利率、加息预期66%）已被昨日A股部分消化，A50仅-0.24%、人民币升值（离岸+129点），开盘压力有限。量能是关键——重回2.1万亿才有望冲击4000点，否则3970–4000箱体延续。
+  </div>
+</div>
+
+<!-- ③ 隔夜全球市场 -->
+<div class="card">
+  <h2>隔夜外围复盘（美东9/1收盘）</h2>
+  <h3>③-1 美股指数与商品利率</h3>
+  <div class="table-wrap">
+    <table class="f4x">
+      <thead><tr><th>指标</th><th>最新</th><th>涨跌幅</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>道琼斯</td><td>52,766.88</td><td class="neg">-0.79%</td><td>三连阴，能源逆势涨</td></tr>
+        <tr><td>标普500</td><td>7,631.47</td><td class="neg">-0.71%</td><td>连续第三日收跌</td></tr>
+        <tr><td>纳斯达克</td><td>26,099.77</td><td class="neg">-1.03%</td><td>科技股领跌，苹果+2.61%逆势</td></tr>
+        <tr><td>费城半导体</td><td>—</td><td class="neg">-2.14%</td><td>设备股重挫，泰瑞达-4.11%领跌</td></tr>
+        <tr><td>WTI原油</td><td>$91.16</td><td class="pos">+5.20%</td><td>美伊互轰，布油$94.65</td></tr>
+        <tr><td>COMEX黄金</td><td>$4,348</td><td class="neg">-1.88%</td><td>避险输给利率，三连跌</td></tr>
+        <tr><td>10Y美债</td><td>4.80%</td><td class="pos">+4bp</td><td>2025年1月以来最高，全球债市抛售</td></tr>
+        <tr><td>美元指数</td><td>99.66</td><td class="pos">+0.25%</td><td>高位；离岸人民币6.7179（+129点）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>③-2 持仓美股映射标的（关键）</h3>
+  <div class="table-wrap">
+    <table class="f5">
+      <thead><tr><th>映射标的</th><th>收盘</th><th>涨跌幅</th><th>持仓映射</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><strong>NVDA</strong> 英伟达</td><td>$217.44</td><td class="neg">-1.51%</td><td>罗博特科</td><td>连续调整，财报后涨势停滞，需求逻辑未破</td></tr>
+        <tr><td><strong>MRVL</strong> 迈威尔</td><td>$201.78</td><td class="neg">-4.67%</td><td>澜起科技</td><td>大跌！谷歌TPU合作扩围后高位回落，内存接口映射承压</td></tr>
+        <tr><td><strong>COHR</strong> Coherent</td><td>$272.03</td><td class="neg">-2.09%</td><td>汇绿生态</td><td>光通信普跌拖累</td></tr>
+        <tr><td><strong>LITE</strong> Lumentum</td><td>—</td><td class="neg">-5.01%</td><td>汇绿生态</td><td>光模块链领跌，CRDO -近5%、Fabrinet -2.63%</td></tr>
+        <tr><td><strong>美光MU</strong><br>AMD<br>SK海力士</td><td>—<br>$455.55<br>$161.34</td><td class="neg">-2.64%<br>-2.36%<br>-2.31%</td><td>澜起（存储链）</td><td>存储板块集体走低，闪迪-1.90%</td></tr>
+        <tr><td>台积电ADR<br>博通AVGO</td><td>$414.42<br>$369.68</td><td class="neg">-0.32%<br>-0.18%</td><td>罗博/澜起（产业链）</td><td>相对抗跌；博通财报今晚盘后（美东9/2）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>映射结论：</strong>隔夜对持仓的三条主线（罗博=CPO设备、澜起=内存接口、汇绿=光模块代工）全面偏空，其中MRVL -4.67%、LITE -5.01%跌幅最深，今日A股开盘科技硬件方向预计低开补跌。但戴尔740亿AI服务器指引（盘后+10%）提供产业趋势对冲，且中际旭创昨日逆势+0.87%显示A股光模块龙头有资金护盘，需观察开盘半小时承接。
+  </div>
+</div>
+
+<!-- ④ 持仓昨日复盘 + 今日研判 -->
+<div class="card">
+  <h2>持仓逐只研判（昨收口径 + 隔夜映射）</h2>
+  <div class="table-wrap">
+    <table class="f6">
+      <thead><tr><th>标的（映射）</th><th>昨收</th><th>昨涨跌</th><th>支撑位</th><th>压力位</th><th>今日研判与操作</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>罗博特科</strong><br><span class="small">映射NVDA -1.51%</span></td>
+          <td>562.50</td><td class="neg">-1.27%</td>
+          <td>559.70/550</td><td>570/576.66</td>
+          <td>CPO设备链隔夜偏空但相对抗跌（昨-1.27% vs 板块-2.75%）。ficonTEC逻辑未变，低开看559.70承接，破550需减仓观察，反弹570上方可T。评级<span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>澜起科技</strong><br><span class="small">映射MRVL -4.67%</span></td>
+          <td>198.35</td><td class="neg">-3.22%</td>
+          <td>196.69/193</td><td>204</td>
+          <td>MRVL大跌+存储链走弱双重压制，昨日已-3.22%。长线账户不动；大账户跌破196.69看193整数关承接，恐慌杀跌不追，企稳再评估。评级<span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>汇绿生态</strong><br><span class="small">映射COHR -2.09% / LITE -5.01%</span></td>
+          <td>38.02</td><td class="neg">-3.21%</td>
+          <td>37.29</td><td>39.68</td>
+          <td>光模块链隔夜领跌，今日预计低开消化。看中际旭创（回购护盘）能否稳住板块情绪，37.29不破可持有，破位减半仓。评级<span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>三祥新材</strong><br><span class="small">锆材料/固态电池</span></td>
+          <td>41.76</td><td class="neg">-4.70%</td>
+          <td>41.01</td><td>43.90</td>
+          <td>昨日领跌组合-4.70%，或系锆系/固态电池概念获利回吐。世界动力电池大会9/3–4（固态电池）临近是情绪催化，41整数关不破持有，反弹43.90压力位观察量能。评级<span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>星环科技-U</strong><br><span class="small">AI应用/大模型</span></td>
+          <td>112.42</td><td class="pos">+0.38%</td>
+          <td>109.48</td><td>115.52</td>
+          <td>昨日逆势红，科创板AI应用指数今日发布（情绪催化），AI应用方向相对占优。持有观察115.52突破。评级<span class="tag-buy">BUY（持有加码观察）</span></td>
+        </tr>
+        <tr>
+          <td><strong>软通动力</strong><br><span class="small">华为算力/IT服务</span></td>
+          <td>38.22</td><td class="pos">+1.16%</td>
+          <td>37.70</td><td>38.68</td>
+          <td>昨日+1.16%领涨组合，智算方向资金活跃（华胜天成/常山北明涨停）。戴尔AI指引+AI应用指数双催化，浮盈+418%标杆仓，持有。评级<span class="tag-buy">BUY（持有）</span></td>
+        </tr>
+        <tr>
+          <td><strong>华峰化学</strong><br><span class="small">氨纶/化工</span></td>
+          <td>12.00</td><td class="pos">+1.01%</td>
+          <td>11.88</td><td>12.35</td>
+          <td>昨日逆势红。油价暴涨双刃剑：化工期货大涨（乙二醇+6.37%）情绪偏多，但氨纶成本端承压。周期对冲底仓逻辑不变，持有。评级<span class="tag-hold">HOLD</span></td>
+        </tr>
+        <tr>
+          <td><strong>泰和新材</strong><br><span class="small">芳纶/氨纶</span></td>
+          <td>13.05</td><td class="neg">-0.61%</td>
+          <td>12.86</td><td>13.42</td>
+          <td>昨日小幅回调，油价成本端承压但涨价链有传导预期。持有，等中报拐点验证。评级<span class="tag-hold">HOLD</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：支撑/压力位基于昨高低点与整数关（非55日线口径，盘前无均线数据）；昨收与涨跌幅为9/1收盘口径（来源：腾讯行情★★★）。</p>
+</div>
+
+<!-- ⑤ 今日关键事件 -->
+<div class="card">
+  <h2>今日A股关键事件与数据日历</h2>
+  <div class="table-wrap">
+    <table class="f4b">
+      <thead><tr><th>时间/事项</th><th>内容</th><th>性质</th><th>对持仓影响</th></tr></thead>
+      <tbody>
+        <tr><td>今日发布</td><td>AI应用臻选指数（上交所）</td><td><span class="tag-blue">利好</span></td><td>星环/软通直接受益，AI应用获指数化关注</td></tr>
+        <tr><td>新股申购</td><td>燧原科技（688801）142.18元，国产AI芯片，市值约612亿</td><td><span class="tag-yellow">中性</span></td><td>国产AI芯片情绪面，对寒武纪等高位芯片或分流</td></tr>
+        <tr><td>9/2–9/4</td><td>数据中心开放大会（ODX）暨首届算博会（北京）</td><td><span class="tag-blue">利好</span></td><td>算力链事件催化，罗博/软通产业链</td></tr>
+        <tr><td>9/3–9/4</td><td>世界动力电池大会（固态电池专题）</td><td><span class="tag-blue">利好</span></td><td>三祥（锆基材料）情绪催化</td></tr>
+        <tr><td>20:15</td><td>美国8月ADP就业（预期+4.7万）</td><td><span class="tag-red">风险</span></td><td>数据强→强化加息预期，压制科技成长</td></tr>
+        <tr><td>22:30</td><td>美国EIA原油库存</td><td><span class="tag-yellow">中性</span></td><td>油价方向验证，化工成本端</td></tr>
+        <tr><td>9/3 02:00</td><td>美联储褐皮书</td><td><span class="tag-red">风险</span></td><td>加息路径线索</td></tr>
+        <tr><td>9/3 晨（美东9/2盘后）</td><td><strong>博通AVGO财报</strong>：预期营收$294亿（+84.5%）、AI半导体$160亿</td><td><span class="tag-blue">重磅</span></td><td>AI硬件风向标，CPO/交换芯片链（罗博/澜起产业链）关键验证</td></tr>
+        <tr><td>9/4 20:30</td><td>美国8月非农（预期+5.5万，失业率4.1%）</td><td><span class="tag-red">最大悬念</span></td><td>9月FOMC前最后关键数据，定调加息概率</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ⑥ 大盘研判与操作策略 -->
+<div class="card">
+  <h2>大盘研判与操作锚点</h2>
+  <h3>⑥-1 指数判断</h3>
+  <div class="table-wrap">
+    <table class="f3a">
+      <thead><tr><th>维度</th><th>现状</th><th>判断</th></tr></thead>
+      <tbody>
+        <tr><td>隔夜指引</td><td>A50 -0.24%、日经-1.6%、KOSPI -2.97%</td><td>低开幅度有限，亚太分化</td></tr>
+        <tr><td>量能</td><td>昨日2.03万亿（缩量976亿）</td><td>重回2.1万亿+才有望站上4000</td></tr>
+        <tr><td>技术位</td><td>支撑3960/3957（5日/60日），压力3990–4000</td><td>3970–4000箱体震荡概率大</td></tr>
+        <tr><td>资金结构</td><td>电子净流出125亿；农业+26.7亿、非银+27亿、医药+17.5亿</td><td>存量博弈，热点搬家，轮动加快</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>⑥-2 操作锚点（按触发条件执行）</h3>
+  <div class="table-wrap">
+    <table class="f3d">
+      <thead><tr><th>标的/指数</th><th>锚点位</th><th>触发动作</th></tr></thead>
+      <tbody>
+        <tr><td>沪指</td><td>3960 / 4000</td><td>跌破3960减仓观望；放量2.1万亿+站上4000才加仓</td></tr>
+        <tr><td>罗博特科</td><td>559.70 / 550</td><td>559.70承接有效持有；破550减仓，反弹570上方T出</td></tr>
+        <tr><td>澜起科技</td><td>196.69 / 204</td><td>长线账户不动；大账户跌破196.69看193，恐慌杀跌不追</td></tr>
+        <tr><td>汇绿生态</td><td>37.29 / 39.68</td><td>37.29不破持有；破位减半仓；看中际旭创能否稳住板块</td></tr>
+        <tr><td>星环/软通</td><td>突破115.52 / 38.68</td><td>AI应用指数催化，突破可加码观察，不破昨低持有</td></tr>
+        <tr><td>三祥新材</td><td>41.01 / 43.90</td><td>41整数关不破持有；动力电池大会前观察情绪修复</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>仓位纪律：</strong>总仓位维持5–7成，非农（9/4）前留子弹。不追高位连板（种业龙头已提示风险）、不接科技硬件飞刀（等午后企稳信号）、单一板块不超总仓位30%。今日大概率低开，看低开后承接——开盘半小时量能是判断分化的核心。
+  </div>
+</div>
+
+<!-- ⑦ 风险与催化 -->
+<div class="card">
+  <h2>风险提示与正面催化</h2>
+  <div class="negbox">
+    <strong>五大风险：</strong>①美伊冲突若再升级，油价→通胀→利率链条强化，高估值成长首当其冲；②10Y美债4.80%+全球债市抛售，成长股估值端持续受压；③ADP/非农若强于预期，9月加息定价再升温；④高位连板退潮（海鸥住工7板、万向德农11天8板已提示风险），情绪反转快；⑤科技硬件补跌未释放完（费半-2.14%、LITE -5.01%、MRVL -4.67%）。
+  </div>
+  <div class="posbox">
+    <strong>三大催化：</strong>①戴尔Q2财报超预期，AI服务器指引740亿美元（连续5季上调），全球AI资本开支加速的产业趋势佐证；②中际旭创40–80亿回购落地+首日3.18亿，光模块龙头资金护盘信号；③科创板AI应用臻选指数今日发布+世界动力电池大会（9/3–4）临近，AI应用/固态电池方向事件催化密集。
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：东方财富/腾讯财经/同花顺/证券时报/财联社（隔夜美股、映射标的★★★）｜腾讯行情接口（持仓行情★★★）｜格隆汇/雪球（事件面★★☆）<br>
+  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br>
+  编制：巴蒂 · 2026-09-02
+</div>
+
+</div>
+</body>
+</html>
