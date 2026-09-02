@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三只被套股基本面诊断 · 2026-09-02</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   藏青蓝(navy)深色体系 —— 老潘 2026-08-31 定稿 · 所有报告默认配色
+   涨红 #f23645 / 跌绿 #089981（A股口径）
+   评级标签固定四档：tag-buy / tag-hold / tag-sell / tag-wait
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#0a1428;--card:#12233a;--text:#d6e0ef;--muted:#7e8ea3;--soft:#1a2c44;--line:#253a55;--accent:#4d9fff;
+  --pos:#f23645;--neg:#089981;--up:#f23645;--down:#089981;
+  --label-blue:#4d9fff;--label-yellow:#e8a020;--label-red:#f23645;--label-green:#089981;
+  --shadow:0 1px 4px rgba(0,0,0,.4);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(77,159,255,.08);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#b2b5be;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#b2b5be;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#b2b5be;background:rgba(77,159,255,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(77,159,255,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-yellow{color:var(--label-yellow);background:rgba(232,160,32,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-red{color:var(--label-red);background:rgba(242,54,69,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-green{color:var(--label-green);background:rgba(8,153,129,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-buy{color:#5aa7ff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#4d9fff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#f23645;background:rgba(242,54,69,.12);border:1px solid rgba(242,54,69,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#d4a017;background:rgba(232,160,32,.08);border:1px solid rgba(212,160,23,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line);flex:1 1 150px}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.risk-list{list-style:none;margin:8px 0 0;padding:0;counter-reset:item}
+.risk-list li{counter-increment:item;padding:6px 0 6px 30px;position:relative;font-size:13.5px;line-height:1.7;border-bottom:1px dashed rgba(255,255,255,.04)}
+.risk-list li:last-child{border-bottom:none}
+.risk-list li::before{content:counter(item);position:absolute;left:0;top:7px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.risk-list li::before{background:#4d9fff}
+.risk-list .kw{color:var(--accent);font-weight:700;margin-right:4px}
+
+/* ==== 5列基准表（标的 / 现价 / H1归母同比 / 距高点 / 基本面定性）==== */
+table.f5x{table-layout:fixed}
+table.f5x th:nth-child(1),table.f5x td:nth-child(1){width:18%;text-align:left}
+table.f5x th:nth-child(2),table.f5x td:nth-child(2){width:11%;text-align:right}
+table.f5x th:nth-child(3),table.f5x td:nth-child(3){width:15%;text-align:right}
+table.f5x th:nth-child(4),table.f5x td:nth-child(4){width:13%;text-align:right}
+table.f5x th:nth-child(5),table.f5x td:nth-child(5){width:43%;text-align:left}
+
+/* ==== 4列对比表（维度 / 卫通 / 普冉 / 通富）==== */
+table.f4c{table-layout:fixed}
+table.f4c th:nth-child(1),table.f4c td:nth-child(1){width:22%;text-align:left}
+table.f4c th:nth-child(2),table.f4c td:nth-child(2){width:26%;text-align:left}
+table.f4c th:nth-child(3),table.f4c td:nth-child(3){width:26%;text-align:left}
+table.f4c th:nth-child(4),table.f4c td:nth-child(4){width:26%;text-align:left}
+
+/* ==== 4列财务表（指标 / 2026H1 / 2025年报 / 解读）==== */
+table.f4f{table-layout:fixed}
+table.f4f th:nth-child(1),table.f4f td:nth-child(1){width:20%;text-align:left}
+table.f4f th:nth-child(2),table.f4f td:nth-child(2){width:26%;text-align:right}
+table.f4f th:nth-child(3),table.f4f td:nth-child(3){width:26%;text-align:right}
+table.f4f th:nth-child(4),table.f4f td:nth-child(4){width:28%;text-align:left}
+
+/* ==== 3列操作（锚点 / 动作 / 说明）==== */
+table.f3o{table-layout:fixed}
+table.f3o th:nth-child(1),table.f3o td:nth-child(1){width:20%;text-align:left}
+table.f3o th:nth-child(2),table.f3o td:nth-child(2){width:22%;text-align:left}
+table.f3o th:nth-child(3),table.f3o td:nth-child(3){width:58%;text-align:left}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ① 标题卡 -->
+<div class="card">
+  <h1>三只被套股 · 基本面与解套诊断</h1>
+  <p class="small">2026-09-02（周三）· 数据时点：2026-09-02 13:14 盘中行情 + 2026 中报（已披露）</p>
+  <div class="summary">
+    <p><strong>一句话结论：</strong>三只票基本面质地差异极大，不能一刀切。通富微电（AMD 深度绑定+扣非+78%）质地最扎实，被套可拿可补；普冉股份（存储超级周期、净利+1930%）景气是真的，但股价从 909.8 元腰斩、周期见顶担忧与木头姐唱空压制估值，被套宜持有等企稳、不追不加；中国卫通（净利 -37% + PE 272 倍）基本面最弱、估值最贵，是典型的主题博弈，被套后反弹减仓优先级最高。</p>
+    <p><strong>给朋友的三句话：</strong>①先看自己成本在哪一档，对照报告分档策略执行，不要"装死不动"也不要在恐慌位割肉；②三只里只有通富的下跌是"好公司的错杀"，卫通与普冉的下跌里有"估值与周期"的真实风险；③若想换股解套，卖出优先级是卫通 &gt; 普冉 &gt; 通富，不是按套牢深度排，是按基本面质地排。</p>
+  </div>
+</div>
+
+<!-- ② 三票快照 -->
+<div class="card">
+  <h2>三只票盘中快照（2026-09-02 13:14）</h2>
+  <div class="metric">
+    <div class="metric-item"><div class="metric-val">24.13</div><div class="metric-label">中国卫通 601698 · <span class="neg">-0.70%</span></div></div>
+    <div class="metric-item"><div class="metric-val">389.05</div><div class="metric-label">普冉股份 688766 · <span class="neg">-2.37%</span></div></div>
+    <div class="metric-item"><div class="metric-val">59.88</div><div class="metric-label">通富微电 002156 · <span class="neg">-2.44%</span></div></div>
+    <div class="metric-item"><div class="metric-val">272.9x</div><div class="metric-label">中国卫通 PE(TTM) · <span class="tag-red">高危</span></div></div>
+    <div class="metric-item"><div class="metric-val">58.2x</div><div class="metric-label">普冉股份 PE(TTM) · PB 17.7x</div></div>
+    <div class="metric-item"><div class="metric-val">36.0x</div><div class="metric-label">通富微电 PE(TTM) · PB 5.4x</div></div>
+  </div>
+  <div class="table-wrap">
+    <table class="f5x">
+      <thead><tr><th>标的</th><th>现价</th><th>2026H1 归母净利同比</th><th>距阶段高点</th><th>基本面定性</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>601698 中国卫通</strong></td>
+          <td>24.13</td>
+          <td class="neg">-37.36%</td>
+          <td class="neg">-31%</td>
+          <td>卫星通信运营央企·主题强基本面弱（净利连降、ROE 0.7%、PE 273 倍）</td>
+        </tr>
+        <tr>
+          <td><strong>688766 普冉股份</strong></td>
+          <td>389.05</td>
+          <td class="pos">+1930%</td>
+          <td class="neg">-57%</td>
+          <td>NOR Flash/存储设计·景气爆发真业绩（毛利51%、ROE 28.7%）但估值高位+周期顶担忧</td>
+        </tr>
+        <tr>
+          <td><strong>002156 通富微电</strong></td>
+          <td>59.88</td>
+          <td class="pos">+316.8%<br><span class="small">扣非 +77.8%</span></td>
+          <td class="neg">-29%</td>
+          <td>AMD 核心封测·AI 算力真成长（扣非+78%、南通等三厂扭亏）归母含 9.7 亿非经常</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">注：现价为腾讯行情 13:14 盘中价（★★★）；财务为 2026 中报数据（东方财富库 ★★★）。回撤=自 6-7 月阶段高点（卫通 34.88/7-13、普冉 909.8/7-1、通富 84.7/7-15）至现价。</p>
+</div>
+
+<!-- ③ 中国卫通 -->
+<div class="card">
+  <h2>① 中国卫通 601698 · <span class="tag-sell">反弹减仓优先</span></h2>
+  <p>境内唯一合法经营通信卫星业务的央企运营平台，卫星互联网"国家队"稀缺牌照。但基本面与估值严重倒挂：业绩零增长甚至下滑，股价却享受 272 倍 PE。</p>
+  <h3>核心财务（单位：亿元）</h3>
+  <div class="table-wrap">
+    <table class="f4f">
+      <thead><tr><th>指标</th><th>2026H1</th><th>2025年报</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>营业收入</td><td>12.29（+0.66%）</td><td>26.45（+4.1%）</td><td>营收三年近零增长，转发器租赁主业天花板明显</td></tr>
+        <tr><td>归母净利润</td><td class="neg">1.13（-37.36%）</td><td>4.41（-2.9%）</td><td class="neg">中报净利下滑近四成，盈利持续走弱</td></tr>
+        <tr><td>扣非净利</td><td class="neg">0.94（-45.4%）</td><td>3.92（+69%）</td><td>扣非降幅更大，主业盈利质量差</td></tr>
+        <tr><td>毛利率</td><td>22.8%</td><td>29.45%</td><td class="neg">毛利率从 29% 滑到 22.8%，半年恶化 6.6pct</td></tr>
+        <tr><td>ROE（加权）</td><td>0.70%</td><td>2.79%</td><td class="neg">净资产收益率不足 1%，资产回报极低</td></tr>
+        <tr><td>资产负债率</td><td>9.8%</td><td>9.6%</td><td>几乎零负债，央企底子干净</td></tr>
+        <tr><td>估值</td><td>PE(TTM) 272.9x</td><td>PB 6.43x</td><td class="neg">272 倍 PE 处近 5 年 81% 分位，纯主题定价</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="posbox"><strong>利好逻辑：</strong>①卫星互联网"十五五"纳入国家 109 项重大工程，低轨组网 8 月进入"周更"模式（8/16 长征十二号、8/25 长六丙），千帆 238 颗、GW 约 180-200 颗在轨；②工信部 8 月底批复时空道宇卫星物联网商用试验，民企商用化破冰，产业链从"画图"走向"变现"；③9/2 卫星板块走强、卫星 ETF 资金年内净流入 26 亿，题材情绪仍在；④公司为唯一央企卫星运营牌照方，稀缺性无可替代，卫星互联网商用化若兑现，是最大运营受益者。</div>
+  <div class="negbox"><strong>硬性约束：</strong>①业绩端无任何改善证据——2026H1 营收 +0.66%、归母 -37.36%，机构预测 2026E 净利 5.57 亿也仅对应 24 元股价约 180 倍 PE；②272 倍 PE + 6.4 倍 PB 意味着把未来十年商用化利润全部提前定价，容错率极低；③资金面疲弱：融资余额 14.46 亿处近一年 10% 分位、主力连续净流出、成交额萎缩到 3.3 亿/日；④主题催化≠业绩兑现，低轨星座商用对卫通（高轨转发器为主）的直接收入贡献仍是远期故事。</div>
+  <div class="table-wrap">
+    <table class="f3o">
+      <thead><tr><th>操作锚点</th><th>动作</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>现价 24.13<br>近低 23.21（8/25）</td><td>不割肉也不加仓<br><span class="tag-wait">WAIT 观察</span></td><td>23.2 是 8/25 阶段低点，若跌破则下一支撑看 21.87（跌停参考/整数心理位），破位后技术止损位明确</td></tr>
+        <tr><td>反弹至 26.7-27.3</td><td>减仓 1/3 - 1/2<br><span class="tag-sell">SELL 部分</span></td><td>34.88→23.21 下跌段的 0.382-0.5 反弹位，是降仓的合理兑现区；主题反弹靠卫星发射节奏驱动，不可恋战</td></tr>
+        <tr><td>若破 23.2</td><td>止损离场<br><span class="tag-sell">SELL</span></td><td>基本面（净利-37%）+估值（273倍PE）双弱，破位不接飞刀，避免深套资金被主题反复消耗</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>巴蒂判断（卫通）：WAIT→反弹 SELL 部分。</strong>基本面在 A 股语境下无法为 273 倍 PE 背书，持有它的唯一理由是"卫星互联网国家队题材"。若朋友成本在 28-34 高位区，本轮反弹到 26.7+ 是减仓换股窗口；成本低于 24 的浅套者，可留底仓博题材、不加仓。基本面质地三只中最弱，解套不靠业绩靠情绪，不宜作为主要仓位长期持有。
+  </div>
+</div>
+
+<!-- ④ 普冉股份 -->
+<div class="card">
+  <h2>② 普冉股份 688766 · <span class="tag-hold">持有等企稳，不追不加</span></h2>
+  <p>NOR Flash + SLC NAND 存储芯片设计公司。2026 赶上存储超级周期（AI 驱动+海外原厂退出利基市场），业绩爆发式增长——但股价 7/1 见顶 909.8 后已腰斩，市场在"真业绩"与"周期顶担忧"之间剧烈博弈。</p>
+  <h3>核心财务（单位：亿元）</h3>
+  <div class="table-wrap">
+    <table class="f4f">
+      <thead><tr><th>指标</th><th>2026H1</th><th>2025年报</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>营业收入</td><td class="pos">39.59（+336.7%）</td><td>23.2（+28.6%）</td><td class="pos">单季 Q2 营收 25.13 亿、同比 +402%，并表 SHM（2D NAND）贡献 23.46 亿</td></tr>
+        <tr><td>归母净利润</td><td class="pos">8.27（+1930%）</td><td>2.08（-29%）</td><td class="pos">H1 净利是去年全年的 4 倍，单 Q2 +2485%，弹性惊人</td></tr>
+        <tr><td>扣非净利</td><td class="pos">8.25（+2994%）</td><td>1.65</td><td>扣非与归母基本一致，利润质量真实（非靠一次性收益）</td></tr>
+        <tr><td>毛利率</td><td class="pos">51.15%</td><td>28.37%</td><td class="pos">毛利率翻倍式跃升（28%→51%），涨价直接进利润表</td></tr>
+        <tr><td>ROE（加权）</td><td class="pos">28.73%</td><td>8.97%</td><td class="pos">半年 ROE 28.7%，盈利质量行业顶级</td></tr>
+        <tr><td>经营现金流</td><td class="pos">9.45</td><td>0.82</td><td class="pos">现金流由负转正大幅改善，盈利含金量高</td></tr>
+        <tr><td>估值</td><td>PE(TTM) 58.2x</td><td>PB 17.7x</td><td>动态看 2026E 净利若 15-16 亿则 PE 降至 36-38x，但 PB 仍高</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="posbox"><strong>利好逻辑：</strong>①存储超级周期"十五年一遇"——TrendForce：2026Q1 DRAM 合约价环比 +93-98%、NAND +55-60%；高盛测算 DRAM/NAND/HBM 供需缺口 4.9%/4.2%/5.1%，均为 2011 年来最高；②海外原厂（三星/海力士/美光）产能向 HBM 倾斜、退出利基市场，NOR/SLC NAND 供给缺口明确，兆易创新董秘口径"NOR 温和涨价延续、SLC NAND 景气至少到 2027 全年"；③公司并表 SHM 切入中高端 2D NAND，量价齐升双击；④AI 手机/AI PC/服务器/汽车座舱对高容量 NOR 需求持续增长。</div>
+  <div class="negbox"><strong>硬性约束：</strong>①股价已腰斩（909.8→389），7/1 顶部套牢盘沉重，8/19 中报落地当天反而大跌 10%——"业绩兑现即出货"信号明确，市场担心利好出尽；②木头姐（Cathie Wood）公开唱空存储：AI 推理芯片架构（Cerebras/Groq 类）正绕开高带宽内存，存储是"商品化最强、周期波动最明显"的赛道，涨价不可持续；③PB 17.7 倍仍在历史高位，若 2027 年新增产能集中释放（TrendForce 口径），价格回落将直接杀伤利润；④股价单日振幅常达 ±10%，融资盘与高换手放大波动，不适合重仓死扛。</div>
+  <div class="table-wrap">
+    <table class="f3o">
+      <thead><tr><th>操作锚点</th><th>动作</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>现价 389.05<br>8/26 低点 ~383 一带</td><td>持有观察<br><span class="tag-hold">HOLD</span></td><td>383-400 是 8 月下旬平台，若守住则 420-478（前高密集区）有修复空间；跌回 340 下方说明情绪仍未出清</td></tr>
+        <tr><td>反弹至 420-440</td><td>浅套者可减 1/4<br><span class="tag-wait">WAIT</span></td><td>中报后下跌段的 0.382 反弹位附近，是降波动率的好位置；深套者（成本 500+）需更大反弹才谈减仓</td></tr>
+        <tr><td>跌破 340</td><td>深套者止损减半<br><span class="tag-sell">SELL 部分</span></td><td>340 下方 = 周期见顶担忧主导定价，先降仓位再观察，避免在景气拐点前重仓赌博</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>巴蒂判断（普冉）：HOLD，不追不加。</strong>这是"业绩最猛、争议最大"的一只——净利 +1930% 是真实的，但存储是强周期股，市场在顶部区域对"周期还能撑多久"的分歧极大（木头姐唱空 vs 兆易口径景气到 2027）。被套者核心动作是<b>不 panic 割肉在腰斩位，也不要在反弹初期追加赌反弹</b>，等 383-340 区间企稳信号（放量收复 420）再做决策。若仓位过重（单票 &gt;30%），任何反弹到 420+ 都应减到舒适仓位。
+  </div>
+</div>
+
+<!-- ⑤ 通富微电 -->
+<div class="card">
+  <h2>③ 通富微电 002156 · <span class="tag-buy">质地最扎实 · 可拿可低吸</span></h2>
+  <p>全球第四、国内第二封测厂，AMD 超过 80% 封测订单的绑定方（苏州/槟城合资厂各持 85%）。8/19 跌停（大基金减持+HBM 预期落空+板块回调）后已从 51.23 修复约 17%，但距 7 月高点仍 -29%。</p>
+  <h3>核心财务（单位：亿元）</h3>
+  <div class="table-wrap">
+    <table class="f4f">
+      <thead><tr><th>指标</th><th>2026H1</th><th>2025年报</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>营业收入</td><td class="pos">160.4（+23.03%）</td><td>279.2（+16.9%）</td><td class="pos">营收提速，南通/合肥/通富通科三厂全部扭亏</td></tr>
+        <tr><td>归母净利润</td><td class="pos">17.17（+316.8%）</td><td>12.19（+79.9%）</td><td class="neg">注意：含约 9.7 亿非经常（金融资产公允价值变动），口径偏虚</td></tr>
+        <tr><td>扣非净利</td><td class="pos">7.47（+77.8%）</td><td>8.41（+35.3%）</td><td class="pos">扣非才是主业真相：+78%，盈利质量扎实改善</td></tr>
+        <tr><td>毛利率</td><td class="pos">15.45%</td><td>14.59%</td><td>先进封装占比提升，毛利率温和上行</td></tr>
+        <tr><td>ROE（加权）</td><td class="pos">10.54%</td><td>8.08%</td><td class="pos">半年 ROE 已超去年全年，盈利改善斜率明确</td></tr>
+        <tr><td>经营现金流</td><td class="pos">29.33</td><td>69.66</td><td class="pos">现金流充沛，资本开支 52 亿（+70%）压注高端产能</td></tr>
+        <tr><td>估值</td><td>PE(TTM) 36x</td><td>PB 5.4x</td><td>归母口径 36x 含非经常；扣非口径约 77x。机构 2026E 一致预期净利约 16 亿→动态约 57x</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="posbox"><strong>利好逻辑：</strong>①AMD 数据中心 2026Q2 收入 67 亿美元、同比 +107%，EPYC/Instinct 双放量，Helios 项目提速——通富苏州/槟城直接受益，两厂上半年营收创历史新高；②Meta/OpenAI 各 6GW 级 AI 芯片订单落地 AMD，FCBGA 高端封装持续紧缺；③公司 3nm 已量产、攻坚 2nm，先进封装（Flip Chip/SiP/Chiplet 2.5D）从后端配角变成芯片性能核心环节，行业溢价提升；④花旗 6 月将目标价从 48 上调至 80 元，开源 9/2 上修 2026 净利预测至 25 亿（含非经常）、维持买入；⑤8/19 跌停更多是"减持+预期管理"冲击而非基本面恶化，51.23 低点已被资金确认。</div>
+  <div class="negbox"><strong>硬性约束：</strong>①归母 17.17 亿里约 9.7 亿（57%）是非经常损益（金融资产公允价值变动），市场看扣非口径估值并不便宜（约 77x TTM）；②客户高度集中 AMD（收入占比过半），AMD 若资本开支节奏放缓直接冲击公司；③8/19 跌停四重压力并未完全解除：大基金持股降至 5% 以下后续减持无需披露、公司自认 HBM 封测仍由国际 IDM 主导（HBM 预期落空）、定增 42.2 亿摊薄、杠杆资金仍在出清；④机构目标价分歧极大（花旗 80 vs 部分机构不足 30 元），反映业绩兑现节奏不确定。</div>
+  <div class="table-wrap">
+    <table class="f3o">
+      <thead><tr><th>操作锚点</th><th>动作</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>现价 59.88<br>8/3 低点 51.23</td><td>持有为主<br><span class="tag-buy">BUY 低吸区</span></td><td>51-56 是 8 月确认的底部区，回踩不破 56 则中期修复趋势完好；成本 60 以下者可持有等 AMD 催化</td></tr>
+        <tr><td>回踩 54-56</td><td>轻仓者分批低吸<br><span class="tag-buy">BUY 部分</span></td><td>三只中唯一"下跌是错杀"的标的——扣非 +78%、三厂扭亏、AMD 放量是硬逻辑；但定增摊薄+减持未出清，仓位控制在 30% 内</td></tr>
+        <tr><td>突破 67-70</td><td>站稳加仓观察<br><span class="tag-wait">WAIT</span></td><td>67 是 8 月初反弹压力，放量站稳则打开向 75-80 修复空间（花旗目标价 80 元）</td></tr>
+        <tr><td>跌破 51.2</td><td>减仓避险<br><span class="tag-sell">SELL 部分</span></td><td>51.2 是 8/3 绝对低点，跌破说明跌停后修复失败，先降仓位再重新评估 AMD 景气</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>巴蒂判断（通富）：BUY 低吸区 / HOLD。</strong>三只中基本面质地最扎实——AI 算力封装是长逻辑，AMD 订单能见度延伸到 2027 年（MI450 系列、Helios），扣非 +78% 是"去水分后的真增长"。被套者的最优策略：<b>若仓位不重（≤20%）且成本在 60-70，回踩 54-56 补一次降成本；若成本 70+ 深套，反弹到 67-70 减 1/3、留核心仓等 AMD 财报兑现</b>。它的解套路径靠业绩，是确定性最高的。
+  </div>
+</div>
+
+<!-- ⑥ 横向对比与换股逻辑 -->
+<div class="card">
+  <h2>三票横向对比 · 谁该走谁该留</h2>
+  <div class="table-wrap">
+    <table class="f4c">
+      <thead><tr><th>维度</th><th>中国卫通</th><th>普冉股份</th><th>通富微电</th></tr></thead>
+      <tbody>
+        <tr><td>基本面增速</td><td class="neg">净利 -37%，零增长</td><td class="pos">净利 +1930%，爆发</td><td class="pos">扣非 +78%，扎实</td></tr>
+        <tr><td>盈利质量</td><td class="neg">ROE 0.7%，毛利下滑</td><td class="pos">ROE 28.7%，毛利 51%</td><td>ROE 10.5%，毛利 15%（重资产正常）</td></tr>
+        <tr><td>估值水位</td><td class="neg">PE 273x（5年81%分位）</td><td>PE 58x / PB 17.7x</td><td>PE 36x / PB 5.4x（最低）</td></tr>
+        <tr><td>股价状态</td><td>距高点 -31%，交投萎缩</td><td class="neg">距高点 -57%，腰斩</td><td>距高点 -29%，底部修复中</td></tr>
+        <tr><td>驱动逻辑</td><td>主题（卫星互联网题材）</td><td>周期（存储涨价景气）</td><td class="pos">成长（AI 封测订单）</td></tr>
+        <tr><td>风险类型</td><td class="neg">估值与业绩双弱，靠情绪</td><td>周期见顶担忧（木头姐唱空）</td><td>减持/定增摊薄/HBM 预期差</td></tr>
+        <tr><td>被套处置优先级</td><td class="neg">反弹减仓第 1</td><td>持有等企稳第 2</td><td class="pos">可拿可低吸第 3</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>综合结论：</strong>若朋友必须从三只里"二选一保留"，<b>保留通富、减卫通</b>——一个靠业绩回本，一个靠题材回本。普冉夹在中间：业绩真实但位置尴尬（腰斩+高位 PB），适合"持有等情绪出清"，不宜在反弹初期追加。若三只均浅套（&lt;15%）且仓位分散，可都持有观察，但卫通反弹到位必须先动。
+  </div>
+</div>
+
+<!-- ⑦ 分档解套策略 -->
+<div class="card">
+  <h2>分档解套策略（按成本位置对号入座）</h2>
+  <ul class="risk-list">
+    <li><span class="kw">浅套（成本高于现价 &lt;15%）：</span>不急着动。三只均处各自阶段低点附近，情绪修复随时到来；卫通反弹 26.7+/普冉反弹 420+/通富突破 67 时按上表减/持操作，浅套者可先减卫通 1/3 落袋确定性。</li>
+    <li><span class="kw">中套（15%-30%）：</span>结构性降仓。卫通反弹到 0.382 位（26.7-27.3）减半仓换通富/现金；普冉与通富仓位若合计超 50%，反弹减普冉留通富，把组合向"业绩确定性"集中。</li>
+    <li><span class="kw">深套（&gt;30%）：</span>先别在恐慌位割肉——普冉 285 元（7/29）与通富 51.2 元（8/3）已被市场确认为阶段大底，深套者应等修复反弹（普冉 420+、通富 67+）分批减，用"反弹减仓"替代"低位割肉"；卫通深套者反弹 26.7+ 必须减，它是三只里唯一基本面无法自洽的。</li>
+    <li><span class="kw">补充纪律：</span>任何减仓动作之前，先确认朋友是否用了杠杆（融资/配资）——杠杆仓无成本优势，任何反弹都是减杠杆窗口；非杠杆闲钱仓，才适用"持有等修复"逻辑。建议朋友单票仓位不超过总资产 25%，三只科技/主题票合计不超过 50%。</li>
+  </ul>
+  <div class="negbox"><strong>共同风险提示：</strong>三只均属高波动品种（单日 ±5% 常见），且所处板块（卫星互联网/存储/AI 硬件）都高度依赖消息面与美股映射。9/4 美国非农、9 月中 FOMC 若加息预期升温，科技成长估值端将整体受压；存储价格若见顶回落、AMD 资本开支若放缓，普冉与通富逻辑将同步受损。市场有风险，投资需谨慎，本报告不构成投资建议，最终决策与盈亏自负。</div>
+</div>
+
+<div class="footer">
+  数据来源：腾讯行情（盘中快照 ★★★）｜东方财富库 妙想（财务/估值 ★★★）｜券商研报与财经媒体聚合（消息面 ★★☆）<br>
+  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br>
+  编制：巴蒂 · 2026-09-02
+</div>
+
+</div>
+</body>
+</html>
