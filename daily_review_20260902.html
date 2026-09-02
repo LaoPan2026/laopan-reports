@@ -102,26 +102,27 @@ table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:22%;text-align:left}
 table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 
 /* ═══════════════════════════════════════════════════════════════════
-   2026-09-02 全页色彩纪律（v4.2 启用）
+   2026-09-02 全页色彩纪律（v4.2 → v4.3 借鉴机场指示牌）
+   借鉴：tag 从「淡化背景 .12」升级为「实色饱和 .28」+ 边框同步加深
    评级色：HOLD=亮蓝 / WAIT=蓝灰 / BUY=红 / SELL=绿
    板块色：军工=橄榄 / 农业=金 / CPO=科技蓝 / 顺周期=橙红 / 逆势=中性灰
    风险色：逼近警戒=橙 #ff8c42 / 情绪冷=蓝灰 / 情绪热=红
    指标重要度：核心=品牌蓝边框 / 辅助=灰边淡化
    ═══════════════════════════════════════════════════════════════════ */
-.tag-hold{color:#4d9fff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-wait{color:#6b8caf;background:rgba(107,140,175,.12);border:1px solid rgba(107,140,175,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-buy{color:#f23645;background:rgba(242,54,69,.12);border:1px solid rgba(242,54,69,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-sell{color:#089981;background:rgba(8,153,129,.12);border:1px solid rgba(8,153,129,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-warn{color:#ff8c42;background:rgba(255,140,66,.10);border:1px solid rgba(255,140,66,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-military{color:#9bc06b;background:rgba(107,142,35,.10);border:1px solid rgba(107,142,35,.40);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-farm{color:#e8b842;background:rgba(212,160,23,.10);border:1px solid rgba(212,160,23,.40);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-cpo{color:#4d9fff;background:rgba(77,159,255,.10);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-cycle{color:#ff8c42;background:rgba(255,140,66,.10);border:1px solid rgba(255,140,66,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
-.tag-neutral{color:#7e8ea3;background:rgba(126,142,163,.10);border:1px solid rgba(126,142,163,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#9eb4cc;background:rgba(107,140,175,.28);border:1px solid rgba(107,140,175,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-buy{color:#ff6373;background:rgba(242,54,69,.28);border:1px solid rgba(242,54,69,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-warn{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-military{color:#b8d188;background:rgba(107,142,35,.28);border:1px solid rgba(107,142,35,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-farm{color:#f4cf6e;background:rgba(212,160,23,.28);border:1px solid rgba(212,160,23,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cpo{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cycle{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-neutral{color:#a4b1c4;background:rgba(126,142,163,.28);border:1px solid rgba(126,142,163,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
 .metric-core{border-left:3px solid var(--accent);background:var(--soft)}
 .metric-aux{border-left:3px solid var(--line);background:var(--soft);opacity:.78}
-.mood-cold{color:#6b8caf;background:rgba(107,140,175,.12);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
-.mood-hot{color:#f23645;background:rgba(242,54,69,.10);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+.mood-cold{color:#9eb4cc;background:rgba(107,140,175,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+.mood-hot{color:#ff6373;background:rgba(242,54,69,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
 </style>
 </head>
 <body>
