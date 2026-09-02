@@ -57,6 +57,13 @@ td.name,th.name{white-space:nowrap;word-break:keep-all}
 .verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
 .negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
 .posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.risk-list,.catalyst-list{list-style:none;margin:8px 0 0;padding:0;counter-reset:item}
+.risk-list li,.catalyst-list li{counter-increment:item;padding:6px 0 6px 30px;position:relative;font-size:13.5px;line-height:1.7;border-bottom:1px dashed rgba(255,255,255,.04)}
+.risk-list li:last-child,.catalyst-list li:last-child{border-bottom:none}
+.risk-list li::before,.catalyst-list li::before{content:counter(item);position:absolute;left:0;top:7px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.risk-list li::before{background:#f23645}
+.catalyst-list li::before{background:#089981}
+.risk-list .kw,.catalyst-list .kw{color:var(--accent);font-weight:700;margin-right:4px}
 
 /* ═══ 列宽类（每表列数与列宽精确匹配）═══ */
 table.f5{table-layout:fixed}
@@ -286,10 +293,22 @@ table.f4b th:nth-child(4),table.f4b td:nth-child(4){width:50%;text-align:left}
 <div class="card">
   <h2>风险提示与正面催化</h2>
   <div class="negbox">
-    <strong>五大风险：</strong>①美伊冲突若再升级，油价→通胀→利率链条强化，高估值成长首当其冲；②10Y美债4.80%+全球债市抛售，成长股估值端持续受压；③ADP/非农若强于预期，9月加息定价再升温；④高位连板退潮（海鸥住工7板、万向德农11天8板已提示风险），情绪反转快；⑤科技硬件补跌未释放完（费半-2.14%、LITE -5.01%、MRVL -4.67%）。
+    <strong>五大风险：</strong>
+    <ul class="risk-list">
+      <li><span class="kw">美伊冲突升级</span>油价→通胀→利率链条强化，高估值成长首当其冲</li>
+      <li><span class="kw">全球债市抛售</span>10Y美债4.80%+全球债市抛售，成长股估值端持续受压</li>
+      <li><span class="kw">加息定价升温</span>ADP/非农若强于预期，9月加息定价再升温</li>
+      <li><span class="kw">高位连板退潮</span>海鸥住工7板、万向德农11天8板已提示风险，情绪反转快</li>
+      <li><span class="kw">科技硬件补跌未完</span>费半-2.14%、LITE -5.01%、MRVL -4.67%</li>
+    </ul>
   </div>
   <div class="posbox">
-    <strong>三大催化：</strong>①戴尔Q2财报超预期，AI服务器指引740亿美元（连续5季上调），全球AI资本开支加速的产业趋势佐证；②中际旭创40–80亿回购落地+首日3.18亿，光模块龙头资金护盘信号；③科创板AI应用臻选指数今日发布+世界动力电池大会（9/3–4）临近，AI应用/固态电池方向事件催化密集。
+    <strong>三大催化：</strong>
+    <ul class="catalyst-list">
+      <li><span class="kw">戴尔AI服务器740亿指引</span>Q2财报超预期（连续5季上调），全球AI资本开支加速的产业佐证</li>
+      <li><span class="kw">中际旭创40–80亿回购</span>落地+首日3.18亿，光模块龙头资金护盘信号</li>
+      <li><span class="kw">AI应用/固态电池事件催化</span>科创板AI应用臻选指数今日发布+世界动力电池大会（9/3–4）临近</li>
+    </ul>
   </div>
 </div>
 
