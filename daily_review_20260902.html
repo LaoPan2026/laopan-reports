@@ -100,6 +100,28 @@ table.f3c th:nth-child(3),table.f3c td:nth-child(3){width:60%;text-align:left}
 table.f2{table-layout:fixed}
 table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:22%;text-align:left}
 table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
+
+/* ═══════════════════════════════════════════════════════════════════
+   2026-09-02 全页色彩纪律（v4.2 启用）
+   评级色：HOLD=亮蓝 / WAIT=蓝灰 / BUY=红 / SELL=绿
+   板块色：军工=橄榄 / 农业=金 / CPO=科技蓝 / 顺周期=橙红 / 逆势=中性灰
+   风险色：逼近警戒=橙 #ff8c42 / 情绪冷=蓝灰 / 情绪热=红
+   指标重要度：核心=品牌蓝边框 / 辅助=灰边淡化
+   ═══════════════════════════════════════════════════════════════════ */
+.tag-hold{color:#4d9fff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#6b8caf;background:rgba(107,140,175,.12);border:1px solid rgba(107,140,175,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-buy{color:#f23645;background:rgba(242,54,69,.12);border:1px solid rgba(242,54,69,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#089981;background:rgba(8,153,129,.12);border:1px solid rgba(8,153,129,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-warn{color:#ff8c42;background:rgba(255,140,66,.10);border:1px solid rgba(255,140,66,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-military{color:#9bc06b;background:rgba(107,142,35,.10);border:1px solid rgba(107,142,35,.40);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-farm{color:#e8b842;background:rgba(212,160,23,.10);border:1px solid rgba(212,160,23,.40);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cpo{color:#4d9fff;background:rgba(77,159,255,.10);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cycle{color:#ff8c42;background:rgba(255,140,66,.10);border:1px solid rgba(255,140,66,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-neutral{color:#7e8ea3;background:rgba(126,142,163,.10);border:1px solid rgba(126,142,163,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.metric-core{border-left:3px solid var(--accent);background:var(--soft)}
+.metric-aux{border-left:3px solid var(--line);background:var(--soft);opacity:.78}
+.mood-cold{color:#6b8caf;background:rgba(107,140,175,.12);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+.mood-hot{color:#f23645;background:rgba(242,54,69,.10);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -110,9 +132,9 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
   <h1>2026-09-02（周三）A股盘后复盘｜缩量普跌守 3927，军工接棒农业，罗博独红</h1>
   <p class="small">2026-09-02 · 周三 · A股收盘 · 数据截至北京时间 18:55 · 编制：巴蒂</p>
   <div class="summary">
-    <p><strong>一句话结论：</strong>沪深两市缩量约 2400 亿普跌（上证 -0.97% 报 3941.39，创业板 -2.39% 领跌并跌破年线），资金从农业高位股撤出转向军工、零售；组合 8 只仅罗博特科逆势红盘（+3.59%），CPO 主线独立走强是当日唯一亮点。</p>
+    <p><strong>一句话结论：</strong><span class="tag-farm">农业退潮</span> 资金转 <span class="tag-military">军工接棒</span>，沪深两市缩量约 2400 亿普跌（上证 -0.97% 报 3941.39，<span class="neg">创业板 -2.39%</span> 领跌并跌破年线）；组合 8 只仅罗博特科逆势红盘（<span class="pos">+3.59%</span>），<span class="tag-cpo">CPO 设备独立</span>是当日唯一亮点。</p>
     <p><strong>技术判断：</strong>上证盘中最低 3932.25 未破 3927 关键支撑（徐小明/天赢居双锚第一支撑位），收在 3927 之上但已失守 3955 第一验证区——短线转弱、趋势结构未坏，3927 得失是明日分水岭。</p>
-    <p><strong>操作基调：</strong>组合维持 HOLD，不追高不杀跌。罗博不追（逼近千亿市值+融资拥挤），澜起 WAIT（主力流出 5.7 亿等企稳），明日盯博通财报（9/3 晨，AI 硬件风向标）。</p>
+    <p><strong>操作基调：</strong>组合 <span class="tag-hold">HOLD</span>，不追高不杀跌。罗博 <span class="tag-warn">不追</span>（逼近千亿市值+融资拥挤），澜起 <span class="tag-wait">WAIT</span>（主力流出 5.7 亿等企稳），明日盯博通财报（9/3 晨，AI 硬件风向标）。</p>
   </div>
 </div>
 
@@ -120,12 +142,12 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>核心指标速览</h2>
   <div class="metric">
-    <div class="metric-item"><div class="metric-label">上证指数</div><div class="metric-val neg">3941.39</div><div class="metric-label">-0.97% · 距3927支撑仅14点</div></div>
-    <div class="metric-item"><div class="metric-label">创业板指</div><div class="metric-val neg">3312.24</div><div class="metric-label">-2.39% · 跌破年线</div></div>
-    <div class="metric-item"><div class="metric-label">两市成交</div><div class="metric-val">1.79万亿</div><div class="metric-label">较上日缩量约2422亿</div></div>
-    <div class="metric-item"><div class="metric-label">涨跌家数</div><div class="metric-val">1247/3858</div><div class="metric-label">沪深A股 · 普跌</div></div>
-    <div class="metric-item"><div class="metric-label">涨停/跌停</div><div class="metric-val">54/8</div><div class="metric-label">情绪退潮（前日86家涨停）</div></div>
-    <div class="metric-item"><div class="metric-label">主力资金</div><div class="metric-val neg">-553.5亿</div><div class="metric-label">沪深A股净流出</div></div>
+    <div class="metric-item metric-core"><div class="metric-label">上证指数</div><div class="metric-val neg">3941.39</div><div class="metric-label">-0.97% · 距3927支撑仅14点</div></div>
+    <div class="metric-item metric-core"><div class="metric-label">创业板指</div><div class="metric-val neg">3312.24</div><div class="metric-label">-2.39% · 跌破年线</div></div>
+    <div class="metric-item metric-aux"><div class="metric-label">两市成交</div><div class="metric-val">1.79万亿</div><div class="metric-label">较上日缩量约2422亿</div></div>
+    <div class="metric-item metric-aux"><div class="metric-label">涨跌家数</div><div class="metric-val">1247/3858</div><div class="metric-label">沪深A股 · 普跌</div></div>
+    <div class="metric-item metric-core"><div class="metric-label">涨停/跌停</div><div class="metric-val"><span class="mood-cold">54</span>/8</div><div class="metric-label">情绪退潮（前日<span class="mood-hot">86</span>家涨停）</div></div>
+    <div class="metric-item metric-aux"><div class="metric-label">主力资金</div><div class="metric-val neg">-553.5亿</div><div class="metric-label">沪深A股净流出</div></div>
   </div>
   <p class="note">数据来源：妙想行情（东财口径，2026-09-02 收盘）；涨停家数含北交所口径（证券日报/中新经纬），涨跌家数为沪深A股口径（东财）。</p>
 </div>
@@ -174,11 +196,11 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
     <table class="f3a">
       <thead><tr><th>方向</th><th>表现</th><th>资金/逻辑</th></tr></thead>
       <tbody>
-        <tr><td><strong>军工（新主线）</strong></td><td>地面兵装Ⅱ +6.48% 居申万二级首位，兵装重组概念 +4.52%；内蒙一机2连板，长城军工、建设工业、博云新材涨停。</td><td>兵装重组概念主力净流入 8.26 亿居首。催化 = 美伊冲突升级 + 军贸预期 +「十五五」规划 + 建军百年（2027）预期。</td></tr>
-        <tr><td><strong>农业（退潮）</strong></td><td>种植业/转基因/粮食概念重挫，敦煌种业跌停，华绿生物跌超10%，昨日高标万向德农等集体断板。</td><td>昨日最强今日最弱，典型高位获利兑现。涨停从86→54、情绪分从91→64，题材退潮期勿接飞刀。</td></tr>
-        <tr><td><strong>AI硬件/光模块</strong></td><td>通信设备领跌，"易中天"（新易盛/中际旭创/天孚通信）盘中最大跌超5%，中际旭创净卖出超24亿、市值再跌破万亿；科创权重中微、澜起、源杰跌超3%。</td><td>受美债收益率上行+纳指走弱压制；但注意午盘CPO板块出现独立拉升（罗博+3.59%、天孚一度翻红），说明光模块设备与器件开始分化。</td></tr>
-        <tr><td><strong>逆势方向</strong></td><td>美容护理、培育钻石、零售（国芳集团4连板）、电网设备（太阳电缆、神马电力涨停）、PCB（沃特股份9天5板）、光纤（杭电股份涨停）。</td><td>场内资金从农业撤出后流向军工 + 零售两大出口，属存量博弈下的快速轮动，非新增主线。</td></tr>
-        <tr><td><strong>领跌顺周期</strong></td><td>煤炭（上海能源 -7%）、能源金属/稀土/锂矿、影视院线（博纳 -6%）、乳业（一鸣食品跌停）。</td><td>油价暴涨利好油气但利空煤炭成本端；能源金属与锂电受碳酸锂价格波动扰动，短期无增量逻辑。</td></tr>
+        <tr><td><strong><span class="tag-military">军工</span>（新主线）</strong></td><td>地面兵装Ⅱ +6.48% 居申万二级首位，兵装重组概念 +4.52%；内蒙一机2连板，长城军工、建设工业、博云新材涨停。</td><td>兵装重组概念主力净流入 8.26 亿居首。催化 = 美伊冲突升级 + 军贸预期 +「十五五」规划 + 建军百年（2027）预期。</td></tr>
+        <tr><td><strong><span class="tag-farm">农业</span>（退潮）</strong></td><td>种植业/转基因/粮食概念重挫，敦煌种业跌停，华绿生物跌超10%，昨日高标万向德农等集体断板。</td><td>昨日最强今日最弱，典型高位获利兑现。涨停从<span class="mood-hot">86</span>→<span class="mood-cold">54</span>、情绪分从91→64，题材退潮期勿接飞刀。</td></tr>
+        <tr><td><strong><span class="tag-cpo">AI硬件/光模块</span></strong></td><td>通信设备领跌，"易中天"（新易盛/中际旭创/天孚通信）盘中最大跌超5%，中际旭创净卖出超24亿、市值再跌破万亿；科创权重中微、澜起、源杰跌超3%。</td><td>受美债收益率上行+纳指走弱压制；但注意午盘 CPO 板块出现独立拉升（罗博<span class="pos">+3.59%</span>、天孚一度翻红），说明光模块设备与器件开始分化。</td></tr>
+        <tr><td><strong><span class="tag-neutral">逆势方向</span></strong></td><td>美容护理、培育钻石、零售（国芳集团4连板）、电网设备（太阳电缆、神马电力涨停）、PCB（沃特股份9天5板）、光纤（杭电股份涨停）。</td><td>场内资金从农业撤出后流向军工 + 零售两大出口，属存量博弈下的快速轮动，非新增主线。</td></tr>
+        <tr><td><strong><span class="tag-cycle">领跌顺周期</span></strong></td><td>煤炭（上海能源 -7%）、能源金属/稀土/锂矿、影视院线（博纳 -6%）、乳业（一鸣食品跌停）。</td><td>油价暴涨利好油气但利空煤炭成本端；能源金属与锂电受碳酸锂价格波动扰动，短期无增量逻辑。</td></tr>
       </tbody>
     </table>
   </div>
@@ -198,7 +220,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
           <td><strong>罗博特科</strong><br><span class="small">300757</span></td>
           <td>582.70</td><td class="pos">+3.59%</td><td class="pos">+2.97亿</td>
           <td><span class="tag-hold">HOLD</span></td>
-          <td>组合唯一红盘，成交42.5亿、换手4.55%，总市值976.65亿逼近千亿。催化=华鑫证券9/2买入评级研报（CPO产业化加速、OCS和可插拔多线发力）+中财网报道在手光电子订单24.52亿（含12.61亿可插拔、2条OCS整线、1.29亿FAU）+Marvell CPO硅光子2027年底量产时间表。基本面：Q2单季净利率10.10%跨过盈亏平衡。风险：融资余额48亿占流通市值5.09%、超近一年80%分位，杠杆拥挤度偏高；股东户数环比+35.88%筹码分散。明日不追高，等回踩缩量承接。</td>
+          <td>组合唯一红盘，成交42.5亿、换手4.55%，总市值976.65亿逼近千亿。催化=华鑫证券9/2买入评级研报（CPO产业化加速、OCS和可插拔多线发力）+中财网报道在手光电子订单24.52亿（含12.61亿可插拔、2条OCS整线、1.29亿FAU）+Marvell CPO硅光子2027年底量产时间表。基本面：Q2单季净利率10.10%跨过盈亏平衡。<strong>风险</strong> <span class="tag-warn">警示</span>：融资余额48亿占流通市值5.09%、<span class="tag-warn">超近一年80%分位</span>，杠杆拥挤度偏高；股东户数环比+35.88%筹码分散。明日不追高，等回踩缩量承接。</td>
         </tr>
         <tr>
           <td><strong>泰和新材</strong><br><span class="small">002254</span></td>
