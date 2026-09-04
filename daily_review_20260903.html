@@ -114,8 +114,15 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 .tag-neutral{color:#a4b1c4;background:rgba(126,142,163,.28);border:1px solid rgba(126,142,163,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
 .mood-cold{color:#9eb4cc;background:rgba(107,140,175,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
 .mood-hot{color:#ff6373;background:rgba(242,54,69,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
-.metric-core{border-left:3px solid var(--accent);background:var(--soft)}
-.metric-aux{border-left:3px solid var(--line);background:var(--soft);opacity:.78}
+/* v4.6 指标卡维度色（2026-09-03 重构，取代 core/aux 二分）
+   idx=指数蓝 / vol=量能资金金 / mood=情绪广度紫；metric-core=顶部淡染主卡，净底=辅卡 */
+.metric-item{border-left:3px solid var(--line)}
+.metric-idx{border-left-color:#4d9fff}
+.metric-vol{border-left-color:#e8a020}
+.metric-mood{border-left-color:#a78bfa}
+.metric-idx.metric-core{background:linear-gradient(180deg,rgba(77,159,255,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-vol.metric-core{background:linear-gradient(180deg,rgba(232,160,32,.13),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-mood.metric-core{background:linear-gradient(180deg,rgba(167,139,250,.16),rgba(26,44,68,.06) 88%),var(--soft)}
 </style>
 </head>
 <body>
@@ -136,12 +143,12 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>核心指标速览</h2>
   <div class="metric">
-    <div class="metric-item metric-core"><div class="metric-label">上证指数</div><div class="metric-val pos">3942.09</div><div class="metric-label">+0.02% · 高开冲高回落</div></div>
-    <div class="metric-item metric-core"><div class="metric-label">创业板指</div><div class="metric-val">3312.54</div><div class="metric-label">+0.01% · 平盘整理</div></div>
-    <div class="metric-item metric-aux"><div class="metric-label">两市成交</div><div class="metric-val">1.76万亿</div><div class="metric-label">较上日缩量约 320 亿</div></div>
-    <div class="metric-item metric-aux"><div class="metric-label">涨跌家数</div><div class="metric-val">1846/3570</div><div class="metric-label">沪A·涨少跌多</div></div>
-    <div class="metric-item metric-core"><div class="metric-label">涨停/跌停</div><div class="metric-val"><span class="mood-cold">46</span>/17</div><div class="metric-label">情绪续降（昨 54/8）</div></div>
-    <div class="metric-item metric-aux"><div class="metric-label">主力资金</div><div class="metric-val neg">-120.8亿</div><div class="metric-label">流出较昨 -553.5 亿收窄</div></div>
+    <div class="metric-item metric-idx metric-core"><div class="metric-label">上证指数</div><div class="metric-val pos">3942.09</div><div class="metric-label">+0.02% · 高开冲高回落</div></div>
+    <div class="metric-item metric-idx metric-core"><div class="metric-label">创业板指</div><div class="metric-val">3312.54</div><div class="metric-label">+0.01% · 平盘整理</div></div>
+    <div class="metric-item metric-vol"><div class="metric-label">两市成交</div><div class="metric-val">1.76万亿</div><div class="metric-label">较上日缩量约 320 亿</div></div>
+    <div class="metric-item metric-mood"><div class="metric-label">涨跌家数</div><div class="metric-val">1846/3570</div><div class="metric-label">沪A·涨少跌多</div></div>
+    <div class="metric-item metric-mood metric-core"><div class="metric-label">涨停/跌停</div><div class="metric-val"><span class="mood-cold">46</span>/17</div><div class="metric-label">情绪续降（昨 54/8）</div></div>
+    <div class="metric-item metric-vol"><div class="metric-label">主力资金</div><div class="metric-val neg">-120.8亿</div><div class="metric-label">流出较昨 -553.5 亿收窄</div></div>
   </div>
   <p class="note">数据来源：妙想行情（东财口径，2026-09-03 收盘）；涨跌家数为沪深A股口径；主力资金为沪深A股合计。</p>
 </div>
