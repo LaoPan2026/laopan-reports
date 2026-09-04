@@ -152,13 +152,17 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 .bar-warn>i{background:#ff8c42}
 .bar-bad>i{background:#f23645}
 /* ═══════════════════════════════════════════════════════════════════
-   v6.2 响应式布局架构（2026-09-04 td改block根治flex不生效 · 主模板+复盘V5 同步启用）
+   v6.3 响应式布局架构（2026-09-04 单字一行根治版 · 三档断点统一≤1024）
    ───────────────────────────────────────────────────────────────────
-   三档断点：≥1024px 桌面全宽 / 641-1023px 平板 / ≤640px 手机逐组件重排
-   手机端组件级适配：
-     · .metric 指标卡：flex 横排 → grid 2×2（6卡=3行、4卡=2行，偶数恒整齐）
-     · summary/verdict/negbox/posbox 结论框：字号13px、padding收紧、行距1.7
-     · 表字号 12.5px + th/td padding 6px 防溢出
+   三档断点：≥1024px 桌面全宽 / ≤1024px 移动端（平板+手机合并）
+   v6.3 关键修复（针对桌面 f3a~f8 在窄屏残留 table-layout:fixed + word-break）：
+     · 媒体块内强制 table{table-layout:auto !important}
+     · 媒体块内强制 td/th{width:auto !important; word-break:normal !important}
+     · 强制 .tbl-card{display:block;width:100%} 走卡片流（hidden thead, block td, ::before 标签）
+     · 强制 .tbl-scroll{min-width:700px} 走横滑 + 首列 sticky + 偶数行首列 #17273e 不透明
+   网格布局：
+     · .metric 指标卡 4 卡 2×2 grid（每张占满一行）；6+ 自动换行
+     · summary/verdict/negbox/posbox 收紧为 13px + padding 10-12px + 行距 1.7
    表格三选一分类（生成报告时每张表打标，禁止漏标）：
      ① class="tbl-scroll" 对比型宽表（≥6列数值密集：持仓总览/信号表/执行单）
         → 移动端 min-width:700px + 首列冻结(sticky) + 横向滑动，数据不压缩
@@ -182,38 +186,33 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
   h1{font-size:18px}
   h2{font-size:15px;padding:7px 10px}
   h3{font-size:14px}
-  table{font-size:12.5px}
-  th,td{padding:6px}
-  table.tbl-scroll{min-width:700px}
-  .table-wrap table th:first-child,
-  .table-wrap table td:first-child{
-    position:sticky;left:0;z-index:2;background:var(--card);
-    box-shadow:1px 0 0 rgba(255,255,255,.07)
-  }
-  .table-wrap table.tbl-scroll thead th:first-child{z-index:3}
-  .table-wrap table.tbl-scroll tbody tr:nth-child(even) td:first-child{background:#17273e}
-  table.tbl-card{display:block;width:100%;border-collapse:separate;border-spacing:0}
+  body{padding:10px}
+  table{font-size:12.5px;table-layout:auto !important}
+  th,td{padding:6px;width:auto !important;word-break:normal !important;overflow-wrap:normal !important}
+  td.name,th.name{white-space:normal}
+  /* tbl-card 卡片化触发（≤1024，含 !important 应对部分 WebView 不识别 display:block on table 的退化）*/
+  table.tbl-card{display:block !important;width:100%;border-collapse:separate;border-spacing:0}
   table.tbl-card thead{display:none}
-  table.tbl-card tbody{display:block;width:100%}
+  table.tbl-card tbody{display:block !important;width:100%}
   table.tbl-card tbody tr{
-    display:block;width:100%;background:var(--soft);
+    display:block !important;width:100%;background:var(--soft);
     border:1px solid var(--line);border-radius:8px;
-    padding:8px 12px;margin-bottom:10px
+    padding:10px 12px;margin-bottom:10px
   }
   table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
   table.tbl-card td{
-    display:block;border:none;padding:2px 0;
-    text-align:left;font-size:13px;line-height:1.5
+    display:block !important;border:none;padding:3px 0;
+    text-align:left;font-size:13px;line-height:1.6
   }
   table.tbl-card td::before{
     content:attr(data-label) "：";
-    display:block;color:var(--muted);font-weight:600;
-    font-size:11px;margin-bottom:2px;white-space:nowrap
+    display:block !important;color:var(--muted);font-weight:600;
+    font-size:11px;margin-bottom:3px;white-space:nowrap
   }
   table.tbl-card td:first-child{
-    display:block;font-weight:700;color:var(--text);
-    border-bottom:1px dashed var(--line);margin-bottom:4px;
-    padding-bottom:5px;font-size:14px
+    display:block !important;font-weight:700;color:var(--text);
+    border-bottom:1px dashed var(--line);margin-bottom:6px;
+    padding-bottom:6px;font-size:14px
   }
   table.tbl-card td:first-child .small{color:var(--muted);font-weight:400;margin-left:8px}
 
@@ -221,6 +220,15 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
   table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
   table.tbl-card .pos,table.tbl-card .neg,
   table.tbl-card .tag{white-space:nowrap}
+  /* tbl-scroll 横滑 + 冻结首列（≤1024）*/
+  table.tbl-scroll{min-width:700px;table-layout:fixed !important}
+  .table-wrap table th:first-child,
+  .table-wrap table td:first-child{
+    position:sticky;left:0;z-index:2;background:var(--card);
+    box-shadow:1px 0 0 rgba(255,255,255,.07)
+  }
+  .table-wrap table.tbl-scroll thead th:first-child{z-index:3}
+  .table-wrap table.tbl-scroll tbody tr:nth-child(even) td:first-child{background:#17273e}
 }
 </style>
 </head>
@@ -417,12 +425,11 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 
 </div>
 <script>
-/* v6.2 响应式配套（2026-09-04 block fallback）：叙述表卡片化需 data-label 注入 */
-/* 触发：class="tbl-card" 的表 + 视口≤640px；把 thead 首个文本注入各 td */
+/* v6.3 响应式配套（2026-09-04 断点统一≤1024）：叙述表卡片化需 data-label 注入 */
+/* 触发：class="tbl-card" 的表 + 视口≤1024px；把 thead 首个文本注入各 td */
 (function(){
   function fit(){
-    if(window.innerWidth>1024){document.body.classList.remove('v6-card');return}
-    document.body.classList.add('v6-card');
+    if(window.innerWidth>1024){return}
     document.querySelectorAll('table.tbl-card').forEach(function(tb){
       var heads=[];tb.querySelectorAll('thead th').forEach(function(th){heads.push(th.textContent.trim())});
       tb.querySelectorAll('tbody tr').forEach(function(tr){
