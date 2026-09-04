@@ -51,7 +51,63 @@ td.name,th.name{white-space:nowrap;word-break:keep-all}
 .metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:130px;border:1px solid var(--line);flex:1 1 150px}
 .metric-val{font-size:20px;font-weight:700;color:var(--text)}
 .metric-label{font-size:13px;color:var(--muted);font-weight:600}
-@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:46%;padding:8px 10px}.metric-val{font-size:17px}}
+@media(max-width:1024px){
+  body{padding:10px}
+  .summary{padding:10px 12px;font-size:13px}
+  .summary p{font-size:13px;line-height:1.7}
+  .metric{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}.metric-item{flex:1 1 calc(50% - 5px);min-width:0;box-sizing:border-box}
+  .metric-item{width:auto;min-width:0;padding:8px 10px;margin:0}
+  .metric-val{font-size:17px}
+  .metric-label{font-size:12px}
+  .verdict-box,.negbox,.posbox{font-size:13px;padding:10px 12px;line-height:1.7}
+  .footer{font-size:11px}
+  .card{padding:14px 12px}
+  h1{font-size:18px}
+  h2{font-size:15px;padding:7px 10px}
+  h3{font-size:14px}
+  /* v6.3 关键覆盖：桌面 f3a~f8 的 fixed 列宽 + 字符断行在窄屏必须解除 */
+  table{font-size:12.5px;table-layout:auto !important}
+  th,td{padding:6px;width:auto !important;word-break:normal !important;overflow-wrap:normal !important}
+  td.name,th.name{white-space:normal}
+  /* tbl-card 卡片化（叙述型 <=5 列）*/
+  table.tbl-card{display:block !important;width:100%;border-collapse:separate;border-spacing:0}
+  table.tbl-card thead{display:none}
+  table.tbl-card tbody{display:block !important;width:100%}
+  table.tbl-card tbody tr{
+    display:block !important;width:100%;background:var(--soft);
+    border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;margin-bottom:10px
+  }
+  table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
+  table.tbl-card td{
+    display:block !important;border:none;padding:3px 0;
+    text-align:left;font-size:13px;line-height:1.6
+  }
+  table.tbl-card td::before{
+    content:attr(data-label) "：";
+    display:block !important;color:var(--muted);font-weight:600;
+    font-size:11px;margin-bottom:3px;white-space:nowrap
+  }
+  table.tbl-card td:first-child{
+    display:block !important;font-weight:700;color:var(--text);
+    border-bottom:1px dashed var(--line);margin-bottom:6px;
+    padding-bottom:6px;font-size:14px
+  }
+  table.tbl-card td:first-child .small{color:var(--muted);font-weight:400;margin-left:8px}
+  table.tbl-card th,table.tbl-card td.name,
+  table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
+  table.tbl-card .pos,table.tbl-card .neg,
+  table.tbl-card .tag{white-space:nowrap}
+  /* tbl-scroll 横滑 + 冻结首列（>=6 列数值表）*/
+  table.tbl-scroll{min-width:700px;table-layout:fixed !important}
+  .table-wrap table th:first-child,
+  .table-wrap table td:first-child{
+    position:sticky;left:0;z-index:2;background:var(--card);
+    box-shadow:1px 0 0 rgba(255,255,255,.07)
+  }
+  .table-wrap table.tbl-scroll thead th:first-child{z-index:3}
+  .table-wrap table.tbl-scroll tbody tr:nth-child(even) td:first-child{background:#17273e}
+}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
 .verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
@@ -157,7 +213,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>一、指数收盘</h2>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额</th></tr></thead>
       <tbody>
         <tr><td><strong>上证指数</strong></td><td>3942.09</td><td class="pos">+0.02%</td><td>8197亿</td></tr>
@@ -169,7 +225,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
     </table>
   </div>
   <div class="table-wrap">
-    <table class="f2">
+    <table class="f2 tbl-card">
       <thead><tr><th>关键锚点（上证）</th><th>数值</th></tr></thead>
       <tbody>
         <tr><td><strong>收盘 / 盘中高低</strong></td><td>3942.09（+0.02%）· 开 3952.79 · 高 3968 · 低 3930</td></tr>
@@ -187,7 +243,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>二、市场状态解读</h2>
   <div class="table-wrap">
-    <table class="f3a">
+    <table class="f3a tbl-card">
       <thead><tr><th>维度</th><th>今日事实</th><th>独立判断</th></tr></thead>
       <tbody>
         <tr><td><strong>指数结构</strong></td><td>集体高开后冲高回落：沪指盘中最高 3968（+0.68%）后收窄至 3942.09；科创50 独立走弱 -0.40%，沪深300/深成指 +0.10%。</td><td>利好高开兑现卖压明显——外盘强催化（博通+台积电）只换来半日强势，午后权重与科技同步回吐，属"弱平衡中的利好不涨"。</td></tr>
@@ -204,7 +260,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>三、板块与主线：外盘 AI 利好高开兑现，资金抱团黄金/券商防御</h2>
   <div class="table-wrap">
-    <table class="f3a">
+    <table class="f3a tbl-card">
       <thead><tr><th>方向</th><th>表现</th><th>资金/逻辑</th></tr></thead>
       <tbody>
         <tr><td><strong><span class="tag-gold">黄金/有色</span>（防御领涨）</strong></td><td>黄金板块主力净流入 5.55 亿；有色(申万) +1.24%，山东黄金等走强。</td><td>地缘冲突反复 + 美元避险需求 + 降息预期，黄金成今日最确定主线；A股黄金股与 COMEX 金价联动，属防御资金首选。</td></tr>
@@ -222,7 +278,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>四、8只持仓复盘（当日行情 + 独立判断）</h2>
   <div class="table-wrap">
-    <table class="t-h6">
+    <table class="t-h6 tbl-scroll">
       <thead>
         <tr><th>标的</th><th>收盘价</th><th>涨跌幅</th><th>主力净流入</th><th>评级</th><th>复盘判断与明日动作</th></tr>
       </thead>
@@ -285,7 +341,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>五、明日（9/4 周五）执行单</h2>
   <div class="table-wrap">
-    <table class="f3d">
+    <table class="f3d tbl-card">
       <thead><tr><th>观察对象</th><th>关键锚点</th><th>触发动作</th></tr></thead>
       <tbody>
         <tr><td><strong>大盘</strong></td><td>上证 3927 支撑 / 3960（5日线）-3955 反压；量能是否放大至 1.9 万亿。</td><td>守住 3927 且缩量：维持 HOLD 不追；放量站稳 3960：短线修复信号；跌破 3927 且反抽不收复：按双锚纪律降级、降新仓节奏。</td></tr>
@@ -323,5 +379,22 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 </div>
 
 </div>
+<script>
+/* v6.3 响应式配套（2026-09-04 断点统一<=1024）：叙述表卡片化需 data-label 注入 */
+(function(){
+  function fit(){
+    if(window.innerWidth>1024){return}
+    document.querySelectorAll('table.tbl-card').forEach(function(tb){
+      var heads=[];tb.querySelectorAll('thead th').forEach(function(th){heads.push(th.textContent.trim())});
+      tb.querySelectorAll('tbody tr').forEach(function(tr){
+        tr.querySelectorAll('td').forEach(function(td,i){
+          if(heads[i])td.setAttribute('data-label',heads[i]);
+        });
+      });
+    });
+  }
+  window.addEventListener('resize',fit);document.addEventListener('DOMContentLoaded',fit);fit();
+})();
+</script>
 </body>
 </html>

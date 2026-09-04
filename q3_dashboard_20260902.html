@@ -50,7 +50,63 @@ td.name,th.name{white-space:nowrap;word-break:keep-all}
 .metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line)}
 .metric-val{font-size:20px;font-weight:700;color:var(--text)}
 .metric-label{font-size:13px;color:var(--muted);font-weight:600}
-@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+@media(max-width:1024px){
+  body{padding:10px}
+  .summary{padding:10px 12px;font-size:13px}
+  .summary p{font-size:13px;line-height:1.7}
+  .metric{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}.metric-item{flex:1 1 calc(50% - 5px);min-width:0;box-sizing:border-box}
+  .metric-item{width:auto;min-width:0;padding:8px 10px;margin:0}
+  .metric-val{font-size:17px}
+  .metric-label{font-size:12px}
+  .verdict-box,.negbox,.posbox{font-size:13px;padding:10px 12px;line-height:1.7}
+  .footer{font-size:11px}
+  .card{padding:14px 12px}
+  h1{font-size:18px}
+  h2{font-size:15px;padding:7px 10px}
+  h3{font-size:14px}
+  /* v6.3 关键覆盖：桌面 f3a~f8 的 fixed 列宽 + 字符断行在窄屏必须解除 */
+  table{font-size:12.5px;table-layout:auto !important}
+  th,td{padding:6px;width:auto !important;word-break:normal !important;overflow-wrap:normal !important}
+  td.name,th.name{white-space:normal}
+  /* tbl-card 卡片化（叙述型 <=5 列）*/
+  table.tbl-card{display:block !important;width:100%;border-collapse:separate;border-spacing:0}
+  table.tbl-card thead{display:none}
+  table.tbl-card tbody{display:block !important;width:100%}
+  table.tbl-card tbody tr{
+    display:block !important;width:100%;background:var(--soft);
+    border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;margin-bottom:10px
+  }
+  table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
+  table.tbl-card td{
+    display:block !important;border:none;padding:3px 0;
+    text-align:left;font-size:13px;line-height:1.6
+  }
+  table.tbl-card td::before{
+    content:attr(data-label) "：";
+    display:block !important;color:var(--muted);font-weight:600;
+    font-size:11px;margin-bottom:3px;white-space:nowrap
+  }
+  table.tbl-card td:first-child{
+    display:block !important;font-weight:700;color:var(--text);
+    border-bottom:1px dashed var(--line);margin-bottom:6px;
+    padding-bottom:6px;font-size:14px
+  }
+  table.tbl-card td:first-child .small{color:var(--muted);font-weight:400;margin-left:8px}
+  table.tbl-card th,table.tbl-card td.name,
+  table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
+  table.tbl-card .pos,table.tbl-card .neg,
+  table.tbl-card .tag{white-space:nowrap}
+  /* tbl-scroll 横滑 + 冻结首列（>=6 列数值表）*/
+  table.tbl-scroll{min-width:700px;table-layout:fixed !important}
+  .table-wrap table th:first-child,
+  .table-wrap table td:first-child{
+    position:sticky;left:0;z-index:2;background:var(--card);
+    box-shadow:1px 0 0 rgba(255,255,255,.07)
+  }
+  .table-wrap table.tbl-scroll thead th:first-child{z-index:3}
+  .table-wrap table.tbl-scroll tbody tr:nth-child(even) td:first-child{background:#17273e}
+}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
 .verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
@@ -163,7 +219,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>二、H2 缺口压力测试表（本仪表盘的核心工具）</h2>
   <div class="table-wrap">
-    <table class="f7">
+    <table class="f7 tbl-scroll">
       <thead>
         <tr><th>标的</th><th>H1 归母</th><th>同比</th><th>全年预期</th><th>完成度</th><th>H2/H1</th><th>判定</th></tr>
       </thead>
@@ -218,7 +274,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 
   <h3>3.1　基础数据（不变）</h3>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>指标</th><th>2026H1</th><th>2026Q2 单季</th><th>信号</th></tr></thead>
       <tbody>
         <tr><td>营业总收入</td><td>10.37 亿</td><td>6.503 亿</td><td class="pos">+49.01% / +68.02%　营收加速</td></tr>
@@ -232,7 +288,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
   <h3>3.2　★ 归因修正：把「净利率崩塌」放进同业坐标后，结论反转</h3>
   <p>初稿我用「钧恒净利率 11.9% → 4.78%」这一个数字下了「基本面恶化」的结论。但把它放进行业坐标，立刻变得<strong>反常</strong>——在一个全行业利润暴增的年份，只有钧恒在崩：</p>
   <div class="table-wrap">
-    <table class="f6">
+    <table class="f6 tbl-scroll">
       <thead><tr><th>公司</th><th>H1 营收</th><th>H1 归母</th><th>归母 YoY</th><th>净利率</th><th>信号</th></tr></thead>
       <tbody>
         <tr><td><strong>中际旭创</strong></td><td>417.78 亿</td><td>136.51 亿</td><td class="pos">+241.70%</td><td class="pos">32.7%</td><td>行业龙头，利润暴增</td></tr>
@@ -251,7 +307,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
   <h3>3.3　压住它的三个东西，都不致命</h3>
   <p><strong>① 产品结构在剧烈换挡（主因，且是利好）</strong></p>
   <div class="table-wrap">
-    <table class="f6">
+    <table class="f6 tbl-scroll">
       <thead><tr><th>产品</th><th>2026H1 收入</th><th>同比</th><th>毛利率</th><th>毛利率变化</th><th>判定</th></tr></thead>
       <tbody>
         <tr><td><strong>光模块</strong></td><td><strong>6.55 亿</strong></td><td class="pos">+202.83%</td><td class="pos">21.64%</td><td class="pos">+3.50pct</td><td class="pos">放量且提价，结构性升级</td></tr>
@@ -272,7 +328,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
   <h3>3.4　H2 达标路径重算：门槛比初稿判断的低得多</h3>
   <p>钧恒 2026 年业绩承诺 <strong>1.83 亿</strong>，H1 完成 5,348.85 万（完成度 <strong>29.2%</strong>），H2 需 <strong>1.295 亿</strong>。关键不在营收（已翻倍），而在<strong>净利率修复</strong>：</p>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>H2 净利率假设</th><th>H2 净利（营收 15 亿）</th><th>全年合计</th><th>判定</th></tr></thead>
       <tbody>
         <tr><td>4.78%（原地踏步）</td><td>0.72 亿</td><td>1.25 亿</td><td class="neg">不达标</td></tr>
@@ -285,7 +341,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 
   <h3>3.5　Q3 裁决门槛（10/31 见分晓）</h3>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>Q3 钧恒净利</th><th>隐含净利率</th><th>判定</th><th>动作</th></tr></thead>
       <tbody>
         <tr><td>&lt; 4,000 万</td><td>&lt; 5%</td><td><span class="tag-buy">证伪</span></td><td>逻辑链断，重新评估</td></tr>
@@ -305,7 +361,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>四、汇绿重组专项：α 与 β 是两件事，必须同时发生</h2>
   <div class="table-wrap">
-    <table class="f3d">
+    <table class="f3d tbl-card">
       <thead><tr><th>要素</th><th>方案内容</th><th>关键含义</th></tr></thead>
       <tbody>
         <tr>
@@ -338,7 +394,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 
   <h3>4.1　★ 两个过滤器：钧恒爆发 ≠ 汇绿归母爆发</h3>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>过滤器</th><th>机制</th><th>量化影响</th><th>解药</th></tr></thead>
       <tbody>
         <tr>
@@ -358,7 +414,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 
   <h3>4.2　股本稀释与摊薄后估值</h3>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>情景</th><th>摊薄后总股本</th><th>2028 EPS（承诺×100%）</th><th>PE（现价 36.76）</th></tr></thead>
       <tbody>
         <tr><td>当前（7.85 亿股）</td><td>7.85 亿股</td><td>—</td><td>—</td></tr>
@@ -371,7 +427,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 
   <h3>4.3　子公司拆解：高毛利确实能做出来</h3>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>主体</th><th>2026H1 营收</th><th>2026H1 净利</th><th>净利率</th></tr></thead>
       <tbody>
         <tr><td><strong>武汉钧恒</strong>（核心）</td><td>11.187 亿</td><td>5,348.85 万</td><td class="neg">4.78%</td></tr>
@@ -393,7 +449,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>五、三祥新材：增长质量存疑（H2 需 3.96 倍）</h2>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>指标</th><th>2026H1</th><th>2026Q2 单季</th><th>信号</th></tr></thead>
       <tbody>
         <tr><td>营业收入</td><td>5.633 亿</td><td>2.996 亿</td><td>+0.23% / <span class="neg">-9.55%</span>　营收转负</td></tr>
@@ -412,7 +468,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>六、澜起科技：最稳的一只，但利润质量有瑕疵</h2>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>指标</th><th>2026H1</th><th>2026Q2 单季</th><th>信号</th></tr></thead>
       <tbody>
         <tr><td>营业总收入</td><td>33.35 亿</td><td>18.75 亿</td><td class="pos">+26.66% / +32.85%　加速</td></tr>
@@ -434,7 +490,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>七、罗博特科：一致预期严重滞后，真实看点是营收</h2>
   <div class="table-wrap">
-    <table class="f4x">
+    <table class="f4x tbl-card">
       <thead><tr><th>指标</th><th>2026H1</th><th>2026Q2 单季</th><th>信号</th></tr></thead>
       <tbody>
         <tr><td>营业总收入</td><td>6.085 亿</td><td>4.448 亿</td><td class="pos">+144.8% / +192.9%</td></tr>
@@ -458,7 +514,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>八、持仓总览（2026-09-02 收盘 · 最新口径）</h2>
   <div class="table-wrap">
-    <table class="f8">
+    <table class="f8 tbl-scroll">
       <thead>
         <tr><th>名称/代码</th><th>数量</th><th>成本</th><th>现价</th><th>市值</th><th>浮盈亏</th><th>权重</th><th>Q3 判定</th></tr>
       </thead>
@@ -521,7 +577,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>八、换仓方案修正（权重算错，必须更正）</h2>
   <div class="table-wrap">
-    <table class="f3c">
+    <table class="f3c tbl-card">
       <thead><tr><th>方案</th><th>动作</th><th>结果</th></tr></thead>
       <tbody>
         <tr>
@@ -551,7 +607,7 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 <div class="card">
   <h2>十、验证时间轴与跟进动作</h2>
   <div class="table-wrap">
-    <table class="f3d">
+    <table class="f3d tbl-card">
       <thead><tr><th>时间窗口</th><th>验证事件</th><th>跟进动作</th></tr></thead>
       <tbody>
         <tr>
@@ -639,5 +695,22 @@ table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
 </div>
 
 </div>
+<script>
+/* v6.3 响应式配套（2026-09-04 断点统一<=1024）：叙述表卡片化需 data-label 注入 */
+(function(){
+  function fit(){
+    if(window.innerWidth>1024){return}
+    document.querySelectorAll('table.tbl-card').forEach(function(tb){
+      var heads=[];tb.querySelectorAll('thead th').forEach(function(th){heads.push(th.textContent.trim())});
+      tb.querySelectorAll('tbody tr').forEach(function(tr){
+        tr.querySelectorAll('td').forEach(function(td,i){
+          if(heads[i])td.setAttribute('data-label',heads[i]);
+        });
+      });
+    });
+  }
+  window.addEventListener('resize',fit);document.addEventListener('DOMContentLoaded',fit);fit();
+})();
+</script>
 </body>
 </html>
