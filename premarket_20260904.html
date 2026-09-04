@@ -151,6 +151,77 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 .bar-ok>i{background:#089981}
 .bar-warn>i{background:#ff8c42}
 .bar-bad>i{background:#f23645}
+/* ═══════════════════════════════════════════════════════════════════
+   v6.0 响应式布局架构（2026-09-04 定稿 · 主模板+复盘V5 同步启用）
+   ───────────────────────────────────────────────────────────────────
+   三档断点：≥1024px 桌面全宽 / 641-1023px 平板 / ≤640px 手机逐组件重排
+   手机端组件级适配：
+     · .metric 指标卡：flex 横排 → grid 2×2（6卡=3行、4卡=2行，偶数恒整齐）
+     · summary/verdict/negbox/posbox 结论框：字号13px、padding收紧、行距1.7
+     · 表字号 12.5px + th/td padding 6px 防溢出
+   表格三选一分类（生成报告时每张表打标，禁止漏标）：
+     ① class="tbl-scroll" 对比型宽表（≥6列数值密集：持仓总览/信号表/执行单）
+        → 移动端 min-width:700px + 首列冻结(sticky) + 横向滑动，数据不压缩
+     ② class="tbl-card" 叙述型表（≤5列文字叙述：对账/板块逻辑/风险清单）
+        → 移动端转卡片流：表头隐藏、每行=卡片、每格「标签:值」两列grid
+        → 需配套 v6 JS 从 thead 自动注入 data-label（见 body 尾部脚本）
+     ③ 无类 普通窄表（≤5列短数值：指数速览等）→ 移动端自然压缩
+   纪律：sticky 首列必须不透明背景遮滚动内容——斑马纹偶数行首列补 #17273e，
+         禁止改 transparent（否则横滑时文字穿透重叠）。
+   ═══════════════════════════════════════════════════════════════════ */
+@media(max-width:640px){
+  .summary{padding:10px 12px;font-size:13px}
+  .summary p{font-size:13px;line-height:1.7}
+  .metric{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:8px 0}
+  .metric-item{width:auto;min-width:0;padding:8px 10px;margin:0}
+  .metric-val{font-size:17px}
+  .metric-label{font-size:12px}
+  .verdict-box,.negbox,.posbox{font-size:13px;padding:10px 12px;line-height:1.7}
+  .footer{font-size:11px}
+  .card{padding:14px 12px}
+  h1{font-size:18px}
+  h2{font-size:15px;padding:7px 10px}
+  h3{font-size:14px}
+  table{font-size:12.5px}
+  th,td{padding:6px}
+  table.tbl-scroll{min-width:700px}
+  .table-wrap table th:first-child,
+  .table-wrap table td:first-child{
+    position:sticky;left:0;z-index:2;background:var(--card);
+    box-shadow:1px 0 0 rgba(255,255,255,.07)
+  }
+  .table-wrap table.tbl-scroll thead th:first-child{z-index:3}
+  .table-wrap table.tbl-scroll tbody tr:nth-child(even) td:first-child{background:#17273e}
+  table.tbl-card{display:block;width:100%;border-collapse:separate;border-spacing:0}
+  table.tbl-card thead{display:none}
+  table.tbl-card tbody{display:block;width:100%}
+  table.tbl-card tbody tr{
+    display:block;width:100%;background:var(--soft);
+    border:1px solid var(--line);border-radius:8px;
+    padding:8px 12px;margin-bottom:10px
+  }
+  table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
+  table.tbl-card td{
+    display:grid;grid-template-columns:max-content 1fr;
+    align-items:baseline;column-gap:10px;
+    border:none;padding:3px 0;text-align:left;font-size:13px
+  }
+  table.tbl-card td:first-child{
+    display:flex;justify-content:flex-start;align-items:baseline;
+    font-weight:700;color:var(--text);
+    border-bottom:1px dashed var(--line);margin-bottom:4px;
+    padding-bottom:5px;font-size:14px
+  }
+  table.tbl-card td:first-child .small{color:var(--muted);font-weight:400;margin-left:8px}
+  table.tbl-card td:not(:first-child)::before{
+    content:attr(data-label) "：";
+    color:var(--muted);font-weight:600;font-size:12px;white-space:nowrap
+  }
+  table.tbl-card th,table.tbl-card td.name,
+  table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
+  table.tbl-card .pos,table.tbl-card .neg,
+  table.tbl-card .tag{white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -161,9 +232,13 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
   <h1>📋 盘前简报 · 2026-09-04（周五）</h1>
   <p class="small">A股数据时点：9/3（周四）收盘 ｜ 美股数据时点：美东 9/3 收盘（北京时间今晨） ｜ 均线口径：通达信/东财，截至 9/3 收盘 ★★★</p>
   <div class="summary">
-    <p><strong>一句话结论：</strong>隔夜美股普涨但<b>费半 +0.11% 严重滞涨</b>、光器件映射 COHR −1.58% / LITE −2.67%，美股 AI 硬件进入<b>"兑现利好"</b>阶段；A股上证 <b>3942.09 贴 55 日线（3943）横盘第二日</b>，夹在双锚 3927/3955 之间，<b>今日量能定方向</b>。</p>
-    <p><strong>操作基调：不追高、等触发。</strong>罗博 <b>570 以下</b>才执行核准方案 A（卖星环 600 换罗博 100），昨收 585.20 未触发；澜起盯 <b>186.50 防线</b>（主力第 5 日净流出 −4.59 亿）；汇绿看 35.82；华峰防线带 10.75–10.96 上方企稳，维持 WAIT。</p>
-    <p><strong>今日变量：</strong>① 博通 2027/28 财年 AI 收入指引 <b>1150→2300 亿美元</b>（电话会口径）强化光互联长逻辑，但短期"超预期不涨"；② 澜起 9/3 <b>纳入富时中国 A50</b> + 273 家机构调研，与资金流出背离；③ 今晚 20:30 <b>美国 8 月非农</b>——周末持仓最大变量（ADP 仅 3.7 万，加息预期已降温）。</p>
+    <p><strong>一句话结论：</strong>隔夜美股普涨但<b>费半 +0.11% 严重滞涨</b>，光器件 COHR −1.58% / LITE −2.67%——美股 AI 硬件进入<b>"兑现利好"</b>阶段，普涨不普强。</p>
+    <p>A股上证 <b>3942.09 贴 55 日线（3943）横盘第二日</b>，夹双锚 3927/3955，<b>今日量能定方向</b>。</p>
+    <p><strong>操作基调：不追高、等触发。</strong></p>
+    <p>罗博 <b>570 以下</b>才执行核准方案 A（卖星环 600 换罗博 100），昨收 585.20 未触发；澜起盯 <b>186.50 防线</b>（主力第 5 日净流出 −4.59 亿）。</p>
+    <p>汇绿看 35.82；华峰防线带 10.75–10.96 上方企稳，维持 WAIT。</p>
+    <p><strong>今日变量：</strong>① 博通 2027/28 财年 AI 收入指引 <b>1150→2300 亿美元</b>（电话会口径）强化光互联长逻辑，但短期"超预期不涨"；② 澜起 9/3 <b>纳入富时中国 A50</b> + 273 家机构调研，与资金流出背离。</p>
+    <p>③ <b>今晚 20:30 美 8 月非农</b>——周末持仓最大变量（ADP 仅 3.7 万，加息预期已降温）。</p>
   </div>
 </div>
 
@@ -184,7 +259,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 <div class="card">
   <h2>大盘定位：上证贴 55 日线，双锚区间内极限拉锯</h2>
   <div class="table-wrap">
-    <table class="f3d">
+    <table class="f3d tbl-card">
       <thead><tr><th>技术参考（上证）</th><th>坐标 / 9-3 实测</th><th>状态解读</th></tr></thead>
       <tbody>
         <tr><td><b>55日线(分水岭)</b></td><td>3943.05｜收 3942.09</td><td>偏离 −0.02%，<b>贴线横盘第二日</b>；两日不破不攻，方向选择在即，今日量能是关键</td></tr>
@@ -205,7 +280,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 <div class="card">
   <h2>隔夜美股（美东 9/3）：指数普涨、芯片滞涨，"兑现利好"特征明显</h2>
   <div class="table-wrap">
-    <table class="f5">
+    <table class="f5 tbl-card">
       <thead><tr><th>指数 / 标的</th><th>收盘</th><th>涨跌幅</th><th>费半相对</th><th>对持仓的映射解读</th></tr></thead>
       <tbody>
         <tr><td>纳斯达克</td><td>26584.06</td><td class="pos">+1.40%</td><td class="pos">+1.29pct</td><td>加息预期降温（美债收益率回落）+ 特斯拉 +5.42% 拉动；反弹主力是软件/平台，非硬件</td></tr>
@@ -227,7 +302,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 <div class="card">
   <h2>消息面：五条主线，两条直接影响持仓</h2>
   <div class="table-wrap">
-    <table class="f3a">
+    <table class="f3a tbl-card">
       <thead><tr><th>事件</th><th>要点</th><th>对持仓影响</th></tr></thead>
       <tbody>
         <tr><td><b>博通财报 + 电话会</b> <span class="tag-cpo">CPO链</span></td><td>Q3 营收 295.9 亿（+86%）、AI 半导体 167 亿（+221%）均超预期；Q4 总营收指引 348 亿，略逊市场上限 350.3 亿；<b>电话会指引 2027 财年 AI 收入翻倍至 ~1150 亿、2028 财年 ~2300 亿美元</b>，2026 财年 AI 指引上调至 580 亿</td><td><b>长逻辑强化、短期兑现。</b>博通 AI 收入 = 光模块/高速互联需求上游锚点，跨年翻倍指引直接支撑 CPO/光模块景气 → 利好罗博；但 A股 9/3 光模块"先跌后稳"（旭创探 810 回升、新易盛翻红）已消化一轮情绪</td></tr>
@@ -244,7 +319,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 <div class="card">
   <h2>持仓总览（9/3 收盘 · 按涨跌幅排序）</h2>
   <div class="table-wrap">
-    <table class="f8">
+    <table class="f8 tbl-scroll">
       <thead>
         <tr><th>名称/代码</th><th>昨收</th><th>涨跌</th><th>55日线</th><th>偏离</th><th>市值(万)</th><th>主力净额</th><th>评级 · 今日防线</th></tr>
       </thead>
@@ -291,7 +366,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 <div class="card">
   <h2>板块轮动（9/3）：科技硬件内部分化，主线仍在 CPO</h2>
   <div class="table-wrap">
-    <table class="f3d">
+    <table class="f3d tbl-card">
       <thead><tr><th>板块</th><th>9/3 表现</th><th>研判</th></tr></thead>
       <tbody>
         <tr><td><b>CPO / 光模块</b> <span class="tag-cpo">主线</span></td><td>CPO 概念 +0.17%；旭创探 810 后回升、新易盛翻红 +0.67%</td><td>博通情绪冲击已被市场消化，博通 2027/28 AI 指引支撑板块景气确定性 → 相对抗跌合理，回调即关注</td></tr>
@@ -307,7 +382,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 <div class="card">
   <h2>今日操作纪律：五条触发线，不预判、只执行</h2>
   <div class="table-wrap">
-    <table class="f3b">
+    <table class="f3b tbl-card">
       <thead><tr><th>标的</th><th>裁决</th><th>动作与触发条件</th></tr></thead>
       <tbody>
         <tr><td><b>罗博特科</b></td><td><span class="tag-buy">待触发 BUY</span></td><td>核准方案 A 买点 <b>570 以下</b>（限价 100 股），昨收 585.20 未触发。<b>不追高</b>：昨高位主力净流出 −1.16 亿、成交 37.9 亿为放量滞涨信号；一周内不回落且无 Q3 数据则放弃方案。盘中回落至 570–577（ma5 区）观察承接量</td></tr>
@@ -341,5 +416,24 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 </div>
 
 </div>
+<script>
+/* v6.0 响应式配套（2026-09-04）：叙述表卡片化需 data-label 注入 */
+/* 触发：class="tbl-card" 的表 + 视口≤640px；把 thead 首个文本注入各 td */
+(function(){
+  function fit(){
+    if(window.innerWidth>640){document.body.classList.remove('v6-card');return}
+    document.body.classList.add('v6-card');
+    document.querySelectorAll('table.tbl-card').forEach(function(tb){
+      var heads=[];tb.querySelectorAll('thead th').forEach(function(th){heads.push(th.textContent.trim())});
+      tb.querySelectorAll('tbody tr').forEach(function(tr){
+        tr.querySelectorAll('td').forEach(function(td,i){
+          if(heads[i])td.setAttribute('data-label',heads[i]);
+        });
+      });
+    });
+  }
+  window.addEventListener('resize',fit);document.addEventListener('DOMContentLoaded',fit);fit();
+})();
+</script>
 </body>
 </html>
