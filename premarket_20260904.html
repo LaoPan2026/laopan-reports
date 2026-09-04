@@ -152,7 +152,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 .bar-warn>i{background:#ff8c42}
 .bar-bad>i{background:#f23645}
 /* ═══════════════════════════════════════════════════════════════════
-   v6.1 响应式布局架构（2026-09-04 修复 grid 兼容 · 主模板+复盘V5 同步启用）
+   v6.2 响应式布局架构（2026-09-04 td改block根治flex不生效 · 主模板+复盘V5 同步启用）
    ───────────────────────────────────────────────────────────────────
    三档断点：≥1024px 桌面全宽 / 641-1023px 平板 / ≤640px 手机逐组件重排
    手机端组件级适配：
@@ -202,17 +202,16 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
   }
   table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
   table.tbl-card td{
-    display:flex;align-items:baseline;gap:8px;
-    border:none;padding:3px 0;text-align:left;font-size:13px
+    display:block;border:none;padding:2px 0;
+    text-align:left;font-size:13px;line-height:1.5
   }
   table.tbl-card td::before{
     content:attr(data-label) "：";
-    color:var(--muted);font-weight:600;font-size:12px;
-    white-space:nowrap;flex-shrink:0;min-width:62px;max-width:30%
+    display:block;color:var(--muted);font-weight:600;
+    font-size:11px;margin-bottom:2px;white-space:nowrap
   }
   table.tbl-card td:first-child{
-    display:flex;justify-content:flex-start;align-items:baseline;
-    font-weight:700;color:var(--text);
+    display:block;font-weight:700;color:var(--text);
     border-bottom:1px dashed var(--line);margin-bottom:4px;
     padding-bottom:5px;font-size:14px
   }
@@ -418,7 +417,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 
 </div>
 <script>
-/* v6.1 响应式配套（2026-09-04 flex 重构）：叙述表卡片化需 data-label 注入 */
+/* v6.2 响应式配套（2026-09-04 block fallback）：叙述表卡片化需 data-label 注入 */
 /* 触发：class="tbl-card" 的表 + 视口≤640px；把 thead 首个文本注入各 td */
 (function(){
   function fit(){
