@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-09-03 A股盘后复盘</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   藏青蓝(navy)深色体系 —— 老潘 2026-08-31 定稿 · 所有报告默认配色
+   真源：report_navy_dark.html 模板（2026-09-01 固化）
+   纪律：背景#0a1428/卡片#12233a/强调亮蓝#4d9fff/涨红#f23645/跌绿#089981
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#0a1428;--card:#12233a;--text:#d6e0ef;--muted:#7e8ea3;--soft:#1a2c44;--line:#253a55;--accent:#4d9fff;
+  --pos:#f23645;--neg:#089981;--up:#f23645;--down:#089981;
+  --label-blue:#4d9fff;--label-yellow:#e8a020;--label-red:#f23645;--label-green:#089981;
+  --shadow:0 1px 4px rgba(0,0,0,.4);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(77,159,255,.08);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#b2b5be;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#b2b5be;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#b2b5be;background:rgba(77,159,255,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(77,159,255,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-yellow{color:var(--label-yellow);background:rgba(232,160,32,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-red{color:var(--label-red);background:rgba(242,54,69,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-green{color:var(--label-green);background:rgba(8,153,129,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:130px;border:1px solid var(--line);flex:1 1 150px}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:46%;padding:8px 10px}.metric-val{font-size:17px}}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+
+/* ==== 指数表 f4x：指数名(28%) + 3数值列(24/24/24) ==== */
+table.f4x{table-layout:fixed}
+table.f4x th:nth-child(1),table.f4x td:nth-child(1){width:28%;text-align:left}
+table.f4x th:nth-child(2),table.f4x td:nth-child(2){width:24%;text-align:right}
+table.f4x th:nth-child(3),table.f4x td:nth-child(3){width:24%;text-align:right}
+table.f4x th:nth-child(4),table.f4x td:nth-child(4){width:24%;text-align:right}
+
+/* ==== 持仓表 t-h6：标的16/收盘10/涨跌10/主力净流12/评级9/判断43 ==== */
+table.t-h6{table-layout:fixed}
+table.t-h6 th:nth-child(1),table.t-h6 td:nth-child(1){width:16%;text-align:left}
+table.t-h6 th:nth-child(2),table.t-h6 td:nth-child(2){width:10%;text-align:right}
+table.t-h6 th:nth-child(3),table.t-h6 td:nth-child(3){width:10%;text-align:right}
+table.t-h6 th:nth-child(4),table.t-h6 td:nth-child(4){width:13%;text-align:right}
+table.t-h6 th:nth-child(5),table.t-h6 td:nth-child(5){width:9%;text-align:center}
+table.t-h6 th:nth-child(6),table.t-h6 td:nth-child(6){width:42%;text-align:left}
+
+/* ==== 3列叙述 f3a（20/42/38 全左）==== */
+table.f3a{table-layout:fixed}
+table.f3a th:nth-child(1),table.f3a td:nth-child(1){width:20%;text-align:left}
+table.f3a th:nth-child(2),table.f3a td:nth-child(2){width:42%;text-align:left}
+table.f3a th:nth-child(3),table.f3a td:nth-child(3){width:38%;text-align:left}
+
+/* ==== 3列：18/30/52 全左（标的 / 锚点位 / 触发动作）==== */
+table.f3d{table-layout:fixed}
+table.f3d th:nth-child(1),table.f3d td:nth-child(1){width:18%;text-align:left}
+table.f3d th:nth-child(2),table.f3d td:nth-child(2){width:30%;text-align:left}
+table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
+
+/* ==== 3列：28/12/60（验证点 / 状态居中 / 跟进动作）==== */
+table.f3c{table-layout:fixed}
+table.f3c th:nth-child(1),table.f3c td:nth-child(1){width:28%;text-align:left}
+table.f3c th:nth-child(2),table.f3c td:nth-child(2){width:12%;text-align:center}
+table.f3c th:nth-child(3),table.f3c td:nth-child(3){width:60%;text-align:left}
+
+/* ==== 2列叙述（维度 22% / 说明 78%）==== */
+table.f2{table-layout:fixed}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:22%;text-align:left}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
+
+/* ═══════════════════════════════════════════════════════════════════
+   v4.3 全页色彩纪律（tag 实色饱和 + 边框加深）
+   评级色：HOLD=亮蓝 / WAIT=蓝灰 / BUY=红 / SELL=绿
+   板块色：科技CPO=蓝 / 顺周期化工=橙 / 资源有色=金 / 防御=中性灰
+   风险色：警戒=橙 / 冷=蓝灰 / 热=红
+   ═══════════════════════════════════════════════════════════════════ */
+.tag-hold{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#9eb4cc;background:rgba(107,140,175,.28);border:1px solid rgba(107,140,175,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-buy{color:#ff6373;background:rgba(242,54,69,.28);border:1px solid rgba(242,54,69,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-warn{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cpo{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cycle{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-gold{color:#f4cf6e;background:rgba(212,160,23,.28);border:1px solid rgba(212,160,23,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-neutral{color:#a4b1c4;background:rgba(126,142,163,.28);border:1px solid rgba(126,142,163,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.mood-cold{color:#9eb4cc;background:rgba(107,140,175,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+.mood-hot{color:#ff6373;background:rgba(242,54,69,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+/* v4.6 指标卡维度色（2026-09-03 重构，取代 core/aux 二分）
+   idx=指数蓝 / vol=量能资金金 / mood=情绪广度紫；metric-core=顶部淡染主卡，净底=辅卡 */
+.metric-item{border-left:3px solid var(--line)}
+.metric-idx{border-left-color:#4d9fff}
+.metric-vol{border-left-color:#e8a020}
+.metric-mood{border-left-color:#a78bfa}
+.metric-idx.metric-core{background:linear-gradient(180deg,rgba(77,159,255,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-vol.metric-core{background:linear-gradient(180deg,rgba(232,160,32,.13),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-mood.metric-core{background:linear-gradient(180deg,rgba(167,139,250,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ① 标题卡 -->
+<div class="card">
+  <h1>2026-09-03（周四）A股盘后复盘｜高开冲高回落守 3942，千亿罗博现"第一次压力"</h1>
+  <p class="small">2026-09-03 · 周四 · A股收盘 · 数据截至北京时间 15:11 · 编制：巴蒂</p>
+  <div class="summary">
+    <p><strong>一句话结论：</strong>外盘博通财报炸裂（AI 营收指引上调至 580 亿美元）+台积电设备采购翻倍，A股高开（沪指 +0.29% 开 3952.79）后<span class="tag-warn">冲高回落</span>，上证收 <strong>3942.09（+0.02%）</strong>，盘中摸 3968 未站稳、沪市上涨 920 / 下跌 1363——利好兑现分歧明显。组合 8 只 3 红 5 绿：<span class="tag-cpo">罗博特科盘中破千亿（603.31 / 市值 1005.78 亿）</span>后回落收 585.20，验证昨日"千亿关口压力"预判；星环逆势 +1.46% 领涨，澜起主力再流出 4.59 亿领跌。</p>
+    <p><strong>技术判断：</strong>上证收 3942.09，盘中最低 3930 未破 3927（双锚第一支撑，连续第 2 日守住），但冲高 3968 受阻——5 日线 3960 / 55 日线 3946 构成短期反压。结论：<strong>3927-3960 窄幅震荡待选向</strong>，缩量（1.76 万亿）+涨停降至 46 家说明存量博弈，无放量表态前不追涨。</p>
+    <p><strong>操作基调：</strong>组合 <span class="tag-hold">HOLD</span>，不追高不杀跌。罗博 <span class="tag-warn">回踩再评估</span>（破千亿当日长上影，融资余额 49.5 亿占流通 5.23% 高位），澜起 <span class="tag-wait">WAIT</span>（主力连 5 日净流出约 36 亿，等 186 一线企稳），华峰 <span class="tag-wait">WAIT</span>（重组折价利空今日插针 10.75 后收复，待定价消化）。</p>
+  </div>
+</div>
+
+<!-- ② 指标卡 -->
+<div class="card">
+  <h2>核心指标速览</h2>
+  <div class="metric">
+    <div class="metric-item metric-idx metric-core"><div class="metric-label">上证指数</div><div class="metric-val pos">3942.09</div><div class="metric-label">+0.02% · 高开冲高回落</div></div>
+    <div class="metric-item metric-idx metric-core"><div class="metric-label">创业板指</div><div class="metric-val">3312.54</div><div class="metric-label">+0.01% · 平盘整理</div></div>
+    <div class="metric-item metric-vol"><div class="metric-label">两市成交</div><div class="metric-val">1.76万亿</div><div class="metric-label">较上日缩量约 320 亿</div></div>
+    <div class="metric-item metric-mood"><div class="metric-label">涨跌家数</div><div class="metric-val">1846/3570</div><div class="metric-label">沪A·涨少跌多</div></div>
+    <div class="metric-item metric-mood metric-core"><div class="metric-label">涨停/跌停</div><div class="metric-val"><span class="mood-cold">46</span>/17</div><div class="metric-label">情绪续降（昨 54/8）</div></div>
+    <div class="metric-item metric-vol"><div class="metric-label">主力资金</div><div class="metric-val neg">-120.8亿</div><div class="metric-label">流出较昨 -553.5 亿收窄</div></div>
+  </div>
+  <p class="note">数据来源：妙想行情（东财口径，2026-09-03 收盘）；涨跌家数为沪深A股口径；主力资金为沪深A股合计。</p>
+</div>
+
+<!-- ③ 指数详情 -->
+<div class="card">
+  <h2>一、指数收盘</h2>
+  <div class="table-wrap">
+    <table class="f4x">
+      <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额</th></tr></thead>
+      <tbody>
+        <tr><td><strong>上证指数</strong></td><td>3942.09</td><td class="pos">+0.02%</td><td>8197亿</td></tr>
+        <tr><td><strong>深证成指</strong></td><td>13625.13</td><td class="pos">+0.10%</td><td>9390亿</td></tr>
+        <tr><td><strong>创业板指</strong></td><td>3312.54</td><td class="pos">+0.01%</td><td>4338亿</td></tr>
+        <tr><td><strong>科创50</strong></td><td>1611.17</td><td class="neg">-0.40%</td><td>566.4亿</td></tr>
+        <tr><td><strong>沪深300</strong></td><td>4552.58</td><td class="pos">+0.10%</td><td>4399亿</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table class="f2">
+      <thead><tr><th>关键锚点（上证）</th><th>数值</th></tr></thead>
+      <tbody>
+        <tr><td><strong>收盘 / 盘中高低</strong></td><td>3942.09（+0.02%）· 开 3952.79 · 高 3968 · 低 3930</td></tr>
+        <tr><td><strong>5 日线 / 10 日线</strong></td><td>3960.37 / 3934.76 —— 收于 5 日线下方、10 日线上方</td></tr>
+        <tr><td><strong>20 日线 / 55 日线</strong></td><td>3938.01 / 3945.75（TDX 口径含当日）—— 20 日线上方、55 日线下方</td></tr>
+        <tr><td><strong>第一支撑 3927</strong></td><td>盘中最低 3930 未触及，连续第 2 日守住（距仅 3 点）</td></tr>
+        <tr><td><strong>第一验证 3955</strong></td><td>盘中高 3968 一度上穿，收盘回落未站稳 —— 反压有效</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">来源：妙想行情（东财口径）2026-09-03 收盘 + 通达信 pytdx 交叉验证（55 日线妙想不提供）。上证/深成成交额为两市各自总成交，两市合计约 1.76 万亿（昨日 1.79 万亿）。</div>
+</div>
+
+<!-- ④ 市场状态 -->
+<div class="card">
+  <h2>二、市场状态解读</h2>
+  <div class="table-wrap">
+    <table class="f3a">
+      <thead><tr><th>维度</th><th>今日事实</th><th>独立判断</th></tr></thead>
+      <tbody>
+        <tr><td><strong>指数结构</strong></td><td>集体高开后冲高回落：沪指盘中最高 3968（+0.68%）后收窄至 3942.09；科创50 独立走弱 -0.40%，沪深300/深成指 +0.10%。</td><td>利好高开兑现卖压明显——外盘强催化（博通+台积电）只换来半日强势，午后权重与科技同步回吐，属"弱平衡中的利好不涨"。</td></tr>
+        <tr><td><strong>市场广度</strong></td><td>沪深A股上涨 1846 / 下跌 3570；沪市口径上涨 920 / 下跌 1363。涨停 46、跌停 17（昨日 54/8）。</td><td>指数翻红但个股普跌、跌停翻倍，赚钱效应继续收缩；涨停从 86→54→46 连续两日降温，题材周期进入退潮段。</td></tr>
+        <tr><td><strong>量能</strong></td><td>两市成交 1.76 万亿，较上日缩量约 320 亿，仍处年内地量区上沿。</td><td>缩量 + 高开回落 = 增量资金缺席、存量博弈特征。无 1.9 万亿以上放量阳线，向上突破 3960 概率低。</td></tr>
+        <tr><td><strong>资金面</strong></td><td>沪深A股主力净流出 120.8 亿（昨日 -553.5 亿，流出收窄）；央行 9/3 逆回购操作量为零、净回笼 1030 亿；融资余额 26230 亿较前日降 54.6 亿。</td><td>主力流出收窄是企稳信号而非进攻信号；央行净回笼 + 两融微降说明场内杠杆偏谨慎，不具备发动行情的资金条件。</td></tr>
+        <tr><td><strong>外部环境</strong></td><td>隔夜美股收涨（道 +0.56%、纳 +0.45%），博通 FY26Q3 营收 295.91 亿美元 +86%、AI 营收指引上调至 580 亿（+186%）、2028 财年 AI 半导体 2300 亿美元；台积电设备采购上调至约 1.9 倍；美联储褐皮书：经济依赖 AI 数据中心、通胀顽固。</td><td>AI 硬件产业基本面持续超预期（博通/台积电双证），但 A股 未跟涨=定价钝化，市场在等国内自身信号（量能/政策）而非海外叙事。外部风险：褐皮书提示通胀顽固，美联储 9 月加息概率仍高悬。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ⑤ 板块主线 -->
+<div class="card">
+  <h2>三、板块与主线：外盘 AI 利好高开兑现，资金抱团黄金/券商防御</h2>
+  <div class="table-wrap">
+    <table class="f3a">
+      <thead><tr><th>方向</th><th>表现</th><th>资金/逻辑</th></tr></thead>
+      <tbody>
+        <tr><td><strong><span class="tag-gold">黄金/有色</span>（防御领涨）</strong></td><td>黄金板块主力净流入 5.55 亿；有色(申万) +1.24%，山东黄金等走强。</td><td>地缘冲突反复 + 美元避险需求 + 降息预期，黄金成今日最确定主线；A股黄金股与 COMEX 金价联动，属防御资金首选。</td></tr>
+        <tr><td><strong><span class="tag-neutral">券商</span>（低位轮动）</strong></td><td>券商概念主力净流入 18.75 亿居首，中报高增（43 家净利 +49.07%）催化，国盛金控涨停。</td><td>成交活跃 + 中报兑现 + 并购重组预期，券商是"指数搭台"主力；但持续性依赖两市量能维持 1.7 万亿以上。</td></tr>
+        <tr><td><strong><span class="tag-cycle">化工/顺周期</span>（低位修复）</strong></td><td>细分化工指数 +1.16%，东方盛虹 +7.97%、三棵树 +4.29%、恒逸石化 +3.83%；化工ETF 涨近 1%。</td><td>"反内卷"+ 中报盈利修复（1-7 月化学原料利润总额 +56.6%）逻辑发酵，氨纶、煤化工、有机硅率先受益——<strong>利好泰和/华峰所在赛道</strong>，但今日两股未跟涨（见持仓表）。</td></tr>
+        <tr><td><strong><span class="tag-cpo">AI硬件/光模块</span>（高开兑现）</strong></td><td>早盘 CPO/半导体/光通信领涨，午后回落：半导体(申万) -0.41%、算力概念 -0.13%、CPO +0.17%、存储 -0.44%；中际旭创盘中跌超 4%、新易盛跌超 3%。</td><td>博通/台积电利好开盘即高潮，获利盘借利好出货——"利好兑现"典型走法。光模块器件端（旭创/新易盛）仍在调整通道，与罗博的<strong>设备细分逻辑分化</strong>。</td></tr>
+        <tr><td><strong><span class="tag-warn">情绪面</span>（退潮）</strong></td><td>涨停 46 家（两连降），跌停 17 家（较昨翻倍）；前期妖股爱丽家居、深中华A 发风险警示。</td><td>高位题材进入退潮期，连板高度压缩；监管对妖股炒作风险提示增多，追涨性价比差，亏钱效应在扩散。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">来源：第一财经、财联社、界面新闻、金融界、每经收评（2026-09-03），板块资金为东财/同花顺口径，非交易所一手统计。</div>
+</div>
+
+<!-- ⑥ 持仓复盘 -->
+<div class="card">
+  <h2>四、8只持仓复盘（当日行情 + 独立判断）</h2>
+  <div class="table-wrap">
+    <table class="t-h6">
+      <thead>
+        <tr><th>标的</th><th>收盘价</th><th>涨跌幅</th><th>主力净流入</th><th>评级</th><th>复盘判断与明日动作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>星环科技-U</strong><br><span class="small">688031</span></td>
+          <td>110.51</td><td class="pos">+1.46%</td><td class="pos">+1.26亿</td>
+          <td><span class="tag-sell">SELL</span></td>
+          <td>逆势领涨全组合，成交 8.65 亿、换手 6.42%，主力净流入 1.26 亿（DDX 0.93 最强）——大模型/数据要素题材反抽。但 Q2 断崖（营收 +4.77%、扣非 -1.43 亿恶化、经营现金流 -1.56 亿）基本面未变，<strong>反抽是更好的换仓价位而非持有理由</strong>。核准方案 A：<strong>涨到目标位卖 600 股换罗博，不在下跌中执行</strong>。</td>
+        </tr>
+        <tr>
+          <td><strong>罗博特科</strong><br><span class="small">300757</span></td>
+          <td>585.20</td><td class="pos">+0.43%</td><td class="neg">-1.16亿</td>
+          <td><span class="tag-hold">HOLD</span></td>
+          <td>盘中最高 603.31（+3.54%），<strong>总市值一度破千亿（1005.78 亿）</strong>——精确验证昨日"千亿关口约 597 元压力"预判；冲高后回落收 585.20，留下长上影，主力净流出 1.16 亿（昨日 +2.97 亿反向）。催化=博通 AI 指引上调 + 台积电设备采购 1.9 倍（ficonTEC 直接受益逻辑强化）。<span class="tag-warn">风险</span>：融资余额 49.5 亿占流通市值 5.23%（80% 分位上方）+ 股东户数环比 +35.88% 筹码分散。明日：不追高，回踩 550-560 缩量承接再分批，放量跌破 5 日线（567）减波段。</td>
+        </tr>
+        <tr>
+          <td><strong>软通动力</strong><br><span class="small">301236</span></td>
+          <td>37.60</td><td class="pos">+0.51%</td><td class="pos">+441万</td>
+          <td><span class="tag-hold">HOLD</span></td>
+          <td>大盘高开回落中逆势收红，主力小幅净流入 441 万，成交 4.80 亿清淡。信创/华为鸿蒙方向无新增催化，低位抗跌为主。持有观察不加仓，盈利质量仍是硬约束。</td>
+        </tr>
+        <tr>
+          <td><strong>汇绿生态</strong><br><span class="small">001267</span></td>
+          <td>36.60</td><td class="neg">-0.44%</td><td class="neg">-4156万</td>
+          <td><span class="tag-hold">HOLD</span></td>
+          <td>光模块器件端延续调整（旭创 -4% 拖累板块），盘中最低 35.82 逼近前低，主力流出 4156 万。重组审核"进行中"无新增进展，钧恒 Q3 验证未到窗口。<span class="tag-warn">核心盯重组过会进度</span>（优先级高于股价），过会行情当减仓窗口；36 元下方 35 一线有承接，暂不加仓。</td>
+        </tr>
+        <tr>
+          <td><strong>泰和新材</strong><br><span class="small">002254</span></td>
+          <td>12.87</td><td class="neg">-1.15%</td><td class="neg">-1851万</td>
+          <td><span class="tag-hold">HOLD</span></td>
+          <td>化工板块今日 +1.16% 逆势走强，泰和却收跌——个股未跟上板块，主力流出 1851 万、成交仅 1.58 亿极度缩量。低位震荡格局未变，氨纶景气验证靠产品价差与 Q3 数据，不因板块红就加仓。</td>
+        </tr>
+        <tr>
+          <td><strong>三祥新材</strong><br><span class="small">603663</span></td>
+          <td>40.41</td><td class="neg">-1.39%</td><td class="neg">-4479万</td>
+          <td><span class="tag-hold">HOLD</span></td>
+          <td>有色板块 +1.24% 未带动，锆材跟随小金属震荡，主力流出 4479 万。收盘 40.41 仍在 40 元关口上方，形态未破坏。铪项目/固态电池逻辑不变，站稳 40 持有，破位下看 38.5 支撑，<strong>按纪律不砍非 AI 分散源</strong>。</td>
+        </tr>
+        <tr>
+          <td><strong>华峰化学</strong><br><span class="small">002064</span></td>
+          <td>11.50</td><td class="neg">-1.54%</td><td class="neg">-4119万</td>
+          <td><span class="tag-wait">WAIT</span></td>
+          <td><span class="tag-warn">重组折价利空消化第 2 日</span>：盘中插针 10.75（-7.96%）快速收复，收 11.50 仍跌 1.54%，振幅 7.7%。发行价 8.45 折价 27.7% 是抛压核心，但大股东 36 个月锁定期 + 破发自动延长条款构成 8.45 软性硬底。今日 10.75 低点基本对应 ma55（10.92）附近承接。裁决维持 WAIT：等股东会审议 + 定价消化，11.5 下方不补、反弹 12 上方评估。</td>
+        </tr>
+        <tr>
+          <td><strong>澜起科技</strong><br><span class="small">688008</span></td>
+          <td>190.01</td><td class="neg">-1.60%</td><td class="neg">-4.59亿</td>
+          <td><span class="tag-wait">WAIT</span></td>
+          <td>主力连续第 5 日净流出（累计约 36 亿），今日再流出 4.59 亿为组合最大失血点；科创50 独立走弱拖累。中报毛利率问题未消化完，博通财报利好未传导至内存接口链。盘中最低 188.94 逼近防线 186.50。<strong>防线纪律：186.50 失守需重估逻辑而非机械补仓</strong>，跌破 190 后等 185-188 企稳信号，左侧不接。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">注：主力净流入为东财口径（2026-09-03）；持仓数量/成本以 2026-09-02 收盘口径沿用（无新截图）。评级四档：BUY / HOLD / SELL / WAIT。行序按当日涨跌幅从大到小排列。</div>
+</div>
+
+<!-- ⑦ 明日执行单 -->
+<div class="card">
+  <h2>五、明日（9/4 周五）执行单</h2>
+  <div class="table-wrap">
+    <table class="f3d">
+      <thead><tr><th>观察对象</th><th>关键锚点</th><th>触发动作</th></tr></thead>
+      <tbody>
+        <tr><td><strong>大盘</strong></td><td>上证 3927 支撑 / 3960（5日线）-3955 反压；量能是否放大至 1.9 万亿。</td><td>守住 3927 且缩量：维持 HOLD 不追；放量站稳 3960：短线修复信号；跌破 3927 且反抽不收复：按双锚纪律降级、降新仓节奏。</td></tr>
+        <tr><td><strong>罗博特科</strong></td><td>585.20 上方能否站稳；千亿关口（约 597 元）已现第一次压力；5 日线 567 支撑。</td><td>不追高。回踩 550-560 且缩量承接分批；放量滞涨或破 5 日线先兑现部分波段（融资拥挤度高位不宜满仓过夜）。<strong>570 以下核准买入 100 股条件仍生效</strong>。</td></tr>
+        <tr><td><strong>澜起科技</strong></td><td>190.01 下方 186.50 防线；MRVL 隔夜走势（美股映射）。</td><td>WAIT 不补。放量跌破 186.50 → 重估逻辑；185-188 缩量企稳 + 主力流出收敛 → 观察买点。不左侧接刀。</td></tr>
+        <tr><td><strong>星环科技</strong></td><td>110.51 上方反弹高度；主力是否延续流入。</td><td>反弹到 112-115 区间分批执行换仓（卖 600 股 → 罗博），SELL 逻辑基于基本面不变，不因一日反抽改判。</td></tr>
+        <tr><td><strong>华峰化学</strong></td><td>11.50 下方 10.92（ma55）承接 / 8.45 软性硬底；股东会审议时间表。</td><td>WAIT。插针后若缩量企稳 11 上方则风险释放大半；放量再破 10.75 需重新评估方案定价风险。反弹 12+ 评估是否减重组不确定性仓位。</td></tr>
+        <tr><td><strong>外部变量</strong></td><td>非农数据（9/4 晚）前避险情绪；美债收益率；美联储 9 月加息概率；美股 AI 硬件（博通/台积电链）隔夜走势。</td><td>非农落地前成长仓位不加；若美股 AI 链延续强势而 A股 量能未放大，警惕"外热内冷"的高开陷阱，现金优先。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ⑧ 风险与催化 -->
+<div class="card">
+  <h2>六、风险与机会提示</h2>
+  <div class="negbox"><strong>下行风险：</strong>①上证 3927 已连续两日岌岌可危（今日最低 3930），若放量失守则双锚支撑失效，下看 3900/3880；②涨停 46 家两连降 + 跌停 17 家翻倍，题材退潮亏钱效应扩散，谨防高位股补跌拖累组合；③澜起主力连 5 日净流出约 36 亿、系统性撤离特征未止，186.50 一旦失守逻辑需重估；④华峰重组发行价折价 27.7% 的定价冲击可能未完全消化（今日插针收复但放量）；⑤罗博融资余额 49.5 亿（5.23% 流通市值）处 80% 分位上方，杠杆撤离将放大波动。</div>
+  <div class="posbox"><strong>正面催化：</strong>①博通 AI 营收指引上调至 580 亿（+186%）+ 台积电设备采购 1.9 倍——AI 硬件产业景气被头部公司反复证实，罗博（ficonTEC CPO 设备）是 A股 最直接映射，今日盘中破千亿即是资金认可信号；②主力净流出收窄（-553.5 亿 → -120.8 亿），抛压衰竭迹象；③化工"反内卷"+ 利润 +56.6% 逻辑发酵，泰和/华峰赛道受益，若板块效应扩散可带动个股补涨；④券商净流入 18.75 亿搭台，指数层面有托底力量；⑤罗博核准加仓条件（570 以下 100 股）仍挂着，若回踩到位即执行。</div>
+</div>
+
+<!-- ⑨ 最终判断 -->
+<div class="card">
+  <h2>七、最终判断</h2>
+  <div class="verdict-box">
+    <strong>市场：</strong>HOLD/精选。外盘强利好只换来半日高开，午后回落 + 缩量 + 涨停两连降，说明 A股 处于"存量博弈 + 利好钝化"的弱平衡——3927-3960 窄幅震荡待选向，无放量阳线前不预设方向。<br>
+    <strong>组合：</strong>HOLD。当日 3 红 5 绿、市值微降，结构上无个股逻辑破坏：罗博盘中破千亿验证压力位（不追是对的）、澜起失血是已知风险的延续、华峰插针是重组定价的正常消化。真正要做的动作集中在两处：<strong>①星环反弹换罗博（换仓排序铁律：卖星环不卖三祥）②澜起 186.50 防线失守则重估</strong>。<br>
+    <strong>最重要的反向验证：</strong>今日化工板块 +1.16% 而泰和 -1.15%、华峰 -1.54%——若把"化工板块红了"误读成"我的化工仓位该涨了"就是归因错误：板块红的是东方盛虹/三棵树（反内卷+地产链），泰和的氨纶、华峰的己二酸不在今日领涨子行业内，两者必须分开看。同样，罗博盘中破千亿是真信号，但长上影 + 主力转流出说明千亿上方分歧巨大，追高与信仰要分开。
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：妙想行情（东财口径，2026-09-03收盘）、通达信 pytdx 交叉验证（55日线等均线含当日实时价，与妙想上一交易日口径有差，禁止混算）、第一财经/财联社/界面新闻/金融界/每经收评（2026-09-03，非一手需核实）。置信度：行情数据 ★★★，资金流 ★★☆（平台口径），资讯 ★★☆。<br>
+  本报告仅供老潘研究复盘使用，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。数据如有延迟或口径差异，以交易所及公司公告为准。<br>
+  编制：巴蒂 · 2026-09-03
+</div>
+
+</div>
+</body>
+</html>
