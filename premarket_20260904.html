@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="qo94feevTYFSwdTnHhgLcE">
+<head data-page-node-id="nZ8EGhAsFIsGVmXQtYBgHL">
+<meta charset="UTF-8" data-page-node-id="PsvxnMsUcjQrpintoDq0E8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="bGxnCK5F6ZlDrr5w2GXIF6">
 <title>盘前简报 2026-09-04（周五）</title>
 <style>
 /* ═══════════════════════════════════════════════════════════════════
@@ -58,7 +58,7 @@ td.name,th.name{white-space:nowrap;word-break:keep-all}
 .metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line)}
 .metric-val{font-size:20px;font-weight:700;color:var(--text)}
 .metric-label{font-size:13px;color:var(--muted);font-weight:600}
-@media(max-width:640px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
+@media(max-width:1024px){body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12px}th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
 .verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
@@ -152,7 +152,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 .bar-warn>i{background:#ff8c42}
 .bar-bad>i{background:#f23645}
 /* ═══════════════════════════════════════════════════════════════════
-   v6.0 响应式布局架构（2026-09-04 定稿 · 主模板+复盘V5 同步启用）
+   v6.1 响应式布局架构（2026-09-04 修复 grid 兼容 · 主模板+复盘V5 同步启用）
    ───────────────────────────────────────────────────────────────────
    三档断点：≥1024px 桌面全宽 / 641-1023px 平板 / ≤640px 手机逐组件重排
    手机端组件级适配：
@@ -169,10 +169,10 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
    纪律：sticky 首列必须不透明背景遮滚动内容——斑马纹偶数行首列补 #17273e，
          禁止改 transparent（否则横滑时文字穿透重叠）。
    ═══════════════════════════════════════════════════════════════════ */
-@media(max-width:640px){
+@media(max-width:1024px){
   .summary{padding:10px 12px;font-size:13px}
   .summary p{font-size:13px;line-height:1.7}
-  .metric{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:8px 0}
+  .metric{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}.metric-item{flex:1 1 calc(50% - 5px);min-width:0;box-sizing:border-box}
   .metric-item{width:auto;min-width:0;padding:8px 10px;margin:0}
   .metric-val{font-size:17px}
   .metric-label{font-size:12px}
@@ -202,9 +202,13 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
   }
   table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
   table.tbl-card td{
-    display:grid;grid-template-columns:max-content 1fr;
-    align-items:baseline;column-gap:10px;
+    display:flex;align-items:baseline;gap:8px;
     border:none;padding:3px 0;text-align:left;font-size:13px
+  }
+  table.tbl-card td::before{
+    content:attr(data-label) "：";
+    color:var(--muted);font-weight:600;font-size:12px;
+    white-space:nowrap;flex-shrink:0;min-width:62px;max-width:30%
   }
   table.tbl-card td:first-child{
     display:flex;justify-content:flex-start;align-items:baseline;
@@ -213,10 +217,7 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
     padding-bottom:5px;font-size:14px
   }
   table.tbl-card td:first-child .small{color:var(--muted);font-weight:400;margin-left:8px}
-  table.tbl-card td:not(:first-child)::before{
-    content:attr(data-label) "：";
-    color:var(--muted);font-weight:600;font-size:12px;white-space:nowrap
-  }
+
   table.tbl-card th,table.tbl-card td.name,
   table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
   table.tbl-card .pos,table.tbl-card .neg,
@@ -224,204 +225,204 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
 }
 </style>
 </head>
-<body>
-<div class="container">
+<body data-page-node-id="lo6PZlltVwdnqILIsVadGA">
+<div class="container" data-page-node-id="j28UE72h8v6RUaMoHxysFN">
 
 <!-- ① 标题卡 + 核心结论 -->
-<div class="card">
-  <h1>📋 盘前简报 · 2026-09-04（周五）</h1>
-  <p class="small">A股数据时点：9/3（周四）收盘 ｜ 美股数据时点：美东 9/3 收盘（北京时间今晨） ｜ 均线口径：通达信/东财，截至 9/3 收盘 ★★★</p>
-  <div class="summary">
-    <p><strong>一句话结论：</strong>隔夜美股普涨但<b>费半 +0.11% 严重滞涨</b>，光器件 COHR −1.58% / LITE −2.67%——美股 AI 硬件进入<b>"兑现利好"</b>阶段，普涨不普强。</p>
-    <p>A股上证 <b>3942.09 贴 55 日线（3943）横盘第二日</b>，夹双锚 3927/3955，<b>今日量能定方向</b>。</p>
-    <p><strong>操作基调：不追高、等触发。</strong></p>
-    <p>罗博 <b>570 以下</b>才执行核准方案 A（卖星环 600 换罗博 100），昨收 585.20 未触发；澜起盯 <b>186.50 防线</b>（主力第 5 日净流出 −4.59 亿）。</p>
-    <p>汇绿看 35.82；华峰防线带 10.75–10.96 上方企稳，维持 WAIT。</p>
-    <p><strong>今日变量：</strong>① 博通 2027/28 财年 AI 收入指引 <b>1150→2300 亿美元</b>（电话会口径）强化光互联长逻辑，但短期"超预期不涨"；② 澜起 9/3 <b>纳入富时中国 A50</b> + 273 家机构调研，与资金流出背离。</p>
-    <p>③ <b>今晚 20:30 美 8 月非农</b>——周末持仓最大变量（ADP 仅 3.7 万，加息预期已降温）。</p>
+<div class="card" data-page-node-id="nHOlrxJQ2YRzmts3qGizSs">
+  <h1 data-page-node-id="X2sfjE7a4rDu87phD72zAS">📋 盘前简报 · 2026-09-04（周五）</h1>
+  <p class="small" data-page-node-id="8Iu4ejgWfhWLuutJaFF8Jr">A股数据时点：9/3（周四）收盘 ｜ 美股数据时点：美东 9/3 收盘（北京时间今晨） ｜ 均线口径：通达信/东财，截至 9/3 收盘 ★★★</p>
+  <div class="summary" data-page-node-id="aLw4WAcD35VyuXAtemBOlr">
+    <p data-page-node-id="2wWR89i9fUMsxbhYGpzR4j"><strong data-page-node-id="eFVbLGPXsFBj69YzOoFVyT">一句话结论：</strong>隔夜美股普涨但<b data-page-node-id="UikPC80CfCXwa6gNIEzxkf">费半 +0.11% 严重滞涨</b>，光器件 COHR −1.58% / LITE −2.67%——美股 AI 硬件进入<b data-page-node-id="6gXttHCULnKCnYY9MZy0At">"兑现利好"</b>阶段，普涨不普强。</p>
+    <p data-page-node-id="3xrnFchC5ynO8lpyyTKgAV">A股上证 <b data-page-node-id="jktMBwANbHJO9auA9XJMhw">3942.09 贴 55 日线（3943）横盘第二日</b>，夹双锚 3927/3955，<b data-page-node-id="6X73mfd9gM6F10NkQsD6Ly">今日量能定方向</b>。</p>
+    <p data-page-node-id="rCsDU0D3mzS2DDjP9KkQqq"><strong data-page-node-id="oQFTeh0e4vRXmskqD2c2Lx">操作基调：不追高、等触发。</strong></p>
+    <p data-page-node-id="UrNoSW4N3zMSjrAZuHblw5">罗博 <b data-page-node-id="cRrvZZ1kAm6bpnfeHZUhFM">570 以下</b>才执行核准方案 A（卖星环 600 换罗博 100），昨收 585.20 未触发；澜起盯 <b data-page-node-id="oIkIql7jsYgGPIiM81ff3w">186.50 防线</b>（主力第 5 日净流出 −4.59 亿）。</p>
+    <p data-page-node-id="Yb35yWV59ArOPexK9OD3EF">汇绿看 35.82；华峰防线带 10.75–10.96 上方企稳，维持 WAIT。</p>
+    <p data-page-node-id="Yi3rby1nheaCW3kQlxQD9k"><strong data-page-node-id="mQSuRyI1YcGCNEn8lXe9BG">今日变量：</strong>① 博通 2027/28 财年 AI 收入指引 <b data-page-node-id="SOUz4b0uewJQ1LJZPkaZoY">1150→2300 亿美元</b>（电话会口径）强化光互联长逻辑，但短期"超预期不涨"；② 澜起 9/3 <b data-page-node-id="WFWoPKbnrjFGWqArkZVJ0G">纳入富时中国 A50</b> + 273 家机构调研，与资金流出背离。</p>
+    <p data-page-node-id="r4K04S5frDp8P62lnojGJT">③ <b data-page-node-id="iPpmYfJEuP3Mgsz7RlX6GH">今晚 20:30 美 8 月非农</b>——周末持仓最大变量（ADP 仅 3.7 万，加息预期已降温）。</p>
   </div>
 </div>
 
 <!-- ② 指标卡 v4.6 -->
-<div class="card">
-  <h2>核心指标速览</h2>
-  <div class="metric">
-    <div class="metric-item metric-idx metric-core"><div class="metric-label">上证指数（9/3）</div><div class="metric-val">3942.09</div><div class="metric-label">+0.02% 平盘 · 贴55日线3943</div></div>
-    <div class="metric-item metric-vol"><div class="metric-label">两市成交（9/3）</div><div class="metric-val">1.76万亿</div><div class="metric-label">沪8199+深9390亿，较9/2缩约300亿</div></div>
-    <div class="metric-item metric-idx"><div class="metric-label">纳指（隔夜）</div><div class="metric-val pos">+1.40%</div><div class="metric-label">26584.06 · 道指+1.18%近月最大涨幅</div></div>
-    <div class="metric-item metric-vol metric-core"><div class="metric-label">费城半导体（隔夜）</div><div class="metric-val">+0.11%</div><div class="metric-label">11352.13 · 滞涨警示 ⚠️</div></div>
-    <div class="metric-item metric-mood metric-core"><div class="metric-label">情绪温度</div><div class="metric-val"><span class="mood-cold">分化震荡</span></div><div class="metric-label">CPO抗跌(+0.17%) · 设备/存储调整</div></div>
-    <div class="metric-item metric-mood"><div class="metric-label">资金警报</div><div class="metric-val neg">澜起 −4.59亿</div><div class="metric-label">主力第5日净流出，累计约35.6亿</div></div>
+<div class="card" data-page-node-id="vwoJThRjv2TAmkNNhhZUEI">
+  <h2 data-page-node-id="v3HAF3lB8K98tJOJuWo0fU">核心指标速览</h2>
+  <div class="metric" data-page-node-id="EMLiW3vA0NFDM9rnPBUyVk">
+    <div class="metric-item metric-idx metric-core" data-page-node-id="RGEDRItGXC9oGNJJ2yIFaW"><div class="metric-label" data-page-node-id="anCxkk0QL36lI8JLEqfeOm">上证指数（9/3）</div><div class="metric-val" data-page-node-id="xp1GFt3CFm4FqkIFD5HDv7">3942.09</div><div class="metric-label" data-page-node-id="B7AHFTsKNBzjyTAdZGTnr2">+0.02% 平盘 · 贴55日线3943</div></div>
+    <div class="metric-item metric-vol" data-page-node-id="qwb5aWnNROwQkmpbkShtv4"><div class="metric-label" data-page-node-id="KVChQSPC8swgNF0sUBhNLD">两市成交（9/3）</div><div class="metric-val" data-page-node-id="s7KvQBaQyEUGNBxLNzicW0">1.76万亿</div><div class="metric-label" data-page-node-id="wephy7kHtL3Fxaor8V1vc5">沪8199+深9390亿，较9/2缩约300亿</div></div>
+    <div class="metric-item metric-idx" data-page-node-id="03exFZpiYdgtfNDICp47U5"><div class="metric-label" data-page-node-id="eMYKR5DsIEVHtlfUO8Z3ab">纳指（隔夜）</div><div class="metric-val pos" data-page-node-id="pFd4dBdxxJtHjXaNDqbIpA">+1.40%</div><div class="metric-label" data-page-node-id="15W3ix5wuHrjKhhBuEJVEI">26584.06 · 道指+1.18%近月最大涨幅</div></div>
+    <div class="metric-item metric-vol metric-core" data-page-node-id="zPOtFpC71v8Hz0ac2Gd5QG"><div class="metric-label" data-page-node-id="zBV9hee4dMvyvZnD5bQeUU">费城半导体（隔夜）</div><div class="metric-val" data-page-node-id="NSMxPQCvuoVFRQ5xuBOYGq">+0.11%</div><div class="metric-label" data-page-node-id="4w0bEhC3kGyBDOuEIcV0aK">11352.13 · 滞涨警示 ⚠️</div></div>
+    <div class="metric-item metric-mood metric-core" data-page-node-id="WTwQlEHtl8Am2CGXyIJU0w"><div class="metric-label" data-page-node-id="YQmANtqEGIIXZAkOf6FRpA">情绪温度</div><div class="metric-val" data-page-node-id="6GNKSzaAdEReTLT2wO63Y2"><span class="mood-cold" data-page-node-id="RSXRLmn7aUvx1vS9XcM9yE">分化震荡</span></div><div class="metric-label" data-page-node-id="vDlMO0l4UW3q57L7pV5sOA">CPO抗跌(+0.17%) · 设备/存储调整</div></div>
+    <div class="metric-item metric-mood" data-page-node-id="t5JnsBKYq7T0zRf4QWHT2G"><div class="metric-label" data-page-node-id="UmjBxrbvVhfSpQTtx0wveg">资金警报</div><div class="metric-val neg" data-page-node-id="pBOkfaGmiSVY9fIbxDXQsy">澜起 −4.59亿</div><div class="metric-label" data-page-node-id="KGl8mPJzDXAccR63NPwjSn">主力第5日净流出，累计约35.6亿</div></div>
   </div>
 </div>
 
 <!-- ③ 大盘技术定位：双锚坐标系 -->
-<div class="card">
-  <h2>大盘定位：上证贴 55 日线，双锚区间内极限拉锯</h2>
-  <div class="table-wrap">
-    <table class="f3d tbl-card">
-      <thead><tr><th>技术参考（上证）</th><th>坐标 / 9-3 实测</th><th>状态解读</th></tr></thead>
-      <tbody>
-        <tr><td><b>55日线(分水岭)</b></td><td>3943.05｜收 3942.09</td><td>偏离 −0.02%，<b>贴线横盘第二日</b>；两日不破不攻，方向选择在即，今日量能是关键</td></tr>
-        <tr><td><b>第一支撑 3927</b></td><td>现价在上方 15 点</td><td>失守且反抽不收复 → 趋势升级假设降级，短线降仓科技</td></tr>
-        <tr><td><b>第一验证 3955</b></td><td>现价在下方 13 点</td><td>站稳 = 短中期成本上移确认；放量过 3955 可视为转强信号</td></tr>
-        <tr><td>阻力带 3990/3994/3999</td><td>距现价 +1.2%~1.4%</td><td>徐小明顶部钝化位，未到不测</td></tr>
-        <tr><td>趋势升级 4023/4027</td><td>距现价 +2.1%</td><td>短期不测；突破回踩不破才确认第三推动段</td></tr>
-        <tr><td>量能（沪市口径）</td><td>8199 亿（9/3）</td><td>较 9/2 的 8354 亿小幅收缩，仍属高位活跃区</td></tr>
+<div class="card" data-page-node-id="CZtJEaWJORDRpVozNpDl4z">
+  <h2 data-page-node-id="cHOFD6JEBv5T9Hhv5kyVpN">大盘定位：上证贴 55 日线，双锚区间内极限拉锯</h2>
+  <div class="table-wrap" data-page-node-id="xO33Ul5vaJXEZbGf6EmGu5">
+    <table class="f3d tbl-card" data-page-node-id="7ZsZ1DryyMOYFrJ4drkn7N">
+      <thead data-page-node-id="6tz2pIXfDQkQMCoBu23fIr"><tr data-page-node-id="FRr9dQ8FsIgPewQiv55Po1"><th data-page-node-id="pPP7Psj7hVX1xJzZ0vev7G">技术参考（上证）</th><th data-page-node-id="cMIQN5VMvLUjjq4gmDnjzg">坐标 / 9-3 实测</th><th data-page-node-id="V7q297XPIdlj39j9cYx67U">状态解读</th></tr></thead>
+      <tbody data-page-node-id="TzI3cwTrNafUiwbVoIRNYR">
+        <tr data-page-node-id="je0Vt4jTblDhvlJKp7RidU"><td data-page-node-id="gMp5D6KuTUe9fc2tThPoRF"><b data-page-node-id="Nq66gKwBzQaGtLiNIYp8KK">55日线(分水岭)</b></td><td data-page-node-id="ZFZuEPTV5Ja7FPIxeGLA1C">3943.05｜收 3942.09</td><td data-page-node-id="pJvn6va3ELlr8ujQrDwX5N">偏离 −0.02%，<b data-page-node-id="KbALDE5wG2G1TAEdLzBael">贴线横盘第二日</b>；两日不破不攻，方向选择在即，今日量能是关键</td></tr>
+        <tr data-page-node-id="DBUxFftXs7w1SmIxEAb3qJ"><td data-page-node-id="OeBL4u0ka3zvT4ObitfM35"><b data-page-node-id="lJldBcGtdxwtmssG3SwEZU">第一支撑 3927</b></td><td data-page-node-id="AenF5jpwIk0BLPfINxNzEx">现价在上方 15 点</td><td data-page-node-id="J4HIiolCQ4PA9OiFIWSyVM">失守且反抽不收复 → 趋势升级假设降级，短线降仓科技</td></tr>
+        <tr data-page-node-id="l4iCnsU8aph4tX2OETyNGn"><td data-page-node-id="ljFcNgOU7FEdeBJQFbXMI6"><b data-page-node-id="2K9lqt7WyayiBjyRqTZoXA">第一验证 3955</b></td><td data-page-node-id="WOo9ytUWpZ6PSj6RRNMwLe">现价在下方 13 点</td><td data-page-node-id="KVgdCjY3C5tXPZCblkBR5J">站稳 = 短中期成本上移确认；放量过 3955 可视为转强信号</td></tr>
+        <tr data-page-node-id="z683VE0TUBcpGsuCy8A7m1"><td data-page-node-id="CjNqDddb0eJXVO3LAC3X59">阻力带 3990/3994/3999</td><td data-page-node-id="Iu7aCnJpUbhQJmkymU3fAw">距现价 +1.2%~1.4%</td><td data-page-node-id="qw3u8j6xZCVOEQuJv8fYOC">徐小明顶部钝化位，未到不测</td></tr>
+        <tr data-page-node-id="a9evipA3FZSWszcPE1sTmz"><td data-page-node-id="NnCwn0C8X3slGawAt9sG5Z">趋势升级 4023/4027</td><td data-page-node-id="GRURiQEEq5hwgqDA0TODDR">距现价 +2.1%</td><td data-page-node-id="kyHlhoOHGg5tHe30gnDytt">短期不测；突破回踩不破才确认第三推动段</td></tr>
+        <tr data-page-node-id="R8pDYYGOIZuyNqSQAQXRWZ"><td data-page-node-id="fHptKZX1bRBGP9eyjxyf8n">量能（沪市口径）</td><td data-page-node-id="GVfTCmG02Asib7RcZhJDxG">8199 亿（9/3）</td><td data-page-node-id="1jDbbI6BSyyhRgjYxzwZCg">较 9/2 的 8354 亿小幅收缩，仍属高位活跃区</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="verdict-box">
-    <strong>攻防定调：</strong>3940 一线已横盘消化两日，今日大概率选方向。<b>放量上攻 3955 = 持仓过节无忧；缩量失守 3927 = 减科技仓等周末非农落地。</b>上证日线 5 日线（3958）已下穿，短期均线走平待修复。
+  <div class="verdict-box" data-page-node-id="cIndGQAudmE9LORikFA1gO">
+    <strong data-page-node-id="vDJmsPthqfZOCNAtxAgzGI">攻防定调：</strong>3940 一线已横盘消化两日，今日大概率选方向。<b data-page-node-id="zV0bHRwfVUUbX4toADiJ8t">放量上攻 3955 = 持仓过节无忧；缩量失守 3927 = 减科技仓等周末非农落地。</b>上证日线 5 日线（3958）已下穿，短期均线走平待修复。
   </div>
 </div>
 
 <!-- ④ 隔夜美股与映射 -->
-<div class="card">
-  <h2>隔夜美股（美东 9/3）：指数普涨、芯片滞涨，"兑现利好"特征明显</h2>
-  <div class="table-wrap">
-    <table class="f5 tbl-card">
-      <thead><tr><th>指数 / 标的</th><th>收盘</th><th>涨跌幅</th><th>费半相对</th><th>对持仓的映射解读</th></tr></thead>
-      <tbody>
-        <tr><td>纳斯达克</td><td>26584.06</td><td class="pos">+1.40%</td><td class="pos">+1.29pct</td><td>加息预期降温（美债收益率回落）+ 特斯拉 +5.42% 拉动；反弹主力是软件/平台，非硬件</td></tr>
-        <tr><td>标普500</td><td>7747.71</td><td class="pos">+1.06%</td><td class="pos">+0.95pct</td><td>七巨头集体上涨；银行股同步走强，风险偏好回升</td></tr>
-        <tr><td>道琼斯</td><td>53686.11</td><td class="pos">+1.18%</td><td class="pos">+1.07pct</td><td>近一个月最大单日涨幅，周期/利率敏感端反弹</td></tr>
-        <tr><td><b>费城半导体</b></td><td>11352.13</td><td class="pos">+0.11%</td><td>基准 0.00</td><td><span class="tag-warn">滞涨警示</span> 博通 −2.74% 拖累；芯片股涨跌不一，AI 硬件反弹乏力</td></tr>
-        <tr><td>英伟达 NVDA</td><td>228.45</td><td class="pos">+1.80%</td><td class="pos">+1.69pct</td><td>129.3 亿美元收购 Hugging Face（2027H1 完成）→ 算力生态整合延续，对罗博逻辑中性偏正</td></tr>
-        <tr><td>迈威尔 MRVL</td><td>—</td><td class="pos">+1.14%</td><td class="pos">+1.03pct</td><td>连跌 4 日（累计 −15.8%）后首次止跌 → 澜起外盘映射的唯一转机，持续性待确认</td></tr>
-        <tr><td>博通 AVGO</td><td>—</td><td class="neg">−2.74%</td><td class="neg">−2.85pct</td><td>FY26Q3 全面超预期但 Q4 总营收指引 348 亿略逊 350.3 亿上限 → "超预期不涨"典型（详见消息面）</td></tr>
-        <tr><td>Coherent COHR</td><td>264.41</td><td class="neg">−1.58%</td><td class="neg">−1.69pct</td><td>汇绿核心客户/映射端续跌 → 今日汇绿 35.82 防守的外部压力仍在</td></tr>
-        <tr><td>Lumentum LITE</td><td>847.37</td><td class="neg">−2.67%</td><td class="neg">−2.78pct</td><td>可插拔光器件端偏弱，与费半滞涨同源</td></tr>
+<div class="card" data-page-node-id="Pn0x2y6gscOpxLGJ6X25Ea">
+  <h2 data-page-node-id="45SEXtlDCxIVhV159fEC8y">隔夜美股（美东 9/3）：指数普涨、芯片滞涨，"兑现利好"特征明显</h2>
+  <div class="table-wrap" data-page-node-id="mHlw2hXiSaMU107OGBJj34">
+    <table class="f5 tbl-card" data-page-node-id="PY3w0QDu0GVGAo8rVZeOMh">
+      <thead data-page-node-id="tCKu4JlAuAlpkE04pBrC0g"><tr data-page-node-id="XDz1FkR3hBIyCqyEqSC6DE"><th data-page-node-id="pQ1iULokw8EnujfSV04LJW">指数 / 标的</th><th data-page-node-id="W5wVZJ5CIuXLM0ju8mEyGz">收盘</th><th data-page-node-id="okPT2hUFddbvRJjwPl7px1">涨跌幅</th><th data-page-node-id="kP3CVWQbFEPCvaaS9lcdcI">费半相对</th><th data-page-node-id="idjJU35xONd2UUlchr3uvA">对持仓的映射解读</th></tr></thead>
+      <tbody data-page-node-id="CmSJs2eqGPAqLQVkWhStXv">
+        <tr data-page-node-id="NM7zDvEnyDUWGYXck7BKik"><td data-page-node-id="aKGioWFxDtDixTXNGvzH2c">纳斯达克</td><td data-page-node-id="McHANaXlHV5nrRtJMEO55m">26584.06</td><td class="pos" data-page-node-id="ZGIWaDw9MFEfOuKXRiBc10">+1.40%</td><td class="pos" data-page-node-id="qk0pSrjQ3BNa7aeNlhMzfM">+1.29pct</td><td data-page-node-id="o9TtTsx0yeEAPk9m8yAEPL">加息预期降温（美债收益率回落）+ 特斯拉 +5.42% 拉动；反弹主力是软件/平台，非硬件</td></tr>
+        <tr data-page-node-id="HXy2UIbgFxPEWkA4ljpkf3"><td data-page-node-id="U6qeholtzIygs7yp2YkBmI">标普500</td><td data-page-node-id="KQZ9hFXRIKQxwHufz1y81E">7747.71</td><td class="pos" data-page-node-id="XOYVdDYbT1L2RhRDLCriKK">+1.06%</td><td class="pos" data-page-node-id="WWE6J3STj38hz8WIdZCL1n">+0.95pct</td><td data-page-node-id="NRkIBEjG5nBvpVh5ax1Fpx">七巨头集体上涨；银行股同步走强，风险偏好回升</td></tr>
+        <tr data-page-node-id="h3OtkydqzT0mdmGTtnQMvq"><td data-page-node-id="SzR5ldOhuCPx9Z7mE5jL6Y">道琼斯</td><td data-page-node-id="Smm3DhobBSL1IB8hScLIEA">53686.11</td><td class="pos" data-page-node-id="jsG8Np2cBQl2j2wbRGach3">+1.18%</td><td class="pos" data-page-node-id="APS3EpiTOVCTufLoEj14rk">+1.07pct</td><td data-page-node-id="GssLe2OwgExNBa6lJpzeeX">近一个月最大单日涨幅，周期/利率敏感端反弹</td></tr>
+        <tr data-page-node-id="GU3tqW95kznXD7Q2wQdZtr"><td data-page-node-id="iHLED4oZBw43a5o8HV36u1"><b data-page-node-id="KtZeZagCspfG7KZRaBjWv7">费城半导体</b></td><td data-page-node-id="hTF8WxUbAKfwj3l2ibA5PQ">11352.13</td><td class="pos" data-page-node-id="s6pAAsl2IGH7vM4fLGoKF7">+0.11%</td><td data-page-node-id="KpzQgIL99MlpdAiRNa4T59">基准 0.00</td><td data-page-node-id="6eMKYrLrjgv9VIxWdvohXs"><span class="tag-warn" data-page-node-id="G67FAD3Ow6F2Kp3kruFpsO">滞涨警示</span> 博通 −2.74% 拖累；芯片股涨跌不一，AI 硬件反弹乏力</td></tr>
+        <tr data-page-node-id="bEAs3cmu3EciIejVlPP3Jh"><td data-page-node-id="DnfCbcR7chDMGB6AL524jC">英伟达 NVDA</td><td data-page-node-id="gubw00q6OVBUXmYjL1sXzP">228.45</td><td class="pos" data-page-node-id="QLIJTfDKGcUvMcHOGYafmc">+1.80%</td><td class="pos" data-page-node-id="EN8KwTIf5wzslHVIMT2Gpa">+1.69pct</td><td data-page-node-id="rvYdGtp7QlONK9Q1PXjo44">129.3 亿美元收购 Hugging Face（2027H1 完成）→ 算力生态整合延续，对罗博逻辑中性偏正</td></tr>
+        <tr data-page-node-id="zNiZ70MNkOtutllHnQH3np"><td data-page-node-id="MtNBzoFIwJJijeipM6gsZh">迈威尔 MRVL</td><td data-page-node-id="J9Xgfwsuga54s7YirhnVHj">—</td><td class="pos" data-page-node-id="OO6haUlfAfinixdZGQ8lF9">+1.14%</td><td class="pos" data-page-node-id="7qBvldmdetm7JnIwZEruGn">+1.03pct</td><td data-page-node-id="ef1CwkaUQ5mMtODQ69Qjd7">连跌 4 日（累计 −15.8%）后首次止跌 → 澜起外盘映射的唯一转机，持续性待确认</td></tr>
+        <tr data-page-node-id="5nM1X90Nshb7ia4Hp1DxZv"><td data-page-node-id="0e24CzuyMSciWvqvBUPetl">博通 AVGO</td><td data-page-node-id="fw6OUBrKI9Q1zSeFvmFrSo">—</td><td class="neg" data-page-node-id="ZVuwXMB6WXZwZeZotmqKaL">−2.74%</td><td class="neg" data-page-node-id="2GV72Uly6AB7EbXKy0zC4a">−2.85pct</td><td data-page-node-id="FHKkfGtLVtXRhxUzwFrJB8">FY26Q3 全面超预期但 Q4 总营收指引 348 亿略逊 350.3 亿上限 → "超预期不涨"典型（详见消息面）</td></tr>
+        <tr data-page-node-id="uQoa8u9Ep67mmBDFVCpHAZ"><td data-page-node-id="ICRD4Sodgkzpgxz61q6ZBn">Coherent COHR</td><td data-page-node-id="NqgIWrxC8XRCxpWA1m1Bvz">264.41</td><td class="neg" data-page-node-id="x3W1aKVkoaBmvf9ZurEbN5">−1.58%</td><td class="neg" data-page-node-id="dFAHUDsCrBx6G7F4CjX9zb">−1.69pct</td><td data-page-node-id="9SKapU6X9PHDCE01rOfjJm">汇绿核心客户/映射端续跌 → 今日汇绿 35.82 防守的外部压力仍在</td></tr>
+        <tr data-page-node-id="iAHZTIdLljkSi45dIq7lrT"><td data-page-node-id="d0OShP0y9KgAPrja0f0wpJ">Lumentum LITE</td><td data-page-node-id="0Ue3kPDic7ZqC673hjoCS1">847.37</td><td class="neg" data-page-node-id="WD59vwRopjoRhnHGKECf1e">−2.67%</td><td class="neg" data-page-node-id="sKrTKtDBsVy2qPl768xgQu">−2.78pct</td><td data-page-node-id="U9Z595MJn4j0C3v3BiijEN">可插拔光器件端偏弱，与费半滞涨同源</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="note">注：MRVL/AVGO 收盘价未取到，涨跌幅为消息面口径（★★☆）；COHR/LITE 收盘价为东财口径 ★★★。中概金龙指数 −0.81%（恒生科技今晨或低开，A股情绪面小扰动）。</p>
+  <p class="note" data-page-node-id="sbL7K0ZMqJdigWXNKd4NZZ">注：MRVL/AVGO 收盘价未取到，涨跌幅为消息面口径（★★☆）；COHR/LITE 收盘价为东财口径 ★★★。中概金龙指数 −0.81%（恒生科技今晨或低开，A股情绪面小扰动）。</p>
 </div>
 
 <!-- ⑤ 消息面与催化 -->
-<div class="card">
-  <h2>消息面：五条主线，两条直接影响持仓</h2>
-  <div class="table-wrap">
-    <table class="f3a tbl-card">
-      <thead><tr><th>事件</th><th>要点</th><th>对持仓影响</th></tr></thead>
-      <tbody>
-        <tr><td><b>博通财报 + 电话会</b> <span class="tag-cpo">CPO链</span></td><td>Q3 营收 295.9 亿（+86%）、AI 半导体 167 亿（+221%）均超预期；Q4 总营收指引 348 亿，略逊市场上限 350.3 亿；<b>电话会指引 2027 财年 AI 收入翻倍至 ~1150 亿、2028 财年 ~2300 亿美元</b>，2026 财年 AI 指引上调至 580 亿</td><td><b>长逻辑强化、短期兑现。</b>博通 AI 收入 = 光模块/高速互联需求上游锚点，跨年翻倍指引直接支撑 CPO/光模块景气 → 利好罗博；但 A股 9/3 光模块"先跌后稳"（旭创探 810 回升、新易盛翻红）已消化一轮情绪</td></tr>
-        <tr><td><b>澜起纳入富时中国 A50</b></td><td>9/3 披露指数纳入（富时季度检讨）；同日披露投关记录：<b>273 家机构调研</b>（8/28、8/31），DDR5 六子代送样 9200MT/s、CXL 3.2 MXC 试产导入三星/海力士、PCIe 6.x Retimer 量产版流片并列入 PCI-SIG 名录、PCIe Switch 年内流片</td><td><b>利好澜起：</b>被动资金流入 + 基本面进展密集。但注意：摩根大通同日小幅减持、主力第 5 日净流出 — 事件面与资金面背离，<b>以资金为准</b></td></tr>
-        <tr><td><b>英伟达收购 HF</b></td><td>129.3 亿美元（约 119 亿付现 + 10 亿股权留任），2027H1 完成；开源 AI 生态最大整合案</td><td>AI 应用/生态层扩张，算力硬件中性偏正；对 NVDA 产业链（含罗博的 ficonTEC 客户）无实质变化</td></tr>
-        <tr><td><b>美国 8 月非农（今晚）</b></td><td>9/4（周五）北京时间 20:30 公布；8 月 ADP 仅 +3.7 万（创 1 月以来新低），市场加息预期已降温、美债收益率回落</td><td><b>周末最大变量。</b>若非农疲软 → 宽松预期强化、利好成长持仓过节；若显著超预期 → 利率反弹压制高位科技。周五尾盘仓位决策依据</td></tr>
-        <tr><td><b>国产半导体景气</b></td><td>7 月规上集成电路产量 530 亿块（日均约 17 亿）；<b>前 7 月 IC 出口 2160 亿美元（+99.5%）已超 2025 全年</b>；晶圆代工产能利用率 90%+，封装设备订单排至 2028</td><td>中期佐证半导体设备/材料国产替代逻辑；对持仓为背景性利好（非当日催化）</td></tr>
+<div class="card" data-page-node-id="oOHb8C3z2MH45XKcY5WJbb">
+  <h2 data-page-node-id="4iC9RXABqw7RbjOBjqITTi">消息面：五条主线，两条直接影响持仓</h2>
+  <div class="table-wrap" data-page-node-id="cdf5T4JraXaOhAI4GjGtOu">
+    <table class="f3a tbl-card" data-page-node-id="t7CmDq3fTw2YQ2U3IkGCpB">
+      <thead data-page-node-id="irp7j1MyTMWBDLByBp0HBX"><tr data-page-node-id="3c1W3QwpSFuow9vtL3Ez2u"><th data-page-node-id="MxcBA6slEH2RWlCQbvvMqK">事件</th><th data-page-node-id="wm53AGz5iLGOzTqZmqHuyE">要点</th><th data-page-node-id="xgBd81kI22M8qSHJsUUond">对持仓影响</th></tr></thead>
+      <tbody data-page-node-id="bpVOr4QhxufW2CE4C2Lh7L">
+        <tr data-page-node-id="xDoMkNag5JKC7rg4IVPkG5"><td data-page-node-id="tZpsIizzAJAsSXONGbGHDs"><b data-page-node-id="vQkvTxcuTGGSVXD0TOHg3M">博通财报 + 电话会</b> <span class="tag-cpo" data-page-node-id="57wJkgB0R6vHmY21Pfpij2">CPO链</span></td><td data-page-node-id="Eu5tZccxQAw1CKmfULtiGN">Q3 营收 295.9 亿（+86%）、AI 半导体 167 亿（+221%）均超预期；Q4 总营收指引 348 亿，略逊市场上限 350.3 亿；<b data-page-node-id="NjoHMvGGIoBoG5Ekr1dH1H">电话会指引 2027 财年 AI 收入翻倍至 ~1150 亿、2028 财年 ~2300 亿美元</b>，2026 财年 AI 指引上调至 580 亿</td><td data-page-node-id="yKIIHSlGnjwjITa3ICMWRn"><b data-page-node-id="PVi26NbR4zcxcs3l9aUk2o">长逻辑强化、短期兑现。</b>博通 AI 收入 = 光模块/高速互联需求上游锚点，跨年翻倍指引直接支撑 CPO/光模块景气 → 利好罗博；但 A股 9/3 光模块"先跌后稳"（旭创探 810 回升、新易盛翻红）已消化一轮情绪</td></tr>
+        <tr data-page-node-id="vi3HSrrR3FByJMwqDQS5JZ"><td data-page-node-id="hXLcClGKms1drmv03o4jhR"><b data-page-node-id="zgNyz1xe5aK5p3Xs2aAvvu">澜起纳入富时中国 A50</b></td><td data-page-node-id="3nnHzVBhqEzz5M6sv4Jmrr">9/3 披露指数纳入（富时季度检讨）；同日披露投关记录：<b data-page-node-id="fT3StEWrOyuMkvo4Wrxrwg">273 家机构调研</b>（8/28、8/31），DDR5 六子代送样 9200MT/s、CXL 3.2 MXC 试产导入三星/海力士、PCIe 6.x Retimer 量产版流片并列入 PCI-SIG 名录、PCIe Switch 年内流片</td><td data-page-node-id="jv4hGGL94ovEzOfbnuCBl5"><b data-page-node-id="aZ8AtF8Jdk9kp0lgh7vmdW">利好澜起：</b>被动资金流入 + 基本面进展密集。但注意：摩根大通同日小幅减持、主力第 5 日净流出 — 事件面与资金面背离，<b data-page-node-id="ndhmVsDBVSQd8CqbnJBk7q">以资金为准</b></td></tr>
+        <tr data-page-node-id="7pQnxeugbnRtWRFmSLcQIm"><td data-page-node-id="ZVvxXsKtACPfgEuZEjG5QO"><b data-page-node-id="NgBng3mdriL25hTXtK5iu0">英伟达收购 HF</b></td><td data-page-node-id="u0G3VbjKM5LnrX8oHzLsk8">129.3 亿美元（约 119 亿付现 + 10 亿股权留任），2027H1 完成；开源 AI 生态最大整合案</td><td data-page-node-id="5BSAGLqj4B4Ky88Iygi5YW">AI 应用/生态层扩张，算力硬件中性偏正；对 NVDA 产业链（含罗博的 ficonTEC 客户）无实质变化</td></tr>
+        <tr data-page-node-id="4Hab0owoBBmoGL0y933xeo"><td data-page-node-id="TOXDniPGdrAegD44aihRHB"><b data-page-node-id="z9qECMGL39mSMlolKa78TB">美国 8 月非农（今晚）</b></td><td data-page-node-id="i76HkhqtZDXuD78D8qZJA8">9/4（周五）北京时间 20:30 公布；8 月 ADP 仅 +3.7 万（创 1 月以来新低），市场加息预期已降温、美债收益率回落</td><td data-page-node-id="uPkurX3JX1LfSua0InjhWf"><b data-page-node-id="kKK5YuI1RX89A8CD16nbOF">周末最大变量。</b>若非农疲软 → 宽松预期强化、利好成长持仓过节；若显著超预期 → 利率反弹压制高位科技。周五尾盘仓位决策依据</td></tr>
+        <tr data-page-node-id="wiCeAEnbpsLrq5KwBnsx5u"><td data-page-node-id="kE3DT2NfFRKjIgoG3rv9Do"><b data-page-node-id="5EOXpCZhhxVPhlClFw5pEM">国产半导体景气</b></td><td data-page-node-id="6XHIGSMCMuDR5dQaR6gsOZ">7 月规上集成电路产量 530 亿块（日均约 17 亿）；<b data-page-node-id="kFJrgQ1pufS96SqGzSrRh9">前 7 月 IC 出口 2160 亿美元（+99.5%）已超 2025 全年</b>；晶圆代工产能利用率 90%+，封装设备订单排至 2028</td><td data-page-node-id="T9O31GBNgDZd4LDhYXLZPU">中期佐证半导体设备/材料国产替代逻辑；对持仓为背景性利好（非当日催化）</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
 <!-- ⑥ 持仓总览 -->
-<div class="card">
-  <h2>持仓总览（9/3 收盘 · 按涨跌幅排序）</h2>
-  <div class="table-wrap">
-    <table class="f8 tbl-scroll">
-      <thead>
-        <tr><th>名称/代码</th><th>昨收</th><th>涨跌</th><th>55日线</th><th>偏离</th><th>市值(万)</th><th>主力净额</th><th>评级 · 今日防线</th></tr>
+<div class="card" data-page-node-id="J3HSFDzkjVsUXbTAgRcCB7">
+  <h2 data-page-node-id="FH6kEGyjb4xpBI812vctxH">持仓总览（9/3 收盘 · 按涨跌幅排序）</h2>
+  <div class="table-wrap" data-page-node-id="jQaEfqaPeYiQHX77kDLwRv">
+    <table class="f8 tbl-scroll" data-page-node-id="oTdhjDCLQXJH5R6WJGRA0t">
+      <thead data-page-node-id="yfTmFeDvFYT2piid9zo5Jn">
+        <tr data-page-node-id="zvH9iULh7na4fF0S55ifAZ"><th data-page-node-id="jpPybsblVT4s3kiYuds2jv">名称/代码</th><th data-page-node-id="6HwzyjrbCUMBpnWZSf5Y5G">昨收</th><th data-page-node-id="uBHAOwawAcW6cLnhCoJhCZ">涨跌</th><th data-page-node-id="LokmwgiHFQg0C22wqn2QAG">55日线</th><th data-page-node-id="9gjkCmSVH3nKlXUHROatpk">偏离</th><th data-page-node-id="usXdK78TztqVbCYYZivVm5">市值(万)</th><th data-page-node-id="RUjVc0s2PW3XN197jTJ7WH">主力净额</th><th data-page-node-id="Igklycg2EBOQLyDotN7ASE">评级 · 今日防线</th></tr>
       </thead>
-      <tbody>
-        <tr>
-          <td><strong>星环科技</strong><br><span class="small">688031</span></td><td>110.51</td><td class="pos">+1.46%</td><td>104.27</td><td class="pos">+5.99%</td><td>23.85</td><td class="pos">+1.26亿</td>
-          <td><span class="tag-sell">SELL</span><br><span class="small">减600换罗博</span></td>
+      <tbody data-page-node-id="jKIubCuOf7qUCELmluubCD">
+        <tr data-page-node-id="9zect9lUqNQkf9eHqW4brV">
+          <td data-page-node-id="FS6YdHjHseKZxFnG6dBlF4"><strong data-page-node-id="6B1wrfpBs4WXPbmOC9D9ww">星环科技</strong><br data-page-node-id="QKEl21rjppvmXkm99qgdPH"><span class="small" data-page-node-id="rpZepeFPPO3JaulMfPKxYR">688031</span></td><td data-page-node-id="x2YpkuI64BYSXZjfKNpKdm">110.51</td><td class="pos" data-page-node-id="1tC6X50cvNadhYzA0IqCUt">+1.46%</td><td data-page-node-id="cRxmsA8C0lsP3DeODiXfbB">104.27</td><td class="pos" data-page-node-id="vK8Ph2Yy9PdBJcGvKLVEUu">+5.99%</td><td data-page-node-id="QgkxN5k9p2QhCwUHyo2QYZ">23.85</td><td class="pos" data-page-node-id="5keqqbhf46gDufdlCJE21H">+1.26亿</td>
+          <td data-page-node-id="GntBcyaEhgY7IYvzBKvBHo"><span class="tag-sell" data-page-node-id="a2kVIOt6T1JOlGBPWcK3R0">SELL</span><br data-page-node-id="n6Mb9dP3sOdXH5KPpHx4Km"><span class="small" data-page-node-id="wXcOshAoMYw32rESBhFhVq">减600换罗博</span></td>
         </tr>
-        <tr>
-          <td><strong>软通动力</strong><br><span class="small">301236</span></td><td>37.60</td><td class="pos">+0.51%</td><td>38.84</td><td class="neg">−3.19%</td><td>18.80</td><td class="pos">+441万</td>
-          <td><span class="tag-hold">HOLD</span><br><span class="small">横盘等放量</span></td>
+        <tr data-page-node-id="kAZutRMSuco2yWPVAKosyg">
+          <td data-page-node-id="GDMOJHZcNTEJFTDEcXcGJU"><strong data-page-node-id="37p3mS5qyRgLegyZmDXGJX">软通动力</strong><br data-page-node-id="PSyHUhulBSCWg5w7IiETUy"><span class="small" data-page-node-id="W2wdalUyfIen0RAkjeYGrY">301236</span></td><td data-page-node-id="lxh2hISGEYHNcbxVNX6Ei9">37.60</td><td class="pos" data-page-node-id="Zx7CUThHxWgFlAJxlzq2Ac">+0.51%</td><td data-page-node-id="LOBemCG2Ew4ne8ZzRF87cT">38.84</td><td class="neg" data-page-node-id="x3mkMGr76r3CMkR2yc2GrC">−3.19%</td><td data-page-node-id="doWju0BOpUWQXdWs67I50W">18.80</td><td class="pos" data-page-node-id="QOaWCX7adR2vWzIvqEAGm3">+441万</td>
+          <td data-page-node-id="gkSj90b0I94QHO9PiARv0X"><span class="tag-hold" data-page-node-id="MJU0vmtnrUMfApz4GlZncW">HOLD</span><br data-page-node-id="qFhjc3ZCjtODgmkSfadtD0"><span class="small" data-page-node-id="xdEmffsx8qrpjNmcjjM6b5">横盘等放量</span></td>
         </tr>
-        <tr>
-          <td><strong>罗博特科</strong><br><span class="small">300757</span></td><td>585.20</td><td class="pos">+0.43%</td><td>502.93</td><td class="pos">+16.36%</td><td>52.67</td><td class="neg">−1.16亿</td>
-          <td><span class="tag-hold">HOLD</span><br><span class="small">570以下触发</span></td>
+        <tr data-page-node-id="1OS71hH22eHgKJR7ZDCcOm">
+          <td data-page-node-id="6OVLEHVGuiYJtHCKA2BWRW"><strong data-page-node-id="Yf30OckLeKjCUYqpPKHfzb">罗博特科</strong><br data-page-node-id="5Ou7zMKZud8vTZN4xrrSWe"><span class="small" data-page-node-id="bV7CwmZIp6tWXW6T2FpQjw">300757</span></td><td data-page-node-id="tCCHcDrM2MTY83SLdpCrAv">585.20</td><td class="pos" data-page-node-id="dPprHgx2duTSLZ1UWPgzIB">+0.43%</td><td data-page-node-id="TKomvbmb4gJrBAhHiUr9oe">502.93</td><td class="pos" data-page-node-id="HMexGHdQywww4T1UilRmo6">+16.36%</td><td data-page-node-id="MQfCkc0h2tPOcdsbbenEB5">52.67</td><td class="neg" data-page-node-id="JEd2T5bCUIC2P5z0lGAKQ9">−1.16亿</td>
+          <td data-page-node-id="1ZRa6viXU84s0eMzbqY3EE"><span class="tag-hold" data-page-node-id="AaFwFwEg1rK0NywR6vBwsz">HOLD</span><br data-page-node-id="tZWaKdrawgMZC7iXpdmbVB"><span class="small" data-page-node-id="6nEvi2Z5i8DyxoJHIZPMjR">570以下触发</span></td>
         </tr>
-        <tr>
-          <td><strong>汇绿生态</strong><br><span class="small">001267</span></td><td>36.60</td><td class="neg">−0.44%</td><td>40.56</td><td class="neg">−9.76%</td><td>34.77</td><td class="neg">−4156万</td>
-          <td><span class="tag-hold">HOLD</span><br><span class="small">看35.82得失</span></td>
+        <tr data-page-node-id="kaWVWxXxuX8yt1C3ak5EU3">
+          <td data-page-node-id="3lBqYby8qKj3aurlFNU7JV"><strong data-page-node-id="ewYyoobkYuCvTJ7DotX8N7">汇绿生态</strong><br data-page-node-id="q77uGXeraHDrPmGxheujOP"><span class="small" data-page-node-id="JdhlSSiFx3tl0jxklC61cr">001267</span></td><td data-page-node-id="38aZRhb1HuFDWXFF99L3GV">36.60</td><td class="neg" data-page-node-id="NhYgydVIg8nQpCsV74C10G">−0.44%</td><td data-page-node-id="VSD9QxXrMyWg1jgeDfJh3F">40.56</td><td class="neg" data-page-node-id="aGzy6cF8DRsg3WhJkrZMQd">−9.76%</td><td data-page-node-id="ptiFZ4dOE1sJqlo722FDEY">34.77</td><td class="neg" data-page-node-id="ZlslMN1bkkJAYLqHgt2Cwo">−4156万</td>
+          <td data-page-node-id="FjdadmMvw4B2kY99fI2nN9"><span class="tag-hold" data-page-node-id="QgljoG7pl1DRgVdDFqYyb4">HOLD</span><br data-page-node-id="urXEAOjMLwupluDpZDAr63"><span class="small" data-page-node-id="U5qKBMGGmPY8y6PZHknOy5">看35.82得失</span></td>
         </tr>
-        <tr>
-          <td><strong>泰和新材</strong><br><span class="small">002254</span></td><td>12.87</td><td class="neg">−1.15%</td><td>13.50</td><td class="neg">−4.66%</td><td>25.74</td><td class="neg">−1851万</td>
-          <td><span class="tag-wait">WAIT</span><br><span class="small">ma55下方等拐点</span></td>
+        <tr data-page-node-id="ETpaZPBGGyiScBwS2y8BNx">
+          <td data-page-node-id="JngFoMp73fTpy0OiiBDREi"><strong data-page-node-id="HW7Th6Tr9UMU1eLEQdAEGm">泰和新材</strong><br data-page-node-id="0GqCY7HXWNpQiwX2y72HyD"><span class="small" data-page-node-id="9ar7vwAzDGDHtiEWmlsUvY">002254</span></td><td data-page-node-id="wyr6pjV9hNpoA05iIaxl1S">12.87</td><td class="neg" data-page-node-id="IQxA1TIv3OVQZMRjb2wfaV">−1.15%</td><td data-page-node-id="wifIrcZpkzoZaCE8pdeGjJ">13.50</td><td class="neg" data-page-node-id="agvg5FV8w50cNhVHUq3g6c">−4.66%</td><td data-page-node-id="Hw84kdk3CnCSoxCdP23MEt">25.74</td><td class="neg" data-page-node-id="jiFa2DBCAhqCK0kTCfMADR">−1851万</td>
+          <td data-page-node-id="BMMbmkCrg8iddbSJcH0VxI"><span class="tag-wait" data-page-node-id="nvP4NtClGh0CjaZGLHWMTD">WAIT</span><br data-page-node-id="UxYnDjxduYwgNoFPdQQXXV"><span class="small" data-page-node-id="2Sn0lfW08eo3vBd6RmBLKu">ma55下方等拐点</span></td>
         </tr>
-        <tr>
-          <td><strong>三祥新材</strong><br><span class="small">603663</span></td><td>40.41</td><td class="neg">−1.39%</td><td>55.89</td><td class="neg">−27.70%</td><td>19.48</td><td class="neg">−4479万</td>
-          <td><span class="tag-hold">HOLD</span><br><span class="small">远离ma55持有</span></td>
+        <tr data-page-node-id="tF3sD8lHPX0r2ZJLHaBrby">
+          <td data-page-node-id="KPlGZLBwxsv7YksnDX2EPE"><strong data-page-node-id="up6pFEy4LUOUotp81DpukJ">三祥新材</strong><br data-page-node-id="e14w45wFVvFTwWdRwKc3JB"><span class="small" data-page-node-id="Y4S858T7nvV5DhR2UmkjV3">603663</span></td><td data-page-node-id="hVqQFqIy5dxoLfo8qsOK9T">40.41</td><td class="neg" data-page-node-id="CoAdx3gD50ig4U24FivinM">−1.39%</td><td data-page-node-id="eAZv9t8YWuITknMNxHxIr9">55.89</td><td class="neg" data-page-node-id="h8I9ckhnPucciiaj1b5tiP">−27.70%</td><td data-page-node-id="dB3yZzq5V7WTBTaGLtb7yF">19.48</td><td class="neg" data-page-node-id="bHE5nB11Fv4nXgMOSpJrPx">−4479万</td>
+          <td data-page-node-id="EGM0C2gZFl7zdWuDF3akcX"><span class="tag-hold" data-page-node-id="qrStYmBCRXwS5J1eWQKMNS">HOLD</span><br data-page-node-id="1a0FA064OnRBHmWPJvhOzh"><span class="small" data-page-node-id="fgQUU1on24L7xSg3dPMhLp">远离ma55持有</span></td>
         </tr>
-        <tr>
-          <td><strong>华峰化学</strong><br><span class="small">002064</span></td><td>11.50</td><td class="neg">−1.54%</td><td>10.96</td><td class="pos">+4.97%</td><td>18.40</td><td class="neg">−4119万</td>
-          <td><span class="tag-wait">WAIT</span><br><span class="small">防线10.75–10.96</span></td>
+        <tr data-page-node-id="wgzhL8jqsoQFChhc2suo00">
+          <td data-page-node-id="v8H5nCrn2WEFv9Kop9r6VM"><strong data-page-node-id="NtTOkCJDHhxwbv93fhkqZZ">华峰化学</strong><br data-page-node-id="5E8CvBbzbHyGQSUJV6vnHi"><span class="small" data-page-node-id="BF9tYmHMDQXgtXV0Jlqhzw">002064</span></td><td data-page-node-id="wrnes3vmukUvgwKCnywNBp">11.50</td><td class="neg" data-page-node-id="vkzGRCtAzoYIyjVBbAAHMn">−1.54%</td><td data-page-node-id="z1EDftEphR2y1o0LLVV3OG">10.96</td><td class="pos" data-page-node-id="NFz2XTDGuwD7ZIYgWlt8GP">+4.97%</td><td data-page-node-id="C0OpKV4l9BuWIPJ6XMVLMQ">18.40</td><td class="neg" data-page-node-id="X0Ix3L7DzdB0a2EsvxrqVS">−4119万</td>
+          <td data-page-node-id="VIBv5OhiAr3rIg8tWknBAk"><span class="tag-wait" data-page-node-id="c49YEC1qCl1tFtzllzHtig">WAIT</span><br data-page-node-id="1iKIdNPEacWdM146EC0RuV"><span class="small" data-page-node-id="6v2ahalhqDfJdZN4MTHBAC">防线10.75–10.96</span></td>
         </tr>
-        <tr>
-          <td><strong>澜起科技</strong><br><span class="small">688008</span></td><td>190.01</td><td class="neg">−1.60%</td><td>228.20</td><td class="neg">−16.73%</td><td>23.54</td><td class="neg">−4.59亿</td>
-          <td><span class="tag-hold">HOLD</span><br><span class="tag-warn">降级观察</span><br><span class="small">防线186.50</span></td>
+        <tr data-page-node-id="n0zLqwPbJ332jAngjbh5e8">
+          <td data-page-node-id="i9gKhJKYk4DHjDCZiBFZCO"><strong data-page-node-id="PJYfjbM1EbbF3FV5asGBEo">澜起科技</strong><br data-page-node-id="6eMhlyHnH8E74QOCKETCbM"><span class="small" data-page-node-id="1XqFtGHzvjunynxEZBWNb2">688008</span></td><td data-page-node-id="pJmdRxWDFhuoN2qDZTSyO8">190.01</td><td class="neg" data-page-node-id="3FIVSVBSKsq6bITc1TAGSi">−1.60%</td><td data-page-node-id="1NBHIWpjtny31kaXZlucnf">228.20</td><td class="neg" data-page-node-id="K63EKc7oW7Gb1t17xFQhGX">−16.73%</td><td data-page-node-id="TBfIQ7OVLrV31RJeux3VtR">23.54</td><td class="neg" data-page-node-id="xGSIzp7teDIiwh7yAh3cf5">−4.59亿</td>
+          <td data-page-node-id="p8soi8MA6i4c4B9giIF6dx"><span class="tag-hold" data-page-node-id="DYOx7jrfBbnTOFzhACp5tJ">HOLD</span><br data-page-node-id="0k3DHOQJ6g8tjcxLk4QnH6"><span class="tag-warn" data-page-node-id="LdKsXEW7jfbqyyThCFqhxc">降级观察</span><br data-page-node-id="jogqQvvsZZVtZ6m9ot24dU"><span class="small" data-page-node-id="seLox0eD8zBmR7Ldia3zVR">防线186.50</span></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p class="note">注：市值 = 9/3 收盘 × 持仓股数（合计约 217.2 万，较 9/2 口径 −0.3%）；偏离 = 现价 vs 55 日线（通达信口径，截至 9/3 收盘 ★★★）；主力净额 = 9/3 东财口径 ★★★。</p>
+  <p class="note" data-page-node-id="LAVItDn7ZUD3wC8GyYdscd">注：市值 = 9/3 收盘 × 持仓股数（合计约 217.2 万，较 9/2 口径 −0.3%）；偏离 = 现价 vs 55 日线（通达信口径，截至 9/3 收盘 ★★★）；主力净额 = 9/3 东财口径 ★★★。</p>
 </div>
 
 <!-- ⑦ 板块轮动 -->
-<div class="card">
-  <h2>板块轮动（9/3）：科技硬件内部分化，主线仍在 CPO</h2>
-  <div class="table-wrap">
-    <table class="f3d tbl-card">
-      <thead><tr><th>板块</th><th>9/3 表现</th><th>研判</th></tr></thead>
-      <tbody>
-        <tr><td><b>CPO / 光模块</b> <span class="tag-cpo">主线</span></td><td>CPO 概念 +0.17%；旭创探 810 后回升、新易盛翻红 +0.67%</td><td>博通情绪冲击已被市场消化，博通 2027/28 AI 指引支撑板块景气确定性 → 相对抗跌合理，回调即关注</td></tr>
-        <tr><td>半导体设备/存储</td><td>半导体设备 −1.30%、存储 −0.44%、科创50 −0.40%</td><td>短线调整未止，国产 IC 出口数据是中期底；右侧信号未出现前不抢跑</td></tr>
-        <tr><td>化工 氨纶·磷化工</td><td>氨纶 −1.48%、磷化工 −0.90%</td><td>周期整体走弱——泰和、华峰均处弱势链，华峰有重组独立逻辑另看</td></tr>
-        <tr><td>稀土永磁</td><td>+0.70%</td><td>有色逆势小涨，组合内唯一对冲源（三祥相关性弱，不构成联动）</td></tr>
+<div class="card" data-page-node-id="fGvEDRgZQYury1WKuq8zlb">
+  <h2 data-page-node-id="Fb6kGpzeQIAwsfAbWhVz3t">板块轮动（9/3）：科技硬件内部分化，主线仍在 CPO</h2>
+  <div class="table-wrap" data-page-node-id="qd9CahJZ5rCePYx0cuL5VS">
+    <table class="f3d tbl-card" data-page-node-id="uyBIfWoPmjpMYwaq7rpT0f">
+      <thead data-page-node-id="d8ncCXnaRIxy98PgY5oPA2"><tr data-page-node-id="EgOHa9ZaGeDiS5O2Y1TP3M"><th data-page-node-id="2upQNDvFG4tyYP0X5wOQFo">板块</th><th data-page-node-id="BLHg6KCDLVcX4fxBg84T5C">9/3 表现</th><th data-page-node-id="tDycvwY8NLslTXood8rcyo">研判</th></tr></thead>
+      <tbody data-page-node-id="aRhdC9mBseVOIM4MefHZIn">
+        <tr data-page-node-id="KNgqeSeKfmWZuwD6q4HClI"><td data-page-node-id="SgyoQxJOWlD4DsSM9MvAcb"><b data-page-node-id="j8XiIvTzSRFNhwCyZUyTMq">CPO / 光模块</b> <span class="tag-cpo" data-page-node-id="XRIX2nDyEwjtJeMspp1ozh">主线</span></td><td data-page-node-id="KEEt52HLaGMzRkXTpxYtNt">CPO 概念 +0.17%；旭创探 810 后回升、新易盛翻红 +0.67%</td><td data-page-node-id="wPCLDH0fUS1RQUFDXxdkua">博通情绪冲击已被市场消化，博通 2027/28 AI 指引支撑板块景气确定性 → 相对抗跌合理，回调即关注</td></tr>
+        <tr data-page-node-id="ff6lzCNwo379PtfJ9O3nSt"><td data-page-node-id="9U2cEUG8vfcvFUj4y6QqYf">半导体设备/存储</td><td data-page-node-id="K2RIYmUq4tMs1IPXka7Fdd">半导体设备 −1.30%、存储 −0.44%、科创50 −0.40%</td><td data-page-node-id="Ky4Cb6qVg3qC1C9P8In72M">短线调整未止，国产 IC 出口数据是中期底；右侧信号未出现前不抢跑</td></tr>
+        <tr data-page-node-id="EqXAOKUq4jITVNfL3ebxD0"><td data-page-node-id="lixF7mBFNhBklbx86PVNfw">化工 氨纶·磷化工</td><td data-page-node-id="tnzO2eeZvxbLGOYXHMNi6A">氨纶 −1.48%、磷化工 −0.90%</td><td data-page-node-id="PrNgf2vj0NGvF9npCz5GO3">周期整体走弱——泰和、华峰均处弱势链，华峰有重组独立逻辑另看</td></tr>
+        <tr data-page-node-id="UJHxWBAYzmzV8ixNvmeco1"><td data-page-node-id="VROe5f9Xj5ZcUmDc0yW0Fu">稀土永磁</td><td data-page-node-id="vxkUSdoCrkuxoezHP1S60X">+0.70%</td><td data-page-node-id="chfLA0GGDVzK0okPJ7kd8Q">有色逆势小涨，组合内唯一对冲源（三祥相关性弱，不构成联动）</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
 <!-- ⑧ 今日操作纪律 -->
-<div class="card">
-  <h2>今日操作纪律：五条触发线，不预判、只执行</h2>
-  <div class="table-wrap">
-    <table class="f3b tbl-card">
-      <thead><tr><th>标的</th><th>裁决</th><th>动作与触发条件</th></tr></thead>
-      <tbody>
-        <tr><td><b>罗博特科</b></td><td><span class="tag-buy">待触发 BUY</span></td><td>核准方案 A 买点 <b>570 以下</b>（限价 100 股），昨收 585.20 未触发。<b>不追高</b>：昨高位主力净流出 −1.16 亿、成交 37.9 亿为放量滞涨信号；一周内不回落且无 Q3 数据则放弃方案。盘中回落至 570–577（ma5 区）观察承接量</td></tr>
-        <tr><td><b>星环科技</b></td><td><span class="tag-sell">SELL 600股</span></td><td>站上 ma20（108.9）、昨 +1.46% 且主力 +1.26 亿 —— <b>反弹高位就是卖出窗口</b>。执行减 600 股（保留 1558 股负成本期权），所得资金等罗博 570 以下触发；若当日罗博未到位，资金暂存不回流</td></tr>
-        <tr><td><b>澜起科技</b></td><td><span class="tag-hold">HOLD 降级观察</span></td><td><b>防线 186.50（20 日低点）</b>：距昨收 −1.85%。失守 = 重估逻辑而非机械补仓。事件利多（A50 纳入/273 家调研/MRVL 止跌 +1.14%）vs 主力 5 日净流出 35.6 亿 —— 今天看能否<b>缩量止跌收回 190 上方</b>，缩量是企稳前提</td></tr>
-        <tr><td><b>汇绿生态</b></td><td><span class="tag-hold">HOLD</span></td><td>贴 20 日低点 35.82（距昨收 −2.1%）：<b>缩量破 = 洗盘不动作；放量破 = 降级观察</b>。重组审核静默期无新公告属正常节奏，Q4 决胜窗口未到，老潘明确不动；外盘 COHR −1.58% 是今日压力源</td></tr>
-        <tr><td><b>华峰化学</b></td><td><span class="tag-wait">WAIT</span></td><td>防线带 <b>10.75–10.96</b>（9/3 低点 + ma55）已连续两日守住，现价 11.50 在带上方 +5%：重组折价（发行价 8.45）阴影消化中，等股东会审议后重估，今日无动作</td></tr>
-        <tr><td>泰和 / 三祥 / 软通</td><td><span class="tag-hold">HOLD</span> <span class="tag-wait">WAIT</span></td><td>泰和 ma55（13.50）下方弱势整理，等氨纶链拐点；三祥距 ma55 −27.7% 超跌但反弹无量，持有不动；软通横盘第七日，放量突破 38.25（ma20）再看</td></tr>
+<div class="card" data-page-node-id="odl26amD5hDwVqAvFAx13J">
+  <h2 data-page-node-id="9p143FbE4ZLcuhnoAmqEVU">今日操作纪律：五条触发线，不预判、只执行</h2>
+  <div class="table-wrap" data-page-node-id="u6i5iQ1YAuHdZOPkwxo0AU">
+    <table class="f3b tbl-card" data-page-node-id="GdK5LCZn7m4Z8FBTfeHIMa">
+      <thead data-page-node-id="rnD3OHOYtrEPCoXqtGQaQg"><tr data-page-node-id="B6EfNIkDfgSKonRq9YnHD3"><th data-page-node-id="RJuyoJ9AC9dAQVuGD0X4K5">标的</th><th data-page-node-id="RIlUxapoYXTPrcCOTdNqcX">裁决</th><th data-page-node-id="5uBY9ufAiAtUfsPOU99kli">动作与触发条件</th></tr></thead>
+      <tbody data-page-node-id="4kXSaf2540UQbwmfG7rD7w">
+        <tr data-page-node-id="KfBeCPEOkUUdv3HeELRwHs"><td data-page-node-id="ITwPS3nzubmJy5Y5AqeUc1"><b data-page-node-id="46LtF5TmKNN12s7Ejgt8Ay">罗博特科</b></td><td data-page-node-id="kyT38yJ6XKIkHQ1AAkdJTn"><span class="tag-buy" data-page-node-id="oBG3coTRFcdz8jl49eIYwZ">待触发 BUY</span></td><td data-page-node-id="pYFijaFWgkdzds2OGmBdzT">核准方案 A 买点 <b data-page-node-id="WFiVIFfNMJAq7FzXDqHXsx">570 以下</b>（限价 100 股），昨收 585.20 未触发。<b data-page-node-id="WVTniLaP6pqi70Gknye6M2">不追高</b>：昨高位主力净流出 −1.16 亿、成交 37.9 亿为放量滞涨信号；一周内不回落且无 Q3 数据则放弃方案。盘中回落至 570–577（ma5 区）观察承接量</td></tr>
+        <tr data-page-node-id="aQbItLfzHeY6qdHTube1qB"><td data-page-node-id="uYq8A1lMOyqjYrrTw92Ano"><b data-page-node-id="DIRRC7kin6ztua3eAKBrIG">星环科技</b></td><td data-page-node-id="sHXiW6UJBVgGcIj8orfEIE"><span class="tag-sell" data-page-node-id="b4c00DZAGKhmQ1TikRGdiM">SELL 600股</span></td><td data-page-node-id="vElVo7hFPmwgot4GJ7Qu0L">站上 ma20（108.9）、昨 +1.46% 且主力 +1.26 亿 —— <b data-page-node-id="VEnQjkYoRIYt4XbQtvWlaz">反弹高位就是卖出窗口</b>。执行减 600 股（保留 1558 股负成本期权），所得资金等罗博 570 以下触发；若当日罗博未到位，资金暂存不回流</td></tr>
+        <tr data-page-node-id="54gQGCrp9mM8ayNEWjFMpP"><td data-page-node-id="eC8DHWi8g2ZeyRDFMXw8GB"><b data-page-node-id="LvWOxTVV5TWcx5sZAQ7QTq">澜起科技</b></td><td data-page-node-id="5Uy9l5CCJQY2sCjY7n1c8f"><span class="tag-hold" data-page-node-id="KJ0eKmM8Y4rXdBIhw2yEFN">HOLD 降级观察</span></td><td data-page-node-id="YhzGA70HF6PiuMcGKMiNyI"><b data-page-node-id="RxraQbY5X8eNKz9xRK0Oiw">防线 186.50（20 日低点）</b>：距昨收 −1.85%。失守 = 重估逻辑而非机械补仓。事件利多（A50 纳入/273 家调研/MRVL 止跌 +1.14%）vs 主力 5 日净流出 35.6 亿 —— 今天看能否<b data-page-node-id="7EjzB3VFFxLJcHh2jCP2HB">缩量止跌收回 190 上方</b>，缩量是企稳前提</td></tr>
+        <tr data-page-node-id="eD2NrEQaxV0NrejzDoziJx"><td data-page-node-id="BiH1WaGbbBP0kJLLPG3EXm"><b data-page-node-id="cvyuGAxNiEFGTZPBCWgjHe">汇绿生态</b></td><td data-page-node-id="KmR6GRIHqwG2HmmXUSmhku"><span class="tag-hold" data-page-node-id="OhLyXnfzYWELFI2XjpXZ34">HOLD</span></td><td data-page-node-id="Sz17xpqveNm612fZOptNIV">贴 20 日低点 35.82（距昨收 −2.1%）：<b data-page-node-id="mCkOhXR0uX8oheAVmaRLDH">缩量破 = 洗盘不动作；放量破 = 降级观察</b>。重组审核静默期无新公告属正常节奏，Q4 决胜窗口未到，老潘明确不动；外盘 COHR −1.58% 是今日压力源</td></tr>
+        <tr data-page-node-id="fy8ZVH77RHtYx4oJAJvQnr"><td data-page-node-id="y7UNiGlJ3eBC42mXwvh50P"><b data-page-node-id="RfD72afa65mjmWYtHEzB2u">华峰化学</b></td><td data-page-node-id="8MUhCMDEwxC4gxD2RtMQvD"><span class="tag-wait" data-page-node-id="tRuarC6Xg1iH547nOAbIZ2">WAIT</span></td><td data-page-node-id="kY4n04l5DC0S4c9iyTvv56">防线带 <b data-page-node-id="jLqPTMVa0MXqcrNReM9qIu">10.75–10.96</b>（9/3 低点 + ma55）已连续两日守住，现价 11.50 在带上方 +5%：重组折价（发行价 8.45）阴影消化中，等股东会审议后重估，今日无动作</td></tr>
+        <tr data-page-node-id="WYzP4w5vUOkOPHybLAXFoS"><td data-page-node-id="COgH3XTXiGx9hMfyqdREyl">泰和 / 三祥 / 软通</td><td data-page-node-id="BBDVrUKQ5DMbGH5FC4KDwV"><span class="tag-hold" data-page-node-id="FnlVQZeyxwc8QtKOAGg9EL">HOLD</span> <span class="tag-wait" data-page-node-id="cp0v6Ry5jUHhe0mwnuwXxI">WAIT</span></td><td data-page-node-id="XiDtJjQLTBNpblSIrNEtFm">泰和 ma55（13.50）下方弱势整理，等氨纶链拐点；三祥距 ma55 −27.7% 超跌但反弹无量，持有不动；软通横盘第七日，放量突破 38.25（ma20）再看</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="note">盘前提示：今日为周五，若下午 14:30 后仍未触发任何操作线，建议尾盘前完成澜起/汇绿防线检查，决定周末仓位暴露。核准方案 A 涉及卖出星环、买入罗博为<b>同批联动操作</b>，罗博未到价则星环减持资金不提前回补。</div>
+  <div class="note" data-page-node-id="t8BZTgl7SA1NfJCHTBDKnE">盘前提示：今日为周五，若下午 14:30 后仍未触发任何操作线，建议尾盘前完成澜起/汇绿防线检查，决定周末仓位暴露。核准方案 A 涉及卖出星环、买入罗博为<b data-page-node-id="FIpF0HFm6zY4LzvmunT89Z">同批联动操作</b>，罗博未到价则星环减持资金不提前回补。</div>
 </div>
 
 <!-- ⑨ 风险与催化 -->
-<div class="card">
-  <h2>多空对照：今日看得见的风险与催化</h2>
-  <div class="negbox">
-    <strong>下行风险：</strong>① 上证若放量失守 3927 且反抽不收复 → 双锚升级假设降级，科技仓短线降配；② 澜起主力第 5 日净流出未止，186.50 破位后任何"补仓摊薄"都是错误姿势；③ 博通"超预期不涨" + 费半滞涨 + COHR/LITE 续跌，A股 AI 硬件高位股存在补跌窗口；④ 今晚非农若显著超预期 → 美债利率反弹，压制全球成长估值。
+<div class="card" data-page-node-id="6oHIFc9eP60EdQEA7oLIgW">
+  <h2 data-page-node-id="glaKP0Oud7FnOQdtAtR5PO">多空对照：今日看得见的风险与催化</h2>
+  <div class="negbox" data-page-node-id="tMgBY07enDiJoE8rDPV9M8">
+    <strong data-page-node-id="lpsZt8lPTMgkckqyF3ShUx">下行风险：</strong>① 上证若放量失守 3927 且反抽不收复 → 双锚升级假设降级，科技仓短线降配；② 澜起主力第 5 日净流出未止，186.50 破位后任何"补仓摊薄"都是错误姿势；③ 博通"超预期不涨" + 费半滞涨 + COHR/LITE 续跌，A股 AI 硬件高位股存在补跌窗口；④ 今晚非农若显著超预期 → 美债利率反弹，压制全球成长估值。
   </div>
-  <div class="posbox">
-    <strong>正面催化：</strong>① 澜起纳入富时中国 A50 → 被动买盘 + 指数基金调仓窗口；② 博通电话会 2027/2028 AI 收入 1150→2300 亿美元指引，光互联景气跨年确认；③ 英伟达并购 Hugging Face 延续 AI 生态高投入叙事；④ 前 7 月国产 IC 出口 +99.5% 超去年全年，半导体链景气实证；⑤ 美债收益率回落 + 加息预期降温，成长风格流动性边际改善。
+  <div class="posbox" data-page-node-id="HC6AWK03XV8dNLlZHKdJ3O">
+    <strong data-page-node-id="qKB5EbsEsVxjRcw0GkLHDV">正面催化：</strong>① 澜起纳入富时中国 A50 → 被动买盘 + 指数基金调仓窗口；② 博通电话会 2027/2028 AI 收入 1150→2300 亿美元指引，光互联景气跨年确认；③ 英伟达并购 Hugging Face 延续 AI 生态高投入叙事；④ 前 7 月国产 IC 出口 +99.5% 超去年全年，半导体链景气实证；⑤ 美债收益率回落 + 加息预期降温，成长风格流动性边际改善。
   </div>
 </div>
 
-<div class="footer">
-  数据来源：妙想数据（东方财富）★★★、通达信 ★★★、WebSearch 新闻（财联社/证券时报/华尔街见闻）★★☆ ｜ 编制时间：2026-09-04 09:22 盘前<br>
-  口径说明：A股行情与均线截至 9/3 收盘；美股为美东 9/3 收盘；主力资金为东财 9/3 口径；MRVL/AVGO 收盘价缺失以涨跌幅标注。<br>
-  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br>
+<div class="footer" data-page-node-id="nzVCLtAGOKPojykttViuOe">
+  数据来源：妙想数据（东方财富）★★★、通达信 ★★★、WebSearch 新闻（财联社/证券时报/华尔街见闻）★★☆ ｜ 编制时间：2026-09-04 09:22 盘前<br data-page-node-id="7FgSZmOKl8uu5SdxcL6RS8">
+  口径说明：A股行情与均线截至 9/3 收盘；美股为美东 9/3 收盘；主力资金为东财 9/3 口径；MRVL/AVGO 收盘价缺失以涨跌幅标注。<br data-page-node-id="e1mN8wx4DgWTBeOq7ZTfpZ">
+  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br data-page-node-id="9B2YbM22SjjnMaI2RUirxD">
   编制：巴蒂 · 2026-09-04
 </div>
 
 </div>
 <script>
-/* v6.0 响应式配套（2026-09-04）：叙述表卡片化需 data-label 注入 */
+/* v6.1 响应式配套（2026-09-04 flex 重构）：叙述表卡片化需 data-label 注入 */
 /* 触发：class="tbl-card" 的表 + 视口≤640px；把 thead 首个文本注入各 td */
 (function(){
   function fit(){
-    if(window.innerWidth>640){document.body.classList.remove('v6-card');return}
+    if(window.innerWidth>1024){document.body.classList.remove('v6-card');return}
     document.body.classList.add('v6-card');
     document.querySelectorAll('table.tbl-card').forEach(function(tb){
       var heads=[];tb.querySelectorAll('thead th').forEach(function(th){heads.push(th.textContent.trim())});
