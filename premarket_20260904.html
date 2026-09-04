@@ -215,6 +215,8 @@ table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
     padding-bottom:6px;font-size:14px
   }
   table.tbl-card td:first-child .small{color:var(--muted);font-weight:400;margin-left:8px}
+  /* v6.4 补丁（2026-09-04 13:19）：首列是卡片标题，不再注入 thead 列名 label */
+  table.tbl-card td:first-child::before{display:none !important}
 
   table.tbl-card th,table.tbl-card td.name,
   table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
