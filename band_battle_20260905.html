@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="i7XhBVxUxIl9U56Stt8aj3">
+<head data-page-node-id="HzDDs6PY0oJ3rjey0ChOAL">
+<meta charset="UTF-8" data-page-node-id="mCeVYd5Y1A6fq8mqb8sbag">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="Pf2SIP6QPp56iFeAt3SMak">
+<title>波段四档作战表 · 2026-09-04 收盘</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   藏青蓝(navy)深色体系 —— 老潘 2026-08-31 定稿 · 所有报告默认配色
+   ───────────────────────────────────────────────────────────────────
+   真源文件：D:/workbuddy project/2026-08-31-20-29-55/monthly_review_202608.html
+            （2026-08-31 21:55 藏青蓝版，老潘 2026-09-01 指认为默认模板真源）
+   ⚠️ 同目录 monthly_review_202608_v2.html 是「暖色陶土版」，为备选套系，
+      其变量（#f4efe6/#c15f4f/#d73a2b/#159a6c）不得与本节混用。
+   纪律：
+     · 背景#0a1428 / 卡片#12233a / 强调亮蓝#4d9fff
+     · 涨红 #f23645、跌绿 #089981（A股口径，禁止反转）
+     · 评级标签固定四档：tag-buy / tag-hold / tag-sell / tag-wait
+     · ⚠️ v4.3（2026-09-02）起：四档评级色改为 实色饱和 .28 + 边框加深
+       （BUY=红 / HOLD=亮蓝 / SELL=绿 / WAIT=蓝灰#9eb4cc），定义见文件尾部 v4.3 区块。
+       原下方 tag-buy/hold/sell/wait 的 .12 淡化定义被后者覆盖，保留作回退。
+   禁止：自行改写本节 CSS、混用暖色值、删减组件类。
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#0a1428;--card:#12233a;--text:#d6e0ef;--muted:#7e8ea3;--soft:#1a2c44;--line:#253a55;--accent:#4d9fff;
+  --pos:#f23645;--neg:#089981;--up:#f23645;--down:#089981;
+  --label-blue:#4d9fff;--label-yellow:#e8a020;--label-red:#f23645;--label-green:#089981;
+  --shadow:0 1px 4px rgba(0,0,0,.4);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(77,159,255,.08);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#b2b5be;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#b2b5be;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#b2b5be;background:rgba(77,159,255,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.tag-blue{color:var(--label-blue);background:rgba(77,159,255,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-yellow{color:var(--label-yellow);background:rgba(232,160,32,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-red{color:var(--label-red);background:rgba(242,54,69,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-green{color:var(--label-green);background:rgba(8,153,129,.12);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag-buy{color:#5aa7ff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hold{color:#4d9fff;background:rgba(77,159,255,.12);border:1px solid rgba(77,159,255,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#f23645;background:rgba(242,54,69,.12);border:1px solid rgba(242,54,69,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#d4a017;background:rgba(232,160,32,.08);border:1px solid rgba(212,160,23,.35);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.pos,.up{color:var(--pos);font-weight:700}
+.neg,.down{color:var(--neg);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line)}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+/* v6.6 数字永不拆字（2026-09-05 13:25 老潘反馈后定稿）：根因=v6.5 删基础全局 nowrap 后
+   tbl-card 卡片流 td 默认 normal，573.99/187.70/105.88 等窄卡被中段拆字
+   修复=双轨制：tbl-card td 默认 nowrap（数字安全），长文必须显式 class="wrap" 才换行 */
+table.tbl-card td{white-space:nowrap}
+table.tbl-card td.wrap{white-space:normal}
+/* v6.5 防御分层（2026-09-05 13:05 老潘反馈后定稿）：
+   ① 桌面（>1280）：取消全局 nowrap，桌面 tbl-card 普通横表长文自动换行 → 不撑出横滚条
+   ② tbl-scroll：基础样式 nowrap（仅窄列横滑防拆字；桌面 7列 700px 宽内数字可读）
+   ③ ≤1280 窄屏：全局 nowrap 防拆字 + tbl-card 卡片化字段独占行（.wrap/.txt/.tbl-card td normal 局部放行）
+*/
+/* 桌面 tbl-scroll 内 nowrap（防数字拆字，不影响其他表的桌面表现） */
+table.tbl-scroll th,table.tbl-scroll td{white-space:nowrap}
+table.tbl-scroll td.wrap,table.tbl-scroll td.txt{white-space:normal}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* tbl-scroll 横滑兜底（基础样式，任何尺寸都生效，v6.4）：不再依赖 ≤1024 断点 */
+table.tbl-scroll{min-width:700px}
+/* v6.5 断点统一 ≤1280（2026-09-05 老潘反馈 v6.3 在 1025-1280 浮窗/横屏不触发卡片化 → 提到 1280）*/
+@media(max-width:1280px){
+  body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12.5px}
+  th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}
+  /* v6.3 根治单字一行（2026-09-04）：覆盖所有 f3a~f8 的 table-layout:fixed + word-break:break-word */
+  table{table-layout:auto !important}
+  table th,table td{width:auto !important;word-break:normal !important;overflow-wrap:normal !important}
+  /* v6.5 兜底：≤1280 全局 nowrap 防数字拆字，长文 .wrap/.txt/.tbl-card td 用 normal 放行 */
+  table th,table td{white-space:nowrap}
+  td.wrap,td.txt,th.wrap{white-space:normal}
+  /* tbl-card 卡片化触发（≤1280）*/
+  table.tbl-card{display:block;width:100%;border-collapse:separate;border-spacing:0}
+  table.tbl-card thead{display:none}
+  table.tbl-card tbody{display:block;width:100%}
+  table.tbl-card tbody tr{
+    display:block;width:100%;background:var(--soft);
+    border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;margin-bottom:10px
+  }
+  table.tbl-card tbody tr:nth-child(even){background:var(--soft)}
+  table.tbl-card td{
+    display:block;border:none;padding:3px 0;
+    text-align:left;font-size:13px;line-height:1.6;
+    white-space:nowrap  /* v6.6：卡片流数字格永不拆字（573.99/187.70 等），长文必须显式 class="wrap" 才会换行 */
+  }
+  table.tbl-card td.wrap{white-space:normal}  /* v6.6：长文 td 显式 wrap 才放行换行，避免误伤数字格 */
+  table.tbl-card td::before{
+    content:attr(data-label) "：";
+    display:block;color:var(--muted);font-weight:600;
+    font-size:11px;margin-bottom:3px;white-space:nowrap
+  }
+  table.tbl-card td:first-child{
+    display:block;font-weight:700;color:var(--text);
+    border-bottom:1px dashed var(--line);margin-bottom:6px;
+    padding-bottom:6px;font-size:14px
+  }
+  /* v6.4 补丁（2026-09-04 13:19）：首列作为卡片标题，不显示 ::before label */
+  table.tbl-card td:first-child::before{display:none !important}
+  table.tbl-card th,table.tbl-card td.name,
+  table.tbl-card td.center,table.tbl-card td.txt{white-space:normal;text-align:left}
+  table.tbl-card .pos,table.tbl-card .neg,
+  table.tbl-card .tag{white-space:nowrap}
+  /* tbl-scroll 横滑 + 冻结首列（≤1280，v6.4）*/
+  table.tbl-scroll{min-width:700px}
+  .table-wrap table th:first-child,
+  .table-wrap table td:first-child{
+    position:sticky;left:0;z-index:2;background:var(--card);
+    box-shadow:1px 0 0 rgba(255,255,255,.07)
+  }
+  .table-wrap table.tbl-scroll thead th:first-child{z-index:3}
+  .table-wrap table.tbl-scroll tbody tr:nth-child(even) td:first-child{background:#17273e}
+  .footer{font-size:11px}
+  .verdict-box,.negbox,.posbox{font-size:13px;padding:10px 12px;line-height:1.7}
+  .summary{padding:10px 12px;font-size:13px;line-height:1.7}
+  .summary p{font-size:13px;line-height:1.7}
+  /* v7.0 窄屏适配（≤1280）：三段式收紧 + desc 放行换行 + num-big 降档 */
+  .section-header{gap:8px;flex-wrap:wrap}
+  .section-num{font-size:21px}
+  .section-title{font-size:15px;white-space:normal}
+  .section-desc{font-size:11.5px;white-space:normal;text-align:left;width:100%;padding-top:2px}
+  .lead-line{font-size:12.5px;margin:4px 0 8px;line-height:1.7}
+  .num-big{font-size:1.35em}
+}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+
+/* ==== 8列总览表（持仓总览：名称/涨跌/现价/55日线/偏离/市值/浮盈/评级）==== */
+table.f8{table-layout:fixed}
+table.f8 th:nth-child(1),table.f8 td:nth-child(1){width:15%;text-align:left}
+table.f8 th:nth-child(2),table.f8 td:nth-child(2){width:12%;text-align:right}
+table.f8 th:nth-child(3),table.f8 td:nth-child(3){width:11%;text-align:right}
+table.f8 th:nth-child(4),table.f8 td:nth-child(4){width:11%;text-align:right}
+table.f8 th:nth-child(5),table.f8 td:nth-child(5){width:11%;text-align:right}
+table.f8 th:nth-child(6),table.f8 td:nth-child(6){width:10%;text-align:right}
+table.f8 th:nth-child(7),table.f8 td:nth-child(7){width:12%;text-align:right}
+table.f8 th:nth-child(8),table.f8 td:nth-child(8){width:18%;text-align:center}
+
+/* ==== 4列基准表（标签 + 3个数值列）==== */
+table.f4x{table-layout:fixed}
+table.f4x th:nth-child(1),table.f4x td:nth-child(1){width:28%;text-align:left}
+table.f4x th:nth-child(2),table.f4x td:nth-child(2){width:24%;text-align:right}
+table.f4x th:nth-child(3),table.f4x td:nth-child(3){width:24%;text-align:right}
+table.f4x th:nth-child(4),table.f4x td:nth-child(4){width:24%;text-align:right}
+
+/* ==== 3列：20/42/38 全左（指标 / 数值 / 映射解读）==== */
+table.f3a{table-layout:fixed}
+table.f3a th:nth-child(1),table.f3a td:nth-child(1){width:20%;text-align:left}
+table.f3a th:nth-child(2),table.f3a td:nth-child(2){width:42%;text-align:left}
+table.f3a th:nth-child(3),table.f3a td:nth-child(3){width:38%;text-align:left}
+
+/* ==== 3列：18/26/56 全左（标的 / 动作 / 点评）==== */
+table.f3b{table-layout:fixed}
+table.f3b th:nth-child(1),table.f3b td:nth-child(1){width:18%;text-align:left}
+table.f3b th:nth-child(2),table.f3b td:nth-child(2){width:26%;text-align:left}
+table.f3b th:nth-child(3),table.f3b td:nth-child(3){width:56%;text-align:left}
+
+/* ==== 3列：28/12/60（验证点 / 状态居中 / 跟进动作）==== */
+table.f3c{table-layout:fixed}
+table.f3c th:nth-child(1),table.f3c td:nth-child(1){width:28%;text-align:left}
+table.f3c th:nth-child(2),table.f3c td:nth-child(2){width:12%;text-align:center}
+table.f3c th:nth-child(3),table.f3c td:nth-child(3){width:60%;text-align:left}
+
+/* ==== 3列：18/30/52 全左（标的 / 锚点位 / 触发动作）==== */
+table.f3d{table-layout:fixed}
+table.f3d th:nth-child(1),table.f3d td:nth-child(1){width:18%;text-align:left}
+table.f3d th:nth-child(2),table.f3d td:nth-child(2){width:30%;text-align:left}
+table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
+
+/* ==== 3列：16/44/40 全左（维度 / 表现 / 落点）==== */
+table.f3e{table-layout:fixed}
+table.f3e th:nth-child(1),table.f3e td:nth-child(1){width:16%;text-align:left}
+table.f3e th:nth-child(2),table.f3e td:nth-child(2){width:44%;text-align:left}
+table.f3e th:nth-child(3),table.f3e td:nth-child(3){width:40%;text-align:left}
+
+/* ==== 2列叙述（维度 22% / 说明 78%）==== */
+table.f2{table-layout:fixed}
+table.f2 th:nth-child(1),table.f2 td:nth-child(1){width:22%;text-align:left}
+table.f2 th:nth-child(2),table.f2 td:nth-child(2){width:78%;text-align:left}
+
+/* ═══════ 以下为 2026-09-01 补充的通用列宽（昨晚原版未覆盖的列数）═══════
+   用途：盘前简报/个股研报等需要 4~7 列时直接取用，风格与原版一致。
+   注意：与原版类名互不冲突（原版为 f8/f4x/f3a~f3e/f2）。          */
+/* 4列叙述型：事项 / 状态 / 性质 / 结论 */
+table.f4b{table-layout:fixed}
+table.f4b th:nth-child(1),table.f4b td:nth-child(1){width:16%;text-align:left}
+table.f4b th:nth-child(2),table.f4b td:nth-child(2){width:20%;text-align:left}
+table.f4b th:nth-child(3),table.f4b td:nth-child(3){width:12%;text-align:center}
+table.f4b th:nth-child(4),table.f4b td:nth-child(4){width:52%;text-align:left}
+/* 5列：标的 / 收盘 / 涨跌 / 量能 / 判断 */
+table.f5{table-layout:fixed}
+table.f5 th:nth-child(1),table.f5 td:nth-child(1){width:16%;text-align:left}
+table.f5 th:nth-child(2),table.f5 td:nth-child(2){width:12%;text-align:right}
+table.f5 th:nth-child(3),table.f5 td:nth-child(3){width:12%;text-align:right}
+table.f5 th:nth-child(4),table.f5 td:nth-child(4){width:12%;text-align:right}
+table.f5 th:nth-child(5),table.f5 td:nth-child(5){width:48%;text-align:left}
+/* 6列：标的 / 现价 / 涨跌 / 支撑 / 压力 / 动作 */
+table.f6{table-layout:fixed}
+table.f6 th:nth-child(1),table.f6 td:nth-child(1){width:15%;text-align:left}
+table.f6 th:nth-child(2),table.f6 td:nth-child(2){width:11%;text-align:right}
+table.f6 th:nth-child(3),table.f6 td:nth-child(3){width:11%;text-align:right}
+table.f6 th:nth-child(4),table.f6 td:nth-child(4){width:12%;text-align:right}
+table.f6 th:nth-child(5),table.f6 td:nth-child(5){width:12%;text-align:right}
+table.f6 th:nth-child(6),table.f6 td:nth-child(6){width:39%;text-align:left}
+/* 7列：盘前信号（标的/收盘/涨跌/量比/55日线/偏离/判断） */
+table.f7{table-layout:fixed}
+table.f7 th:nth-child(1),table.f7 td:nth-child(1){width:14%;text-align:left}
+table.f7 th:nth-child(2),table.f7 td:nth-child(2){width:10%;text-align:right}
+table.f7 th:nth-child(3),table.f7 td:nth-child(3){width:10%;text-align:right}
+table.f7 th:nth-child(4),table.f7 td:nth-child(4){width:8%;text-align:right}
+table.f7 th:nth-child(5),table.f7 td:nth-child(5){width:12%;text-align:right}
+table.f7 th:nth-child(6),table.f7 td:nth-child(6){width:14%;text-align:right}
+table.f7 th:nth-child(7),table.f7 td:nth-child(7){width:32%;text-align:left}
+
+/* ═══════════════════════════════════════════════════════════════════
+   2026-09-02 全页色彩纪律（v4.2 → v4.3 借鉴机场指示牌）—— 追加于模板尾部
+   ★ 模板默认启用，任何 V4 新报告自动继承 ★
+   借鉴：tag 从「淡化背景 .12」升级为「实色饱和 .28」+ 边框加深 + 文字提亮
+   评级色：HOLD=亮蓝 / WAIT=蓝灰 / BUY=红 / SELL=绿
+   板块色：军工=橄榄 / 农业=金 / CPO=科技蓝 / 顺周期=橙红 / 逆势=中性灰
+   风险色：逼近警戒=橙 #ff8c42 / 情绪冷=蓝灰 / 情绪热=红
+   指标卡维度色(v4.6)：idx=指数蓝 / vol=量能资金金 / mood=情绪广度紫；叠加 metric-core=顶部淡染主卡，不叠加=净底辅卡
+   启用点位（必须全启用）：① 顶部结论 HOLD/WAIT tag ② 6 指标卡 idx/vol/mood 维度色 + core 淡染
+   ③ 板块主线表方向 tag ④ 持仓表评级 tag + 风险 tag-warn ⑤ 情绪温度 mood-cold/hot
+   ═══════════════════════════════════════════════════════════════════ */
+.tag-hold{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#9eb4cc;background:rgba(107,140,175,.28);border:1px solid rgba(107,140,175,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-buy{color:#ff6373;background:rgba(242,54,69,.28);border:1px solid rgba(242,54,69,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-warn{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-military{color:#b8d188;background:rgba(107,142,35,.28);border:1px solid rgba(107,142,35,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-farm{color:#f4cf6e;background:rgba(212,160,23,.28);border:1px solid rgba(212,160,23,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cpo{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cycle{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-neutral{color:#a4b1c4;background:rgba(126,142,163,.28);border:1px solid rgba(126,142,163,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+/* v4.6 指标卡维度色（2026-09-03 老潘反馈卡区色调单一后重构，取代上方 core/aux 二分）
+   idx=指数(蓝#4d9fff) / vol=量能资金(金#e8a020) / mood=情绪广度(紫#a78bfa)
+   主辅：叠加 metric-core=顶部同色淡染(主卡醒目)；不叠加=净底 soft(辅卡安静，弃 opacity 压暗)
+   用法：<div class="metric-item metric-idx metric-core"> 主指数卡 / <div class="metric-item metric-vol"> 成交辅卡 */
+.metric-item{border-left:3px solid var(--line)}
+.metric-idx{border-left-color:#4d9fff}
+.metric-vol{border-left-color:#e8a020}
+.metric-mood{border-left-color:#a78bfa}
+.metric-idx.metric-core{background:linear-gradient(180deg,rgba(77,159,255,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-vol.metric-core{background:linear-gradient(180deg,rgba(232,160,32,.13),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-mood.metric-core{background:linear-gradient(180deg,rgba(167,139,250,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+.mood-cold{color:#9eb4cc;background:rgba(107,140,175,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+.mood-hot{color:#ff6373;background:rgba(242,54,69,.28);padding:1px 6px;border-radius:3px;font-weight:700;white-space:nowrap}
+
+/* ═══════════════════════════════════════════════════════════════════
+   v4.5 兑现进度条（2026-09-02 新增，状态指示非图表）
+   用途：指标卡内嵌进度条，量化「完成度 / 缺口 / 拥挤度」等百分比状态
+   用法：<div class="bar bar-ok"><i style="width:58%"></i></div>
+   色阶：bar-ok=绿(达标≥50%) / bar-warn=橙(20-50%) / bar-bad=红(<20%)
+   ⚠️ 与图表骨架（柱状/折线/条形）不同——进度条是单值状态指示，允许使用。
+      老潘 2026-08 已明确移除所有 ECharts 图表骨架，不得回退引入。
+   ═══════════════════════════════════════════════════════════════════ */
+.bar{height:8px;background:#0d1c30;border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:5px}
+.bar>i{display:block;height:100%;border-radius:3px}
+.bar-ok>i{background:#089981}
+.bar-warn>i{background:#ff8c42}
+.bar-bad>i{background:#f23645}
+
+/* ═══════════════════════════════════════════════════════════════════
+   v5.1 对账状态标签（Daily Loop V5 专用，2026-09-04）
+   用途：①昨日对账表「判定」列 —— 触发线核销结果
+   语义：命中(✓绿=按纪律执行且结果符合预期) / 未触发(–灰蓝=条件未到)
+        / 偏差(△橙=执行偏离或结果与预期不符) / 失误(✗红=纪律破)
+   用法：<span class="tag-hit">✓ 命中</span> 等；配合编号 E1/F1 使用
+   ═══════════════════════════════════════════════════════════════════ */
+.tag-hit{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-nohit{color:#9eb4cc;background:rgba(107,140,175,.20);border:1px solid rgba(107,140,175,.45);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-deviate{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-miss{color:#ff6373;background:rgba(242,54,69,.28);border:1px solid rgba(242,54,69,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+
+/* ═══════════════════════════════════════════════════════════════════
+   v6.0 响应式布局架构（2026-09-04 定稿 · 主模板+复盘V5 同步启用）
+   ───────────────────────────────────────────────────────────────────
+   三档断点：≥1281px 桌面全宽 / ≤1280px 平板+浮窗+手机逐组件重排
+   手机端组件级适配：
+     · .metric 指标卡：flex 横排 → grid 2×2（6卡=3行、4卡=2行，偶数恒整齐）
+     · summary/verdict/negbox/posbox 结论框：字号13px、padding收紧、行距1.7
+     · 表字号 12.5px + th/td padding 6px 防溢出
+   表格三选一分类（生成报告时每张表打标，禁止漏标）：
+     ① class="tbl-scroll" 对比型宽表（≥6列数值密集：持仓总览/信号表/执行单）
+        → 移动端 min-width:700px + 首列冻结(sticky) + 横向滑动，数据不压缩
+     ② class="tbl-card" 叙述型表（≤5列文字叙述：对账/板块逻辑/风险清单）
+        → 移动端转卡片流：表头隐藏、每行=卡片、每格「标签:值」两列grid
+        → 需配套 v6 JS 从 thead 自动注入 data-label（见 body 尾部脚本）
+     ③ 无类 普通窄表（≤5列短数值：指数速览等）→ 移动端自然压缩
+   纪律：sticky 首列必须不透明背景遮滚动内容——斑马纹偶数行首列补 #17273e，
+         禁止改 transparent（否则横滑时文字穿透重叠）。
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   v7.0 视觉体系（2026-09-05 定稿 · 借鉴 HANAI WORTH 色彩语义逻辑，
+   P0 四件套：老潘拍板「7 条增量全收 + P0 四件套认 + A1 每节限 1 + 热力图否决」）
+   ───────────────────────────────────────────────────────────────────
+   ① .tag-gold 金黄强调 —— 只给关键阈值/日期/里程碑（金#e8a020 系），
+      旧 .tag-yellow 降级为低优先级警示，两者语义不得混用
+   ② .section-header 章节三段式 —— 序号(26px 亮蓝) + 标题(17px 白) + 右端斜体灰(口径)，
+      替代旧 h2 浅蓝底（h2 保留给短报告/次级标题）
+   ③ .num-big 裁决数字放大（Big-Number）—— 只放大「裁决单值」（±%、防线、金额），
+      每节 ≤1 个（A1 规则），禁用于普通行情数据；语义色由外层 .pos/.neg 提供
+   ④ .lead-line 节导读 —— section-header 下一行 13px 灰蓝一句话结论，分级阅读用
+   使用铁律：
+     · tag-gold 全页 ≤3-4 处，禁批量使用（金色泛滥=无强调）
+     · section-desc 只写口径/标注（斜体），不写结论；结论进 lead-line
+     · num-big 置于段落/卡片层，禁放表格 td（nowrap 会撑列）
+   ═══════════════════════════════════════════════════════════════════ */
+.section-header{display:flex;align-items:baseline;gap:12px;margin:2px 0 2px;padding-bottom:8px;border-bottom:1px solid var(--line);flex-wrap:nowrap}
+.section-num{font-size:26px;font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-1px;white-space:nowrap;flex:0 0 auto}
+.section-title{font-size:17px;font-weight:700;color:var(--text);white-space:nowrap}
+.section-desc{margin-left:auto;font-size:12px;color:var(--muted);font-style:italic;text-align:right;white-space:nowrap;flex:0 0 auto;line-height:1.5;align-self:center}
+.lead-line{font-size:13px;color:#a9b7c9;margin:6px 0 10px;line-height:1.8;padding-left:12px;border-left:2px solid rgba(77,159,255,.35)}
+.tag-gold{color:#FAC775;background:rgba(232,160,32,.22);border:1px solid rgba(232,160,32,.65);padding:2px 10px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.gold-marker{display:inline-block;width:8px;height:8px;background:#e8a020;border-radius:2px;margin-right:6px;vertical-align:middle}
+.num-big{font-weight:800;font-size:1.5em;line-height:1;vertical-align:-0.06em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.num-big .unit{font-size:.55em;font-weight:600;color:var(--muted);margin-left:2px}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- ═══════════════════════════════════════════════════════════════════
+  波段四档作战表 · 2026-09-04 收盘（8 持仓逐票）
+  背景：A→B 上涨波段已走完，股价从 B 回落，按「回吐深度」划四道防线
+  四档：①回吐1/3(正常回踩) ②回吐1/2(强弱分界) ③回吐2/3(波段重伤) ④全吐光(前低)
+  口径：baostock 前复权日线（结构位干净，无除权跳变）；波段=60日短波段
+  数据源：quant_radar/band_levels.py → cache/band_levels_20260905.json
+  ═══════════════════════════════════════════════════════════════════ -->
+
+<!-- ① 标题卡 -->
+<div class="card">
+  <h1>波段四档作战表</h1>
+  <p class="small">2026-09-05 生成 ｜ 数据时点：2026-09-04 收盘（baostock 前复权 · 60日短波段）</p>
+  <div class="summary">
+    <p><strong>一句话结论：</strong>8 只持仓按回撤深度分四层——<span class="tag-green">未破一档 1 只</span>（罗博）、<span class="tag-yellow">破一档 1 只</span>（华峰）、<span class="tag-warn">破二档 1 只</span>（软通）、<span class="tag-red">破三档 4 只</span>（澜起/汇绿/泰和/三祥）、<span class="tag-red">破前低 1 只</span>（星环）。这套表回答的是「<strong>跌到哪个价、我按哪个钮</strong>」，不是「该不该买」——买不买仍走你的基本面验证点。</p>
+    <p><strong>视频公式的定位：</strong>S1 = A+H/3 恰好等于「回吐 2/3」的<span class="tag-warn">第三档</span>——它是深水区防线，不是第一道支撑。真正的第一站是「回吐 1/3」的第一档，多数强势票回踩到这就止跌。</p>
+  </div>
+</div>
+
+<!-- ② 核心速览 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">核心速览</span>
+    <span class="section-desc">9/4 收盘 · 回撤深度分布</span>
+  </div>
+  <div class="lead-line">回撤越深、波段越弱：破二档（回吐过半）以上即进入「降级处理」区间，共 <span class="num-big pos">6<span class="unit">/8</span></span> 只；仅罗博未破一档、华峰刚破一档，尚属正常回踩范围。</div>
+  <div class="metric">
+    <div class="metric-item metric-idx metric-core"><div class="metric-label">破二档以上（需降级盯防）</div><div class="metric-val pos">6 / 8</div><div class="metric-label">澜起/汇绿/泰和/三祥/软通/星环</div></div>
+    <div class="metric-item metric-vol"><div class="metric-label">最健康（回吐最少）</div><div class="metric-val neg">罗博 -30.7%</div><div class="metric-label">未破一档 · 强势整理上沿</div></div>
+    <div class="metric-item metric-mood"><div class="metric-label">回吐最深</div><div class="metric-val neg">三祥 -77.3%</div><div class="metric-label">深破三档 · 逼近前低</div></div>
+    <div class="metric-item metric-idx"><div class="metric-label">波段失效</div><div class="metric-val">星环 &gt;100%</div><div class="metric-label">跌破波段起点 · 短波段不适用</div></div>
+  </div>
+</div>
+
+<!-- ③ 方法论速查 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">四档作战方法论</span>
+    <span class="section-desc">通用定义 · 每档一个动作</span>
+  </div>
+  <div class="lead-line">A→B 涨完（H=B−A），从 B 回落按「吐回去多少」划四道防线。视频公式 S1=A+H/3 恰是第三档。每一档只做一件事，跌破才轮到下一档，禁止越级。</div>
+  <table class="tbl-card">
+    <thead>
+      <tr><th>档位</th><th>回撤深度</th><th>价位公式</th><th>市场含义</th><th>你的动作</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag-green">第一档</span></td>
+        <td>回吐 1/3</td>
+        <td>B − H/3</td>
+        <td>正常回踩 · 强势整理</td>
+        <td class="wrap">持仓不动，观察是否放量止跌</td>
+      </tr>
+      <tr>
+        <td><span class="tag-yellow">第二档</span></td>
+        <td>回吐 1/2</td>
+        <td>B − H/2</td>
+        <td>强弱分界</td>
+        <td class="wrap">跌破 = 从「回调」降级「转弱」，<br>减仓 / 收紧防线</td>
+      </tr>
+      <tr>
+        <td><span class="tag-warn">第三档</span></td>
+        <td>回吐 2/3</td>
+        <td>B − 2H/3（=A+H/3，视频公式位）</td>
+        <td>波段重伤</td>
+        <td class="wrap">只剩最后防线：未破可守，破位再砍；<br>并复查基本面逻辑</td>
+      </tr>
+      <tr>
+        <td><span class="tag-red">第四档</span></td>
+        <td>全吐光</td>
+        <td>A（波段前低）</td>
+        <td>波段彻底失败</td>
+        <td class="wrap">跌破 = 这波上涨归零，技术面出局；<br>最终以基本面纪律裁决</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ④ 八票四档价位总表 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">八票四档价位总表</span>
+    <span class="section-desc">前复权 · 按回吐由浅到深排序</span>
+  </div>
+  <div class="lead-line">数字即战场：现价夹在哪两档之间，就看上方的「破位线」和下方的「下一防线」。金色为你的既定纪律锚（186.50 / 30 / 38.5 / 10.75）。</div>
+  <div class="table-wrap">
+    <table class="tbl-scroll">
+      <thead>
+        <tr>
+          <th class="txt">标的</th><th class="num">现价</th><th class="num">回吐%</th>
+          <th class="num">第一档<br>回吐1/3</th><th class="num">第二档<br>回吐1/2</th>
+          <th class="num">第三档<br>回吐2/3</th><th class="num">第四档<br>前低</th><th class="txt">档位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">罗博特科</td><td class="num">573.99</td><td class="num neg">-30.7%</td><td class="num">564.55</td><td class="num">505.54</td><td class="num">446.53</td><td class="num">328.50</td><td><span class="tag-green">未破一档</span></td></tr>
+        <tr><td class="name">华峰化学</td><td class="num">11.22</td><td class="num neg">-35.4%</td><td class="num">11.29</td><td class="num">10.76</td><td class="num">10.22</td><td class="num">9.16</td><td><span class="tag-yellow">破一档</span></td></tr>
+        <tr><td class="name">软通动力</td><td class="num">37.62</td><td class="num neg">-56.9%</td><td class="num">40.23</td><td class="num">38.38</td><td class="num">36.53</td><td class="num">32.84</td><td><span class="tag-warn">破二档</span></td></tr>
+        <tr><td class="name">澜起科技</td><td class="num">187.70</td><td class="num neg">-69.7%</td><td class="num">263.10</td><td class="num">228.52</td><td class="num">193.93</td><td class="num">124.76</td><td><span class="tag-red">破三档</span></td></tr>
+        <tr><td class="name">汇绿生态</td><td class="num">35.19</td><td class="num neg">-74.4%</td><td class="num">51.53</td><td class="num">44.89</td><td class="num">38.25</td><td class="num">24.98</td><td><span class="tag-red">破三档</span></td></tr>
+        <tr><td class="name">泰和新材</td><td class="num">12.73</td><td class="num neg">-75.7%</td><td class="num">17.64</td><td class="num">15.70</td><td class="num">13.77</td><td class="num">9.91</td><td><span class="tag-red">破三档</span></td></tr>
+        <tr><td class="name">三祥新材</td><td class="num">38.20</td><td class="num neg">-77.3%</td><td class="num">59.41</td><td class="num">51.37</td><td class="num">43.33</td><td class="num">27.24</td><td><span class="tag-red">破三档</span></td></tr>
+        <tr><td class="name">星环科技</td><td class="num">105.88</td><td class="num neg">&gt;100%</td><td class="num">133.58</td><td class="num">130.08</td><td class="num">126.58</td><td class="num">119.58</td><td><span class="tag-red">破前低</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">回吐% =（B − 现价）÷ H。星环现价已跌破波段起点 A，回吐超 100%，60 日短波段四档全失守，短线不适用（长线锚另见逐票卡）。</p>
+</div>
+
+<!-- ⑤ 逐票作战卡 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">逐票作战卡</span>
+    <span class="section-desc">现价定位 + 周一（9/7）动作</span>
+  </div>
+  <div class="lead-line">每票两行：当前所处档位（现价夹在哪两线之间）+ 周一看哪条线、做什么。技术位只定「什么价位附近动手」，最终买卖以各票基本面验证点与既定纪律裁决。</div>
+
+  <h3>罗博特科 300757 <span class="tag-green">未破一档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 573.99，回吐仅 -30.7%，<br>仍在第一档 564.55 上方，强势整理上沿回踩尚浅</td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 564.55 ｜ 二档 505.54 ｜ 三档 446.53 ｜ 前低 328.50</td></tr>
+      <tr><td>周一动作</td><td class="wrap">持仓不动。跌破 564.55 看 505.54；<br>方案 A 限价 570 挂单在第一档上方，<br>若回踩破 564.55 则重估加仓前提</td></tr>
+    </tbody>
+  </table>
+
+  <h3>华峰化学 002064 <span class="tag-yellow">破一档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 11.22，刚跌破第一档 11.29，<br>正在逼近第二档 <span class="tag-gold">10.76</span>（=你 9/3 定的 10.75 多空分界）</td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 11.29 ｜ 二档 10.76 ｜ 三档 10.22 ｜ 前低 9.16</td></tr>
+      <tr><td>周一动作</td><td class="wrap">守 10.76：放量收回 11.29 = 回踩结束持仓不动；<br>跌破 10.76 = 降级减仓，下一参考 10.22；<br>发行价硬底 8.45 在四档之下，是最终逻辑锚</td></tr>
+    </tbody>
+  </table>
+
+  <h3>软通动力 301236 <span class="tag-warn">破二档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 37.62，已跌破强弱分界 38.38，<br>处于第二档与第三档 36.53 之间，回调转弱进入降级盯防</td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 40.23 ｜ 二档 38.38 ｜ 三档 36.53 ｜ 前低 32.84</td></tr>
+      <tr><td>周一动作</td><td class="wrap">38.38 失守已降级；下一关键 36.53，破位则看前低 32.84。<br>浮盈 +418% 的底仓，减仓与否以基本面逻辑为准</td></tr>
+    </tbody>
+  </table>
+
+  <h3>澜起科技 688008 <span class="tag-red">破三档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 187.70，已破第三档 193.93，<br>贴近 20 日低点 <span class="tag-gold">186.50</span> 防线——波段重伤，<br>真正锚点是 186.50 而非三分位</td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 263.10 ｜ 二档 228.52 ｜ 三档 193.93 ｜ 前低 124.76</td></tr>
+      <tr><td>周一动作</td><td class="wrap">守 186.50：失守 = 系统性撤离确认，重估（HOLD 降级观察）；<br>H2 缺口 0.73× 基本面无恙，技术深破不改长期逻辑</td></tr>
+    </tbody>
+  </table>
+
+  <h3>汇绿生态 001267 <span class="tag-red">破三档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 35.19，回吐 -74.4%，深破第三档 38.25，<br>向第四档 24.98 滑落——技术面波段已重伤</td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 51.53 ｜ 二档 44.89 ｜ 三档 38.25 ｜ 前低 24.98</td></tr>
+      <tr><td>周一动作</td><td class="wrap">三分位已失效，回归纪律锚：<span class="tag-gold">硬止损 30</span> 是底线（在第四档 24.98 之上）。<br>重组进度优先于 Q3，过会行情当减仓窗口</td></tr>
+    </tbody>
+  </table>
+
+  <h3>泰和新材 002254 <span class="tag-red">破三档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 12.73，回吐 -75.7%，深破第三档 13.77，<br>逼近长期支撑 12.80（250 日 S1）——波段重伤但贴近长线支撑</td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 17.64 ｜ 二档 15.70 ｜ 三档 13.77 ｜ 前低 9.91</td></tr>
+      <tr><td>周一动作</td><td class="wrap">短线三分位失效；12.80 长期支撑是关键（现价已贴）。<br>HOLD 等拐点验证，PB 锚 455.7 亿目标逻辑不变</td></tr>
+    </tbody>
+  </table>
+
+  <h3>三祥新材 603663 <span class="tag-red">破三档</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 38.20，回吐 -77.3%，深破第三档 43.33，<br>已触及你 9/7 的 F3 减半裁决线 <span class="tag-gold">38.5</span></td></tr>
+      <tr><td>四档价位</td><td class="wrap">一档 59.41 ｜ 二档 51.37 ｜ 三档 43.33 ｜ 前低 27.24</td></tr>
+      <tr><td>周一动作</td><td class="wrap">38.5 裁决已触发：收不回 39.5-40 执行减半。<br>技术深破与 F3 方向一致，执行纪律即可，<br>勿因三分位「更低」而抢反弹</td></tr>
+    </tbody>
+  </table>
+
+  <h3>星环科技 688031 <span class="tag-red">破前低</span></h3>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>当前定位</td><td class="wrap">现价 105.88，已跌破 60 日波段起点 A（119.58），<br>短波段四档全失守，三分位短线不适用</td></tr>
+      <tr><td>长线锚</td><td class="wrap">250 日波段 S1 = 104.79（现价在其上方 1%，勉强守着），<br>下破则无技术支撑可依</td></tr>
+      <tr><td>周一动作</td><td class="wrap">短线不适用；走既定负成本期权逻辑——方案 A 卖 600 股决议不变，<br>（9/2 金叉但 9/4 反手大跌，假信号打折看）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ⑥ 口径与边界 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">口径与边界</span>
+    <span class="section-desc">数据源 / 适用前提 / 免责</span>
+  </div>
+  <table class="tbl-card">
+    <thead><tr><th>项目</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>数据源</td><td class="wrap">baostock 前复权日线（★★★，与 pytdx 8/8 收盘字节级一致；<br>结构位无除权跳变，泰和/三祥/澜起等送转票已平滑）</td></tr>
+      <tr><td>波段口径</td><td class="wrap">60 日短波段（贴合视频回踩用法），A=波段起点低点、B=波段高点；<br>波段涨幅 &lt;20% 或现价跌破 A 时标注「失真/失效」</td></tr>
+      <tr><td>适用前提</td><td class="wrap">只在「A→B 已走完、正在回撤」的形态下有效；<br>主升段不回落、长期横盘、破前低后继续下杀时，三分位失去参考意义</td></tr>
+      <tr><td>纪律边界</td><td class="wrap">四档是「择时执行层」的价位尺子，不替代基本面验证点（Q3 营收 / 重组进度 / 逻辑是否在）；<br>技术面只进环境层，减仓仍走基本面纪律</td></tr>
+    </tbody>
+  </table>
+  <div class="negbox"><strong>风险提示：</strong>波段三分位属技术指标方法论，点位随行情实时变动，历史波段选择的 A/B 带有主观性，不同波段尺度点位差异可达数倍。本表仅供研究参考，<strong>不构成任何投资建议</strong>；个股买卖请结合基本面验证点与既定风险控制纪律执行，市场有风险，盈亏自负。</div>
+</div>
+
+<div class="footer">
+  数据来源：baostock 前复权日线（★★★，与 pytdx 8/8 收盘一致）｜60 日短波段口径 · 结构位无除权跳变<br>
+  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br>
+  智能投研备忘 · 2026-09-05
+</div>
+<script>
+/* v6.4 响应式配套（2026-09-05）：叙述表卡片化需 data-label 注入，断点 ≤1280 */
+/* 触发：class="tbl-card" 的表 + 视口≤1280px；把 thead 首个文本注入各 td */
+(function(){
+  function fit(){
+    if(window.innerWidth>1280){return}
+    document.querySelectorAll('table.tbl-card').forEach(function(tb){
+      var heads=[];tb.querySelectorAll('thead th').forEach(function(th){heads.push(th.textContent.trim())});
+      tb.querySelectorAll('tbody tr').forEach(function(tr){
+        tr.querySelectorAll('td').forEach(function(td,i){
+          if(heads[i])td.setAttribute('data-label',heads[i]);
+        });
+      });
+    });
+  }
+  window.addEventListener('resize',fit);document.addEventListener('DOMContentLoaded',fit);fit();
+})();
+</script>
+
+
+</div>
+</body>
+</html>
