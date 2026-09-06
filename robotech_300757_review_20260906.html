@@ -55,6 +55,10 @@ table.tbl-scroll{min-width:700px}
 .verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
 .negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
 .posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox .nt-title{color:#f23645;font-size:15px;font-weight:700;letter-spacing:.3px}
+.posbox .nt-title{color:#089981;font-size:15px;font-weight:700;letter-spacing:.3px}
+.negbox .pt-num{color:#f23645;font-weight:700;font-size:14.5px}
+.posbox .pt-num{color:#089981;font-weight:700;font-size:14.5px}
 
 /* ==== 观点分点提行（老潘 9/6 规范：并列观点必须逐条提行，禁止挤成一段）==== */
 .pt-list{margin:6px 0 2px;padding:0;list-style:none}
@@ -454,7 +458,7 @@ table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
     <span class="section-desc">下行风险 vs 正面催化，纪律触发器</span>
   </div>
   <div class="negbox">
-    <strong>下行风险：</strong>
+    <strong class="nt-title">下行风险：</strong>
     <ul class="pt-list">
       <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">PB 57.79x / PS-TTM 73.45x 极端高位，业绩兑现速度跟不上 → 杀估值（参考半导体设备行业 PB 中位数 8-12x）</span></li>
       <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">高盛 2027E 营收 129.6 亿 vs 机构一致预期 21.13 亿 差 6.1 倍，若仅兑现机构预期 → 股价至少腰斩</span></li>
@@ -464,7 +468,7 @@ table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
     </ul>
   </div>
   <div class="posbox">
-    <strong>正面催化：</strong>
+    <strong class="nt-title">正面催化：</strong>
     <ul class="pt-list">
       <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">Q3 营收 &gt;5.5 亿（环比 +23.6%）= 高盛在轨</span></li>
       <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">Insertion 4 量产化订单 → 2027E 营收预期上修</span></li>
