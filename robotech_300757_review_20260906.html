@@ -40,6 +40,8 @@ td.name,th.name{white-space:nowrap;word-break:keep-all}
 .neg{color:var(--neg);font-weight:700}
 .pos{color:var(--pos);font-weight:700}
 .small{font-size:12.5px;color:var(--muted)}
+/* v4.7 表内括注=金黄标注层（2026-09-06：老潘「小标注适当加黄」；仅表格 td 内 small，顶部数据时点等不受影响） */
+.table-wrap td .small{color:#f4cf6e;opacity:.9;font-weight:500}
 .note{font-size:12.5px;color:var(--muted);margin-top:8px}
 .metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
 .metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line);border-left:3px solid var(--line)}
