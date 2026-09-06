@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="i7XhBVxUxIl9U56Stt8aj3">
+<head data-page-node-id="HzDDs6PY0oJ3rjey0ChOAL">
+<meta charset="UTF-8" data-page-node-id="mCeVYd5Y1A6fq8mqb8sbag">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="Pf2SIP6QPp56iFeAt3SMak">
+<title>罗博特科 300757 · 7月交流兑现复盘 + 巴蒂独立估值 · 2026-09-06</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   藏青蓝(navy)深色体系 — 老潘 2026-08-31 定稿 · V7 唯一主模板继承
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#0a1428;--card:#12233a;--text:#d6e0ef;--muted:#7e8ea3;--soft:#1a2c44;--line:#253a55;--accent:#4d9fff;
+  --pos:#f23645;--neg:#089981;--up:#f23645;--down:#089981;
+  --label-blue:#4d9fff;--label-yellow:#e8a020;--label-red:#f23645;--label-green:#089981;
+  --shadow:0 1px 4px rgba(0,0,0,.4);
+  --radius:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px}
+.container{max-width:1120px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;border:1px solid var(--line)}
+h1{font-size:22px;color:var(--text);margin-bottom:6px}
+h2{font-size:16px;color:var(--accent);margin:16px 0 10px;background:rgba(77,159,255,.08);border-left:4px solid var(--accent);padding:8px 12px;border-radius:4px}
+h3{font-size:15px;color:var(--muted);margin:12px 0 6px}
+p{margin-bottom:10px;font-size:15px;color:var(--text)}
+.summary{background:var(--soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:14px;color:#b2b5be;margin-bottom:14px}
+.summary p{margin:0 0 6px;font-size:14px;color:#b2b5be;line-height:1.7}
+.summary p:last-child{margin-bottom:0}
+.summary strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{font-weight:700;color:#b2b5be;background:rgba(77,159,255,.08);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;overflow-wrap:anywhere}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.txt,td.txt{text-align:left}
+th.center,td.center{text-align:center}
+td.name,th.name{white-space:nowrap;word-break:keep-all}
+.pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+.neg{color:var(--neg);font-weight:700}
+.pos{color:var(--pos);font-weight:700}
+.small{font-size:12.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+.metric{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0}
+.metric-item{background:var(--soft);border-radius:6px;padding:10px 14px;min-width:120px;border:1px solid var(--line);border-left:3px solid var(--line)}
+.metric-val{font-size:20px;font-weight:700;color:var(--text)}
+.metric-label{font-size:13px;color:var(--muted);font-weight:600}
+table.tbl-card td{white-space:nowrap}
+table.tbl-card td.wrap{white-space:normal}
+table.tbl-scroll th,table.tbl-scroll td{white-space:nowrap}
+table.tbl-scroll td.wrap,table.tbl-scroll td.txt{white-space:normal}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.tbl-scroll{min-width:700px}
+.footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+.verdict-box{background:rgba(77,159,255,.07);border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.negbox{background:rgba(242,54,69,.06);border-left:3px solid #f23645;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+.posbox{background:rgba(8,153,129,.06);border-left:3px solid #089981;padding:12px 14px;border-radius:6px;margin:12px 0;font-size:14px;line-height:1.8}
+
+/* ==== 观点分点提行（老潘 9/6 规范：并列观点必须逐条提行，禁止挤成一段）==== */
+.pt-list{margin:6px 0 2px;padding:0;list-style:none}
+.pt-item{display:flex;gap:8px;align-items:flex-start;margin:7px 0;line-height:1.75}
+.pt-num{flex:0 0 auto;font-weight:700;color:inherit}
+.pt-body{flex:1 1 auto;min-width:0}
+.lead-tag{color:#4d9fff;font-weight:700;margin-right:6px}
+/* f8 持仓总览 */
+table.f8{table-layout:fixed}
+table.f8 th:nth-child(1),table.f8 td:nth-child(1){width:15%;text-align:left}
+table.f8 th:nth-child(2),table.f8 td:nth-child(2){width:12%;text-align:right}
+table.f8 th:nth-child(3),table.f8 td:nth-child(3){width:11%;text-align:right}
+table.f8 th:nth-child(4),table.f8 td:nth-child(4){width:11%;text-align:right}
+table.f8 th:nth-child(5),table.f8 td:nth-child(5){width:11%;text-align:right}
+table.f8 th:nth-child(6),table.f8 td:nth-child(6){width:10%;text-align:right}
+table.f8 th:nth-child(7),table.f8 td:nth-child(7){width:12%;text-align:right}
+table.f8 th:nth-child(8),table.f8 td:nth-child(8){width:18%;text-align:center}
+/* f4x 4列基准 */
+table.f4x{table-layout:fixed}
+table.f4x th:nth-child(1),table.f4x td:nth-child(1){width:28%;text-align:left}
+table.f4x th:nth-child(2),table.f4x td:nth-child(2){width:24%;text-align:right}
+table.f4x th:nth-child(3),table.f4x td:nth-child(3){width:24%;text-align:right}
+table.f4x th:nth-child(4),table.f4x td:nth-child(4){width:24%;text-align:right}
+/* f3a 3列叙述 */
+table.f3a{table-layout:fixed}
+table.f3a th:nth-child(1),table.f3a td:nth-child(1){width:20%;text-align:left}
+table.f3a th:nth-child(2),table.f3a td:nth-child(2){width:42%;text-align:left}
+table.f3a th:nth-child(3),table.f3a td:nth-child(3){width:38%;text-align:left}
+/* f3c 验证点台账 */
+table.f3c{table-layout:fixed}
+table.f3c th:nth-child(1),table.f3c td:nth-child(1){width:28%;text-align:left}
+table.f3c th:nth-child(2),table.f3c td:nth-child(2){width:12%;text-align:center}
+table.f3c th:nth-child(3),table.f3c td:nth-child(3){width:60%;text-align:left}
+/* f3d 标的/锚点/动作 */
+table.f3d{table-layout:fixed}
+table.f3d th:nth-child(1),table.f3d td:nth-child(1){width:18%;text-align:left}
+table.f3d th:nth-child(2),table.f3d td:nth-child(2){width:30%;text-align:left}
+table.f3d th:nth-child(3),table.f3d td:nth-child(3){width:52%;text-align:left}
+/* v4.3 评级标签实色饱和 .28 */
+.tag-hold{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-wait{color:#9eb4cc;background:rgba(107,140,175,.28);border:1px solid rgba(107,140,175,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-buy{color:#ff6373;background:rgba(242,54,69,.28);border:1px solid rgba(242,54,69,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-sell{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-warn{color:#ffa66b;background:rgba(255,140,66,.28);border:1px solid rgba(255,140,66,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-cpo{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-blue{color:#7fb8ff;background:rgba(77,159,255,.28);border:1px solid rgba(77,159,255,.55);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-yellow{color:#f4cf6e;background:rgba(212,160,23,.28);border:1px solid rgba(212,160,23,.65);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-green{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-hit{color:#3cc4a3;background:rgba(8,153,129,.28);border:1px solid rgba(8,153,129,.60);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.tag-nohit{color:#9eb4cc;background:rgba(107,140,175,.20);border:1px solid rgba(107,140,175,.45);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+/* v4.6 指标卡维度色 */
+.metric-idx{border-left-color:#4d9fff}
+.metric-vol{border-left-color:#e8a020}
+.metric-mood{border-left-color:#a78bfa}
+.metric-idx.metric-core{background:linear-gradient(180deg,rgba(77,159,255,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-vol.metric-core{background:linear-gradient(180deg,rgba(232,160,32,.13),rgba(26,44,68,.06) 88%),var(--soft)}
+.metric-mood.metric-core{background:linear-gradient(180deg,rgba(167,139,250,.16),rgba(26,44,68,.06) 88%),var(--soft)}
+/* v7.0 P0 四件套 */
+.section-header{display:flex;align-items:baseline;gap:12px;margin:2px 0 2px;padding-bottom:8px;border-bottom:1px solid var(--line);flex-wrap:nowrap}
+.section-num{font-size:26px;font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-1px;white-space:nowrap;flex:0 0 auto}
+.section-title{font-size:17px;font-weight:700;color:var(--text);white-space:nowrap}
+.section-desc{margin-left:auto;font-size:12px;color:var(--muted);font-style:italic;text-align:right;white-space:nowrap;flex:0 0 auto;line-height:1.5;align-self:center}
+.lead-line{font-size:13px;color:#a9b7c9;margin:6px 0 10px;line-height:1.8;padding-left:12px;border-left:2px solid rgba(77,159,255,.35)}
+.tag-gold{color:#FAC775;background:rgba(232,160,32,.22);border:1px solid rgba(232,160,32,.65);padding:2px 10px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
+.num-big{font-weight:800;font-size:1.5em;line-height:1;vertical-align:-0.06em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.num-big .unit{font-size:.55em;font-weight:600;color:var(--muted);margin-left:2px}
+/* v6.1 响应式 ≤1280 */
+@media(max-width:1280px){
+  body{padding:10px}.card{padding:14px}h1{font-size:18px}h2{font-size:15px}table{font-size:12.5px}
+  th,td{padding:6px 8px}.metric{gap:10px}.metric-item{min-width:100px;padding:8px 10px}.metric-val{font-size:18px}
+  table{table-layout:auto !important}
+  table th,table td{width:auto !important;word-break:normal !important;overflow-wrap:normal !important}
+  table th,table td{white-space:nowrap}
+  td.wrap,td.txt,th.wrap{white-space:normal}
+  .summary{font-size:13px}.verdict-box,.negbox,.posbox{font-size:13px;padding:10px 12px}
+  .section-header{gap:8px;flex-wrap:wrap}
+  .section-num{font-size:21px}
+  .section-title{font-size:15px;white-space:normal}
+  .section-desc{font-size:11.5px;white-space:normal;text-align:left;width:100%;padding-top:2px}
+  .lead-line{font-size:12.5px;margin:4px 0 8px;line-height:1.7}
+  /* v7.1 移动端 pt-list 适配（2026-09-06）：提行分点在窄屏保持可读 + 不溢出 */
+  .pt-item{gap:7px;margin:6px 0}
+  .pt-num{font-size:12.5px;line-height:1.7}
+  .pt-body{font-size:12.5px;line-height:1.75;white-space:normal;word-break:break-word;overflow-wrap:anywhere}
+  .lead-tag{font-size:12.5px;margin-right:4px}
+  .num-big{font-size:1.35em}
+}
+/* v7.2 横屏适配（2026-09-06 老潘追加：横竖屏必须同样专业体验）
+   手机横屏=宽扁视口（宽 ~800-950 / 高 ~380-540）。竖屏规则会把横屏当窄屏
+   → 长文 nowrap 撑横滚 + 卡片流纵向过长。横屏断点专门矫正：
+   ① 接近桌面宽度 → 长文恢复换行防溢出，短值（数字/涨跌/tag）仍不拆
+   ② tbl-card 卡片双列网格提升密度（纵向减半）
+   ③ 不触发横屏的桌面窗口（max-height>540）不受影响 */
+@media (orientation:landscape) and (max-height:540px){
+  body{padding:10px 14px}
+  .card{padding:12px 14px}
+  h1{font-size:17px}h2{font-size:14px}
+  table td,table th{white-space:normal}
+  td.pos,td.neg,td.up,td.down,td.pct,td.num,td.name,
+  .pos,.neg,.up,.down,.tag,.pct{white-space:nowrap}
+  table.tbl-card td{white-space:normal}
+  table.tbl-card tbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;width:100%}
+  table.tbl-card tbody tr{margin:0;padding:10px 12px}
+  .metric{gap:10px}
+  .metric-item{min-width:130px;padding:8px 10px}
+  .metric-val{font-size:18px}
+  .lead-line,.pt-num,.pt-body,.lead-tag{font-size:13px}
+  .pt-item{margin:6px 0}
+  .summary,.summary p{font-size:13px}
+  .verdict-box,.negbox,.posbox{font-size:13px}
+  .footer{font-size:11px}
+}
+</style>
+</head>
+<body data-page-node-id="vEomAyKFHLbzYmiDUuB9jB">
+<div class="container" data-page-node-id="73Ky4QSJZRTlByALC0T34A">
+
+<!-- ① 标题卡 -->
+<div class="card">
+  <h1>罗博特科 300757 · 7月交流兑现复盘 + 巴蒂独立估值</h1>
+  <p class="small">数据时点：2026-09-04 收盘 · 2026-09-06 周日盘前定稿 · 老潘提问三合一</p>
+  <div class="summary">
+    <p><strong>一句话结论：</strong>7月交流内容已大幅兑现（CPO/OCS/FAU订单批量落地 + 港股 IPO 备案 + H1 扭亏为盈），但现价 573.99 已透支机构一致预期 2027E 估值 2-3 年；巴蒂独立估值 <span class="tag-warn">HOLD 偏谨慎</span>，目标合理价 189-380 元（机构一致预期口径）。</p>
+    <p><strong>兑现进展：</strong></p>
+    <ul class="pt-list">
+      <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">H1 营收 6.085 亿 <span class="pos">+144.8%</span>、归母扭亏 655.7 万；光电子业务占主营 81.16%、同比 +952% <span class="tag-gold">★基本面拐点确立</span></span></li>
+      <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">可插拔累计订单 12.61 亿元（7 月时为 6 亿元，翻倍）</span></li>
+      <li class="pt-item"><span class="pt-num">③</span><span class="pt-body">ficonTEC 累计斩获耦合/晶圆测试订单逾 13.4 亿（=2025 全年营收 1.4 倍）</span></li>
+      <li class="pt-item"><span class="pt-num">④</span><span class="pt-body">港股 IPO 6/26 已获证监会备案，5/13 已递表、8/26 已确认"正处联交所审核阶段"</span></li>
+    </ul>
+    <p style="margin-top:10px;"><strong>估值纪律：</strong></p>
+    <ul class="pt-list">
+      <li class="pt-item"><span class="pt-num">·</span><span class="pt-body">机构一致预期 2026E/2027E/2028E 营收 13.37 / 21.13 / 41.88 亿、归母 1.52 / 3.17 / 8.615 亿，对应股价 189.3 元（-67% 空间）</span></li>
+      <li class="pt-item"><span class="pt-num">·</span><span class="pt-body">华鑫更激进（2027E 营收 30.08 亿、EPS 4.49），对应 583.7 元（已 price in）</span></li>
+      <li class="pt-item"><span class="pt-num">·</span><span class="pt-body">高盛极端乐观（2027E 营收 129.6 亿、目标价 796），需 6.1 倍营收兑现</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ② 核心速览 6 指标卡 -->
+<div class="card">
+  <h2>核心速览</h2>
+  <div class="metric">
+    <div class="metric-item metric-idx metric-core">
+      <div class="metric-label">罗博特科现价</div>
+      <div class="metric-val">573.99<span class="unit">元</span></div>
+      <div class="metric-label">9/4 收盘 · 流通市值 933.1 亿</div>
+    </div>
+    <div class="metric-item metric-vol">
+      <div class="metric-label">PB（3年百分位）</div>
+      <div class="metric-val pos">57.79<span class="unit">x</span></div>
+      <div class="metric-label">95.32% · 3 年最高区间</div>
+    </div>
+    <div class="metric-item metric-mood metric-core">
+      <div class="metric-label">PS-TTM（3年百分位）</div>
+      <div class="metric-val pos">73.45<span class="unit">x</span></div>
+      <div class="metric-label">76.83% · 估值高位</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">距 7/24 低点</div>
+      <div class="metric-val pos">+39.5<span class="unit">%</span></div>
+      <div class="metric-label">411.96 → 573.99（2 个月）</div>
+    </div>
+    <div class="metric-item metric-vol">
+      <div class="metric-label">20 日 MA</div>
+      <div class="metric-val">528.2<span class="unit">元</span></div>
+      <div class="metric-label">现价偏离 +8.7%（超买区）</div>
+    </div>
+    <div class="metric-item metric-idx">
+      <div class="metric-label">上证指数</div>
+      <div class="metric-val">3930.12<span class="unit">点</span></div>
+      <div class="metric-label">9/4 收盘 · BOLL MID 3938</div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ 第一节：7月交流 vs 9/4 兑现对照 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">7月交流 vs 9/4 兑现对照 · 核心清单</span>
+    <span class="section-desc">口径：妙想数据 9/4 + 公司公告 + 半年报 8/25</span>
+  </div>
+  <p class="lead-line">7月交流的 6 大业务线均出现实质性兑现，<span class="tag-gold">H1 营收 +144.8% + ficonTEC 占主营 81.16%</span>是质变信号；订单兑现速度大幅超出 7 月预期，但二级市场已先行 price in。</p>
+  <div class="table-wrap">
+    <table class="f3a">
+      <thead>
+        <tr><th>业务线</th><th>7月交流口径（PO/订单可见阶段）</th><th>9/4 实际进展（已兑现/已落地）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>光模块 / NPO</strong><br><span class="small">AAOI 大单</span></td>
+          <td>AAOI 大单大二季度开始验收，订单可见；国内头部几家处于 PO 阶段；公司选 ficonTEC 设备 = AAOI 广告效应 + 自动化 + 高精度</td>
+          <td><span class="tag-hit">✓ 已兑现</span><br>同一集团客户累计订单 <strong>12.61 亿元</strong>（半年报口径，vs 2025 年报 6 亿元 → <strong>翻倍</strong>）</td>
+        </tr>
+        <tr>
+          <td><strong>CPO 设备</strong><br><span class="small">英伟达/台积电</span></td>
+          <td>根据台积电/英伟达指引，CPO 没有延迟，明年大规模放量；28 年开始 OIO 商业化；公司覆盖 CPO 四个测试环节</td>
+          <td><span class="tag-hit">✓ 已兑现</span><br>① 2/11 台积电+英伟达 300mm 双面晶圆测试量产化订单<br>② 3/13 ficonTEC 608 万欧元双面晶圆测试第二批量产<br>③ 3/25 纳斯达克 F 子公司 6 亿元耦合设备订单<br>④ 4/2 第五单 2.46 亿元耦合订单<br>⑤ <strong>Insertion 4 全自动系统级测试 NPI 阶段</strong></td>
+        </tr>
+        <tr>
+          <td><strong>OCS 设备</strong><br><span class="small">瑞士 HS 客户</span></td>
+          <td>已交付瑞士 HS 客户首条产线；HS 量产产能扩张，向公司提出明确产能诉求</td>
+          <td><span class="tag-hit">✓ 已兑现</span><br>① 与瑞士头部客户签两条完整自动化产线<br>② 2026 Q1 首条 OCS 整线完成交付及收入确认<br>③ 合同金额 6307.84 万元（占 2024 营收 5.7%）<br>④ HS #8 提供压电陶瓷单路 OCS 光模块机</td>
+        </tr>
+        <tr>
+          <td><strong>FAU/MPO 光纤精制造设备</strong><br><span class="small">senko/康宁</span></td>
+          <td>FAU/MPO 升级要求，传统手艺无法满足新标准；公司全球首创光纤产品精制造设备，为 senko/康宁等大厂提供</td>
+          <td><span class="tag-hit">✓ 已兑现</span><br>① 7/23 签 1674 万欧元 FAU 量产自动化合同（≈1.29 亿 RMB）<br>② 接触客户方案中已有 <strong>高达 160 通道光纤 FAU 需求</strong><br>③ 提供从剥纤、切割、MT 插芯到 FAU 光对准全自动化整线</td>
+        </tr>
+        <tr>
+          <td><strong>其他设备</strong><br><span class="small">卫星/血糖/存储</span></td>
+          <td>低轨卫星（SpaceX 扩张）、无创血糖（配合苹果）、内存烯化（配合韩国存储原厂）</td>
+          <td><span class="tag-nohit">– 暂无更新</span><br>7 月交流后无重大订单/公告披露；属于远期概念，<strong>不计入 2026/27 估值</strong></td>
+        </tr>
+        <tr>
+          <td><strong>产能 / 价格</strong><br><span class="small">三大基地</span></td>
+          <td>明年需求 5000 台左右；苏州/德国曼加尼亚/台湾 oem 满足；双面扇设备百万欧元、晶粘测试 150-200 万欧元、CPO 模组联合研发、光纤精制造 200 万欧元以上</td>
+          <td><span class="tag-hit">✓ 已兑现</span><br>① 苏州基地月产 300-400 台耦合/组装设备<br>② 台湾地区导入合作伙伴分担测试产能<br>③ 港股 IPO 后拟亚洲新建制造基地<br>④ 4/2 公告披露合同披露门槛 <strong>由 1 亿提至 2 亿</strong>（订单规模化信号）</td>
+        </tr>
+        <tr>
+          <td><strong>港股 IPO</strong><br><span class="small">7 月未提</span></td>
+          <td>—</td>
+          <td><span class="tag-hit">✓ 重大进展</span><br>① 5/13 向港交所递交招股书（华泰/花旗/东方联席保荐）<br>② 6/26 获证监会备案（不超 3401.455 万股）<br>③ 7/6 报道聆讯节点临近<br>④ 8/26 投资者关系活动：<strong>正处联交所审核阶段</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">数据来源：妙想行情 9/4 + 公司 2026 半年报 8/25 + 高盛 8/28 + 华鑫 9/1 + 投资者关系活动 8/26（讯石光通讯）；置信度 ★★★（一手公告）/ ★★（券商目标价）。</p>
+</div>
+
+<!-- ④ 第二节：财务兑现 + 三情景估值锚点 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">财务兑现 + 三情景估值锚点</span>
+    <span class="section-desc">口径：半年报 8/25 + 机构一致预期 9/5 + 华鑫 9/1 + 高盛 8/28</span>
+  </div>
+  <p class="lead-line">H1 营收 +144.8% + 扭亏为盈 = 基本面拐点确立；但 PB 57.79x / PS-TTM 73.45x 极端高位，估值已透支机构一致预期 2-3 年。</p>
+  <h3>财务兑现（半年报 8/25 披露）</h3>
+  <div class="table-wrap">
+    <table class="f4x">
+      <thead>
+        <tr><th>指标</th><th>2025 全年</th><th>2026H1</th><th>2026Q2 单季</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>营业收入</td>
+          <td>9.498 亿（-14.14%）</td>
+          <td>6.085 亿（<span class="pos">+144.8%</span>）</td>
+          <td>4.448 亿（+192.9%）</td>
+        </tr>
+        <tr>
+          <td>归母净利润</td>
+          <td>-6644 万</td>
+          <td>655.7 万（<span class="pos">扭亏</span>）</td>
+          <td>4537 万（+733.7%）</td>
+        </tr>
+        <tr>
+          <td>扣非归母净利润</td>
+          <td>-1.007 亿</td>
+          <td>388 万（<span class="pos">扭亏</span>）</td>
+          <td>4398 万（+220.2%）</td>
+        </tr>
+        <tr>
+          <td>毛利率（光电子及半导体）</td>
+          <td>36.0%</td>
+          <td><span class="pos">41.62%</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>光电子占主营业务</td>
+          <td>~52%</td>
+          <td><span class="pos">81.16%</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>研发投入占比</td>
+          <td>11.19%（资本化 0）</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>三情景估值锚点（巴蒂独立测算，<span class="tag-gold">★核心结论</span>）</h3>
+  <div class="table-wrap">
+    <table class="f4x">
+      <thead>
+        <tr><th>情景</th><th>估值参数（EPS × PE）</th><th>目标价</th><th>vs 现价 573.99</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>保守（机构一致预期）</td>
+          <td>1.893 元 × 60x<br><span class="small">半导体设备合理估值</span></td>
+          <td><strong>113.6 元</strong></td>
+          <td><span class="neg">-80.2%</span></td>
+        </tr>
+        <tr>
+          <td>中性（机构一致预期）</td>
+          <td>1.893 元 × 100x<br><span class="small">景气溢价</span></td>
+          <td><strong>189.3 元</strong></td>
+          <td><span class="neg">-67.0%</span></td>
+        </tr>
+        <tr>
+          <td>乐观（华鑫 9/1 口径）</td>
+          <td>4.49 元 × 130x<br><span class="small">CPO 龙头溢价</span></td>
+          <td><strong>583.7 元</strong></td>
+          <td><span class="pos">+1.6%</span></td>
+        </tr>
+        <tr>
+          <td>高盛 8/28 目标价</td>
+          <td>（隐含 EPS &gt;6 元）<br><span class="small">需 2027E 营收 129.6 亿</span></td>
+          <td><strong>796 元</strong></td>
+          <td><span class="pos">+38.7%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict-box">
+    <strong>巴蒂独立判断：</strong>
+    <ul class="pt-list">
+      <li class="pt-item"><span class="pt-num">·</span><span class="pt-body">现价 573.99 元仅在<span class="tag-warn">乐观情景（华鑫口径）</span>下勉强匹配（+1.6%）</span></li>
+      <li class="pt-item"><span class="pt-num">·</span><span class="pt-body"><span class="tag-gold">中性情景对应股价 189.3 元</span>（-67% 跌幅空间），机构一致预期口径下估值已透支 2-3 年</span></li>
+      <li class="pt-item"><span class="pt-num">·</span><span class="pt-body">高盛目标价 796 需 2027E 营收兑现 129.6 亿（=机构一致预期 21.13 亿的 <strong>6.1 倍</strong>），极端乐观下留 38.7% 上行空间</span></li>
+    </ul>
+  </div>
+  <p class="note">数据来源：妙想机构一致预期（2026-09-05）+ 高盛 8/28 买入目标 796 + 华鑫 9/1 买入无目标 + 兴业 5/1 增持 0.30 + 东吴 3/28 增持 0.30；置信度 ★★★（一致预期系统）/ ★★（券商单家目标价）。</p>
+</div>
+
+<!-- ⑤ 第三节：接下来关注要点 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">接下来关注要点 · 验证点台账</span>
+    <span class="section-desc">口径：业绩驱动 + 估值压制 + 资金面 三大维度</span>
+  </div>
+  <p class="lead-line"><span class="lead-tag">短期</span>业绩兑现节奏：Q3 报告（10 月底）+ 港股 IPO 聆讯通过。<br>
+  <span class="lead-tag">中期</span>CPO/OCS 量产化订单批量交付节奏。<br>
+  <span class="lead-tag">估值</span>盯防业绩兑现速度跟不上 PB 95% 分位的极端估值。</p>
+  <div class="table-wrap">
+    <table class="f3c">
+      <thead>
+        <tr><th>验证点</th><th>状态</th><th>跟进动作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q3 营收裁决（10/30 披露）</td>
+          <td><span class="tag-wait">WAIT</span></td>
+          <td>三档：&lt;4 亿减仓 / 4-5.5 亿中性 / &gt;5.5 亿高盛在轨（环比 +23.6% 即达）</td>
+        </tr>
+        <tr>
+          <td>港股 IPO 聆讯通过</td>
+          <td><span class="tag-blue">观察中</span></td>
+          <td>8/26 已处联交所审核阶段；过会行情 = 减仓窗口（参考汇绿过会后股价不涨）</td>
+        </tr>
+        <tr>
+          <td>Insertion 4 NPI 阶段进展</td>
+          <td><span class="tag-blue">观察中</span></td>
+          <td>系统级测试设备从 NPI → 量产化是关键拐点；进入量产订单即 2027E 营收起爆</td>
+        </tr>
+        <tr>
+          <td>12.61 亿可插拔订单交付节奏</td>
+          <td><span class="tag-yellow">待验证</span></td>
+          <td>Q3-Q4 交付率 ≥60% → 锁定 2026E 营收 13.37 亿一致预期；&lt;40% → 下修估值</td>
+        </tr>
+        <tr>
+          <td>FAU 160 通道方案量产化</td>
+          <td><span class="tag-yellow">待验证</span></td>
+          <td>客户方案中已接触，量产化订单 = 估值溢价兑现</td>
+        </tr>
+        <tr>
+          <td>毛利率守住 41%+</td>
+          <td><span class="tag-green">已兑现</span></td>
+          <td>H1 已达 41.62%；持续守住 = ficonTEC 并表协同效应成立</td>
+        </tr>
+        <tr>
+          <td>PB 95.32% 历史分位</td>
+          <td><span class="tag-warn">警示</span></td>
+          <td>估值极端高位，业绩兑现速度跟不上 = 杀估值风险</td>
+        </tr>
+        <tr>
+          <td>20 日 MA 528.2 失守</td>
+          <td><span class="tag-warn">警示</span></td>
+          <td>中期分水岭；失守 + 反抽不收复 → 趋势降级，第一波止盈窗口</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ⑥ 第四节：风险与硬开关 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">风险面 + 正面催化 + 硬开关</span>
+    <span class="section-desc">下行风险 vs 正面催化，纪律触发器</span>
+  </div>
+  <div class="negbox">
+    <strong>下行风险：</strong>
+    <ul class="pt-list">
+      <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">PB 57.79x / PS-TTM 73.45x 极端高位，业绩兑现速度跟不上 → 杀估值（参考半导体设备行业 PB 中位数 8-12x）</span></li>
+      <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">高盛 2027E 营收 129.6 亿 vs 机构一致预期 21.13 亿 差 6.1 倍，若仅兑现机构预期 → 股价至少腰斩</span></li>
+      <li class="pt-item"><span class="pt-num">③</span><span class="pt-body">Q3 营收 &lt;4 亿 = 证伪高盛情景</span></li>
+      <li class="pt-item"><span class="pt-num">④</span><span class="pt-body">港股 IPO 聆讯未通过 / 招股失败 = 资金面预期坍塌</span></li>
+      <li class="pt-item"><span class="pt-num">⑤</span><span class="pt-body">ficonTEC 整合不达预期 / 德国供应链中断</span></li>
+    </ul>
+  </div>
+  <div class="posbox">
+    <strong>正面催化：</strong>
+    <ul class="pt-list">
+      <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">Q3 营收 &gt;5.5 亿（环比 +23.6%）= 高盛在轨</span></li>
+      <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">Insertion 4 量产化订单 → 2027E 营收预期上修</span></li>
+      <li class="pt-item"><span class="pt-num">③</span><span class="pt-body">港股聆讯通过 + 招股价超预期 → 资金面共振</span></li>
+      <li class="pt-item"><span class="pt-num">④</span><span class="pt-body">英伟达/台积电 CPO 路线 2027 加速 → 全球 CPO 设备订单爆发</span></li>
+      <li class="pt-item"><span class="pt-num">⑤</span><span class="pt-body">FAU 160 通道方案量产化 + senko/康宁订单批量兑现</span></li>
+    </ul>
+  </div>
+  <h3>硬开关（纪律触发器）</h3>
+  <div class="table-wrap">
+    <table class="f3d">
+      <thead>
+        <tr><th>开关类型</th><th>触发条件</th><th>动作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>硬止损（基本面）</td>
+          <td>Q3 营收 &lt;4 亿 / 归母 &lt;3000 万 / 港股聆讯未通过</td>
+          <td><span class="tag-sell">SELL</span> · 减仓 30%+，不留"长线期权"</td>
+        </tr>
+        <tr>
+          <td>硬止盈（估值）</td>
+          <td>股价 &gt;700 元（=高盛目标 -12% 安全垫）</td>
+          <td><span class="tag-sell">SELL</span> · 减仓 50%（CPO 估值见顶）</td>
+        </tr>
+        <tr>
+          <td>技术防线</td>
+          <td>20 日 MA 528.2 失守 + 反抽不收复</td>
+          <td><span class="tag-sell">SELL</span> · 第一波止盈 30%</td>
+        </tr>
+        <tr>
+          <td>基本面加仓</td>
+          <td>Q3 营收 &gt;5.5 亿 / Insertion 4 量产化订单公告</td>
+          <td><span class="tag-buy">BUY</span> · 加仓至仓位上限（不超 30%）</td>
+        </tr>
+        <tr>
+          <td>基本面持有</td>
+          <td>4-5.5 亿中性区间 + 港股聆讯通过</td>
+          <td><span class="tag-hold">HOLD</span> · 持有，不加减</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ⑦ 第五节：操作锚点 + 美股映射 -->
+<div class="card">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">操作锚点 + 美股映射</span>
+    <span class="section-desc">结论先行 BUY/HOLD/SELL</span>
+  </div>
+  <p class="lead-line"><strong>巴蒂最终判断：<span class="tag-hold">HOLD</span> 持仓不动（900 股@509.89）</strong><br>
+  <span class="lead-tag">不加仓</span>估值透支，无新证据不追高。<br>
+  <span class="lead-tag">不减仓</span>基本面拐点 + 港股 IPO + 订单爆发三催化未兑现。<br>
+  <span class="lead-tag">等验证</span>Q3 营收裁决（10/30）+ 港股聆讯通过。</p>
+  <div class="verdict-box">
+    <p style="margin:0 0 10px 0;"><strong>结论：</strong><span class="tag-hold">HOLD</span>，持有不操作（900 股@509.89）</p>
+    <p style="margin:0 0 6px 0; font-weight:600;">三个理由：</p>
+    <ul class="pt-list">
+      <li class="pt-item"><span class="pt-num">①</span><span class="pt-body"><strong>兑现充分：</strong>7 月交流预期全部超预期兑现，订单爆发 + 港股 IPO + H1 扭亏 = 基本面拐点成立</span></li>
+      <li class="pt-item"><span class="pt-num">②</span><span class="pt-body"><strong>估值透支：</strong>现价 573.99 已透支机构一致预期 2-3 年（中性情景 -67%），单纯估值角度看不再便宜</span></li>
+      <li class="pt-item"><span class="pt-num">③</span><span class="pt-body"><strong>验证窗口：</strong>Q3 报告（10/30）+ 港股聆讯 = 两个明确验证点，留窗口比追涨杀跌更合理</span></li>
+    </ul>
+    <p style="margin:10px 0 0 0; padding-top:8px; border-top:1px dashed var(--line); font-size:13px;"><strong>纪律位：</strong>20 日 MA 528.2 是技术防线，Q3 营收 &lt;4 亿是基本面硬开关，两者任一触发即降级。</p>
+  </div>
+  <h3>美股映射（行业联动）</h3>
+  <div class="table-wrap">
+    <table class="f3a">
+      <thead>
+        <tr><th>映射标的</th><th>关系 + 信号</th><th>对罗博影响</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>NVDA · 英伟达</strong></td>
+          <td>CPO 核心客户<br>（与台积电联合开发 300mm 双面晶圆测试）<br><span class="tag-yellow">待验证</span></td>
+          <td>英伟达 8/26 财报已过窗口；Feynman 架构支持 Kyber CPO scale-up → 罗博 Insertion 4 量产化预期</td>
+        </tr>
+        <tr>
+          <td><strong>MRVL · 迈威尔</strong></td>
+          <td>罗博 ficonTEC 客户群；澜起科技映射标的<br><span class="tag-warn">警示</span></td>
+          <td>MRVL 9/3 -15.8% 系统性撤离；澜起被拖累 → 短期拖累 CPO 板块情绪</td>
+        </tr>
+        <tr>
+          <td><strong>COHR / LITE</strong></td>
+          <td>光器件链映射（汇绿映射主线）<br><span class="tag-blue">观察中</span></td>
+          <td>光器件链景气持续 → CPO 设备订单基本面支撑</td>
+        </tr>
+        <tr>
+          <td><strong>AAOI</strong></td>
+          <td>7 月交流点名大客户（PO 阶段）<br><span class="tag-green">已兑现</span></td>
+          <td>可插拔订单累计 12.61 亿（翻倍）→ AAOI 路线规模化</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 评级标签速查 -->
+<p class="note" style="text-align:center;margin-top:14px">
+  评级速查：<span class="tag-buy">BUY</span> <span class="tag-hold">HOLD</span> <span class="tag-sell">SELL</span> <span class="tag-wait">WAIT</span>　·　状态：<span class="tag-blue">观察中</span> <span class="tag-yellow">待验证</span> <span class="tag-green">已兑现</span> <span class="tag-warn">警示</span>　·　判定：<span class="tag-hit">✓ 命中</span> <span class="tag-nohit">– 暂无</span>　·　板块：<span class="tag-cpo">CPO</span>
+</p>
+
+<div class="footer">
+  数据来源：妙想 mcp__mx-ds-mcp（东方财富系，2026-09-04 收盘口径）· 公司 2026 半年报 8/25 · 高盛 8/28 · 华鑫 9/1 · 兴业 5/1 · 东吴 3/28 · 投资者关系活动 8/26（讯石光通讯）<br>
+  置信度：★★★（一手公告/半年报/机构一致预期系统）/ ★★（券商单家目标价/媒体解读）<br>
+  本报告仅供研究参考，不构成任何投资建议。市场有风险，投资需谨慎，盈亏自负。<br>
+  编制：巴蒂 · 2026-09-06 周日盘前定稿
+</div>
+
+</div>
+</body>
+</html>
