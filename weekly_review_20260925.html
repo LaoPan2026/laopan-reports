@@ -22,6 +22,29 @@
    禁止：自行改写本节 CSS、混用暖色值、删减组件类。
 
    ─── 版本史（本文件 = daily_loop_v7.14.html，V7 藏青蓝体系主模板）───
+   · v7.14 修订 R2（2026-09-25 晚 老潘「R1 之后我进去看了，并没有觉得很满意」）：
+     ★ 复盘 R1 的失误 —— **R1 属矫枉过正**：把 6 条首句亮蓝 strong 全部压成正文色，
+       结果六条视觉信息量塌成「一行 SELL + 五行灰字」。而 5 条非 SELL 条目的
+       tag-hold / tag-wait **在 v7.14 里同属 S1 淡蓝底**（同一配方）→ 彼此无差
+       → 整块**没有任何视觉落点**，扫读时眼睛无处落脚。
+       定因一句话：R1 只解决了「过载」，没有补上「层级」——把 C3 抹掉却没有给
+       动作词一个新的、恰当的位置。
+     老潘选定方案（二选其一后拍板）：
+       ① **字重分层**（选）——动作词升 font-weight:700、**保持正文色**。
+          手法＝新增轻量类 `.pt-act`（`font-weight:700`，唯一声明）。
+          ★ 零新增色值、**零色彩依赖** → 对色弱天然安全（不靠色相也能分出主次）。
+          ★ 用的字重 700 是 v7.11 强调轴既有档位，未新造字重。
+       ② 去掉 ::before 竖条（选）——改用「条间距 + 细分隔线」做节奏：
+          `.pt-item{padding:9px 0}` + `.pt-item+.pt-item{border-top:1px solid --line}`
+          + 首末条收边（first-child padding-top:2px / last-child padding-bottom:2px）。
+          ★ 老潘反馈「竖条像时间轴、且偏弱」→ 撤除，非弱化。
+       ③ 既有效果保留：.pt-num 退 muted、SELL 升 tag-sell-s3（这两项 R1 已达成，不动）。
+     ★ R2 红线自查：**唯一色值 29 = 29（零新增）**；字重 700 为既有档位；
+       分隔线用 --line（结构性灰蓝，禁承载涨跌红绿语义）；
+       色弱可辨性由「字重差」独立承载，不叠加色彩通道。
+     ★ 教训固化（写入 html-report-v4 skill）：**「压掉过量强调」时必须同时指定
+       新的层级承载物**，否则只是把「乱」换成「平」，用户仍不满意 ——
+       R1 → R2 一轮返工即为实证。
    · v7.14 修订 R1（2026-09-25 老潘「逐只操作指引这块区域配色不满意」）：
      起点：老潘发来第 39 周周报「逐只操作指引」卡片截图，指定「先来说这块区域的配色」。
      像素级定因（六项证据，全部来自截图像素实测）：
@@ -40,6 +63,8 @@
        ① 正文层：首句「标的名 + 动作词」由亮蓝降为 --text（亮蓝只留判断句）——
           本项为**用法纪律**（不再默认渲染入标签，改由 .pt-body strong 区分），
           见「③ 层次轴」注释补条。
+          ⚠️ R2 修正：本项**只做对了「降色」**，漏了「动作词须有新的层级承载」
+             → 六条塌平。R2 以 `.pt-act` 字重 700 补位（详见 R2 条目）。
        ② --muted 二次回调 #a9b7c9 → **#9aa6b7**（V≈0.72）——
           与 --text 差 0.22、与卡底差 0.49，重建可辨识三级；仍亮于 v7.13 原值 #7e8ea3。
           ★ 属**明度单通道回调**，H≈215° 不变 → 非新增色相。
@@ -49,9 +74,11 @@
             已取三候选中 Δ 最均衡者，并在 token 注释处留完整记账。
        ③ 新增 .pt-item::before **极细左竖条**（2px / --line）——解「六条成墙」，
           复用 v7.14 新增 .cat-bar 的同款手法，零新增色值；窄屏同步保留。
+          ⚠️ R2 已**撤除**：老潘反馈「像时间轴、且偏弱」→ 改由「条间距 + 细分隔线」承担。
        ④ .pt-num 由 color:inherit → **var(--muted)** ——序号退为结构引导，不再与正文同权。
        ⑤ SELL 标签由 .tag-sell-s2 升 **.tag-sell-s3**（实心绿底 + ▼ 冗余符号）——
           操作紧迫度与视觉权重对齐（色弱硬要求：实心底之间也须有符号区分，S3 自带 ▼）。
+       ③④⑤ 中 ④⑤ 在 R2 保留；③ 已撤。
      ★ 红线自查：色相仍为蓝 212° / 青绿 174° / 红 356° 三簇，未破「分类色 ≤3」；
        唯一色值 28 → **29**（新增 #9aa6b7 一个，属中性灰明度回调、非新色相）；
        竖条与序号均复用既有 token；亮蓝配额纪律已写入 ③ 层次轴注释。
@@ -633,19 +660,21 @@ table.tbl-card td.wrap{white-space:normal}
 .posbox .pt-num{color:#089981;font-weight:700;font-size:14.5px}
 
 /* ==== 观点分点提行（老潘 9/6 规范：并列观点必须逐条提行，禁止挤成一段）====
-   ★ v7.14 修订（2026-09-25，老潘「逐只操作指引区域不满意」四项之二）：
-     病灶：多条并列时「六条成墙」—— 各条墨色占比实测 21–23% 高度均质，
-           无锚点、无分隔，眼睛在六条等权文本里无处落脚。
-     处置：给 .pt-item 挂**极细左竖条**（复用 v7.14 新增 .cat-bar 的同款手法，
-           零新增色值、零新增色相），并拉开条间距。
-     边界（硬）：① 竖条色只用 --line（结构性灰蓝），**禁承载涨跌红绿语义**；
-                 ② 条数 ≤6 时才启用（超过 6 条应改用表格）；
-                 ③ 竖条纯装饰，不替代 .pt-num 的序号冗余。 */
+   ★ v7.14 修订 R2（2026-09-25 晚，老潘「R1 之后仍不满意：太平淡，没重点抓不住」）：
+     复盘 R1：R1 把 6 条亮蓝 strong 全部压成正文色 → 六条视觉信息量塌成
+               「一行 SELL + 五行灰字」，5 条同款 tag-hold/tag-wait（均为 S1 淡蓝）
+               彼此无差 → 扫读无落点。**R1 属矫枉过正**（从「过载」翻到「无层级」）。
+     定案（老潘选定）：① **字重分层**——动作词升 700 字重、保持正文色
+                           （零新增色值、零色彩依赖，色弱可辨性天然安全）；
+                     ② **去掉 ::before 竖条**——改用「条间距 + 细分隔线」做节奏。
+     硬约束：字重 700 是 v7.11 强调轴既有档位；**禁用颜色承载层级**（R1 教训）；
+             条间距上限 14px（超则六条松散不成块）；分隔线用 --line（结构性灰蓝），
+             **禁承载涨跌红绿语义**。 */
 .pt-list{margin:6px 0 2px;padding:0;list-style:none}
-.pt-item{display:flex;gap:8px;align-items:flex-start;margin:7px 0;line-height:1.75;
-  position:relative;padding-left:10px}
-.pt-item::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;
-  border-radius:1px;background:var(--line)}
+.pt-item{display:flex;gap:8px;align-items:flex-start;margin:0;line-height:1.75;
+  padding:9px 0}
+.pt-item+.pt-item{border-top:1px solid var(--line)}
+.pt-act{font-weight:700}
 .pt-num{flex:0 0 auto;font-weight:700;color:var(--muted)}
 .pt-body{flex:1 1 auto;min-width:0}
 .lead-tag{color:#4d9fff;font-weight:700;margin-right:6px;white-space:nowrap}
@@ -1174,10 +1203,13 @@ table.tbl-card td.judge{color:var(--text);font-weight:700;font-size:14.5px;borde
   .section-title{white-space:normal}
   .section-desc{text-align:left;padding-top:2px}
   .lead-line{margin:6px 0 10px}
-  .pt-item{gap:7px;margin:6px 0;padding-left:9px}
-  /* ★ v7.14：与桌面端一致保留 .pt-item::before 极细左竖条（窄屏更要靠它分段），
-     padding-left 由 10 → 9px 微调，为 390px 宽度省 1px；竖条自身宽度/位置不动。
-     注：::before 未在本 media 内重声明 → 继承桌面端定义（无死声明、无覆盖冲突）。 */
+  .pt-item{gap:7px;padding:8px 0}
+  /* ★ v7.14 R2：::before 极细左竖条**已撤除**（老潘「去掉竖条，改靠间距」）。
+     R2 改用「padding 上下 + .pt-item+.pt-item 细分隔线（--line）」做节奏；
+     桌面端 padding 9px，窄屏收到 8px 省纵向空间。::before 已从桌面端定义中删除
+     → 本 media 内无需任何覆写，也无死声明残留。
+     ★ 首末条不做收边（原 first/last-child 2px 已删）—— 六条 padding 均匀，
+       块上下留白交给 .pt-list 的 margin，避免首条贴住标题造成节奏不均。 */
   /* v7.11 让位（2026-09-14）：`.pt-num` / `.pt-body` 的 `font-size` 已删除。
      它们被 v7.11 结构轴 T3 阶梯 `.container .pt-num/.pt-body{font-size:15px}`（(0,2,0) > (0,1,0)）
      取代，窄屏再由 v7.11 自己的 ≤1024 阶梯降到 14.5px → 原位保留即「永远不生效」的死声明，
@@ -1763,12 +1795,12 @@ table.tbl-card .flag-warn,table.tbl-card .flag-break{white-space:nowrap}
   <div class="card">
     <h2>逐只操作指引</h2>
     <ul class="pt-list">
-      <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">罗博特科 300757 · <span class="tag-wait">WAIT</span> 暂停买入。两个纪律信号同时触发且方向相反：方案 A 的「570 以下买 100」被 9/24 收盘 565.86 满足，同时「放量破 MA20 592.3 减波段仓」也被满足。本报告判断暂停买入，三条理由：其一，570 买入线的前提是「回踩不破」，破位后前提消失，趋势信号优先于价位信号；其二，资金证据跨口径一致（−19.34&nbsp;亿 / −17.42&nbsp;亿），八日累计 −30.93&nbsp;亿属持续撤离而非洗盘；其三，9/25 定价、9/29 挂牌在前，事件前加仓等于押注未知结果。后续分支：挂牌后 H 股走强、AH 折价收敛则恢复 570 买入计划；首日破发或深折价则放弃加仓，改看 MA60 515.8 为波段仓最后防线。原「卖星环 600 换罗博 100」方案目标端暂停，改为卖星环后资金留现金。</span></li>
-      <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">三祥新材 603663 · <span class="tag-hold">HOLD</span> 时间锚推后。投产延期改变节奏但不改基本面：铪价同比 +164%、内外铪价差 8 倍的逻辑未变。T1 兑现窗口不再锚定固定日期，改为「Q4 情绪高点分批兑现」；防线维持收盘破 38.5 减半、破 35 清仓评估。短期压力为 9/24 盘中高点 50.38。</span></li>
-      <li class="pt-item"><span class="pt-num">③</span><span class="pt-body">澜起科技 688008 · <span class="tag-hold">HOLD</span> 除净日。9/25 除净（每 10 股派 2.00&nbsp;元），理论开盘参考价约 212.5&nbsp;元，MA60 213.7 同步下移。本周 9/23–9/24 连续两日跨口径同向净流出，突破后的承接力度是本轮关键。站稳除净调整后的 MA60 继续持有；跌破 200 且 MACD 绿柱放大 → 重估；破 186.50 → 离场。</span></li>
-      <li class="pt-item"><span class="pt-num">④</span><span class="pt-body">华峰化学 002064 · <span class="tag-hold">HOLD</span> 纪律替换（非放弃）。重组过会属逻辑新增型变化，原「破 10.20 清出」的技术破位触发条件已被基本面变化覆盖。替换方案：新防线 9.30（发行价 8.45&nbsp;元上方约 10%），收盘破位则清出；10 月底 Q3 报为逻辑再验证点，Q3 净利环比未改善且股价未回 10.20 → 清出；若节后反弹至 10.20–10.50 缺口区 → 减持 5,000 股降低敞口。</span></li>
-      <li class="pt-item"><span class="pt-num">⑤</span><span class="pt-body">星环科技 688031 · <span class="tag-sell-s3">SELL</span> <strong>待触发。</strong>H 股 9/24 收 39.66&nbsp;港元创上市新低，AH 折价扩大至 67.4%；腾讯自 2025 年 2 月起三次减持，持股由 8.77% 降至 5.29%。A 股 103.70 逼近 MA60 103.1，破位则中期结构走坏。执行：收盘跌破 MA60 103.1 → 减持 600 股；若守住，反弹至 109–110 均线密集区减持。</span></li>
-      <li class="pt-item"><span class="pt-num">⑥</span><span class="pt-body">泰和 / 汇绿 / 软通 · <span class="tag-hold">HOLD</span> 不动。泰和新材 12.39 破 MA20 与 MA60 但周跌幅最小，升级锚 13.24–13.35 不变；汇绿生态 36.75 破 MA60 但本周资金净流入居前，重组 12/31 前交割、硬止损 30；软通动力 35.95 破 MA60，浮盈厚不加仓，破 33.91 箱体重评。</span></li>
+      <li class="pt-item"><span class="pt-num">①</span><span class="pt-body">罗博特科 300757 · <span class="tag-wait">WAIT</span> <span class="pt-act">暂停买入。</span>两个纪律信号同时触发且方向相反：方案 A 的「570 以下买 100」被 9/24 收盘 565.86 满足，同时「放量破 MA20 592.3 减波段仓」也被满足。本报告判断暂停买入，三条理由：其一，570 买入线的前提是「回踩不破」，破位后前提消失，趋势信号优先于价位信号；其二，资金证据跨口径一致（−19.34&nbsp;亿 / −17.42&nbsp;亿），八日累计 −30.93&nbsp;亿属持续撤离而非洗盘；其三，9/25 定价、9/29 挂牌在前，事件前加仓等于押注未知结果。后续分支：挂牌后 H 股走强、AH 折价收敛则恢复 570 买入计划；首日破发或深折价则放弃加仓，改看 MA60 515.8 为波段仓最后防线。原「卖星环 600 换罗博 100」方案目标端暂停，改为卖星环后资金留现金。</span></li>
+      <li class="pt-item"><span class="pt-num">②</span><span class="pt-body">三祥新材 603663 · <span class="tag-hold">HOLD</span> <span class="pt-act">时间锚推后。</span>投产延期改变节奏但不改基本面：铪价同比 +164%、内外铪价差 8 倍的逻辑未变。T1 兑现窗口不再锚定固定日期，改为「Q4 情绪高点分批兑现」；防线维持收盘破 38.5 减半、破 35 清仓评估。短期压力为 9/24 盘中高点 50.38。</span></li>
+      <li class="pt-item"><span class="pt-num">③</span><span class="pt-body">澜起科技 688008 · <span class="tag-hold">HOLD</span> <span class="pt-act">除净日。</span>9/25 除净（每 10 股派 2.00&nbsp;元），理论开盘参考价约 212.5&nbsp;元，MA60 213.7 同步下移。本周 9/23–9/24 连续两日跨口径同向净流出，突破后的承接力度是本轮关键。站稳除净调整后的 MA60 继续持有；跌破 200 且 MACD 绿柱放大 → 重估；破 186.50 → 离场。</span></li>
+      <li class="pt-item"><span class="pt-num">④</span><span class="pt-body">华峰化学 002064 · <span class="tag-hold">HOLD</span> <span class="pt-act">纪律替换（非放弃）。</span>重组过会属逻辑新增型变化，原「破 10.20 清出」的技术破位触发条件已被基本面变化覆盖。替换方案：新防线 9.30（发行价 8.45&nbsp;元上方约 10%），收盘破位则清出；10 月底 Q3 报为逻辑再验证点，Q3 净利环比未改善且股价未回 10.20 → 清出；若节后反弹至 10.20–10.50 缺口区 → 减持 5,000 股降低敞口。</span></li>
+      <li class="pt-item"><span class="pt-num">⑤</span><span class="pt-body">星环科技 688031 · <span class="tag-sell-s3">SELL</span> <span class="pt-act">待触发。</span>H 股 9/24 收 39.66&nbsp;港元创上市新低，AH 折价扩大至 67.4%；腾讯自 2025 年 2 月起三次减持，持股由 8.77% 降至 5.29%。A 股 103.70 逼近 MA60 103.1，破位则中期结构走坏。执行：收盘跌破 MA60 103.1 → 减持 600 股；若守住，反弹至 109–110 均线密集区减持。</span></li>
+      <li class="pt-item"><span class="pt-num">⑥</span><span class="pt-body">泰和 / 汇绿 / 软通 · <span class="tag-hold">HOLD</span> <span class="pt-act">不动。</span>泰和新材 12.39 破 MA20 与 MA60 但周跌幅最小，升级锚 13.24–13.35 不变；汇绿生态 36.75 破 MA60 但本周资金净流入居前，重组 12/31 前交割、硬止损 30；软通动力 35.95 破 MA60，浮盈厚不加仓，破 33.91 箱体重评。</span></li>
     </ul>
   </div>
 
