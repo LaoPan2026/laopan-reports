@@ -1409,9 +1409,11 @@ table.tbl-card .flag-warn,table.tbl-card .flag-break{white-space:nowrap}
    ★ 三级纵深：`.pt-num`（①②③ 主序号）> `.pt-head`（17px 标的+动作）> `.pt-sub`（13px 小点）。
    ★ 零新增色值 / 零新增字号 / 零色彩依赖（色弱安全）。
    ★★ 放置位置（硬约束）：必须在 `.container .pt-reason` 规则**之后**。
-   ★ 小点数量纪律：单条 ≤4 个小点。**首点承载引言/总述时用 `.pt-sub-plain`** ——
+   ★ 小点数量纪律：单条 ≤5 个小点（含引言点）。**首点承载引言/总述时用 `.pt-sub-plain`** ——
      去掉缩进与「·」符号，使其读作「本条的交代句」，后续点才是并列子项。
      （若各点全是并列子项，则全部缩进带符号，不加 `.pt-sub-plain`。）
+     ★ 为何是 5 不是 4：罗博条实测 236 字 / 7 句，结构＝引言 + 三条理由 + 后续分支，
+       硬压到 4 点必然把「后续分支」塞回「其三」→ 重新制造 100 字长块（违背初衷）。
    ★★ 反膨胀纪律（R4 首版失误）：小点 `margin-top` **不得超过 4px**，且**禁用分隔线**——
      与 `.pt-head` 的 6px 拉开差距即可。首版曾用 7px + 虚线 padding 7px（叠加 14px）
      导致整块从 476px 膨胀到 976px，违背「紧凑密排」初衷。 */
@@ -1879,7 +1881,9 @@ table.tbl-card .flag-warn,table.tbl-card .flag-break{white-space:nowrap}
       <li class="pt-item"><span class="pt-num">③</span><span class="pt-body"><span class="pt-head">澜起科技 688008 · <span class="tag-hold">HOLD</span> 除净日</span><span class="pt-reason"><span class="pt-sub pt-sub-plain">9/25 除净（每 10 股派 2.00&nbsp;元），理论开盘参考价约 212.5&nbsp;元，MA60 213.7 同步下移。</span><span class="pt-sub">本周 9/23–9/24 连续两日跨口径同向净流出，突破后的承接力度是本轮关键。</span><span class="pt-sub">站稳除净调整后的 MA60 继续持有；跌破 200 且 MACD 绿柱放大 → 重估；破 186.50 → 离场。</span></span></span></li>
       <li class="pt-item"><span class="pt-num">④</span><span class="pt-body"><span class="pt-head">华峰化学 002064 · <span class="tag-hold">HOLD</span> 纪律替换（非放弃）</span><span class="pt-reason"><span class="pt-sub pt-sub-plain">重组过会属逻辑新增型变化，原「破 10.20 清出」的技术破位触发条件已被基本面变化覆盖。替换方案：</span><span class="pt-sub">新防线 9.30（发行价 8.45&nbsp;元上方约 10%），收盘破位则清出。</span><span class="pt-sub">10 月底 Q3 报为逻辑再验证点，Q3 净利环比未改善且股价未回 10.20 → 清出。</span><span class="pt-sub">若节后反弹至 10.20–10.50 缺口区 → 减持 5,000 股降低敞口。</span></span></span></li>
       <li class="pt-item"><span class="pt-num">⑤</span><span class="pt-body"><span class="pt-head">星环科技 688031 · <span class="tag-sell-s3">SELL</span> 待触发</span><span class="pt-reason"><span class="pt-sub pt-sub-plain">H 股 9/24 收 39.66&nbsp;港元创上市新低，AH 折价扩大至 67.4%；腾讯自 2025 年 2 月起三次减持，持股由 8.77% 降至 5.29%。</span><span class="pt-sub">A 股 103.70 逼近 MA60 103.1，破位则中期结构走坏。</span><span class="pt-sub">执行：收盘跌破 MA60 103.1 → 减持 600 股；若守住，反弹至 109–110 均线密集区减持。</span></span></span></li>
-      <li class="pt-item"><span class="pt-num">⑥</span><span class="pt-body"><span class="pt-head">泰和 / 汇绿 / 软通 · <span class="tag-hold">HOLD</span> 不动</span><span class="pt-reason">泰和新材 12.39 破 MA20 与 MA60 但周跌幅最小，升级锚 13.24–13.35 不变；汇绿生态 36.75 破 MA60 但本周资金净流入居前，重组 12/31 前交割、硬止损 30；软通动力 35.95 破 MA60，浮盈厚不加仓，破 33.91 箱体重评。</span></span></li>
+      <li class="pt-item"><span class="pt-num">⑥</span><span class="pt-body"><span class="pt-head">泰和新材 002254 · <span class="tag-hold">HOLD</span> 不动</span><span class="pt-reason"><span class="pt-sub pt-sub-plain">12.39 破 MA20 与 MA60，但周跌幅最小。</span><span class="pt-sub">升级锚 13.24–13.35 不变。</span></span></span></li>
+      <li class="pt-item"><span class="pt-num">⑦</span><span class="pt-body"><span class="pt-head">汇绿生态 001267 · <span class="tag-hold">HOLD</span> 不动</span><span class="pt-reason"><span class="pt-sub pt-sub-plain">36.75 破 MA60，但本周资金净流入居前。</span><span class="pt-sub">重组 12/31 前交割、硬止损 30。</span></span></span></li>
+      <li class="pt-item"><span class="pt-num">⑧</span><span class="pt-body"><span class="pt-head">软通动力 301236 · <span class="tag-hold">HOLD</span> 不动</span><span class="pt-reason"><span class="pt-sub pt-sub-plain">35.95 破 MA60，浮盈厚不加仓。</span><span class="pt-sub">破 33.91 箱体重评。</span></span></span></li>
     </ul>
   </div>
 
