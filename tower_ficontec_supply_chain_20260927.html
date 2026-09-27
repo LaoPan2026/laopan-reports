@@ -1023,15 +1023,15 @@ table.f7 th:nth-child(7),table.f7 td:nth-child(7){width:32%;text-align:left}
    ④ v7.6 单链规则（P0-A）：focus 行 = 每屏唯一最高级强调；其所在卡内
       tag-gold / num-big 一律让位（禁同卡叠用）；tag-gold 只用于无 focus 行的卡。
    ═══════════════════════════════════════════════════════════════════ */
-.row-focus-cyber{background:rgba(253,210,1,.12);border-left:3px solid #FDD201}
-.row-focus-cyber td{background:rgba(253,210,1,.12);color:#FDD201;font-weight:700;border-bottom:1px solid rgba(253,210,1,.18)}
-.row-focus-cyber td .small{color:#FDD201;opacity:.85;font-weight:500}
+.row-focus-cyber{background:transparent;border-left:3px solid #FDD201}
+.row-focus-cyber td{background:rgba(253,210,1,.08);color:var(--text);font-weight:400;border-bottom:1px solid var(--line)}
+.row-focus-cyber td .small{color:var(--muted);font-weight:500}
 .row-focus-cyber td.pos,.row-focus-cyber td.neg,
 .row-focus-cyber .pos,.row-focus-cyber .neg{color:#FDD201}
-.row-focus-cyber td.name,.row-focus-cyber td:first-child{color:#FDD201}
+.row-focus-cyber td.name,.row-focus-cyber td:first-child{color:#FDD201;font-weight:700}
 /* tbl-scroll 冻结首列背景同步（防横滑露底） */
 table.tbl-scroll .row-focus-cyber td:first-child,
-.table-wrap table.tbl-scroll tbody tr.row-focus-cyber td:first-child{background:rgba(253,210,1,.12)}
+.table-wrap table.tbl-scroll tbody tr.row-focus-cyber td:first-child{background:rgba(253,210,1,.08)}
 .tag-cyber{color:#FDD201;background:rgba(253,210,1,.13);border:1px solid rgba(253,210,1,.42);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;white-space:nowrap}
 /* 时段导航（V7 专属化：深蓝卡 + 亮蓝大字时间，去美网运动感改投研中性） */
 .timeline{display:flex;gap:10px;align-items:stretch;margin:8px 0;flex-wrap:wrap}
@@ -1042,9 +1042,10 @@ table.tbl-scroll .row-focus-cyber td:first-child,
 /* ≤1280 窄屏：焦点行在 tbl-card 卡片流中保持黄底；时段时间字号降档 */
 @media(max-width:1280px){
   table.tbl-card tbody tr.row-focus-cyber,
-  table.tbl-card tbody tr.row-focus-cyber:nth-child(even){background:rgba(253,210,1,.12);border-color:rgba(253,210,1,.35)}
-  table.tbl-card tbody tr.row-focus-cyber td{background:rgba(253,210,1,.12);color:#FDD201;font-weight:700}
+  table.tbl-card tbody tr.row-focus-cyber:nth-child(even){background:transparent;border-color:rgba(253,210,1,.35)}
+  table.tbl-card tbody tr.row-focus-cyber td{background:rgba(253,210,1,.08);color:var(--text);font-weight:400}
   table.tbl-card tbody tr.row-focus-cyber td::before{color:#FDD201;opacity:.65}
+  table.tbl-card tbody tr.row-focus-cyber td:first-child{color:#FDD201;font-weight:700}
   .timeline-time{font-size:17px;flex:0 0 76px}
   .timeline-card{padding:8px 10px}
 }
