@@ -1862,7 +1862,9 @@ table.tbl-card .flag-warn,table.tbl-card .flag-break{white-space:nowrap}
   <div class="metric-item metric-idx"><div class="metric-label">待挂锚</div><div class="metric-val">44</div><div class="metric-label">11/15 与 11/22 两批</div></div>
   <div class="metric-item metric-mood"><div class="metric-label">L2 换仓池</div><div class="metric-val">0</div><div class="metric-label">BUY 0 只，无动作</div></div>
 </div>
-  <p class="claim">持仓八只全部在 L1，验证点直接沿用 STATE.md，不重复建锚。下表按真源顺序排列，锚为摘要。</p>
+  <p class="claim">持仓八只优先复核，验证点沿用 STATE.md。</p>
+  <p class="claim">其中七只层级 L1，泰和新材为 L0。</p>
+  <p class="claim">分组按持仓优先互斥去重，每只只列一次。</p>
   <div class="table-wrap">
   <table class="tbl-card f5 pill-head">
     <thead><tr><th>代码</th><th>名称</th><th>层</th><th>链</th><th>前瞻锚（摘要）</th></tr></thead>
@@ -1884,8 +1886,8 @@ table.tbl-card .flag-warn,table.tbl-card .flag-break{white-space:nowrap}
 <div class="card" id="l1">
   <div class="kicker">第二组 · L1 候选（非持仓）</div>
   <h2>已过一轮取数，但赔率或扳机未到</h2>
-  <p class="claim">L1 共 10 条，8 条是持仓。</p>
-  <p class="claim">余下 2 条列在下表。</p>
+  <p class="claim">L1 共 10 条，7 条是持仓。</p>
+  <p class="claim">余下 3 条列在下表。</p>
   <p class="claim">层级不等于买点资格。</p>
   <div class="table-wrap">
   <table class="tbl-card f5 pill-head">
@@ -1900,14 +1902,14 @@ table.tbl-card .flag-warn,table.tbl-card .flag-break{white-space:nowrap}
 </div>
 
 <div class="card" id="l0">
-  <div class="kicker">第三组 · L0 观察 25 条</div>
+  <div class="kicker">第三组 · L0 观察（非持仓）24 条</div>
   <h2>挂锚即入，不看财务／市值／板块</h2>
-  <p class="claim">L0 是宽进层：只要挂上可核验前瞻锚、证伪条件与到期日就入池，允许亏损或无收入。以下 25 条按真源顺序排列，无一升级。</p>
+  <p class="claim">L0 是宽进层：只要挂上可核验前瞻锚、证伪条件与到期日就入池，允许亏损或无收入。</p>
+  <p class="claim">真源 L0 共 25 条，泰和新材已在持仓组列出，此处 24 条不重复计。</p>
   <div class="table-wrap">
   <table class="tbl-card f5 pill-head">
     <thead><tr><th>代码</th><th>名称</th><th>层</th><th>链</th><th>前瞻锚（摘要）</th></tr></thead>
     <tbody>
-    <tr><td>002254</td><td>泰和新材</td><td>L0·持</td><td>D</td><td>芳纶涂覆隔膜订单实锤（Q4–2027H1）</td></tr>
     <tr><td>002929</td><td>润建股份</td><td>L0</td><td>C</td><td>2.00&nbsp;亿美元 AI 词元合同开始确收；经营现金流转…</td></tr>
     <tr><td>920493</td><td>并行科技</td><td>L0</td><td>C</td><td>Q4 营收维持三位数增速；经营现金流为正；合同负债不降</td></tr>
     <tr><td>688120</td><td>华海清科</td><td>L0</td><td>B</td><td>国产替代订单与客户认证落地；两存扩产带动设备招标</td></tr>
